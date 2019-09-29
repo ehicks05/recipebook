@@ -1,0 +1,27 @@
+{
+  "name": "recipebook",
+  "version": "1.0.0",
+  "description": "A recipe book",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shicks255/RecipeBook.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shicks255/RecipeBook/issues"
+  },
+  "homepage": "https://github.com/shicks255/RecipeBook#readme",
+  "dependencies": {
+    "react": "^16.10.1",
+    "react-dom": "^16.10.1"
+  },
+  "devDependencies": {
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.9"
+  }
+}
