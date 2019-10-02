@@ -1,23 +1,35 @@
 import React from 'react';
-import recipes from '../recipes.json';
+import recipeData from './recipes.json';
+import Recipe from './Recipe'
 
 function App() {
 
-console.log(recipes);
+    const recipes = recipeData.map(recipe => <Recipe key={recipe.name} recipe={recipe} /> );
 
     return (
-        <section className={"section"}>
-        <div className={"container"}>
-            <h1 className={"title"}>
-                Hello World
-            </h1>
-            <p className={"subtitle"}>
-                My first website with <strong>Bulma</strong>!
-            </p>
-        </div>
-    </section>
-    )
+        <div>
+            <section className={"hero is-info"}>
+                <div className={"hero-body"}>
+                    <div className={"container"}>
+                        <h1 className={"title"}>
+                            Recipe Book
+                        </h1>
+                        <p className={"subtitle"}>
+                            Bon appetite!
+                        </p>
+                    </div>
+                </div>
+            </section>
 
+            <section className={"section"}>
+                <div className={"container"}>
+                    <ul>
+                        {recipes}
+                    </ul>
+                </div>
+            </section>
+        </div>
+    );
 }
 
 export default App;
