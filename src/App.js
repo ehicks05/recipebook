@@ -11,7 +11,7 @@ export default class App extends React.Component {
 
         this.state = {
             recipes: recipeData,
-            // selectedRecipeId: 1
+            selectedRecipeId: 1
         }
     }
 
@@ -20,10 +20,11 @@ export default class App extends React.Component {
     }
 
     render() {
-        var recipe;
+        var recipeComponent;
         if (this.state.selectedRecipeId) {
-            var recipe1 = recipeData.find(el => el.id === this.state.selectedRecipeId);
-            recipe = <Recipe recipe={recipe1}/>
+            var recipe1 = recipeData.find(item => item.id === this.state.selectedRecipeId);
+            console.log(recipeData);
+            recipeComponent = <Recipe recipe={recipe1}/>
         }
 
         return (
@@ -50,7 +51,7 @@ export default class App extends React.Component {
                     <div className={'column'}>
                         <section className={"section"}>
                             <div className={"container"}>
-                                {recipe}
+                                {recipeComponent}
                             </div>
                         </section>
                     </div>

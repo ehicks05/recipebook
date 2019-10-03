@@ -3,7 +3,7 @@ import React from "react";
 function Recipe(props) {
     const recipe = props.recipe;
     const ingredients = recipe.ingredients.map(ingredient =>
-        <li key={ingredient}>{ingredient}</li>
+        <li key={ingredient}>-{ingredient}</li>
     );
 
     return <div key={recipe.name}>
