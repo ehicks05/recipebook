@@ -11,7 +11,7 @@ export default class App extends React.Component {
 
         this.state = {
             recipes: recipeData,
-            // selectedRecipeId: 1
+            selectedRecipeId: 1
         }
     }
 
@@ -23,6 +23,7 @@ export default class App extends React.Component {
         var recipe;
         if (this.state.selectedRecipeId) {
             var recipe1 = recipeData.find(el => el.id === this.state.selectedRecipeId);
+            console.log(recipeData);
             recipe = <Recipe recipe={recipe1}/>
         }
 
