@@ -1,4 +1,17 @@
+const path = require('path');
+
 module.exports = {
+    devServer: {
+        contentBase: './public',
+        hot: true
+    },
+    entry: {
+        app: ["./src/index.js"]
+    },
+    output: {
+        path: path.resolve("./dist"),
+        filename: "main.js",
+    },
     module: {
         rules: [
             {
