@@ -8,7 +8,7 @@
 	"Cooking Time": "20",
 	"directions": "coming soon"
 },
-	{
+{
 	"id": "2",
 	"name": "Drew's Chinese Chicken",
 	"difficulty": "2",
@@ -17,4 +17,16 @@
 	],
 	"Cooking Time": "25",
 	"directions": "coming soon"
-}]
+},
+{
+	"id": "3",
+	"name": "Jessica's Delicious Comfort Food",
+	"difficulty": "1",
+	"ingredients": [
+		"Hot Dogs", "Collard Greens", "Chili Beans"
+	],
+	"Cooking Time": "10",
+	"directions": "coming soon"
+}
+]
+
