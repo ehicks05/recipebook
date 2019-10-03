@@ -7,4 +7,15 @@
 	],
 	"Cooking Time": "20",
 	"directions": "coming soon"
-}]
+},
+{
+	"id": "3",
+	"name": "Jessica's Delicious Comfort Food",
+	"difficulty": "1",
+	"ingredients": [
+		"Hot Dogs", "Collard Greens", "Chili Beans"
+	],
+	"Cooking Time": "10",
+	"directions": "coming soon"
+},
+]
