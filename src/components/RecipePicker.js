@@ -6,10 +6,19 @@ export default class RecipePicker extends React.Component {
         super(props);
 
         this.handleClickRecipe = this.handleClickRecipe.bind(this);
+        this.handleAddRecipeFilter = this.handleAddRecipeFilter.bind(this);
     }
 
     handleClickRecipe(id) {
         this.props.onClickRecipe(id);
+    }
+
+    handleAddRecipeFilter() {
+        let input = document.getElementById("recipeFilterInput")
+        if (input.value && input.value.length > 1)
+            this.props.onAddRecipeFilter(input.value);
+        
+        input.value = '';
     }
 
     render() {
@@ -33,7 +42,8 @@ export default class RecipePicker extends React.Component {
                 </p>
                 <div className="panel-block">
                     <p className="control has-icons-left">
-                        <input className="input is-small" type="text" placeholder="search"/>
+                        <input id="recipeFilterInput" className="input is-small" type="text" placeholder="search"/>
+                        <button onClick={() => this.handleAddRecipeFilter()}>Add</button>
                         <span className="icon is-small is-left">
                             <i className="fas fa-search" aria-hidden="true"> </i>
                         </span>

@@ -8,6 +8,9 @@ export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.handleClickRecipe = this.handleClickRecipe.bind(this);
+        this.handleAddRecipeFilter = this.handleAddRecipeFilter.bind(this);
+        this.handleClearRecipeFilter = this.handleClearRecipeFilter.bind(this);
+        this.handleClearAllRecipeFilters = this.handleClearAllRecipeFilters.bind(this);
 
         this.state = {
             recipes: recipeData,
@@ -21,9 +24,14 @@ export default class App extends React.Component {
     }
 
     handleAddRecipeFilter(filter) {
-        this.setState({
-            recipeFilters: this.state.recipeFilters.push(filter)
-         });
+        let filters = this.state.recipeFilters;
+        if (!filters.includes(filter.toLowerCase()))
+        {
+            filters.push(filter.toLowerCase());
+            this.setState({
+                recipeFilters: filters
+            });
+        }
     }
 
     handleClearRecipeFilter(filter) {
@@ -42,7 +50,7 @@ export default class App extends React.Component {
         var recipeComponent;
         if (this.state.selectedRecipeId) {
             var recipe1 = recipeData.find(item => item.id === this.state.selectedRecipeId);
-            console.log(recipeData);
+            // console.log(recipeData);
             recipeComponent = <Recipe recipe={recipe1}/>
         }
 
@@ -65,8 +73,11 @@ export default class App extends React.Component {
                     <div className={'columns'}>
                         <div className={'column is-one-quarter'}>
                             <section className={"section"}>
-                                <RecipePicker onClickRecipe={this.handleClickRecipe}
-                                              currentlySelected={this.state.selectedRecipeId} recipes={recipeData}/>
+                                <RecipePicker 
+                                    onClickRecipe={this.handleClickRecipe}
+                                    onAddRecipeFilter={this.handleAddRecipeFilter}
+                                    currentlySelected={this.state.selectedRecipeId} 
+                                    recipes={recipeData}/>
                             </section>
                         </div>
                         <div className={'column'}>
