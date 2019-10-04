@@ -11,12 +11,31 @@ export default class App extends React.Component {
 
         this.state = {
             recipes: recipeData,
-            selectedRecipeId: 1
+            selectedRecipeId: 1,
+            recipeFilters: []
         }
     }
 
     handleClickRecipe(id) {
         this.setState({selectedRecipeId: id});
+    }
+
+    handleAddRecipeFilter(filter) {
+        this.setState({
+            recipeFilters: this.state.recipeFilters.push(filter)
+         });
+    }
+
+    handleClearRecipeFilter(filter) {
+        let filters = this.state.recipeFilters;
+        for (let i = 0; i < filters.length; i++)
+            if (filters[i] == filter)
+                filters.splice(i,1);
+        this.setState({recipeFilters: filters});
+    }
+
+    handleClearAllRecipeFilters() {
+        this.setState({recipeFilters: []});
     }
 
     render() {
