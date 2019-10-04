@@ -7,43 +7,15 @@ export default class App extends React.Component {
 
     constructor(props) {
         super(props);
-        this.handleClickRecipe = this.handleClickRecipe.bind(this);
-        this.handleAddRecipeFilter = this.handleAddRecipeFilter.bind(this);
-        this.handleClearRecipeFilter = this.handleClearRecipeFilter.bind(this);
-        this.handleClearAllRecipeFilters = this.handleClearAllRecipeFilters.bind(this);
 
         this.state = {
             recipes: recipeData,
             selectedRecipeId: 1,
-            recipeFilters: []
         }
     }
 
     handleClickRecipe(id) {
         this.setState({selectedRecipeId: id});
-    }
-
-    handleAddRecipeFilter(filter) {
-        let filters = this.state.recipeFilters;
-        if (!filters.includes(filter.toLowerCase()))
-        {
-            filters.push(filter.toLowerCase());
-            this.setState({
-                recipeFilters: filters
-            });
-        }
-    }
-
-    handleClearRecipeFilter(filter) {
-        let filters = this.state.recipeFilters;
-        for (let i = 0; i < filters.length; i++)
-            if (filters[i] == filter)
-                filters.splice(i,1);
-        this.setState({recipeFilters: filters});
-    }
-
-    handleClearAllRecipeFilters() {
-        this.setState({recipeFilters: []});
     }
 
     render() {
@@ -75,7 +47,6 @@ export default class App extends React.Component {
                             <section className={"section"}>
                                 <RecipePicker 
                                     onClickRecipe={this.handleClickRecipe}
-                                    onAddRecipeFilter={this.handleAddRecipeFilter}
                                     currentlySelected={this.state.selectedRecipeId} 
                                     recipes={recipeData}/>
                             </section>
