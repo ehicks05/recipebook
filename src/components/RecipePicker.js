@@ -9,24 +9,39 @@ export default class RecipePicker extends React.Component {
     }
 
     handleClickRecipe(id) {
-        console.log('recipe clicked');
         this.props.onClickRecipe(id);
     }
 
     render() {
         const recipeList = this.props.recipes.map(recipe => {
-            if (recipe.id !== this.props.currentlySelected)
-                return <li onClick={() => this.handleClickRecipe(recipe.id)} key={recipe.id}><button className={'button'}>{recipe.name}</button></li>
-            else
-                return <li key={recipe.id}><button className={'button is-info'}>{recipe.name}</button></li>
+            const isSelected = recipe.id === this.props.currentlySelected;
+            const activeClass = isSelected ? 'is-active' : null;
+            return (
+                <a className={"panel-block " + activeClass} key={recipe.id} onClick={isSelected ? null : () => this.handleClickRecipe(recipe.id)}>
+                    <span className="panel-icon">
+                      <span className="" aria-hidden="true">{recipe.emoji}</span>
+                    </span>
+                    {recipe.name}
+                </a>
+            );
         });
 
-        return(
-            <div>
-                <ul>
-                    {recipeList}
-                </ul>
-            </div>
+        return (
+            <nav className="panel">
+                <p className="panel-heading">
+                    Recipes
+                </p>
+                <div className="panel-block">
+                    <p className="control has-icons-left">
+                        <input className="input is-small" type="text" placeholder="search"/>
+                        <span className="icon is-small is-left">
+                            <i className="fas fa-search" aria-hidden="true"> </i>
+                        </span>
+                    </p>
+                </div>
+
+                {recipeList}
+            </nav>
         )
     }
 }

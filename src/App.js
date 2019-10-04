@@ -61,18 +61,21 @@ export default class App extends React.Component {
                     </div>
                 </section>
 
-                <div className={'columns'}>
-                    <div className={'column is-one-fifth'}>
-                        <section className={"section"}>
-                            <RecipePicker onClickRecipe={this.handleClickRecipe} currentlySelected={this.state.selectedRecipeId} recipes={recipeData}/>
-                        </section>
-                    </div>
-                    <div className={'column'}>
-                        <section className={"section"}>
-                            <div className={"container"}>
-                                {recipeComponent}
-                            </div>
-                        </section>
+                <div className={'container'}>
+                    <div className={'columns'}>
+                        <div className={'column is-one-quarter'}>
+                            <section className={"section"}>
+                                <RecipePicker onClickRecipe={this.handleClickRecipe}
+                                              currentlySelected={this.state.selectedRecipeId} recipes={recipeData}/>
+                            </section>
+                        </div>
+                        <div className={'column'}>
+                            <section className={"section"}>
+                                <div className={"container"}>
+                                    {recipeComponent}
+                                </div>
+                            </section>
+                        </div>
                     </div>
                 </div>
             </div>
