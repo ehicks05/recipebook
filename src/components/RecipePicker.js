@@ -67,7 +67,10 @@ export default class RecipePicker extends React.Component {
 
         let filterList = this.state.recipeFilters.length > 0
             ? this.state.recipeFilters.map(f =>
-                <span key={f} onClick={() => this.handleClearRecipeFilter(f)} className={"tag is black"}>{f}</span>
+                <span key={f} className={"tag is-link"}>
+                    {f}
+                    <button className={"delete"} onClick={() => this.handleClearRecipeFilter(f)}></button>
+                </span>
             )
             : '';
 
@@ -80,7 +83,7 @@ export default class RecipePicker extends React.Component {
                     <p className="control has-icons-left">
                         <input id="recipeFilterInput" className="input is-small" type="text" placeholder="search" />
                         {filterList}
-                        <br/>
+                        <br />
                         <button onClick={() => this.handleAddRecipeFilter()}>Add</button>
                         {clearFiltersButton}
                         <span onClick={() => this.removeFilter(f)} className="icon is-small is-left">
