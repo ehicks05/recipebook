@@ -1,5 +1,5 @@
 import React from 'react';
-import recipeData from './recipes.json';
+import recipeData from '../recipes.json';
 
 export default class RecipePicker extends React.Component {
 
@@ -50,7 +50,7 @@ export default class RecipePicker extends React.Component {
 
     render() {
 
-        
+
 
 
         const recipeList = this.props.recipes.map(recipe => {
