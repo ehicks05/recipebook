@@ -1,5 +1,4 @@
 import React from 'react';
-import recipeData from '../recipes.json';
 
 export default class RecipePicker extends React.Component {
 
@@ -7,13 +6,15 @@ export default class RecipePicker extends React.Component {
         super(props);
 
         this.state = {
-            recipeFilters: []
+            recipeFilters: [],
+            usableRecipes: props.recipes
         }
 
         this.handleClickRecipe = this.handleClickRecipe.bind(this);
         this.handleAddRecipeFilter = this.handleAddRecipeFilter.bind(this);
         this.handleClearRecipeFilter = this.handleClearRecipeFilter.bind(this);
         this.handleClearAllRecipeFilters = this.handleClearAllRecipeFilters.bind(this);
+        this.getUsableRecipes = this.getUsableRecipes.bind(this);
     }
 
     handleClickRecipe(id) {
@@ -34,6 +35,35 @@ export default class RecipePicker extends React.Component {
         }
 
         input.value = '';
+
+        this.getUsableRecipes();
+    }
+
+    getUsableRecipes() {
+        var recipes = this.props.recipes;
+        let filters = this.state.recipeFilters;
+
+        // var ingredientRegex = '/(a-zA-Z)/'
+        
+        if (filters.length > 0) {
+            recipes = recipes.filter((value) => {
+                let ingredients = value.ingredients.map(x => x.toLowerCase()).join();
+                
+                // let ents = ingredientRegex.match(ingredients);
+                let keep = true;
+                filters.forEach(element => {
+                    if (!ingredients.includes(element)) {
+                        keep =  false;
+                    }
+                });
+
+                return keep;
+            });
+        }
+
+        this.setState({
+            usableRecipes: recipes
+        });
     }
 
     handleClearRecipeFilter(filter) {
@@ -42,18 +72,26 @@ export default class RecipePicker extends React.Component {
             if (filters[i] == filter)
                 filters.splice(i, 1);
         this.setState({ recipeFilters: filters });
+        this.getUsableRecipes();
     }
 
     handleClearAllRecipeFilters() {
-        this.setState({ recipeFilters: [] });
+        this.state.recipeFilters = [];
+        this.getUsableRecipes();
+    }
+
+    componentDidUpdate() {
+        let usableRecipes = this.state.usableRecipes;
+        if (!usableRecipes.map(it => it.id).includes(this.props.currentlySelected))
+            if (usableRecipes.length > 0)
+                this.handleClickRecipe(usableRecipes[0].id);
     }
 
     render() {
+        var recipes = this.state.usableRecipes;
+        let filters = this.state.recipeFilters;
 
-
-
-
-        const recipeList = this.props.recipes.map(recipe => {
+        const recipeList = recipes.map(recipe => {
             const isSelected = recipe.id === this.props.currentlySelected;
             const activeClass = isSelected ? 'is-active' : null;
             return (
@@ -67,7 +105,7 @@ export default class RecipePicker extends React.Component {
         });
 
         let clearFiltersButton = this.state.recipeFilters.length > 0
-            ? <button className={'button is-small'} onClick={() => this.handleClearAllRecipeFilters()}>Clear</button>
+            ? <button onClick={() => this.handleClearAllRecipeFilters()}>Clear</button>
             : '';
 
         let filterList = this.state.recipeFilters.length > 0
@@ -86,20 +124,10 @@ export default class RecipePicker extends React.Component {
                 </p>
                 <div className="panel-block">
                     <p className="control has-icons-left">
-
-                        <div className="field has-addons">
-                            <div className="control">
-                                <input id="recipeFilterInput" className="input is-small" type="text" placeholder="search" />
-                            </div>
-                            <div className="control">
-                                <button className={'button is-small'} onClick={() => this.handleAddRecipeFilter()}>
-                                    Add
-                                </button>
-                            </div>
-                        </div>
-
+                        <input id="recipeFilterInput" className="input is-small" type="text" placeholder="search" />
                         {filterList}
                         <br />
+                        <button onClick={() => this.handleAddRecipeFilter()}>Add</button>
                         {clearFiltersButton}
                         <span onClick={() => this.removeFilter(f)} className="icon is-small is-left">
                             <i className="fas fa-search" aria-hidden="true"> </i>
