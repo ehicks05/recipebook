@@ -35,23 +35,22 @@ export default class RecipePicker extends React.Component {
         }
 
         input.value = '';
-
         this.getUsableRecipes();
     }
 
     getUsableRecipes() {
         var recipes = this.props.recipes;
-        let filters = this.state.recipeFilters;
+        let recipeFilters = this.state.recipeFilters;
 
         // var ingredientRegex = '/(a-zA-Z)/'
         
-        if (filters.length > 0) {
+        if (recipeFilters.length > 0) {
             recipes = recipes.filter((value) => {
                 let ingredients = value.ingredients.map(x => x.toLowerCase()).join();
                 
                 // let ents = ingredientRegex.match(ingredients);
                 let keep = true;
-                filters.forEach(element => {
+                recipeFilters.forEach(element => {
                     if (!ingredients.includes(element)) {
                         keep =  false;
                     }
@@ -89,7 +88,7 @@ export default class RecipePicker extends React.Component {
 
     render() {
         var recipes = this.state.usableRecipes;
-        let filters = this.state.recipeFilters;
+        let recipeFilters = this.state.recipeFilters;
 
         const recipeList = recipes.map(recipe => {
             const isSelected = recipe.id === this.props.currentlySelected;
@@ -104,12 +103,12 @@ export default class RecipePicker extends React.Component {
             );
         });
 
-        let clearFiltersButton = this.state.recipeFilters.length > 0
+        let clearFiltersButton = recipeFilters.length > 0
             ? <button onClick={() => this.handleClearAllRecipeFilters()}>Clear</button>
             : '';
 
-        let filterList = this.state.recipeFilters.length > 0
-            ? this.state.recipeFilters.map(f =>
+        let filterList = recipeFilters.length > 0
+            ? recipeFilters.map(f =>
                 <span key={f} className={"tag is-link"}>
                     {f}
                     <button className={"delete"} onClick={() => this.handleClearRecipeFilter(f)}></button>
