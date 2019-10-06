@@ -52,13 +52,8 @@ export default class App extends React.Component {
                                     recipes={recipeData} />
                             </section>
                         </div>
-                        <div className={'column'}>
-                            <section className={"section"}>
-                                <div className={"container"}>
-                                    {recipeComponent}
-                                </div>
-                            </section>
-                        </div>
+
+                        {recipeComponent}
                     </div>
                 </div>
             </div>

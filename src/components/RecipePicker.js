@@ -67,7 +67,7 @@ export default class RecipePicker extends React.Component {
         });
 
         let clearFiltersButton = this.state.recipeFilters.length > 0
-            ? <button onClick={() => this.handleClearAllRecipeFilters()}>Clear</button>
+            ? <button className={'button is-small'} onClick={() => this.handleClearAllRecipeFilters()}>Clear</button>
             : '';
 
         let filterList = this.state.recipeFilters.length > 0
@@ -86,10 +86,20 @@ export default class RecipePicker extends React.Component {
                 </p>
                 <div className="panel-block">
                     <p className="control has-icons-left">
-                        <input id="recipeFilterInput" className="input is-small" type="text" placeholder="search" />
+
+                        <div className="field has-addons">
+                            <div className="control">
+                                <input id="recipeFilterInput" className="input is-small" type="text" placeholder="search" />
+                            </div>
+                            <div className="control">
+                                <button className={'button is-small'} onClick={() => this.handleAddRecipeFilter()}>
+                                    Add
+                                </button>
+                            </div>
+                        </div>
+
                         {filterList}
                         <br />
-                        <button onClick={() => this.handleAddRecipeFilter()}>Add</button>
                         {clearFiltersButton}
                         <span onClick={() => this.removeFilter(f)} className="icon is-small is-left">
                             <i className="fas fa-search" aria-hidden="true"> </i>
