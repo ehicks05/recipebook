@@ -1,35 +1,46 @@
-[{
-	"id": 1,
-	"name": "Steve's Classic Wok",
-	"difficulty": "4",
-	"ingredients": [
-		"Steak (or chicken)", "Carrots", "Onions", "Mushrooms", "Udon Noodles", "Curry Powder", "Pepper", "Garlic Salt", "Hoison Sauce"
-	],
-	"Cooking Time": "20",
-	"directions": "Add a bit of oil to your wok and let it heat up.  Meanwhile, cut up the steak or chicken into small bite-sized pieces.  Add the meat to the wok, and sprinke on some pepper, garlic salt, and curry.  Wait a few minutes, and add carrots.  When the meat is starting to cook, add hoison sauce and cover for about 5-7 minutes.  Use this time to slice up the mushrooms.  Then, add the mushrooms and onions to the dish.  Now cook your udon noodles in the microwave.  Cover them in water, and put in for 2 minutes on high.  Then drain, unplug the wok, and add the noodles into the mix and stir.  This way the noodles will be able to mingle with the rest of the meal, but not overcook.  Then serve and enjoy.",
-	"emoji": "\uD83E\uDD58"
-},
-{
-	"id": 2,
-	"name": "Drew's Chinese Chicken",
-	"difficulty": "2",
-	"ingredients": [
-		"Chicken", "Chinese Seasoning Medley"
-	],
-	"Cooking Time": "25",
-	"directions": "coming soon",
-	"emoji": "\uD83C\uDF57"
-},
-{
-	"id": 3,
-	"name": "Jessica's Delicious Comfort Food",
-	"difficulty": "1",
-	"ingredients": [
-		"Hot Dogs", "Collard Greens", "Chili Beans"
-	],
-	"Cooking Time": "10",
-	"directions": "coming soon",
-	"emoji": "\uD83C\uDF2D"
-}
+[
+	{
+		"id": 1,
+		"name": "Steve's Classic Wok",
+		"difficulty": "4",
+		"ingredients": [
+			"Steak (or chicken)",
+			"Carrots",
+			"Onions",
+			"Mushrooms",
+			"Udon Noodles",
+			"Curry Powder",
+			"Pepper",
+			"Garlic Salt",
+			"Hoison Sauce"
+		],
+		"Cooking Time": "20",
+		"directions": "Add a bit of oil to your wok and let it heat up.  Meanwhile, cut up the steak or chicken into small bite-sized pieces.  Add the meat to the wok, and sprinke on some pepper, garlic salt, and curry.  Wait a few minutes, and add carrots.  When the meat is starting to cook, add hoison sauce and cover for about 5-7 minutes.  Use this time to slice up the mushrooms.  Then, add the mushrooms and onions to the dish.  Now cook your udon noodles in the microwave.  Cover them in water, and put in for 2 minutes on high.  Then drain, unplug the wok, and add the noodles into the mix and stir.  This way the noodles will be able to mingle with the rest of the meal, but not overcook.  Then serve and enjoy.",
+		"emoji": "\uD83E\uDD58"
+	},
+	{
+		"id": 2,
+		"name": "Drew's Chinese Chicken",
+		"difficulty": "2",
+		"ingredients": [
+			"Chicken",
+			"Chinese Seasoning Medley"
+		],
+		"Cooking Time": "25",
+		"directions": "coming soon",
+		"emoji": "\uD83C\uDF57"
+	},
+	{
+		"id": 3,
+		"name": "Jessica's Delicious Comfort Food",
+		"difficulty": "1",
+		"ingredients": [
+			"Hot Dogs",
+			"Collard Greens",
+			"Chili Beans"
+		],
+		"Cooking Time": "10",
+		"directions": "coming soon",
+		"emoji": "\uD83C\uDF2D"
+	}
 ]
-

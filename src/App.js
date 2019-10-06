@@ -7,24 +7,24 @@ export default class App extends React.Component {
 
     constructor(props) {
         super(props);
+
         this.handleClickRecipe = this.handleClickRecipe.bind(this);
 
         this.state = {
             recipes: recipeData,
-            selectedRecipeId: 1
+            selectedRecipeId: 1,
         }
     }
 
     handleClickRecipe(id) {
-        this.setState({selectedRecipeId: id});
+        this.setState({ selectedRecipeId: id });
     }
 
     render() {
         var recipeComponent;
         if (this.state.selectedRecipeId) {
             var recipe1 = recipeData.find(item => item.id === this.state.selectedRecipeId);
-            console.log(recipeData);
-            recipeComponent = <Recipe recipe={recipe1}/>
+            recipeComponent = <Recipe recipe={recipe1} />
         }
 
         return (
@@ -46,8 +46,10 @@ export default class App extends React.Component {
                     <div className={'columns'}>
                         <div className={'column is-one-quarter'}>
                             <section className={"section"}>
-                                <RecipePicker onClickRecipe={this.handleClickRecipe}
-                                              currentlySelected={this.state.selectedRecipeId} recipes={recipeData}/>
+                                <RecipePicker
+                                    onClickRecipe={this.handleClickRecipe}
+                                    currentlySelected={this.state.selectedRecipeId}
+                                    recipes={recipeData} />
                             </section>
                         </div>
                         <div className={'column'}>
