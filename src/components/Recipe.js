@@ -6,25 +6,18 @@ function Recipe(props) {
         <li key={ingredient}>- {ingredient}</li>
     );
 
+    const directions = Array.isArray(recipe.directions) ?
+        (
+            <ol>
+                {recipe.directions.map((direction) => <li>{direction}</li>)}
+            </ol>
+        )
+        : recipe.directions;
+
     return (
 
         <>
-            <div className={'column'}>
-                <section className={"section"}>
-                    <div className={"container"}>
-                        <div key={recipe.name}>
-                            <h1 className='title'>{recipe.name}</h1>
-                            <h3 className='subtitle'>Cooking Time: {recipe["Cooking Time"]} - Difficulty: {recipe.difficulty}</h3>
-
-                            <hr />
-                            <h3 className={'subtitle'}>Directions:</h3>
-                            <p>{recipe.directions}</p>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <div className={'column is-one-quarter'}>
+            <div id={'ingredients-column'} className={'column is-one-quarter'}>
                 <section className={"section"}>
                     <div className={"container"}>
                         <div key={recipe.name}>
@@ -35,6 +28,21 @@ function Recipe(props) {
                                 {ingredients}
                             </ul>
 
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div id={'directions-column'} className={'column'}>
+                <section className={"section"}>
+                    <div className={"container"}>
+                        <div key={recipe.name}>
+                            <h1 className='title'>{recipe.name}</h1>
+                            <h3 className='subtitle'>Cooking Time: {recipe["Cooking Time"]} - Difficulty: {recipe.difficulty}</h3>
+
+                            <hr />
+                            <h3 className={'subtitle'}>Directions:</h3>
+                            <p>{directions}</p>
                         </div>
                     </div>
                 </section>
