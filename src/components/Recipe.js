@@ -6,13 +6,11 @@ function Recipe(props) {
         <li key={ingredient}>- {ingredient}</li>
     );
 
-    const directions = Array.isArray(recipe.directions) ?
-        (
+    const directions = (
             <ol>
                 {recipe.directions.map((direction) => <li>{direction}</li>)}
             </ol>
-        )
-        : recipe.directions;
+        );
 
     return (
 
