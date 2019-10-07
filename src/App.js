@@ -2,6 +2,7 @@ import React from 'react';
 import recipeData from './recipes.json';
 import Recipe from './components/Recipe';
 import RecipePicker from './components/RecipePicker';
+import Navbar from "./components/Navbar";
 
 export default class App extends React.Component {
 
@@ -21,23 +22,16 @@ export default class App extends React.Component {
     }
 
     render() {
-        var recipeComponent;
-        if (this.state.selectedRecipeId) {
-            var recipe1 = recipeData.find(item => item.id === this.state.selectedRecipeId);
-            recipeComponent = <Recipe recipe={recipe1} />
-        }
+        const selectedRecipe = recipeData.find(item => item.id === this.state.selectedRecipeId);
 
         return (
             <>
+                <Navbar recipe={selectedRecipe} />
                 <section className={"hero is-info"}>
                     <div className={"hero-body"}>
                         <div className={"container"}>
-                            <h1 className={"title"}>
-                                Recipe Book
-                            </h1>
-                            <p className={"subtitle"}>
-                                Bon appetite!
-                            </p>
+                            <h1 className='title'>{selectedRecipe.name}</h1>
+                            <h3 className='subtitle'>Cooking Time: {selectedRecipe["Cooking Time"]} - Difficulty: {selectedRecipe.difficulty}</h3>
                         </div>
                     </div>
                 </section>
@@ -52,7 +46,7 @@ export default class App extends React.Component {
                                         recipes={recipeData} />
                             </div>
 
-                            {recipeComponent}
+                            <Recipe recipe={selectedRecipe} />
                         </div>
                     </div>
                 </section>

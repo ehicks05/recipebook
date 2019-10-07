@@ -3,6 +3,8 @@ const path = require('path');
 module.exports = {
     devServer: {
         contentBase: './public',
+        public: 'http://localhost:8080',
+        host: '0.0.0.0',
         hot: true
     },
     entry: {
