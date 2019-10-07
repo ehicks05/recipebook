@@ -15,7 +15,13 @@
 			"Hoison Sauce"
 		],
 		"Cooking Time": "20",
-		"directions": "Add a bit of oil to your wok and let it heat up.  Meanwhile, cut up the steak or chicken into small bite-sized pieces.  Add the meat to the wok, and sprinke on some pepper, garlic salt, and curry.  Wait a few minutes, and add carrots.  When the meat is starting to cook, add hoison sauce and cover for about 5-7 minutes.  Use this time to slice up the mushrooms.  Then, add the mushrooms and onions to the dish.  Now cook your udon noodles in the microwave.  Cover them in water, and put in for 2 minutes on high.  Then drain, unplug the wok, and add the noodles into the mix and stir.  This way the noodles will be able to mingle with the rest of the meal, but not overcook.  Then serve and enjoy.",
+		"directions": [
+			"Add a bit of oil to your wok and let it heat up.",
+			"Meanwhile, cut up the steak or chicken into small bite-sized pieces.",
+			"Add the meat to the wok, and sprinke on some pepper, garlic salt, and curry.  Wait a few minutes, and add carrots.",
+			"When the meat is starting to cook, add hoison sauce and cover for about 5-7 minutes.  Use this time to slice up the mushrooms.  Then, add the mushrooms and onions to the dish.",
+			"Now cook your udon noodles in the microwave.  Cover them in water, and put in for 2 minutes on high.  Then drain, unplug the wok, and add the noodles into the mix and stir.  This way the noodles will be able to mingle with the rest of the meal, but not overcook.",
+			"Then serve and enjoy."],
 		"emoji": "\uD83E\uDD58"
 	},
 	{
@@ -27,7 +33,7 @@
 			"Chinese Seasoning Medley"
 		],
 		"Cooking Time": "25",
-		"directions": "coming soon",
+		"directions": ["coming soon"],
 		"emoji": "\uD83C\uDF57"
 	},
 	{
@@ -40,11 +46,38 @@
 			"Chili Beans"
 		],
 		"Cooking Time": "10",
-		"directions": "coming soon",
+		"directions": ["coming soon"],
 		"emoji": "\uD83C\uDF2D"
 	},
 	{
 		"id": 4,
+		"name": "Chicken & Vegetable Udon Soup",
+		"difficulty": "2",
+		"ingredients": [
+			"1/2 package udon noodles",
+			"1 tbsp oil",
+			"1 tbsp minced garlic",
+			"1 tbsp minced ginger",
+			"1/2 lb boneless skinless chicken breast cut into strips",
+			"4 cups chicken stock",
+			"1 cup diced carrots",
+			"2 tbsp soy sauce",
+			"1/2 tsp salt",
+			"1 1/2 cups snow peas, julienne sliced",
+			"1/2 cup sliced mushrooms",
+			"2 tbsp green onions, thinly sliced"
+		],
+		"Cooking Time": "40",
+		"directions": [
+			"Cook udon noodles as directed. Drain well.",
+			"Meanwhile, heat oil in large saucepan on medium-high heat. Add garlic and ginger and cook for 1 minute or until fragrant. Add chicken and cook 3 to 5 minutes or until chicken is no longer pink.",
+			"Add stock, carrots, soy sauce, and salt. Bring to boil. Reduce heat and simmer for 5 minutes or until carrots are tender crisp. Stir in snow peas and mushrooms and cook for 2 minutes or until snow peas are tender crisp.",
+			"Divide noodles into 6 soup bowls. Ladle soup into each bowl and garnish with green onions.",
+			"Makes 6 servings."
+		],
+  },
+  {
+		"emoji": "\uD83C\uDF5C"
 		"name": "Homemade Cookie Dough",
 		"difficulty": "3",
 		"ingredients": [
