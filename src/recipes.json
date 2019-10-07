@@ -75,7 +75,9 @@
 			"Divide noodles into 6 soup bowls. Ladle soup into each bowl and garnish with green onions.",
 			"Makes 6 servings."
 		],
-  },
+		"emoji": "\uD83C\uDF5C"
+
+	},
   {
 		"name": "Homemade Cookie Dough",
 		"difficulty": "3",
@@ -88,7 +90,7 @@
 			"Milk"
 		],
 		"Cooking Time": "6",
-		"directions": "Melt 2 tablespoon of butter  in a bowl.  Mix in 1/4 cup browned sugar.  Add 1 tablespoon of milk.  1/8 tablespoon of vanilla.  Slowly mix in 5 tablespoons of flour and add chocolate chips.  Refridgerate until cold.",
+		"directions": ["Melt 2 tablespoon of butter  in a bowl.  Mix in 1/4 cup browned sugar.  Add 1 tablespoon of milk.  1/8 tablespoon of vanilla.  Slowly mix in 5 tablespoons of flour and add chocolate chips.  Refridgerate until cold."],
 		"emoji": "\ud83c\udf6a"
 	}
 ]
