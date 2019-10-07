@@ -9,7 +9,7 @@ function Recipe(props) {
     const directions = (
         <div className={'content'}>
             <ol>
-                {recipe.directions.map((direction) => <li>{direction}</li>)}
+                {recipe.directions.map((direction) => <li key={direction}>{direction}</li>)}
             </ol>
         </div>
     );
@@ -33,7 +33,7 @@ function Recipe(props) {
             <div id={'directions-column'} className={'column'}>
                 <div key={recipe.name}>
                     <h3 className={'subtitle'}>Directions:</h3>
-                    <p>{directions}</p>
+                    {directions}
                 </div>
             </div>
         </>
