@@ -28,7 +28,7 @@ export default class App extends React.Component {
         }
 
         return (
-            <div>
+            <>
                 <section className={"hero is-info"}>
                     <div className={"hero-body"}>
                         <div className={"container"}>
@@ -42,21 +42,21 @@ export default class App extends React.Component {
                     </div>
                 </section>
 
-                <div className={'container'}>
-                    <div className={'columns'}>
-                        <div className={'column is-one-quarter'}>
-                            <section className={"section"}>
-                                <RecipePicker
-                                    onClickRecipe={this.handleClickRecipe}
-                                    currentlySelected={this.state.selectedRecipeId}
-                                    recipes={recipeData} />
-                            </section>
-                        </div>
+                <section className={"section"}>
+                    <div className={'container'}>
+                        <div className={'columns'}>
+                            <div className={'column is-one-quarter'}>
+                                    <RecipePicker
+                                        onClickRecipe={this.handleClickRecipe}
+                                        currentlySelected={this.state.selectedRecipeId}
+                                        recipes={recipeData} />
+                            </div>
 
-                        {recipeComponent}
+                            {recipeComponent}
+                        </div>
                     </div>
-                </div>
-            </div>
+                </section>
+            </>
         );
     }
 }
