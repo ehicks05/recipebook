@@ -93,5 +93,76 @@
 		"Cooking Time": "6",
 		"directions": ["Melt 2 tablespoon of butter  in a bowl.  Mix in 1/4 cup browned sugar.  Add 1 tablespoon of milk.  1/8 tablespoon of vanilla.  Slowly mix in 5 tablespoons of flour and add chocolate chips.  Refridgerate until cold."],
 		"emoji": "\ud83c\udf6a"
+	},
+	{
+		"id": 6,
+		"name": "Peanut Butter Blossoms",
+		"difficulty": "6",
+		"ingredients": [
+			"1 3/4 cups flour",
+			"1 teaspoon baking soda",
+			"1/2 teaspon salt",
+			"4 ounces softened butter",
+			"1/2 cup smooth peanut butter",
+			"1/2 cup sugar",
+			"1/2 cup brown sugar",
+			"1 large egg",
+			"1 tablespoon milk",
+			"1 teaspoon vanilla",
+			"5 dozen Hersey Kisses"
+		],
+		"Cooking Time": "35 Minutes",
+		"directions": [
+			"Sift together flour, baking soda and salt; set aside. Using an electric mixer, cream together butter, peanut butter, 1/2 cup granulated sugar and light brown sugar. Add egg, milk and vanilla; beat until well blended. Gradually add flour mixture, mixing thoroughly. If the dough is very soft, refrigerate for about 1 hour.",
+			"Preheat oven to 375 degrees. Spray, oil or line a cookie sheet with nonstick liner and set aside. Roll dough into 1-inch balls. (For a precise number of cookies, divide the dough into 5 pieces, and shape each piece into 12 balls.)",
+			"Roll cookies in sugar and place 2 inches apart on cookie sheet. Bake until very light brown and puffed, 6 to 8 minutes. Remove sheet from oven and lightly press a candy kiss into center of each cookie, allowing it to crack slightly. Return to oven until light golden brown, 2 to 3 minutes. Remove from oven, cool completely and store in an airtight container."
+		],
+		"emoji": "\ud83c\udf6a"
+	},
+	{
+		"id": 7,
+		"name": "Thick Cut-Out Cookies",
+		"difficulty": "5",
+		"ingredients": [
+			"2 1/8 cups sugar",
+			"2 cups softened butter",
+			"4 eggs",
+			"6 egg yolks",
+			"1 1/2 teaspons vanilla extract",
+			"7 cups flour",
+			"1 tablespoon baking powder",
+			"1/2 teaspoon salt",
+			"4 cups sugar",
+			"1/4 vegetable oil",
+			"1 tablespoon hot water"
+		],
+		"Cooking Time": "8 minutes",
+		"directions": [
+			"In a large bowl, cream together the sugar and butter until smooth. Beat in the eggs and egg yolks, one at a time, mixing well after each. Mix in vanilla extract. Combine flour, baking powder, and salt; stir into the sugar mixture. Cover dough and chill for at least 1 hour.",
+			"Preheat the oven to 375 degrees F (190 degrees C). Grease cookie sheets. On a floured surface, roll the dough out to 1/2 inch thickness and cut into desired shapes using cookie cutters. Place 2 inches apart on the prepared baking sheets.",
+			"Bake for 8 to 10 minutes in the preheated oven. Allow cookies to cool on baking sheet for 5 minutes before removing to a wire rack.",
+			"To make frosting, mix together the confectioners' sugar, oil and 1 teaspoon vanilla until smooth. gradually add enough hot water to achieve a spreadable consistency. Spread over warm cookies."
+		],
+		"emoji": "\ud83c\udf6a"
+	},
+	{
+		"id": 8,
+		"name": "Russian Tea Cakes",
+		"difficulty": "5",
+		"ingredients": [
+			"1 cup butter",
+			"1 teaspon vanilla extract",
+			"6 tablespoons sugar",
+			"2 cups flour",
+			"1 cup chopped walnuts",
+			"1/3 cup sugar"
+		],
+		"Cooking Time": "12 minutes",
+		"directions": [
+			"Preheat oven to 350 degrees F (175 degrees C).",
+			"In a medium bowl, cream butter and vanilla until smooth. Combine the 6 tablespoons confectioners' sugar and flour; stir into the butter mixture until just blended. Mix in the chopped walnuts. Roll dough into 1 inch balls, and place them 2 inches apart on an ungreased cookie sheet.",
+			"Bake for 12 minutes in the preheated oven. When cool, roll in remaining confectioners' sugar. I also like to roll mine in the sugar a second time."
+		],
+		"emoji": "\ud83c\udf6a"
 	}
 ]
