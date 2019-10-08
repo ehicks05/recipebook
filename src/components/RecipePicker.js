@@ -119,14 +119,14 @@ export default class RecipePicker extends React.Component {
         return (
             <nav className="panel">
                 <p className="panel-heading">
-                    Recipes
+                    Search Recipes
                 </p>
                 <div className="panel-block">
                     <p className="control has-icons-left">
                         <input id="recipeFilterInput" className="input is-small" type="text" placeholder="search" />
                         {filterList}
                         <br />
-                        <button onClick={() => this.handleAddRecipeFilter()}>Add</button>
+                        <button className={'button'} onClick={() => this.handleAddRecipeFilter()}>Add</button>
                         {clearFiltersButton}
                         <span onClick={() => this.removeFilter(f)} className="icon is-small is-left">
                             <i className="fas fa-search" aria-hidden="true"> </i>

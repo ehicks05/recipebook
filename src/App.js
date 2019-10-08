@@ -5,7 +5,7 @@ import RecipePicker from './components/RecipePicker';
 import Navbar from "./components/Navbar";
 import Sidebar from "react-sidebar";
 
-const mql = window.matchMedia(`(min-width: ` + (768 + 286) + `px)`);
+const mql = window.matchMedia(`(min-width: 1024px)`);
 
 export default class App extends React.Component {
 
@@ -14,6 +14,7 @@ export default class App extends React.Component {
 
         this.handleClickRecipe = this.handleClickRecipe.bind(this);
         this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
+        this.onSetSidebarDocked = this.onSetSidebarDocked.bind(this);
         this.mediaQueryChanged = this.mediaQueryChanged.bind(this);
 
         this.state = {
@@ -40,6 +41,10 @@ export default class App extends React.Component {
         this.setState({ sidebarOpen: open });
     }
 
+    onSetSidebarDocked(docked) {
+        this.setState({ sidebarDocked: docked });
+    }
+
     mediaQueryChanged() {
         this.setState({ sidebarDocked: mql.matches, sidebarOpen: false });
     }
@@ -51,10 +56,16 @@ export default class App extends React.Component {
             <>
                 <Sidebar
                     sidebar={
-                        <RecipePicker
-                            onClickRecipe={this.handleClickRecipe}
-                            currentlySelected={this.state.selectedRecipeId}
-                            recipes={recipeData}/>
+                        <>
+                            {/* this nav will push the sidebar down so the main nav takes up entire width of screen (on large screens) */}
+                            <nav className="navbar" role="navigation" aria-label="main navigation">
+                                <a className={'button is-hidden-touch'} onClick={() => this.onSetSidebarDocked(false)}>close</a>
+                            </nav>
+                            <RecipePicker
+                                onClickRecipe={this.handleClickRecipe}
+                                currentlySelected={this.state.selectedRecipeId}
+                                recipes={recipeData}/>
+                        </>
                     }
                     open={this.state.sidebarOpen}
                     docked={this.state.sidebarDocked}
@@ -64,7 +75,7 @@ export default class App extends React.Component {
                     touchHandleWidth={40}
                 >
 
-                    <Navbar recipe={selectedRecipe} />
+                    <Navbar recipe={selectedRecipe} sidebarDocked={this.state.sidebarDocked} onSetSidebarDocked={this.onSetSidebarDocked} />
                     <section className={"hero is-info"}>
                         <div className={"hero-body"}>
                             <div className={"container"}>
