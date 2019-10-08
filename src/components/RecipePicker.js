@@ -119,7 +119,7 @@ export default class RecipePicker extends React.Component {
         return (
             <nav className="panel">
                 <p className="panel-heading">
-                    Recipes
+                    Search Recipes
                 </p>
                 <div className="panel-block">
                     <p className="control has-icons-left">
