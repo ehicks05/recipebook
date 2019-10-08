@@ -1,11 +1,17 @@
 import React from "react";
 
-
-export default class Navbar extends React.Component{
+export default class Navbar extends React.Component {
 
     render() {
+
+        const menuButton = !this.props.sidebarDocked ?
+            <a className={'button is-hidden-touch'} onClick={() => this.props.onSetSidebarDocked(true)}>menu</a>
+            : null;
+
         return (
             <nav className="navbar" role="navigation" aria-label="main navigation">
+                {menuButton}
+
                 <div className={'container'}>
                     <div className="navbar-brand">
                         <a className="navbar-item" href="https://bulma.io">
