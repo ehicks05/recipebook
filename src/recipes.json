@@ -211,4 +211,35 @@
 			"Remove the potatoes from the oven, toss with parsley, season to taste, and serve hot."
 		],
 		"emoji": "\ud83c\udf6a"
+	{
+		"id": 12,
+		"name": "White Chocolate Dipped Peppermint Sugar Cookies",
+		"difficulty": "2",
+		"ingredients": [
+			"2 3/4 cups all-purpose flour",
+			"1 tsp baking soda",
+			"1/2 tsp salt",
+			"1/2 tsp cream of tartar",
+			"1 1/2 cups granulated sugar",
+			"1 cup unsalted butter, softened",
+			"1 large egg",
+			"1 large egg yolk",
+			"1 tsp vanilla extract",
+			"3/4 tsp peppermint extract",
+			"2 1/2 cups (15 oz) white chocolate chips",
+			"2 1/2 Tbsp (30g) shortening",
+			"1/3 cup (60g) peppermint bits or finely crushed candy canes"
+		],
+		"Cooking Time": "30 minutes",
+		"directions": [
+			"For the cookies: Preheat oven to 350 degrees. In a mixing bowl whisk together flour, baking soda, salt and cream of tartar, set aside.",
+			"In the bowl of an electric stand mixer fitted with the paddle attachment, cream together sugar and butter until combined. Mix in egg then mix in egg yolk, vanilla and peppermint extract.",
+			"With mixer set on low speed slowly add in dry ingredients and mix just until combined (dough with will thick, so stop mixer and mix by hand to get flour at bottom if needed).",
+			"Scoop dough out 1 1/2 Tbsp (about 33g) at a time and shape into balls. Transfer to a baking sheet lined with parchment paper or a silicone liner, spacing cookies 2-inches apart (chill dough balls that aren't currently baking in refrigerator on plates).",
+			"Bake in preheated oven 10 - 11 minutes (cookies should appear slightly under-baked). Remove from oven and allow to rest several minutes then transfer to a wire rack to cool completely.",
+			"For the white chocolate: Place chocolate chips and shortening in a medium microwave safe bowl and heat in microwave on 50% power in 20 second intervals, stirring well between intervals until melted and smooth.",
+			"Dip half of cooled cookies in white chocolate allowing excess to run off (or slide bottom slightly along edge of bowl) then transfer to wax paper and immediately sprinkle with peppermint bits.",
+			"Allow to set at room temperature or in refrigerator. Store in an airtight container at room temperature."
+		],
+		"emoji": "\ud83c\udf6a"
 ]
