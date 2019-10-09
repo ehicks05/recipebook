@@ -164,5 +164,133 @@
 			"Bake for 12 minutes in the preheated oven. When cool, roll in remaining confectioners' sugar. I also like to roll mine in the sugar a second time."
 		],
 		"emoji": "\ud83c\udf6a"
-	}
+	},
+	{
+		"id": 9,
+		"name": "Halloween Peanut Butter 'Barking' Spider Cookies",
+		"difficulty": "5",
+		"ingredients": [
+			"1/2 cup shortening",
+			"1/2 cup peanut butter",
+			"1/2 cup brown sugar",
+			"1/2 cup sugar",
+			"1 egg",
+			"2 tbsp milk",
+			"1 tsp vanilla",
+			"1 3/4 cup flour",
+			"1 tsp baking soda",
+			"1/2 tsp salt",
+			"1/4 cup sugar for rolling",
+			"48 miniature Reese’s cups unwrapped and frozen",
+			"96 candy eyes",
+			"1/2 cup chocolate chips"
+		],
+		"Cooking Time": "12 minutes",
+		"directions": [
+			"Preheat oven to 375 degrees F.",
+			"In a large bowl, beat together shortening, peanut butter, egg, sugar, brown sugar, vanilla, and milk. In a medium bowl, whisk together flour, baking soda, and salt. Gradually add dry mixture to wet mixture and beat until blended. Form into 1″ balls. Roll in sugar and place a couple of inches apart on ungreased cookie sheet.",
+			"Bake for 12 minutes or until golden brown. Immediately, gently press an upside down frozen peanut butter cup on top of each cookie and move to a wire rack to cool. After placing and moving all of the cookies on the wire rack, put in place the candy eyes while chocolate is still slightly soft. Put chocolate chips in the corner of a zippered sandwich bag. Microwave for 20 seconds, knead and repeat until chocolate has melted. Clip tiny piece off of the corner of bag to allow for piping and draw eight legs on each spider cookie. Place in refrigerator for 10 minutes to allow legs to set."
+		],
+		"emoji": "\ud83c\udf6a"
+  },
+	{
+		"id": 10,
+		"name": "Crispy Cauliflower Tacos",
+		"difficulty": "4",
+		"ingredients": [
+			"Crispy Breaded Cauliflower",
+			"15-ounce can vegetarian refried beans",
+			"1/2 teaspoon cumin",
+			"2 cups red cabbage, shredded",
+			"2 limes (1 for the cabbage & 1 to serve)",
+			"3 tablespoons Yum Yum Sauce",
+			"8 corn tortillas",
+			"Fresh cilantro, for garnish"
+		],
+		"Cooking Time": "40",
+		"directions": [
+			"Make the Crispy Breaded Cauliflower (about 40 minutes total; use the remaining time to complete the steps below.)",
+			"If using purchased refried beans, taste and if needed, mix with 1/2 teaspoon cumin and/or a pinch or two kosher salt.",
+			"Thinly slice the cabbage, enough for 2 cups. Mix it with 2 tablespoons lime juice and a pinch or two of salt. Allow it to stand at room temperature until serving.",
+			"Make the Yum Yum Sauce.",
+			"Warm the tortillas, or char them by placing them on grates above an open gas flame on medium heat for a few seconds per side, flipping with tongs, until they are slightly blackened and warm.",
+			"Chop the cilantro for a garnish.",
+			"To serve, place refried beans in a tortilla, top with cabbage, breaded cauliflower, Yum Yum sauce, and cilantro. Serve with lime wedges to spritz prior to serving. (If you have leftover cauliflower, you can reheat them in a 350F oven for 10 minutes, flipping once.)",
+		],
+		"emoji": "\uD83E\uDD58"
+	},	
+	{
+		"id": 11,
+		"name": "Garlic Roasted Mhmm Potatoes",
+		"difficulty": "2",
+		"ingredients": [
+			"3 pounds small red or white potatoes",
+			"1/4 cup good olive oil",
+			"1 1/2 teaspoons kosher salt",
+			"1 teaspoon freshly ground black pepper",
+			"2 tablespoons minced garlic (6 cloves)",
+			"2 tablespoons minced fresh parsley"
+		],
+		"Cooking Time": "1 hour",
+		"directions": [
+			"Preheat oven to 400 degrees F.",
+			"Cut the potatoes in half or quarters and place in a bowl with the olive oil, salt, pepper, and garlic; toss until the potatoes are well coated. Transfer the potatoes to a sheet pan and spread out into 1 layer. Roast in the oven for 45 minutes to 1 hour or until browned and crisp. Flip twice with a spatula during cooking in order to ensure even browning.",
+			"Remove the potatoes from the oven, toss with parsley, season to taste, and serve hot."
+		],
+		"emoji": "\ud83c\udf6a"
+  },
+	{
+		"id": 13,
+		"name": "Big Al's 'Dunkin' Dino Nuggets",
+		"difficulty": "0",
+		"ingredients": [
+			"Tyson Dino Chicken Nugget",
+			"Microwave",
+			"Napkin",
+			"Sauce",
+			"'Herbs' as necessary"
+		],
+		"Cooking Time": "Depends on how baked you are/like your food",
+		"directions": [
+			"Open the Tyson bag containing all the dino nuggets.",
+			"On a napkin, place one dino nugget and begin moving it to the microwave",
+			"Once the dino nugget has been placed in the microwave, add 45 seconds to the microwave and press start.",
+			"While you're waiting for the 45 seconds to expire, remind yourself how it's been 20 minutes since you last hit the bowl.",
+			"Go upstairs and take a huge rip. Forget about how you had any responsibilites for the past 10 years and oh yeah, you were cooking one dino nugget.",
+			"12 hours pass; Steve finds Dino nugget in the microwave. Enjoy!"
+		],
+		"emoji": "\uD83E\uDD58"
+  },
+	{
+		"id": 12,
+		"name": "White Chocolate Dipped Peppermint Sugar Cookies",
+		"difficulty": "2",
+		"ingredients": [
+			"2 3/4 cups all-purpose flour",
+			"1 tsp baking soda",
+			"1/2 tsp salt",
+			"1/2 tsp cream of tartar",
+			"1 1/2 cups granulated sugar",
+			"1 cup unsalted butter, softened",
+			"1 large egg",
+			"1 large egg yolk",
+			"1 tsp vanilla extract",
+			"3/4 tsp peppermint extract",
+			"2 1/2 cups (15 oz) white chocolate chips",
+			"2 1/2 Tbsp (30g) shortening",
+			"1/3 cup (60g) peppermint bits or finely crushed candy canes"
+		],
+		"Cooking Time": "30 minutes",
+		"directions": [
+			"For the cookies: Preheat oven to 350 degrees. In a mixing bowl whisk together flour, baking soda, salt and cream of tartar, set aside.",
+			"In the bowl of an electric stand mixer fitted with the paddle attachment, cream together sugar and butter until combined. Mix in egg then mix in egg yolk, vanilla and peppermint extract.",
+			"With mixer set on low speed slowly add in dry ingredients and mix just until combined (dough with will thick, so stop mixer and mix by hand to get flour at bottom if needed).",
+			"Scoop dough out 1 1/2 Tbsp (about 33g) at a time and shape into balls. Transfer to a baking sheet lined with parchment paper or a silicone liner, spacing cookies 2-inches apart (chill dough balls that aren't currently baking in refrigerator on plates).",
+			"Bake in preheated oven 10 - 11 minutes (cookies should appear slightly under-baked). Remove from oven and allow to rest several minutes then transfer to a wire rack to cool completely.",
+			"For the white chocolate: Place chocolate chips and shortening in a medium microwave safe bowl and heat in microwave on 50% power in 20 second intervals, stirring well between intervals until melted and smooth.",
+			"Dip half of cooled cookies in white chocolate allowing excess to run off (or slide bottom slightly along edge of bowl) then transfer to wax paper and immediately sprinkle with peppermint bits.",
+			"Allow to set at room temperature or in refrigerator. Store in an airtight container at room temperature."
+		],
+		"emoji": "\ud83c\udf6a"
+  }
 ]
