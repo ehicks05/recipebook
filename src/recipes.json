@@ -237,4 +237,25 @@
 			"Remove the potatoes from the oven, toss with parsley, season to taste, and serve hot."
 		],
 		"emoji": "\ud83c\udf6a"
+	{
+		"id": 13,
+		"name": "Big Al's 'Dunkin' Dino Nuggets",
+		"difficulty": "0",
+		"ingredients": [
+			"Tyson Dino Chicken Nugget",
+			"Microwave",
+			"Napkin",
+			"Sauce",
+			"'Herbs' as necessary"
+		],
+		"Cooking Time": "Depends on how baked you are/like your food",
+		"directions": [
+			"Open the Tyson bag containing all the dino nuggets.",
+			"On a napkin, place one dino nugget and begin moving it to the microwave",
+			"Once the dino nugget has been placed in the microwave, add 45 seconds to the microwave and press start.",
+			"While you're waiting for the 45 seconds to expire, remind yourself how it's been 20 minutes since you last hit the bowl.",
+			"Go upstairs and take a huge rip. Forget about how you had any responsibilites for the past 10 years and oh yeah, you were cooking one dino nugget.",
+			"12 hours pass; Steve finds Dino nugget in the microwave. Enjoy!"
+		],
+		"emoji": "\uD83E\uDD58"
 ]
