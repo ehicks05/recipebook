@@ -192,4 +192,30 @@
 			"Bake for 12 minutes or until golden brown. Immediately, gently press an upside down frozen peanut butter cup on top of each cookie and move to a wire rack to cool. After placing and moving all of the cookies on the wire rack, put in place the candy eyes while chocolate is still slightly soft. Put chocolate chips in the corner of a zippered sandwich bag. Microwave for 20 seconds, knead and repeat until chocolate has melted. Clip tiny piece off of the corner of bag to allow for piping and draw eight legs on each spider cookie. Place in refrigerator for 10 minutes to allow legs to set."
 		],
 		"emoji": "\ud83c\udf6a"
+	{
+		"id": 10,
+		"name": "Crispy Cauliflower Tacos",
+		"difficulty": "4",
+		"ingredients": [
+			"Crispy Breaded Cauliflower",
+			"15-ounce can vegetarian refried beans",
+			"1/2 teaspoon cumin",
+			"2 cups red cabbage, shredded",
+			"2 limes (1 for the cabbage & 1 to serve)",
+			"3 tablespoons Yum Yum Sauce",
+			"8 corn tortillas",
+			"Fresh cilantro, for garnish"
+		],
+		"Cooking Time": "40",
+		"directions": [
+			"Make the Crispy Breaded Cauliflower (about 40 minutes total; use the remaining time to complete the steps below.)",
+			"If using purchased refried beans, taste and if needed, mix with 1/2 teaspoon cumin and/or a pinch or two kosher salt.",
+			"Thinly slice the cabbage, enough for 2 cups. Mix it with 2 tablespoons lime juice and a pinch or two of salt. Allow it to stand at room temperature until serving.",
+			"Make the Yum Yum Sauce.",
+			"Warm the tortillas, or char them by placing them on grates above an open gas flame on medium heat for a few seconds per side, flipping with tongs, until they are slightly blackened and warm.",
+			"Chop the cilantro for a garnish.",
+			"To serve, place refried beans in a tortilla, top with cabbage, breaded cauliflower, Yum Yum sauce, and cilantro. Serve with lime wedges to spritz prior to serving. (If you have leftover cauliflower, you can reheat them in a 350F oven for 10 minutes, flipping once.)",
+		],
+		"emoji": "\uD83E\uDD58"
+	},	
 ]
