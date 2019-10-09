@@ -52,6 +52,13 @@ export default class App extends React.Component {
     render() {
         const selectedRecipe = recipeData.find(item => item.id === this.state.selectedRecipeId);
 
+        const sidebarStyles = {
+            sidebar: {
+                background: "white",
+                width: '300px',
+            }
+        };
+
         return (
             <>
                 <Sidebar
@@ -73,7 +80,7 @@ export default class App extends React.Component {
                     docked={this.state.sidebarDocked}
                     onSetOpen={this.onSetSidebarOpen}
 
-                    styles={{ sidebar: { background: "white" } }}
+                    styles={sidebarStyles}
                     touchHandleWidth={40}
                 >
 
