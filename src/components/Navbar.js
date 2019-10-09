@@ -5,7 +5,9 @@ export default class Navbar extends React.Component {
     render() {
 
         const menuButton = !this.props.sidebarDocked ?
-            <a className={'button is-hidden-touch'} onClick={() => this.props.onSetSidebarDocked(true)}>menu</a>
+            <a className={'button is-hidden-touch'} onClick={() => this.props.onSetSidebarDocked(true)}>
+                <i className="fas fa-bars" aria-hidden="true"> </i>
+            </a>
             : null;
 
         return (
