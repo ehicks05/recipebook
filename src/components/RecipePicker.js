@@ -144,7 +144,11 @@ export default class RecipePicker extends React.Component {
                     </p>
                 </div>
 
-                {recipeList}
+                <div
+                    // style={{overflowY: 'auto', height: '50vh'}}
+                >
+                    {recipeList}
+                </div>
             </nav>
         )
     }

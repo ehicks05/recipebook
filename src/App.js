@@ -84,7 +84,11 @@ export default class App extends React.Component {
                     touchHandleWidth={40}
                 >
 
-                    <Navbar recipe={selectedRecipe} sidebarDocked={this.state.sidebarDocked} onSetSidebarDocked={this.onSetSidebarDocked} />
+                    <Navbar recipe={selectedRecipe}
+                            sidebarDocked={this.state.sidebarDocked}
+                            onSetSidebarDocked={this.onSetSidebarDocked}
+                            sidebarOpen={this.state.sidebarOpen}
+                            onSetSidebarOpen={this.onSetSidebarOpen} />
                     <section className={"hero is-info"}>
                         <div className={"hero-body"}>
                             <div className={"container"}>
