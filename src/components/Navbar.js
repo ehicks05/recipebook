@@ -5,19 +5,19 @@ export default class Navbar extends React.Component {
     render() {
 
         const dockSidebarButton = !this.props.sidebarDocked ?
-            <a className={'button is-hidden-touch'} onClick={() => this.props.onSetSidebarDocked(true)}>
+            <button className={'button is-hidden-touch'} onClick={() => this.props.onSetSidebarDocked(true)}>
                 <i className="fas fa-bars" aria-hidden="true"> </i>
-            </a>
+            </button>
             : null;
 
         const openSidebarButton = !this.props.sidebarOpen ?
-            <a className={'button is-hidden-desktop'} onClick={() => this.props.onSetSidebarOpen(true)}>
+            <button className={'button is-hidden-desktop'} onClick={() => this.props.onSetSidebarOpen(true)}>
                 <i className="fas fa-bars" aria-hidden="true"> </i>
-            </a>
+            </button>
             :
-            <a className={'button is-hidden-desktop'} onClick={() => this.props.onSetSidebarOpen(false)}>
+            <button className={'button is-hidden-desktop'} onClick={() => this.props.onSetSidebarOpen(false)}>
                 <i className="fas fa-times" aria-hidden="true"> </i>
-            </a>;
+            </button>;
 
         return (
             <nav className="navbar" role="navigation" aria-label="main navigation">
@@ -28,7 +28,7 @@ export default class Navbar extends React.Component {
                         {openSidebarButton}
                         <a className="navbar-item" href="https://bulma.io">
                             {/*<img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" />*/}
-                            <span className={'title'}>🍛 Recipe Book</span>
+                            <span className={'title'}><span role="img" aria-label="plate of food">🍛</span> Recipe Book</span>
                         </a>
                     </div>
                 </div>

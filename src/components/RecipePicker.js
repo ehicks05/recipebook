@@ -8,7 +8,7 @@ export default class RecipePicker extends React.Component {
         this.state = {
             recipeFilters: [],
             usableRecipes: props.recipes
-        }
+        };
 
         this.handleClickRecipe = this.handleClickRecipe.bind(this);
         this.handleAddRecipeFilter = this.handleAddRecipeFilter.bind(this);
@@ -18,11 +18,16 @@ export default class RecipePicker extends React.Component {
     }
 
     handleClickRecipe(id) {
-        this.props.onClickRecipe(id);
+        const isSelected = id === this.props.currentlySelected;
+        if (!isSelected)
+            this.props.onClickRecipe(id);
+
+        if (!this.props.mql.matches)
+            this.props.onSetSidebarOpen(false);
     }
 
     handleAddRecipeFilter() {
-        let input = document.getElementById("recipeFilterInput")
+        let input = document.getElementById("recipeFilterInput");
         if (input.value && input.value.length > 1) {
             let filter = input.value;
             let filters = this.state.recipeFilters;
@@ -68,14 +73,14 @@ export default class RecipePicker extends React.Component {
     handleClearRecipeFilter(filter) {
         let filters = this.state.recipeFilters;
         for (let i = 0; i < filters.length; i++)
-            if (filters[i] == filter)
+            if (filters[i] === filter)
                 filters.splice(i, 1);
         this.setState({ recipeFilters: filters });
         this.getUsableRecipes();
     }
 
     handleClearAllRecipeFilters() {
-        this.state.recipeFilters = [];
+        this.setState({recipeFilters: []});
         this.getUsableRecipes();
     }
 
@@ -94,12 +99,12 @@ export default class RecipePicker extends React.Component {
             const isSelected = recipe.id === this.props.currentlySelected;
             const activeClass = isSelected ? 'is-active' : null;
             return (
-                <a className={"panel-block " + activeClass} key={recipe.id} onClick={isSelected ? null : () => this.handleClickRecipe(recipe.id)}>
+                <span className={"panel-block " + activeClass} key={recipe.id} onClick={() => this.handleClickRecipe(recipe.id)}>
                     <span className="panel-icon">
                         <span className="" aria-hidden="true">{recipe.emoji}</span>
                     </span>
                     {recipe.name}
-                </a>
+                </span>
             );
         });
 
@@ -111,7 +116,7 @@ export default class RecipePicker extends React.Component {
             ? recipeFilters.map(f =>
                 <span key={f} className={"tag is-link"}>
                     {f}
-                    <button className={"delete"} onClick={() => this.handleClearRecipeFilter(f)}></button>
+                    <button className={"delete"} onClick={() => this.handleClearRecipeFilter(f)}> </button>
                 </span>
             )
             : '';

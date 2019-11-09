@@ -66,14 +66,16 @@ export default class App extends React.Component {
                         <>
                             {/* this nav will push the sidebar down so the main nav takes up entire width of screen (on large screens) */}
                             <nav className="navbar" role="navigation" aria-label="main navigation">
-                                <a className={'button is-hidden-touch'} onClick={() => this.onSetSidebarDocked(false)}>
+                                <button className={'button is-hidden-touch'} onClick={() => this.onSetSidebarDocked(false)}>
                                     <i className="fas fa-times" aria-hidden="true"> </i>
-                                </a>
+                                </button>
                             </nav>
                             <RecipePicker
                                 onClickRecipe={this.handleClickRecipe}
                                 currentlySelected={this.state.selectedRecipeId}
-                                recipes={recipeData}/>
+                                recipes={recipeData}
+                                mql={mql}
+                                onSetSidebarOpen={this.onSetSidebarOpen} />
                         </>
                     }
                     open={this.state.sidebarOpen}

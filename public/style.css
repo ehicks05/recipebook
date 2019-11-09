@@ -1,5 +1,6 @@
+.panel-block {cursor: pointer;}
+.panel-block:hover {background-color: whitesmoke;}
 .panel-block.is-active {background-color: whitesmoke; border-left-width: 6px;}
-
 /* make ingredients appear in rightmost column on wider screens. */
 @media(min-width: 768px) {
     #directions-column {order: 1}
