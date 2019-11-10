@@ -6,3 +6,5 @@
     #directions-column {order: 1}
     #ingredients-column {order: 2}
 }
+
+.bigger-burger {margin: auto 0; height: 3.25rem !important; width: 3.25rem !important;}

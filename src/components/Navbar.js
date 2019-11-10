@@ -5,18 +5,17 @@ export default class Navbar extends React.Component {
     render() {
 
         const dockSidebarButton = !this.props.sidebarDocked ?
-            <button className={'button is-hidden-touch'} onClick={() => this.props.onSetSidebarDocked(true)}>
+            <button className={'button bigger-burger is-hidden-touch'} onClick={() => this.props.onSetSidebarDocked(true)}>
                 <i className="fas fa-bars" aria-hidden="true"> </i>
             </button>
             : null;
 
-        const openSidebarButton = !this.props.sidebarOpen ?
-            <button className={'button is-hidden-desktop'} onClick={() => this.props.onSetSidebarOpen(true)}>
-                <i className="fas fa-bars" aria-hidden="true"> </i>
-            </button>
-            :
-            <button className={'button is-hidden-desktop'} onClick={() => this.props.onSetSidebarOpen(false)}>
-                <i className="fas fa-times" aria-hidden="true"> </i>
+        const isSetOpen = !this.props.sidebarOpen;
+        const icon = this.props.sidebarOpen ? 'fa-times' : 'fa-bars';
+
+        const openSidebarButton =
+            <button className={'button bigger-burger is-hidden-desktop'} onClick={() => this.props.onSetSidebarOpen(isSetOpen)}>
+                <i className={"fas " + icon} aria-hidden="true"> </i>
             </button>;
 
         return (
