@@ -69,14 +69,16 @@
 		],
 		"Cooking Time": "40",
 		"directions": [
-			"Cook udon noodles as directed. Drain well.",
-			"Meanwhile, heat oil in large saucepan on medium-high heat. Add garlic and ginger and cook for 1 minute or until fragrant. Add chicken and cook 3 to 5 minutes or until chicken is no longer pink.",
-			"Add stock, carrots, soy sauce, and salt. Bring to boil. Reduce heat and simmer for 5 minutes or until carrots are tender crisp. Stir in snow peas and mushrooms and cook for 2 minutes or until snow peas are tender crisp.",
+			"Bring large pot of water to boil.",
+			"Add noodles and cook for 8 minutes or until desired tenderness, stirring occasionally. Drain well.",
+			"Meanwhile, heat oil in large saucepan on medium-high heat. Add garlic and ginger and cook for 1 minute or until fragrant. ",
+			"Add chicken and cook 5 minutes or until chicken is no longer pink.",
+			"Add stock, carrots, soy sauce, and salt. Bring to boil. Reduce heat and simmer for 5 minutes or until carrots are tender crisp.",
+			"Stir in snow peas and mushrooms and cook for 2 minutes or until snow peas are tender crisp.",
 			"Divide noodles into 6 soup bowls. Ladle soup into each bowl and garnish with green onions.",
 			"Makes 6 servings."
 		],
 		"emoji": "\uD83C\uDF5C"
-
 	},
 	{
 		"id": 5,
