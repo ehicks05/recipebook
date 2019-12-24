@@ -54,8 +54,12 @@ export default class App extends React.Component {
 
         const sidebarStyles = {
             sidebar: {
-                background: "white",
-                width: '300px',
+                background: "#fafafa",
+                width: '310px',
+                display: 'flex',
+                flexDirection: 'column',
+                height: '100vh',
+                overflowY: 'none'
             }
         };
 
@@ -65,9 +69,9 @@ export default class App extends React.Component {
                     sidebar={
                         <>
                             {/* this nav will push the sidebar down so the main nav takes up entire width of screen (on large screens) */}
-                            <nav className="navbar" role="navigation" aria-label="main navigation">
-                                <button className={'button bigger-burger is-hidden-touch'} onClick={() => this.onSetSidebarDocked(false)}>
-                                    <i className="fas fa-times" aria-hidden="true"> </i>
+                            <nav className="navbar" role="navigation" aria-label="main navigation" style={{flex: '0 1 auto', backgroundColor: '#fafafa'}}>
+                                <button className={'button bigger-burger has-text-grey is-hidden-touch'} style={{border: 'none', backgroundColor: '#fafafa'}} onClick={() => this.onSetSidebarDocked(false)}>
+                                    <i className="icon-arrow-left" aria-hidden="true"> </i>
                                 </button>
                             </nav>
                             <RecipePicker

@@ -80,8 +80,8 @@ export default class RecipePicker extends React.Component {
     }
 
     handleClearAllRecipeFilters() {
-        this.setState({recipeFilters: []});
-        this.getUsableRecipes();
+        const self = this;
+        this.setState({recipeFilters: []}, () => self.getUsableRecipes());
     }
 
     componentDidUpdate() {
@@ -99,17 +99,19 @@ export default class RecipePicker extends React.Component {
             const isSelected = recipe.id === this.props.currentlySelected;
             const activeClass = isSelected ? 'is-active' : null;
             return (
-                <span className={"panel-block " + activeClass} key={recipe.id} onClick={() => this.handleClickRecipe(recipe.id)}>
-                    <span className="panel-icon">
-                        <span className="" aria-hidden="true">{recipe.emoji}</span>
-                    </span>
-                    {recipe.name}
-                </span>
+                <li key={recipe.id} onClick={() => this.handleClickRecipe(recipe.id)}>
+                    <a className={activeClass}>
+                        <span className="panel-icon">
+                            <span className="" aria-hidden="true">{recipe.emoji}</span>
+                        </span>
+                        {recipe.name}
+                    </a>
+                </li>
             );
         });
 
         let clearFiltersButton = recipeFilters.length > 0
-            ? <button onClick={() => this.handleClearAllRecipeFilters()}>Clear</button>
+            ? <button className={"button is-small"} onClick={() => this.handleClearAllRecipeFilters()}>Clear</button>
             : '';
 
         let filterList = recipeFilters.length > 0
@@ -121,40 +123,35 @@ export default class RecipePicker extends React.Component {
             )
             : '';
 
-        return (
-            <nav className="panel">
-                <p className="panel-heading">
-                    Search Recipes
-                </p>
-                <div className="panel-block">
-                    <p className="control has-icons-left">
+        let filters = filterList ?
+            <div className="tags">{filterList}</div> : null;
 
+        return (
+            <div style={{flex: '1 1 auto', display: 'flex', flexDirection: 'column'}}>
+                <div style={{flex: '0 1 auto', padding: '.5em .75em'}}>
+                    <div className="control">
                         <div className="field has-addons">
                             <div className="control">
-                                <input id="recipeFilterInput" className="input is-small" type="text" placeholder="search" />
-                                <span className="icon is-small is-left">
-                                    <i className="fas fa-search" aria-hidden="true"> </i>
-                                </span>
+                                <input id="recipeFilterInput" className="input is-small" type="text" placeholder="ingredient filter" />
                             </div>
                             <div className="control">
                                 <button className={'button is-small'} onClick={() => this.handleAddRecipeFilter()}>
                                     Add
                                 </button>
+                                {clearFiltersButton}
                             </div>
                         </div>
 
-                        {filterList}
-                        <br />
-                        {clearFiltersButton}
-                    </p>
+                        {filters}
+                    </div>
                 </div>
 
-                <div
-                    // style={{overflowY: 'auto', height: '50vh'}}
-                >
-                    {recipeList}
-                </div>
-            </nav>
+                <aside className="menu" style={{height: '1px', flex: '1 1 auto', overflow: 'auto'}}>
+                    <ul className="menu-list">
+                        {recipeList}
+                    </ul>
+                </aside>
+            </div>
         )
     }
 }

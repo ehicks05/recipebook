@@ -8,3 +8,5 @@
 }
 
 .bigger-burger {margin: auto 0; height: 3.25rem !important; width: 3.25rem !important;}
+
+html {overflow-y: hidden !important;}

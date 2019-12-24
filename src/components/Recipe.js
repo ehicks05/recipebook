@@ -17,12 +17,12 @@ function Recipe(props) {
     return (
 
         <>
-            <div id={'ingredients-column'} className={'column is-one-quarter'}>
+            <div id={'ingredients-column'} className={'column is-one-quarter'} style={{backgroundColor: '#fafafa'}}>
                 <div key={recipe.name}>
                     <h3 className='subtitle'>Ingredients:</h3>
 
                 <div className={'content'}>
-                    <ul>
+                    <ul style={{listStyleType: 'none'}}>
                         {ingredients}
                     </ul>
                 </div>
