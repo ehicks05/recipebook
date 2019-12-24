@@ -25,8 +25,7 @@ export default class Navbar extends React.Component {
                 <div className={'container'}>
                     <div className="navbar-brand">
                         {openSidebarButton}
-                        <a className="navbar-item" href="https://bulma.io">
-                            {/*<img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" />*/}
+                        <a className="navbar-item" href="#">
                             <span className={'title'}><span role="img" aria-label="plate of food">🍛</span> Recipe Book</span>
                         </a>
                     </div>
