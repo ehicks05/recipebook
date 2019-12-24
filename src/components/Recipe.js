@@ -3,7 +3,12 @@ import React, { Component } from "react";
 function Recipe(props) {
     const recipe = props.recipe;
     const ingredients = recipe.ingredients.map(ingredient =>
-        <li key={ingredient}>{ingredient}</li>
+        <div key={ingredient} style={{paddingLeft: '1em'}}>
+            <label className="checkbox">
+                <input type='checkbox' />
+                <span style={{paddingLeft: '.25em'}}>{ingredient}</span>
+            </label>
+        </div>
     );
 
     const directions = (
@@ -22,9 +27,7 @@ function Recipe(props) {
                     <h3 className='subtitle'>Ingredients:</h3>
 
                 <div className={'content'}>
-                    <ul style={{listStyleType: 'none'}}>
-                        {ingredients}
-                    </ul>
+                    {ingredients}
                 </div>
 
                 </div>
