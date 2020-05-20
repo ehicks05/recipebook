@@ -14,11 +14,11 @@ public class Recipe implements Serializable
     @Id
     private Long id = 1L;
 
-    private String title;
+    private String name;
     private String emoji;
     private String description;
     private int difficulty;
-    private int cookingTime;
+    private String cookingTime;
 
     @ManyToMany
     private List<Ingredient> ingredients;
@@ -61,14 +61,14 @@ public class Recipe implements Serializable
         this.id = id;
     }
 
-    public String getTitle()
+    public String getName()
     {
-        return title;
+        return name;
     }
 
-    public void setTitle(String title)
+    public void setName(String title)
     {
-        this.title = title;
+        this.name = title;
     }
 
     public String getEmoji()
@@ -101,12 +101,12 @@ public class Recipe implements Serializable
         this.difficulty = difficulty;
     }
 
-    public int getCookingTime()
+    public String getCookingTime()
     {
         return cookingTime;
     }
 
-    public void setCookingTime(int cookingTime)
+    public void setCookingTime(String cookingTime)
     {
         this.cookingTime = cookingTime;
     }

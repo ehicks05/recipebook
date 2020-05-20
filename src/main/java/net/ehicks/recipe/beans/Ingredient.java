@@ -51,4 +51,34 @@ public class Ingredient implements Serializable
     {
         this.id = id;
     }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
+    public int getQuantity()
+    {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity)
+    {
+        this.quantity = quantity;
+    }
+
+    public Unit getUnit()
+    {
+        return unit;
+    }
+
+    public void setUnit(Unit unit)
+    {
+        this.unit = unit;
+    }
 }

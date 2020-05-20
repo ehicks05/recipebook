@@ -1,5 +1,4 @@
 import React from 'react';
-import recipeData from './recipes.json';
 import Recipe from './react/Recipe';
 import RecipePicker from './react/RecipePicker';
 import Navbar from "./react/Navbar";
@@ -18,15 +17,16 @@ export default class App extends React.Component {
         this.mediaQueryChanged = this.mediaQueryChanged.bind(this);
 
         this.state = {
-            recipes: recipeData,
+            recipes: [],
             selectedRecipeId: 1,
             sidebarDocked: mql.matches,
             sidebarOpen: false
         }
 
+        const self = this;
         fetch("/recipe")
             .then(response => response.json())
-            .then(json => console.log(json));
+            .then(json => {console.log(json); self.setState({recipes: json})});
     }
 
     handleClickRecipe(id) {
@@ -54,7 +54,12 @@ export default class App extends React.Component {
     }
 
     render() {
-        const selectedRecipe = recipeData.find(item => item.id === this.state.selectedRecipeId);
+
+        if (!this.state.recipes || this.state.recipes.length === 0) {
+            return (<div>Loading...</div>)
+        }
+
+        const selectedRecipe = this.state.recipes.find(item => item.id === this.state.selectedRecipeId);
 
         const sidebarStyles = {
             sidebar: {
@@ -81,7 +86,7 @@ export default class App extends React.Component {
                             <RecipePicker
                                 onClickRecipe={this.handleClickRecipe}
                                 currentlySelected={this.state.selectedRecipeId}
-                                recipes={recipeData}
+                                recipes={this.state.recipes}
                                 mql={mql}
                                 onSetSidebarOpen={this.onSetSidebarOpen} />
                         </>
@@ -103,7 +108,7 @@ export default class App extends React.Component {
                         <div className={"hero-body"}>
                             <div className={"container"}>
                                 <h1 className='title'>{selectedRecipe.name}</h1>
-                                <h3 className='subtitle'>Cooking Time: {selectedRecipe["Cooking Time"]} - Difficulty: {selectedRecipe.difficulty}</h3>
+                                <h3 className='subtitle'>Cooking Time: {selectedRecipe["cookingTime"]} - Difficulty: {selectedRecipe.difficulty}</h3>
                             </div>
                         </div>
                     </section>

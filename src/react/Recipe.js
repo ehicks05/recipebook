@@ -3,10 +3,10 @@ import React, { Component } from "react";
 function Recipe(props) {
     const recipe = props.recipe;
     const ingredients = recipe.ingredients.map(ingredient =>
-        <div key={ingredient} style={{paddingLeft: '1em'}}>
+        <div key={ingredient.name} style={{paddingLeft: '1em'}}>
             <label className="checkbox">
                 <input type='checkbox' />
-                <span style={{paddingLeft: '.25em'}}>{ingredient}</span>
+                <span style={{paddingLeft: '.25em'}}>{ingredient.name}</span>
             </label>
         </div>
     );
@@ -14,7 +14,7 @@ function Recipe(props) {
     const directions = (
         <div className={'content'}>
             <ol>
-                {recipe.directions.map((direction) => <Direction key={direction} direction={direction} />)}
+                {recipe.directions.map((direction) => <Direction key={direction.text} direction={direction.text} />)}
             </ol>
         </div>
     );

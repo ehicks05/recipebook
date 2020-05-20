@@ -51,7 +51,7 @@ export default class RecipePicker extends React.Component {
         
         if (recipeFilters.length > 0) {
             recipes = recipes.filter((value) => {
-                let ingredients = value.ingredients.map(x => x.toLowerCase()).join();
+                let ingredients = value.ingredients.map(x => x.name.toLowerCase()).join();
                 
                 // let ents = ingredientRegex.match(ingredients);
                 let keep = true;

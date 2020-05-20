@@ -50,4 +50,24 @@ public class Direction implements Serializable
     {
         this.id = id;
     }
+
+    public String getText()
+    {
+        return text;
+    }
+
+    public void setText(String text)
+    {
+        this.text = text;
+    }
+
+    public Unit getUnit()
+    {
+        return unit;
+    }
+
+    public void setUnit(Unit unit)
+    {
+        this.unit = unit;
+    }
 }
