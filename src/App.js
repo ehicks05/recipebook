@@ -1,8 +1,8 @@
 import React from 'react';
 import recipeData from './recipes.json';
-import Recipe from './components/Recipe';
-import RecipePicker from './components/RecipePicker';
-import Navbar from "./components/Navbar";
+import Recipe from './react/Recipe';
+import RecipePicker from './react/RecipePicker';
+import Navbar from "./react/Navbar";
 import Sidebar from "react-sidebar";
 
 const mql = window.matchMedia(`(min-width: 1024px)`);
@@ -23,6 +23,10 @@ export default class App extends React.Component {
             sidebarDocked: mql.matches,
             sidebarOpen: false
         }
+
+        fetch("/recipe")
+            .then(response => response.json())
+            .then(json => console.log(json));
     }
 
     handleClickRecipe(id) {

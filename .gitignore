@@ -21,3 +21,14 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.idea/$PRODUCT_WORKSPACE_FILE$
+.idea/.gitignore
+.idea/compiler.xml
+.idea/encodings.xml
+.idea/hotswap_agent.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+RecipeBook.iml
+dist/
+package-lock.json

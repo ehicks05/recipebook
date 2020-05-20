@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<body style="background-color: #f9f9f9;">
+<table style="width: 100%;">
+    <tr><td>
+        <table style="width: 500px;margin:auto;padding: 10px;background-color: white">
+            <tr>
+                <td><p>Issue: <a th:href="${titleLink}" th:text="${titleText}">titleText</a></p></td>
+            </tr>
+            <tr>
+                <td>
+                    <p>
+                        <img style="width: 32px;" th:src="${userAvatarSource}" />
+                        <a th:href="${userProfileLink}" th:text="${userProfileText}">userProfileText</a>
+                        <span th:text="${summary}">summary</span>
+                    </p>
+                    <th:block th:if="${!#lists.isEmpty(diffs)}" th:each="diff: ${diffs}">
+                        <ins th:if="${diff.operation.name() == 'INSERT'}" style="background:#e6ffe6;" th:utext="${diff.text}"></ins>
+                        <del th:if="${diff.operation.name() == 'DELETE'}" style="background:#ffe6e6;" th:utext="${diff.text}"></del>
+                        <span th:if="${diff.operation.name() == 'EQUAL'}" th:utext="${diff.text}"></span>
+                    </th:block>
+                </td>
+            </tr>
+        </table>
+    </td></tr>
+</table>
+
+<!-- START FOOTER -->
+<div class="footer" style="clear: both; Margin-top: 10px; text-align: center; width: 100%;">
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
+        <tr>
+            <td class="content-block"
+                style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #999999; text-align: center;">
+                <span class="apple-link" style="color: #999999; font-size: 12px; text-align: center;">BugCo Industries, 3 Abbey Road Flemington NJ, 94102</span>
+                <br> Don't like these emails? <a href="http://i.imgur.com/CScmqnj.gif"
+                                                 style="text-decoration: underline; color: #999999; font-size: 12px; text-align: center;">Unsubscribe</a>.
+            </td>
+        </tr>
+        <tr>
+            <td class="content-block powered-by"
+                style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #999999; text-align: center;">
+                Powered by <a href="https://puffin.ehicks.net" style="color: #999999; font-size: 12px; text-align: center; text-decoration: none;">Puffin</a>.
+            </td>
+        </tr>
+    </table>
+</div>
+<!-- END FOOTER -->
+
+</body>
+</html>
