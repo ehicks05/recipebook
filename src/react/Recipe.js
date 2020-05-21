@@ -1,12 +1,19 @@
-import React from "react";
+import React, {useState} from "react";
 import Timer from "./Timer";
+import { create, all } from "mathjs";
+
+const math = create(all, {});
 
 function Recipe(props) {
     const recipe = props.recipe;
+    const [desiredServings, setDesiredServings] = useState(recipe.servings);
+
+    const handleInputChange = (e) => setDesiredServings(e.currentTarget.value)
 
     const ingredients = (
         <div className={'content'}>
-            {recipe.ingredients.map((ingredient) => <Ingredient key={ingredient.name} ingredient={ingredient} />)}
+            Desired Servings: <input type='number' value={desiredServings} onChange={handleInputChange}/>
+            {recipe.ingredients.map((ingredient) => <Ingredient key={ingredient.name} ingredient={ingredient} desiredQuantity={getDesiredQuantity(ingredient, recipe.servings, desiredServings)} />)}
         </div>
     );
 
@@ -37,14 +44,51 @@ function Recipe(props) {
     );
 }
 
+// parses numbers, as well as fractions and fractions like '1 1/4'
+function parseQuantity(quantity) {
+    if (!isNaN(quantity))
+        return quantity;
+
+    if (quantity.indexOf(' ') !== -1) {
+        const parts = quantity.split(' ');
+
+        return parts.reduce((accumulator, part) => Number(accumulator) + math.evaluate(part));
+    }
+
+    return math.evaluate(quantity);
+}
+
+// figures out the desired quantity and formats it as a nice fraction if necessary.
+function getDesiredQuantity(ingredient, defaultServings, desiredServings) {
+    const ratio = desiredServings / defaultServings;
+    const desiredQuantity = parseQuantity(ingredient.quantity) * ratio;
+
+    if (desiredQuantity === Math.round(desiredQuantity))
+        return desiredQuantity;
+    else
+    {
+        let fractional = desiredQuantity;
+        let nonfractional = 0;
+        while (fractional > 1) {
+            nonfractional++;
+            fractional -= 1;
+        }
+        
+        let result = math.format(math.fraction(fractional));
+        if (nonfractional !== 0) result = nonfractional + ' ' + result;
+        return result;
+    }
+}
+
 function Ingredient(props) {
     const ingredient = props.ingredient;
+    const desiredQuantity = props.desiredQuantity;
     return (
         <div key={ingredient.name}>
             <label className="checkbox">
                 <input type='checkbox' />
                 <span style={{paddingLeft: '.25em'}}>
-                    {ingredient.quantity && ingredient.quantity}
+                    {desiredQuantity && desiredQuantity}
                     &nbsp;{ingredient.unit && ingredient.unit}
                     &nbsp;{ingredient.name}
                 </span>
