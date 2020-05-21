@@ -12,10 +12,8 @@ public class Ingredient implements Serializable
     private Long id = 1L;
 
     private String name;
-    private int quantity;
-
-    @ManyToOne
-    private Unit unit;
+    private String quantity;
+    private String unit;
 
     public Ingredient()
     {
@@ -62,22 +60,22 @@ public class Ingredient implements Serializable
         this.name = name;
     }
 
-    public int getQuantity()
+    public String getQuantity()
     {
         return quantity;
     }
 
-    public void setQuantity(int quantity)
+    public void setQuantity(String quantity)
     {
         this.quantity = quantity;
     }
 
-    public Unit getUnit()
+    public String getUnit()
     {
         return unit;
     }
 
-    public void setUnit(Unit unit)
+    public void setUnit(String unit)
     {
         this.unit = unit;
     }

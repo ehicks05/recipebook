@@ -7,7 +7,11 @@ function Recipe(props) {
         <div key={ingredient.name} style={{paddingLeft: '1em'}}>
             <label className="checkbox">
                 <input type='checkbox' />
-                <span style={{paddingLeft: '.25em'}}>{ingredient.name}</span>
+                <span style={{paddingLeft: '.25em'}}>
+                    {ingredient.quantity && ingredient.quantity}
+                    &nbsp;{ingredient.unit && ingredient.unit}
+                    &nbsp;{ingredient.name}
+                </span>
             </label>
         </div>
     );
