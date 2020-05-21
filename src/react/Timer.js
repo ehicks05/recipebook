@@ -7,17 +7,15 @@ function Timer(props) {
 
     const secondsRef = useRef(seconds);
 
-    useEffect(
-        () => { secondsRef.current = seconds },
-        [seconds]
-    );
+    useEffect(() => {
+        secondsRef.current = seconds }
+        , [seconds]);
 
     useEffect(() => {
-        if (paused) {
+        if (paused)
             clearInterval(myInterval);
-        } else {
+        else
             startTimer();
-        }
     }, [paused]);
 
     useEffect(() => {
