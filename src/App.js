@@ -108,7 +108,10 @@ export default class App extends React.Component {
                         <div className={"hero-body"}>
                             <div className={"container"}>
                                 <h1 className='title'>{selectedRecipe.name}</h1>
-                                <h3 className='subtitle'>Cooking Time: {selectedRecipe["cookingTime"]} - Difficulty: {selectedRecipe.difficulty}</h3>
+                                <h3 className='subtitle'>
+                                    Cooking Time: {selectedRecipe["cookingTime"]} - Difficulty: {selectedRecipe.difficulty}
+                                    <br/>Serves: {selectedRecipe["servings"]}
+                                </h3>
                             </div>
                         </div>
                     </section>

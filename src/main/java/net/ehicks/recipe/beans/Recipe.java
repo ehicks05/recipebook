@@ -19,6 +19,7 @@ public class Recipe implements Serializable
     private String description;
     private int difficulty;
     private String cookingTime;
+    private int servings;
 
     @ManyToMany
     private List<Ingredient> ingredients;
@@ -129,5 +130,15 @@ public class Recipe implements Serializable
     public void setDirections(List<Direction> directions)
     {
         this.directions = directions;
+    }
+
+    public int getServings()
+    {
+        return servings;
+    }
+
+    public void setServings(int servings)
+    {
+        this.servings = servings;
     }
 }
