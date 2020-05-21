@@ -12,7 +12,7 @@ function Recipe(props) {
 
     const directions = (
         <div className={'content'}>
-            <ol>
+            <ol style={{marginLeft: '16px'}}>
                 {recipe.directions.map((direction) => <Direction key={direction.text} direction={direction.text} />)}
             </ol>
         </div>
@@ -40,7 +40,7 @@ function Recipe(props) {
 function Ingredient(props) {
     const ingredient = props.ingredient;
     return (
-        <div key={ingredient.name} style={{paddingLeft: '1em'}}>
+        <div key={ingredient.name}>
             <label className="checkbox">
                 <input type='checkbox' />
                 <span style={{paddingLeft: '.25em'}}>
