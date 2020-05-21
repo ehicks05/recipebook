@@ -46,8 +46,17 @@ function Recipe(props) {
 
 function Direction(props) {
     const direction = props.direction;
+    
+    let timeAmount = extractTiming(direction);
+    const timer = timeAmount > 0 ? <Timer minutes={timeAmount}/> : null;
 
-    const words = direction.split(' ');
+    return (
+        <li key={direction}>{direction} {timer}</li>
+    );
+}
+
+function extractTiming(text) {
+    const words = text.split(' ');
     const timeIndex = words.findIndex(word => word.indexOf('minute') > -1 || word.indexOf('hour') > -1);
     let timeAmount = 0;
     if (timeIndex > -1)
@@ -64,11 +73,7 @@ function Direction(props) {
             timeAmount *= 60;
     }
 
-    const timer = timeAmount > 0 ? <Timer minutes={timeAmount}/> : null;
-
-    return (
-        <li key={direction}>{direction} {timer}</li>
-    );
+    return timeAmount;
 }
 
 export default Recipe;

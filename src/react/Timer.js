@@ -39,9 +39,10 @@ function Timer(props) {
     }
 
     function displayTime() {
-        const m = Math.floor(seconds / 60);
-        const s = seconds % 60;
-        return m + ':' + (s < 10 ? `0${s}` : s);
+        const min = Math.floor(seconds / 60);
+        let sec = seconds % 60;
+        if (sec < 10) sec = `0${sec}`;
+        return min + ':' + sec;
     }
 
     return (
