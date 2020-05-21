@@ -37,12 +37,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
     @Order(99)
     public static class WebSecurityConfig extends WebSecurityConfigurerAdapter
     {
-        private final SessionRegistry sessionRegistry;
-
-        public WebSecurityConfig(SessionRegistry sessionRegistry)
-        {
-            this.sessionRegistry = sessionRegistry;
-        }
+//        private final SessionRegistry sessionRegistry;
+//
+//        public WebSecurityConfig(SessionRegistry sessionRegistry)
+//        {
+//            this.sessionRegistry = sessionRegistry;
+//        }
 
         @Override
         protected void configure(HttpSecurity http) throws Exception {

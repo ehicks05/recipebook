@@ -57,29 +57,6 @@ public class Application
         };
     }
 
-    @Bean
-    public TomcatServletWebServerFactory tomcatFactory()
-    {
-        return new TomcatServletWebServerFactory()
-        {
-            @Override
-            protected void postProcessContext(Context context)
-            {
-                ((StandardJarScanner) context.getJarScanner()).setScanManifest(false);
-            }
-        };
-    }
-
-    @Bean
-    public Filter shallowEtagHeaderFilter() {
-        return new ShallowEtagHeaderFilter();
-    }
-
-    @Bean
-    SessionRegistry sessionRegistry() {
-        return new SessionRegistryImpl();
-    }
-
     @Bean(name = "multipartResolver")
     public CommonsMultipartResolver multipartResolver() {
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
@@ -88,7 +65,30 @@ public class Application
     }
 
     @Bean
-    public InMemoryHttpTraceRepository inMemoryHttpTraceRepository() {
-        return new InMemoryHttpTraceRepository();
+    public Filter shallowEtagHeaderFilter() {
+        return new ShallowEtagHeaderFilter();
     }
+
+//    @Bean
+//    public TomcatServletWebServerFactory tomcatFactory()
+//    {
+//        return new TomcatServletWebServerFactory()
+//        {
+//            @Override
+//            protected void postProcessContext(Context context)
+//            {
+//                ((StandardJarScanner) context.getJarScanner()).setScanManifest(false);
+//            }
+//        };
+//    }
+//
+//    @Bean
+//    SessionRegistry sessionRegistry() {
+//        return new SessionRegistryImpl();
+//    }
+//
+//    @Bean
+//    public InMemoryHttpTraceRepository inMemoryHttpTraceRepository() {
+//        return new InMemoryHttpTraceRepository();
+//    }
 }                                   
