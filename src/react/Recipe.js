@@ -3,16 +3,10 @@ import Timer from "./Timer";
 
 function Recipe(props) {
     const recipe = props.recipe;
-    const ingredients = recipe.ingredients.map(ingredient =>
-        <div key={ingredient.name} style={{paddingLeft: '1em'}}>
-            <label className="checkbox">
-                <input type='checkbox' />
-                <span style={{paddingLeft: '.25em'}}>
-                    {ingredient.quantity && ingredient.quantity}
-                    &nbsp;{ingredient.unit && ingredient.unit}
-                    &nbsp;{ingredient.name}
-                </span>
-            </label>
+
+    const ingredients = (
+        <div className={'content'}>
+            {recipe.ingredients.map((ingredient) => <Ingredient key={ingredient.name} ingredient={ingredient} />)}
         </div>
     );
 
@@ -25,16 +19,11 @@ function Recipe(props) {
     );
 
     return (
-
         <>
             <div id={'ingredients-column'} className={'column is-one-quarter'} style={{backgroundColor: '#fafafa'}}>
                 <div key={recipe.name}>
                     <h3 className='subtitle'>Ingredients:</h3>
-
-                <div className={'content'}>
                     {ingredients}
-                </div>
-
                 </div>
             </div>
 
@@ -45,6 +34,22 @@ function Recipe(props) {
                 </div>
             </div>
         </>
+    );
+}
+
+function Ingredient(props) {
+    const ingredient = props.ingredient;
+    return (
+        <div key={ingredient.name} style={{paddingLeft: '1em'}}>
+            <label className="checkbox">
+                <input type='checkbox' />
+                <span style={{paddingLeft: '.25em'}}>
+                    {ingredient.quantity && ingredient.quantity}
+                    &nbsp;{ingredient.unit && ingredient.unit}
+                    &nbsp;{ingredient.name}
+                </span>
+            </label>
+        </div>
     );
 }
 
