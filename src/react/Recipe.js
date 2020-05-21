@@ -70,6 +70,9 @@ function getDesiredQuantity(ingredient, defaultServings, desiredServings) {
     const ratio = desiredServings / defaultServings;
     const desiredQuantity = parseQuantity(ingredient.quantity) * ratio;
 
+    if (desiredQuantity === 0)
+        return '';
+
     if (desiredQuantity === Math.round(desiredQuantity))
         return desiredQuantity;
     else
