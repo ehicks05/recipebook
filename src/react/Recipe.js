@@ -12,7 +12,14 @@ function Recipe(props) {
 
     const ingredients = (
         <div className={'content'}>
-            Desired Servings: <input type='number' value={desiredServings} onChange={handleInputChange}/>
+
+            <div className="field">
+                <label className="label">Desired Servings</label>
+                <div className="control">
+                    <input className='input is-small' type='number' min={1} value={desiredServings} onChange={handleInputChange}/>
+                </div>
+            </div>
+
             {recipe.ingredients.map((ingredient) => <Ingredient key={ingredient.name} ingredient={ingredient} desiredQuantity={getDesiredQuantity(ingredient, recipe.servings, desiredServings)} />)}
         </div>
     );
