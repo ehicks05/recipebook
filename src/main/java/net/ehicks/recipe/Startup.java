@@ -10,7 +10,7 @@ public class Startup
 {
     private static final Logger log = LoggerFactory.getLogger(Startup.class);
 
-    @Value("${puffin.seedDbIfEmpty:false}")
+    @Value("${recipeBook.seedDbIfEmpty:false}")
     public String seedDbIfEmpty;
 
     private Seeder seeder;
@@ -22,7 +22,7 @@ public class Startup
 
     public void start()
     {
-        log.info("Puffin starting...");
+        log.info("Recipe Book starting...");
 
         seeder.seed(seedDbIfEmpty.toLowerCase().equals("true"));
 
