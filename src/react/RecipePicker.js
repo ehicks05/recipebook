@@ -1,59 +1,51 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
-export default class RecipePicker extends React.Component {
+function RecipePicker(props) {
 
-    constructor(props) {
-        super(props);
+    const [recipeFilters, setRecipeFilters] = useState([]);
+    const [usableRecipes, setUsableRecipes] = useState(props.recipes);
 
-        this.state = {
-            recipeFilters: [],
-            usableRecipes: props.recipes
-        };
+    // if usableRecipes changes, and no longer contains the currently selected recipe,
+    // change the currently selected recipe to the first usable recipe.
+    useEffect(() => {
+        if (!usableRecipes.map(it => it.id).includes(props.currentlySelected))
+            if (usableRecipes.length > 0)
+                handleClickRecipe(usableRecipes[0].id);
+    }, [usableRecipes]);
 
-        this.handleClickRecipe = this.handleClickRecipe.bind(this);
-        this.handleAddRecipeFilter = this.handleAddRecipeFilter.bind(this);
-        this.handleClearRecipeFilter = this.handleClearRecipeFilter.bind(this);
-        this.handleClearAllRecipeFilters = this.handleClearAllRecipeFilters.bind(this);
-        this.getUsableRecipes = this.getUsableRecipes.bind(this);
-    }
+    // handle recipeFilters changing...
+    useEffect(() => {
+        getUsableRecipes();
+    }, [recipeFilters]);
 
-    handleClickRecipe(id) {
-        const isSelected = id === this.props.currentlySelected;
+    function handleClickRecipe(id) {
+        const isSelected = id === props.currentlySelected;
         if (!isSelected)
-            this.props.onClickRecipe(id);
+            props.onClickRecipe(id);
 
-        if (!this.props.mql.matches)
-            this.props.onSetSidebarOpen(false);
+        if (!props.mql.matches)
+            props.onSetSidebarOpen(false);
     }
 
-    handleAddRecipeFilter() {
-        let input = document.getElementById("recipeFilterInput");
-        if (input.value && input.value.length > 1) {
-            let filter = input.value;
-            let filters = this.state.recipeFilters;
-            if (!filters.includes(filter.toLowerCase())) {
-                filters.push(filter.toLowerCase());
-                this.setState({
-                    recipeFilters: filters
-                });
-            }
+    function handleAddRecipeFilter() {
+        const input = document.getElementById("recipeFilterInput");
+        let newFilter = input.value.toLowerCase();
+        if (newFilter.length > 1 && !recipeFilters.includes(newFilter)) {
+            let filters = [...recipeFilters];
+            filters.push(newFilter);
+            setRecipeFilters(filters);
         }
 
         input.value = '';
-        this.getUsableRecipes();
     }
 
-    getUsableRecipes() {
-        var recipes = this.props.recipes;
-        let recipeFilters = this.state.recipeFilters;
+    function getUsableRecipes() {
+        let recipes = props.recipes;
 
-        // var ingredientRegex = '/(a-zA-Z)/'
-        
         if (recipeFilters.length > 0) {
-            recipes = recipes.filter((value) => {
-                let ingredients = value.ingredients.map(x => x.name.toLowerCase()).join();
+            recipes = recipes.filter((recipe) => {
+                let ingredients = recipe.ingredients.map(x => x.name.toLowerCase()).join();
                 
-                // let ents = ingredientRegex.match(ingredients);
                 let keep = true;
                 recipeFilters.forEach(element => {
                     if (!ingredients.includes(element)) {
@@ -65,93 +57,91 @@ export default class RecipePicker extends React.Component {
             });
         }
 
-        this.setState({
-            usableRecipes: recipes
-        });
+        setUsableRecipes(recipes);
     }
 
-    handleClearRecipeFilter(filter) {
-        let filters = this.state.recipeFilters;
+    function handleClearRecipeFilter(filter) {
+        let filters = [...recipeFilters];
         for (let i = 0; i < filters.length; i++)
             if (filters[i] === filter)
                 filters.splice(i, 1);
-        this.setState({ recipeFilters: filters });
-        this.getUsableRecipes();
+
+        setRecipeFilters(filters);
     }
 
-    handleClearAllRecipeFilters() {
-        const self = this;
-        this.setState({recipeFilters: []}, () => self.getUsableRecipes());
+    function handleClearAllRecipeFilters() {
+        setRecipeFilters([]);
     }
 
-    componentDidUpdate() {
-        let usableRecipes = this.state.usableRecipes;
-        if (!usableRecipes.map(it => it.id).includes(this.props.currentlySelected))
-            if (usableRecipes.length > 0)
-                this.handleClickRecipe(usableRecipes[0].id);
+    let clearFiltersButton = recipeFilters.length > 0
+        ? <button className={"button is-small"} onClick={() => handleClearAllRecipeFilters()}>Clear</button>
+        : '';
+
+    let filterList = recipeFilters.length > 0
+        ? recipeFilters.map(f =>
+            <span key={f} className={"tag is-link"}>
+                {f}
+                <button className={"delete"} onClick={() => handleClearRecipeFilter(f)}> </button>
+            </span>
+        )
+        : '';
+
+    let filters = filterList ?
+        <div className="tags">{filterList}</div> : null;
+
+    return (
+        <div style={{flex: '1 1 auto', display: 'flex', flexDirection: 'column'}}>
+            <div style={{flex: '0 1 auto', padding: '.5em .75em'}}>
+                <div className="control">
+                    <div className="field has-addons">
+                        <div className="control">
+                            <input id="recipeFilterInput" className="input is-small" type="text" placeholder="ingredient filter" />
+                        </div>
+                        <div className="control">
+                            <button className={'button is-small'} onClick={() => handleAddRecipeFilter()}>
+                                Add
+                            </button>
+                            {clearFiltersButton}
+                        </div>
+                    </div>
+
+                    {filters}
+                </div>
+            </div>
+
+            <aside className="menu" style={{height: '1px', flex: '1 1 auto', overflow: 'auto'}}>
+                <ul className="menu-list">
+                    <RecipeList
+                        recipes={usableRecipes}
+                        selectedRecipe={props.currentlySelected}
+                        onClickRecipe={handleClickRecipe}
+                    />
+                </ul>
+            </aside>
+        </div>
+    )
+}
+
+function RecipeList(props) {
+
+    function getClass(recipe, currentlySelectedRecipe) {
+        return recipe.id === currentlySelectedRecipe ? 'is-active' : null;
     }
 
-    render() {
-        var recipes = this.state.usableRecipes;
-        let recipeFilters = this.state.recipeFilters;
+    return props.recipes.map(recipe => {
+        const activeClass = getClass(recipe, props.selectedRecipe);
 
-        const recipeList = recipes.map(recipe => {
-            const isSelected = recipe.id === this.props.currentlySelected;
-            const activeClass = isSelected ? 'is-active' : null;
-            return (
-                <li key={recipe.id} onClick={() => this.handleClickRecipe(recipe.id)}>
-                    <a className={activeClass}>
+        return (
+            <li key={recipe.id} onClick={() => props.onClickRecipe(recipe.id)}>
+                <a className={activeClass}>
                         <span className="panel-icon">
                             <span className="" aria-hidden="true">{recipe.emoji}</span>
                         </span>
-                        {recipe.name}
-                    </a>
-                </li>
-            );
-        });
-
-        let clearFiltersButton = recipeFilters.length > 0
-            ? <button className={"button is-small"} onClick={() => this.handleClearAllRecipeFilters()}>Clear</button>
-            : '';
-
-        let filterList = recipeFilters.length > 0
-            ? recipeFilters.map(f =>
-                <span key={f} className={"tag is-link"}>
-                    {f}
-                    <button className={"delete"} onClick={() => this.handleClearRecipeFilter(f)}> </button>
-                </span>
-            )
-            : '';
-
-        let filters = filterList ?
-            <div className="tags">{filterList}</div> : null;
-
-        return (
-            <div style={{flex: '1 1 auto', display: 'flex', flexDirection: 'column'}}>
-                <div style={{flex: '0 1 auto', padding: '.5em .75em'}}>
-                    <div className="control">
-                        <div className="field has-addons">
-                            <div className="control">
-                                <input id="recipeFilterInput" className="input is-small" type="text" placeholder="ingredient filter" />
-                            </div>
-                            <div className="control">
-                                <button className={'button is-small'} onClick={() => this.handleAddRecipeFilter()}>
-                                    Add
-                                </button>
-                                {clearFiltersButton}
-                            </div>
-                        </div>
-
-                        {filters}
-                    </div>
-                </div>
-
-                <aside className="menu" style={{height: '1px', flex: '1 1 auto', overflow: 'auto'}}>
-                    <ul className="menu-list">
-                        {recipeList}
-                    </ul>
-                </aside>
-            </div>
-        )
-    }
+                    {recipe.name}
+                </a>
+            </li>
+        );
+    });
 }
+
+export default RecipePicker;
