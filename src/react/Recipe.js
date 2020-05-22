@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Timer from "./Timer";
 import { create, all } from "mathjs";
 
@@ -7,6 +7,10 @@ const math = create(all, {});
 function Recipe(props) {
     const recipe = props.recipe;
     const [desiredServings, setDesiredServings] = useState(recipe.servings);
+
+    useEffect(() => {
+        setDesiredServings(recipe.servings);
+    }, [props.recipe]);
 
     const handleInputChange = (e) => setDesiredServings(e.currentTarget.value)
 
