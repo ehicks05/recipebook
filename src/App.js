@@ -18,7 +18,7 @@ export default class App extends React.Component {
 
         this.state = {
             recipes: [],
-            selectedRecipeId: 1,
+            selectedRecipeId: 0,
             sidebarDocked: mql.matches,
             sidebarOpen: false
         }
@@ -26,7 +26,7 @@ export default class App extends React.Component {
         const self = this;
         fetch("/recipe")
             .then(response => response.json())
-            .then(json => {console.log(json); self.setState({recipes: json})});
+            .then(json => {console.log(json); self.setState({recipes: json, selectedRecipeId: json[0].id})});
     }
 
     handleClickRecipe(id) {
