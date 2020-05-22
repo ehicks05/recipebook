@@ -9,8 +9,10 @@ import java.util.List;
 public class Direction implements Serializable
 {
     @Id
-    private Long id = 1L;
+    @GeneratedValue
+    private Long id;
 
+    @Column(length = 1024)
     private String text;
 
     @ManyToOne

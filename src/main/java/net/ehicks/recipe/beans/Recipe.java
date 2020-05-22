@@ -1,9 +1,6 @@
 package net.ehicks.recipe.beans;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
@@ -12,7 +9,8 @@ import java.util.List;
 public class Recipe implements Serializable
 {
     @Id
-    private Long id = 1L;
+    @GeneratedValue
+    private Long id;
 
     private String name;
     private String emoji;

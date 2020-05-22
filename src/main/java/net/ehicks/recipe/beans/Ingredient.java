@@ -9,7 +9,8 @@ import java.util.List;
 public class Ingredient implements Serializable
 {
     @Id
-    private Long id = 1L;
+    @GeneratedValue
+    private Long id;
 
     private String name;
     private String quantity;
