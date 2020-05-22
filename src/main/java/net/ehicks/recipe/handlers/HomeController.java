@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/home")
 public class HomeController
 {
-    private MySystemRepository mySystemRepo;
+    private final MySystemRepository mySystemRepo;
 
     public HomeController(MySystemRepository mySystemRepo) {
         this.mySystemRepo = mySystemRepo;

@@ -1,5 +1,6 @@
 package net.ehicks.recipe;
 
+import net.ehicks.common.Timer;
 import net.ehicks.recipe.beans.MySystem;
 import net.ehicks.recipe.beans.Role;
 import net.ehicks.recipe.beans.User;
@@ -8,11 +9,9 @@ import net.ehicks.recipe.repos.MySystemRepository;
 import net.ehicks.recipe.repos.RoleRepository;
 import net.ehicks.recipe.repos.UserRepository;
 import net.ehicks.recipe.security.PasswordEncoder;
-import net.ehicks.common.Timer;
 import org.hibernate.exception.SQLGrammarException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
@@ -25,9 +24,8 @@ import javax.persistence.Query;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigInteger;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
@@ -184,15 +182,9 @@ public class Seeder
 
     private void createUsers()
     {
-        List<UserData> users = new ArrayList<>(Arrays.asList(
-                new UserData("steve@test.com", "steve", "Steve", "Tester", true, false),
-                new UserData("jill@test.com", "test", "Jill", "Jones", true, false),
-                new UserData("bill@test.com", "test", "Bill", "Smith", false, false),
-                new UserData("john@test.com", "test", "John", "Doe", true, false),
-                new UserData("jane@test.com", "test", "Jane", "Doe", true, false)
-        ));
-
-        users.add(new UserData("eric@test.com", "eric", "Eric", "Tester", true, true));
+        List<UserData> users = Collections.singletonList(
+                new UserData("admin@test.com", "admin", "Admin", "Test", true, true)
+        );
 
         Role userRole = roleRepository.findByRole("ROLE_USER");
         Role adminRole = roleRepository.findByRole("ROLE_ADMIN");

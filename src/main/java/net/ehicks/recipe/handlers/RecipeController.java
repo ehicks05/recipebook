@@ -20,9 +20,9 @@ import java.util.List;
 public class RecipeController
 {
     private static final Logger log = LoggerFactory.getLogger(RecipeController.class);
-    private RecipeRepository recipeRepository;
-    private DirectionRepository directionRepository;
-    private IngredientRepository ingredientRepository;
+    private final RecipeRepository recipeRepository;
+    private final DirectionRepository directionRepository;
+    private final IngredientRepository ingredientRepository;
 
     public RecipeController(RecipeRepository recipeRepository, DirectionRepository directionRepository, IngredientRepository ingredientRepository) {
         this.recipeRepository = recipeRepository;

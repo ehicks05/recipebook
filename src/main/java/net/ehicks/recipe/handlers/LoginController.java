@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/login")
 public class LoginController
 {
-    private MySystemRepository mySystemRepo;
+    private final MySystemRepository mySystemRepo;
 
     public LoginController(MySystemRepository mySystemRepo) {
         this.mySystemRepo = mySystemRepo;
