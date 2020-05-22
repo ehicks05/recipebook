@@ -2,13 +2,13 @@ package net.ehicks.recipe.handlers;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.ehicks.recipe.beans.MySystem;
 import net.ehicks.recipe.beans.Recipe;
-import net.ehicks.recipe.repos.MySystemRepository;
+import net.ehicks.recipe.repos.DirectionRepository;
+import net.ehicks.recipe.repos.IngredientRepository;
+import net.ehicks.recipe.repos.RecipeRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,16 +20,14 @@ import java.util.List;
 public class RecipeController
 {
     private static final Logger log = LoggerFactory.getLogger(RecipeController.class);
-    private MySystemRepository mySystemRepo;
+    private RecipeRepository recipeRepository;
+    private DirectionRepository directionRepository;
+    private IngredientRepository ingredientRepository;
 
-    public RecipeController(MySystemRepository mySystemRepo) {
-        this.mySystemRepo = mySystemRepo;
-    }
-
-    @ModelAttribute("mySystem")
-    public MySystem loonSystem()
-    {
-        return mySystemRepo.findFirstBy();
+    public RecipeController(RecipeRepository recipeRepository, DirectionRepository directionRepository, IngredientRepository ingredientRepository) {
+        this.recipeRepository = recipeRepository;
+        this.directionRepository = directionRepository;
+        this.ingredientRepository = ingredientRepository;
     }
 
     @GetMapping("")
@@ -37,8 +35,18 @@ public class RecipeController
         try
         {
             ObjectMapper objectMapper = new ObjectMapper();
-            List<Recipe> recipes = objectMapper.readValue(new File("c:\\projects\\RecipeBook\\src\\main\\resources\\recipes.json"), new TypeReference<List<Recipe>>(){});
-            return recipes;
+            List<Recipe> recipes = objectMapper.readValue(new File("c:\\projects\\RecipeBook\\src\\main\\resources\\recipes.json"), new TypeReference<>(){});
+
+            if (recipeRepository.count() == 0)
+            {
+                recipes.forEach(recipe -> {
+                    directionRepository.saveAll(recipe.getDirections());
+                    ingredientRepository.saveAll(recipe.getIngredients());
+                });
+                recipeRepository.saveAll(recipes);
+            }
+
+            return recipeRepository.findAll();
         }
         catch (Exception e)
         {
