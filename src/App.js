@@ -177,7 +177,7 @@ function LoginForm(props) {
                 }
                 {
                     props.user &&
-                    <button className='button is-danger is-fullwidth' onClick={props.onLogout}>Logout</button>
+                    <>Hi {props.user.fullName}! <button className='button is-danger is-fullwidth' onClick={props.onLogout}>Logout</button></>
                 }
             </div>
         </div>
