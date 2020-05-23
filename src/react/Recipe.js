@@ -87,9 +87,12 @@ function getDesiredQuantity(ingredient, defaultServings, desiredServings) {
             nonfractional++;
             fractional -= 1;
         }
-        
-        let result = math.format(math.fraction(fractional));
-        if (nonfractional !== 0) result = nonfractional + ' ' + result;
+
+        fractional = math.fraction(fractional);
+
+        let result = (<><sup>{fractional.n}</sup>/<sub>{fractional.d}</sub></>);
+        if (nonfractional !== 0)
+            result = (<>{nonfractional} {result}</>);
         return result;
     }
 }
