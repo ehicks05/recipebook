@@ -119,8 +119,6 @@ function App(props) {
                         sidebarOpen={sidebarOpen}
                         onSetSidebarOpen={setSidebarOpen}/>
 
-                <LoginForm user={user} onLogin={performLogin} onLogout={logout} />
-
                 <section className={"hero is-info"}>
                     <div className={"hero-body"}>
                         <div className={"container"}>
@@ -140,6 +138,17 @@ function App(props) {
                         </div>
                     </div>
                 </section>
+
+                <footer className="footer">
+                    <div className="content has-text-centered">
+                        <p>
+                            <strong>Recipe Book</strong> by Hicks_Team.
+                            <br/>
+                            <br/>
+                            <LoginForm user={user} onLogin={performLogin} onLogout={logout} />
+                        </p>
+                    </div>
+                </footer>
             </Sidebar>
         </>
     );
@@ -148,7 +157,7 @@ function App(props) {
 function LoginForm(props) {
     return (
         <div className={"container"}>
-            <div style={{width: '300px'}}>
+            <div>
                 {
                     !props.user &&
                     <form method="POST" action="/" id="loginForm">
