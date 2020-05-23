@@ -23,9 +23,6 @@ function App(props) {
 
     useEffect(() => {
         fetchRecipes();
-        fetchUser();
-
-        console.log("selectedRecipe: " + selectedRecipe);
     }, []);
 
     useEffect(() => {
@@ -34,35 +31,15 @@ function App(props) {
             setSelectedRecipe(recipe);
     }, [selectedRecipeId]);
 
-    function fetchRecipes() {
-        fetch("/recipe")
-            .then(response => response.json())
-            .then(json => {console.log(json); setRecipes(json); setSelectedRecipeId(json[0].id)});
-    }
-
-    function fetchUser() {
-        fetch("/user")
-            .then(response => response.json())
-            .then(json => {console.log(json); setUser(json)});
-    }
-
-    function logout() {
-        fetch("/logout")
-            .then(response => response.text())
-            .then(text => {console.log(text); setUser(null)});
-    }
-
     function handleMediaQueryChanged() {
         setSidebarOpen(false);
         setSidebarDocked(mql.matches);
     }
 
-    function performLogin() {
-        const formData = new FormData(document.getElementById('loginForm'));
-
-        fetch('/login', {method: 'POST', body: new URLSearchParams(formData)})
-            .then(response => response.text())
-            .then(text => {console.log(text); fetchUser()});
+    function fetchRecipes() {
+        fetch("/recipe")
+            .then(response => response.json())
+            .then(json => {console.log(json); setRecipes(json); setSelectedRecipeId(json[0].id)});
     }
 
     if (!recipes || recipes.length === 0 || !selectedRecipe) {
@@ -117,7 +94,11 @@ function App(props) {
                         sidebarDocked={sidebarDocked}
                         onSetSidebarDocked={setSidebarDocked}
                         sidebarOpen={sidebarOpen}
-                        onSetSidebarOpen={setSidebarOpen}/>
+                        onSetSidebarOpen={setSidebarOpen}
+
+                        user={user}
+                        setUser={setUser}
+                />
 
                 <section className={"hero is-info"}>
                     <div className={"hero-body"}>
@@ -142,45 +123,12 @@ function App(props) {
                 <footer className="footer">
                     <div className="content has-text-centered">
                         <p>
-                            <strong>Recipe Book</strong> by Hicks_Team.
-                            <br/>
-                            <br/>
-                            <LoginForm user={user} onLogin={performLogin} onLogout={logout} />
+                            <strong>Recipe Book</strong> by Hicks_Team
                         </p>
                     </div>
                 </footer>
             </Sidebar>
         </>
-    );
-}
-
-function LoginForm(props) {
-    return (
-        <div className={"container"}>
-            <div>
-                {
-                    !props.user &&
-                    <form method="POST" action="/" id="loginForm">
-                        <div className="field">
-                            <div className="control">
-                                <input className="input" type="email" placeholder="Your Email" autoFocus="" id="username" name="username"/>
-                            </div>
-                        </div>
-
-                        <div className="field">
-                            <div className="control">
-                                <input className="input" type="password" placeholder="Your Password" id="password" name="password"/>
-                            </div>
-                        </div>
-                        <input type="button" value="Log in" className="button is-block is-primary is-fullwidth" onClick={props.onLogin}/>
-                    </form>
-                }
-                {
-                    props.user &&
-                    <>Hi {props.user.fullName}! <button className='button is-danger is-fullwidth' onClick={props.onLogout}>Logout</button></>
-                }
-            </div>
-        </div>
     );
 }
 
