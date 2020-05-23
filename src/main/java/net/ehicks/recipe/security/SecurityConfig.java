@@ -48,21 +48,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
         protected void configure(HttpSecurity http) throws Exception {
             http
                     .authorizeRequests()
-                    .antMatchers("/**").permitAll();
-//            http
-//                    .authorizeRequests()
-//                    .antMatchers("/login", "/register", "/images/**", "/js/**", "/styles/**", "/robots.txt", "/actuator/**", "/favicon.ico").permitAll()
-//                    .antMatchers("/admin/**", "/api/**").hasRole("ADMIN")
-//                    .antMatchers("/**").hasRole("USER")
-//                    .and()
-//                    .formLogin()
-//                    .loginPage("/login")
-//                    .defaultSuccessUrl("/", false)
-//                    .and()
-//                    .logout()
-//                    .and()
-//                    .sessionManagement()
-//                    .maximumSessions(5).sessionRegistry(sessionRegistry);
+                    .antMatchers("/", "login", "/recipe", "/register", "/images/**", "/js/**", "/styles/**", "/robots.txt", "/actuator/**", "/favicon.ico").permitAll()
+                    .antMatchers("/admin/**", "/api/**").hasRole("ADMIN")
+                    .antMatchers("/**").hasRole("USER")
+                    .and()
+                    .formLogin()
+                    .and()
+                    .logout()
+                    .and().csrf().disable();
         }
     }
 

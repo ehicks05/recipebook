@@ -15,18 +15,37 @@ export default class App extends React.Component {
         this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
         this.onSetSidebarDocked = this.onSetSidebarDocked.bind(this);
         this.mediaQueryChanged = this.mediaQueryChanged.bind(this);
+        this.performLogin = this.performLogin.bind(this);
+        this.logout = this.logout.bind(this);
+        this.fetchUser = this.fetchUser.bind(this);
 
         this.state = {
             recipes: [],
             selectedRecipeId: 0,
             sidebarDocked: mql.matches,
-            sidebarOpen: false
+            sidebarOpen: false,
+            user: null
         }
 
         const self = this;
         fetch("/recipe")
             .then(response => response.json())
             .then(json => {console.log(json); self.setState({recipes: json, selectedRecipeId: json[0].id})});
+
+        this.fetchUser();
+    }
+
+    fetchUser() {
+        const self = this;
+        fetch("/user")
+            .then(response => response.json())
+            .then(json => {console.log(json); self.setState({user: json})});
+    }
+
+    logout() {
+        fetch("/logout")
+            .then(response => response.text())
+            .then(text => {console.log(text); this.setState({user: null})});
     }
 
     handleClickRecipe(id) {
@@ -51,6 +70,16 @@ export default class App extends React.Component {
 
     mediaQueryChanged() {
         this.setState({ sidebarDocked: mql.matches, sidebarOpen: false });
+    }
+
+    performLogin() {
+        const formData = new FormData(document.getElementById('loginForm'));
+        const self = this;
+        fetch('/login', {method: 'POST', body: new URLSearchParams(formData)})
+            .then(response => response.text())
+            .then(text => {console.log(text); self.fetchUser()});
+
+        return false;
     }
 
     render() {
@@ -104,6 +133,33 @@ export default class App extends React.Component {
                             onSetSidebarDocked={this.onSetSidebarDocked}
                             sidebarOpen={this.state.sidebarOpen}
                             onSetSidebarOpen={this.onSetSidebarOpen} />
+
+                    <div className={"container"}>
+                        <div style={{width: '300px'}}>
+                            {
+                                !this.state.user &&
+                                <form method="POST" action="/login" id="loginForm">
+                                    <div className="field">
+                                        <div className="control">
+                                            <input className="input" type="email" placeholder="Your Email" autoFocus="" id="username" name="username" />
+                                        </div>
+                                    </div>
+
+                                    <div className="field">
+                                        <div className="control">
+                                            <input className="input" type="password" placeholder="Your Password" id="password" name="password" />
+                                        </div>
+                                    </div>
+                                    <input type="button" value="Log in" className="button is-block is-primary is-fullwidth" onClick={this.performLogin}/>
+                                </form>
+                            }
+                            {
+                                this.state.user &&
+                                <button className='button is-danger is-fullwidth' onClick={this.logout}>Logout</button>
+                            }
+                        </div>
+                    </div>
+
                     <section className={"hero is-info"}>
                         <div className={"hero-body"}>
                             <div className={"container"}>
