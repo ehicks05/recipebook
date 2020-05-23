@@ -119,31 +119,7 @@ function App(props) {
                         sidebarOpen={sidebarOpen}
                         onSetSidebarOpen={setSidebarOpen}/>
 
-                <div className={"container"}>
-                    <div style={{width: '300px'}}>
-                        {
-                            !user &&
-                            <form method="POST" action="/" id="loginForm">
-                                <div className="field">
-                                    <div className="control">
-                                        <input className="input" type="email" placeholder="Your Email" autoFocus="" id="username" name="username"/>
-                                    </div>
-                                </div>
-
-                                <div className="field">
-                                    <div className="control">
-                                        <input className="input" type="password" placeholder="Your Password" id="password" name="password"/>
-                                    </div>
-                                </div>
-                                <input type="button" value="Log in" className="button is-block is-primary is-fullwidth" onClick={performLogin}/>
-                            </form>
-                        }
-                        {
-                            user &&
-                            <button className='button is-danger is-fullwidth' onClick={logout}>Logout</button>
-                        }
-                    </div>
-                </div>
+                <LoginForm user={user} onLogin={performLogin} onLogout={logout} />
 
                 <section className={"hero is-info"}>
                     <div className={"hero-body"}>
@@ -166,6 +142,36 @@ function App(props) {
                 </section>
             </Sidebar>
         </>
+    );
+}
+
+function LoginForm(props) {
+    return (
+        <div className={"container"}>
+            <div style={{width: '300px'}}>
+                {
+                    !props.user &&
+                    <form method="POST" action="/" id="loginForm">
+                        <div className="field">
+                            <div className="control">
+                                <input className="input" type="email" placeholder="Your Email" autoFocus="" id="username" name="username"/>
+                            </div>
+                        </div>
+
+                        <div className="field">
+                            <div className="control">
+                                <input className="input" type="password" placeholder="Your Password" id="password" name="password"/>
+                            </div>
+                        </div>
+                        <input type="button" value="Log in" className="button is-block is-primary is-fullwidth" onClick={props.onLogin}/>
+                    </form>
+                }
+                {
+                    props.user &&
+                    <button className='button is-danger is-fullwidth' onClick={props.onLogout}>Logout</button>
+                }
+            </div>
+        </div>
     );
 }
 
