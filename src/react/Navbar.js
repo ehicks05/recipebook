@@ -24,7 +24,10 @@ function Navbar(props) {
                 <div className="navbar-brand">
                     {openSidebarButton}
                     <a className="navbar-item" href="#">
-                        <span className={'title'}><span role="img" aria-label="plate of food">🍛</span> Recipe Book</span>
+                        <span className={'title'}>
+                            {/*<span role="img" aria-label="plate of food">🍛</span> Recipe Book*/}
+                            <img src='/logo-via-logohub.png' />
+                        </span>
                     </a>
                 </div>
             </div>
