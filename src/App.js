@@ -18,6 +18,7 @@ export default class App extends React.Component {
         this.performLogin = this.performLogin.bind(this);
         this.logout = this.logout.bind(this);
         this.fetchUser = this.fetchUser.bind(this);
+        this.fetchRecipes = this.fetchRecipes.bind(this);
 
         this.state = {
             recipes: [],
@@ -27,12 +28,15 @@ export default class App extends React.Component {
             user: null
         }
 
+        this.fetchRecipes();
+        this.fetchUser();
+    }
+
+    fetchRecipes() {
         const self = this;
         fetch("/recipe")
             .then(response => response.json())
             .then(json => {console.log(json); self.setState({recipes: json, selectedRecipeId: json[0].id})});
-
-        this.fetchUser();
     }
 
     fetchUser() {
