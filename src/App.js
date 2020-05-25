@@ -30,7 +30,7 @@ export default function App() {
         const recipe = recipes.find(item => item.id === selectedRecipeId);
         if (recipe)
             setSelectedRecipe(recipe);
-    }, [selectedRecipeId]);
+    }, [recipes, selectedRecipeId]);
 
     function handleMediaQueryChanged() {
         setSidebarOpen(false);
@@ -40,7 +40,7 @@ export default function App() {
     function fetchRecipes() {
         fetch("/recipe")
             .then(response => response.json())
-            .then(json => {console.log(json); setRecipes(json); setSelectedRecipeId(json[0].id)});
+            .then(json => {setRecipes(json); setSelectedRecipeId(json[0].id)});
     }
 
     if (!recipes || recipes.length === 0 || !selectedRecipe) {

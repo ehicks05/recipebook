@@ -12,6 +12,14 @@ function Timer(props) {
         , [seconds]);
 
     useEffect(() => {
+        function startTimer() {
+            function decrement() {
+                setSeconds(secondsRef.current - 1);
+            }
+
+            setMyInterval(setInterval(decrement, 1000));
+        }
+
         if (paused)
             clearInterval(myInterval);
         else
@@ -23,14 +31,6 @@ function Timer(props) {
             clearInterval(myInterval);
         }
     }, []);
-
-    function decrement() {
-        setSeconds(secondsRef.current - 1);
-    }
-
-    function startTimer() {
-        setMyInterval(setInterval(decrement, 1000));
-    }
 
     function togglePause() {
         setPaused(!paused);

@@ -1,9 +1,7 @@
 import React, {useEffect} from "react";
 
 function LoginForm(props) {
-    useEffect(() => {
-        fetchUser();
-    }, []);
+    useEffect(fetchUser, []);
 
     function fetchUser() {
         fetch("/user")
