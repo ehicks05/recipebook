@@ -3,10 +3,11 @@ import Recipe from './react/Recipe';
 import RecipePicker from './react/RecipePicker';
 import Navbar from "./react/Navbar";
 import Sidebar from "react-sidebar";
+import Footer from "./react/Footer";
 
 const mql = window.matchMedia(`(min-width: 1024px)`);
 
-function App(props) {
+export default function App() {
     const [recipes, setRecipes] = useState([]);
     const [selectedRecipeId, setSelectedRecipeId] = useState(0);
     const [selectedRecipe, setSelectedRecipe] = useState(null);
@@ -56,80 +57,52 @@ function App(props) {
             overflowY: 'none'
         }
     };
-
     return (
-        <>
-            <Sidebar
-                sidebar={
-                    <>
-                        {/* this nav will push the sidebar down so the main nav takes up entire width of screen (on large screens) */}
-                        <nav className="navbar" role="navigation" aria-label="main navigation" style={{
-                            flex: '0 1 auto',
+        <Sidebar
+            sidebar={
+                <>
+                    {/* this nav will push the sidebar down so the main nav takes up entire width of screen (on large screens) */}
+                    <nav className="navbar" role="navigation" aria-label="main navigation" style={{
+                        flex: '0 1 auto',
+                        backgroundColor: '#fafafa'
+                    }}>
+                        <button className={'button bigger-burger has-text-grey is-hidden-touch'} style={{
+                            border: 'none',
                             backgroundColor: '#fafafa'
-                        }}>
-                            <button className={'button bigger-burger has-text-grey is-hidden-touch'} style={{
-                                border: 'none',
-                                backgroundColor: '#fafafa'
-                            }} onClick={() => setSidebarDocked(false)}>
-                                <i className="icon-arrow-left" aria-hidden="true"> </i>
-                            </button>
-                        </nav>
-                        <RecipePicker
-                            onClickRecipe={setSelectedRecipeId}
-                            currentlySelected={selectedRecipeId}
-                            recipes={recipes}
-                            mql={mql}
-                            onSetSidebarOpen={setSidebarOpen}/>
-                    </>
-                }
-                open={sidebarOpen}
-                docked={sidebarDocked}
-                onSetOpen={setSidebarOpen}
+                        }} onClick={() => setSidebarDocked(false)}>
+                            <i className="icon-arrow-left" aria-hidden="true"> </i>
+                        </button>
+                    </nav>
+                    <RecipePicker
+                        onClickRecipe={setSelectedRecipeId}
+                        currentlySelected={selectedRecipeId}
+                        recipes={recipes}
+                        mql={mql}
+                        onSetSidebarOpen={setSidebarOpen}/>
+                </>
+            }
+            open={sidebarOpen}
+            docked={sidebarDocked}
+            onSetOpen={setSidebarOpen}
 
-                styles={sidebarStyles}
-                touchHandleWidth={40}
-            >
+            styles={sidebarStyles}
+            touchHandleWidth={40}
+        >
 
-                <Navbar recipe={selectedRecipe}
-                        sidebarDocked={sidebarDocked}
-                        onSetSidebarDocked={setSidebarDocked}
-                        sidebarOpen={sidebarOpen}
-                        onSetSidebarOpen={setSidebarOpen}
+            <Navbar recipe={selectedRecipe}
+                    sidebarDocked={sidebarDocked}
+                    onSetSidebarDocked={setSidebarDocked}
+                    sidebarOpen={sidebarOpen}
+                    onSetSidebarOpen={setSidebarOpen}
+                    user={user}
+                    setUser={setUser}
+            />
 
-                        user={user}
-                        setUser={setUser}
-                />
+            {/*Route stuff can go here*/}
+            <Recipe recipe={selectedRecipe}/>
+            {/*More routes*/}
 
-                <section className={"hero is-info"}>
-                    <div className={"hero-body"}>
-                        <div className={"container"}>
-                            <h1 className='title'>{selectedRecipe["name"]}</h1>
-                            <h3 className='subtitle'>
-                                Cooking Time: {selectedRecipe["cookingTime"]} - Difficulty: {selectedRecipe.difficulty}
-                                <br/>Serves: {selectedRecipe["servings"]}
-                            </h3>
-                        </div>
-                    </div>
-                </section>
-
-                <section className={"section"}>
-                    <div className={'container'}>
-                        <div className={'columns'}>
-                            <Recipe recipe={selectedRecipe}/>
-                        </div>
-                    </div>
-                </section>
-
-                <footer className="footer">
-                    <div className="content has-text-centered">
-                        <p>
-                            <strong>Recipe Book</strong> by Hicks_Team
-                        </p>
-                    </div>
-                </footer>
-            </Sidebar>
-        </>
-    );
+            <Footer/>
+        </Sidebar>
+    )
 }
-
-export default App;

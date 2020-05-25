@@ -38,19 +38,37 @@ function Recipe(props) {
 
     return (
         <>
-            <div id={'ingredients-column'} className={'column is-one-quarter'} style={{backgroundColor: '#fafafa'}}>
-                <div key={recipe.name}>
-                    <h3 className='subtitle'>Ingredients:</h3>
-                    {ingredients}
+            <section className={"hero is-info"}>
+                <div className={"hero-body"}>
+                    <div className={"container"}>
+                        <h1 className='title'>{recipe["name"]}</h1>
+                        <h3 className='subtitle'>
+                            Cooking Time: {recipe["cookingTime"]} - Difficulty: {recipe.difficulty}
+                            <br/>Serves: {recipe["servings"]}
+                        </h3>
+                    </div>
                 </div>
-            </div>
+            </section>
 
-            <div id={'directions-column'} className={'column'}>
-                <div key={recipe.name}>
-                    <h3 className={'subtitle'}>Directions:</h3>
-                    {directions}
+            <section className={"section"}>
+                <div className={'container'}>
+                    <div className={'columns'}>
+                        <div id={'ingredients-column'} className={'column is-one-quarter'} style={{backgroundColor: '#fafafa'}}>
+                            <div key={recipe.name}>
+                                <h3 className='subtitle'>Ingredients:</h3>
+                                {ingredients}
+                            </div>
+                        </div>
+                        <div id={'directions-column'} className={'column'}>
+                            <div key={recipe.name}>
+                                <h3 className={'subtitle'}>Directions:</h3>
+                                {directions}
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
+            </section>
         </>
     );
 }
@@ -116,7 +134,7 @@ function Ingredient(props) {
 
 function Direction(props) {
     const direction = props.direction;
-    
+
     let timeAmount = extractTiming(direction);
     const timer = timeAmount > 0 ? <Timer minutes={timeAmount}/> : null;
 
