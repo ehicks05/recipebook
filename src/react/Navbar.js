@@ -52,18 +52,18 @@ function Navbar(props) {
             <div className={'container'}>
                 <div className="navbar-brand">
                     {openSidebarButton}
-                    <a className="navbar-item" href="#">
+                    <div className="navbar-item" href="#">
                         <span className={'title'}>
                             {/*<span role="img" aria-label="plate of food">🍛</span> Recipe Book*/}
-                            <img src='/logo-via-logohub.png' />
+                            <img src='/logo-via-logohub.png' alt='Recipe Book Site Logo' />
                         </span>
-                    </a>
+                    </div>
 
-                    <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                    <div role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
                         <span aria-hidden="true"></span>
                         <span aria-hidden="true"></span>
                         <span aria-hidden="true"></span>
-                    </a>
+                    </div>
                 </div>
 
                 <div className="navbar-menu" id='navbarBasicExample'>
@@ -83,9 +83,9 @@ function Navbar(props) {
                         {/*</div>*/}
 
                         <div className="navbar-item has-dropdown is-hoverable">
-                            <a className="navbar-link">
+                            <div className="navbar-link">
                                 {props.user ? 'Account' : 'Log In'}
-                            </a>
+                            </div>
 
                             <div className="navbar-dropdown is-right" >
                                 <div className="navbar-item">
