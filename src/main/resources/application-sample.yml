@@ -1,0 +1,69 @@
+health:
+    config:
+        enabled: false
+info:
+    app:
+        name: Recipe Book
+logging:
+    file:
+        name: logs/recipe.log
+management:
+    endpoint:
+        health:
+            show-details: when_authorized
+    endpoints:
+        web:
+            exposure:
+                include: '*'
+recipeBook:
+    seedDbIfEmpty: true
+server:
+    compression:
+        enabled: true
+    forward-headers-strategy: NATIVE
+    port: 8084
+    servlet:
+        session:
+            persistent: true
+            timeout: 240m
+spring:
+    application:
+        name: RecipeBook
+    cloud:
+        discovery:
+            client:
+                composite-indicator:
+                    enabled: false
+    datasource:
+        name: postgresDB
+        password: password
+        url: jdbc:postgresql://192.168.1.39:5432/recipe?currentSchema=public
+        username: username
+    jpa:
+        hibernate:
+            ddl-auto: create-drop
+        properties:
+            hibernate:
+                integration:
+                    envers:
+                        enabled: false
+                jdbc:
+                    batch_size: 100
+                    lob:
+                        non_contextual_creation: true
+                session:
+                    events:
+                        log:
+                            LOG_QUERIES_SLOWER_THAN_MS: 10
+    profiles:
+        active: prod
+    resources:
+        cache:
+            period: 1.0
+    servlet:
+        multipart:
+            location: ${java.io.tmpdir}
+    session:
+        jdbc:
+            initialize-schema: always
+        store-type: jdbc
