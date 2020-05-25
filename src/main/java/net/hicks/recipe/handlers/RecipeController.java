@@ -8,6 +8,7 @@ import net.hicks.recipe.repos.IngredientRepository;
 import net.hicks.recipe.repos.RecipeRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +25,9 @@ public class RecipeController
     private final DirectionRepository directionRepository;
     private final IngredientRepository ingredientRepository;
 
+    @Value("${recipeBook.recipeFile}")
+    public String recipesFile;
+
     public RecipeController(RecipeRepository recipeRepository, DirectionRepository directionRepository, IngredientRepository ingredientRepository) {
         this.recipeRepository = recipeRepository;
         this.directionRepository = directionRepository;
@@ -35,7 +39,7 @@ public class RecipeController
         try
         {
             ObjectMapper objectMapper = new ObjectMapper();
-            List<Recipe> recipes = objectMapper.readValue(new File("c:\\projects\\RecipeBook\\src\\main\\resources\\recipes.json"), new TypeReference<>(){});
+            List<Recipe> recipes = objectMapper.readValue(new File(recipesFile), new TypeReference<>(){});
 
             if (recipeRepository.count() == 0)
             {

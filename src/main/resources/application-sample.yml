@@ -17,6 +17,7 @@ management:
                 include: '*'
 recipeBook:
     seedDbIfEmpty: true
+    recipeFile: "src/main/resources/recipes.json"
 server:
     compression:
         enabled: true
