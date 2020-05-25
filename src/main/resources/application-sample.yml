@@ -59,7 +59,7 @@ spring:
         active: prod
     resources:
         cache:
-            period: 1.0
+            period: 1D
     servlet:
         multipart:
             location: ${java.io.tmpdir}
