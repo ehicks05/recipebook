@@ -1,12 +1,12 @@
 import React, {useEffect} from "react";
+import authFetch from "./authFetch";
 
 function LoginForm(props) {
     useEffect(fetchUser, []);
 
     function fetchUser() {
-        fetch("/user")
-            .then(response => response.json())
-            .then(json => {console.log(json); props.setUser(json)});
+        authFetch("/user")
+            .then(json => {if (json) props.setUser(json)});
     }
 
     function login() {
@@ -14,13 +14,13 @@ function LoginForm(props) {
 
         fetch('/login', {method: 'POST', body: new URLSearchParams(formData)})
             .then(response => response.text())
-            .then(text => {console.log(text); fetchUser()});
+            .then(text => {fetchUser()});
     }
 
     function logout() {
         fetch("/logout")
             .then(response => response.text())
-            .then(text => {console.log(text); props.setUser(null)});
+            .then(text => {props.setUser(null)});
     }
 
     return (
