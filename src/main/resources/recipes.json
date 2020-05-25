@@ -1,0 +1,310 @@
+[
+	{
+		"id": 1,
+		"name": "Steve's Classic Wok",
+		"difficulty": "4",
+		"ingredients": [
+			{"name": "Steak (or chicken)"},
+			{"name": "Carrots"},
+			{"name": "Onions"},
+			{"name": "Mushrooms"},
+			{"name": "Udon Noodles"},
+			{"name": "Curry Powder"},
+			{"name": "Pepper"},
+			{"name": "Garlic Salt"},
+			{"name": "Hoison Sauce"}
+		],
+		"cookingTime": "20",
+		"servings": "4",
+		"directions": [
+			{"text": "Add a bit of oil to your wok and let it heat up."},
+			{"text": "Meanwhile, cut up the steak or chicken into small bite-sized pieces."},
+			{"text": "Add the meat to the wok, and sprinke on some pepper, garlic salt, and curry.  Wait a few minutes, and add carrots."},
+			{"text": "When the meat is starting to cook, add hoison sauce and cover for about 5-7 minutes.  Use this time to slice up the mushrooms.  Then, add the mushrooms and onions to the dish."},
+			{"text": "Now cook your udon noodles in the microwave.  Cover them in water, and put in for 2 minutes on high.  Then drain, unplug the wok, and add the noodles into the mix and stir.  This way the noodles will be able to mingle with the rest of the meal, but not overcook."},
+			{"text": "Then serve and enjoy."}],
+		"emoji": "\uD83E\uDD58"
+	},
+	{
+		"id": 2,
+		"name": "Drew's Chinese Chicken",
+		"difficulty": "2",
+		"ingredients": [
+			{"name": "Chicken"},
+			{"name": "Chinese Seasoning Medley"}
+		],
+		"cookingTime": "25",
+		"servings": "4",
+		"directions": [{"text": "coming soon"}],
+		"emoji": "\uD83C\uDF57"
+	},
+	{
+		"id": 3,
+		"name": "Jessica's Delicious Comfort Food",
+		"difficulty": "1",
+		"ingredients": [
+			{"name": "Hot Dogs"},
+			{"name": "Collard Greens"},
+			{"name": "Chili Beans"}
+		],
+		"cookingTime": "10",
+		"servings": "4",
+		"directions": [{"text": "coming soon"}],
+		"emoji": "\uD83C\uDF2D"
+	},
+	{
+		"id": 4,
+		"name": "Chicken & Vegetable Udon Soup",
+		"difficulty": "2",
+		"ingredients": [
+			{"quantity": "1/2", "unit": "package", "name": "udon noodles"},
+			{"quantity": "1", "unit": "tbsp", "name": "oil"},
+			{"quantity": "1", "unit": "tbsp", "name": "minced garlic"},
+			{"quantity": "1", "unit": "tbsp", "name": "minced ginger"},
+			{"quantity": "1/2", "unit": "lb", "name": "boneless skinless chicken breast cut into strips"},
+			{"quantity": "4", "unit": "cups", "name": "chicken stock"},
+			{"quantity": "1", "unit": "cup", "name": "diced carrots"},
+			{"quantity": "2", "unit": "tbsp", "name": "soy sauce"},
+			{"quantity": "1/2", "unit": "tsp", "name": "salt"},
+			{"quantity": "1 1/2", "unit": "cups", "name": "snow peas, julienne sliced"},
+			{"quantity": "1/2", "unit": "cup", "name": "sliced mushrooms"},
+			{"quantity": "2", "unit": "tbsp", "name": "green onions, thinly sliced"}
+		],
+		"cookingTime": "40",
+		"servings": "6",
+		"directions": [
+			{"text": "Bring large pot of water to boil."},
+			{"text": "Add noodles and cook for 8 minutes or until desired tenderness, stirring occasionally. Drain well."},
+			{"text": "Meanwhile, heat oil in large saucepan on medium-high heat. Add garlic and ginger and cook for 1 minute or until fragrant. "},
+			{"text": "Add chicken and cook 5 minutes or until chicken is no longer pink."},
+			{"text": "Add stock, carrots, soy sauce, and salt. Bring to boil. Reduce heat and simmer for 5 minutes or until carrots are tender crisp."},
+			{"text": "Stir in snow peas and mushrooms and cook for 2 minutes or until snow peas are tender crisp."},
+			{"text": "Divide noodles into 6 soup bowls. Ladle soup into each bowl and garnish with green onions."}
+		],
+		"emoji": "\uD83C\uDF5C"
+	},
+	{
+		"id": 5,
+		"name": "Homemade Cookie Dough",
+		"difficulty": "3",
+		"ingredients": [
+			{"name": "Chocolate chips"},
+			{"name": "Brown sugar"},
+			{"name": "Flour"},
+			{"name": "Butter"},
+			{"name": "Vanilla extract"},
+			{"name": "Milk"}
+		],
+		"cookingTime": "6",
+		"servings": "4",
+		"directions": [{"text": "Melt 2 tablespoon of butter  in a bowl.  Mix in 1/4 cup browned sugar.  Add 1 tablespoon of milk.  1/8 tablespoon of vanilla.  Slowly mix in 5 tablespoons of flour and add chocolate chips.  Refridgerate until cold."}],
+		"emoji": "\ud83c\udf6a"
+	},
+	{
+		"id": 6,
+		"name": "Peanut Butter Blossoms",
+		"difficulty": "6",
+		"ingredients": [
+			{"quantity": "1 3/4", "unit": "cups", "name": "flour"},
+			{"quantity": "1", "unit": "teaspoon", "name": "baking soda"},
+			{"quantity": "1/2", "unit": "teaspon", "name": "salt"},
+			{"quantity": "4", "unit": "ounces", "name": "softened butter"},
+			{"quantity": "1/2", "unit": "cup", "name": "smooth peanut butter"},
+			{"quantity": "1/2", "unit": "cup", "name": "sugar"},
+			{"quantity": "1/2", "unit": "cup", "name": "brown sugar"},
+			{"quantity": "1", "unit": "", "name": "large egg"},
+			{"quantity": "1", "unit": "tablespoon", "name": "milk"},
+			{"quantity": "1", "unit": "teaspoon", "name": "vanilla"},
+			{"quantity": "5", "unit": "dozen", "name": "Hersey Kisses"}
+		],
+		"cookingTime": "35 Minutes",
+		"servings": "4",
+		"directions": [
+			{"text": "Sift together flour, baking soda and salt; set aside. Using an electric mixer, cream together butter, peanut butter, 1/2 cup granulated sugar and light brown sugar. Add egg, milk and vanilla; beat until well blended. Gradually add flour mixture, mixing thoroughly. If the dough is very soft, refrigerate for about 1 hour."},
+			{"text": "Preheat oven to 375 degrees. Spray, oil or line a cookie sheet with nonstick liner and set aside. Roll dough into 1-inch balls. (For a precise number of cookies, divide the dough into 5 pieces, and shape each piece into 12 balls.)"},
+			{"text": "Roll cookies in sugar and place 2 inches apart on cookie sheet. Bake until very light brown and puffed, 6 to 8 minutes. Remove sheet from oven and lightly press a candy kiss into center of each cookie, allowing it to crack slightly. Return to oven until light golden brown, 2 to 3 minutes. Remove from oven, cool completely and store in an airtight container."}
+		],
+		"emoji": "\ud83c\udf6a"
+	},
+	{
+		"id": 7,
+		"name": "Thick Cut-Out Cookies",
+		"difficulty": "5",
+		"ingredients": [
+			{"quantity": "2 1/8", "unit": "cups", "name": "sugar"},
+			{"quantity": "2", "unit": "cups", "name": "softened butter"},
+			{"quantity": "4", "unit": "", "name": "eggs"},
+			{"quantity": "6", "unit": "", "name": "egg yolks"},
+			{"quantity": "1 1/2", "unit": "teaspons", "name": "vanilla extract"},
+			{"quantity": "7", "unit": "cups", "name": "flour"},
+			{"quantity": "1", "unit": "tablespoon", "name": "baking powder"},
+			{"quantity": "1/2", "unit": "teaspoon", "name": "salt"},
+			{"quantity": "4", "unit": "cups", "name": "sugar"},
+			{"quantity": "1/4", "unit": "", "name": "vegetable oil"},
+			{"quantity": "1", "unit": "tablespoon", "name": "hot water"}
+		],
+		"cookingTime": "8 minutes",
+		"servings": "4",
+		"directions": [
+			{"text": "In a large bowl, cream together the sugar and butter until smooth. Beat in the eggs and egg yolks, one at a time, mixing well after each. Mix in vanilla extract. Combine flour, baking powder, and salt; stir into the sugar mixture. Cover dough and chill for at least 1 hour."},
+			{"text": "Preheat the oven to 375 degrees F (190 degrees C). Grease cookie sheets. On a floured surface, roll the dough out to 1/2 inch thickness and cut into desired shapes using cookie cutters. Place 2 inches apart on the prepared baking sheets."},
+			{"text": "Bake for 8 to 10 minutes in the preheated oven. Allow cookies to cool on baking sheet for 5 minutes before removing to a wire rack."},
+			{"text": "To make frosting, mix together the confectioners' sugar, oil and 1 teaspoon vanilla until smooth. gradually add enough hot water to achieve a spreadable consistency. Spread over warm cookies."}
+		],
+		"emoji": "\ud83c\udf6a"
+	},
+	{
+		"id": 8,
+		"name": "Russian Tea Cakes",
+		"difficulty": "5",
+		"ingredients": [
+			{"quantity": "1", "unit": "cup", "name": "butter"},
+			{"quantity": "1", "unit": "teaspon", "name": "vanilla extract"},
+			{"quantity": "6", "unit": "tablespoons", "name": "sugar"},
+			{"quantity": "2", "unit": "cups", "name": "flour"},
+			{"quantity": "1", "unit": "cup", "name": "chopped walnuts"},
+			{"quantity": "1/3", "unit": "cup", "name": "sugar"}
+		],
+		"cookingTime": "12 minutes",
+		"servings": "4",
+		"directions": [
+			{"text": "Preheat oven to 350 degrees F (175 degrees C)."},
+			{"text": "In a medium bowl, cream butter and vanilla until smooth. Combine the 6 tablespoons confectioners' sugar and flour; stir into the butter mixture until just blended. Mix in the chopped walnuts. Roll dough into 1 inch balls, and place them 2 inches apart on an ungreased cookie sheet."},
+			{"text": "Bake for 12 minutes in the preheated oven. When cool, roll in remaining confectioners' sugar. I also like to roll mine in the sugar a second time."}
+		],
+		"emoji": "\ud83c\udf6a"
+	},
+	{
+		"id": 9,
+		"name": "Halloween Peanut Butter 'Barking' Spider Cookies",
+		"difficulty": "5",
+		"ingredients": [
+			{"quantity": "1/2", "unit": "cup", "name": "shortening"},
+			{"quantity": "1/2", "unit": "cup", "name": "peanut butter"},
+			{"quantity": "1/2", "unit": "cup", "name": "brown sugar"},
+			{"quantity": "1/2", "unit": "cup", "name": "sugar"},
+			{"quantity": "1", "unit": "", "name": "egg"},
+			{"quantity": "2", "unit": "tbsp", "name": "milk"},
+			{"quantity": "1", "unit": "tsp", "name": "vanilla"},
+			{"quantity": "1 3/4", "unit": "cup", "name": "flour"},
+			{"quantity": "1", "unit": "tsp", "name": "baking soda"},
+			{"quantity": "1/2", "unit": "tsp", "name": "salt"},
+			{"quantity": "1/4", "unit": "cup", "name": "sugar for rolling"},
+			{"quantity": "48", "unit": "", "name": "miniature Reese’s cups unwrapped and frozen"},
+			{"quantity": "96", "unit": "", "name": "candy eyes"},
+			{"quantity": "1/2", "unit": "cup", "name": "chocolate chips"}
+		],
+		"cookingTime": "12 minutes",
+		"servings": "4",
+		"directions": [
+			{"text": "Preheat oven to 375 degrees F."},
+			{"text": "In a large bowl, beat together shortening, peanut butter, egg, sugar, brown sugar, vanilla, and milk. In a medium bowl, whisk together flour, baking soda, and salt. Gradually add dry mixture to wet mixture and beat until blended. Form into 1″ balls. Roll in sugar and place a couple of inches apart on ungreased cookie sheet."},
+			{"text": "Bake for 12 minutes or until golden brown. Immediately, gently press an upside down frozen peanut butter cup on top of each cookie and move to a wire rack to cool. After placing and moving all of the cookies on the wire rack, put in place the candy eyes while chocolate is still slightly soft. Put chocolate chips in the corner of a zippered sandwich bag. Microwave for 20 seconds, knead and repeat until chocolate has melted. Clip tiny piece off of the corner of bag to allow for piping and draw eight legs on each spider cookie. Place in refrigerator for 10 minutes to allow legs to set."}
+		],
+		"emoji": "\ud83c\udf6a"
+	},
+	{
+		"id": 10,
+		"name": "Crispy Cauliflower Tacos",
+		"difficulty": "4",
+		"ingredients": [
+			{"quantity": "", "unit": "", "name": "Crispy Breaded Cauliflower"},
+			{"quantity": "15", "unit": "ounce", "name": "vegetarian refried beans"},
+			{"quantity": "1/2", "unit": "teaspoon", "name": "cumin"},
+			{"quantity": "2", "unit": "cups", "name": "red cabbage, shredded"},
+			{"quantity": "2", "unit": "", "name": "limes (1 for the cabbage & 1 to serve)"},
+			{"quantity": "3", "unit": "tablespoons", "name": "Yum Yum Sauce"},
+			{"quantity": "8", "unit": "", "name": "corn tortillas"},
+			{"quantity": "", "unit": "", "name": "Fresh cilantro, for garnish"}
+		],
+		"cookingTime": "40",
+		"servings": "4",
+		"directions": [
+			{"text": "Make the Crispy Breaded Cauliflower (about 40 minutes total; use the remaining time to complete the steps below.)"},
+			{"text": "If using purchased refried beans, taste and if needed, mix with 1/2 teaspoon cumin and/or a pinch or two kosher salt."},
+			{"text": "Thinly slice the cabbage, enough for 2 cups. Mix it with 2 tablespoons lime juice and a pinch or two of salt. Allow it to stand at room temperature until serving."},
+			{"text": "Make the Yum Yum Sauce."},
+			{"text": "Warm the tortillas, or char them by placing them on grates above an open gas flame on medium heat for a few seconds per side, flipping with tongs, until they are slightly blackened and warm."},
+			{"text": "Chop the cilantro for a garnish."},
+			{"text": "To serve, place refried beans in a tortilla, top with cabbage, breaded cauliflower, Yum Yum sauce, and cilantro. Serve with lime wedges to spritz prior to serving. (If you have leftover cauliflower, you can reheat them in a 350F oven for 10 minutes, flipping once.)"}
+		],
+		"emoji": "\uD83C\uDF2E"
+	},
+	{
+		"id": 11,
+		"name": "Garlic Roasted Mhmm Potatoes",
+		"difficulty": "2",
+		"ingredients": [
+			{"quantity": "3", "unit": "pounds", "name": "small red or white potatoes"},
+			{"quantity": "1/4", "unit": "cup", "name": "good olive oil"},
+			{"quantity": "1 1/2", "unit": "teaspoons", "name": "kosher salt"},
+			{"quantity": "1", "unit": "teaspoon", "name": "freshly ground black pepper"},
+			{"quantity": "2", "unit": "tablespoons", "name": "minced garlic (6 cloves)"},
+			{"quantity": "2", "unit": "tablespoons", "name": "minced fresh parsley"}
+		],
+		"cookingTime": "1 hour",
+		"servings": "4",
+		"directions": [
+			{"text": "Preheat oven to 400 degrees F."},
+			{"text": "Cut the potatoes in half or quarters and place in a bowl with the olive oil, salt, pepper, and garlic; toss until the potatoes are well coated. Transfer the potatoes to a sheet pan and spread out into 1 layer. Roast in the oven for 45 minutes to 1 hour or until browned and crisp. Flip twice with a spatula during cooking in order to ensure even browning."},
+			{"text": "Remove the potatoes from the oven, toss with parsley, season to taste, and serve hot."}
+		],
+		"emoji": "\uD83E\uDD54"
+	},
+	{
+		"id": 13,
+		"name": "Big Al's 'Dunkin' Dino Nuggets",
+		"difficulty": "0",
+		"ingredients": [
+			{"name": "Tyson Dino Chicken Nugget"},
+			{"name": "Microwave"},
+			{"name": "Napkin"},
+			{"name": "Sauce"},
+			{"name": "'Herbs' as necessary"}
+		],
+		"cookingTime": "Depends on how baked you are/like your food",
+		"servings": "4",
+		"directions": [
+			{"text": "Open the Tyson bag containing all the dino nuggets."},
+			{"text": "On a napkin, place one dino nugget and begin moving it to the microwave"},
+			{"text": "Once the dino nugget has been placed in the microwave, add 45 seconds to the microwave and press start."},
+			{"text": "While you're waiting for the 45 seconds to expire, remind yourself how it's been 20 minutes since you last hit the bowl."},
+			{"text": "Go upstairs and take a huge rip. Forget about how you had any responsibilites for the past 10 years and oh yeah, you were cooking one dino nugget."},
+			{"text": "12 hours pass; Steve finds Dino nugget in the microwave. Enjoy!"}
+		],
+		"emoji": "\uD83C\uDF57"
+	},
+	{
+		"id": 12,
+		"name": "White Chocolate Dipped Peppermint Sugar Cookies",
+		"difficulty": "2",
+		"ingredients": [
+			{"quantity": "2 3/4", "unit": "cups", "name": "all-purpose flour"},
+			{"quantity": "1", "unit": "tsp", "name": "baking soda"},
+			{"quantity": "1/2", "unit": "tsp", "name": "salt"},
+			{"quantity": "1/2", "unit": "tsp", "name": "cream of tartar"},
+			{"quantity": "1 1/2", "unit": "cups", "name": "granulated sugar"},
+			{"quantity": "1", "unit": "cup", "name": "unsalted butter, softened"},
+			{"quantity": "1", "unit": "", "name": "large egg"},
+			{"quantity": "1", "unit": "", "name": "large egg yolk"},
+			{"quantity": "1", "unit": "tsp", "name": "vanilla extract"},
+			{"quantity": "3/4", "unit": "tsp", "name": "peppermint extract"},
+			{"quantity": "2 1/2", "unit": "cups (15 oz)", "name": "white chocolate chips"},
+			{"quantity": "2 1/2", "unit": "Tbsp (30g)", "name": "shortening"},
+			{"quantity": "1/3", "unit": "cup (60g)", "name": "peppermint bits or finely crushed candy canes"}
+		],
+		"cookingTime": "30 minutes",
+		"servings": "4",
+		"directions": [
+			{"text": "For the cookies: Preheat oven to 350 degrees. In a mixing bowl whisk together flour, baking soda, salt and cream of tartar, set aside."},
+			{"text": "In the bowl of an electric stand mixer fitted with the paddle attachment, cream together sugar and butter until combined. Mix in egg then mix in egg yolk, vanilla and peppermint extract."},
+			{"text": "With mixer set on low speed slowly add in dry ingredients and mix just until combined (dough with will thick, so stop mixer and mix by hand to get flour at bottom if needed)."},
+			{"text": "Scoop dough out 1 1/2 Tbsp (about 33g) at a time and shape into balls. Transfer to a baking sheet lined with parchment paper or a silicone liner, spacing cookies 2-inches apart (chill dough balls that aren't currently baking in refrigerator on plates)."},
+			{"text": "Bake in preheated oven 10 - 11 minutes (cookies should appear slightly under-baked). Remove from oven and allow to rest several minutes then transfer to a wire rack to cool completely."},
+			{"text": "For the white chocolate: Place chocolate chips and shortening in a medium microwave safe bowl and heat in microwave on 50% power in 20 second intervals, stirring well between intervals until melted and smooth."},
+			{"text": "Dip half of cooled cookies in white chocolate allowing excess to run off (or slide bottom slightly along edge of bowl) then transfer to wax paper and immediately sprinkle with peppermint bits."},
+			{"text": "Allow to set at room temperature or in refrigerator. Store in an airtight container at room temperature."}
+		],
+		"emoji": "\ud83c\udf6a"
+	}
+]
