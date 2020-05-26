@@ -8,9 +8,9 @@ function RecipePicker(props) {
     // if usableRecipes changes, and no longer contains the currently selected recipe,
     // change the currently selected recipe to the first usable recipe.
     useEffect(() => {
-        if (!usableRecipes.map(it => it.id).includes(props.currentlySelected))
+        if (!usableRecipes.includes(it => it.id === props.currentlySelected))
             if (usableRecipes.length > 0)
-                handleClickRecipe(usableRecipes[0].id);
+                handleClickRecipe(usableRecipes[0].id); //todo what do do when there are no matches at all
     }, [usableRecipes]);
 
     // handle recipeFilters changing...
@@ -73,22 +73,6 @@ function RecipePicker(props) {
         setRecipeFilters([]);
     }
 
-    let clearFiltersButton = recipeFilters.length > 0
-        ? <button className={"button is-small"} onClick={() => handleClearAllRecipeFilters()}>Clear</button>
-        : '';
-
-    let filterList = recipeFilters.length > 0
-        ? recipeFilters.map(f =>
-            <span key={f} className={"tag is-link"}>
-                {f}
-                <button className={"delete"} onClick={() => handleClearRecipeFilter(f)}> </button>
-            </span>
-        )
-        : '';
-
-    let filters = filterList ?
-        <div className="tags">{filterList}</div> : null;
-
     return (
         <div style={{flex: '1 1 auto', display: 'flex', flexDirection: 'column'}}>
             <div style={{flex: '0 1 auto', padding: '.5em .75em'}}>
@@ -101,11 +85,23 @@ function RecipePicker(props) {
                             <button className={'button is-small'} onClick={() => handleAddRecipeFilter()}>
                                 Add
                             </button>
-                            {clearFiltersButton}
+                            {
+                                recipeFilters.length > 0
+                                    ? <button className={"button is-small"} onClick={() => handleClearAllRecipeFilters()}>Clear</button>
+                                    : ''
+                            }
                         </div>
                     </div>
-
-                    {filters}
+                    {
+                        recipeFilters.length > 0
+                            ? recipeFilters.map(f =>
+                                <span key={f} className={"tag is-link"}>
+                                    {f} <button className={"delete"} onClick={() => handleClearRecipeFilter(f)}> </button>
+                                 </span>)
+                            : ''
+                    }
+                    <div className="tags">
+                    </div>
                 </div>
             </div>
 
