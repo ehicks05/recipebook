@@ -12,16 +12,15 @@ function Recipe(props) {
         setDesiredServings(recipe.servings);
     }, [props.recipe]);
 
-    const handleInputChange = (e) => setDesiredServings(e.currentTarget.value)
+    const incrementServings = (e) => setDesiredServings(desiredServings + 1)
+    const decrementServings = (e) => setDesiredServings(desiredServings - 1)
 
     const ingredients = (
         <div className={'content'}>
-
-            <div className="field">
-                <label className="label">Desired Servings</label>
-                <div className="control">
-                    <input className='input is-small' type='number' min={1} value={desiredServings} onChange={handleInputChange}/>
-                </div>
+            <div style={{marginBottom: '8px'}}>
+                <span className='button is-small is-static' aria-readonly={true}>Servings: {desiredServings}</span>
+                <button className='button is-small' onClick={decrementServings} disabled={desiredServings === 1}>-</button>
+                <button className='button is-small' onClick={incrementServings} >+</button>
             </div>
 
             {recipe.ingredients.map((ingredient) => <Ingredient key={ingredient.name} ingredient={ingredient} desiredQuantity={getDesiredQuantity(ingredient, recipe.servings, desiredServings)} />)}
@@ -44,7 +43,6 @@ function Recipe(props) {
                         <h1 className='title'>{recipe["name"]}</h1>
                         <h3 className='subtitle'>
                             Cooking Time: {recipe["cookingTime"]} - Difficulty: {recipe.difficulty}
-                            <br/>Serves: {recipe["servings"]}
                         </h3>
                     </div>
                 </div>
