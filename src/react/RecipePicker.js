@@ -1,31 +1,15 @@
 import React, {useEffect, useState} from 'react';
+import {NavLink} from "react-router-dom";
 
 function RecipePicker(props) {
 
     const [recipeFilters, setRecipeFilters] = useState([]);
     const [usableRecipes, setUsableRecipes] = useState(props.recipes);
 
-    // if usableRecipes changes, and no longer contains the currently selected recipe,
-    // change the currently selected recipe to the first usable recipe.
-    useEffect(() => {
-        if (!usableRecipes.includes(it => it.id === props.currentlySelected))
-            if (usableRecipes.length > 0)
-                handleClickRecipe(usableRecipes[0].id); //todo what do do when there are no matches at all
-    }, [usableRecipes]);
-
     // handle recipeFilters changing...
     useEffect(() => {
         getUsableRecipes();
     }, [recipeFilters]);
-
-    function handleClickRecipe(id) {
-        const isSelected = id === props.currentlySelected;
-        if (!isSelected)
-            props.onClickRecipe(id);
-
-        if (!props.mql.matches)
-            props.onSetSidebarOpen(false);
-    }
 
     function handleAddRecipeFilter() {
         const input = document.getElementById("recipeFilterInput");
@@ -109,8 +93,6 @@ function RecipePicker(props) {
                 <ul className="menu-list">
                     <RecipeList
                         recipes={usableRecipes}
-                        selectedRecipe={props.currentlySelected}
-                        onClickRecipe={handleClickRecipe}
                     />
                 </ul>
             </aside>
@@ -119,25 +101,26 @@ function RecipePicker(props) {
 }
 
 function RecipeList(props) {
-
-    function getClass(recipe, currentlySelectedRecipe) {
-        return recipe.id === currentlySelectedRecipe ? 'is-active' : null;
-    }
-
     return props.recipes.map(recipe => {
-        const activeClass = getClass(recipe, props.selectedRecipe);
-
-        return (
-            <li key={recipe.id} onClick={() => props.onClickRecipe(recipe.id)}>
-                <a className={activeClass}>
-                        <span className="panel-icon">
-                            <span className="" aria-hidden="true">{recipe.emoji}</span>
-                        </span>
-                    {recipe.name}
-                </a>
-            </li>
-        );
+        return <RecipeLink key={recipe.id} recipe={recipe} />;
     });
+}
+
+function RecipeLink(props) {
+    const recipe = props.recipe;
+    return (
+        <li>
+            <NavLink
+                to={"/recipe/" + recipe.id}
+                activeClassName="is-active"
+            >
+                <span className="panel-icon">
+                    <span className="" aria-hidden="true">{recipe.emoji}</span>
+                </span>
+                {recipe.name}
+            </NavLink>
+        </li>
+    );
 }
 
 export default RecipePicker;

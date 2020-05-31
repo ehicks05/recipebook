@@ -1,19 +1,34 @@
 import React, {useEffect, useState} from "react";
 import Timer from "./Timer";
 import { create, all } from "mathjs";
+import {useLocation} from "react-router-dom";
 
 const math = create(all, {});
 
 function Recipe(props) {
-    const recipe = props.recipe;
-    const [desiredServings, setDesiredServings] = useState(recipe.servings);
+    const [recipe, setRecipe] = useState(null);
+    const [desiredServings, setDesiredServings] = useState(null);
+
+    let location = useLocation();
 
     useEffect(() => {
-        setDesiredServings(recipe.servings);
-    }, [props.recipe]);
+        function getSelectedRecipe(id) {
+            return props.recipes.find(item => item.id === id);
+        }
 
-    const incrementServings = (e) => setDesiredServings(desiredServings + 1)
-    const decrementServings = (e) => setDesiredServings(desiredServings - 1)
+        const locationRecipeId = Number(location.pathname.replace('/recipe/', ''));
+        const recipe = getSelectedRecipe(locationRecipeId);
+        if (recipe) {
+            setRecipe(recipe);
+            setDesiredServings(recipe.servings);
+        }
+    }, [location]);
+
+    if (!recipe)
+        return (<div>Loading...</div>);
+
+    const incrementServings = () => setDesiredServings(desiredServings + 1)
+    const decrementServings = () => setDesiredServings(desiredServings - 1)
 
     const ingredients = (
         <div className={'content'}>

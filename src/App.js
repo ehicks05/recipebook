@@ -4,16 +4,19 @@ import RecipePicker from './react/RecipePicker';
 import Navbar from "./react/Navbar";
 import Sidebar from "react-sidebar";
 import Footer from "./react/Footer";
+import {Route} from "react-router-dom";
 
 const mql = window.matchMedia(`(min-width: 1024px)`);
 
 export default function App() {
     const [recipes, setRecipes] = useState([]);
-    const [selectedRecipeId, setSelectedRecipeId] = useState(0);
-    const [selectedRecipe, setSelectedRecipe] = useState(null);
     const [sidebarDocked, setSidebarDocked] = useState(mql.matches);
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        fetchRecipes();
+    }, []);
 
     useEffect(() => {
         mql.addEventListener("change", handleMediaQueryChanged);
@@ -21,16 +24,6 @@ export default function App() {
             mql.removeEventListener("change", handleMediaQueryChanged);
         }
     }, []);
-
-    useEffect(() => {
-        fetchRecipes();
-    }, []);
-
-    useEffect(() => {
-        const recipe = recipes.find(item => item.id === selectedRecipeId);
-        if (recipe)
-            setSelectedRecipe(recipe);
-    }, [recipes, selectedRecipeId]);
 
     function handleMediaQueryChanged() {
         setSidebarOpen(false);
@@ -40,10 +33,10 @@ export default function App() {
     function fetchRecipes() {
         fetch("/recipe")
             .then(response => response.json())
-            .then(json => {setRecipes(json); setSelectedRecipeId(json[0].id)});
+            .then(json => {setRecipes(json)});
     }
 
-    if (!recipes || recipes.length === 0 || !selectedRecipe) {
+    if (!recipes || recipes.length === 0) {
         return (<div>Loading...</div>)
     }
 
@@ -74,8 +67,6 @@ export default function App() {
                         </button>
                     </nav>
                     <RecipePicker
-                        onClickRecipe={setSelectedRecipeId}
-                        currentlySelected={selectedRecipeId}
                         recipes={recipes}
                         mql={mql}
                         onSetSidebarOpen={setSidebarOpen}/>
@@ -89,8 +80,7 @@ export default function App() {
             touchHandleWidth={40}
         >
 
-            <Navbar recipe={selectedRecipe}
-                    sidebarDocked={sidebarDocked}
+            <Navbar sidebarDocked={sidebarDocked}
                     onSetSidebarDocked={setSidebarDocked}
                     sidebarOpen={sidebarOpen}
                     onSetSidebarOpen={setSidebarOpen}
@@ -98,9 +88,13 @@ export default function App() {
                     setUser={setUser}
             />
 
-            {/*Route stuff can go here*/}
-            <Recipe recipe={selectedRecipe}/>
-            {/*More routes*/}
+            <Route exact path='/'>
+                <div>Welcome to the Home Page!</div>
+            </Route>
+
+            <Route path='/recipe/:id'>
+                <Recipe recipes={recipes}/>
+            </Route>
 
             <Footer/>
         </Sidebar>
