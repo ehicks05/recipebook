@@ -36,7 +36,7 @@ function LoginForm(props) {
 
                     <div className="field">
                         <div className="control">
-                            <input className="input" type="password" placeholder="Password" id="password" name="password"/>
+                            <input className="input" type="password" placeholder="Password" id="password" name="password" autoComplete="password"/>
                         </div>
                     </div>
                     <input type="button" value="Log in" className="button is-block is-primary is-fullwidth" onClick={login}/>

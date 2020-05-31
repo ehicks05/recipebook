@@ -4,15 +4,15 @@
 		"name": "Steve's Classic Wok",
 		"difficulty": "4",
 		"ingredients": [
-			{"name": "Steak (or chicken)"},
-			{"name": "Carrots"},
-			{"name": "Onions"},
-			{"name": "Mushrooms"},
-			{"name": "Udon Noodles"},
-			{"name": "Curry Powder"},
-			{"name": "Pepper"},
-			{"name": "Garlic Salt"},
-			{"name": "Hoison Sauce"}
+			{"quantity": "1", "unit": "lb", "name": "Steak (or chicken)"},
+			{"quantity": "1", "unit": "lb", "name": "Carrots"},
+			{"quantity": "1", "unit": "lb", "name": "Onions"},
+			{"quantity": "1", "unit": "lb", "name": "Mushrooms"},
+			{"quantity": "1", "unit": "lb", "name": "Udon Noodles"},
+			{"quantity": "1", "unit": "lb", "name": "Curry Powder"},
+			{"quantity": "1", "unit": "lb", "name": "Pepper"},
+			{"quantity": "1", "unit": "lb", "name": "Garlic Salt"},
+			{"quantity": "1", "unit": "lb", "name": "Hoison Sauce"}
 		],
 		"cookingTime": "20",
 		"servings": "4",
@@ -30,8 +30,8 @@
 		"name": "Drew's Chinese Chicken",
 		"difficulty": "2",
 		"ingredients": [
-			{"name": "Chicken"},
-			{"name": "Chinese Seasoning Medley"}
+			{"quantity": "2", "unit": "lb", "name": "Chicken"},
+			{"quantity": "2", "unit": "oz", "name": "Chinese Seasoning Medley"}
 		],
 		"cookingTime": "25",
 		"servings": "4",
@@ -43,9 +43,9 @@
 		"name": "Jessica's Delicious Comfort Food",
 		"difficulty": "1",
 		"ingredients": [
-			{"name": "Hot Dogs"},
-			{"name": "Collard Greens"},
-			{"name": "Chili Beans"}
+			{"quantity": "8", "unit": "", "name": "Hot Dogs"},
+			{"quantity": "1", "unit": "lb", "name": "Collard Greens"},
+			{"quantity": "1", "unit": "lb", "name": "Chili Beans"}
 		],
 		"cookingTime": "10",
 		"servings": "4",
@@ -88,12 +88,12 @@
 		"name": "Homemade Cookie Dough",
 		"difficulty": "3",
 		"ingredients": [
-			{"name": "Chocolate chips"},
-			{"name": "Brown sugar"},
-			{"name": "Flour"},
-			{"name": "Butter"},
-			{"name": "Vanilla extract"},
-			{"name": "Milk"}
+			{"quantity": "1", "unit": "lb", "name": "Chocolate chips"},
+			{"quantity": "1", "unit": "lb", "name": "Brown sugar"},
+			{"quantity": "1", "unit": "lb", "name": "Flour"},
+			{"quantity": "1", "unit": "lb", "name": "Butter"},
+			{"quantity": "1", "unit": "lb", "name": "Vanilla extract"},
+			{"quantity": "1", "unit": "lb", "name": "Milk"}
 		],
 		"cookingTime": "6",
 		"servings": "4",
@@ -256,11 +256,11 @@
 		"name": "Big Al's 'Dunkin' Dino Nuggets",
 		"difficulty": "0",
 		"ingredients": [
-			{"name": "Tyson Dino Chicken Nugget"},
-			{"name": "Microwave"},
-			{"name": "Napkin"},
-			{"name": "Sauce"},
-			{"name": "'Herbs' as necessary"}
+			{"quantity": "1", "unit": "", "name": "Tyson Dino Chicken Nugget"},
+			{"quantity": "1", "unit": "", "name": "Microwave"},
+			{"quantity": "1", "unit": "", "name": "Napkin"},
+			{"quantity": "1", "unit": "oz", "name": "Sauce"},
+			{"quantity": "1", "unit": "oz", "name": "'Herbs' as necessary"}
 		],
 		"cookingTime": "Depends on how baked you are/like your food",
 		"servings": "4",
