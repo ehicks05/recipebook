@@ -1,5 +1,6 @@
 import React, {useEffect} from "react";
 import LoginForm from "./LoginForm";
+import {Link} from "react-router-dom";
 
 function Navbar(props) {
     useEffect(() => {
@@ -54,8 +55,9 @@ function Navbar(props) {
                     {openSidebarButton}
                     <div className="navbar-item" href="#">
                         <span className={'title'}>
-                            {/*<span role="img" aria-label="plate of food">🍛</span> Recipe Book*/}
-                            <img src='/logo-via-logohub.png' alt='Recipe Book Site Logo' />
+                            <Link to='/'>
+                                <img src='/logo-via-logohub.png' alt='Recipe Book Site Logo' />
+                            </Link>
                         </span>
                     </div>
 
