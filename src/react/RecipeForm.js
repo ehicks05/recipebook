@@ -43,16 +43,16 @@ function RecipeForm(props)
     }
 
     function updateIngredient(e) {
-        const field = e.target.name;
+        const name = e.target.name;
         const value = e.target.value;
 
-        const index = field.substring(field.lastIndexOf('_') + 1)
+        const parts = name.split('_');
+        const field = parts[1]
+        const index = parts[2]
 
         const copy = [...ingredients]
-        const ingredient = copy.splice(index, 1)
-        ingredient[field] = value
+        copy[index][field] = value
 
-        copy.push(ingredient)
         setIngredients(copy)
     }
 
