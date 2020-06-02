@@ -66,6 +66,42 @@ function RecipeForm(props)
         setIngredients(copy)
     }
 
+    // DIRECTIONS
+
+    const blankDirection = {text: ''}
+    const [directions, setDirections] = useState([blankDirection]);
+
+    function addBlankDirection()
+    {
+        const copy = [...directions]
+        copy.push(blankDirection)
+        setDirections(copy)
+    }
+
+    function updateDirection(e) {
+        const name = e.target.name;
+        const value = e.target.value;
+
+        const parts = name.split('_');
+        const field = parts[1]
+        const index = parts[2]
+
+        const copy = [...directions]
+        copy[index][field] = value
+
+        setDirections(copy)
+    }
+
+    function removeDirection(e) {
+        const field = e.target.name;
+
+        const index = field.substring(field.lastIndexOf('_') + 1)
+
+        const copy = [...directions]
+        copy.splice(index, 1)
+        setDirections(copy)
+    }
+
     return (
         <>
             <section className={"hero is-info"}>
@@ -154,6 +190,18 @@ function RecipeForm(props)
                         <button className='button is-success is-light' onClick={addBlankIngredient}>Add Ingredient</button>
                     </div>
 
+                    <div className='box'>
+                        <h2 className='subtitle'>Directions</h2>
+                        {
+                            directions.map((direction, i) => {
+                                return (
+                                    <DirectionForm direction={direction} i={i} updateDirection={updateDirection} removeDirection={removeDirection}/>
+                                );
+                            })
+                        }
+
+                        <button className='button is-success is-light' onClick={addBlankDirection}>Add Direction</button>
+                    </div>
                 </div>
             </div>
         </>
@@ -190,6 +238,26 @@ function IngredientForm(props) {
             </div>
             <div className='control'>
                 <input type='button' name={`ingredient_delete_${i}`} className='button is-danger is-light' value='X' onClick={removeIngredient} />
+            </div>
+        </div>
+    );
+}
+
+function DirectionForm(props) {
+    const direction = props.direction;
+    const i = props.i;
+    const updateDirection = props.updateDirection;
+    const removeDirection = props.removeDirection;
+
+    return (
+        <div className='field has-addons' key={i}>
+            <div className="control is-expanded">
+                <input className="input is-fullwidth" type="text" name={`direction_text_${i}`}
+                       placeholder="Description" value={direction.text} onChange={updateDirection} />
+            </div>
+
+            <div className='control'>
+                <input type='button' name={`direction_delete_${i}`} className='button is-danger is-light' value='X' onClick={removeDirection} />
             </div>
         </div>
     );
