@@ -5,6 +5,7 @@ import Navbar from "./react/Navbar";
 import Sidebar from "react-sidebar";
 import Footer from "./react/Footer";
 import {Link, Route} from "react-router-dom";
+import RecipeForm from "./react/RecipeForm";
 
 const mql = window.matchMedia(`(min-width: 1024px)`);
 
@@ -95,6 +96,9 @@ export default function App() {
 
             <Route path='/recipe/:id'>
                 <Recipe recipes={recipes}/>
+            </Route>
+            <Route path='/create-recipe'>
+                <RecipeForm />
             </Route>
 
             <Footer/>
