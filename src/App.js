@@ -4,7 +4,7 @@ import RecipePicker from './react/RecipePicker';
 import Navbar from "./react/Navbar";
 import Sidebar from "react-sidebar";
 import Footer from "./react/Footer";
-import {Route} from "react-router-dom";
+import {Link, Route} from "react-router-dom";
 
 const mql = window.matchMedia(`(min-width: 1024px)`);
 
@@ -47,7 +47,8 @@ export default function App() {
             display: 'flex',
             flexDirection: 'column',
             height: '100vh',
-            overflowY: 'none'
+            overflowY: 'none',
+            zIndex: '100'
         }
     };
     return (
@@ -89,7 +90,7 @@ export default function App() {
             />
 
             <Route exact path='/'>
-                <div>Welcome to the Home Page!</div>
+                <Home />
             </Route>
 
             <Route path='/recipe/:id'>
@@ -99,4 +100,25 @@ export default function App() {
             <Footer/>
         </Sidebar>
     )
+}
+
+function Home(props) {
+    return (
+        <>
+            <section className={"hero is-info"}>
+                <div className={"hero-body"}>
+                    <div className={"container"}>
+                        <h1 className='title'>Welcome to the Home Page!</h1>
+                    </div>
+                </div>
+            </section>
+            <section className='section'>
+                <div className={"container"}>
+                    <Link to='/create-recipe'>
+                        <button className='button is-success is-light'>Create Recipe!</button>
+                    </Link>
+                </div>
+            </section>
+        </>
+    );
 }
