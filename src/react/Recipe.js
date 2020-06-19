@@ -55,7 +55,7 @@ function Recipe(props) {
             <section className={"hero is-info"}>
                 <div className={"hero-body"}>
                     <div className={"container"}>
-                        <h1 className='title'>{recipe["name"]}</h1>
+                        <h1 className='title'>{recipe["name"]} {recipe["emoji"]}</h1>
                         <h3 className='subtitle'>
                             Cooking Time: {recipe["cookingTime"]} - Difficulty: {recipe.difficulty}
                         </h3>

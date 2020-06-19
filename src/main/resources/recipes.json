@@ -306,5 +306,31 @@
 			{"text": "Allow to set at room temperature or in refrigerator. Store in an airtight container at room temperature."}
 		],
 		"emoji": "\ud83c\udf6a"
+	},
+	{
+		"id": 13,
+		"name": "Valerie's Artisan Bread",
+		"difficulty": "2",
+		"ingredients": [
+			{"quantity": "3", "unit": "cups", "name": "flour"},
+			{"quantity": "1/4", "unit": "tsp", "name": "yeast"},
+			{"quantity": "1", "unit": "tsp", "name": "salt"},
+			{"quantity": "1 1/2", "unit": "cups", "name": "warm water"}
+		],
+		"cookingTime": "10 minutes prep, 3 hour wait, 45 minute cook",
+		"servings": "12",
+		"directions": [
+			{"text": "In a large bowl, mix dry ingredients, then add water and mix."},
+			{"text": "Cover bowl with plastic, then a towel"},
+			{"text": "Let dough rise for 3 hours"},
+			{"text": "Flour the counter, put dough on counter, and sprinkle dough lightly with flour."},
+			{"text": "Shape into a loaf."},
+			{"text": "Get a fresh bowl, line with extra large parchment, then add dough and cover with towel."},
+			{"text": "Place dutch oven in oven and heat to 450f."},
+			{"text": "Once the dutch oven is pre-heated, remove it from oven. Lift the parchment with the dough into the dutch oven."},
+			{"text": "Cover the dutch oven and return to oven for 30 minutes."},
+			{"text": "Uncover the dutch oven and bake for another 5-15 minutes."}
+		],
+		"emoji": "\uD83C\uDF5E"
 	}
 ]
