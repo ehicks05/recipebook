@@ -332,5 +332,32 @@
 			{"text": "Uncover the dutch oven and bake for another 5-15 minutes."}
 		],
 		"emoji": "\uD83C\uDF5E"
+	},
+	{
+		"id": 14,
+		"name": "BBQ Pork Spare Ribs",
+		"difficulty": "1",
+		"ingredients": [
+			{"quantity": "4", "unit": "lb", "name": "pork spare ribs"},
+			{"quantity": "24", "unit": "oz", "name": "BBQ Sauce"},
+			{"quantity": "2", "unit": "pinches", "name": "salt"}
+		],
+		"cookingTime": "3 hours",
+		"servings": "4",
+		"directions": [
+			{"text": "Sprinkle with salt."},
+			{"text": "Cut ribs apart. Cut off excess fat."},
+			{"text": "Place on a cookie sheet."},
+			{"text": "Use hands to cover every side of each rib with bbq sauce."},
+			{"text": "Cover cookie sheet with foil"},
+			{"text": "Preheat the oven to 300f."},
+			{"text": "Bake for 1 3/4 hours."},
+			{"text": "Take out of oven, remove foil, brush each rib with another dollop of bbq sauce."},
+			{"text": "Increase temp to 350f."},
+			{"text": "Bake for another 30 minutes."},
+			{"text": "Take out of oven, remove foil, brush each rib with another dollop of bbq sauce."},
+			{"text": "Bake for another 30 minutes."}
+		],
+		"emoji": "\uD83C\uDF56"
 	}
 ]
