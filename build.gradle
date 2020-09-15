@@ -16,6 +16,7 @@ plugins {
     id 'org.springframework.boot' version "${springBootVersion}"
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
     id 'com.github.ben-manes.versions' version '0.28.0'
+    id 'jacoco'
 }
 
 group 'net.ehicks'
@@ -42,28 +43,18 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-tomcat'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.session:spring-session-jdbc'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     implementation 'de.codecentric:spring-boot-admin-starter-client'
-    implementation 'org.apache.tika:tika-core:1.24.1'
-    implementation 'commons-fileupload:commons-fileupload:1.4'
     implementation 'net.coobird:thumbnailator:0.4.11'
 
     implementation group: "com.github.ehicks05", name: "common", version: "-SNAPSHOT", changing: true
     implementation 'org.apache.commons:commons-lang3:3.10'
-    implementation group: 'org.glassfish', name: 'javax.json', version: '1.1.4'
 
-    implementation 'org.apache.pdfbox:pdfbox:2.0.19'
-    implementation 'com.github.dhorions:boxable:1.5'
-
-    implementation 'org.springframework.cloud:spring-cloud-starter-config'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
-
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
 
     implementation 'org.postgresql:postgresql:42.2.12'
 }
@@ -77,4 +68,27 @@ dependencyManagement {
 
 configurations {
     compile.exclude module: "lettuce"
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jacoco {
+    toolVersion = "0.8.5"
+    reportsDir = file("$buildDir/jacacoReports")
+}
+
+jacocoTestReport {
+    dependsOn test
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.5
+            }
+        }
+    }
 }
