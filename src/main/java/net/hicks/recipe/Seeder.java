@@ -38,18 +38,16 @@ public class Seeder
     private final RoleRepository roleRepository;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    private final TikaService tikaService;
     private final EntityManagerFactory entityManagerFactory;
 
     public Seeder(MySystemRepository mySystemRepository, RoleRepository roleRepository, UserRepository userRepository,
-                  PasswordEncoder passwordEncoder, TikaService tikaService,
+                  PasswordEncoder passwordEncoder,
                   EntityManagerFactory entityManagerFactory)
     {
         this.mySystemRepository = mySystemRepository;
         this.roleRepository = roleRepository;
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
-        this.tikaService = tikaService;
         this.entityManagerFactory = entityManagerFactory;
     }
 

@@ -1,41 +1,39 @@
-package net.hicks.recipe.handlers;
+package net.hicks.recipe.services;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.hicks.recipe.beans.Recipe;
+import net.hicks.recipe.beans.RecipeBookException;
 import net.hicks.recipe.repos.DirectionRepository;
 import net.hicks.recipe.repos.IngredientRepository;
 import net.hicks.recipe.repos.RecipeRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.util.List;
 
-@RestController
-@RequestMapping("/recipe")
-public class RecipeController
-{
-    private static final Logger log = LoggerFactory.getLogger(RecipeController.class);
+@Service
+public class RecipeService {
+
     private final RecipeRepository recipeRepository;
     private final DirectionRepository directionRepository;
     private final IngredientRepository ingredientRepository;
 
+    private static final Logger log = LoggerFactory.getLogger(RecipeService.class);
+
     @Value("${recipeBook.recipeFile}")
     public String recipesFile;
 
-    public RecipeController(RecipeRepository recipeRepository, DirectionRepository directionRepository, IngredientRepository ingredientRepository) {
+    public RecipeService(RecipeRepository recipeRepository, DirectionRepository directionRepository, IngredientRepository ingredientRepository) {
         this.recipeRepository = recipeRepository;
         this.directionRepository = directionRepository;
         this.ingredientRepository = ingredientRepository;
     }
 
-    @GetMapping("")
-    public List<Recipe> get() {
+    public List<Recipe> getAllRecipes() {
         try
         {
             ObjectMapper objectMapper = new ObjectMapper();
@@ -55,8 +53,25 @@ public class RecipeController
         catch (Exception e)
         {
             log.error(e.getLocalizedMessage(), e);
+            throw new RecipeBookException(10, "Unable to retrieve recipes", e);
         }
+    }
 
-        return null;
+    public Recipe getRecipe(long recipeId) {
+        try {
+            return recipeRepository.findById(recipeId).get();
+        } catch (Exception e) {
+            log.error(e.getLocalizedMessage(), e);
+            throw new RecipeBookException(10, "Unable to retrieve recipe with id " + recipeId);
+        }
+    }
+
+    public void updateRecipe(Recipe recipeToUpdate) {
+        //todo may need checks before updating
+        recipeRepository.save(recipeToUpdate);
+    }
+
+    public void createRecipe(Recipe recipe) {
+        recipeRepository.save(recipe);
     }
 }
