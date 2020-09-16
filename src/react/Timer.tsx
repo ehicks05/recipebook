@@ -1,6 +1,10 @@
 import React, {useEffect, useRef, useState} from "react";
 
-function Timer(props) {
+interface IProps {
+    minutes: number
+}
+
+function Timer(props: IProps) {
     const [seconds, setSeconds] = useState(props.minutes * 60);
     const [paused, setPaused] = useState(true);
     const [myInterval, setMyInterval] = useState(0);
@@ -17,7 +21,7 @@ function Timer(props) {
                 setSeconds(secondsRef.current - 1);
             }
 
-            setMyInterval(setInterval(decrement, 1000));
+            setMyInterval(window.setInterval(decrement, 1000));
         }
 
         if (paused)
@@ -38,9 +42,8 @@ function Timer(props) {
 
     function displayTime() {
         const min = Math.floor(seconds / 60);
-        let sec = seconds % 60;
-        if (sec < 10) sec = `0${sec}`;
-        return min + ':' + sec;
+        const sec = seconds % 60;
+        return min + ':' + (sec < 10 ? `0${sec}` : sec);
     }
 
     return (
