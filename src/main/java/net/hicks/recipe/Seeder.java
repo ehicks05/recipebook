@@ -1,17 +1,18 @@
 package net.hicks.recipe;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import net.ehicks.common.Timer;
-import net.hicks.recipe.beans.MySystem;
-import net.hicks.recipe.beans.Role;
-import net.hicks.recipe.beans.User;
-import net.hicks.recipe.beans.UserDetail;
+import net.hicks.recipe.beans.*;
 import net.hicks.recipe.repos.MySystemRepository;
 import net.hicks.recipe.repos.RoleRepository;
 import net.hicks.recipe.repos.UserRepository;
 import net.hicks.recipe.security.PasswordEncoder;
+import net.hicks.recipe.services.RecipeService;
 import org.hibernate.exception.SQLGrammarException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
@@ -23,6 +24,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Type;
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Collections;
@@ -40,15 +42,19 @@ public class Seeder
     private final PasswordEncoder passwordEncoder;
     private final EntityManagerFactory entityManagerFactory;
 
+    private final RecipeService recipeService;
+
     public Seeder(MySystemRepository mySystemRepository, RoleRepository roleRepository, UserRepository userRepository,
                   PasswordEncoder passwordEncoder,
-                  EntityManagerFactory entityManagerFactory)
+                  EntityManagerFactory entityManagerFactory,
+                  RecipeService recipeService)
     {
         this.mySystemRepository = mySystemRepository;
         this.roleRepository = roleRepository;
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.entityManagerFactory = entityManagerFactory;
+        this.recipeService = recipeService;
     }
 
     @Transactional
@@ -84,9 +90,6 @@ public class Seeder
     {
         if (!seedDbIfEmpty)
             return;
-        
-//        if (issueRepository.count() != 0)
-//            return;
 
         log.info("Seeding data");
         Timer timer = new Timer();
@@ -108,6 +111,10 @@ public class Seeder
 
         createUsers();
         log.info(timer.printDuration("createUsers"));
+
+
+        createRecipes();
+        log.info(timer.printDuration("create recipes"));
 
         log.info(timer.printDuration("Done seeding dummy data"));
     }
@@ -164,6 +171,27 @@ public class Seeder
 
 //        if (dbFileRepository.count() == 0) log.error("No DBFiles were created.");
 //        if (avatarRepository.count() == 0) log.error("No Avatars were created.");
+    }
+
+    public void createRecipes() {
+        Resource recipesFile = new ClassPathResource("recipes.json");
+        try {
+            InputStream inputStream = recipesFile.getInputStream();
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            List<Recipe> recipes = objectMapper.readValue(inputStream, new TypeReference<List<Recipe>>() {
+                @Override
+                public Type getType() {
+                    return super.getType();
+                }
+            });
+
+            recipes.forEach(recipeService::createRecipe);
+
+        } catch (Exception e) {
+        }
+
+
     }
 
     public void createDefaultRoles()

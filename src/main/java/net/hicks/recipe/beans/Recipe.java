@@ -19,10 +19,10 @@ public class Recipe implements Serializable
     private String cookingTime;
     private int servings;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Ingredient> ingredients;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Direction> directions;
 
     public Recipe()

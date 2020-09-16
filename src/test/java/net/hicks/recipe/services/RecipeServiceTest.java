@@ -36,7 +36,6 @@ public class RecipeServiceTest {
 
 
     @Test
-    @Disabled //todo get this working
     public void shouldGetAllRecipes() {
 
         List<Recipe> allRecipes = new ArrayList<>();
@@ -80,7 +79,6 @@ public class RecipeServiceTest {
         assertThat(taco).isEqualToComparingFieldByField(getTacoRecipe());
 
         verifyNoMoreInteractions(recipeRepository);
-
     }
 
 }

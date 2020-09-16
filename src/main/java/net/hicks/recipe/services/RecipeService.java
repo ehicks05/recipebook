@@ -1,7 +1,5 @@
 package net.hicks.recipe.services;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import net.hicks.recipe.beans.Recipe;
 import net.hicks.recipe.beans.RecipeBookException;
 import net.hicks.recipe.repos.DirectionRepository;
@@ -12,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
 import java.util.List;
 
 @Service
@@ -36,18 +33,6 @@ public class RecipeService {
     public List<Recipe> getAllRecipes() {
         try
         {
-            ObjectMapper objectMapper = new ObjectMapper();
-            List<Recipe> recipes = objectMapper.readValue(new File(recipesFile), new TypeReference<>(){});
-
-            if (recipeRepository.count() == 0)
-            {
-                recipes.forEach(recipe -> {
-                    directionRepository.saveAll(recipe.getDirections());
-                    ingredientRepository.saveAll(recipe.getIngredients());
-                });
-                recipeRepository.saveAll(recipes);
-            }
-
             return recipeRepository.findAll();
         }
         catch (Exception e)
