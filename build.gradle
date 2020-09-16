@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '2.3.0.RELEASE'
+        springBootVersion = '2.3.3.RELEASE'
     }
     repositories {
         jcenter()
@@ -14,9 +14,9 @@ plugins {
     id 'java'
     id 'idea'
     id 'org.springframework.boot' version "${springBootVersion}"
-    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
-    id 'com.github.ben-manes.versions' version '0.28.0'
     id 'jacoco'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'com.github.ben-manes.versions' version '0.31.0'
 }
 
 group 'net.ehicks'
@@ -25,11 +25,6 @@ version = '0.0.1-SNAPSHOT'
 java {
     sourceCompatibility = JavaVersion.VERSION_1_9
     targetCompatibility = JavaVersion.VERSION_1_9
-}
-
-ext {
-    set('springBootAdminVersion', '2.2.3')
-    set('springCloudVersion', "Hoxton.SR4")
 }
 
 repositories {
@@ -46,17 +41,18 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.session:spring-session-jdbc'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    
     implementation 'de.codecentric:spring-boot-admin-starter-client'
     implementation 'net.coobird:thumbnailator:0.4.11'
 
+    implementation 'net.coobird:thumbnailator:0.4.12'
     implementation group: "com.github.ehicks05", name: "common", version: "-SNAPSHOT", changing: true
-    implementation 'org.apache.commons:commons-lang3:3.10'
+    implementation 'org.apache.commons:commons-lang3:3.11'
+    implementation 'org.postgresql:postgresql:42.2.16'
 
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
-
-    implementation 'org.postgresql:postgresql:42.2.12'
 }
 
 dependencyManagement {

@@ -32,3 +32,8 @@ yarn-error.log*
 RecipeBook.iml
 dist/
 package-lock.json
+logs/
+.gradle/
+.idea/
+src/main/resources/application.yml
+src/react-app-env.d.ts
