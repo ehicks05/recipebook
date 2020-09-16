@@ -1,4 +1,4 @@
-package net.hicks.recipe.handlers;
+package net.hicks.recipe.controllers;
 
 import net.hicks.recipe.beans.User;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
