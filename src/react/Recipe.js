@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import Timer from "../Timer";
+import Timer from "./Timer";
 import { create, all } from "mathjs";
 import {useLocation} from "react-router-dom";
 

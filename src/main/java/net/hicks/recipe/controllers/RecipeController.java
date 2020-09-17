@@ -38,7 +38,7 @@ public class RecipeController
 
     @PutMapping("/{recipeId}")
     public void updateRecipe(@PathVariable int recipeId, @RequestBody Recipe recipe) {
-        recipe.setId((long) recipeId);
+        recipe.setId(Long.valueOf(recipeId));
         recipeService.updateRecipe(recipe);
     }
 }

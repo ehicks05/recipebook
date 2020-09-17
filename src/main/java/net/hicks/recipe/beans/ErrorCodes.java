@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class ErrorCodes {
 
-    final public static Map<Integer, String> ERROR_CODES = new HashMap<>();
+    public static Map<Integer, String> ERROR_CODES = new HashMap<>();
 
     static {
 

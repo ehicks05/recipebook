@@ -11,13 +11,13 @@ public class ExceptionController {
 
     @ExceptionHandler(Exception.class)
     public void catchException(Exception e) {
-        System.out.println(e.getLocalizedMessage());
+        System.out.println(e);
     }
 
     @ExceptionHandler(RecipeBookException.class)
     public ResponseEntity<String> catchRecipeBookException(RecipeBookException e) {
-        System.out.println(e.getLocalizedMessage());
+        System.out.println(e);
 
-        return new ResponseEntity<>(e.getClientMessage() + " - " + e.getDetails(), HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<String>(e.getClientMessage() + " - " + e.getDetails(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

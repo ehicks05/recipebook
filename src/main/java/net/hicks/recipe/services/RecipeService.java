@@ -7,6 +7,7 @@ import net.hicks.recipe.repos.IngredientRepository;
 import net.hicks.recipe.repos.RecipeRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +20,9 @@ public class RecipeService {
     private final IngredientRepository ingredientRepository;
 
     private static final Logger log = LoggerFactory.getLogger(RecipeService.class);
+
+    @Value("${recipeBook.recipeFile}")
+    public String recipesFile;
 
     public RecipeService(RecipeRepository recipeRepository, DirectionRepository directionRepository, IngredientRepository ingredientRepository) {
         this.recipeRepository = recipeRepository;
@@ -47,12 +51,12 @@ public class RecipeService {
         }
     }
 
-    public Recipe updateRecipe(Recipe recipeToUpdate) {
+    public void updateRecipe(Recipe recipeToUpdate) {
         //todo may need checks before updating
-        return recipeRepository.save(recipeToUpdate);
+        recipeRepository.save(recipeToUpdate);
     }
 
-    public Recipe createRecipe(Recipe recipe) {
-        return recipeRepository.save(recipe);
+    public void createRecipe(Recipe recipe) {
+        recipeRepository.save(recipe);
     }
 }

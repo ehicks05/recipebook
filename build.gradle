@@ -70,41 +70,9 @@ jacoco {
 
 jacocoTestReport {
     dependsOn test
-    afterEvaluate {
-        classDirectories.setFrom(files(classDirectories.files.collect {
-            fileTree(dir: it, exclude: [
-                    'net/hicks/recipe/beans/**',
-                    'net/hicks/recipe/security/MyAuditListener.class',
-                    'net/hicks/recipe/security/PasswordEncoder.class',
-                    'net/hicks/recipe/security/SecurityConfig.class',
-                    'net/hicks/recipe/security/SecurityConfig$*.*',
-                    'net/hicks/recipe/Seeder.class',
-                    'net/hicks/recipe/Seeder$*.*',
-                    'net/hicks/recipe/MvcConfig.class',
-                    'net/hicks/recipe/StartupListener.class',
-                    'net/hicks/recipe/Application.class'
-            ])
-        }))
-    }
 }
 
 jacocoTestCoverageVerification {
-    afterEvaluate {
-        classDirectories.setFrom(files(classDirectories.files.collect {
-            fileTree(dir: it, exclude: [
-                    'net/hicks/recipe/beans/**',
-                    'net/hicks/recipe/security/MyAuditListener.class',
-                    'net/hicks/recipe/security/PasswordEncoder.class',
-                    'net/hicks/recipe/security/SecurityConfig.class',
-                    'net/hicks/recipe/security/SecurityConfig$*.*',
-                    'net/hicks/recipe/Seeder.class',
-                    'net/hicks/recipe/Seeder$*.*',
-                    'net/hicks/recipe/MvcConfig.class',
-                    'net/hicks/recipe/StartupListener.class',
-                    'net/hicks/recipe/Application.class'
-            ])
-        }))
-    }
     violationRules {
         rule {
             limit {

@@ -6,6 +6,7 @@ import net.hicks.recipe.beans.RecipeBookException;
 import net.hicks.recipe.repos.DirectionRepository;
 import net.hicks.recipe.repos.IngredientRepository;
 import net.hicks.recipe.repos.RecipeRepository;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -33,6 +34,7 @@ public class RecipeServiceTest {
     @InjectMocks
     private RecipeService recipeService;
 
+
     @Test
     public void shouldGetAllRecipes() {
 
@@ -51,26 +53,15 @@ public class RecipeServiceTest {
     }
 
     @Test
-    public void getAllRecipesException() {
-        when(recipeRepository.findAll())
-                .thenThrow(new RuntimeException());
-
-        assertThatExceptionOfType(RecipeBookException.class)
-                .isThrownBy(() -> recipeService.getAllRecipes())
-                .withMessageContaining("Unable to retrieve recipes");
-
-        verify(recipeRepository, times(1)).findAll();
-        verifyNoMoreInteractions(recipeRepository);
-    }
-
-    @Test
     public void shouldReturnErrorIfNoRecipeExists() {
 
         when(recipeRepository.findById(1L))
                 .thenThrow(EntityNotFoundException.class);
 
         assertThatExceptionOfType(RecipeBookException.class)
-                .isThrownBy(() -> recipeService.getRecipe(1L))
+                .isThrownBy(() -> {
+                    recipeService.getRecipe(1L);
+                })
                 .withMessageContaining("Unable to retrieve recipe with id 1");
 
         verify(recipeRepository, times(1)).findById(1L);
@@ -87,40 +78,6 @@ public class RecipeServiceTest {
         assertThat(taco).isNotNull();
         assertThat(taco).isEqualToComparingFieldByField(getTacoRecipe());
 
-        verifyNoMoreInteractions(recipeRepository);
-    }
-
-    @Test
-    public void shouldCreateRecipe() {
-        Recipe taco = getTacoRecipe();
-        Recipe unsavedTaco = getTacoRecipe();
-        unsavedTaco.setId(null);
-
-        when(recipeRepository.save(unsavedTaco))
-                .thenReturn(taco);
-
-        Recipe savedTaco = recipeService.createRecipe(unsavedTaco);
-
-        assertThat(savedTaco).isEqualTo(taco);
-
-        verify(recipeRepository, times(1)).save(unsavedTaco);
-        verifyNoMoreInteractions(recipeRepository);
-    }
-
-    @Test
-    public void shouldUpdateRecipe() {
-        Recipe modifiedTaco = getTacoRecipe();
-        modifiedTaco.setName("Chalupa");
-        modifiedTaco.setDifficulty(2);
-
-        when(recipeRepository.save(modifiedTaco))
-                .thenReturn(modifiedTaco);
-
-        Recipe savedTaco = recipeService.updateRecipe(modifiedTaco);
-
-        assertThat(savedTaco).isEqualTo(modifiedTaco);
-
-        verify(recipeRepository, times(1)).save(modifiedTaco);
         verifyNoMoreInteractions(recipeRepository);
     }
 
