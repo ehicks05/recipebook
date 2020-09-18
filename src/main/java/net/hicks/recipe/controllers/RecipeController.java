@@ -2,8 +2,6 @@ package net.hicks.recipe.controllers;
 
 import net.hicks.recipe.beans.Recipe;
 import net.hicks.recipe.services.RecipeService;
-
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,9 +11,6 @@ import java.util.List;
 public class RecipeController
 {
     private final RecipeService recipeService;
-
-    @Value("${recipeBook.recipeFile}")
-    public String recipesFile;
 
     public RecipeController(RecipeService recipeService) {
         this.recipeService = recipeService;
