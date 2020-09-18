@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import Recipe from './react/Recipe';
-import RecipePicker from './react/RecipePicker';
+import Recipe from './react/components/Recipe';
+import RecipePicker from './react/components/RecipePicker';
 import Navbar from "./react/Navbar";
 import Sidebar from "react-sidebar";
 import Footer from "./react/Footer";
 import {Link, Route} from "react-router-dom";
-import RecipeForm from "./react/RecipeForm";
+import RecipeForm from "./react/components/RecipeForm";
 
 const mql = window.matchMedia(`(min-width: 1024px)`);
 

@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import LoginForm from "./LoginForm";
+import LoginForm from "./components/LoginForm";
 import {Link} from "react-router-dom";
 
 function Navbar(props) {

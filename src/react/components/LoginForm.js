@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import authFetch from "./authFetch";
+import authFetch from "../authFetch";
 
 function LoginForm(props) {
     useEffect(fetchUser, []);

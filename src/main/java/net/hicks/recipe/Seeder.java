@@ -179,16 +179,12 @@ public class Seeder
             InputStream inputStream = recipesFile.getInputStream();
 
             ObjectMapper objectMapper = new ObjectMapper();
-            List<Recipe> recipes = objectMapper.readValue(inputStream, new TypeReference<List<Recipe>>() {
-                @Override
-                public Type getType() {
-                    return super.getType();
-                }
-            });
+            List<Recipe> recipes = objectMapper.readValue(inputStream, new TypeReference<>() {});
 
             recipes.forEach(recipeService::createRecipe);
 
         } catch (Exception e) {
+            log.error(e.getLocalizedMessage(), e);
         }
 
 
@@ -239,12 +235,12 @@ public class Seeder
 
     static class UserData
     {
-        String username;
-        String password;
-        String first;
-        String last;
-        boolean enabled;
-        boolean admin;
+        final String username;
+        final String password;
+        final String first;
+        final String last;
+        final boolean enabled;
+        final boolean admin;
 
         public UserData(String username, String password, String first, String last, boolean enabled, boolean admin)
         {
