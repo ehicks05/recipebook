@@ -8,7 +8,7 @@ module.exports = {
         hot: true
     },
     entry: {
-        app: ["./src/index.js"]
+        app: ["./src/index.tsx"]
     },
     output: {
         path: path.resolve("./dist"),

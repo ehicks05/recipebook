@@ -1,8 +1,18 @@
-import React, {useEffect} from "react";
+import React, {Dispatch, SetStateAction, useEffect} from "react";
 import LoginForm from "./components/LoginForm";
 import {Link} from "react-router-dom";
+import {IUser} from "./components/types";
 
-function Navbar(props) {
+interface IProps {
+    sidebarOpen: boolean;
+    onSetSidebarOpen: (isSetOpen: boolean) => void;
+    sidebarDocked: boolean;
+    onSetSidebarDocked: (isSetDocked: boolean) => void;
+    user?: IUser;
+    setUser: Dispatch<SetStateAction<IUser | undefined>>;
+}
+
+function Navbar(props: IProps) {
     useEffect(() => {
         wireUpHamburgers();
     }, []);
@@ -25,8 +35,7 @@ function Navbar(props) {
 
                     // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
                     el.classList.toggle('is-active');
-                    $target.classList.toggle('is-active');
-
+                    if ($target) $target.classList.toggle('is-active');
                 });
             });
         }
@@ -53,7 +62,7 @@ function Navbar(props) {
             <div className={'container'}>
                 <div className="navbar-brand">
                     {openSidebarButton}
-                    <div className="navbar-item" href="#">
+                    <div className="navbar-item">
                         <span className={'title'}>
                             <Link to='/'>
                                 <img src='/logo-via-logohub.png' alt='Recipe Book Site Logo' />
@@ -73,17 +82,6 @@ function Navbar(props) {
                     </div>
 
                     <div className="navbar-end">
-                        {/*<div className="navbar-item">*/}
-                        {/*    <div className="buttons">*/}
-                        {/*        <a className="button is-primary">*/}
-                        {/*            <strong>Sign up</strong>*/}
-                        {/*        </a>*/}
-                        {/*        <a className="button is-light" onClick={toggleShowLoginForm}>*/}
-                        {/*            Log in*/}
-                        {/*        </a>*/}
-                        {/*    </div>*/}
-                        {/*</div>*/}
-
                         <div className="navbar-item has-dropdown is-hoverable">
                             <div className="navbar-link">
                                 {props.user ? 'Account' : 'Log In'}

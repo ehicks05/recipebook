@@ -1,18 +1,18 @@
-function authFetch(url, options) {
+function authFetch(input: Request | string, init?: RequestInit | undefined) {
 
     // todo: make use of these in production
     // const csrfHeader = document.head.querySelector("[name~=_csrf_header][content]");
     // const csrfToken = document.head.querySelector("[name~=_csrf][content]");
 
-    function buildErrorMessage(response)
+    function buildErrorMessage(response: Response)
     {
         let message = '';
         if (response.status === 401) message = 'authenticated';
         if (response.status === 403) message = 'authorized';
-        return "Must be " + message + " to access '" + url + "'";
+        return "Must be " + message + " to access '" + input + "'";
     }
 
-    return fetch(url, {...options})
+    return fetch(input, init)
         .then(response => {
             if (!response.ok)
                 throw new Error(buildErrorMessage(response));

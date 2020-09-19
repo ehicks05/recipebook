@@ -1,21 +1,23 @@
-import React, {useReducer, useState} from "react";
+import React, {ChangeEvent, useReducer, useState} from "react";
+import {IDirection, IIngredient, IRecipe} from "./types";
 
-function RecipeForm(props)
+const initialIngredientState: IIngredient = {name: '', quantity: '0', unit: ''}
+const initialDirectionState: IDirection = {index: '', text: ''}
+const initialRecipeState: IRecipe = {
+    name: '',
+    description: '',
+    emoji: ':)',
+    difficulty: 1,
+    cookingTime: '1',
+    servings: 1,
+    ingredients: [initialIngredientState],
+    directions: [initialDirectionState],
+};
+
+function RecipeForm()
 {
-
     // RECIPE
-
-    const initialRecipeState = {
-        name: '',
-        description: '',
-        emoji: ':)',
-        difficulty: 1,
-        cookingTime: 1,
-        servings: 1,
-        directions: [{index: '', text: ''}],
-    };
-
-    function reducer (state, {field, value}) {
+    function reducer (state: IRecipe, {field, value}: {field: string, value: string | number | IDirection[]}): IRecipe {
         return {
             ...state,
             [field]: value
@@ -24,42 +26,38 @@ function RecipeForm(props)
 
     const [recipeState, dispatch] = useReducer(reducer, initialRecipeState);
 
-    const onChange = (e) => {
+    const onChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
         dispatch({field: e.target.name, value: e.target.value});
     }
 
     const {name, description, emoji, difficulty, cookingTime, servings} = recipeState;
 
     // INGREDIENTS
-
-    const blankIngredient = {name: '', quantity: '', unit: ''}
-    const [ingredients, setIngredients] = useState([blankIngredient]);
+    const [ingredients, setIngredients] = useState<IIngredient[]>([{...initialIngredientState}]);
 
     function addBlankIngredient()
     {
-        const copy = [...ingredients]
-        copy.push(blankIngredient)
-        setIngredients(copy)
+        setIngredients([...ingredients, {...initialIngredientState}])
     }
 
-    function updateIngredient(e) {
+    function updateIngredient(e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) {
         const name = e.target.name;
         const value = e.target.value;
 
         const parts = name.split('_');
         const field = parts[1]
-        const index = parts[2]
+        const index = Number(parts[2])
 
         const copy = [...ingredients]
-        copy[index][field] = value
+        copy[index][field as keyof IIngredient] = value
 
         setIngredients(copy)
     }
 
-    function removeIngredient(e) {
-        const field = e.target.name;
+    function removeIngredient(e: React.MouseEvent<HTMLInputElement, MouseEvent>) {
+        const field = e.currentTarget.name;
 
-        const index = field.substring(field.lastIndexOf('_') + 1)
+        const index = Number(field.substring(field.lastIndexOf('_') + 1));
 
         const copy = [...ingredients]
         copy.splice(index, 1)
@@ -67,35 +65,31 @@ function RecipeForm(props)
     }
 
     // DIRECTIONS
-
-    const blankDirection = {text: ''}
-    const [directions, setDirections] = useState([blankDirection]);
+    const [directions, setDirections] = useState<IDirection[]>([{...initialDirectionState}]);
 
     function addBlankDirection()
     {
-        const copy = [...directions]
-        copy.push(blankDirection)
-        setDirections(copy)
+        setDirections([...directions, {...initialDirectionState}])
     }
 
-    function updateDirection(e) {
+    function updateDirection(e: React.ChangeEvent<HTMLInputElement>) {
         const name = e.target.name;
         const value = e.target.value;
 
         const parts = name.split('_');
         const field = parts[1]
-        const index = parts[2]
+        const index = Number(parts[2])
 
         const copy = [...directions]
-        copy[index][field] = value
+        copy[index][field as keyof IDirection] = value
 
         setDirections(copy)
     }
 
-    function removeDirection(e) {
-        const field = e.target.name;
+    function removeDirection(e: React.MouseEvent<HTMLInputElement, MouseEvent>) {
+        const field = e.currentTarget.name;
 
-        const index = field.substring(field.lastIndexOf('_') + 1)
+        const index = Number(field.substring(field.lastIndexOf('_') + 1))
 
         const copy = [...directions]
         copy.splice(index, 1)
@@ -208,7 +202,14 @@ function RecipeForm(props)
     );
 }
 
-function IngredientForm(props) {
+interface IIngredientFormProps {
+    ingredient: IIngredient;
+    i: number;
+    updateIngredient: (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => void;
+    removeIngredient: (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
+}
+
+function IngredientForm(props: IIngredientFormProps) {
     const ingredient = props.ingredient;
     const i = props.i;
     const updateIngredient = props.updateIngredient;
@@ -243,7 +244,14 @@ function IngredientForm(props) {
     );
 }
 
-function DirectionForm(props) {
+interface IDirectionFormProps {
+    direction: { text: string };
+    i: number;
+    updateDirection: (e: ChangeEvent<HTMLInputElement>) => void;
+    removeDirection: (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
+}
+
+function DirectionForm(props: IDirectionFormProps) {
     const direction = props.direction;
     const i = props.i;
     const updateDirection = props.updateDirection;
