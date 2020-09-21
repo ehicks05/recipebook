@@ -6,6 +6,8 @@ import Sidebar from "react-sidebar";
 import Footer from "./react/Footer";
 import {Link, Route} from "react-router-dom";
 import RecipeForm from "./react/components/RecipeForm";
+import {Home} from "./react/components/Home";
+import {IUser} from "./react/components/types";
 
 const mql = window.matchMedia(`(min-width: 1024px)`);
 
@@ -13,7 +15,7 @@ export default function App() {
     const [recipes, setRecipes] = useState([]);
     const [sidebarDocked, setSidebarDocked] = useState(mql.matches);
     const [sidebarOpen, setSidebarOpen] = useState(false);
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState<IUser | undefined>(undefined);
 
     useEffect(() => {
         fetchRecipes();
@@ -104,25 +106,4 @@ export default function App() {
             <Footer/>
         </Sidebar>
     )
-}
-
-function Home(props) {
-    return (
-        <>
-            <section className={"hero is-info"}>
-                <div className={"hero-body"}>
-                    <div className={"container"}>
-                        <h1 className='title'>Welcome to the Home Page!</h1>
-                    </div>
-                </div>
-            </section>
-            <section className='section'>
-                <div className={"container"}>
-                    <Link to='/create-recipe'>
-                        <button className='button is-success is-light'>Create Recipe!</button>
-                    </Link>
-                </div>
-            </section>
-        </>
-    );
 }

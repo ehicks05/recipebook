@@ -1,18 +1,23 @@
 import React, {useEffect, useState} from "react";
 import Timer from "../Timer";
-import { create, all } from "mathjs";
+import {create, all, MathJsStatic, Fraction} from "mathjs";
 import {useLocation} from "react-router-dom";
+import {IDirection, IIngredient, IRecipe} from "./types";
 
-const math = create(all, {});
+const math = create(all, {}) as MathJsStatic;
 
-function Recipe(props) {
-    const [recipe, setRecipe] = useState(null);
-    const [desiredServings, setDesiredServings] = useState(null);
+interface IProps {
+    recipes: IRecipe[]
+}
+
+function Recipe(props: IProps) {
+    const [recipe, setRecipe] = useState<IRecipe | undefined>(undefined);
+    const [desiredServings, setDesiredServings] = useState(0);
 
     let location = useLocation();
 
     useEffect(() => {
-        function getSelectedRecipe(id) {
+        function getSelectedRecipe(id: number) {
             return props.recipes.find(item => item.id === id);
         }
 
@@ -22,7 +27,7 @@ function Recipe(props) {
             setRecipe(recipe);
             setDesiredServings(recipe.servings);
         }
-    }, [location]);
+    }, [location, props.recipes]);
 
     if (!recipe)
         return (<div>Loading...</div>);
@@ -38,14 +43,15 @@ function Recipe(props) {
                 <button className='button is-small' onClick={incrementServings} >+</button>
             </div>
 
-            {recipe.ingredients.map((ingredient) => <Ingredient key={ingredient.name} ingredient={ingredient} desiredQuantity={getDesiredQuantity(ingredient, recipe.servings, desiredServings)} />)}
+            {recipe.ingredients.map((ingredient) => <Ingredient key={ingredient.name} ingredient={ingredient}
+                                                                 desiredQuantity={getDesiredQuantity(ingredient, recipe.servings, desiredServings)} />)}
         </div>
     );
 
     const directions = (
         <div className={'content'}>
             <ol style={{marginLeft: '16px'}}>
-                {recipe.directions.map((direction) => <Direction key={direction.text} direction={direction.text} />)}
+                {recipe.directions.map((direction) => <Direction key={direction.text} direction={direction} />)}
             </ol>
         </div>
     );
@@ -87,8 +93,8 @@ function Recipe(props) {
 }
 
 // parses numbers, as well as fractions and fractions like '1 1/4'
-function parseQuantity(quantity) {
-    if (!isNaN(quantity))
+function parseQuantity(quantity: string) {
+    if (!isNaN(Number(quantity)))
         return quantity;
 
     if (quantity.indexOf(' ') !== -1) {
@@ -101,15 +107,15 @@ function parseQuantity(quantity) {
 }
 
 // figures out the desired quantity and formats it as a nice fraction if necessary.
-function getDesiredQuantity(ingredient, defaultServings, desiredServings) {
+function getDesiredQuantity(ingredient: IIngredient, defaultServings: number, desiredServings: number): JSX.Element {
     const ratio = desiredServings / defaultServings;
     const desiredQuantity = parseQuantity(ingredient.quantity) * ratio;
 
     if (desiredQuantity === 0)
-        return '';
+        return <></>;
 
     if (desiredQuantity === Math.round(desiredQuantity))
-        return desiredQuantity;
+        return <>{desiredQuantity}</>;
     else
     {
         let fractional = desiredQuantity;
@@ -119,16 +125,21 @@ function getDesiredQuantity(ingredient, defaultServings, desiredServings) {
             fractional -= 1;
         }
 
-        fractional = math.fraction(fractional);
+        const fraction = math.fraction(fractional) as Fraction;
 
-        let result = (<><sup>{fractional.n}</sup>/<sub>{fractional.d}</sub></>);
+        let result = (<><sup>{fraction.n}</sup>/<sub>{fraction.d}</sub></>);
         if (nonfractional !== 0)
             result = (<>{nonfractional} {result}</>);
         return result;
     }
 }
 
-function Ingredient(props) {
+interface IIngredientProps{
+    ingredient: IIngredient;
+    desiredQuantity: JSX.Element;
+}
+
+function Ingredient(props: IIngredientProps) {
     const ingredient = props.ingredient;
     const desiredQuantity = props.desiredQuantity;
     return (
@@ -145,18 +156,22 @@ function Ingredient(props) {
     );
 }
 
-function Direction(props) {
+interface IDirectionProps {
+    direction: IDirection;
+}
+
+function Direction(props: IDirectionProps) {
     const direction = props.direction;
 
-    let timeAmount = extractTiming(direction);
+    let timeAmount = extractTiming(direction.text);
     const timer = timeAmount > 0 ? <Timer minutes={timeAmount}/> : null;
 
     return (
-        <li key={direction}>{direction} {timer}</li>
+        <li key={direction.text}>{direction.text} {timer}</li>
     );
 }
 
-function extractTiming(text) {
+function extractTiming(text: string) {
     const words = text.split(' ');
     const timeIndex = words.findIndex(word => word.indexOf('minute') > -1 || word.indexOf('hour') > -1);
     let timeAmount = 0;

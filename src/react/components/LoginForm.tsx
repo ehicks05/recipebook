@@ -1,7 +1,13 @@
 import React, {useEffect} from "react";
 import authFetch from "../authFetch";
+import {IUser} from "./types";
 
-function LoginForm(props) {
+interface IProps {
+    user: IUser | undefined;
+    setUser: (user: IUser | undefined) => void;
+}
+
+function LoginForm(props: IProps) {
     useEffect(fetchUser, []);
 
     function fetchUser() {
@@ -10,8 +16,11 @@ function LoginForm(props) {
     }
 
     function login() {
-        const formData = new FormData(document.getElementById('loginForm'));
+        const formElement = document.getElementById('loginForm') as HTMLFormElement;
+        const formData = new FormData(formElement);
 
+        // todo
+        // @ts-ignore
         fetch('/login', {method: 'POST', body: new URLSearchParams(formData)})
             .then(response => response.text())
             .then(text => {fetchUser()});
@@ -20,7 +29,7 @@ function LoginForm(props) {
     function logout() {
         fetch("/logout")
             .then(response => response.text())
-            .then(text => {props.setUser(null)});
+            .then(text => {props.setUser(undefined)});
     }
 
     return (
@@ -30,7 +39,7 @@ function LoginForm(props) {
                 <form method="POST" action="/" id="loginForm">
                     <div className="field">
                         <div className="control">
-                            <input className="input" type="email" placeholder="Email" autoFocus="" id="username" name="username"/>
+                            <input className="input" type="email" placeholder="Email" autoFocus id="username" name="username"/>
                         </div>
                     </div>
 

@@ -1,9 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import {NavLink} from "react-router-dom";
+import {IRecipe} from "./types";
 
-function RecipePicker(props) {
+interface IProps {
+    recipes: IRecipe[]
+    mql: MediaQueryList
+    onSetSidebarOpen: (setSidebarOpen: boolean) => void
+}
 
-    const [recipeFilters, setRecipeFilters] = useState([]);
+function RecipePicker(props: IProps) {
+
+    const [recipeFilters, setRecipeFilters] = useState<string[]>([]);
     const [usableRecipes, setUsableRecipes] = useState(props.recipes);
 
     // handle recipeFilters changing...
@@ -12,7 +19,7 @@ function RecipePicker(props) {
     }, [recipeFilters]);
 
     function handleAddRecipeFilter() {
-        const input = document.getElementById("recipeFilterInput");
+        const input = document.getElementById("recipeFilterInput") as HTMLFormElement;
         let newFilter = input.value.toLowerCase();
         if (newFilter.length > 1 && !recipeFilters.includes(newFilter)) {
             let filters = [...recipeFilters];
@@ -44,7 +51,7 @@ function RecipePicker(props) {
         setUsableRecipes(recipes);
     }
 
-    function handleClearRecipeFilter(filter) {
+    function handleClearRecipeFilter(filter: string) {
         let filters = [...recipeFilters];
         for (let i = 0; i < filters.length; i++)
             if (filters[i] === filter)
@@ -100,13 +107,20 @@ function RecipePicker(props) {
     )
 }
 
-function RecipeList(props) {
-    return props.recipes.map(recipe => {
-        return <RecipeLink key={recipe.id} recipe={recipe} />;
-    });
+interface IRecipeListProps {
+    recipes: IRecipe[];
 }
 
-function RecipeLink(props) {
+function RecipeList(props: IRecipeListProps) {
+    const recipeList = props.recipes.map(recipe => <RecipeLink key={recipe.id} recipe={recipe} />);
+    return (<>{recipeList}</>);
+}
+
+interface IRecipeLinkProps {
+    recipe: IRecipe
+}
+
+function RecipeLink(props: IRecipeLinkProps) {
     const recipe = props.recipe;
     return (
         <li>
