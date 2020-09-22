@@ -14,17 +14,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
-import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
-import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
-import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Type;
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Collections;
@@ -96,11 +92,6 @@ public class Seeder
 
         installExtensions();
 
-        // no dependencies
-
-        createDBFilesAndAvatars(); // use in production
-        log.info(timer.printDuration("createDBFiles"));
-
         createDefaultRoles();  // use in production
         log.info(timer.printDuration("createDefaultRoles"));
 
@@ -111,7 +102,6 @@ public class Seeder
 
         createUsers();
         log.info(timer.printDuration("createUsers"));
-
 
         createRecipes();
         log.info(timer.printDuration("create recipes"));
@@ -130,49 +120,6 @@ public class Seeder
         mySystemRepository.save(mySystem);
     }
 
-    private void createDBFilesAndAvatars()
-    {
-        ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-        Resource[] avatars = null;
-        try {
-            avatars = resolver.getResources("classpath:/static/images/avatars/png/**");
-        } catch (IOException e) {
-            log.error(e.getLocalizedMessage());
-        }
-
-        if (avatars == null)
-        {
-            log.error("No Avatars found");
-            return;
-        }
-
-        for (Resource avatarFile : avatars)
-        {
-            if (avatarFile.exists())
-            {
-                String name = avatarFile.getFilename();
-                if (name == null || name.isEmpty())
-                    continue;
-
-                byte[] content = new byte[0];
-                try (InputStream inputStream = avatarFile.getInputStream())
-                {
-                    content = inputStream.readAllBytes();
-                }
-                catch (IOException e)
-                {
-                    log.error(e.getMessage(), e);
-                }
-
-//                DBFile dbFile = dbFileRepository.save(new DBFile(0, content, Arrays.hashCode(content), tikaService.detect(content, name), null));
-//                avatarRepository.save(new Avatar(0, name, dbFile, true));
-            }
-        }
-
-//        if (dbFileRepository.count() == 0) log.error("No DBFiles were created.");
-//        if (avatarRepository.count() == 0) log.error("No Avatars were created.");
-    }
-
     public void createRecipes() {
         Resource recipesFile = new ClassPathResource("recipes.json");
         try {
@@ -186,8 +133,6 @@ public class Seeder
         } catch (Exception e) {
             log.error(e.getLocalizedMessage(), e);
         }
-
-
     }
 
     public void createDefaultRoles()
