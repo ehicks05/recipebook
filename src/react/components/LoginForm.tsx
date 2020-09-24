@@ -24,20 +24,21 @@ function LoginForm(props: IProps) {
 
     setFailureMessage("");
 
-    // todo
-    // @ts-ignore
-    fetch("/login", { method: "POST", body: new URLSearchParams(formData) })
-      .then((response) => response.text())
-      .then((text) => {
+    // @ts-ignore:
+    fetch("/login", {
+      method: "POST",
+      body: new URLSearchParams(formData as any),
+    }).then((response) => {
+      if (response.status !== 200)
         setFailureMessage("Invalid username and/or password");
-        fetchUser();
-      });
+      fetchUser();
+    });
   }
 
   function logout() {
     fetch("/logout")
       .then((response) => response.text())
-      .then((text) => {
+      .then(() => {
         props.setUser(undefined);
       });
   }
