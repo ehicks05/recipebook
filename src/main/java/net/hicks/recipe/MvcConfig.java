@@ -12,22 +12,6 @@ import org.springframework.web.servlet.resource.PathResourceResolver;
 @Configuration
 public class MvcConfig implements WebMvcConfigurer
 {
-    public void addViewControllers(ViewControllerRegistry registry)
-    {
-        registry.addViewController("/login").setViewName("login");
-        RedirectViewControllerRegistration r = registry.addRedirectViewController("/", "/home");
-    }
-
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry
-                .addResourceHandler("/resources/**")
-                .addResourceLocations("/resources")
-                .setCachePeriod(3600)
-                .resourceChain(true)
-                .addResolver(new PathResourceResolver());
-    }
-
     // Allows the handling of input type='datetime-local'
     @Override
     public void addFormatters(FormatterRegistry registry) {
