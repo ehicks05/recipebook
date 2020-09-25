@@ -114,7 +114,7 @@ export default function App() {
         <Recipe recipes={recipes} />
       </Route>
       <Route path="/create-recipe">
-        <RecipeForm />
+        <RecipeForm fetchRecipes={fetchRecipes} />
       </Route>
       <Route path="/myAccount">
         <MyAccount user={user} />

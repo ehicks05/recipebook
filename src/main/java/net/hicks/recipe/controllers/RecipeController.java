@@ -27,8 +27,8 @@ public class RecipeController
     }
 
     @PostMapping
-    public void createRecipe(@RequestBody Recipe recipe) {
-        recipeService.createRecipe(recipe);
+    public Recipe createRecipe(@RequestBody Recipe recipe) {
+        return recipeService.createRecipe(recipe);
     }
 
     @PutMapping("/{recipeId}")
