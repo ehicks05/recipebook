@@ -29,7 +29,7 @@ public class RecipeService {
     public List<Recipe> getAllRecipes() {
         try
         {
-            return recipeRepository.findAll();
+            return recipeRepository.findByOrderById();
         }
         catch (Exception e)
         {
