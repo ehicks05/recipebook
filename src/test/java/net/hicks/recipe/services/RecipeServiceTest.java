@@ -39,12 +39,12 @@ public class RecipeServiceTest {
         List<Recipe> allRecipes = new ArrayList<>();
         allRecipes.add(getTacoRecipe());
 
-        when(recipeRepository.findAll())
+        when(recipeRepository.findByOrderById())
                 .thenReturn(allRecipes);
 
         List<Recipe> recipes = recipeService.getAllRecipes();
 
-        verify(recipeRepository, times(1)).findAll();
+        verify(recipeRepository, times(1)).findByOrderById();
         assertThat(recipes).isNotNull();
         assertThat(recipes.size()).isGreaterThan(0);
         verifyNoMoreInteractions(recipeRepository);
@@ -52,14 +52,14 @@ public class RecipeServiceTest {
 
     @Test
     public void getAllRecipesException() {
-        when(recipeRepository.findAll())
+        when(recipeRepository.findByOrderById())
                 .thenThrow(new RuntimeException());
 
         assertThatExceptionOfType(RecipeBookException.class)
                 .isThrownBy(() -> recipeService.getAllRecipes())
                 .withMessageContaining("Unable to retrieve recipes");
 
-        verify(recipeRepository, times(1)).findAll();
+        verify(recipeRepository, times(1)).findByOrderById();
         verifyNoMoreInteractions(recipeRepository);
     }
 
