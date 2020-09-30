@@ -1,5 +1,7 @@
 package net.hicks.recipe.security;
 
+import net.hicks.recipe.beans.User;
+import net.hicks.recipe.beans.UserDetail;
 import net.hicks.recipe.repos.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,10 +13,11 @@ import org.springframework.stereotype.Service;
 public class UserRepositoryUserDetailsService implements UserDetailsService
 {
     final private UserRepository userRepo;
+    final private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserRepositoryUserDetailsService(UserRepository userRepo)
-    {
+    public UserRepositoryUserDetailsService(UserRepository userRepo, PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
         this.userRepo = userRepo;
     }
 
@@ -26,5 +29,18 @@ public class UserRepositoryUserDetailsService implements UserDetailsService
         }
         
         throw new UsernameNotFoundException("User '" + username + "' not found");
+    }
+
+    public User saveNewUser(User newUser) {
+        String encryptedPassword = passwordEncoder.encoder().encode(newUser.getPassword());
+
+        newUser.setPassword(encryptedPassword);
+
+        UserDetail userDetail = new UserDetail();
+        userDetail.setUser(newUser);
+        newUser.setUserDetail(userDetail);
+
+        userRepo.save(newUser);
+        return newUser;
     }
 }

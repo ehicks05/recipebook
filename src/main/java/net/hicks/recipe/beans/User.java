@@ -23,7 +23,9 @@ public class User implements UserDetails
     @JsonIgnore
     private String password = "";
     @Column(nullable=false)
-    private String fullName = "";
+    private String firstName = "";
+    @Column(nullable = false)
+    private String lastName = "";
 
     @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
@@ -41,11 +43,12 @@ public class User implements UserDetails
     {
     }
 
-    public User(String username, String password, String fullName, Set<Role> roles)
+    public User(String username, String password, String firstName, String lastName, Set<Role> roles)
     {
         this.username = username;
         this.password = password;
-        this.fullName = fullName;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.roles = roles;
     }
 
@@ -157,13 +160,19 @@ public class User implements UserDetails
         this.password = password;
     }
 
-    public String getFullName()
-    {
-        return fullName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFullName(String fullName)
-    {
-        this.fullName = fullName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }
