@@ -29,7 +29,8 @@ public class UserRepositoryUserDetailsServiceTest {
     public void shouldLoadUser() {
         User user = new User();
         user.setId(100L);
-        user.setFullName("Test User");
+        user.setFirstName("Test");
+        user.setLastName("User");
         user.setPassword("password");
         user.setRoles(new HashSet<>());
         user.setUsername("test@admin.com");
