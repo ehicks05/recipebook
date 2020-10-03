@@ -2,8 +2,6 @@ package net.hicks.recipe.services;
 
 import net.hicks.recipe.beans.Recipe;
 import net.hicks.recipe.beans.RecipeBookException;
-import net.hicks.recipe.repos.DirectionRepository;
-import net.hicks.recipe.repos.IngredientRepository;
 import net.hicks.recipe.repos.RecipeRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,15 +13,11 @@ import java.util.List;
 public class RecipeService {
 
     private final RecipeRepository recipeRepository;
-    private final DirectionRepository directionRepository;
-    private final IngredientRepository ingredientRepository;
 
     private static final Logger log = LoggerFactory.getLogger(RecipeService.class);
 
-    public RecipeService(RecipeRepository recipeRepository, DirectionRepository directionRepository, IngredientRepository ingredientRepository) {
+    public RecipeService(RecipeRepository recipeRepository) {
         this.recipeRepository = recipeRepository;
-        this.directionRepository = directionRepository;
-        this.ingredientRepository = ingredientRepository;
     }
 
     public List<Recipe> getAllRecipes() {
