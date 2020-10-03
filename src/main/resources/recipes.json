@@ -382,3 +382,36 @@
 		],
 		"emoji": "\ud83c\udf6a"
 	},
+{
+		"id": 16,
+		"name": "Superbowl '5 Gallon' Chili",
+		"difficulty": "10",
+		"ingredients": [
+			{"quantity": "1", "unit": "tbsp", "name": "olive oil"},
+			{"quantity": "1", "unit": "medium", "name": "yellow diced onion"},
+			{"quantity": "1", "unit": "lb", "name": "90 percent ground beef"},
+			{"quantity": "2 1/2", "unit": "tbsp", "name": "chili powder"},
+			{"quantity": "2", "unit": "tbsp", "name": "ground cumin"},
+			{"quantity": "2", "unit": "tbsp", "name": "sugar"},
+			{"quantity": "2", "unit": "tbsp", "name": "tomato paste"},
+			{"quantity": "1", "unit": "tbsp", "name": "garlic powder"},
+			{"quantity": "1 1/2", "unit": "tsp", "name": "salt"},
+			{"quantity": "1/2", "unit": "tsp", "name": "black pepper"},
+			{"quantity": "1 1/2", "unit": "cups", "name": "beef broth"},
+			{"quantity": "15", "unit": "oz", "name": "petite diced tomatoes"},
+			{"quantity": "16", "unit": "oz", "name": "red kidney beans"},
+			{"quantity": "8", "unit": "oz", "name": "tomato sauce"},
+		],
+		"cookingTime": "25 minutes",
+		"servings": "6",
+		"directions": [
+			{"text": "Head on over to Walmart and pick up a nice big 5 gallon stainless steel kettle bucket. Find the most expensive bucket because you only need it once and then will throw it in a cabinet never to be seen again. Go on home and go upstairs to start the gurgling process. Come back downstairs after 20 minutes and begin the process. Fall asleep 5 minutes later from 'exhaustion'."}
+			{"text": "Add the olive oil to a large soup pot and place it over medium-high heat for two minutes. Add the onion. Cook for 5 minutes, stirring occasionally."},
+			{"text": "Add the ground beef to the pot. Break it apart with a wooden spoon. Cook for 6-7 minutes, until the beef is browned, stirring occasionally."},
+			{"text": "Add the chili powder, cumin, sugar, tomato paste, garlic powder, salt, pepper, and optional cayenne. Stir until well combined."}
+			{"text": "Add the broth, diced tomatoes (with their juice), drained beans, and tomato sauce. Stir well."}
+			{"text": "Bring the liquid to a low boil. Then, reduce the heat (low to medium-low) to gently simmer the chili, uncovered, for 20-25 minutes, stirring occasionally."}
+			{"text": "Remove the pot from the heat. Let the chili rest for 5-10 minutes before serving."}
+		],
+		"emoji": "\ud83c\udf6a"
+	},
