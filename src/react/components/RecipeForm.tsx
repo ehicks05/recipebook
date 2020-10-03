@@ -20,6 +20,7 @@ const initialRecipeState: IRecipe = {
   cookingTime: "1",
   servings: 1,
   course: "",
+  author: {fullName: 'Unknown'},
   ingredients: [initialIngredientState],
   directions: [initialDirectionState],
 };
