@@ -19,6 +19,7 @@ const initialRecipeState: IRecipe = {
   difficulty: 1,
   cookingTime: "1",
   servings: 1,
+  course: "",
   ingredients: [initialIngredientState],
   directions: [initialDirectionState],
 };
