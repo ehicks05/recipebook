@@ -14,6 +14,29 @@ function RecipePicker(props: IProps) {
 
   // handle recipeFilters changing...
   useEffect(() => {
+    function getUsableRecipes() {
+      let recipes = props.recipes;
+  
+      if (recipeFilters.length > 0) {
+        recipes = recipes.filter((recipe) => {
+          let ingredients = recipe.ingredients
+            .map((x) => x.name.toLowerCase())
+            .join();
+  
+          let keep = true;
+          recipeFilters.forEach((element) => {
+            if (!ingredients.includes(element)) {
+              keep = false;
+            }
+          });
+  
+          return keep;
+        });
+      }
+  
+      setUsableRecipes(recipes);
+    }
+    
     getUsableRecipes();
   }, [recipeFilters, props.recipes]);
 
@@ -29,29 +52,6 @@ function RecipePicker(props: IProps) {
     }
 
     input.value = "";
-  }
-
-  function getUsableRecipes() {
-    let recipes = props.recipes;
-
-    if (recipeFilters.length > 0) {
-      recipes = recipes.filter((recipe) => {
-        let ingredients = recipe.ingredients
-          .map((x) => x.name.toLowerCase())
-          .join();
-
-        let keep = true;
-        recipeFilters.forEach((element) => {
-          if (!ingredients.includes(element)) {
-            keep = false;
-          }
-        });
-
-        return keep;
-      });
-    }
-
-    setUsableRecipes(recipes);
   }
 
   function handleClearRecipeFilter(filter: string) {
