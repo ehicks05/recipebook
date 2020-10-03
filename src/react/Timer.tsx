@@ -48,7 +48,7 @@ function Timer(props: IProps) {
     <div>
       <div className="field has-addons">
         <p className="control">
-          <button className="button is-static is-small">{displayTime()}</button>
+          <button className="button is-small">{displayTime()}</button>
         </p>
         <p className="control is-expanded">
           <button className={"button is-small"} onClick={togglePause}>
