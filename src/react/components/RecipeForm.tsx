@@ -225,7 +225,7 @@ function RecipeForm(props: IProps) {
                     />
                   </div>
                   <div className="control">
-                    <button className="button is-static">minutes</button>
+                    <button className="button" disabled>minutes</button>
                   </div>
                 </div>
               </div>
@@ -269,6 +269,7 @@ function RecipeForm(props: IProps) {
               return (
                 <IngredientForm
                   ingredient={ingredient}
+                  key={ingredient.name}
                   i={i}
                   updateIngredient={updateIngredient}
                   removeIngredient={removeIngredient}
@@ -277,7 +278,7 @@ function RecipeForm(props: IProps) {
             })}
 
             <button
-              className="button is-success is-light"
+              className="button is-success"
               onClick={addBlankIngredient}
             >
               Add Ingredient
@@ -291,6 +292,7 @@ function RecipeForm(props: IProps) {
                 <DirectionForm
                   direction={direction}
                   i={i}
+                  key={direction.index}
                   updateDirection={updateDirection}
                   removeDirection={removeDirection}
                 />
@@ -298,17 +300,19 @@ function RecipeForm(props: IProps) {
             })}
 
             <button
-              className="button is-success is-light"
+              className="button is-success"
               onClick={addBlankDirection}
             >
               Add Direction
             </button>
           </div>
-        </div>
 
-        <button className="button is-success is-light" onClick={createRecipe}>
-          Create Recipe
-        </button>
+          <div className='box'>
+            <button className="button is-success" onClick={createRecipe}>
+              Create Recipe
+            </button>
+          </div>
+        </div>
       </div>
     </>
   );
@@ -375,7 +379,7 @@ function IngredientForm(props: IIngredientFormProps) {
         <input
           type="button"
           name={`ingredient_delete_${i}`}
-          className="button is-danger is-light"
+          className="button is-danger"
           value="X"
           onClick={removeIngredient}
         />
@@ -414,7 +418,7 @@ function DirectionForm(props: IDirectionFormProps) {
         <input
           type="button"
           name={`direction_delete_${i}`}
-          className="button is-danger is-light"
+          className="button is-danger"
           value="X"
           onClick={removeDirection}
         />

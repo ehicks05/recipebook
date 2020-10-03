@@ -37,7 +37,7 @@ function Recipe(props: IProps) {
   const ingredients = (
     <div className={"content"}>
       <div style={{ marginBottom: "8px" }}>
-        <span className="button is-small is-static" aria-readonly={true}>
+        <span className="button is-small" aria-readonly={true}>
           Servings: {desiredServings}
         </span>
         <button
@@ -98,7 +98,6 @@ function Recipe(props: IProps) {
             <div
               id={"ingredients-column"}
               className={"column is-one-quarter"}
-              style={{ backgroundColor: "#fafafa" }}
             >
               <div key={recipe.name}>
                 <h3 className="subtitle">Ingredients:</h3>

@@ -48,7 +48,6 @@ export default function App() {
 
   const sidebarStyles = {
     sidebar: {
-      background: "#fafafa",
       width: "310px",
       display: "flex",
       flexDirection: "column",
@@ -68,14 +67,13 @@ export default function App() {
             aria-label="main navigation"
             style={{
               flex: "0 1 auto",
-              backgroundColor: "#fafafa",
             }}
           >
             <button
-              className={"button bigger-burger has-text-grey is-hidden-touch"}
+              className={"button bigger-burger is-hidden-touch"}
               style={{
                 border: "none",
-                backgroundColor: "#fafafa",
+                backgroundColor: "transparent",
               }}
               onClick={() => setSidebarDocked(false)}
             >
