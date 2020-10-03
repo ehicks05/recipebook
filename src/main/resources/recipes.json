@@ -360,4 +360,25 @@
 		],
 		"emoji": "\uD83C\uDF56"
 	}
-]
+	{
+		"id": 15,
+		"name": "Frozen BooNana Pops",
+		"difficulty": "1",
+		"course":  "Dessert",
+		"ingredients": [
+			{"quantity": "1", "unit": "medium", "name": "banana"},
+			{"quantity": "1", "unit": "cup", "name": "good quality white chocolate"},
+			{"quantity": "8", "unit": "mini", "name": "chocolate chips for the eyes"},
+			{"quantity": "4", "unit": "sticks", "name": "popsicle sticks"},
+		],
+		"Prep Time": "20 minutes",
+		"servings": "4",
+		"directions": [
+			{"text": "Cut banana in half lengthwise, then in half to make four quarters. Insert popsicle sticks into bananas, and freeze bananas on a wax paper lined cookie sheet."},
+			{"text": "When the bananas are frozen, fill a coffee mug with chocolate. Melt chocolate in the microwave 30 seconds at a time, stirring until the chocolate is melted and soft."},
+			{"text": "Dip the bananas one at a time into the chocolate, scraping off the excess chocolate from the back of the banana, and place it on a cookie sheet lined with wax paper."},
+			{"text": "Quickly add the chocolate chips for the eyes before the chocolate hardens (you have to work quickly here)."},
+			{"text": "Return to the freezer until frozen and ready to eat. Eat frozen."},
+		],
+		"emoji": "\ud83c\udf6a"
+	},
