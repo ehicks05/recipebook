@@ -6,6 +6,7 @@ export interface IRecipe {
   servings: number;
   cookingTime: string;
   difficulty: number;
+  course: string;
   ingredients: IIngredient[];
   directions: IDirection[];
 }

@@ -18,6 +18,7 @@ public class Recipe implements Serializable
     private int difficulty;
     private String cookingTime;
     private int servings;
+    private String course;
 
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Ingredient> ingredients;
@@ -138,5 +139,15 @@ public class Recipe implements Serializable
     public void setServings(int servings)
     {
         this.servings = servings;
+    }
+
+    public String getCourse()
+    {
+        return course;
+    }
+
+    public void setCourse(String course)
+    {
+        this.course = course;
     }
 }
