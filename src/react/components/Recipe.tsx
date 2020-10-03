@@ -88,6 +88,9 @@ function Recipe(props: IProps) {
               Cooking Time: {recipe["cookingTime"]} - Difficulty:{" "}
               {recipe.difficulty}
             </h3>
+            <h3 className="subtitle">
+              Author: {recipe.author.fullName || 'Unknown'}
+            </h3>
           </div>
         </div>
       </section>
