@@ -37,3 +37,8 @@ logs/
 .idea/
 src/main/resources/application.yml
 src/react-app-env.d.ts
+bin/
+.settings/
+.vscode/
+.classpath
+.project
