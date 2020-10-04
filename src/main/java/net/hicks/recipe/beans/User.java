@@ -17,7 +17,7 @@ public class User implements UserDetails
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable=false)
+    @Column(nullable=false, unique = true)
     private String username = "";
     @Column(nullable=false)
     @JsonIgnore
@@ -35,9 +35,9 @@ public class User implements UserDetails
     )
     private Set<Role> roles = new HashSet<>();
 
-    @OneToOne(mappedBy="user", cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-    @PrimaryKeyJoinColumn
-    private UserDetail userDetail = new UserDetail();
+//    @OneToOne(mappedBy="user", cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+//    @PrimaryKeyJoinColumn
+//    private UserDetail userDetail = new UserDetail();
 
     public User()
     {
@@ -130,15 +130,15 @@ public class User implements UserDetails
         this.roles = roles;
     }
 
-    public UserDetail getUserDetail()
-    {
-        return userDetail;
-    }
-
-    public void setUserDetail(UserDetail userDetail)
-    {
-        this.userDetail = userDetail;
-    }
+//    public UserDetail getUserDetail()
+//    {
+//        return userDetail;
+//    }
+//
+//    public void setUserDetail(UserDetail userDetail)
+//    {
+//        this.userDetail = userDetail;
+//    }
 
     public String getUsername()
     {

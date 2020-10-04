@@ -11,5 +11,6 @@ public class ErrorCodes {
 
         ERROR_CODES.put(10, "DATA_ERROR");
         ERROR_CODES.put(20, "AUTHENTICATION_ERROR");
+        ERROR_CODES.put(30, "SIGNUP_ERROR");
     }
 }
