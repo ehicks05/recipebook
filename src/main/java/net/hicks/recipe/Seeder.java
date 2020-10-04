@@ -171,9 +171,9 @@ public class Seeder
                 roleRepository.save(adminRole);
             }
 
-            UserDetail userDetail = new UserDetail();
-            userDetail.setUser(user);
-            user.setUserDetail(userDetail);
+//            UserDetail userDetail = new UserDetail();
+//            userDetail.setUser(user);
+//            user.setUserDetail(userDetail);
 
             userRepository.save(user);
         }

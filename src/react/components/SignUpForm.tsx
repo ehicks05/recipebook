@@ -1,17 +1,33 @@
 import React, { useState } from "react";
 
+interface IErrorMessage {
+  firstNameMessage: string;
+  lastNameMessage: string;
+  emailMessage: string;
+  passwordMessage: string;
+}
+
 function SignUpForm() {
   const [emailMessage, setEmailMessage] = useState<string>("");
   const [passwordMessage, setPasswordMessage] = useState<string>("");
+  const [errorMessages, setErrorMessages] = useState<IErrorMessage>({
+    firstNameMessage: "",
+    lastNameMessage: "",
+    emailMessage: "",
+    passwordMessage: "",
+  });
 
   function validateEmail(e: React.ChangeEvent<HTMLInputElement>) {
     const enteredValue = e.target.value;
     const emailPattern = /[a-zA-Z0-9]*@[a-zA-Z0-9]*\.[a-zA-Z0-9]*/;
 
-    if (enteredValue.length === 0) setEmailMessage("");
-    else if (emailPattern[Symbol.search](enteredValue) === -1)
-      setEmailMessage("not a valid email");
-    else setEmailMessage("");
+    // if (enteredValue.length === 0)
+    //   setErrorMessages((prev) => {
+    //     return { ...prev, emailMessage = "" };
+    //   });
+    // else if (emailPattern[Symbol.search](enteredValue) === -1)
+    //   setEmailMessage("not a valid email");
+    // else setEmailMessage("");
   }
 
   function validatePasswords() {
