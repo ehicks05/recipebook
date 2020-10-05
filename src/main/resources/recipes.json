@@ -414,5 +414,33 @@
 			{"text": "Remove the pot from the heat. Let the chili rest for 5-10 minutes before serving."}
 		],
 		"emoji": "\ud83c\udf6a"
-	}
+	},
+	{
+		"id": 17,
+		"name": "Creamy Beef and Shells",
+		"difficulty": "4",
+		"ingredients": [
+			{"quantity": "8", "unit": "ounce" "name": "medium pasta shells"},
+			{"quantity": "1", "unit": "tbsp", "name": "olive oil"},
+			{"quantity": "1", "unit": "lb", "name": "ground beef"},
+			{"quantity": "1/2", "unit": "", "name": "medium sweet onion, diced"},
+			{"quantity": "2", "unit": "cloves", "name": "garlic, minced"},
+			{"quantity": "1 1/2", "unit": "tsp", "name": "Italian seasoning"},
+			{"quantity": "2", "unit": "tbsp", "name": "flour"},
+			{"quantity": "2", "unit": "cups", "name": "beef stock"}
+			{"quantity": "15", "unit": "oz", "name": "tomato sauce"}
+			{"quantity": "3/4", "unit": "cups", "name": "heavy cream"}
+			{"quantity": "1 1/2", "unit": "cups", "name": "extra sharp cheddar cheese"}
+		],
+		"cookingTime": "25",
+		"servings": "4",
+		"directions": [
+			{"text": "In a large pot of boiling salted water, cook pasta according to package instructions; drain well."},
+			{"text": "Heat olive oil in a large skillet over medium high heat. Add ground beef and cook until browned, about 3-5 minutes, making sure to crumble the beef as it cooks; drain excess fat. Set aside."},
+			{"text": "Add onion to the skillet, and cook, stirring frequently, until translucent, about 2-3 minutes. Stir in garlic and Italian seasoning until fragrant, about 1 minute."},
+			{"text": "Whisk in flour until lightly browned, about 1 minute."},
+			{"text": "Gradually whisk in beef stock and tomato sauce. Bring to a boil; reduce heat and simmer, stirring occasionally, until reduced and slightly thickened, about 6-8 minutes."},
+			{"text": "Stir in pasta, beef and heavy cream until heated through, about 1-2 minutes; season with salt and pepper, to taste. Stir in cheese until melted, about 2 minutes."},
+		],
+		"emoji": "\uD83C\uDF2E"
 ]
