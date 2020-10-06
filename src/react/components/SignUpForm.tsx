@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Reducer, useReducer, useState } from "react";
 
 interface IErrorMessage {
   firstNameMessage: string;
@@ -8,9 +8,27 @@ interface IErrorMessage {
 }
 
 function SignUpForm() {
-  const [emailMessage, setEmailMessage] = useState<string>("");
-  const [passwordMessage, setPasswordMessage] = useState<string>("");
-  const [errorMessages, setErrorMessages] = useState<IErrorMessage>({
+  function reducer(
+    state: IErrorMessage,
+    action: { key: string; value: string }
+  ): IErrorMessage {
+    console.log(action);
+
+    switch (action.key) {
+      case "firstName":
+        return { ...state, firstNameMessage: action.value };
+      case "lastName":
+        return { ...state, lastNameMessage: action.value };
+      case "email":
+        return { ...state, emailMessage: action.value };
+      case "password":
+        return { ...state, passwordMessage: action.value };
+      default:
+        return state;
+    }
+  }
+
+  const [errorMessageState, dispatch] = useReducer(reducer, {
     firstNameMessage: "",
     lastNameMessage: "",
     emailMessage: "",
@@ -21,13 +39,11 @@ function SignUpForm() {
     const enteredValue = e.target.value;
     const emailPattern = /[a-zA-Z0-9]*@[a-zA-Z0-9]*\.[a-zA-Z0-9]*/;
 
-    // if (enteredValue.length === 0)
-    //   setErrorMessages((prev) => {
-    //     return { ...prev, emailMessage = "" };
-    //   });
-    // else if (emailPattern[Symbol.search](enteredValue) === -1)
-    //   setEmailMessage("not a valid email");
-    // else setEmailMessage("");
+    if (enteredValue.length === 0)
+      dispatch({ key: "email", value: "please enter an email address" });
+    else if (emailPattern[Symbol.search](enteredValue) === -1)
+      dispatch({ key: "email", value: "not a valid email" });
+    else dispatch({ key: "email", value: "" });
   }
 
   function validatePasswords() {
@@ -37,8 +53,8 @@ function SignUpForm() {
     const password2 = document.getElementById("passwordCheck").value;
 
     if (password1.length > 0 && password2.length > 0 && password1 != password2)
-      setPasswordMessage("Passwords must match");
-    else setPasswordMessage("");
+      dispatch({ key: "password", value: "passwords do not match" });
+    else dispatch({ key: "password", value: "" });
   }
 
   function signUp() {
@@ -75,7 +91,6 @@ function SignUpForm() {
             />
           </div>
         </div>
-
         <div className="field">
           <div className="control">
             <input
@@ -87,7 +102,6 @@ function SignUpForm() {
             />
           </div>
         </div>
-
         <div className="field">
           <div className="control">
             <input
@@ -100,9 +114,7 @@ function SignUpForm() {
             />
           </div>
         </div>
-
-        <div className="has-text-danger">{emailMessage}</div>
-
+        <div className="has-text-danger">{errorMessageState.emailMessage}</div>
         <div className="field">
           <div className="control">
             <input
@@ -115,7 +127,6 @@ function SignUpForm() {
             />
           </div>
         </div>
-
         <div className="field">
           <div className="control">
             <input
@@ -128,9 +139,9 @@ function SignUpForm() {
             />
           </div>
         </div>
-
-        <div className="has-text-danger">{passwordMessage}</div>
-
+        <div className="has-text-danger">
+          {errorMessageState.passwordMessage}
+        </div>
         <input
           type="button"
           value="Sign Up"
