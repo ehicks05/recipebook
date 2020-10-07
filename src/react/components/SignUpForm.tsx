@@ -1,4 +1,4 @@
-import React, { Reducer, useReducer, useState } from "react";
+import React, { useReducer } from "react";
 
 interface IErrorMessage {
   firstNameMessage: string;
@@ -8,11 +8,11 @@ interface IErrorMessage {
 }
 
 function SignUpForm() {
+
   function reducer(
     state: IErrorMessage,
     action: { key: string; value: string }
   ): IErrorMessage {
-    console.log(action);
 
     switch (action.key) {
       case "firstName":
@@ -68,16 +68,12 @@ function SignUpForm() {
       body: new URLSearchParams(formData as any),
     })
       .then((response) => {
-        console.log(response);
         return response.json();
-      })
-      .then((response) => {
-        console.log(response);
       });
   }
 
   return (
-    <div style={{ minWidth: "220px" }}>
+    <div style={{ minWidth: "320px" }}>
       <form method="POST" id="signUpForm">
         <div className="field">
           <div className="control">
