@@ -8,12 +8,10 @@ interface IErrorMessage {
 }
 
 function SignUpForm() {
-
   function reducer(
     state: IErrorMessage,
     action: { key: string; value: string }
   ): IErrorMessage {
-
     switch (action.key) {
       case "firstName":
         return { ...state, firstNameMessage: action.value };
@@ -66,10 +64,9 @@ function SignUpForm() {
     fetch("/user", {
       method: "POST",
       body: new URLSearchParams(formData as any),
-    })
-      .then((response) => {
-        return response.json();
-      });
+    }).then((response) => {
+      return response.json();
+    });
   }
 
   return (
