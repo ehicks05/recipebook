@@ -35,16 +35,8 @@ function LoginForm(props: IProps) {
     });
   }
 
-  function logout() {
-    fetch("/logout")
-      .then((response) => response.text())
-      .then(() => {
-        props.setUser(undefined);
-      });
-  }
-
   return (
-    <div style={{ minWidth: "220px" }}>
+    <div style={{ minWidth: "320px" }}>
       {!props.user && (
         <form method="POST" action="/" id="loginForm">
           <div className="field">
@@ -80,14 +72,7 @@ function LoginForm(props: IProps) {
           />
         </form>
       )}
-      {props.user && (
-        <>
-          Hi {props.user.username}!{" "}
-          <button className="button is-danger is-fullwidth" onClick={logout}>
-            Logout
-          </button>
-        </>
-      )}
+
       {!props.user && failureMessage && (
         <>
           <div className="has-text-danger">{failureMessage}</div>

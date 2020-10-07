@@ -102,7 +102,11 @@ function Navbar(props: IProps) {
           <div className="navbar-end">
             <div className="navbar-item has-dropdown is-hoverable">
               <div className="navbar-link">
-                {props.user ? <Link to="/myAccount">Account</Link> : "Log In"}
+                {props.user ? (
+                  <Link to="/myAccount">My Account</Link>
+                ) : (
+                  "Log In"
+                )}
               </div>
 
               <div className="navbar-dropdown is-right">
