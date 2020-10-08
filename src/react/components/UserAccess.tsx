@@ -10,12 +10,12 @@ interface IProps {
 
 function UserAccess(props: IProps) {
   const [tab, setTab] = useState<string>("Login");
+  const [accessMessage, setAccessMessage] = useState<string>("");
 
-  function setTabName(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
-    // @ts-ignore
-    const tab = e.currentTarget.text;
-    setTab(tab);
-    console.log(tab);
+  function setTabName(tabName: string, message?: string | undefined) {
+    if (message) setAccessMessage(message);
+    else setAccessMessage("");
+    setTab(tabName);
   }
 
   function logout() {
@@ -26,30 +26,46 @@ function UserAccess(props: IProps) {
       });
   }
 
+  function getGreetingAddress(): string {
+    let greeting = props.user?.email ? props.user.email : "";
+
+    if (props.user?.firstName) {
+      if (props.user.lastName)
+        greeting = props.user.firstName + " " + props.user.lastName;
+      else greeting = props.user.firstName;
+    }
+
+    return greeting;
+  }
+
   return (
     <>
       {!props.user && (
         <div className="tabs is-boxed">
           <ul>
             <li className={tab === "Login" ? "is-active" : ""}>
-              <a onClick={setTabName}>Login</a>
+              <a onClick={(e) => setTabName(e.currentTarget.text)}>Login</a>
             </li>
             <li className={tab === "Sign Up" ? "is-active" : ""}>
-              <a onClick={setTabName}>Sign Up</a>
-            </li>K
+              <a onClick={(e) => setTabName(e.currentTarget.text)}>Sign Up</a>
+            </li>
           </ul>
         </div>
       )}
 
       {tab === "Login" ? (
-        <LoginForm user={props.user} setUser={props.setUser} />
+        <LoginForm
+          message={accessMessage}
+          user={props.user}
+          setUser={props.setUser}
+        />
       ) : (
-        <SignUpForm />
+        <SignUpForm setTab={setTabName} />
       )}
 
       {props.user && (
         <>
-          Hi {props.user.fullName}!{" "}
+          Hi {getGreetingAddress()}
           <button className="button is-danger is-fullwidth" onClick={logout}>
             Logout
           </button>
