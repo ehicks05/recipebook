@@ -23,4 +23,7 @@ export interface IDirection {
 
 export interface IUser {
   fullName: string;
+  firstName: string;
+  lastName: string;
+  email: string;
 }

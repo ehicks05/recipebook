@@ -38,10 +38,6 @@ public class UserRepositoryUserDetailsService implements UserDetailsService
 
         newUser.setPassword(encryptedPassword);
 
-//        UserDetail userDetail = new UserDetail();
-//        userDetail.setUser(newUser);
-//        newUser.setUserDetail(userDetail);
-
         try {
             userRepo.save(newUser);
         } catch (Exception e) {

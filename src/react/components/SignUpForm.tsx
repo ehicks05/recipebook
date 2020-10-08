@@ -1,22 +1,21 @@
 import React, { useReducer } from "react";
 
 interface IErrorMessage {
-  firstNameMessage: string;
-  lastNameMessage: string;
   emailMessage: string;
   passwordMessage: string;
 }
 
-function SignUpForm() {
+interface IProps {
+  setTab: (tab: string, message?: string | undefined) => void;
+}
+
+function SignUpForm(props: IProps) {
+
   function reducer(
     state: IErrorMessage,
     action: { key: string; value: string }
   ): IErrorMessage {
     switch (action.key) {
-      case "firstName":
-        return { ...state, firstNameMessage: action.value };
-      case "lastName":
-        return { ...state, lastNameMessage: action.value };
       case "email":
         return { ...state, emailMessage: action.value };
       case "password":
@@ -27,8 +26,6 @@ function SignUpForm() {
   }
 
   const [errorMessageState, dispatch] = useReducer(reducer, {
-    firstNameMessage: "",
-    lastNameMessage: "",
     emailMessage: "",
     passwordMessage: "",
   });
@@ -56,17 +53,34 @@ function SignUpForm() {
   }
 
   function signUp() {
+    if (errorMessageState.passwordMessage) return;
+    if (errorMessageState.emailMessage) return;
+
     const formElement = document.getElementById(
       "signUpForm"
     ) as HTMLFormElement;
     const formData = new FormData(formElement);
 
+    const email = formData.get("username") as string;
+    const password = formData.get("password") as string;
+    const passwordCheck = formData.get("passwordCheck") as string;
+
+    if (!email || email.length === 0) return;
+    if (!password || password.length === 0) return;
+    if (!passwordCheck || passwordCheck.length === 0) return;
+
     fetch("/user", {
       method: "POST",
       body: new URLSearchParams(formData as any),
-    }).then((response) => {
-      return response.json();
-    });
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((response) => {
+        //check if bad
+
+        props.setTab("Login", "Account successfully created");
+      });
   }
 
   return (
