@@ -1,0 +1,10 @@
+@import "../node_modules/bulma/bulma.sass";
+@import "../node_modules/bulma-prefers-dark/bulma-prefers-dark.sass";
+
+@media (prefers-color-scheme: dark) {
+.select > select {
+    border-color: #363636 !important;
+    background-color: #0a0a0a !important;
+    color: #dbdbdb !important;
+  }
+}
