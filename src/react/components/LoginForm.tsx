@@ -82,7 +82,7 @@ function LoginForm(props: IProps) {
       )}
       {props.user && (
         <>
-          Hi {props.user.fullName}!{" "}
+          Hi {props.user.username}!{" "}
           <button className="button is-danger is-fullwidth" onClick={logout}>
             Logout
           </button>
