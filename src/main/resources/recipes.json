@@ -443,5 +443,32 @@
 			{"text": "Stir in pasta, beef and heavy cream until heated through, about 1-2 minutes; season with salt and pepper, to taste. Stir in cheese until melted, about 2 minutes."}
 		],
     "emoji": "\uD83C\uDF2E"
-  }
+	},
+ 	{
+		"id": 18
+		"name": "No-Bake Chocolate Chip Cannoli Cheesecake",
+		"difficulty": "4,
+		"ingredients": [
+			{"quantity": "4", "unit": "oz", "name": "cannoli shells"},
+			{"quantity": "1/2", "unit": "cup", "name": "sugar"},
+			{"quantity": "1/2", "unit": "cup", "name": "graham cracker crumbs"},
+			{"quantity": "1/3", "unit": "cup", "name": "melted butter"},
+			{"quantity": "8", "unit": "oz", "name": "softened cream cheese"},
+			{"quantity": "1", "unit": "cup", "name": "confectioners sugar"},
+			{"quantity": "1/2", "unit": "tsp", "name": "grated orange zest"},
+			{"quantity": "1/4", "unit": "tsp", "name": "cinnamon"},
+			{"quantity": "3/4", "unit": "cup", "name": "part skim ricotta cheese"},
+			{"quantity": "1", "unit": "tsp", "name": "vanilla extract"},
+			{"quantity": "1/2", "unit": "tsp", "name": "rum extract"}
+			{"quantity": "1/2", "unit": "cup", "name": "miniature semisweet chocolate chips"}
+		],
+		"cookingTime": "25 Minutes",
+		"servings": "8",
+		"directions": [
+			{"text": "Pulse cannoli shells in a food processor until coarse crumbs form. Add sugar, cracker crumbs and melted butter; pulse just until combined. Press onto bottom and sides of a greased 9-in. pie plate. Refrigerate until firm, about 1 hour."},
+			{"text": "Beat the first 4 filling ingredients until blended. Beat in ricotta cheese and extracts. Stir in chocolate chips. Spread into crust."},
+			{"text": "Refrigerate, covered, until set, about 4 hours."}
+		],
+		"emoji": "\ud83c\udf6a"
+	},
 ]
