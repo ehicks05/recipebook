@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Recipe from "./react/components/Recipe";
+import Recipe from "./react/components/Recipe/Recipe";
 import RecipePicker from "./react/components/RecipePicker";
 import Navbar from "./react/Navbar";
 import Sidebar from "react-sidebar";
