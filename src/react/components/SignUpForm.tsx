@@ -10,7 +10,6 @@ interface IProps {
 }
 
 function SignUpForm(props: IProps) {
-
   function reducer(
     state: IErrorMessage,
     action: { key: string; value: string }
@@ -52,7 +51,7 @@ function SignUpForm(props: IProps) {
     else dispatch({ key: "password", value: "" });
   }
 
-  function signUp() {
+  async function signUp() {
     if (errorMessageState.passwordMessage) return;
     if (errorMessageState.emailMessage) return;
 
@@ -73,13 +72,20 @@ function SignUpForm(props: IProps) {
       method: "POST",
       body: new URLSearchParams(formData as any),
     })
-      .then((response) => {
-        return response.json();
+      .then(async (response) => {
+        console.log(response);
+        if (response.ok) return response.json();
+        else
+          await response.json().then((text) => {
+            throw Error(text.message);
+          });
       })
-      .then((response) => {
-        //check if bad
-
+      .then((_) => {
         props.setTab("Login", "Account successfully created");
+      })
+      .catch((reason) => {
+        console.log(reason.message);
+        props.setTab("Sign Up", reason.message);
       });
   }
 
@@ -139,7 +145,7 @@ function SignUpForm(props: IProps) {
             <input
               className="input"
               type="password"
-              placeholder="Please enter your password again"
+              placeholder="Please reenter your password"
               id="passwordCheck"
               name="passwordCheck"
               onChange={validatePasswords}

@@ -5,7 +5,6 @@ import { IUser } from "./types";
 interface IProps {
   user: IUser | undefined;
   setUser: (user: IUser | undefined) => void;
-  message: string | undefined;
 }
 
 function LoginForm(props: IProps) {
@@ -38,8 +37,6 @@ function LoginForm(props: IProps) {
 
   return (
     <div style={{ minWidth: "320px" }}>
-      {props.message && <>{props.message}</>}
-
       {!props.user && (
         <form method="POST" action="/" id="loginForm">
           <div className="field">

@@ -53,12 +53,10 @@ function UserAccess(props: IProps) {
         </div>
       )}
 
+      {accessMessage}
+
       {tab === "Login" ? (
-        <LoginForm
-          message={accessMessage}
-          user={props.user}
-          setUser={props.setUser}
-        />
+        <LoginForm user={props.user} setUser={props.setUser} />
       ) : (
         <SignUpForm setTab={setTabName} />
       )}
