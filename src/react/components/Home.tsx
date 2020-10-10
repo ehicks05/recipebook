@@ -14,7 +14,7 @@ export function Home() {
       <section className="section">
         <div className={"container"}>
           <Link to="/create-recipe">
-            <button className="button is-success is-light">
+            <button className="button is-primary">
               Create Recipe!
             </button>
           </Link>

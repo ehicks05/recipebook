@@ -43,8 +43,8 @@ function Navbar(props: IProps) {
 
   const dockSidebarButton = !props.sidebarDocked ? (
     <button
-      className={"button bigger-burger has-text-grey is-hidden-touch"}
-      style={{ border: "none", position: "absolute" }}
+      className={"button bigger-burger is-hidden-touch"}
+      style={{ border: "none", position: "absolute", backgroundColor: 'transparent' }}
       onClick={() => props.onSetSidebarDocked(true)}
     >
       <i className="icon-bars" aria-hidden="true">
@@ -58,8 +58,8 @@ function Navbar(props: IProps) {
 
   const openSidebarButton = (
     <button
-      className={"button bigger-burger has-text-grey is-hidden-desktop"}
-      style={{ border: "none" }}
+      className={"button bigger-burger is-hidden-desktop"}
+      style={{ border: "none", backgroundColor: 'transparent' }}
       onClick={() => props.onSetSidebarOpen(isSetOpen)}
     >
       <i className={icon} aria-hidden="true">
@@ -76,9 +76,9 @@ function Navbar(props: IProps) {
         <div className="navbar-brand">
           {openSidebarButton}
           <div className="navbar-item">
-            <span className={"title"}>
+            <span className={"title"} style={{fontFamily: '\'Architects Daughter\''}}>
               <Link to="/">
-                <img src="/logo-via-logohub.png" alt="Recipe Book Site Logo" />
+                Recipe Book
               </Link>
             </span>
           </div>

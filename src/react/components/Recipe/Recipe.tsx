@@ -93,7 +93,6 @@ function Recipe(props: IProps) {
             <div
               id={'ingredients-column'}
               className={'column is-one-quarter'}
-              style={{ backgroundColor: '#fafafa' }}
             >
               <div key={recipe.name}>
                 <h3 className="subtitle">Ingredients:</h3>
