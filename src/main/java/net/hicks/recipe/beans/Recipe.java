@@ -20,6 +20,9 @@ public class Recipe implements Serializable
     private int servings;
     private String course;
 
+    @ManyToOne
+    private User author;
+
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Ingredient> ingredients;
 
@@ -59,6 +62,16 @@ public class Recipe implements Serializable
     public void setId(Long id)
     {
         this.id = id;
+    }
+
+    public User getAuthor()
+    {
+        return author;
+    }
+
+    public void setAuthor(User author)
+    {
+        this.author = author;
     }
 
     public String getName()

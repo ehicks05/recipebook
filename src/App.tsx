@@ -4,7 +4,7 @@ import RecipePicker from "./react/components/RecipePicker";
 import Navbar from "./react/Navbar";
 import Sidebar from "react-sidebar";
 import Footer from "./react/Footer";
-import { Link, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import RecipeForm from "./react/components/RecipeForm";
 import { Home } from "./react/components/Home";
 import MyAccount from "./react/components/MyAccount";

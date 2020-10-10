@@ -9,6 +9,7 @@ export interface IRecipe {
   course: string;
   ingredients: IIngredient[];
   directions: IDirection[];
+  author: IUser;
 }
 
 export interface IIngredient {
@@ -23,5 +24,5 @@ export interface IDirection {
 }
 
 export interface IUser {
-  fullName: string;
+  username: string;
 }
