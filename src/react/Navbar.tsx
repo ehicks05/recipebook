@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction, useEffect } from "react";
-import LoginForm from "./components/LoginForm";
+import UserAccess from "./components/UserAccess";
 import { Link } from "react-router-dom";
 import { IUser } from "./components/types";
 
@@ -102,12 +102,16 @@ function Navbar(props: IProps) {
           <div className="navbar-end">
             <div className="navbar-item has-dropdown is-hoverable">
               <div className="navbar-link">
-                {props.user ? <Link to="/myAccount">Account</Link> : "Log In"}
+                {props.user ? (
+                  <Link to="/myAccount">My Account</Link>
+                ) : (
+                  "Log In"
+                )}
               </div>
 
               <div className="navbar-dropdown is-right">
                 <div className="navbar-item">
-                  <LoginForm user={props.user} setUser={props.setUser} />
+                  <UserAccess user={props.user} setUser={props.setUser} />
                 </div>
               </div>
             </div>

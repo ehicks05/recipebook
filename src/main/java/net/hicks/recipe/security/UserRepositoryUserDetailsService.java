@@ -1,7 +1,11 @@
 package net.hicks.recipe.security;
 
+import net.hicks.recipe.beans.RecipeBookException;
+import net.hicks.recipe.beans.User;
+import net.hicks.recipe.beans.UserDetail;
 import net.hicks.recipe.repos.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -11,10 +15,11 @@ import org.springframework.stereotype.Service;
 public class UserRepositoryUserDetailsService implements UserDetailsService
 {
     final private UserRepository userRepo;
+    final private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserRepositoryUserDetailsService(UserRepository userRepo)
-    {
+    public UserRepositoryUserDetailsService(UserRepository userRepo, PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
         this.userRepo = userRepo;
     }
 
@@ -26,5 +31,20 @@ public class UserRepositoryUserDetailsService implements UserDetailsService
         }
         
         throw new UsernameNotFoundException("User '" + username + "' not found");
+    }
+
+    public User saveNewUser(User newUser) {
+        String encryptedPassword = passwordEncoder.encoder().encode(newUser.getPassword());
+
+        newUser.setPassword(encryptedPassword);
+
+        try {
+            userRepo.save(newUser);
+        } catch (Exception e) {
+            System.out.println(e);
+            if (e instanceof DataIntegrityViolationException)
+                throw new RecipeBookException(30, "Username exists");
+        }
+        return newUser;
     }
 }

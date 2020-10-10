@@ -17,13 +17,15 @@ public class User implements UserDetails
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable=false)
+    @Column(nullable=false, unique = true)
     private String username = "";
     @Column(nullable=false)
     @JsonIgnore
     private String password = "";
     @Column(nullable=false)
-    private String fullName = "";
+    private String firstName = "";
+    @Column(nullable = false)
+    private String lastName = "";
 
     @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
@@ -33,19 +35,20 @@ public class User implements UserDetails
     )
     private Set<Role> roles = new HashSet<>();
 
-    @OneToOne(mappedBy="user", cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-    @PrimaryKeyJoinColumn
-    private UserDetail userDetail = new UserDetail();
+//    @OneToOne(mappedBy="user", cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+//    @PrimaryKeyJoinColumn
+//    private UserDetail userDetail = new UserDetail();
 
     public User()
     {
     }
 
-    public User(String username, String password, String fullName, Set<Role> roles)
+    public User(String username, String password, String firstName, String lastName, Set<Role> roles)
     {
         this.username = username;
         this.password = password;
-        this.fullName = fullName;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.roles = roles;
     }
 
@@ -127,15 +130,15 @@ public class User implements UserDetails
         this.roles = roles;
     }
 
-    public UserDetail getUserDetail()
-    {
-        return userDetail;
-    }
-
-    public void setUserDetail(UserDetail userDetail)
-    {
-        this.userDetail = userDetail;
-    }
+//    public UserDetail getUserDetail()
+//    {
+//        return userDetail;
+//    }
+//
+//    public void setUserDetail(UserDetail userDetail)
+//    {
+//        this.userDetail = userDetail;
+//    }
 
     public String getUsername()
     {
@@ -157,13 +160,19 @@ public class User implements UserDetails
         this.password = password;
     }
 
-    public String getFullName()
-    {
-        return fullName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFullName(String fullName)
-    {
-        this.fullName = fullName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }
