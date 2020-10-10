@@ -1,8 +1,46 @@
 @import "../node_modules/bulma/bulma.sass";
 @import "../node_modules/bulma-prefers-dark/bulma-prefers-dark.sass";
 
+/* SCROLLBAR */
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #aaa;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
+
+.grow {
+  transition: all 0.2s ease-in-out;
+}
+.grow:hover {
+  transform: scale(1.025);
+}
+
+/* make ingredients appear in rightmost column on wider screens. */
+@media (min-width: 768px) {
+  #directions-column {
+    order: 1;
+  }
+  #ingredients-column {
+    order: 2;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
-.select > select {
+  .select > select {
     border-color: #363636 !important;
     background-color: #0a0a0a !important;
     color: #dbdbdb !important;
