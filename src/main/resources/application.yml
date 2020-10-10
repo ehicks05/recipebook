@@ -1,0 +1,54 @@
+health:
+  config:
+    enabled: false
+info:
+  app:
+    name: Recipe Book
+logging:
+  file:
+    name: logs/recipe.log
+management:
+  endpoint:
+    health:
+      show-details: WHEN_AUTHORIZED
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+recipeBook:
+  seedDbIfEmpty: true
+  recipeFile: "src/main/resources/recipes.json"
+server:
+  compression:
+    enabled: true
+  forward-headers-strategy: NATIVE
+  servlet:
+    session:
+      persistent: true
+      timeout: 240m
+spring:
+  application:
+    name: RecipeBook
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 100
+          lob:
+            non_contextual_creation: true
+        session:
+          events:
+            log:
+              LOG_QUERIES_SLOWER_THAN_MS: 10
+  resources:
+    cache:
+      period: 1D
+  servlet:
+    multipart:
+      location: ${java.io.tmpdir}
+  session:
+    jdbc:
+      initialize-schema: always
+    store-type: jdbc
