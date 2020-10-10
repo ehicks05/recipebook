@@ -26,18 +26,6 @@ function UserAccess(props: IProps) {
       });
   }
 
-  function getGreetingAddress(): string {
-    let greeting = props.user?.email ? props.user.email : "";
-
-    if (props.user?.firstName) {
-      if (props.user.lastName)
-        greeting = props.user.firstName + " " + props.user.lastName;
-      else greeting = props.user.firstName;
-    }
-
-    return greeting;
-  }
-
   return (
     <>
       {!props.user && (
@@ -63,7 +51,7 @@ function UserAccess(props: IProps) {
 
       {props.user && (
         <>
-          Hi {getGreetingAddress()}
+          Hi {props.user.username}
           <button className="button is-danger is-fullwidth" onClick={logout}>
             Logout
           </button>
