@@ -445,9 +445,9 @@
     "emoji": "\uD83C\uDF2E"
 	},
  	{
-		"id": 18
+		"id": 18,
 		"name": "No-Bake Chocolate Chip Cannoli Cheesecake",
-		"difficulty": "4,
+		"difficulty": "4",
 		"ingredients": [
 			{"quantity": "4", "unit": "oz", "name": "cannoli shells"},
 			{"quantity": "1/2", "unit": "cup", "name": "sugar"},
@@ -459,7 +459,7 @@
 			{"quantity": "1/4", "unit": "tsp", "name": "cinnamon"},
 			{"quantity": "3/4", "unit": "cup", "name": "part skim ricotta cheese"},
 			{"quantity": "1", "unit": "tsp", "name": "vanilla extract"},
-			{"quantity": "1/2", "unit": "tsp", "name": "rum extract"}
+			{"quantity": "1/2", "unit": "tsp", "name": "rum extract"},
 			{"quantity": "1/2", "unit": "cup", "name": "miniature semisweet chocolate chips"}
 		],
 		"cookingTime": "25 Minutes",
@@ -470,5 +470,5 @@
 			{"text": "Refrigerate, covered, until set, about 4 hours."}
 		],
 		"emoji": "\ud83c\udf6a"
-	},
+	}
 ]
