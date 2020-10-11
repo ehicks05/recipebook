@@ -7,13 +7,15 @@ interface IProps {
   recipes: IRecipe[];
 }
 
-function Home(props: IProps) {
+function Home({ recipes }: IProps) {
+  if (!recipes) return <Hero title="Loading..." />;
+
   return (
     <>
       <Hero title="Find a Recipe" />
       <section className="section">
         <div className={"container"}>
-          <RecipePicker recipes={props.recipes} />
+          <RecipePicker recipes={recipes} />
         </div>
       </section>
     </>
