@@ -8,7 +8,10 @@ import MyAccount from "./react/app/MyAccount/MyAccount";
 import Home from "./react/app/Home/Home";
 import RecipeForm from "./react/app/RecipeForm/RecipeForm";
 
-const apiUrl = "https://hicks-recipe-book.herokuapp.com";
+const apiUrl =
+  process.env.NODE_ENV === "development"
+    ? ""
+    : "https://hicks-recipe-book.herokuapp.com";
 
 export default function App() {
   const [recipes, setRecipes] = useState([]);
@@ -19,7 +22,7 @@ export default function App() {
   }, []);
 
   function fetchRecipes() {
-    fetch("/recipe")
+    fetch(apiUrl + "/recipe")
       .then((response) => response.json())
       .then((json) => {
         setRecipes(json);
