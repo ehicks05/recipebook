@@ -27,6 +27,11 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_9
 }
 
+jar {
+    baseName = 'RecipeBook'
+    version = '0.0.1'
+}
+
 repositories {
     mavenCentral()
     jcenter()
