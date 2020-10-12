@@ -23,7 +23,7 @@ public class RecipeService {
     public List<Recipe> getAllRecipes() {
         try
         {
-            return recipeRepository.findByOrderById();
+            return recipeRepository.findByOrderByIdDesc();
         }
         catch (Exception e)
         {
