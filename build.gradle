@@ -33,6 +33,21 @@ jar {
     version = '0.0.1'
 }
 
+bootJar {
+  baseName "RecipeBook"
+  launchScript()
+}
+
+springBoot {
+  buildInfo {
+    properties {
+      group = "net.hicks"
+      name = "RecipeBook"
+      version = "0.0.1-SNAPSHOT"
+    }
+  }
+}
+
 repositories {
     mavenCentral()
     jcenter()
