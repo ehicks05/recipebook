@@ -39,6 +39,13 @@
   }
 }
 
+// Fix scrollbars showing on .media-content on mobile
+@media screen and (max-width: 768px) {
+  .media-content {
+    overflow-x: visible;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   .select > select {
     border-color: #363636 !important;

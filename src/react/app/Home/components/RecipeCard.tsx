@@ -8,9 +8,9 @@ interface IRecipeCardProps {
 
 function RecipeCard({ recipe }: IRecipeCardProps) {
   return (
-    <div className="column" style={{ minWidth: "24em", maxWidth: "32em" }}>
+    <div className="column is-half-tablet is-one-third-desktop">
       <Link to={"/recipe/" + recipe.id}>
-        <div className="card grow">
+        <div className="card grow" style={{ height: "100%" }}>
           <div className="card-content">
             <div className="media">
               <div className="media-left">
@@ -19,13 +19,13 @@ function RecipeCard({ recipe }: IRecipeCardProps) {
                 </figure>
               </div>
               <div className="media-content">
-                <p className="title is-4">{recipe.name}</p>
-                <p className="subtitle is-6">{recipe.author.username}</p>
+                <div className="title is-4">{recipe.name}</div>
+                <div className="subtitle is-6">{recipe.author.username}</div>
               </div>
             </div>
 
             <div className="content">
-              {recipe.description}
+              <div>Description: {recipe.description}</div>
               <div>Time: {recipe.cookingTime}</div>
               <div>Difficulty: {recipe.difficulty}</div>
             </div>
