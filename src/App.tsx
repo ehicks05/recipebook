@@ -4,14 +4,10 @@ import Navbar from "./react/components/Navbar/Navbar";
 import Footer from "./react/components/Footer";
 import { Route } from "react-router-dom";
 import { IUser } from "./react/types/types";
+import apiUrl from "./react/api";
 import MyAccount from "./react/app/MyAccount/MyAccount";
 import Home from "./react/app/Home/Home";
 import RecipeForm from "./react/app/RecipeForm/RecipeForm";
-
-const apiUrl =
-  process.env.NODE_ENV === "development"
-    ? ""
-    : "https://hicks-recipe-book.herokuapp.com";
 
 export default function App() {
   const [recipes, setRecipes] = useState([]);

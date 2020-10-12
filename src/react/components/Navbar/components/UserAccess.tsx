@@ -12,9 +12,7 @@ function UserAccess(props: IProps) {
   const [tab, setTab] = useState<string>("Login");
   const [accessMessage, setAccessMessage] = useState<string>("");
 
-  function setTabName(tabName: string, message?: string | undefined) {
-    if (message) setAccessMessage(message);
-    else setAccessMessage("");
+  function setTabName(tabName: string) {
     setTab(tabName);
   }
 
@@ -46,7 +44,7 @@ function UserAccess(props: IProps) {
       {tab === "Login" ? (
         <LoginForm user={props.user} setUser={props.setUser} />
       ) : (
-        <SignUpForm setTab={setTabName} />
+        <SignUpForm setAccessMessage={setAccessMessage} setTab={setTabName} />
       )}
 
       {props.user && (
