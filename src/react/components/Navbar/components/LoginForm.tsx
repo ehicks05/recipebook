@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import authFetch from "../../../authFetch";
 import { IUser } from "../../../types/types";
+import apiUrl from "../../../api";
 
 interface IProps {
   user: IUser | undefined;
@@ -13,7 +14,7 @@ function LoginForm(props: IProps) {
   const [failureMessage, setFailureMessage] = useState<string>("");
 
   function fetchUser() {
-    authFetch("/user").then((json) => {
+    authFetch(apiUrl + "/user").then((json) => {
       if (json) props.setUser(json);
     });
   }
