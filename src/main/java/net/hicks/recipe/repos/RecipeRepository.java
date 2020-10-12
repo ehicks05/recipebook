@@ -8,4 +8,5 @@ import java.util.List;
 public interface RecipeRepository extends JpaRepository<Recipe, Long>
 {
     List<Recipe> findByOrderById();
+    List<Recipe> findByOrderByIdDesc();
 }
