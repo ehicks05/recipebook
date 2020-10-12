@@ -7,12 +7,22 @@ interface IProps {
 function Timer({ minutes }: IProps) {
   const [seconds, setSeconds] = useState(minutes * 60);
   const [paused, setPaused] = useState(true);
+  const [expired, setExpired] = useState(false);
 
   const secondsRef = useRef(seconds);
   const interval = useRef(0);
 
   useEffect(() => {
+    return () => clearInterval(interval.current);
+  }, []);
+
+  useEffect(() => {
     secondsRef.current = seconds;
+
+    if (seconds <= 0) {
+      toggleTimer();
+      setExpired(true);
+    }
   }, [seconds]);
 
   useEffect(() => {
@@ -28,14 +38,11 @@ function Timer({ minutes }: IProps) {
     else startTimer();
   }, [paused]);
 
-  useEffect(() => {
-    return () => {
-      clearInterval(interval.current);
-    };
-  }, []);
-
-  function togglePause() {
-    setPaused(!paused);
+  function toggleTimer() {
+    if (expired) {
+      setSeconds(60 * minutes);
+      setExpired(false);
+    } else setPaused(!paused);
   }
 
   function displayTime() {
@@ -48,11 +55,13 @@ function Timer({ minutes }: IProps) {
     <div>
       <div className="field has-addons">
         <p className="control">
-          <button className="button is-small">{displayTime()}</button>
+          <button className={`button is-small ${expired ? "is-danger" : ""}`}>
+            {displayTime()}
+          </button>
         </p>
         <p className="control is-expanded">
-          <button className={"button is-small"} onClick={togglePause}>
-            {paused ? "Start" : "Pause"}
+          <button className={"button is-small"} onClick={toggleTimer}>
+            {paused ? (expired ? "Reset" : "Start") : "Pause"}
           </button>
         </p>
       </div>
