@@ -4,8 +4,8 @@ interface IProps {
   minutes: number;
 }
 
-function Timer({ minutes }: IProps) {
-  const [seconds, setSeconds] = useState(minutes * 60);
+function Timer({ minutes: inputMinutes }: IProps) {
+  const [seconds, setSeconds] = useState(inputMinutes * 60);
   const [paused, setPaused] = useState(true);
   const [expired, setExpired] = useState(false);
 
@@ -20,7 +20,7 @@ function Timer({ minutes }: IProps) {
     secondsRef.current = seconds;
 
     if (seconds <= 0) {
-      toggleTimer();
+      setPaused(true);
       setExpired(true);
     }
   }, [seconds]);
@@ -39,10 +39,13 @@ function Timer({ minutes }: IProps) {
   }, [paused]);
 
   function toggleTimer() {
-    if (expired) {
-      setSeconds(60 * minutes);
-      setExpired(false);
-    } else setPaused(!paused);
+    setPaused(!paused);
+  }
+
+  function reset() {
+    setSeconds(60 * inputMinutes);
+    setExpired(false);
+    setPaused(true);
   }
 
   function displayTime() {
@@ -60,9 +63,17 @@ function Timer({ minutes }: IProps) {
           </button>
         </p>
         <p className="control is-expanded">
-          <button className={"button is-small"} onClick={toggleTimer}>
-            {paused ? (expired ? "Reset" : "Start") : "Pause"}
-          </button>
+          {!expired && (
+            <button className={"button is-small"} onClick={toggleTimer}>
+              {paused ? "Start" : "Pause"}
+            </button>
+          )}
+
+          {paused && seconds !== inputMinutes * 60 && (
+            <button className={"button is-small"} onClick={reset}>
+              {"Reset"}
+            </button>
+          )}
         </p>
       </div>
     </div>
