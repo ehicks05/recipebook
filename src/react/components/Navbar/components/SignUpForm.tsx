@@ -86,8 +86,7 @@ function SignUpForm(props: IProps) {
       fail = true;
     }
 
-    if (fail) return false;
-    return true;
+    return fail;
   }
 
   async function signUp() {
@@ -100,7 +99,6 @@ function SignUpForm(props: IProps) {
 
     fetch(apiUrl + "/user", {
       method: "POST",
-      headers: {},
       body: new URLSearchParams(formData as any),
     })
       .then((response) => {
@@ -148,6 +146,7 @@ function SignUpForm(props: IProps) {
           </div>
         </div>
 
+        {/*USERNAME*/}
         <div className="field">
           <div className="field has-addons">
             <p className="control is-expanded">
