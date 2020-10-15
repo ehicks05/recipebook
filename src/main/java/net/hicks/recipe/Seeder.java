@@ -151,7 +151,7 @@ public class Seeder
     private void createUsers()
     {
         List<UserData> users = Collections.singletonList(
-                new UserData("admin@test.com", "admin", "Admin", "Test", true, true)
+                new UserData("admin@test.com", "adminGuy123", "admin", "Admin", "Test", true, true)
         );
 
         Role userRole = roleRepository.findByRole("ROLE_USER");
@@ -161,7 +161,7 @@ public class Seeder
         {
             String password = passwordEncoder.encoder().encode(userData.password);
 
-            User user = new User(userData.username, password,
+            User user = new User(userData.email, userData.username, password,
                     userData.first, userData.last, new HashSet<>());
 
             user.getRoles().add(userRole);
@@ -171,16 +171,13 @@ public class Seeder
                 roleRepository.save(adminRole);
             }
 
-//            UserDetail userDetail = new UserDetail();
-//            userDetail.setUser(user);
-//            user.setUserDetail(userDetail);
-
             userRepository.save(user);
         }
     }
 
     static class UserData
     {
+        final String email;
         final String username;
         final String password;
         final String first;
@@ -188,8 +185,9 @@ public class Seeder
         final boolean enabled;
         final boolean admin;
 
-        public UserData(String username, String password, String first, String last, boolean enabled, boolean admin)
+        public UserData(String email, String username, String password, String first, String last, boolean enabled, boolean admin)
         {
+            this.email = email;
             this.username = username;
             this.password = password;
             this.first = first;

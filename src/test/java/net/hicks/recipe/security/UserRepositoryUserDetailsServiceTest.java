@@ -33,29 +33,29 @@ public class UserRepositoryUserDetailsServiceTest {
         user.setLastName("User");
         user.setPassword("password");
         user.setRoles(new HashSet<>());
-        user.setUsername("test@admin.com");
+        user.setEmail("test@admin.com");
 
-        when(userRepository.findByUsername("test@admin.com"))
+        when(userRepository.findByEmail("test@admin.com"))
                 .thenReturn(user);
 
         UserDetails foundUser = userDetailsService.loadUserByUsername("test@admin.com");
 
         assertThat(foundUser).isEqualTo(user);
 
-        verify(userRepository, times(2)).findByUsername(anyString());
+        verify(userRepository, times(2)).findByEmail(anyString());
         verifyNoMoreInteractions(userRepository);
     }
 
     @Test
     public void shouldThrowMissingUserException() {
-        when(userRepository.findByUsername(anyString()))
+        when(userRepository.findByEmail(anyString()))
                 .thenReturn(null);
 
         assertThatThrownBy(() -> userDetailsService.loadUserByUsername("invalidUsername"))
                 .isInstanceOf(UsernameNotFoundException.class)
                 .hasMessageContaining("User 'invalidUsername' not found");
 
-        verify(userRepository, times(1)).findByUsername(anyString());
+        verify(userRepository, times(1)).findByEmail(anyString());
         verifyNoMoreInteractions(userRepository);
     }
 }

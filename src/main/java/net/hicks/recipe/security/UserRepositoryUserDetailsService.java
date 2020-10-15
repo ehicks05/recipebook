@@ -2,10 +2,10 @@ package net.hicks.recipe.security;
 
 import net.hicks.recipe.beans.RecipeBookException;
 import net.hicks.recipe.beans.User;
-import net.hicks.recipe.beans.UserDetail;
 import net.hicks.recipe.repos.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -24,13 +24,13 @@ public class UserRepositoryUserDetailsService implements UserDetailsService
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
+    public UserDetails loadUserByUsername(String usernameEmail) throws UsernameNotFoundException
     {
-        if (userRepo.findByUsername(username) != null) {
-            return userRepo.findByUsername(username);
+        if (userRepo.findByEmail(usernameEmail) != null) {
+            return userRepo.findByEmail(usernameEmail);
         }
         
-        throw new UsernameNotFoundException("User '" + username + "' not found");
+        throw new UsernameNotFoundException("User '" + usernameEmail + "' not found");
     }
 
     public User saveNewUser(User newUser) {
@@ -43,7 +43,7 @@ public class UserRepositoryUserDetailsService implements UserDetailsService
         } catch (Exception e) {
             System.out.println(e);
             if (e instanceof DataIntegrityViolationException)
-                throw new RecipeBookException(30, "Username exists");
+                throw new RecipeBookException(30, "Username exists", HttpStatus.BAD_REQUEST);
         }
         return newUser;
     }

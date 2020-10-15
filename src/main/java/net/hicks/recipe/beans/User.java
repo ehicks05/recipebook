@@ -18,6 +18,8 @@ public class User implements UserDetails
     private Long id;
 
     @Column(nullable=false, unique = true)
+    private String email = "";
+    @Column(unique = true)
     private String username = "";
     @Column(nullable=false)
     @JsonIgnore
@@ -35,16 +37,11 @@ public class User implements UserDetails
     )
     private Set<Role> roles = new HashSet<>();
 
-//    @OneToOne(mappedBy="user", cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-//    @PrimaryKeyJoinColumn
-//    private UserDetail userDetail = new UserDetail();
+    public User() {}
 
-    public User()
+    public User(String email, String username, String password, String firstName, String lastName, Set<Role> roles)
     {
-    }
-
-    public User(String username, String password, String firstName, String lastName, Set<Role> roles)
-    {
+        this.email = email;
         this.username = username;
         this.password = password;
         this.firstName = firstName;
@@ -130,23 +127,26 @@ public class User implements UserDetails
         this.roles = roles;
     }
 
-//    public UserDetail getUserDetail()
-//    {
-//        return userDetail;
-//    }
-//
-//    public void setUserDetail(UserDetail userDetail)
-//    {
-//        this.userDetail = userDetail;
-//    }
-
-    public String getUsername()
+    public String getEmail()
     {
+        return email;
+    }
+
+    public void setEmail(String username)
+    {
+        this.email = username;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    public String getDisplayUsername() {
         return username;
     }
 
-    public void setUsername(String username)
-    {
+    public void setUsername(String username) {
         this.username = username;
     }
 

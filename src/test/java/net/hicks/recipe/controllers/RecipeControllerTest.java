@@ -12,6 +12,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
@@ -50,10 +51,11 @@ public class RecipeControllerTest {
     }
 
     @Test
-    @Disabled
     public void shouldCallGetAllRecipesAndThrowError() throws Exception {
+        RecipeBookException e = new RecipeBookException(10, "", HttpStatus.INTERNAL_SERVER_ERROR);
+
         when(recipeService.getAllRecipes())
-                .thenThrow(RecipeBookException.class);
+                .thenThrow(e);
 
         mockMvc.perform(get("/recipe")
                 .contentType("application/json"))
@@ -68,10 +70,10 @@ public class RecipeControllerTest {
     }
 
     @Test
-    @Disabled
     public void shouldCallGetSpecificRecipeAndThrowException() throws Exception {
+        RecipeBookException e = new RecipeBookException(10, "", HttpStatus.INTERNAL_SERVER_ERROR);
         when(recipeService.getRecipe(anyLong()))
-                .thenThrow(RecipeBookException.class);
+                .thenThrow(e);
 
         mockMvc.perform(get("/recipe/{id}", 1)
                 .contentType("application/json"))
@@ -89,12 +91,13 @@ public class RecipeControllerTest {
     }
 
     @Test
-    @Disabled
     public void shouldCallCreateRecipeAndThrowException() throws Exception {
+        RecipeBookException e = new RecipeBookException(10, "", HttpStatus.INTERNAL_SERVER_ERROR);
+
         Recipe taco = TestUtils.getTacoRecipe();
 
         when(recipeService.createRecipe(any()))
-                .thenThrow(RecipeBookException.class);
+                .thenThrow(e);
 
         mockMvc.perform(post("/recipe")
                 .contentType("application/json")
@@ -113,12 +116,13 @@ public class RecipeControllerTest {
     }
 
     @Test
-    @Disabled
     public void shouldCallUpdateRecipeAndThrowException() throws Exception {
+        RecipeBookException e = new RecipeBookException(10, "", HttpStatus.INTERNAL_SERVER_ERROR);
+
         Recipe taco = TestUtils.getTacoRecipe();
 
         when(recipeService.updateRecipe(any()))
-                .thenThrow(RecipeBookException.class);
+                .thenThrow(e);
 
         mockMvc.perform(put("/recipe/{id}", 1)
                 .contentType("application/json")

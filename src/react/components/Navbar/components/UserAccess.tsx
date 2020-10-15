@@ -46,7 +46,7 @@ function UserAccess(props: IProps) {
       {tab === "Login" ? (
         <LoginForm user={props.user} setUser={props.setUser} />
       ) : (
-        <SignUpForm setTab={setTabName} />
+        <SignUpForm setAccessMessage={setAccessMessage} setTab={setTabName} />
       )}
 
       {props.user && (
