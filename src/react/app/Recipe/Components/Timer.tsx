@@ -4,15 +4,25 @@ interface IProps {
   minutes: number;
 }
 
-function Timer({ minutes }: IProps) {
-  const [seconds, setSeconds] = useState(minutes * 60);
+function Timer({ minutes: inputMinutes }: IProps) {
+  const [seconds, setSeconds] = useState(inputMinutes * 60);
   const [paused, setPaused] = useState(true);
+  const [expired, setExpired] = useState(false);
 
   const secondsRef = useRef(seconds);
   const interval = useRef(0);
 
   useEffect(() => {
+    return () => clearInterval(interval.current);
+  }, []);
+
+  useEffect(() => {
     secondsRef.current = seconds;
+
+    if (seconds <= 0) {
+      setPaused(true);
+      setExpired(true);
+    }
   }, [seconds]);
 
   useEffect(() => {
@@ -28,14 +38,14 @@ function Timer({ minutes }: IProps) {
     else startTimer();
   }, [paused]);
 
-  useEffect(() => {
-    return () => {
-      clearInterval(interval.current);
-    };
-  }, []);
-
-  function togglePause() {
+  function toggleTimer() {
     setPaused(!paused);
+  }
+
+  function reset() {
+    setSeconds(60 * inputMinutes);
+    setExpired(false);
+    setPaused(true);
   }
 
   function displayTime() {
@@ -48,12 +58,22 @@ function Timer({ minutes }: IProps) {
     <div>
       <div className="field has-addons">
         <p className="control">
-          <button className="button is-small">{displayTime()}</button>
+          <button className={`button is-small ${expired ? "is-danger" : ""}`}>
+            {displayTime()}
+          </button>
         </p>
         <p className="control is-expanded">
-          <button className={"button is-small"} onClick={togglePause}>
-            {paused ? "Start" : "Pause"}
-          </button>
+          {!expired && (
+            <button className={"button is-small"} onClick={toggleTimer}>
+              {paused ? "Start" : "Pause"}
+            </button>
+          )}
+
+          {paused && seconds !== inputMinutes * 60 && (
+            <button className={"button is-small"} onClick={reset}>
+              {"Reset"}
+            </button>
+          )}
         </p>
       </div>
     </div>
