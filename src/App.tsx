@@ -7,11 +7,7 @@ import { IUser } from "./react/types/types";
 import MyAccount from "./react/app/MyAccount/MyAccount";
 import Home from "./react/app/Home/Home";
 import RecipeForm from "./react/app/RecipeForm/RecipeForm";
-
-const apiUrl =
-  process.env.NODE_ENV === "development"
-    ? ""
-    : "https://hicks-recipe-book.herokuapp.com";
+import { apiUrl } from "./react/apiUrl";
 
 export default function App() {
   const [recipes, setRecipes] = useState([]);
