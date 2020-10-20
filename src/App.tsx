@@ -7,7 +7,7 @@ import { IUser } from "./react/types/types";
 import MyAccount from "./react/app/MyAccount/MyAccount";
 import Home from "./react/app/Home/Home";
 import RecipeForm from "./react/app/RecipeForm/RecipeForm";
-import { apiUrl } from "./react/apiUrl";
+import apiUrl from "./react/apiUrl";
 
 export default function App() {
   const [recipes, setRecipes] = useState([]);

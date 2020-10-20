@@ -4,10 +4,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.format.datetime.standard.DateTimeFormatterRegistrar;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 @Configuration
-public class MvcConfig implements WebMvcConfigurer
+@EnableWebMvc
+public class MvcConfig extends WebMvcConfigurationSupport
 {
     // Allows the handling of input type='datetime-local'
     @Override
