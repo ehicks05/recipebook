@@ -1,11 +1,14 @@
 package net.hicks.recipe.beans;
 
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table
-public class Ingredient implements Serializable
+public class Ingredient extends AuditClass implements Serializable
 {
     @Id
     @GeneratedValue
