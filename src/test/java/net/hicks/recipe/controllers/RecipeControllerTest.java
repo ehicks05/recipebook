@@ -6,7 +6,6 @@ import net.hicks.recipe.beans.RecipeBookException;
 import net.hicks.recipe.security.UserRepositoryUserDetailsService;
 import net.hicks.recipe.services.RecipeService;
 import net.hicks.recipe.utils.TestUtils;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

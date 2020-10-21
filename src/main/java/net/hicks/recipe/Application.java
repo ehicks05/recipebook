@@ -11,7 +11,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @EnableScheduling
 @EnableAsync
-@EnableJpaAuditing(dateTimeProviderRef = "dateTimeProviderUtc")
 public class Application {
 
     private static final Logger log = LoggerFactory.getLogger(Application.class);
