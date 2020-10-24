@@ -1,5 +1,5 @@
 import React, { useReducer } from "react";
-import { apiUrl } from "../../../apiUrl";
+import apiUrl from "../../../apiUrl";
 import "@creativebulma/bulma-tooltip/dist/bulma-tooltip.min.css";
 
 interface IErrorMessage {
@@ -64,29 +64,21 @@ function SignUpForm(props: IProps) {
     if (errorMessageState.passwordMessage) return false;
     if (errorMessageState.emailMessage) return false;
 
-    const email = formData.get("email") as string;
-    const password = formData.get("password") as string;
-    const passwordCheck = formData.get("passwordCheck") as string;
+    const reqs = document
+      .getElementById("signUpForm")
+      ?.querySelectorAll("[required]");
+    let valid = true;
 
-    let fail = false;
+    reqs?.forEach((element) => {
+      const id = element.id;
+      const formValue = formData.get(id) as string;
+      if (!formValue || formValue.length === 0) {
+        element.classList.add("is-danger");
+        valid = false;
+      }
+    });
 
-    if (!email || email.length === 0) {
-      const emailInput = document.getElementById("email");
-      emailInput?.classList.add("is-danger");
-      fail = true;
-    }
-    if (!password || password.length === 0) {
-      const passwordInput = document.getElementById("password");
-      passwordInput?.classList.add("is-danger");
-      fail = true;
-    }
-    if (!passwordCheck || passwordCheck.length === 0) {
-      const passwordCheckInput = document.getElementById("passwordCheck");
-      passwordCheckInput?.classList.add("is-danger");
-      fail = true;
-    }
-
-    return fail;
+    return valid;
   }
 
   async function signUp() {
@@ -156,6 +148,7 @@ function SignUpForm(props: IProps) {
                 placeholder="Username"
                 id="username"
                 name="username"
+                required={true}
               />
             </p>
             <p className="control">
@@ -163,15 +156,12 @@ function SignUpForm(props: IProps) {
                 tabIndex={-1}
                 type="button"
                 className="button has-tooltip-left"
-                data-tooltip="This will be your login"
+                data-tooltip="This is how you will be known on the site"
               >
                 ?
               </button>
             </p>
           </div>
-          <p className="help has-text-danger">
-            {errorMessageState.emailMessage}
-          </p>
         </div>
 
         {/*EMAIL*/}
@@ -185,6 +175,7 @@ function SignUpForm(props: IProps) {
                 id="email"
                 name="email"
                 onChange={validateEmail}
+                required={true}
               />
             </p>
             <p className="control">
@@ -213,6 +204,7 @@ function SignUpForm(props: IProps) {
               id="password"
               name="password"
               onChange={validatePasswords}
+              required={true}
             />
           </p>
           <p className="control">
@@ -238,6 +230,7 @@ function SignUpForm(props: IProps) {
                 id="passwordCheck"
                 name="passwordCheck"
                 onChange={validatePasswords}
+                required={true}
               />
             </p>
           </div>

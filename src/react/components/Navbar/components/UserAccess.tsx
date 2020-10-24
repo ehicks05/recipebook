@@ -12,12 +12,6 @@ function UserAccess(props: IProps) {
   const [tab, setTab] = useState<string>("Login");
   const [accessMessage, setAccessMessage] = useState<string>("");
 
-  function setTabName(tabName: string, message?: string | undefined) {
-    if (message) setAccessMessage(message);
-    else setAccessMessage("");
-    setTab(tabName);
-  }
-
   function logout() {
     fetch("/logout")
       .then((response) => response.text())
@@ -32,10 +26,10 @@ function UserAccess(props: IProps) {
         <div className="tabs is-boxed">
           <ul>
             <li className={tab === "Login" ? "is-active" : ""}>
-              <a onClick={(e) => setTabName(e.currentTarget.text)}>Login</a>
+              <a onClick={(e) => setTab(e.currentTarget.text)}>Login</a>
             </li>
             <li className={tab === "Sign Up" ? "is-active" : ""}>
-              <a onClick={(e) => setTabName(e.currentTarget.text)}>Sign Up</a>
+              <a onClick={(e) => setTab(e.currentTarget.text)}>Sign Up</a>
             </li>
           </ul>
         </div>
@@ -46,7 +40,7 @@ function UserAccess(props: IProps) {
       {tab === "Login" ? (
         <LoginForm user={props.user} setUser={props.setUser} />
       ) : (
-        <SignUpForm setAccessMessage={setAccessMessage} setTab={setTabName} />
+        <SignUpForm setAccessMessage={setAccessMessage} setTab={setTab} />
       )}
 
       {props.user && (
