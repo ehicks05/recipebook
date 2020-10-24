@@ -267,7 +267,7 @@ function RecipeForm(props: IProps) {
               return (
                 <IngredientForm
                   ingredient={ingredient}
-                  key={ingredient.name}
+                  key={i}
                   i={i}
                   updateIngredient={updateIngredient}
                   removeIngredient={removeIngredient}
