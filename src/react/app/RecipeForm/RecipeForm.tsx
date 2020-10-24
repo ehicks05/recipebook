@@ -27,6 +27,12 @@ const initialRecipeState: IRecipe = {
   directions: [initialDirectionState],
 };
 
+function fitToContent(e: React.FormEvent<HTMLTextAreaElement>) {
+    const target = (e.target as HTMLElement);
+    target.style.height = "";
+    target.style.height = (target.scrollHeight + 2) + "px"
+}
+
 function RecipeForm(props: IProps) {
   let history = useHistory();
 
@@ -111,7 +117,7 @@ function RecipeForm(props: IProps) {
     setDirections([...directions, { ...initialDirectionState }]);
   }
 
-  function updateDirection(e: React.ChangeEvent<HTMLInputElement>) {
+  function updateDirection(e: React.ChangeEvent<HTMLTextAreaElement>) {
     const name = e.target.name;
     const value = e.target.value;
 
@@ -158,150 +164,161 @@ function RecipeForm(props: IProps) {
   return (
     <>
       <Hero title="Create a Recipe" />
+      <div className='section'>
       <div className="container">
-        <div style={{ maxWidth: "500px" }}>
-          <div className="box">
-            <h2 className="subtitle">Recipe Details</h2>
+        <div className='columns'>
+          <div className='column'>
+            <div className="box">
+              <h2 className="subtitle">Recipe Details</h2>
 
-            <div className="field">
-              <label className="label">Name</label>
-              <div className="control">
-                <input
-                  className="input"
-                  type="text"
-                  name="name"
-                  placeholder="Name"
-                  value={name}
-                  onChange={onChange}
-                />
-              </div>
-            </div>
-
-            <div className="field">
-              <label className="label">Description</label>
-              <div className="control">
-                <textarea
-                  className="textarea"
-                  name="description"
-                  placeholder="Description"
-                  value={description}
-                  onChange={onChange}
-                />
-              </div>
-            </div>
-            <div className="field">
-              <label className="label">Difficulty</label>
-              <div className="control">
-                <div className="select">
-                  <select
-                    name="difficulty"
-                    value={difficulty}
-                    onChange={onChange}
-                  >
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            <div className="field">
-              <label className="label">Cooking Time</label>
-
-              <div className="control">
-                <div className="field has-addons">
-                  <div className="control is-expanded">
-                    <input
-                      className="input is-fullwidth"
-                      type="number"
-                      step="1"
-                      min="1"
-                      name="cookingTime"
-                      placeholder="1"
-                      value={cookingTime}
+              <div className="field">
+                <label className="label">Name</label>
+                <div className="control">
+                  <input
+                      className="input"
+                      type="text"
+                      name="name"
+                      placeholder="Name"
+                      value={name}
                       onChange={onChange}
-                    />
-                  </div>
-                  <div className="control">
-                    <button className="button" disabled>
-                      minutes
-                    </button>
-                  </div>
+                  />
+                </div>
+              </div>
+
+              <div className="field">
+                <label className="label">Description</label>
+                <div className="control">
+                <textarea
+                    className="textarea"
+                    name="description"
+                    placeholder="Description"
+                    rows={1}
+                    value={description}
+                    onInput={fitToContent}
+                    onChange={onChange}
+                />
+                </div>
+              </div>
+
+                <div className='columns is-mobile is-variable is-1'>
+                    <div className='column'>
+                        <div className="field">
+                            <label className="label">Difficulty</label>
+                            <div className="control">
+                                <div className="select">
+                                    <select
+                                        name="difficulty"
+                                        value={difficulty}
+                                        onChange={onChange}
+                                    >
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='column'>
+                        <div className="field">
+                            <label className="label">Cooking Time</label>
+
+                            <div className="control">
+                                <div className="field has-addons">
+                                    <div className="control is-expanded">
+                                        <input
+                                            className="input is-fullwidth"
+                                            type="number"
+                                            step="1"
+                                            min="1"
+                                            name="cookingTime"
+                                            placeholder="1"
+                                            value={cookingTime}
+                                            onChange={onChange}
+                                        />
+                                    </div>
+                                    <div className="control">
+                                        <button className="button" disabled>
+                                            min
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='column'>
+                        <div className="field">
+                            <label className="label">Servings</label>
+                            <div className="control">
+                                <input
+                                    className="input"
+                                    type="number"
+                                    step="1"
+                                    min="1"
+                                    name="servings"
+                                    placeholder="1"
+                                    value={servings}
+                                    onChange={onChange}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+              <div className="field">
+                <label className="label">Emoji</label>
+                <div className="control">
+                  <EmojiSelector updateEmoji={updateEmoji} />
                 </div>
               </div>
             </div>
+          </div>
+          <div className='column'>
+            <div className="box">
+              <h2 className="subtitle">Ingredients</h2>
+              {ingredients.map((ingredient, i) => {
+                return (
+                    <IngredientForm
+                        ingredient={ingredient}
+                        key={i}
+                        i={i}
+                        updateIngredient={updateIngredient}
+                        removeIngredient={removeIngredient}
+                    />
+                );
+              })}
 
-            <div className="field">
-              <label className="label">Servings</label>
-              <div className="control">
-                <input
-                  className="input"
-                  type="number"
-                  step="1"
-                  min="1"
-                  name="servings"
-                  placeholder="1"
-                  value={servings}
-                  onChange={onChange}
-                />
-              </div>
+              <button className="button is-success" onClick={addBlankIngredient}>
+                Add Ingredient
+              </button>
             </div>
 
-            <div className="field">
-              <label className="label">Emoji</label>
-              <div className="control">
-                <EmojiSelector updateEmoji={updateEmoji} />
-              </div>
+            <div className="box">
+              <h2 className="subtitle">Directions</h2>
+              {directions.map((direction, i) => {
+                return (
+                    <DirectionForm
+                        direction={direction}
+                        i={i}
+                        key={direction.index}
+                        updateDirection={updateDirection}
+                        removeDirection={removeDirection}
+                    />
+                );
+              })}
+
+              <button className="button is-success" onClick={addBlankDirection}>
+                Add Direction
+              </button>
             </div>
-          </div>
-
-          <div className="box">
-            <h2 className="subtitle">Ingredients</h2>
-            {ingredients.map((ingredient, i) => {
-              return (
-                <IngredientForm
-                  ingredient={ingredient}
-                  key={ingredient.name}
-                  i={i}
-                  updateIngredient={updateIngredient}
-                  removeIngredient={removeIngredient}
-                />
-              );
-            })}
-
-            <button className="button is-success" onClick={addBlankIngredient}>
-              Add Ingredient
-            </button>
-          </div>
-
-          <div className="box">
-            <h2 className="subtitle">Directions</h2>
-            {directions.map((direction, i) => {
-              return (
-                <DirectionForm
-                  direction={direction}
-                  i={i}
-                  key={direction.index}
-                  updateDirection={updateDirection}
-                  removeDirection={removeDirection}
-                />
-              );
-            })}
-
-            <button className="button is-success" onClick={addBlankDirection}>
-              Add Direction
-            </button>
-          </div>
-
-          <div className="box">
-            <button className="button is-success" onClick={createRecipe}>
-              Create Recipe
-            </button>
           </div>
         </div>
+          <button className="button is-success" onClick={createRecipe}>
+              Create Recipe
+          </button>
+      </div>
       </div>
     </>
   );
@@ -325,7 +342,7 @@ function IngredientForm(props: IIngredientFormProps) {
   const removeIngredient = props.removeIngredient;
 
   return (
-    <div className="field has-addons" key={i}>
+  <div className="field is-grouped">
       <div className="control is-expanded">
         <input
           className="input is-fullwidth"
@@ -339,6 +356,7 @@ function IngredientForm(props: IIngredientFormProps) {
       <div className="control">
         <input
           className="input"
+          style={{width: '6em'}}
           type="number"
           maxLength={5}
           min="1"
@@ -355,7 +373,7 @@ function IngredientForm(props: IIngredientFormProps) {
             value={ingredient.unit}
             onChange={updateIngredient}
           >
-            <option value="" />
+            <option value="">unit</option>
             <option value="oz">oz</option>
             <option value="lb">lb</option>
             <option value="ml">ml</option>
@@ -380,7 +398,7 @@ function IngredientForm(props: IIngredientFormProps) {
 interface IDirectionFormProps {
   direction: { text: string };
   i: number;
-  updateDirection: (e: ChangeEvent<HTMLInputElement>) => void;
+  updateDirection: (e: ChangeEvent<HTMLTextAreaElement>) => void;
   removeDirection: (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
 }
 
@@ -391,16 +409,25 @@ function DirectionForm(props: IDirectionFormProps) {
   const removeDirection = props.removeDirection;
 
   return (
-    <div className="field has-addons" key={i}>
-      <div className="control is-expanded">
-        <input
-          className="input is-fullwidth"
-          type="text"
-          name={`direction_text_${i}`}
-          placeholder="Description"
-          value={direction.text}
-          onChange={updateDirection}
-        />
+    <div className="field is-grouped" key={i}>
+        <div className="control">
+            <input
+                type="button"
+                readOnly
+                className="input"
+                value={`${i + 1}.`}
+            />
+        </div>
+        <div className="control is-expanded">
+            <textarea
+                className="textarea"
+                name={`direction_text_${i}`}
+                placeholder="Description"
+                rows={1}
+                value={direction.text}
+                onInput={fitToContent}
+                onChange={updateDirection}
+            />
       </div>
 
       <div className="control">
