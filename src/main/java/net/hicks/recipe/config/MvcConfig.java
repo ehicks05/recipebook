@@ -1,4 +1,4 @@
-package net.hicks.recipe;
+package net.hicks.recipe.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;

@@ -1,6 +1,7 @@
 package net.hicks.recipe.beans;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -10,8 +11,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "app_user")
-public class User implements UserDetails
+public class User extends AuditClass implements UserDetails
 {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
