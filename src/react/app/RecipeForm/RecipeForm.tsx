@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useReducer, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Hero from "../../components/Hero";
+import EmojiSelector from "./Components/EmojiSelector";
 import { IDirection, IIngredient, IRecipe } from "../../types/types";
 
 interface IProps {
@@ -28,6 +29,10 @@ const initialRecipeState: IRecipe = {
 
 function RecipeForm(props: IProps) {
   let history = useHistory();
+
+  function updateEmoji(code: string) {
+    dispatch({ field: "emoji", value: code });
+  }
 
   // RECIPE
   function reducer(
@@ -248,15 +253,7 @@ function RecipeForm(props: IProps) {
             <div className="field">
               <label className="label">Emoji</label>
               <div className="control">
-                <input
-                  className="input"
-                  type="text"
-                  maxLength={1}
-                  name="emoji"
-                  placeholder=""
-                  value={emoji}
-                  onChange={onChange}
-                />
+                <EmojiSelector updateEmoji={updateEmoji} />
               </div>
             </div>
           </div>
