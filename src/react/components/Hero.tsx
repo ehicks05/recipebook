@@ -16,7 +16,7 @@ const Hero: FunctionComponent<IProps> = ({
       <div className={"hero-body"}>
         <div className={"container"}>
           <h1 className="title">{title}</h1>
-          <h3 className="subtitle">{subtitle}</h3>
+          {subtitle && <h3 className="subtitle">{subtitle}</h3>}
           {children && children}
         </div>
       </div>
