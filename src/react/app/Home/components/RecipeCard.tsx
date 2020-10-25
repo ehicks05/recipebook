@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { IRecipe } from "../../../types/types";
+import { FcClock, IoIosFitness } from "react-icons/all";
 
 interface IRecipeCardProps {
   recipe: IRecipe;
@@ -10,8 +11,11 @@ function RecipeCard({ recipe }: IRecipeCardProps) {
   return (
     <div className="column is-half-tablet is-one-third-desktop">
       <Link to={"/recipe/" + recipe.id}>
-        <div className="card grow" style={{ height: "100%" }}>
-          <div className="card-content">
+        <div className="card grow">
+          <div
+            className="card-content is-flex is-flex-direction-column"
+            style={{ height: "14em" }}
+          >
             <div className="media">
               <div className="media-left">
                 <figure className="image is-64x64" style={{ fontSize: "3em" }}>
@@ -19,19 +23,57 @@ function RecipeCard({ recipe }: IRecipeCardProps) {
                 </figure>
               </div>
               <div className="media-content">
-                <div className="title is-4">{recipe.name}</div>
-                <div className="subtitle is-6">{recipe.author.username}</div>
+                <div className="title is-5">{recipe.name}</div>
+                <div className="subtitle is-6 is-italic">
+                  {recipe.author.username}
+                </div>
               </div>
             </div>
 
-            <div className="content">
-              <div>Description: {recipe.description}</div>
-              <div>Time: {recipe.cookingTime}</div>
-              <div>Difficulty: {recipe.difficulty}</div>
+            <div className="content" style={{ overflowY: "auto" }}>
+              <div>
+                {recipe.description ||
+                  "This is where a description would go...if we HAD one! " +
+                    "It would tell you what you can expect from this recipe."}
+              </div>
             </div>
           </div>
+
+          <footer className="card-footer">
+            <CardFooterItem
+              title={"Time"}
+              icon={<FcClock size={"2em"} />}
+              value={recipe.cookingTime}
+            />
+            <CardFooterItem
+              title={"Difficulty"}
+              icon={<IoIosFitness size={"2em"} />}
+              value={recipe.difficulty}
+            />
+          </footer>
         </div>
       </Link>
+    </div>
+  );
+}
+
+interface ICardFooterItemProps {
+  title: string;
+  icon: JSX.Element;
+  value: string | number;
+}
+
+function CardFooterItem({ title, icon, value }: ICardFooterItemProps) {
+  return (
+    <div className="card-footer-item" title={title}>
+      <nav className="level">
+        <div className="level-item">
+          <span className="icon">{icon}</span>
+        </div>
+        <div className="level-item">
+          <span className="mx-1 has-text-weight-bold">{value}</span>
+        </div>
+      </nav>
     </div>
   );
 }

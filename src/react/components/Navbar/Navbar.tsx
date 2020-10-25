@@ -2,6 +2,7 @@ import React, { Dispatch, SetStateAction, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { IUser } from "../../types/types";
 import UserAccess from "./components/UserAccess";
+import { FaPlus } from "react-icons/all";
 
 interface IProps {
   user?: IUser;
@@ -42,12 +43,20 @@ function Navbar(props: IProps) {
       <div className={"container"}>
         <div className="navbar-brand">
           <div className="navbar-item">
-            <span
-              className={"title"}
-              style={{ fontFamily: "'Architects Daughter'" }}
-            >
-              <Link to="/">Recipe Book</Link>
+            <span className={"title"} style={{ fontFamily: "'Ubuntu Light'" }}>
+              <Link className="has-text-grey-light" to="/">
+                recipebook
+              </Link>
             </span>
+          </div>
+          <div className="navbar-item">
+            <Link to="/create-recipe">
+              <button className="button is-primary is-small">
+                <span className="icon">
+                  <FaPlus />
+                </span>
+              </button>
+            </Link>
           </div>
 
           <div
@@ -67,11 +76,6 @@ function Navbar(props: IProps) {
           <div className="navbar-start"></div>
 
           <div className="navbar-end">
-            <div className="navbar-item">
-              <Link to="/create-recipe">
-                <button className="button is-primary">Create Recipe!</button>
-              </Link>
-            </div>
             <div className="navbar-item has-dropdown is-hoverable">
               <div className="navbar-link">
                 {props.user ? (
