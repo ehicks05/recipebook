@@ -5,11 +5,11 @@ import org.springframework.format.FormatterRegistry;
 import org.springframework.format.datetime.standard.DateTimeFormatterRegistrar;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebMvc
-public class MvcConfig extends WebMvcConfigurationSupport
+public class MvcConfig implements WebMvcConfigurer
 {
     // Allows the handling of input type='datetime-local'
     @Override
@@ -23,7 +23,9 @@ public class MvcConfig extends WebMvcConfigurationSupport
    public void addCorsMappings(CorsRegistry registry) {
        registry
                .addMapping("/**")
-               .allowedOrigins("http://localhost:3000", "https://localhost:3000", "https://hicks-recipes.netlify.app")
-               .allowedMethods("*");
+               .allowedOrigins("*")
+               .allowedMethods("*")
+               .allowedHeaders("*")
+               .allowCredentials(true);
    }
 }

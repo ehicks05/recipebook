@@ -1,7 +1,9 @@
 package net.hicks.recipe.controllers;
 
 import net.hicks.recipe.beans.Recipe;
+import net.hicks.recipe.beans.User;
 import net.hicks.recipe.services.RecipeService;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,7 +29,8 @@ public class RecipeController
     }
 
     @PostMapping
-    public Recipe createRecipe(@RequestBody Recipe recipe) {
+    public Recipe createRecipe(@AuthenticationPrincipal User user, @RequestBody Recipe recipe) {
+        recipe.setAuthor(user);
         return recipeService.createRecipe(recipe);
     }
 
