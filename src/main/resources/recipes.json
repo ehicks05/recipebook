@@ -262,7 +262,8 @@
 			{"quantity": "1", "unit": "oz", "name": "Sauce"},
 			{"quantity": "1", "unit": "oz", "name": "'Herbs' as necessary"}
 		],
-		"cookingTime": "Depends on how baked you are/like your food",
+		"cookingTime": "Unknown",
+		"description": "Depends on how baked you are/like your food",
 		"servings": "4",
 		"directions": [
 			{"text": "Open the Tyson bag containing all the dino nuggets."},
@@ -317,7 +318,8 @@
 			{"quantity": "1", "unit": "tsp", "name": "salt"},
 			{"quantity": "1 1/2", "unit": "cups", "name": "warm water"}
 		],
-		"cookingTime": "10 minutes prep, 3 hour wait, 45 minute cook",
+		"cookingTime": "4 hours",
+		"description": "10 minutes prep, 3 hour wait, 45 minute cook",
 		"servings": "12",
 		"directions": [
 			{"text": "In a large bowl, mix dry ingredients, then add water and mix."},
