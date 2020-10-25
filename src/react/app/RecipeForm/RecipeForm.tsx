@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import Hero from "../../components/Hero";
 import EmojiSelector from "./Components/EmojiSelector";
 import { IDirection, IIngredient, IRecipe } from "../../types/types";
+import { FaMinus, FaPlus } from "react-icons/all";
 
 interface IProps {
   fetchRecipes: () => void;
@@ -62,14 +63,7 @@ function RecipeForm(props: IProps) {
     dispatch({ field: e.target.name, value: e.target.value });
   };
 
-  const {
-    name,
-    description,
-    emoji,
-    difficulty,
-    cookingTime,
-    servings,
-  } = recipeState;
+  const { name, description, difficulty, cookingTime, servings } = recipeState;
 
   // INGREDIENTS
   const [ingredients, setIngredients] = useState<IIngredient[]>([
@@ -98,7 +92,9 @@ function RecipeForm(props: IProps) {
     setIngredients(copy);
   }
 
-  function removeIngredient(e: React.MouseEvent<HTMLInputElement, MouseEvent>) {
+  function removeIngredient(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) {
     const field = e.currentTarget.name;
 
     const index = Number(field.substring(field.lastIndexOf("_") + 1));
@@ -131,7 +127,7 @@ function RecipeForm(props: IProps) {
     setDirections(copy);
   }
 
-  function removeDirection(e: React.MouseEvent<HTMLInputElement, MouseEvent>) {
+  function removeDirection(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     const field = e.currentTarget.name;
 
     const index = Number(field.substring(field.lastIndexOf("_") + 1));
@@ -167,7 +163,7 @@ function RecipeForm(props: IProps) {
       <div className="section">
         <div className="container">
           <div className="columns">
-            <div className="column">
+            <div className="column is-one-third">
               <div className="box">
                 <h2 className="subtitle">Recipe Details</h2>
 
@@ -200,8 +196,60 @@ function RecipeForm(props: IProps) {
                   </div>
                 </div>
 
-                <div className="columns is-mobile is-variable is-1">
+                <div className="columns is-mobile is-variable is-1 is-multiline">
+                  <div className="column is-half">
+                    <div className="field">
+                      <label className="label">Time</label>
+
+                      <div className="control">
+                        <div className="field has-addons">
+                          <div className="control is-expanded">
+                            <input
+                              className="input is-fullwidth"
+                              type="number"
+                              step="1"
+                              min="1"
+                              name="cookingTime"
+                              placeholder="1"
+                              value={cookingTime}
+                              onChange={onChange}
+                            />
+                          </div>
+                          <div className="control">
+                            <button className="button px-1" disabled>
+                              min
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="column is-half">
+                    <div className="field">
+                      <label className="label">Servings</label>
+                      <div className="control">
+                        <input
+                          className="input"
+                          type="number"
+                          step="1"
+                          min="1"
+                          name="servings"
+                          placeholder="1"
+                          value={servings}
+                          onChange={onChange}
+                        />
+                      </div>
+                    </div>
+                  </div>
                   <div className="column">
+                    <div className="field">
+                      <label className="label">Emoji</label>
+                      <div className="control">
+                        <EmojiSelector updateEmoji={updateEmoji} />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="column is-narrow">
                     <div className="field">
                       <label className="label">Difficulty</label>
                       <div className="control">
@@ -220,57 +268,6 @@ function RecipeForm(props: IProps) {
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="column">
-                    <div className="field">
-                      <label className="label">Cooking Time</label>
-
-                      <div className="control">
-                        <div className="field has-addons">
-                          <div className="control is-expanded">
-                            <input
-                              className="input is-fullwidth"
-                              type="number"
-                              step="1"
-                              min="1"
-                              name="cookingTime"
-                              placeholder="1"
-                              value={cookingTime}
-                              onChange={onChange}
-                            />
-                          </div>
-                          <div className="control">
-                            <button className="button" disabled>
-                              min
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="column">
-                    <div className="field">
-                      <label className="label">Servings</label>
-                      <div className="control">
-                        <input
-                          className="input"
-                          type="number"
-                          step="1"
-                          min="1"
-                          name="servings"
-                          placeholder="1"
-                          value={servings}
-                          onChange={onChange}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="field">
-                  <label className="label">Emoji</label>
-                  <div className="control">
-                    <EmojiSelector updateEmoji={updateEmoji} />
                   </div>
                 </div>
               </div>
@@ -294,11 +291,13 @@ function RecipeForm(props: IProps) {
                   className="button is-success"
                   onClick={addBlankIngredient}
                 >
-                  Add Ingredient
+                  <span className="icon">
+                    <FaPlus />
+                  </span>
                 </button>
               </div>
 
-              <div className="box">
+              <div className="box mt-6">
                 <h2 className="subtitle">Directions</h2>
                 {directions.map((direction, i) => {
                   return (
@@ -316,14 +315,20 @@ function RecipeForm(props: IProps) {
                   className="button is-success"
                   onClick={addBlankDirection}
                 >
-                  Add Direction
+                  <span className="icon">
+                    <FaPlus />
+                  </span>
                 </button>
               </div>
             </div>
           </div>
-          <button className="button is-success" onClick={createRecipe}>
-            Create Recipe
-          </button>
+          <nav className="level">
+            <div className="level-item">
+              <button className="button is-success" onClick={createRecipe}>
+                Create Recipe
+              </button>
+            </div>
+          </nav>
         </div>
       </div>
     </>
@@ -338,7 +343,9 @@ interface IIngredientFormProps {
       | React.ChangeEvent<HTMLInputElement>
       | React.ChangeEvent<HTMLSelectElement>
   ) => void;
-  removeIngredient: (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
+  removeIngredient: (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => void;
 }
 
 function IngredientForm(props: IIngredientFormProps) {
@@ -362,7 +369,7 @@ function IngredientForm(props: IIngredientFormProps) {
       <div className="control">
         <input
           className="input"
-          style={{ width: "6em" }}
+          style={{ width: "5em" }}
           type="number"
           maxLength={5}
           min="1"
@@ -389,13 +396,15 @@ function IngredientForm(props: IIngredientFormProps) {
         </div>
       </div>
       <div className="control">
-        <input
-          type="button"
+        <button
           name={`ingredient_delete_${i}`}
           className="button is-danger"
-          value="X"
           onClick={removeIngredient}
-        />
+        >
+          <span className="icon">
+            <FaMinus />
+          </span>
+        </button>
       </div>
     </div>
   );
@@ -405,7 +414,7 @@ interface IDirectionFormProps {
   direction: { text: string };
   i: number;
   updateDirection: (e: ChangeEvent<HTMLTextAreaElement>) => void;
-  removeDirection: (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
+  removeDirection: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 function DirectionForm(props: IDirectionFormProps) {
@@ -417,7 +426,7 @@ function DirectionForm(props: IDirectionFormProps) {
   return (
     <div className="field is-grouped" key={i}>
       <div className="control">
-        <input type="button" readOnly className="input" value={`${i + 1}.`} />
+        <span>{`${i + 1}.`}</span>
       </div>
       <div className="control is-expanded">
         <textarea
@@ -432,13 +441,15 @@ function DirectionForm(props: IDirectionFormProps) {
       </div>
 
       <div className="control">
-        <input
-          type="button"
+        <button
           name={`direction_delete_${i}`}
           className="button is-danger"
-          value="X"
           onClick={removeDirection}
-        />
+        >
+          <span className="icon">
+            <FaMinus />
+          </span>
+        </button>
       </div>
     </div>
   );
