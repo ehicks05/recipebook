@@ -8,6 +8,7 @@ import net.hicks.recipe.repos.MySystemRepository;
 import net.hicks.recipe.repos.RoleRepository;
 import net.hicks.recipe.repos.UserRepository;
 import net.hicks.recipe.security.PasswordEncoder;
+import net.hicks.recipe.services.EmojiService;
 import net.hicks.recipe.services.RecipeService;
 import org.hibernate.exception.SQLGrammarException;
 import org.slf4j.Logger;
@@ -37,13 +38,15 @@ public class Seeder
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final EntityManagerFactory entityManagerFactory;
+    private final EmojiService emojiService;
 
     private final RecipeService recipeService;
 
     public Seeder(MySystemRepository mySystemRepository, RoleRepository roleRepository, UserRepository userRepository,
                   PasswordEncoder passwordEncoder,
                   EntityManagerFactory entityManagerFactory,
-                  RecipeService recipeService)
+                  RecipeService recipeService,
+                  EmojiService emojiService)
     {
         this.mySystemRepository = mySystemRepository;
         this.roleRepository = roleRepository;
@@ -51,6 +54,7 @@ public class Seeder
         this.passwordEncoder = passwordEncoder;
         this.entityManagerFactory = entityManagerFactory;
         this.recipeService = recipeService;
+        this.emojiService = emojiService;
     }
 
     @Transactional
@@ -93,18 +97,21 @@ public class Seeder
         installExtensions();
 
         createDefaultRoles();  // use in production
-        log.info(timer.printDuration("createDefaultRoles"));
+        log.info(timer.printDuration("create default roles"));
 
         // some dependencies
 
         createMySystem();  // use in production
-        log.info(timer.printDuration("createMySystem"));
+        log.info(timer.printDuration("create MySystem"));
 
         createUsers();
-        log.info(timer.printDuration("createUsers"));
+        log.info(timer.printDuration("creat users"));
 
         createRecipes();
         log.info(timer.printDuration("create recipes"));
+
+        createEmojis();
+        log.info(timer.printDuration("create emojis"));
 
         log.info(timer.printDuration("Done seeding dummy data"));
     }
@@ -130,6 +137,25 @@ public class Seeder
             List<Recipe> recipes = objectMapper.readValue(inputStream, new TypeReference<>() {});
             recipes.forEach(recipe -> recipe.setAuthor(user));
             recipes.forEach(recipeService::createRecipe);
+
+        } catch (Exception e) {
+            log.error(e.getLocalizedMessage(), e);
+        }
+    }
+
+    public void createEmojis() {
+        Resource emojiFile = new ClassPathResource("emojis.json");
+        try {
+            InputStream inputStream = emojiFile.getInputStream();
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            List<Emoji> emojies = objectMapper.readValue(inputStream, new TypeReference<>() {});
+            emojies.forEach(e -> {
+                e.setCharacter(
+                        new StringBuilder().appendCodePoint(Integer.parseInt(e.getCodePoint(), 16)).toString()
+                );
+                emojiService.save(e);
+            });
 
         } catch (Exception e) {
             log.error(e.getLocalizedMessage(), e);

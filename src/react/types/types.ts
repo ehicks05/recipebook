@@ -27,4 +27,13 @@ interface IUser {
   username: string;
 }
 
-export type { IRecipe, IIngredient, IDirection, IUser };
+interface IEmoji {
+  character: string;
+  codePoint: string;
+  group: string;
+  unicodeName: string;
+  slug: string;
+  subGroup: string;
+}
+
+export type { IRecipe, IIngredient, IDirection, IUser, IEmoji };
