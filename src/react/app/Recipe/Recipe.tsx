@@ -31,19 +31,18 @@ function Recipe({ recipes }: IProps) {
 
   if (!recipe) return <Hero title="Loading..." />;
 
+  const title = `${recipe.name} ${recipe.emoji}`;
+  const subtitle = `Cooking Time: ${recipe.cookingTime} - Difficulty: ${recipe.difficulty}`;
+
   return (
     <>
-      <Hero
-        title={`${recipe.name} ${recipe.emoji}`}
-        subtitle={`Cooking Time: ${recipe.cookingTime} - Difficulty: ${recipe.difficulty}`}
-      />
-
+      <Hero title={title} subtitle={subtitle} />
       <section className={"section"}>
         <div className={"container"}>
           <div className={"columns"}>
             <div id={"ingredients-column"} className={"column is-one-quarter"}>
               <div key={recipe.name}>
-                <h3 className="subtitle">Ingredients:</h3>
+                <h3 className="subtitle has-text-weight-bold">Ingredients</h3>
                 <Ingredients
                   ingredients={recipe.ingredients}
                   defaultServings={recipe.servings}
@@ -59,7 +58,7 @@ function Recipe({ recipes }: IProps) {
             </div>
             <div id={"directions-column"} className={"column"}>
               <div key={recipe.name}>
-                <h3 className={"subtitle"}>Directions:</h3>
+                <h3 className={"subtitle has-text-weight-bold"}>Directions</h3>
                 <Directions directions={recipe.directions} />
               </div>
             </div>
