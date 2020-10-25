@@ -1,6 +1,8 @@
 @import "../node_modules/bulma/bulma.sass";
 @import "../node_modules/bulma-prefers-dark/bulma-prefers-dark.sass";
 
+body {font-family: "Ubuntu", sans-serif}
+
 /* SCROLLBAR */
 /* width */
 ::-webkit-scrollbar {
