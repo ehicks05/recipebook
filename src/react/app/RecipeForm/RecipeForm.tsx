@@ -28,9 +28,9 @@ const initialRecipeState: IRecipe = {
 };
 
 function fitToContent(e: React.FormEvent<HTMLTextAreaElement>) {
-    const target = (e.target as HTMLElement);
-    target.style.height = "";
-    target.style.height = (target.scrollHeight + 2) + "px"
+  const target = e.target as HTMLElement;
+  target.style.height = "";
+  target.style.height = target.scrollHeight + 2 + "px";
 }
 
 function RecipeForm(props: IProps) {
@@ -164,161 +164,167 @@ function RecipeForm(props: IProps) {
   return (
     <>
       <Hero title="Create a Recipe" />
-      <div className='section'>
-      <div className="container">
-        <div className='columns'>
-          <div className='column'>
-            <div className="box">
-              <h2 className="subtitle">Recipe Details</h2>
+      <div className="section">
+        <div className="container">
+          <div className="columns">
+            <div className="column">
+              <div className="box">
+                <h2 className="subtitle">Recipe Details</h2>
 
-              <div className="field">
-                <label className="label">Name</label>
-                <div className="control">
-                  <input
+                <div className="field">
+                  <label className="label">Name</label>
+                  <div className="control">
+                    <input
                       className="input"
                       type="text"
                       name="name"
                       placeholder="Name"
                       value={name}
                       onChange={onChange}
-                  />
-                </div>
-              </div>
-
-              <div className="field">
-                <label className="label">Description</label>
-                <div className="control">
-                <textarea
-                    className="textarea"
-                    name="description"
-                    placeholder="Description"
-                    rows={1}
-                    value={description}
-                    onInput={fitToContent}
-                    onChange={onChange}
-                />
-                </div>
-              </div>
-
-                <div className='columns is-mobile is-variable is-1'>
-                    <div className='column'>
-                        <div className="field">
-                            <label className="label">Difficulty</label>
-                            <div className="control">
-                                <div className="select">
-                                    <select
-                                        name="difficulty"
-                                        value={difficulty}
-                                        onChange={onChange}
-                                    >
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='column'>
-                        <div className="field">
-                            <label className="label">Cooking Time</label>
-
-                            <div className="control">
-                                <div className="field has-addons">
-                                    <div className="control is-expanded">
-                                        <input
-                                            className="input is-fullwidth"
-                                            type="number"
-                                            step="1"
-                                            min="1"
-                                            name="cookingTime"
-                                            placeholder="1"
-                                            value={cookingTime}
-                                            onChange={onChange}
-                                        />
-                                    </div>
-                                    <div className="control">
-                                        <button className="button" disabled>
-                                            min
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='column'>
-                        <div className="field">
-                            <label className="label">Servings</label>
-                            <div className="control">
-                                <input
-                                    className="input"
-                                    type="number"
-                                    step="1"
-                                    min="1"
-                                    name="servings"
-                                    placeholder="1"
-                                    value={servings}
-                                    onChange={onChange}
-                                />
-                            </div>
-                        </div>
-                    </div>
+                    />
+                  </div>
                 </div>
 
-              <div className="field">
-                <label className="label">Emoji</label>
-                <div className="control">
-                  <EmojiSelector updateEmoji={updateEmoji} />
+                <div className="field">
+                  <label className="label">Description</label>
+                  <div className="control">
+                    <textarea
+                      className="textarea"
+                      name="description"
+                      placeholder="Description"
+                      rows={1}
+                      value={description}
+                      onInput={fitToContent}
+                      onChange={onChange}
+                    />
+                  </div>
+                </div>
+
+                <div className="columns is-mobile is-variable is-1">
+                  <div className="column">
+                    <div className="field">
+                      <label className="label">Difficulty</label>
+                      <div className="control">
+                        <div className="select">
+                          <select
+                            name="difficulty"
+                            value={difficulty}
+                            onChange={onChange}
+                          >
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="column">
+                    <div className="field">
+                      <label className="label">Cooking Time</label>
+
+                      <div className="control">
+                        <div className="field has-addons">
+                          <div className="control is-expanded">
+                            <input
+                              className="input is-fullwidth"
+                              type="number"
+                              step="1"
+                              min="1"
+                              name="cookingTime"
+                              placeholder="1"
+                              value={cookingTime}
+                              onChange={onChange}
+                            />
+                          </div>
+                          <div className="control">
+                            <button className="button" disabled>
+                              min
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="column">
+                    <div className="field">
+                      <label className="label">Servings</label>
+                      <div className="control">
+                        <input
+                          className="input"
+                          type="number"
+                          step="1"
+                          min="1"
+                          name="servings"
+                          placeholder="1"
+                          value={servings}
+                          onChange={onChange}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="field">
+                  <label className="label">Emoji</label>
+                  <div className="control">
+                    <EmojiSelector updateEmoji={updateEmoji} />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className='column'>
-            <div className="box">
-              <h2 className="subtitle">Ingredients</h2>
-              {ingredients.map((ingredient, i) => {
-                return (
+            <div className="column">
+              <div className="box">
+                <h2 className="subtitle">Ingredients</h2>
+                {ingredients.map((ingredient, i) => {
+                  return (
                     <IngredientForm
-                        ingredient={ingredient}
-                        key={i}
-                        i={i}
-                        updateIngredient={updateIngredient}
-                        removeIngredient={removeIngredient}
+                      ingredient={ingredient}
+                      key={i}
+                      i={i}
+                      updateIngredient={updateIngredient}
+                      removeIngredient={removeIngredient}
                     />
-                );
-              })}
+                  );
+                })}
 
-              <button className="button is-success" onClick={addBlankIngredient}>
-                Add Ingredient
-              </button>
-            </div>
+                <button
+                  className="button is-success"
+                  onClick={addBlankIngredient}
+                >
+                  Add Ingredient
+                </button>
+              </div>
 
-            <div className="box">
-              <h2 className="subtitle">Directions</h2>
-              {directions.map((direction, i) => {
-                return (
+              <div className="box">
+                <h2 className="subtitle">Directions</h2>
+                {directions.map((direction, i) => {
+                  return (
                     <DirectionForm
-                        direction={direction}
-                        i={i}
-                        key={direction.index}
-                        updateDirection={updateDirection}
-                        removeDirection={removeDirection}
+                      direction={direction}
+                      i={i}
+                      key={direction.index}
+                      updateDirection={updateDirection}
+                      removeDirection={removeDirection}
                     />
-                );
-              })}
+                  );
+                })}
 
-              <button className="button is-success" onClick={addBlankDirection}>
-                Add Direction
-              </button>
+                <button
+                  className="button is-success"
+                  onClick={addBlankDirection}
+                >
+                  Add Direction
+                </button>
+              </div>
             </div>
           </div>
-        </div>
           <button className="button is-success" onClick={createRecipe}>
-              Create Recipe
+            Create Recipe
           </button>
-      </div>
+        </div>
       </div>
     </>
   );
@@ -342,7 +348,7 @@ function IngredientForm(props: IIngredientFormProps) {
   const removeIngredient = props.removeIngredient;
 
   return (
-  <div className="field is-grouped">
+    <div className="field is-grouped">
       <div className="control is-expanded">
         <input
           className="input is-fullwidth"
@@ -356,7 +362,7 @@ function IngredientForm(props: IIngredientFormProps) {
       <div className="control">
         <input
           className="input"
-          style={{width: '6em'}}
+          style={{ width: "6em" }}
           type="number"
           maxLength={5}
           min="1"
@@ -410,24 +416,19 @@ function DirectionForm(props: IDirectionFormProps) {
 
   return (
     <div className="field is-grouped" key={i}>
-        <div className="control">
-            <input
-                type="button"
-                readOnly
-                className="input"
-                value={`${i + 1}.`}
-            />
-        </div>
-        <div className="control is-expanded">
-            <textarea
-                className="textarea"
-                name={`direction_text_${i}`}
-                placeholder="Description"
-                rows={1}
-                value={direction.text}
-                onInput={fitToContent}
-                onChange={updateDirection}
-            />
+      <div className="control">
+        <input type="button" readOnly className="input" value={`${i + 1}.`} />
+      </div>
+      <div className="control is-expanded">
+        <textarea
+          className="textarea"
+          name={`direction_text_${i}`}
+          placeholder="Description"
+          rows={1}
+          value={direction.text}
+          onInput={fitToContent}
+          onChange={updateDirection}
+        />
       </div>
 
       <div className="control">
