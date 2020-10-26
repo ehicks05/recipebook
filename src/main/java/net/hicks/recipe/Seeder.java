@@ -135,6 +135,7 @@ public class Seeder
 
             ObjectMapper objectMapper = new ObjectMapper();
             List<Recipe> recipes = objectMapper.readValue(inputStream, new TypeReference<>() {});
+            recipes.forEach(recipe -> recipe.setId(null));
             recipes.forEach(recipe -> recipe.setAuthor(user));
             recipes.forEach(recipeService::createRecipe);
 
