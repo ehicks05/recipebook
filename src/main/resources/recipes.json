@@ -26,33 +26,6 @@
 		"emoji": "\uD83E\uDD58"
 	},
 	{
-		"id": 2,
-		"name": "Drew's Chinese Chicken",
-		"difficulty": "2",
-		"ingredients": [
-			{"quantity": "2", "unit": "lb", "name": "Chicken"},
-			{"quantity": "2", "unit": "oz", "name": "Chinese Seasoning Medley"}
-		],
-		"cookingTime": "25",
-		"servings": "4",
-		"directions": [{"text": "coming soon"}],
-		"emoji": "\uD83C\uDF57"
-	},
-	{
-		"id": 3,
-		"name": "Jessica's Delicious Comfort Food",
-		"difficulty": "1",
-		"ingredients": [
-			{"quantity": "8", "unit": "", "name": "Hot Dogs"},
-			{"quantity": "1", "unit": "lb", "name": "Collard Greens"},
-			{"quantity": "1", "unit": "lb", "name": "Chili Beans"}
-		],
-		"cookingTime": "10",
-		"servings": "4",
-		"directions": [{"text": "coming soon"}],
-		"emoji": "\uD83C\uDF2D"
-	},
-	{
 		"id": 4,
 		"name": "Chicken & Vegetable Udon Soup",
 		"difficulty": "2",
