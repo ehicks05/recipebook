@@ -54,13 +54,32 @@ function Timer({ minutes: inputMinutes }: IProps) {
     return min + ":" + (sec < 10 ? `0${sec}` : sec);
   }
 
+  function handleSetTime(e: React.ChangeEvent<HTMLInputElement>) {
+    if (expired) {
+      return;
+    }
+    const value = e.target.value;
+    if (value.indexOf(":") === -1) return;
+    const [minutes, seconds] = value.split(":").map((it) => Number(it));
+    if (Number.isNaN(minutes) || Number.isNaN(seconds)) return;
+    const newSeconds = Math.min(minutes * 60 + seconds, 999 * 60 + 59);
+    setSeconds(newSeconds);
+  }
+
   return (
     <div>
       <div className="field has-addons">
         <p className="control">
-          <button className={`button is-small ${expired ? "is-danger" : ""}`}>
-            {displayTime()}
-          </button>
+          <input
+            type="text"
+            className={`input is-small has-text-centered ${
+              expired ? "is-danger" : ""
+            }`}
+            size={Math.max(displayTime().length - 4, 1)}
+            value={displayTime()}
+            style={{ zIndex: 2 }}
+            onChange={handleSetTime}
+          />
         </p>
         <p className="control is-expanded">
           {!expired && (
