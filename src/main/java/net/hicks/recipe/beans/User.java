@@ -134,17 +134,12 @@ public class User extends AuditClass implements UserDetails
         return email;
     }
 
-    public void setEmail(String username)
+    public void setEmail(String email)
     {
-        this.email = username;
+        this.email = email;
     }
 
-    @Override
     public String getUsername() {
-        return email;
-    }
-
-    public String getDisplayUsername() {
         return username;
     }
 

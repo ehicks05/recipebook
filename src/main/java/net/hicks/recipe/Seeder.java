@@ -128,7 +128,6 @@ public class Seeder
     }
 
     public void createRecipes() {
-        User user = userRepository.findAll().get(0);
         Resource recipesFile = new ClassPathResource("recipes.json");
         try {
             InputStream inputStream = recipesFile.getInputStream();
@@ -136,7 +135,6 @@ public class Seeder
             ObjectMapper objectMapper = new ObjectMapper();
             List<Recipe> recipes = objectMapper.readValue(inputStream, new TypeReference<>() {});
             recipes.forEach(recipe -> recipe.setId(null));
-            recipes.forEach(recipe -> recipe.setAuthor(user));
             recipes.forEach(recipeService::createRecipe);
 
         } catch (Exception e) {

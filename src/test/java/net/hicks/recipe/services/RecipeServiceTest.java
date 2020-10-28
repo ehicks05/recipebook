@@ -3,9 +3,11 @@ package net.hicks.recipe.services;
 
 import net.hicks.recipe.beans.Recipe;
 import net.hicks.recipe.beans.RecipeBookException;
+import net.hicks.recipe.beans.User;
 import net.hicks.recipe.repos.DirectionRepository;
 import net.hicks.recipe.repos.IngredientRepository;
 import net.hicks.recipe.repos.RecipeRepository;
+import net.hicks.recipe.repos.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -14,6 +16,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 import static net.hicks.recipe.utils.TestUtils.*;
@@ -29,6 +33,8 @@ public class RecipeServiceTest {
     private DirectionRepository directionRepository;
     @Mock
     private IngredientRepository ingredientRepository;
+    @Mock
+    private UserRepository userRepository;
 
     @InjectMocks
     private RecipeService recipeService;
@@ -39,15 +45,21 @@ public class RecipeServiceTest {
         List<Recipe> allRecipes = new ArrayList<>();
         allRecipes.add(getTacoRecipe());
 
+        User anon = new User("", "anonymouse", "", "", "", Collections.emptySet());
+
         when(recipeRepository.findByOrderByIdDesc())
                 .thenReturn(allRecipes);
+        when(userRepository.getUserOrSystemUser(0L))
+                .thenReturn(anon);
 
         List<Recipe> recipes = recipeService.getAllRecipes();
 
         verify(recipeRepository, times(1)).findByOrderByIdDesc();
+        verify(userRepository, times(1)).getUserOrSystemUser(0L);
         assertThat(recipes).isNotNull();
         assertThat(recipes.size()).isGreaterThan(0);
         verifyNoMoreInteractions(recipeRepository);
+        verifyNoMoreInteractions(userRepository);
     }
 
     @Test
