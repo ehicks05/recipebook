@@ -1,6 +1,7 @@
 import React from "react";
 import { Ingredient } from ".";
 import { IIngredient } from "../../../types/types";
+import { FaMinus, FaPlus } from "react-icons/all";
 
 interface IProps {
   ingredients: IIngredient[];
@@ -19,21 +20,32 @@ function Ingredients({
 }: IProps) {
   return (
     <div className={"content"}>
-      <div style={{ marginBottom: "8px" }}>
-        <span className="button is-small" aria-readonly={true}>
-          Servings: {desiredServings}
-        </span>
-        <button
-          className="button is-small"
-          onClick={decrementServings}
-          disabled={desiredServings === 1}
-        >
-          -
-        </button>
-        <button className="button is-small" onClick={incrementServings}>
-          +
-        </button>
-      </div>
+      <nav className="level is-mobile mb-2">
+        <div className="level-left">
+          <span className="level-item">
+            <span
+              className="mr-2"
+              title={`default servings: ${defaultServings}`}
+            >
+              Servings: {desiredServings}
+            </span>
+            <button
+              className="button is-small"
+              onClick={decrementServings}
+              disabled={desiredServings === 1}
+            >
+              <span className="icon">
+                <FaMinus />
+              </span>
+            </button>
+            <button className="button is-small" onClick={incrementServings}>
+              <span className="icon">
+                <FaPlus />
+              </span>
+            </button>
+          </span>
+        </div>
+      </nav>
 
       {ingredients.map((ingredient) => (
         <Ingredient

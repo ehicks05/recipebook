@@ -39,7 +39,7 @@ function Recipe({ recipes }: IProps) {
       <Hero title={title} subtitle={subtitle} />
       <section className={"section"}>
         <div className={"container"}>
-          <div className={"columns"}>
+          <div className="columns is-centered">
             <div id={"ingredients-column"} className={"column is-one-quarter"}>
               <div key={recipe.name}>
                 <h3 className="subtitle has-text-weight-bold">Ingredients</h3>
@@ -56,7 +56,11 @@ function Recipe({ recipes }: IProps) {
                 />
               </div>
             </div>
-            <div id={"directions-column"} className={"column"}>
+            <div
+              id={"directions-column"}
+              className={"column"}
+              style={{ maxWidth: "40em" }}
+            >
               <div key={recipe.name}>
                 <h3 className={"subtitle has-text-weight-bold"}>Directions</h3>
                 <Directions directions={recipe.directions} />
