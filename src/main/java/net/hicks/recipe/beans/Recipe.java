@@ -3,13 +3,12 @@ package net.hicks.recipe.beans;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Table
-public class Recipe extends AuditClass implements Serializable
+public class Recipe extends AuditClass
 {
     @Id
     @GeneratedValue
@@ -23,7 +22,7 @@ public class Recipe extends AuditClass implements Serializable
     private int servings;
     private String course;
 
-    @ManyToOne
+    @Transient
     private User author;
 
     @ManyToMany(cascade = CascadeType.ALL)

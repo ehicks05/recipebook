@@ -29,14 +29,13 @@ public class RecipeController
     }
 
     @PostMapping
-    public Recipe createRecipe(@AuthenticationPrincipal User user, @RequestBody Recipe recipe) {
-        recipe.setAuthor(user);
+    public Recipe createRecipe(@RequestBody Recipe recipe) {
         return recipeService.createRecipe(recipe);
     }
 
     @PutMapping("/{recipeId}")
-    public void updateRecipe(@PathVariable int recipeId, @RequestBody Recipe recipe) {
-        recipe.setId((long) recipeId);
+    public void updateRecipe(@PathVariable long recipeId, @RequestBody Recipe recipe) {
+        recipe.setId(recipeId);
         recipeService.updateRecipe(recipe);
     }
 }

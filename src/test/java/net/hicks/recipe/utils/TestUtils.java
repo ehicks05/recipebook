@@ -66,6 +66,7 @@ public class TestUtils {
         taco.setEmoji("");
         taco.setDirections(getTacoDirections());
         taco.setIngredients(getTacoIngredients());
+        taco.setCreatedBy(0L);
 
         return taco;
     }

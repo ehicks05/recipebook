@@ -46,8 +46,8 @@ function LoginForm(props: IProps) {
                 type="email"
                 placeholder="Email"
                 autoFocus
-                id="username"
-                name="username"
+                id="email"
+                name="email"
               />
             </div>
           </div>

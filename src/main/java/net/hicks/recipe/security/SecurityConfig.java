@@ -47,6 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 //                    .antMatchers("/**").hasRole("USER")
                     .and()
                     .formLogin()
+                    .usernameParameter("email")
                     .and()
                     .exceptionHandling()
                         .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
