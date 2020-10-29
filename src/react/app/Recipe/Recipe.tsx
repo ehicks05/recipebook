@@ -36,7 +36,11 @@ function Recipe({ recipes }: IProps) {
 
   return (
     <>
-      <Hero title={title} subtitle={subtitle} />
+      <Hero title={title} subtitle={subtitle}>
+        <p>
+          by <b>{recipe.author.username}</b>
+        </p>
+      </Hero>
       <section className={"section"}>
         <div className={"container"}>
           <div className="columns is-centered">
