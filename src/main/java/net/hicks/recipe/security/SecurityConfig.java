@@ -2,6 +2,7 @@ package net.hicks.recipe.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -44,6 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                     .authorizeRequests()
                     .antMatchers("/", "/login", "/recipe/**", "/register", "/images/**", "/js/**", "/styles/**", "/robots.txt", "/actuator/**", "/favicon.ico").permitAll()
                     .antMatchers("/admin/**", "/api/**").hasRole("ADMIN")
+                    .antMatchers(HttpMethod.OPTIONS, "/login").permitAll()
 //                    .antMatchers("/**").hasRole("USER")
                     .and()
                     .formLogin()
