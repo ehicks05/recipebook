@@ -42,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
         protected void configure(HttpSecurity http) throws Exception {
             http    .cors().and()
                     .authorizeRequests()
-                    .antMatchers("/", "login", "/recipe/**", "/register", "/images/**", "/js/**", "/styles/**", "/robots.txt", "/actuator/**", "/favicon.ico").permitAll()
+                    .antMatchers("/", "/login", "/recipe/**", "/register", "/images/**", "/js/**", "/styles/**", "/robots.txt", "/actuator/**", "/favicon.ico").permitAll()
                     .antMatchers("/admin/**", "/api/**").hasRole("ADMIN")
 //                    .antMatchers("/**").hasRole("USER")
                     .and()
