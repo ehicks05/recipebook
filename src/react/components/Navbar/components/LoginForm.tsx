@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import authFetch from "../../../authFetch";
 import { IUser } from "../../../types/types";
+import apiUrl from "../../../apiUrl";
 
 interface IProps {
   user: IUser | undefined;
@@ -13,7 +14,7 @@ function LoginForm(props: IProps) {
   const [failureMessage, setFailureMessage] = useState<string>("");
 
   function fetchUser() {
-    authFetch("/user").then((json) => {
+    authFetch(apiUrl + "/user").then((json) => {
       if (json) props.setUser(json);
     });
   }
@@ -25,7 +26,7 @@ function LoginForm(props: IProps) {
     setFailureMessage("");
 
     // @ts-ignore:
-    fetch("/login", {
+    fetch(apiUrl + "/login", {
       method: "POST",
       body: new URLSearchParams(formData as any),
     }).then((response) => {
