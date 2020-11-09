@@ -118,7 +118,7 @@ jacocoTestCoverageVerification {
                     'net/hicks/recipe/security/SecurityConfig$*.*',
                     'net/hicks/recipe/Seeder.class',
                     'net/hicks/recipe/Seeder$*.*',
-                    'net/hicks/recipe/MvcConfig.class',
+                    'net/hicks/recipe/config/**',
                     'net/hicks/recipe/StartupListener.class',
                     'net/hicks/recipe/Application.class'
             ])
