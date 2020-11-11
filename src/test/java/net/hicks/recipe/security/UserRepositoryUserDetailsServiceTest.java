@@ -42,7 +42,7 @@ public class UserRepositoryUserDetailsServiceTest {
 
         assertThat(foundUser).isEqualTo(user);
 
-        verify(userRepository, times(2)).findByEmail(anyString());
+        verify(userRepository, times(1)).findByEmail(anyString());
         verifyNoMoreInteractions(userRepository);
     }
 
