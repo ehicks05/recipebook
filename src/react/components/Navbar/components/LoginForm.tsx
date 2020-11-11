@@ -20,6 +20,7 @@ function LoginForm(props: IProps) {
   }
 
   function login(e: FormEvent) {
+    e.stopPropagation();
     e.preventDefault();
     const formElement = document.getElementById("loginForm") as HTMLFormElement;
     const formData = new FormData(formElement);

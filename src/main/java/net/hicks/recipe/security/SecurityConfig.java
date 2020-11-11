@@ -3,7 +3,6 @@ package net.hicks.recipe.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -54,6 +53,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                     .and()
                     .formLogin()
                     .usernameParameter("email")
+                    .successHandler((request, response, authentication) -> {
+                        //do nothing
+                    })
                     .and()
                     .exceptionHandling()
                         .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
