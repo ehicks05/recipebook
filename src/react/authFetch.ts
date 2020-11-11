@@ -13,7 +13,12 @@ function authFetch(input: Request | string, init?: RequestInit | undefined) {
   return fetch(input, init)
     .then((response) => {
       if (!response.ok) throw new Error(buildErrorMessage(response));
-      return response.json(); // todo: if we ever want something other than json back, just return the response?
+      try {
+        return response.json();
+      } catch (e) {
+        console.log(e);
+        return response;
+      }
     })
     .catch((error) => {
       console.log(error);
