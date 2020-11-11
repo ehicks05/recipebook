@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import authFetch from "../../../authFetch";
 import { IUser } from "../../../types/types";
 import apiUrl from "../../../apiUrl";
@@ -19,7 +19,8 @@ function LoginForm(props: IProps) {
     });
   }
 
-  function login() {
+  function login(e: FormEvent) {
+    e.preventDefault();
     const formElement = document.getElementById("loginForm") as HTMLFormElement;
     const formData = new FormData(formElement);
 
@@ -39,7 +40,7 @@ function LoginForm(props: IProps) {
   return (
     <div style={{ minWidth: "320px" }}>
       {!props.user && (
-        <form method="POST" action="/" id="loginForm">
+        <form method="POST" action="/" id="loginForm" onSubmit={login}>
           <div className="field">
             <div className="control">
               <input
@@ -65,12 +66,12 @@ function LoginForm(props: IProps) {
               />
             </div>
           </div>
-          <input
-            type="button"
-            value="Log in"
+          <button
+            type="submit"
             className="button is-block is-primary is-fullwidth"
-            onClick={login}
-          />
+          >
+            Log in
+          </button>
         </form>
       )}
 
