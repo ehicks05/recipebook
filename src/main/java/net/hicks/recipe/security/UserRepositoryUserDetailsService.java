@@ -3,6 +3,8 @@ package net.hicks.recipe.security;
 import net.hicks.recipe.beans.RecipeBookException;
 import net.hicks.recipe.beans.User;
 import net.hicks.recipe.repos.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -14,6 +16,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserRepositoryUserDetailsService implements UserDetailsService
 {
+    private static final Logger log = LoggerFactory.getLogger(UserRepositoryUserDetailsService.class);
+
     final private UserRepository userRepo;
     final private PasswordEncoder passwordEncoder;
 
@@ -26,10 +30,14 @@ public class UserRepositoryUserDetailsService implements UserDetailsService
     @Override
     public UserDetails loadUserByUsername(String usernameEmail) throws UsernameNotFoundException
     {
-        if (userRepo.findByEmail(usernameEmail) != null) {
-            return userRepo.findByEmail(usernameEmail);
+        log.info("called loadUserByUsername");
+        User user = userRepo.findByEmail(usernameEmail);
+        if (user != null) {
+            log.info("found user " + user.getEmail());
+            return user;
         }
-        
+
+        log.info("unable to find user with email " + usernameEmail);
         throw new UsernameNotFoundException("User '" + usernameEmail + "' not found");
     }
 
