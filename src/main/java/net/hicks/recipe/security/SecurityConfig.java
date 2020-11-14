@@ -50,6 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                     .authorizeRequests()
                     .antMatchers("/", "/login/**", "/recipe/**", "/register", "/images/**", "/js/**", "/styles/**", "/robots.txt", "/actuator/**", "/favicon.ico").permitAll()
                     .antMatchers("/admin/**", "/api/**").hasRole("ADMIN")
+                    .antMatchers("/**").hasRole("USER")
                     .and()
                     .formLogin()
                     .usernameParameter("email")
@@ -82,22 +83,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
         return source;
     }
 
-    @Configuration
-    @Order(1)
-    public static class ApiSecurityConfig extends WebSecurityConfigurerAdapter
-    {
-        @Override
-        protected void configure(HttpSecurity http) throws Exception
-        {
-            http    .cors().and()
-                    .csrf().disable()
-                    .antMatcher("/actuator/**")
-                    .authorizeRequests(authorize -> authorize
-                            .anyRequest().hasRole("ADMIN")
-                    )
-                    .httpBasic(withDefaults());
-
-            http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        }
-    }
+//    @Configuration
+//    @Order(1)
+//    public static class ApiSecurityConfig extends WebSecurityConfigurerAdapter
+//    {
+//        @Override
+//        protected void configure(HttpSecurity http) throws Exception
+//        {
+//            http    .cors().and()
+//                    .csrf().disable()
+//                    .antMatcher("/actuator/**")
+//                    .authorizeRequests(authorize -> authorize
+//                            .anyRequest().hasRole("ADMIN")
+//                    )
+//                    .httpBasic(withDefaults());
+//
+//            http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//        }
+//    }
 }
