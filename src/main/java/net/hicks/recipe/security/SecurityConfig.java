@@ -43,6 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         @Override
         protected void configure(HttpSecurity http) throws Exception {
             http
+                    .cors(withDefaults())
                     .authorizeRequests()
                     .antMatchers("/", "/login/**", "/recipe/**", "/register", "/images/**", "/js/**", "/styles/**", "/robots.txt", "/actuator/**", "/favicon.ico").permitAll()
                     .antMatchers("/admin/**", "/api/**").hasRole("ADMIN")
