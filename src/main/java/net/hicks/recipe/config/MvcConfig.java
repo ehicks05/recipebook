@@ -19,15 +19,14 @@ public class MvcConfig implements WebMvcConfigurer
         registrar.registerFormatters(registry);
     }
 
-   @Override
-   public void addCorsMappings(CorsRegistry registry) {
-       registry
-               .addMapping("/**")
-               .allowedOrigins("*")
-               .allowedMethods("*")
-               .allowedHeaders("*")
-               .allowCredentials(true);
-   }
+//   @Override
+//   public void addCorsMappings(CorsRegistry registry) {
+//       registry
+//               .addMapping("/**")
+//               .allowedOrigins("*")
+//               .allowedMethods("*")
+//               .allowedHeaders("*");
+//   }
 }
 
 
