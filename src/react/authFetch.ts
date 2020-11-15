@@ -13,7 +13,7 @@ function authFetch(input: Request | string, init?: RequestInit | undefined) {
   console.log(input);
   console.log(init);
 
-  return fetch(input, init)
+  return fetch(input, { ...init, credentials: "include" })
     .then((response) => {
       if (!response.ok) throw new Error(buildErrorMessage(response));
       return response.json();
