@@ -28,12 +28,12 @@ function LoginForm(props: IProps) {
     setFailureMessage("");
 
     // @ts-ignore:
-    fetch(apiUrl + "/login", {
+    authFetch(apiUrl + "/login", {
       method: "POST",
       body: new URLSearchParams(formData as any),
     }).then((response) => {
-      if (response.status !== 200)
-        setFailureMessage("Invalid username and/or password");
+      // if (response.status !== 200)
+      //   setFailureMessage("Invalid username and/or password");
       // fetchUser();
     });
   }
