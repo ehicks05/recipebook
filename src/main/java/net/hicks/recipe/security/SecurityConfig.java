@@ -51,6 +51,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .and()
                     .formLogin()
                     .usernameParameter("email")
+                    .successHandler((request, response, authentication) -> {
+                        //do nothing
+                    })
                     .and()
                     .exceptionHandling()
                     .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
