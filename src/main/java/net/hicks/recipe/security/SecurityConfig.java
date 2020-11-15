@@ -20,20 +20,18 @@ import java.util.List;
 import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
-public class SecurityConfig extends WebSecurityConfigurerAdapter
-{
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserRepositoryUserDetailsService userDetailsService;
     private final PasswordEncoder passwordEncoder;
 
-    public SecurityConfig(UserRepositoryUserDetailsService userDetailsService, PasswordEncoder passwordEncoder)
-    {
+    public SecurityConfig(UserRepositoryUserDetailsService userDetailsService, PasswordEncoder passwordEncoder) {
         this.userDetailsService = userDetailsService;
         this.passwordEncoder = passwordEncoder;
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception
-    {
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .userDetailsService(userDetailsService)
                 .passwordEncoder(passwordEncoder);
@@ -41,11 +39,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 
     @Configuration
     @Order(99)
-    public static class WebSecurityConfig extends WebSecurityConfigurerAdapter
-    {
+    public static class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         @Override
         protected void configure(HttpSecurity http) throws Exception {
-            http    .cors().and()
+            http
                     .authorizeRequests()
                     .antMatchers("/", "/login/**", "/recipe/**", "/register", "/images/**", "/js/**", "/styles/**", "/robots.txt", "/actuator/**", "/favicon.ico").permitAll()
                     .antMatchers("/admin/**", "/api/**").hasRole("ADMIN")
@@ -53,16 +50,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                     .and()
                     .formLogin()
                     .usernameParameter("email")
-                    .successHandler((request, response, authentication) -> {
-//                        do nothing
-                    })
                     .and()
                     .exceptionHandling()
-                        .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
+                    .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
                     .and()
                     .logout()
-                    .and()
-                    .httpBasic()
                     .and().csrf().disable();
         }
     }
@@ -103,7 +95,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 //        }
 //    }
 }
-
 
 
 //        2020-11-14 13:36:04.448 DEBUG 18060 --- [nio-8084-exec-5] o.s.security.web.FilterChainProxy        : /login at position 1 of 12 in additional filter chain; firing Filter: 'WebAsyncManagerIntegrationFilter'
