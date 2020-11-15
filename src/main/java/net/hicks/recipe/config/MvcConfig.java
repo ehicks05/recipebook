@@ -25,7 +25,7 @@ public class MvcConfig implements WebMvcConfigurer
                .addMapping("/**")
                .allowedOrigins("*")
                .allowedMethods("*")
-               .allowedHeaders("*")
+//               .allowedHeaders("*")
                .allowCredentials(true);
    }
 }
