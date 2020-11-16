@@ -11,6 +11,7 @@ logging:
     org:
       springframework:
         security: DEBUG
+    web: DEBUG
 management:
   endpoint:
     health:
@@ -52,7 +53,7 @@ spring:
   servlet:
     multipart:
       location: ${java.io.tmpdir}
-  session:
-    jdbc:
-      initialize-schema: always
-    store-type: jdbc
+#  session:
+#    jdbc:
+#      initialize-schema: always
+#    store-type: jdbc
