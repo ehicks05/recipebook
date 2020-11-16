@@ -31,6 +31,9 @@ server:
     session:
       persistent: true
       timeout: 240m
+      cookie:
+        secure: false
+        http-only: false
 spring:
   application:
     name: RecipeBook
