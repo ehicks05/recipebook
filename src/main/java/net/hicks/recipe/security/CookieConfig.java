@@ -26,6 +26,7 @@ public class CookieConfig
 
         serializer.setSameSite("none");
         serializer.setUseSecureCookie(true);
+        serializer.setUseHttpOnlyCookie(false);
         return serializer;
     }
 }
