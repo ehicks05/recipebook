@@ -66,7 +66,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         final CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("https://hicks-recipes.netlify.app", "http://localhost:8084/", "https://hicks-recipe-book.herokuapp.com/", "https://hicks-recipes.netlify.app"));
+        configuration.setAllowedOrigins(List.of("https://hicks-recipes.netlify.app",
+                "http://localhost:8084/", "https://hicks-recipe-book.herokuapp.com/",
+                "https://hicks-recipes.netlify.app", "http://localhost:3000/"));
         configuration.setAllowedMethods(List.of("HEAD",
                 "GET", "POST", "PUT", "DELETE", "PATCH"));
         // setAllowCredentials(true) is important, otherwise:
