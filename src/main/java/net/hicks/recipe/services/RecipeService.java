@@ -56,4 +56,8 @@ public class RecipeService {
     public Recipe createRecipe(Recipe recipe) {
         return recipeRepository.save(recipe);
     }
+
+    public List<Recipe> createRecipes(List<Recipe> recipes) {
+        return recipeRepository.saveAll(recipes);
+    }
 }

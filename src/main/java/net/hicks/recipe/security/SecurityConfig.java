@@ -45,12 +45,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             http
                     .cors(withDefaults())
                     .authorizeRequests()
-                    .antMatchers("/", "/login/**", "/recipe/**", "/register", "/images/**", "/js/**", "/styles/**", "/robots.txt", "/actuator/**", "/favicon.ico").permitAll()
+                    .antMatchers("/", "/login/**", "/recipe/**", "/register").permitAll()
                     .antMatchers("/admin/**", "/api/**").hasRole("ADMIN")
                     .antMatchers("/user").hasRole("USER")
                     .and()
                     .formLogin()
-                    .usernameParameter("email")
                     .successHandler((request, response, authentication) -> {
 //                        do nothing
                     })

@@ -135,8 +135,7 @@ public class Seeder
             ObjectMapper objectMapper = new ObjectMapper();
             List<Recipe> recipes = objectMapper.readValue(inputStream, new TypeReference<>() {});
             recipes.forEach(recipe -> recipe.setId(null));
-            recipes.forEach(recipeService::createRecipe);
-
+            recipeService.createRecipes(recipes);
         } catch (Exception e) {
             log.error(e.getLocalizedMessage(), e);
         }
@@ -186,7 +185,7 @@ public class Seeder
         {
             String password = passwordEncoder.encoder().encode(userData.password);
 
-            User user = new User(userData.email, userData.username, password,
+            User user = new User(userData.username, userData.displayName, password,
                     userData.first, userData.last, new HashSet<>());
 
             user.getRoles().add(userRole);
@@ -202,18 +201,18 @@ public class Seeder
 
     static class UserData
     {
-        final String email;
         final String username;
+        final String displayName;
         final String password;
         final String first;
         final String last;
         final boolean enabled;
         final boolean admin;
 
-        public UserData(String email, String username, String password, String first, String last, boolean enabled, boolean admin)
+        public UserData(String username, String displayName, String password, String first, String last, boolean enabled, boolean admin)
         {
-            this.email = email;
             this.username = username;
+            this.displayName = displayName;
             this.password = password;
             this.first = first;
             this.last = last;

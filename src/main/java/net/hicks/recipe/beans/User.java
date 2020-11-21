@@ -20,9 +20,9 @@ public class User extends AuditClass implements UserDetails
     private Long id;
 
     @Column(nullable=false, unique = true)
-    private String email = "";
-    @Column(unique = true)
     private String username = "";
+    @Column(unique = true)
+    private String displayName = "";
     @Column(nullable=false)
     @JsonIgnore
     private String password = "";
@@ -41,10 +41,10 @@ public class User extends AuditClass implements UserDetails
 
     public User() {}
 
-    public User(String email, String username, String password, String firstName, String lastName, Set<Role> roles)
+    public User(String username, String displayName, String password, String firstName, String lastName, Set<Role> roles)
     {
-        this.email = email;
         this.username = username;
+        this.displayName = displayName;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -129,22 +129,20 @@ public class User extends AuditClass implements UserDetails
         this.roles = roles;
     }
 
-    public String getEmail()
-    {
-        return email;
-    }
-
-    public void setEmail(String email)
-    {
-        this.email = email;
-    }
-
     public String getUsername() {
         return username;
     }
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
     public String getPassword()
