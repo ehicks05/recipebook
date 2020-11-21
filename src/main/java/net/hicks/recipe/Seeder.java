@@ -105,7 +105,7 @@ public class Seeder
         log.info(timer.printDuration("create MySystem"));
 
         createUsers();
-        log.info(timer.printDuration("creat users"));
+        log.info(timer.printDuration("create users"));
 
         createRecipes();
         log.info(timer.printDuration("create recipes"));

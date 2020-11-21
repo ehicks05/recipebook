@@ -13,7 +13,7 @@ function LoginForm(props: IProps) {
   const [failureMessage, setFailureMessage] = useState<string>("");
 
   function fetchUser() {
-    authFetch("/user").then((json) => {
+    authFetch("/me").then((json) => {
       if (json) props.setUser(json);
     });
   }
