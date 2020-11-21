@@ -25,7 +25,7 @@ public class CookieConfig
         if (dev) return serializer;
 
         serializer.setSameSite("none");
-        serializer.setUseSecureCookie(false);
+        serializer.setUseSecureCookie(true);
         serializer.setUseHttpOnlyCookie(false);
         return serializer;
     }
