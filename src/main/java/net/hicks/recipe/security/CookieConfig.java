@@ -26,7 +26,7 @@ public class CookieConfig
 
         serializer.setSameSite("none");
         serializer.setUseSecureCookie(true);
-        serializer.setUseHttpOnlyCookie(false);
+//        serializer.setUseHttpOnlyCookie(false); todo see if this is needed
         return serializer;
     }
 }
