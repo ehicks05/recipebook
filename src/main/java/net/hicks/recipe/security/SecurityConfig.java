@@ -51,13 +51,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .and()
                     .formLogin()
                     .successHandler((request, response, authentication) -> {
-//                        do nothing
+                        // do nothing
                     })
                     .and()
                     .exceptionHandling()
                     .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
                     .and()
                     .logout()
+                    .logoutSuccessHandler((request, response, authentication) -> {
+                        // do nothing
+                    })
                     .and().csrf().disable();
         }
     }
