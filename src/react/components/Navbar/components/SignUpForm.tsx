@@ -1,5 +1,4 @@
 import React, { useReducer } from "react";
-import apiUrl from "../../../apiUrl";
 import "@creativebulma/bulma-tooltip/dist/bulma-tooltip.min.css";
 import authFetch from "../../../authFetch";
 
@@ -90,7 +89,7 @@ function SignUpForm(props: IProps) {
 
     if (!isFormDataValid(formData)) return;
 
-    authFetch(apiUrl + "/user", {
+    authFetch("/user", {
       method: "POST",
       body: new URLSearchParams(formData as any),
     }, false)

@@ -7,7 +7,6 @@ import { IUser } from "./react/types/types";
 import MyAccount from "./react/app/MyAccount/MyAccount";
 import Home from "./react/app/Home/Home";
 import RecipeForm from "./react/app/RecipeForm/RecipeForm";
-import apiUrl from "./react/apiUrl";
 import authFetch from "./react/authFetch";
 
 export default function App() {
@@ -19,7 +18,7 @@ export default function App() {
   }, []);
 
   function fetchRecipes() {
-    authFetch(apiUrl + "/recipe")
+    authFetch("/recipe")
       .then((json) => {
         setRecipes(json);
       });

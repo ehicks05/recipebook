@@ -1,3 +1,5 @@
+import apiUrl from "./apiUrl";
+
 function authFetch(input: Request | string, init?: RequestInit | undefined, json: boolean = true) {
   // todo: make use of these in production
   // const csrfHeader = document.head.querySelector("[name~=_csrf_header][content]");
@@ -13,7 +15,7 @@ function authFetch(input: Request | string, init?: RequestInit | undefined, json
   console.log(input);
   console.log(init);
 
-  return fetch(input, { ...init, credentials: "include" })
+  return fetch(apiUrl + input, { ...init, credentials: "include" })
     .then((response) => {
       if (!response.ok) throw new Error(buildErrorMessage(response));
       return json ? response.json() : response;
