@@ -3,6 +3,7 @@ import React, { CSSProperties, useEffect, useState } from "react";
 import { Props } from "react-select/src/styles";
 import { IEmoji } from "../../../types/types";
 import { ActionMeta, ValueType } from "react-select/src/types";
+import authFetch from "../../../authFetch";
 
 interface IEmojiOption {
   value: string;
@@ -66,8 +67,7 @@ function EmojiSelector(props: IProps) {
   }, []);
 
   function loadEmojis() {
-    fetch("/emoji")
-      .then((result) => result.json())
+    authFetch("/emoji")
       .then((json) =>
         setEmojis(
           json.map((emoji: IEmoji) => {

@@ -4,6 +4,7 @@ import Hero from "../../components/Hero";
 import EmojiSelector from "./Components/EmojiSelector";
 import { IDirection, IIngredient, IRecipe } from "../../types/types";
 import { FaMinus, FaPlus } from "react-icons/all";
+import authFetch from "../../authFetch";
 
 interface IProps {
   fetchRecipes: () => void;
@@ -142,14 +143,13 @@ function RecipeForm(props: IProps) {
     recipe.ingredients = ingredients;
     recipe.directions = directions;
 
-    fetch("/recipe", {
+    authFetch("/recipe", {
       method: "POST",
       body: JSON.stringify(recipe),
       headers: {
         "Content-Type": "application/json",
       },
     })
-        .then((response) => response.json())
         .then((response) => {
           let newlyCreatedId: number = response.id;
           props.fetchRecipes(); //to refresh the apps list of recipes, will also refresh side bar

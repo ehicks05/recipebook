@@ -2,6 +2,7 @@ import React, { Dispatch, SetStateAction, useState } from "react";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 import { IUser } from "../../../types/types";
+import authFetch from "../../../authFetch";
 
 interface IProps {
   user?: IUser;
@@ -13,8 +14,7 @@ function UserAccess(props: IProps) {
   const [accessMessage, setAccessMessage] = useState<string>("");
 
   function logout() {
-    fetch("/logout")
-      .then((response) => response.text())
+    authFetch("/logout", undefined, false)
       .then(() => {
         props.setUser(undefined);
       });

@@ -1,6 +1,7 @@
 import React, { useReducer } from "react";
 import apiUrl from "../../../apiUrl";
 import "@creativebulma/bulma-tooltip/dist/bulma-tooltip.min.css";
+import authFetch from "../../../authFetch";
 
 interface IErrorMessage {
   emailMessage: string;
@@ -89,13 +90,13 @@ function SignUpForm(props: IProps) {
 
     if (!isFormDataValid(formData)) return;
 
-    fetch(apiUrl + "/user", {
+    authFetch(apiUrl + "/user", {
       method: "POST",
       body: new URLSearchParams(formData as any),
-    })
+    }, false)
       .then((response) => {
         if (response.ok) return response.json();
-        return response.text().then((text) => {
+        return response.text().then((text: any) => {
           throw new Error(text);
         });
       })

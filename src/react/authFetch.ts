@@ -1,4 +1,4 @@
-function authFetch(input: Request | string, init?: RequestInit | undefined) {
+function authFetch(input: Request | string, init?: RequestInit | undefined, json: boolean = true) {
   // todo: make use of these in production
   // const csrfHeader = document.head.querySelector("[name~=_csrf_header][content]");
   // const csrfToken = document.head.querySelector("[name~=_csrf][content]");
@@ -16,7 +16,7 @@ function authFetch(input: Request | string, init?: RequestInit | undefined) {
   return fetch(input, { ...init, credentials: "include" })
     .then((response) => {
       if (!response.ok) throw new Error(buildErrorMessage(response));
-      return response.json();
+      return json ? response.json() : response;
     })
     .catch((error) => {
       console.log(error);
