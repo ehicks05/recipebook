@@ -49,14 +49,14 @@ spring:
         session:
           events:
             log:
-              LOG_QUERIES_SLOWER_THAN_MS: 10
+              LOG_QUERIES_SLOWER_THAN_MS: 50
   resources:
     cache:
       period: 1D
   servlet:
     multipart:
       location: ${java.io.tmpdir}
-#  session:
-#    jdbc:
-#      initialize-schema: always
-#    store-type: jdbc
+  session:
+    jdbc:
+      initialize-schema: always
+    store-type: jdbc
