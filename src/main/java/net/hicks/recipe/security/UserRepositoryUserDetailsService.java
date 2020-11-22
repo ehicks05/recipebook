@@ -1,6 +1,6 @@
 package net.hicks.recipe.security;
 
-import net.hicks.recipe.beans.RecipeBookException;
+import net.hicks.recipe.config.RecipeBookException;
 import net.hicks.recipe.beans.User;
 import net.hicks.recipe.repos.UserRepository;
 import org.slf4j.Logger;

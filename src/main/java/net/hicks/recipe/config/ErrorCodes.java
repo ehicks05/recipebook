@@ -1,4 +1,4 @@
-package net.hicks.recipe.beans;
+package net.hicks.recipe.config;
 
 import java.util.HashMap;
 import java.util.Map;

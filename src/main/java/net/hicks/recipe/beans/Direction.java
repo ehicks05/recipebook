@@ -17,9 +17,6 @@ public class Direction extends AuditClass implements Serializable
     @Column(length = 1024)
     private String text;
 
-    @ManyToOne
-    private Unit unit;
-
     public Direction()
     {
     }
@@ -63,15 +60,5 @@ public class Direction extends AuditClass implements Serializable
     public void setText(String text)
     {
         this.text = text;
-    }
-
-    public Unit getUnit()
-    {
-        return unit;
-    }
-
-    public void setUnit(Unit unit)
-    {
-        this.unit = unit;
     }
 }

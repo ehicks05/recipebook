@@ -1,6 +1,6 @@
 package net.hicks.recipe.controllers;
 
-import net.hicks.recipe.beans.RecipeBookException;
+import net.hicks.recipe.config.RecipeBookException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

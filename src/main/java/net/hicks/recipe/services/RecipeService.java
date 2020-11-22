@@ -1,7 +1,7 @@
 package net.hicks.recipe.services;
 
 import net.hicks.recipe.beans.Recipe;
-import net.hicks.recipe.beans.RecipeBookException;
+import net.hicks.recipe.config.RecipeBookException;
 import net.hicks.recipe.repos.RecipeRepository;
 import net.hicks.recipe.repos.UserRepository;
 import org.slf4j.Logger;

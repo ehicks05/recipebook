@@ -1,5 +1,6 @@
-package net.hicks.recipe.beans;
+package net.hicks.recipe.config;
 
+import net.hicks.recipe.config.ErrorCodes;
 import org.springframework.http.HttpStatus;
 
 public class RecipeBookException extends RuntimeException{
