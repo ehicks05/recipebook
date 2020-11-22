@@ -7,11 +7,6 @@ info:
 logging:
   file:
     name: logs/recipe.log
-  level:
-    org:
-      springframework:
-        security: DEBUG
-    web: DEBUG
 management:
   endpoint:
     health:

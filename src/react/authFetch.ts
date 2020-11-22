@@ -1,19 +1,14 @@
 import apiUrl from "./apiUrl";
 
 function authFetch(input: Request | string, init?: RequestInit | undefined, json: boolean = true) {
-  // todo: make use of these in production
-  // const csrfHeader = document.head.querySelector("[name~=_csrf_header][content]");
-  // const csrfToken = document.head.querySelector("[name~=_csrf][content]");
-
   function buildErrorMessage(response: Response) {
     let message = "";
     if (response.status === 401) message = "authenticated";
     if (response.status === 403) message = "authorized";
-    return "Must be " + message + " to access '" + input + "'";
+    return `${input} - not ${message}`;
   }
 
-  console.log(input);
-  console.log(init);
+  console.log(`${input} ${init || ''}`);
 
   return fetch(apiUrl + input, { ...init, credentials: "include" })
     .then((response) => {
@@ -21,7 +16,7 @@ function authFetch(input: Request | string, init?: RequestInit | undefined, json
       return json ? response.json() : response;
     })
     .catch((error) => {
-      console.log(error);
+      console.log(`${input} - ${error}`);
     });
 }
 
