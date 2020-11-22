@@ -45,7 +45,7 @@ function Navbar(props: IProps) {
           <div className="navbar-item">
             <span className={"title"} style={{ fontFamily: "'Ubuntu Light'" }}>
               <Link className="has-text-grey-light" to="/">
-                recipebook
+                <img className='image' src='/logo.png' alt='logo' />
               </Link>
             </span>
           </div>
