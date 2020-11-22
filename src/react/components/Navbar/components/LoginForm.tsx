@@ -1,4 +1,4 @@
-import React, { FormEvent, useEffect, useState } from "react";
+import React, {FormEvent, useCallback, useEffect, useState} from "react";
 import authFetch from "../../../authFetch";
 import { IUser } from "../../../types/types";
 
@@ -7,16 +7,16 @@ interface IProps {
   setUser: (user: IUser | undefined) => void;
 }
 
-function LoginForm(props: IProps) {
-  useEffect(fetchUser, []);
-
+function LoginForm({user, setUser}: IProps) {
   const [failureMessage, setFailureMessage] = useState<string>("");
 
-  function fetchUser() {
+  const fetchUser = useCallback(() => {
     authFetch("/me").then((json) => {
-      if (json) props.setUser(json);
+      if (json) setUser(json);
     });
-  }
+  }, [setUser])
+
+  useEffect(fetchUser, [fetchUser]);
 
   function login(e: FormEvent) {
     e.preventDefault();
@@ -38,7 +38,7 @@ function LoginForm(props: IProps) {
 
   return (
     <div style={{ minWidth: "320px" }}>
-      {!props.user && (
+      {!user && (
         <form method="POST" action="/" id="loginForm" onSubmit={login}>
           <div className="field">
             <div className="control">
@@ -74,7 +74,7 @@ function LoginForm(props: IProps) {
         </form>
       )}
 
-      {!props.user && failureMessage && (
+      {!user && failureMessage && (
         <>
           <div className="has-text-danger">{failureMessage}</div>
         </>
