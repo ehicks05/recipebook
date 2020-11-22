@@ -14,10 +14,9 @@ function UserAccess(props: IProps) {
   const [accessMessage, setAccessMessage] = useState<string>("");
 
   function logout() {
-    authFetch("/logout", undefined, false)
-      .then(() => {
-        props.setUser(undefined);
-      });
+    authFetch("/logout", undefined, false).then(() => {
+      props.setUser(undefined);
+    });
   }
 
   return (
@@ -25,11 +24,21 @@ function UserAccess(props: IProps) {
       {!props.user && (
         <div className="tabs is-boxed">
           <ul>
-            <li className={tab === "Login" ? "is-active" : ""}>
-              <a onClick={(e) => setTab(e.currentTarget.text)}>Login</a>
+            <li>
+              <button
+                className={`button ${tab === "Login" && "is-primary"}`}
+                onClick={(e) => setTab(e.currentTarget.innerText)}
+              >
+                Login
+              </button>
             </li>
-            <li className={tab === "Sign Up" ? "is-active" : ""}>
-              <a onClick={(e) => setTab(e.currentTarget.text)}>Sign Up</a>
+            <li>
+              <button
+                className={`button ${tab === "Sign Up" && "is-primary"}`}
+                onClick={(e) => setTab(e.currentTarget.innerText)}
+              >
+                Sign Up
+              </button>
             </li>
           </ul>
         </div>
