@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '2.3.3.RELEASE'
+        springBootVersion = '2.4.0'
     }
     repositories {
         jcenter()
@@ -16,7 +16,7 @@ plugins {
     id 'org.springframework.boot' version "${springBootVersion}"
     id 'jacoco'
     id 'io.spring.dependency-management' version '1.0.10.RELEASE'
-    id 'com.github.ben-manes.versions' version '0.31.0'
+    id 'com.github.ben-manes.versions' version '0.36.0'
     id "com.heroku.sdk.heroku-gradle" version "2.0.0"
 }
 
@@ -51,7 +51,6 @@ springBoot {
 repositories {
     mavenCentral()
     jcenter()
-    maven { url "https://jitpack.io" }
 }
 
 dependencies {
@@ -63,11 +62,9 @@ dependencies {
     implementation 'org.springframework.session:spring-session-jdbc'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
-    implementation 'net.coobird:thumbnailator:0.4.12'
-    implementation group: "com.github.ehicks05", name: "common", version: "-SNAPSHOT", changing: true
-    implementation 'org.apache.commons:commons-lang3:3.11'
-    implementation 'org.postgresql:postgresql:42.2.16'
-    implementation 'org.springdoc:springdoc-openapi-ui:1.2.32'
+    //implementation 'org.apache.commons:commons-lang3:3.11'
+    implementation 'org.postgresql:postgresql:42.2.18'
+    implementation 'org.springdoc:springdoc-openapi-ui:1.5.0'
 
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'

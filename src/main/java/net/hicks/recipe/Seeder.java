@@ -2,7 +2,6 @@ package net.hicks.recipe;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.ehicks.common.Timer;
 import net.hicks.recipe.beans.*;
 import net.hicks.recipe.repos.MySystemRepository;
 import net.hicks.recipe.repos.RoleRepository;
@@ -92,28 +91,27 @@ public class Seeder
             return;
 
         log.info("Seeding data");
-        Timer timer = new Timer();
 
         installExtensions();
+        log.info("installed db extensions");
 
         createDefaultRoles();  // use in production
-        log.info(timer.printDuration("create default roles"));
+        log.info("created default roles");
 
         // some dependencies
-
         createMySystem();  // use in production
-        log.info(timer.printDuration("create MySystem"));
+        log.info("created mySystem");
 
         createUsers();
-        log.info(timer.printDuration("create users"));
+        log.info("created users");
 
         createRecipes();
-        log.info(timer.printDuration("create recipes"));
+        log.info("created recipes");
 
         createEmojis();
-        log.info(timer.printDuration("create emojis"));
+        log.info("created emojis");
 
-        log.info(timer.printDuration("Done seeding dummy data"));
+        log.info("Done seeding data");
     }
 
     private void createMySystem()
