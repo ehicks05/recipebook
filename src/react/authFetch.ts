@@ -1,6 +1,10 @@
 import apiUrl from "./apiUrl";
 
-function authFetch(input: Request | string, init?: RequestInit | undefined, json: boolean = true) {
+function authFetch(
+  input: Request | string,
+  init?: RequestInit | undefined,
+  json: boolean = true
+) {
   function buildErrorMessage(response: Response) {
     let message = "";
     if (response.status === 401) message = "authenticated";
@@ -8,7 +12,7 @@ function authFetch(input: Request | string, init?: RequestInit | undefined, json
     return `${input} - not ${message}`;
   }
 
-  console.log(`${input} ${init || ''}`);
+  console.log(`${input} ${init || ""}`);
 
   return fetch(apiUrl + input, { ...init, credentials: "include" })
     .then((response) => {

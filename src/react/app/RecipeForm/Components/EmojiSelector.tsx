@@ -67,17 +67,16 @@ function EmojiSelector(props: IProps) {
   }, []);
 
   function loadEmojis() {
-    authFetch("/emoji")
-      .then((json) =>
-        setEmojis(
-          json.map((emoji: IEmoji) => {
-            return {
-              value: emoji.character,
-              label: emoji.slug,
-            };
-          })
-        )
-      );
+    authFetch("/emoji").then((json) =>
+      setEmojis(
+        json.map((emoji: IEmoji) => {
+          return {
+            value: emoji.character,
+            label: emoji.slug,
+          };
+        })
+      )
+    );
   }
 
   return (

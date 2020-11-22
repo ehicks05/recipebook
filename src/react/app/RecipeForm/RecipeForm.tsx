@@ -44,8 +44,8 @@ function RecipeForm(props: IProps) {
 
   // RECIPE
   function reducer(
-      state: IRecipe,
-      { field, value }: { field: string; value: string | number | IDirection[] }
+    state: IRecipe,
+    { field, value }: { field: string; value: string | number | IDirection[] }
   ): IRecipe {
     return {
       ...state,
@@ -56,10 +56,10 @@ function RecipeForm(props: IProps) {
   const [recipeState, dispatch] = useReducer(reducer, initialRecipeState);
 
   const onChange = (
-      e:
-          | React.ChangeEvent<HTMLInputElement>
-          | React.ChangeEvent<HTMLSelectElement>
-          | React.ChangeEvent<HTMLTextAreaElement>
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLSelectElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
   ) => {
     dispatch({ field: e.target.name, value: e.target.value });
   };
@@ -76,9 +76,9 @@ function RecipeForm(props: IProps) {
   }
 
   function updateIngredient(
-      e:
-          | React.ChangeEvent<HTMLInputElement>
-          | React.ChangeEvent<HTMLSelectElement>
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLSelectElement>
   ) {
     const name = e.target.name;
     const value = e.target.value;
@@ -94,7 +94,7 @@ function RecipeForm(props: IProps) {
   }
 
   function removeIngredient(
-      e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) {
     const field = e.currentTarget.name;
 
@@ -149,189 +149,188 @@ function RecipeForm(props: IProps) {
       headers: {
         "Content-Type": "application/json",
       },
-    })
-        .then((response) => {
-          let newlyCreatedId: number = response.id;
-          props.fetchRecipes(); //to refresh the apps list of recipes, will also refresh side bar
-          history.push("/recipe/" + newlyCreatedId);
-        });
+    }).then((response) => {
+      let newlyCreatedId: number = response.id;
+      props.fetchRecipes(); //to refresh the apps list of recipes, will also refresh side bar
+      history.push("/recipe/" + newlyCreatedId);
+    });
   }
 
   return (
-      <>
-        <Hero title="Create a Recipe" />
-        <div className="section">
-          <div className="container">
-            <div className="columns">
-              <div className="column is-one-third">
-                <div className="box">
-                  <h2 className="subtitle">Recipe Details</h2>
+    <>
+      <Hero title="Create a Recipe" />
+      <div className="section">
+        <div className="container">
+          <div className="columns">
+            <div className="column is-one-third">
+              <div className="box">
+                <h2 className="subtitle">Recipe Details</h2>
 
-                  <div className="field">
-                    <label className="label">Name</label>
-                    <div className="control">
-                      <input
-                          className="input"
-                          type="text"
-                          name="name"
-                          placeholder="Name"
-                          value={name}
-                          onChange={onChange}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="field">
-                    <label className="label">Description</label>
-                    <div className="control">
-                    <textarea
-                        className="textarea"
-                        name="description"
-                        placeholder="Description"
-                        rows={1}
-                        value={description}
-                        onInput={fitToContent}
-                        onChange={onChange}
+                <div className="field">
+                  <label className="label">Name</label>
+                  <div className="control">
+                    <input
+                      className="input"
+                      type="text"
+                      name="name"
+                      placeholder="Name"
+                      value={name}
+                      onChange={onChange}
                     />
-                    </div>
                   </div>
+                </div>
 
-                  <div className="columns is-mobile is-variable is-1 is-multiline">
-                    <div className="column is-half">
-                      <div className="field">
-                        <label className="label">Time</label>
+                <div className="field">
+                  <label className="label">Description</label>
+                  <div className="control">
+                    <textarea
+                      className="textarea"
+                      name="description"
+                      placeholder="Description"
+                      rows={1}
+                      value={description}
+                      onInput={fitToContent}
+                      onChange={onChange}
+                    />
+                  </div>
+                </div>
 
-                        <div className="control">
-                          <div className="field has-addons">
-                            <div className="control is-expanded">
-                              <input
-                                  className="input is-fullwidth"
-                                  type="number"
-                                  step="1"
-                                  min="1"
-                                  name="cookingTime"
-                                  placeholder="1"
-                                  value={cookingTime}
-                                  onChange={onChange}
-                              />
-                            </div>
-                            <div className="control">
-                              <button className="button px-1" disabled>
-                                min
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="column is-half">
-                      <div className="field">
-                        <label className="label">Servings</label>
-                        <div className="control">
-                          <input
-                              className="input"
+                <div className="columns is-mobile is-variable is-1 is-multiline">
+                  <div className="column is-half">
+                    <div className="field">
+                      <label className="label">Time</label>
+
+                      <div className="control">
+                        <div className="field has-addons">
+                          <div className="control is-expanded">
+                            <input
+                              className="input is-fullwidth"
                               type="number"
                               step="1"
                               min="1"
-                              name="servings"
+                              name="cookingTime"
                               placeholder="1"
-                              value={servings}
+                              value={cookingTime}
                               onChange={onChange}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="column">
-                      <div className="field">
-                        <label className="label">Emoji</label>
-                        <div className="control">
-                          <EmojiSelector updateEmoji={updateEmoji} />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="column is-narrow">
-                      <div className="field">
-                        <label className="label">Difficulty</label>
-                        <div className="control">
-                          <div className="select">
-                            <select
-                                name="difficulty"
-                                value={difficulty}
-                                onChange={onChange}
-                            >
-                              <option value="1">1</option>
-                              <option value="2">2</option>
-                              <option value="3">3</option>
-                              <option value="4">4</option>
-                              <option value="5">5</option>
-                            </select>
+                            />
                           </div>
+                          <div className="control">
+                            <button className="button px-1" disabled>
+                              min
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="column is-half">
+                    <div className="field">
+                      <label className="label">Servings</label>
+                      <div className="control">
+                        <input
+                          className="input"
+                          type="number"
+                          step="1"
+                          min="1"
+                          name="servings"
+                          placeholder="1"
+                          value={servings}
+                          onChange={onChange}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="column">
+                    <div className="field">
+                      <label className="label">Emoji</label>
+                      <div className="control">
+                        <EmojiSelector updateEmoji={updateEmoji} />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="column is-narrow">
+                    <div className="field">
+                      <label className="label">Difficulty</label>
+                      <div className="control">
+                        <div className="select">
+                          <select
+                            name="difficulty"
+                            value={difficulty}
+                            onChange={onChange}
+                          >
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                          </select>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="column">
-                <div className="box">
-                  <h2 className="subtitle">Ingredients</h2>
-                  {ingredients.map((ingredient, i) => {
-                    return (
-                        <IngredientForm
-                            ingredient={ingredient}
-                            key={i}
-                            i={i}
-                            updateIngredient={updateIngredient}
-                            removeIngredient={removeIngredient}
-                        />
-                    );
-                  })}
-
-                  <button
-                      className="button is-success"
-                      onClick={addBlankIngredient}
-                  >
-                  <span className="icon">
-                    <FaPlus />
-                  </span>
-                  </button>
-                </div>
-
-                <div className="box mt-6">
-                  <h2 className="subtitle">Directions</h2>
-                  {directions.map((direction, i) => {
-                    return (
-                        <DirectionForm
-                            direction={direction}
-                            i={i}
-                            key={direction.index}
-                            updateDirection={updateDirection}
-                            removeDirection={removeDirection}
-                        />
-                    );
-                  })}
-
-                  <button
-                      className="button is-success"
-                      onClick={addBlankDirection}
-                  >
-                  <span className="icon">
-                    <FaPlus />
-                  </span>
-                  </button>
-                </div>
-              </div>
             </div>
-            <nav className="level">
-              <div className="level-item">
-                <button className="button is-success" onClick={createRecipe}>
-                  Create Recipe
+            <div className="column">
+              <div className="box">
+                <h2 className="subtitle">Ingredients</h2>
+                {ingredients.map((ingredient, i) => {
+                  return (
+                    <IngredientForm
+                      ingredient={ingredient}
+                      key={i}
+                      i={i}
+                      updateIngredient={updateIngredient}
+                      removeIngredient={removeIngredient}
+                    />
+                  );
+                })}
+
+                <button
+                  className="button is-success"
+                  onClick={addBlankIngredient}
+                >
+                  <span className="icon">
+                    <FaPlus />
+                  </span>
                 </button>
               </div>
-            </nav>
+
+              <div className="box mt-6">
+                <h2 className="subtitle">Directions</h2>
+                {directions.map((direction, i) => {
+                  return (
+                    <DirectionForm
+                      direction={direction}
+                      i={i}
+                      key={direction.index}
+                      updateDirection={updateDirection}
+                      removeDirection={removeDirection}
+                    />
+                  );
+                })}
+
+                <button
+                  className="button is-success"
+                  onClick={addBlankDirection}
+                >
+                  <span className="icon">
+                    <FaPlus />
+                  </span>
+                </button>
+              </div>
+            </div>
           </div>
+          <nav className="level">
+            <div className="level-item">
+              <button className="button is-success" onClick={createRecipe}>
+                Create Recipe
+              </button>
+            </div>
+          </nav>
         </div>
-      </>
+      </div>
+    </>
   );
 }
 
@@ -339,12 +338,12 @@ interface IIngredientFormProps {
   ingredient: IIngredient;
   i: number;
   updateIngredient: (
-      e:
-          | React.ChangeEvent<HTMLInputElement>
-          | React.ChangeEvent<HTMLSelectElement>
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLSelectElement>
   ) => void;
   removeIngredient: (
-      e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => void;
 }
 
@@ -355,58 +354,58 @@ function IngredientForm(props: IIngredientFormProps) {
   const removeIngredient = props.removeIngredient;
 
   return (
-      <div className="field is-grouped">
-        <div className="control is-expanded">
-          <input
-              className="input is-fullwidth"
-              type="text"
-              name={`ingredient_name_${i}`}
-              placeholder="Name"
-              value={ingredient.name}
-              onChange={updateIngredient}
-          />
-        </div>
-        <div className="control">
-          <input
-              className="input"
-              style={{ width: "5em" }}
-              type="number"
-              maxLength={5}
-              min="1"
-              name={`ingredient_quantity_${i}`}
-              placeholder="Quantity"
-              value={ingredient.quantity}
-              onChange={updateIngredient}
-          />
-        </div>
-        <div className="control">
-          <div className="select">
-            <select
-                name={`ingredient_unit_${i}`}
-                value={ingredient.unit}
-                onChange={updateIngredient}
-            >
-              <option value="">unit</option>
-              <option value="oz">oz</option>
-              <option value="lb">lb</option>
-              <option value="ml">ml</option>
-              <option value="L">L</option>
-              <option value="g">g</option>
-            </select>
-          </div>
-        </div>
-        <div className="control">
-          <button
-              name={`ingredient_delete_${i}`}
-              className="button is-danger"
-              onClick={removeIngredient}
+    <div className="field is-grouped">
+      <div className="control is-expanded">
+        <input
+          className="input is-fullwidth"
+          type="text"
+          name={`ingredient_name_${i}`}
+          placeholder="Name"
+          value={ingredient.name}
+          onChange={updateIngredient}
+        />
+      </div>
+      <div className="control">
+        <input
+          className="input"
+          style={{ width: "5em" }}
+          type="number"
+          maxLength={5}
+          min="1"
+          name={`ingredient_quantity_${i}`}
+          placeholder="Quantity"
+          value={ingredient.quantity}
+          onChange={updateIngredient}
+        />
+      </div>
+      <div className="control">
+        <div className="select">
+          <select
+            name={`ingredient_unit_${i}`}
+            value={ingredient.unit}
+            onChange={updateIngredient}
           >
+            <option value="">unit</option>
+            <option value="oz">oz</option>
+            <option value="lb">lb</option>
+            <option value="ml">ml</option>
+            <option value="L">L</option>
+            <option value="g">g</option>
+          </select>
+        </div>
+      </div>
+      <div className="control">
+        <button
+          name={`ingredient_delete_${i}`}
+          className="button is-danger"
+          onClick={removeIngredient}
+        >
           <span className="icon">
             <FaMinus />
           </span>
-          </button>
-        </div>
+        </button>
       </div>
+    </div>
   );
 }
 
@@ -424,34 +423,34 @@ function DirectionForm(props: IDirectionFormProps) {
   const removeDirection = props.removeDirection;
 
   return (
-      <div className="field is-grouped" key={i}>
-        <div className="control">
-          <span>{`${i + 1}.`}</span>
-        </div>
-        <div className="control is-expanded">
+    <div className="field is-grouped" key={i}>
+      <div className="control">
+        <span>{`${i + 1}.`}</span>
+      </div>
+      <div className="control is-expanded">
         <textarea
-            className="textarea"
-            name={`direction_text_${i}`}
-            placeholder="Description"
-            rows={1}
-            value={direction.text}
-            onInput={fitToContent}
-            onChange={updateDirection}
+          className="textarea"
+          name={`direction_text_${i}`}
+          placeholder="Description"
+          rows={1}
+          value={direction.text}
+          onInput={fitToContent}
+          onChange={updateDirection}
         />
-        </div>
+      </div>
 
-        <div className="control">
-          <button
-              name={`direction_delete_${i}`}
-              className="button is-danger"
-              onClick={removeDirection}
-          >
+      <div className="control">
+        <button
+          name={`direction_delete_${i}`}
+          className="button is-danger"
+          onClick={removeDirection}
+        >
           <span className="icon">
             <FaMinus />
           </span>
-          </button>
-        </div>
+        </button>
       </div>
+    </div>
   );
 }
 

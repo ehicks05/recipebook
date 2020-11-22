@@ -1,4 +1,4 @@
-import React, {FormEvent, useCallback, useEffect, useState} from "react";
+import React, { FormEvent, useCallback, useEffect, useState } from "react";
 import authFetch from "../../../authFetch";
 import { IUser } from "../../../types/types";
 
@@ -7,14 +7,14 @@ interface IProps {
   setUser: (user: IUser | undefined) => void;
 }
 
-function LoginForm({user, setUser}: IProps) {
+function LoginForm({ user, setUser }: IProps) {
   const [failureMessage, setFailureMessage] = useState<string>("");
 
   const fetchUser = useCallback(() => {
     authFetch("/me").then((json) => {
       if (json) setUser(json);
     });
-  }, [setUser])
+  }, [setUser]);
 
   useEffect(fetchUser, [fetchUser]);
 
@@ -26,10 +26,14 @@ function LoginForm({user, setUser}: IProps) {
     setFailureMessage("");
 
     // @ts-ignore:
-    authFetch("/login", {
-      method: "POST",
-      body: new URLSearchParams(formData as any),
-    }, false).then((response) => {
+    authFetch(
+      "/login",
+      {
+        method: "POST",
+        body: new URLSearchParams(formData as any),
+      },
+      false
+    ).then((response) => {
       if (response.status !== 200)
         setFailureMessage("Invalid username and/or password");
       fetchUser();

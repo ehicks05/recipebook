@@ -89,10 +89,14 @@ function SignUpForm(props: IProps) {
 
     if (!isFormDataValid(formData)) return;
 
-    authFetch("/user", {
-      method: "POST",
-      body: new URLSearchParams(formData as any),
-    }, false)
+    authFetch(
+      "/user",
+      {
+        method: "POST",
+        body: new URLSearchParams(formData as any),
+      },
+      false
+    )
       .then((response) => {
         if (response.ok) return response.json();
         return response.text().then((text: any) => {

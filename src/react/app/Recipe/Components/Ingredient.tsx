@@ -1,6 +1,6 @@
-import { create, all, MathJsStatic, Fraction } from 'mathjs';
-import React from 'react';
-import { IIngredient } from '../../../types/types';
+import { create, all, MathJsStatic, Fraction } from "mathjs";
+import React from "react";
+import { IIngredient } from "../../../types/types";
 
 const math = create(all, {}) as MathJsStatic;
 
@@ -14,8 +14,8 @@ interface IIngredientProps {
 function parseQuantity(quantity: string) {
   if (!isNaN(Number(quantity))) return quantity;
 
-  if (quantity.indexOf(' ') !== -1) {
-    const parts = quantity.split(' ');
+  if (quantity.indexOf(" ") !== -1) {
+    const parts = quantity.split(" ");
 
     return parts.reduce(
       (accumulator, part) => Number(accumulator) + math.evaluate(part)
@@ -76,7 +76,7 @@ function Ingredient(props: IIngredientProps) {
     <div key={ingredient.name}>
       <label className="checkbox">
         <input type="checkbox" />
-        <span style={{ paddingLeft: '.25em' }}>
+        <span style={{ paddingLeft: ".25em" }}>
           {desiredQuantity}
           &nbsp;{ingredient.unit && ingredient.unit}
           &nbsp;{ingredient.name}
