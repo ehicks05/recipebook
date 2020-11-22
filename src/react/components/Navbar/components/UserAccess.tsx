@@ -45,7 +45,7 @@ function UserAccess(props: IProps) {
 
       {props.user && (
         <>
-          Hi {props.user.username}
+          Hi {props.user.displayName}
           <button className="button is-danger is-fullwidth" onClick={logout}>
             Logout
           </button>

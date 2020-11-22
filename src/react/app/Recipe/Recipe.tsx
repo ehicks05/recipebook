@@ -38,7 +38,7 @@ function Recipe({ recipes }: IProps) {
     <>
       <Hero title={title} subtitle={subtitle}>
         <p>
-          by <b>{recipe.author.username}</b>
+          by <b>{recipe.author.displayName}</b>
         </p>
       </Hero>
       <section className={"section"}>

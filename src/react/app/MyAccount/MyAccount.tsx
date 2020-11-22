@@ -7,7 +7,7 @@ interface IProps {
 }
 
 function MyAccount({ user }: IProps) {
-  return <Hero title={"Edit Your Account"} subtitle={user?.username} />;
+  return <Hero title={"Edit Your Account"} subtitle={user?.displayName} />;
 }
 
 export default MyAccount;

@@ -25,6 +25,7 @@ interface IDirection {
 
 interface IUser {
   username: string;
+  displayName: string;
 }
 
 interface IEmoji {

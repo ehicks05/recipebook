@@ -25,7 +25,7 @@ function RecipeCard({ recipe }: IRecipeCardProps) {
               <div className="media-content">
                 <div className="title is-5">{recipe.name}</div>
                 <div className="subtitle is-6 is-italic">
-                  {recipe.author.username}
+                  {recipe.author.displayName}
                 </div>
               </div>
             </div>

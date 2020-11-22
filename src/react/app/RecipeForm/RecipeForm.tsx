@@ -24,7 +24,7 @@ const initialRecipeState: IRecipe = {
   cookingTime: "1",
   servings: 1,
   course: "",
-  author: { username: "Unknown" },
+  author: { username: "unknown", displayName: "Unknown" },
   ingredients: [initialIngredientState],
   directions: [initialDirectionState],
 };
