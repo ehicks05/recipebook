@@ -50,7 +50,6 @@ function LoginForm({ user, setUser }: IProps) {
                 className="input"
                 type="email"
                 placeholder="Email"
-                autoFocus
                 id="username"
                 name="username"
               />
