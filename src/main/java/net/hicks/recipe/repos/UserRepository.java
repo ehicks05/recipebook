@@ -15,6 +15,6 @@ public interface UserRepository extends JpaRepository<User, Long>
         if (this.existsById(id))
             return findById(id).get();
 
-        return new User("", "anonymous", "", "", "", Collections.emptySet());
+        return new User("anonymous", "anonymous", "", Collections.emptySet());
     }
 }

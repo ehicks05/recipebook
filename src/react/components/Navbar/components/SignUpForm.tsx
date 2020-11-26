@@ -81,7 +81,9 @@ function SignUpForm(props: IProps) {
     return valid;
   }
 
-  async function signUp() {
+  async function signUp(e: React.FormEvent) {
+    e.preventDefault();
+
     const formElement = document.getElementById(
       "signUpForm"
     ) as HTMLFormElement;
@@ -114,34 +116,7 @@ function SignUpForm(props: IProps) {
 
   return (
     <div style={{ minWidth: "320px" }}>
-      <form method="POST" id="signUpForm">
-        {/*FIRST NAME*/}
-        <div className="field">
-          <div className="control">
-            <input
-              className="input"
-              type="text"
-              autoFocus
-              placeholder="First Name"
-              id="firstName"
-              name="firstName"
-            />
-          </div>
-        </div>
-
-        {/*LAST NAME*/}
-        <div className="field">
-          <div className="control">
-            <input
-              className="input"
-              type="text"
-              placeholder="Last Name"
-              id="lastName"
-              name="lastName"
-            />
-          </div>
-        </div>
-
+      <form method="POST" id="signUpForm" onSubmit={signUp}>
         {/*USERNAME*/}
         <div className="field">
           <div className="field has-addons">
@@ -243,12 +218,13 @@ function SignUpForm(props: IProps) {
           </p>
         </div>
 
-        <input
-          type="button"
+        <button
+          type="submit"
           value="Sign Up"
           className="button is-block is-primary is-fullwidth"
-          onClick={signUp}
-        />
+        >
+          Sign Up
+        </button>
       </form>
     </div>
   );

@@ -26,10 +26,6 @@ public class User extends AuditClass implements UserDetails
     @Column(nullable=false)
     @JsonIgnore
     private String password = "";
-    @Column(nullable=false)
-    private String firstName = "";
-    @Column(nullable = false)
-    private String lastName = "";
 
     @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
@@ -41,13 +37,11 @@ public class User extends AuditClass implements UserDetails
 
     public User() {}
 
-    public User(String username, String displayName, String password, String firstName, String lastName, Set<Role> roles)
+    public User(String username, String displayName, String password, Set<Role> roles)
     {
         this.username = username;
         this.displayName = displayName;
         this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
         this.roles = roles;
     }
 
@@ -153,21 +147,5 @@ public class User extends AuditClass implements UserDetails
     public void setPassword(String password)
     {
         this.password = password;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 }

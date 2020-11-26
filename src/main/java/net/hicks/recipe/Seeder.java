@@ -183,8 +183,7 @@ public class Seeder
         {
             String password = passwordEncoder.encoder().encode(userData.password);
 
-            User user = new User(userData.username, userData.displayName, password,
-                    userData.first, userData.last, new HashSet<>());
+            User user = new User(userData.username, userData.displayName, password, new HashSet<>());
 
             user.getRoles().add(userRole);
             if (userData.admin)
