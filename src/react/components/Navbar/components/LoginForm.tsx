@@ -34,7 +34,7 @@ function LoginForm({ user, setUser }: IProps) {
       },
       false
     ).then((response) => {
-      if (response.status !== 200)
+      if (response?.status !== 200)
         setFailureMessage("Invalid username and/or password");
       fetchUser();
     });

@@ -148,38 +148,12 @@ function SignUpForm(props: IProps) {
             <p className="control is-expanded">
               <input
                 className="input"
-                type="text"
+                type="email"
                 placeholder="Username"
                 id="username"
                 name="username"
                 required={true}
-              />
-            </p>
-            <p className="control">
-              <button
-                tabIndex={-1}
-                type="button"
-                className="button has-tooltip-left"
-                data-tooltip="This is how you will be known on the site"
-              >
-                ?
-              </button>
-            </p>
-          </div>
-        </div>
-
-        {/*EMAIL*/}
-        <div className="field">
-          <div className="field has-addons">
-            <p className="control is-expanded">
-              <input
-                className="input"
-                type="email"
-                placeholder="Email"
-                id="email"
-                name="email"
                 onChange={validateEmail}
-                required={true}
               />
             </p>
             <p className="control">
@@ -196,6 +170,32 @@ function SignUpForm(props: IProps) {
           <p className="help has-text-danger">
             {errorMessageState.emailMessage}
           </p>
+        </div>
+
+        {/*EMAIL*/}
+        <div className="field">
+          <div className="field has-addons">
+            <p className="control is-expanded">
+              <input
+                className="input"
+                type="text"
+                placeholder="Display Name"
+                id="displayName"
+                name="displayName"
+                required={true}
+              />
+            </p>
+            <p className="control">
+              <button
+                tabIndex={-1}
+                type="button"
+                className="button has-tooltip-left"
+                data-tooltip="This is how you will be known on the site"
+              >
+                ?
+              </button>
+            </p>
+          </div>
         </div>
 
         {/*PASSWORD*/}
