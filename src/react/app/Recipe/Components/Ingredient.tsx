@@ -1,5 +1,5 @@
 import { create, all, MathJsStatic, Fraction } from "mathjs";
-import React from "react";
+import React, { useState } from "react";
 import { IIngredient } from "../../../types/types";
 
 const math = create(all, {}) as MathJsStatic;
@@ -48,23 +48,21 @@ function getDesiredQuantity(
 
     const fraction = math.fraction(fractional) as Fraction;
 
-    let result = (
+    return (
       <>
+        {nonfractional ? `${nonfractional} ` : ""}
         <sup>{fraction.n}</sup>/<sub>{fraction.d}</sub>
       </>
     );
-    if (nonfractional !== 0)
-      result = (
-        <>
-          {nonfractional} {result}
-        </>
-      );
-    return result;
   }
 }
 
-function Ingredient(props: IIngredientProps) {
-  const { ingredient, recipeServings, desiredServings } = props;
+function Ingredient({
+  ingredient,
+  recipeServings,
+  desiredServings,
+}: IIngredientProps) {
+  const [isChecked, setIsChecked] = useState(false);
 
   const desiredQuantity = getDesiredQuantity(
     ingredient,
@@ -75,11 +73,14 @@ function Ingredient(props: IIngredientProps) {
   return (
     <div key={ingredient.name}>
       <label className="checkbox">
-        <input type="checkbox" />
-        <span style={{ paddingLeft: ".25em" }}>
+        <input
+          type="checkbox"
+          checked={isChecked}
+          onChange={(e) => setIsChecked(e.target.checked)}
+        />
+        <span style={{ opacity: isChecked ? ".5" : "", paddingLeft: ".25em" }}>
           {desiredQuantity}
-          &nbsp;{ingredient.unit && ingredient.unit}
-          &nbsp;{ingredient.name}
+          {` ${ingredient.unit || ""} ${ingredient.name}`}
         </span>
       </label>
     </div>
