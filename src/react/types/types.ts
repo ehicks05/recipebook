@@ -10,6 +10,7 @@ interface IRecipe {
   ingredients: IIngredient[];
   directions: IDirection[];
   author: IUser;
+  createdBy: number;
 }
 
 interface IIngredient {
