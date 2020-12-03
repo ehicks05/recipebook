@@ -18,7 +18,8 @@ function EmojiSelector(props: IProps) {
   const [emojis, setEmojis] = useState<IEmojiOption[] | undefined>([]);
 
   const onSelectChange = (
-    v: ValueType<IEmojiOption, false>,
+  // @ts-ignore
+    v: ValueType<IEmojiOption>,
     e: ActionMeta<IEmojiOption>
   ) => {
     if (v && "value" in v) {
