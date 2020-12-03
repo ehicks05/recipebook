@@ -38,7 +38,7 @@ export default function App() {
         <RecipeForm fetchRecipes={fetchRecipes} />
       </Route>
       <Route path="/myAccount">
-        <MyAccount user={user} />
+        <MyAccount recipes={recipes} user={user} />
       </Route>
 
       <Footer />
