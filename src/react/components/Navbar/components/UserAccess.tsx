@@ -6,7 +6,7 @@ import authFetch from "../../../authFetch";
 
 interface IProps {
   user?: IUser;
-  setUser: Dispatch<SetStateAction<IUser | undefined>>;
+  setUser: (user: IUser | undefined) => void
 }
 
 function UserAccess(props: IProps) {
