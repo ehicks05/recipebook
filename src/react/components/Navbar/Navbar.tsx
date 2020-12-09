@@ -3,13 +3,9 @@ import { Link } from "react-router-dom";
 import { IUser } from "../../types/types";
 import UserAccess from "./components/UserAccess";
 import { FaPlus } from "react-icons/all";
+import { UserContext } from "../UserContext";
 
-interface IProps {
-  user?: IUser;
-  setUser: Dispatch<SetStateAction<IUser | undefined>>;
-}
-
-function Navbar(props: IProps) {
+function Navbar() {
   useEffect(() => {
     wireUpHamburgers();
   }, []);
@@ -17,8 +13,8 @@ function Navbar(props: IProps) {
   function wireUpHamburgers() {
     // Get all "navbar-burger" elements
     const $navbarBurgers = Array.prototype.slice.call(
-      document.querySelectorAll(".navbar-burger"),
-      0
+        document.querySelectorAll(".navbar-burger"),
+        0
     );
 
     // Check if there are any navbar burgers
@@ -39,64 +35,70 @@ function Navbar(props: IProps) {
   }
 
   return (
-    <nav className="navbar" role="navigation" aria-label="main navigation">
-      <div className={"container"}>
-        <div className="navbar-brand">
-          <div className="navbar-item">
+      <nav className="navbar" role="navigation" aria-label="main navigation">
+        <div className={"container"}>
+          <div className="navbar-brand">
+            <div className="navbar-item">
             <span className={"title"} style={{ fontFamily: "'Ubuntu Light'" }}>
               <Link className="has-text-grey-light" to="/">
                 <img className="image" src="/logo.png" alt="logo" />
               </Link>
             </span>
-          </div>
-          <div className="navbar-item">
-            <Link to="/create-recipe">
-              <button className="button is-primary is-small">
+            </div>
+            <div className="navbar-item">
+              <Link to="/create-recipe">
+                <button className="button is-primary is-small">
                 <span className="icon">
                   <FaPlus />
                 </span>
-              </button>
-            </Link>
+                </button>
+              </Link>
+            </div>
+
+            <div
+                role="button"
+                className="navbar-burger burger"
+                aria-label="menu"
+                aria-expanded="false"
+                data-target="navbarBasicExample"
+            >
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </div>
           </div>
 
-          <div
-            role="button"
-            className="navbar-burger burger"
-            aria-label="menu"
-            aria-expanded="false"
-            data-target="navbarBasicExample"
-          >
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-          </div>
-        </div>
+          <div className="navbar-menu" id="navbarBasicExample">
+            <div className="navbar-start"></div>
 
-        <div className="navbar-menu" id="navbarBasicExample">
-          <div className="navbar-start"></div>
+            <div className="navbar-end">
+              <div className="navbar-item has-dropdown is-hoverable">
+                <UserContext.Consumer>
+                  {({user, setUser}) => (
+                      <>
+                        <div className="navbar-link">
+                          {user ? (
+                              <Link to="/myAccount">My Account</Link>
+                          ) : (
+                              "Log In"
+                          )}
+                        </div>
 
-          <div className="navbar-end">
-            <div className="navbar-item has-dropdown is-hoverable">
-              <div className="navbar-link">
-                {props.user ? (
-                  <Link to="/myAccount">My Account</Link>
-                ) : (
-                  "Log In"
-                )}
-              </div>
-
-              <div className="navbar-dropdown is-right">
-                <div className="navbar-item">
-                  <div>
-                    <UserAccess user={props.user} setUser={props.setUser} />
-                  </div>
-                </div>
+                        <div className="navbar-dropdown is-right">
+                          <div className="navbar-item">
+                            <div>
+                              <UserAccess user={user} setUser={setUser} />
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                  )}
+                </UserContext.Consumer>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
   );
 }
 
