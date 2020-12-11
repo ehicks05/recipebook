@@ -1,6 +1,7 @@
 package net.hicks.recipe.services;
 
 import net.hicks.recipe.beans.Recipe;
+import net.hicks.recipe.beans.User;
 import net.hicks.recipe.config.RecipeBookException;
 import net.hicks.recipe.repos.RecipeRepository;
 import net.hicks.recipe.repos.UserRepository;
@@ -45,6 +46,17 @@ public class RecipeService {
         } catch (Exception e) {
             log.error(e.getLocalizedMessage(), e);
             throw new RecipeBookException(10, "Unable to retrieve recipe with id " + recipeId);
+        }
+    }
+
+    public List<Recipe> getRecipesForUser(User user) {
+        try {
+            List<Recipe> recipes = recipeRepository.findAllByUserId(user.getId());
+            recipes.forEach(it -> it.setAuthor(userRepository.getUserOrSystemUser(it.getCreatedBy())));
+            return recipes;
+        } catch (Exception e) {
+            log.error(e.getLocalizedMessage(), e);
+            throw new RecipeBookException(10, "Unable to retrieve user recipe ids for user " + user.getId());
         }
     }
 

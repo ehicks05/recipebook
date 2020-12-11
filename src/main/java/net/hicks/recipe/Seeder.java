@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import net.hicks.recipe.beans.*;
 import net.hicks.recipe.repos.MySystemRepository;
 import net.hicks.recipe.repos.RoleRepository;
+import net.hicks.recipe.repos.UserFavoriteRepository;
 import net.hicks.recipe.repos.UserRepository;
 import net.hicks.recipe.security.PasswordEncoder;
 import net.hicks.recipe.services.EmojiService;
@@ -22,10 +23,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import java.io.InputStream;
 import java.math.BigInteger;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Component
 public class Seeder
@@ -35,13 +34,17 @@ public class Seeder
     private final MySystemRepository mySystemRepository;
     private final RoleRepository roleRepository;
     private final UserRepository userRepository;
+    private final UserFavoriteRepository userFavoriteRepository;
     private final PasswordEncoder passwordEncoder;
     private final EntityManagerFactory entityManagerFactory;
     private final EmojiService emojiService;
 
     private final RecipeService recipeService;
 
-    public Seeder(MySystemRepository mySystemRepository, RoleRepository roleRepository, UserRepository userRepository,
+    public Seeder(MySystemRepository mySystemRepository,
+                  RoleRepository roleRepository,
+                  UserRepository userRepository,
+                  UserFavoriteRepository userFavoriteRepository,
                   PasswordEncoder passwordEncoder,
                   EntityManagerFactory entityManagerFactory,
                   RecipeService recipeService,
@@ -50,6 +53,7 @@ public class Seeder
         this.mySystemRepository = mySystemRepository;
         this.roleRepository = roleRepository;
         this.userRepository = userRepository;
+        this.userFavoriteRepository = userFavoriteRepository;
         this.passwordEncoder = passwordEncoder;
         this.entityManagerFactory = entityManagerFactory;
         this.recipeService = recipeService;
@@ -107,6 +111,7 @@ public class Seeder
 
         createRecipes();
         log.info("created recipes");
+        log.info("created favorites");
 
         createEmojis();
         log.info("created emojis");
@@ -134,6 +139,13 @@ public class Seeder
             List<Recipe> recipes = objectMapper.readValue(inputStream, new TypeReference<>() {});
             recipes.forEach(recipe -> recipe.setId(null));
             recipeService.createRecipes(recipes);
+
+            User user = userRepository.findByUsername("admin@test.com");
+            recipes.stream().limit(new Random().nextInt(10)+1).forEach(x -> {
+                UserFavorite favorite = new UserFavorite(user, x);
+                userFavoriteRepository.save(favorite);
+            });
+
         } catch (Exception e) {
             log.error(e.getLocalizedMessage(), e);
         }

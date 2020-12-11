@@ -5,9 +5,11 @@ import RecipePicker from "./components/RecipePicker";
 
 interface IProps {
   recipes: IRecipe[];
+  favoriteIds: number[];
+  fetchFavorites: () => void;
 }
 
-function Home({ recipes }: IProps) {
+function Home({ recipes, favoriteIds, fetchFavorites }: IProps) {
   if (!recipes) return <Hero title="Loading..." />;
 
   return (
@@ -15,7 +17,7 @@ function Home({ recipes }: IProps) {
       <Hero title="Find a Recipe" />
       <section className="section">
         <div className={"container"}>
-          <RecipePicker recipes={recipes} />
+          <RecipePicker recipes={recipes} favoriteIds={favoriteIds} fetchFavorites={fetchFavorites} />
         </div>
       </section>
     </>

@@ -12,7 +12,7 @@ import { UserContext } from "./react/components/UserContext";
 
 export default function App() {
     const [recipes, setRecipes] = useState<IRecipe[]>([]);
-    // const [favoriteIds, setFavoriteIds] = useState<number[]>([]);
+    const [favoriteIds, setFavoriteIds] = useState<number[]>([]);
     const [user, setUser] = useState<IUser | undefined>(undefined);
 
     const fetchUser = useCallback(() => {
@@ -28,10 +28,10 @@ export default function App() {
             });
     }
 
-    // function fetchFavoriteIds() {
-    //     authFetch("/recipe/favoriteIds")
-    //         .then(json => setFavoriteIds(json));
-    // }
+    function fetchFavoriteIds() {
+        authFetch("/recipe/favoriteIds")
+            .then(json => setFavoriteIds(json));
+    }
 
     useEffect(() => {
         fetchRecipes();
@@ -44,7 +44,7 @@ export default function App() {
             <Navbar />
 
             <Route exact path="/">
-                <Home recipes={recipes} />
+                <Home recipes={recipes} favoriteIds={favoriteIds} fetchFavorites={fetchFavoriteIds} />
             </Route>
             <Route path="/recipe/:id">
                 <Recipe recipes={recipes} />

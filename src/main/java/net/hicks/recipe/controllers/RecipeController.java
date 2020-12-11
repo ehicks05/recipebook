@@ -2,7 +2,9 @@ package net.hicks.recipe.controllers;
 
 import net.hicks.recipe.beans.Recipe;
 import net.hicks.recipe.beans.User;
+import net.hicks.recipe.beans.UserFavorite;
 import net.hicks.recipe.services.RecipeService;
+import net.hicks.recipe.services.UserFavoriteService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,14 +15,44 @@ import java.util.List;
 public class RecipeController
 {
     private final RecipeService recipeService;
+    private final UserFavoriteService userFavoriteService;
 
-    public RecipeController(RecipeService recipeService) {
+    public RecipeController(
+            RecipeService recipeService,
+            UserFavoriteService userFavoriteService
+    ) {
         this.recipeService = recipeService;
+        this.userFavoriteService = userFavoriteService;
     }
 
     @GetMapping
     public List<Recipe> getAllRecipes() {
         return recipeService.getAllRecipes();
+    }
+
+    @GetMapping("/user")
+    public List<Recipe> getRecipesForUser(@AuthenticationPrincipal User user) {
+        return recipeService.getRecipesForUser(user);
+    }
+
+    @GetMapping("/favorites")
+    public List<UserFavorite> getFavoriteRecipes(@AuthenticationPrincipal User user) {
+        return userFavoriteService.getUserFavorites(user);
+    }
+
+    @GetMapping("/favoriteIds")
+    public List<Long> getFavoriteRecipeIds(@AuthenticationPrincipal User user) {
+        return userFavoriteService.getUserFavoriteIds(user);
+    }
+
+    @PostMapping("/favorite/{recipeId}")
+    public void saveFavorite(@AuthenticationPrincipal User user, @PathVariable long recipeId) {
+        userFavoriteService.saveFavorite(user, recipeId);
+    }
+
+    @DeleteMapping("/favorite/{recipeId}")
+    public void deleteFavorite(@AuthenticationPrincipal User user, @PathVariable long recipeId) {
+        userFavoriteService.removeFavorite(user, recipeId);
     }
 
     @GetMapping("/{recipeId}")
