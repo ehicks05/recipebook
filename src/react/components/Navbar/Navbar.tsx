@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { IUser } from "../../types/types";
 import UserAccess from "./components/UserAccess";
 import { FaPlus } from "react-icons/all";
-import { UserContext } from "../UserContext";
+import { UserContext } from "../../UserContext";
 
 function Navbar() {
   useEffect(() => {

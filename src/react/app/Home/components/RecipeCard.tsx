@@ -3,15 +3,13 @@ import FavoriteButton from "../../../components/FavoriteButton";
 import { Link } from "react-router-dom";
 import { IRecipe } from "../../../types/types";
 import { FcClock, IoIosFitness, BiHeart } from "react-icons/all";
-import {UserContext} from "../../../components/UserContext";
+import {UserContext} from "../../../UserContext";
 
 interface IRecipeCardProps {
   recipe: IRecipe;
-  favoriteIds: number[];
-  fetchFavorites: () => void;
 }
 
-function RecipeCard({ recipe, favoriteIds, fetchFavorites }: IRecipeCardProps) {
+function RecipeCard({ recipe }: IRecipeCardProps) {
   return (
     <div className="column is-half-tablet is-one-third-desktop">
       <Link to={"/recipe/" + recipe.id}>
@@ -34,9 +32,9 @@ function RecipeCard({ recipe, favoriteIds, fetchFavorites }: IRecipeCardProps) {
               </div>
               <div className="media-right" onClick={(e) => {e.preventDefault()}}>
                 <UserContext.Consumer>
-                  {({user, setUser}) => (
+                  {({user, setUser, favoriteIds, setFavoriteIds, fetchFavoriteIds}) => (
                       user &&
-                      <FavoriteButton recipeId={recipe.id} favoriteIds={favoriteIds} fetchFavorites={fetchFavorites} />
+                      <FavoriteButton recipeId={recipe.id} favoriteIds={favoriteIds} fetchFavorites={fetchFavoriteIds} />
                   )}
                 </UserContext.Consumer>
               </div>

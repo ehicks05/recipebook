@@ -4,12 +4,10 @@ import { IRecipe } from "../../types/types";
 import RecipePicker from "./components/RecipePicker";
 
 interface IProps {
-  recipes: IRecipe[];
-  favoriteIds: number[];
-  fetchFavorites: () => void;
+  recipes: IRecipe[]
 }
 
-function Home({ recipes, favoriteIds, fetchFavorites }: IProps) {
+function Home({ recipes }: IProps) {
   if (!recipes) return <Hero title="Loading..." />;
 
   return (
@@ -17,7 +15,7 @@ function Home({ recipes, favoriteIds, fetchFavorites }: IProps) {
       <Hero title="Find a Recipe" />
       <section className="section">
         <div className={"container"}>
-          <RecipePicker recipes={recipes} favoriteIds={favoriteIds} fetchFavorites={fetchFavorites} />
+          <RecipePicker recipes={recipes} />
         </div>
       </section>
     </>

@@ -4,11 +4,9 @@ import RecipeGrid from "./RecipeGrid";
 
 interface IProps {
   recipes: IRecipe[];
-  favoriteIds: number[];
-  fetchFavorites: () => void;
 }
 
-function RecipePicker({ recipes, favoriteIds, fetchFavorites }: IProps) {
+function RecipePicker({ recipes }: IProps) {
   const [recipeFilters, setRecipeFilters] = useState<string[]>([]);
   const [usableRecipes, setUsableRecipes] = useState(recipes);
 
@@ -98,7 +96,7 @@ function RecipePicker({ recipes, favoriteIds, fetchFavorites }: IProps) {
         </div>
       </form>
 
-      <RecipeGrid recipes={usableRecipes} favoriteIds={favoriteIds} fetchFavorites={fetchFavorites} />
+      <RecipeGrid recipes={usableRecipes} />
     </div>
   );
 }

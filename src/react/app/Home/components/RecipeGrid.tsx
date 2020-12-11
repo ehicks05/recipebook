@@ -4,13 +4,11 @@ import RecipeCard from "./RecipeCard";
 
 interface IProps {
   recipes: IRecipe[];
-  favoriteIds: number[];
-  fetchFavorites: () => void;
 }
 
-function RecipeGrid({ recipes, favoriteIds, fetchFavorites }: IProps) {
+function RecipeGrid({ recipes }: IProps) {
   const recipeGrid = recipes.map((recipe) => (
-    <RecipeCard key={recipe.id} recipe={recipe} favoriteIds={favoriteIds} fetchFavorites={fetchFavorites} />
+    <RecipeCard key={recipe.id} recipe={recipe} />
   ));
   return (
     <div className="columns is-variable is-2 is-multiline">{recipeGrid}</div>

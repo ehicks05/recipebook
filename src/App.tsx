@@ -8,7 +8,7 @@ import MyAccount from "./react/app/MyAccount/MyAccount";
 import Home from "./react/app/Home/Home";
 import RecipeForm from "./react/app/RecipeForm/RecipeForm";
 import authFetch from "./react/authFetch";
-import { UserContext } from "./react/components/UserContext";
+import { UserContext } from "./react/UserContext";
 
 export default function App() {
     const [recipes, setRecipes] = useState<IRecipe[]>([]);
@@ -36,15 +36,15 @@ export default function App() {
     useEffect(() => {
         fetchRecipes();
         fetchUser();
-        // fetchFavoriteIds();
+        fetchFavoriteIds();
     },[]);
 
     return (
-        <UserContext.Provider value={{user, setUser}} >
+        <UserContext.Provider value={{user, setUser, favoriteIds, setFavoriteIds, fetchFavoriteIds}} >
             <Navbar />
 
             <Route exact path="/">
-                <Home recipes={recipes} favoriteIds={favoriteIds} fetchFavorites={fetchFavoriteIds} />
+                <Home recipes={recipes} />
             </Route>
             <Route path="/recipe/:id">
                 <Recipe recipes={recipes} />
