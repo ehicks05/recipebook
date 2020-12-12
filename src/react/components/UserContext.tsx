@@ -8,7 +8,7 @@ interface IUserContext {
 
 const defaultValue: IUserContext = {
     user: undefined,
-    setUser: () => {}
+    setUser: () => {undefined}
 }
 
 export const UserContext = React.createContext(defaultValue);

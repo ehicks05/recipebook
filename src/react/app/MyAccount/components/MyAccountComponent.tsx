@@ -14,7 +14,7 @@ function MyAccountComponent(props: IMyAccountComponentType) {
             <p className="has-text-centered">
                 {props.title}
             </p>
-            {props.recipes?.map(it => <SmallRecipeCard recipe={it} />)}
+            {props.recipes?.map(it => <SmallRecipeCard key={it.id} recipe={it} />)}
         </>
     );
 }

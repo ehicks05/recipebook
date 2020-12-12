@@ -28,7 +28,7 @@ function extractTiming(text: string) {
 function Direction(props: IDirectionProps) {
   const { direction } = props;
 
-  let timeAmount = extractTiming(direction.text);
+  const timeAmount = extractTiming(direction.text);
   const timer = timeAmount > 0 ? <Timer minutes={timeAmount} /> : null;
 
   return (

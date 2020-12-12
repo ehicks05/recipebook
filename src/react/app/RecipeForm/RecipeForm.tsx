@@ -37,7 +37,7 @@ function fitToContent(e: React.FormEvent<HTMLTextAreaElement>) {
 }
 
 function RecipeForm(props: IProps) {
-  let history = useHistory();
+  const history = useHistory();
 
   function updateEmoji(code: string) {
     dispatch({ field: "emoji", value: code });
@@ -65,7 +65,7 @@ function RecipeForm(props: IProps) {
     dispatch({ field: e.target.name, value: e.target.value });
   };
 
-  const { name, description, difficulty, cookingTime, servings } = recipeState;
+  const { name, description, difficulty, cookingTime, servings, emoji } = recipeState;
 
   // INGREDIENTS
   const [ingredients, setIngredients] = useState<IIngredient[]>([
@@ -140,7 +140,7 @@ function RecipeForm(props: IProps) {
   }
 
   function createRecipe() {
-    let recipe = recipeState;
+    const recipe = recipeState;
     recipe.ingredients = ingredients;
     recipe.directions = directions;
 
@@ -151,7 +151,7 @@ function RecipeForm(props: IProps) {
         "Content-Type": "application/json",
       },
     }).then((response) => {
-      let newlyCreatedId: number = response.id;
+      const newlyCreatedId: number = response.id;
       props.fetchRecipes(); //to refresh the apps list of recipes, will also refresh side bar
       history.push("/recipe/" + newlyCreatedId);
     });
@@ -245,7 +245,7 @@ function RecipeForm(props: IProps) {
                     <div className="field">
                       <label className="label">Emoji</label>
                       <div className="control">
-                        <EmojiSelector updateEmoji={updateEmoji} />
+                        <EmojiSelector data={{ value: emoji }} updateEmoji={updateEmoji} />
                       </div>
                     </div>
                   </div>

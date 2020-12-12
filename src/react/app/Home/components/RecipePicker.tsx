@@ -13,7 +13,7 @@ function RecipePicker({ recipes }: IProps) {
   // handle recipeFilters changing...
   useEffect(() => {
     const filteredRecipes = recipes.filter((recipe) => {
-      let recipeIngredients = recipe.ingredients
+      const recipeIngredients = recipe.ingredients
         .map((x) => x.name.toLowerCase())
         .join();
 
@@ -34,7 +34,7 @@ function RecipePicker({ recipes }: IProps) {
     const input = document.getElementById(
       "recipeFilterInput"
     ) as HTMLFormElement;
-    let newFilter = input.value.toLowerCase();
+    const newFilter = input.value.toLowerCase();
     if (newFilter.length > 1 && !recipeFilters.includes(newFilter)) {
       setRecipeFilters([...recipeFilters, newFilter]);
     }

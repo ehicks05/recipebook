@@ -13,7 +13,7 @@ function Recipe({ recipes }: IProps) {
   const [recipe, setRecipe] = useState<IRecipe | undefined>(undefined);
   const [desiredServings, setDesiredServings] = useState(0);
 
-  let location = useLocation();
+  const location = useLocation();
 
   useEffect(() => {
     function getSelectedRecipe(id: number) {
