@@ -52,17 +52,12 @@ public class RecipeService {
 
     public List<Recipe> getRecipesForUser(User user) {
         try {
-            return recipeRepository.findAllByCreatedBy(user.getId())
-                    .stream()
-                    .map(it -> {
-                        it.setAuthor(user);
-                        return it;
-                    })
-                    .collect(Collectors.toList());
-
+            List<Recipe> recipes = recipeRepository.findAllByUserId(user.getId());
+            recipes.forEach(it -> it.setAuthor(userRepository.getUserOrSystemUser(it.getCreatedBy())));
+            return recipes;
         } catch (Exception e) {
             log.error(e.getLocalizedMessage(), e);
-            throw new RecipeBookException(10, "Unable to retrieve recipes for user " + user);
+            throw new RecipeBookException(10, "Unable to retrieve user recipe ids for user " + user.getId());
         }
     }
 

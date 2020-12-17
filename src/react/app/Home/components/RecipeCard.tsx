@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FcClock, IoIosFitness } from 'react-icons/all';
 import { IRecipe } from '../../../types/types';
+import FavoriteButton from '../../../components/FavoriteButton';
+import { UserContext } from '../../../UserContext';
 
 interface IRecipeCardProps {
   recipe: IRecipe;
@@ -27,6 +29,30 @@ function RecipeCard({ recipe }: IRecipeCardProps) {
                 <div className="subtitle is-6 is-italic">
                   {recipe.author.displayName}
                 </div>
+              </div>
+              <div
+                className="media-right"
+                onClick={e => {
+                  e.preventDefault();
+                }}
+              >
+                <UserContext.Consumer>
+                  {({
+                    user,
+                    setUser,
+                    favoriteIds,
+                    setFavoriteIds,
+                    fetchFavoriteIds,
+                  }) =>
+                    user && (
+                      <FavoriteButton
+                        recipeId={recipe.id}
+                        favoriteIds={favoriteIds}
+                        fetchFavorites={fetchFavoriteIds}
+                      />
+                    )
+                  }
+                </UserContext.Consumer>
               </div>
             </div>
 

@@ -8,11 +8,11 @@ import MyAccount from './react/app/MyAccount/MyAccount';
 import Home from './react/app/Home/Home';
 import RecipeForm from './react/app/RecipeForm/RecipeForm';
 import authFetch from './react/authFetch';
-import { UserContext } from './react/components/UserContext';
+import { UserContext } from './react/UserContext';
 
 export default function App() {
   const [recipes, setRecipes] = useState<IRecipe[]>([]);
-  // const [favoriteIds, setFavoriteIds] = useState<number[]>([]);
+  const [favoriteIds, setFavoriteIds] = useState<number[]>([]);
   const [user, setUser] = useState<IUser | undefined>(undefined);
 
   const fetchUser = useCallback(() => {
@@ -27,19 +27,20 @@ export default function App() {
     });
   }
 
-  // function fetchFavoriteIds() {
-  //     authFetch("/recipe/favoriteIds")
-  //         .then(json => setFavoriteIds(json));
-  // }
+  function fetchFavoriteIds() {
+    authFetch('/recipe/favoriteIds').then(json => setFavoriteIds(json));
+  }
 
   useEffect(() => {
     fetchRecipes();
     fetchUser();
-    // fetchFavoriteIds();
+    fetchFavoriteIds();
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider
+      value={{ user, setUser, favoriteIds, setFavoriteIds, fetchFavoriteIds }}
+    >
       <Navbar />
 
       <Route exact path="/">
@@ -52,7 +53,7 @@ export default function App() {
         <RecipeForm fetchRecipes={fetchRecipes} />
       </Route>
       <Route path="/myAccount">
-        <MyAccount recipes={recipes} user={user} />
+        <MyAccount user={user} />
       </Route>
 
       <Footer />

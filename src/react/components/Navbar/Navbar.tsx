@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaPlus } from 'react-icons/all';
 import UserAccess from './components/UserAccess';
-import { UserContext } from '../UserContext';
+import { UserContext } from '../../UserContext';
 
 const clickBurger = (e: React.MouseEvent<HTMLDivElement>) => {
   (e.target as HTMLDivElement).classList.toggle('is-active');

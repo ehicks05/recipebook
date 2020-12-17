@@ -38,4 +38,10 @@ interface IEmoji {
   subGroup: string;
 }
 
-export type { IRecipe, IIngredient, IDirection, IUser, IEmoji };
+interface IFavorite {
+  id: number;
+  user: IUser;
+  recipe: IRecipe;
+}
+
+export type { IRecipe, IIngredient, IDirection, IUser, IEmoji, IFavorite };

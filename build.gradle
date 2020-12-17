@@ -113,6 +113,8 @@ jacocoTestCoverageVerification {
                     'net/hicks/recipe/security/PasswordEncoder.class',
                     'net/hicks/recipe/security/SecurityConfig.class',
                     'net/hicks/recipe/security/SecurityConfig$*.*',
+                    'net/hicks/recipe/security/CookieConfig.class',
+                    'net/hicks/recipe/security/AuthAuditListener.class',
                     'net/hicks/recipe/Seeder.class',
                     'net/hicks/recipe/Seeder$*.*',
                     'net/hicks/recipe/config/**',

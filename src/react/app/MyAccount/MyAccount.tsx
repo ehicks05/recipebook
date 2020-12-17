@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Carousel, { ResponsiveType } from 'react-multi-carousel';
 import Hero from '../../components/Hero';
-import { IRecipe, IUser } from '../../types/types';
+import { IFavorite, IRecipe, IUser } from '../../types/types';
 import 'react-multi-carousel/lib/styles.css';
 import useIsMobile from '../../hooks/useIsMobile';
 import MyAccountComponent from './components/MyAccountComponent';
@@ -9,20 +9,29 @@ import authFetch from '../../authFetch';
 
 interface IProps {
   user: IUser | undefined;
-  recipes: IRecipe[] | undefined;
 }
 
 function MyAccount(props: IProps) {
   const [myRecipes, setMyRecipes] = useState<IRecipe[] | undefined>([]);
+  const [myFavorites, setMyFavorites] = useState<IRecipe[] | undefined>([]);
   const isMobile = useIsMobile();
-  console.log(props.recipes);
 
   useEffect(() => {
     function fetchMyRecipes() {
       authFetch('/recipe/user').then(json => setMyRecipes(json));
     }
 
+    function fetchMyFavorites() {
+      authFetch('/recipe/favorites').then(json => {
+        if (json.length > 0) {
+          const favs: IFavorite[] = json;
+          setMyFavorites(favs.map(it => it.recipe));
+        }
+      });
+    }
+
     fetchMyRecipes();
+    fetchMyFavorites();
   }, []);
 
   function getResponsive(): ResponsiveType {
@@ -73,13 +82,12 @@ function MyAccount(props: IProps) {
             <MyAccountComponent recipes={myRecipes} title="My Recipes" />
           </div>
           <div>
-            <MyAccountComponent recipes={myRecipes} title="My Favorites" />
+            <MyAccountComponent recipes={myFavorites} title="My Favorites" />
           </div>
           <div>
             <p className="has-text-centered">My Sneed</p>
             {myRecipes?.map(it => (
               <div key={it.id}>{it.name}</div>
-              // <SmallRecipeCard recipe={it} />
             ))}
           </div>
         </Carousel>
@@ -93,7 +101,7 @@ function MyAccount(props: IProps) {
                 <MyAccountComponent recipes={myRecipes} title="My Recipes" />
               </div>
               <div className="column is-one-third">
-                <MyAccountComponent recipes={myRecipes} title="My Favorites" />
+                <MyAccountComponent recipes={myFavorites} title="My Favorites" />
               </div>
               <div className="column is-one-third">
                 <p className="has-text-centered">My Lists</p>
