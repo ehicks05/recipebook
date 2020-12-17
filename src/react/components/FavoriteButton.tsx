@@ -13,8 +13,6 @@ interface IProps {
 function FavoriteButton({ recipeId, favoriteIds, fetchFavorites }: IProps) {
   const [size, setSize] = useState<string>('1em');
 
-  console.log(favoriteIds);
-
   function iconHover(e: React.MouseEvent) {
     setSize('1.3em');
   }
@@ -27,8 +25,6 @@ function FavoriteButton({ recipeId, favoriteIds, fetchFavorites }: IProps) {
     authFetch(`/recipe/favorite/${recipeId}`, {
       method: 'POST',
     }).then(json => {
-      console.log(json);
-      console.log('saved favorite');
       fetchFavorites();
     });
   }

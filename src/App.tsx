@@ -8,7 +8,7 @@ import MyAccount from './react/app/MyAccount/MyAccount';
 import Home from './react/app/Home/Home';
 import RecipeForm from './react/app/RecipeForm/RecipeForm';
 import authFetch from './react/authFetch';
-import { UserContext } from './react/components/UserContext';
+import { UserContext } from './react/UserContext';
 
 export default function App() {
   const [recipes, setRecipes] = useState<IRecipe[]>([]);
