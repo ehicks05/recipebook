@@ -25,7 +25,6 @@ function LoginForm({ user, setUser }: IProps) {
 
     setFailureMessage("");
 
-    // @ts-ignore:
     authFetch(
       "/login",
       {

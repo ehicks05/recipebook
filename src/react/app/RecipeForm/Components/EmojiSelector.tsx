@@ -12,13 +12,14 @@ interface IEmojiOption {
 
 interface IProps {
   updateEmoji: (code: string) => void;
+  data: { value: string };
 }
 
 function EmojiSelector(props: IProps) {
   const [emojis, setEmojis] = useState<IEmojiOption[] | undefined>([]);
 
   const onSelectChange = (
-    v?: ValueType<IEmojiOption>
+    v?: ValueType<IEmojiOption, false>
   ) => {
     if (v && "value" in v) {
       props.updateEmoji(v.value);

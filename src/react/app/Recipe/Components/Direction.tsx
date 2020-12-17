@@ -25,6 +25,7 @@ function extractTiming(text: string) {
   return timeAmount;
 }
 
+
 function Direction({ direction }: IDirectionProps) {
   const [isDone, setIsDone] = useState(false);
   const timeAmount = extractTiming(direction.text);

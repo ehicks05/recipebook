@@ -50,10 +50,8 @@ function SignUpForm(props: IProps) {
     const passwordCheckInput = document.getElementById("passwordCheck");
     passwordCheckInput?.classList.remove("is-danger");
 
-    // @ts-ignore
-    const password1 = document.getElementById("password").value;
-    // @ts-ignore
-    const password2 = document.getElementById("passwordCheck").value;
+    const password1 = (document.getElementById("password") as HTMLInputElement)?.value;
+    const password2 = (document.getElementById("passwordCheck")as HTMLInputElement)?.value;
 
     if (password1.length > 0 && password2.length > 0 && password1 !== password2)
       dispatch({ key: "password", value: "passwords do not match" });

@@ -13,9 +13,9 @@ interface IProps {
 }
 
 function MyAccount(props: IProps) {
-  const [myRecipes, setMyRecipes] = useState<IRecipe[]>([]);
-  const [myFavorites, setMyFavorites] = useState<IRecipe[]>([]);
-  let isMobile = useIsMobile();
+  const [myRecipes, setMyRecipes] = useState<IRecipe[] | undefined>([]);
+  const isMobile = useIsMobile();
+  const location = useLocation();
 
   useEffect(() => {
     function fetchMyRecipes() {
@@ -81,7 +81,7 @@ function MyAccount(props: IProps) {
                   My Sneed
                 </p>
                 {myRecipes?.map((it) => (
-                    <div>{it.name}</div>
+                    <div key={it.id}>{it.name}</div>
                     // <SmallRecipeCard recipe={it} />
                 ))}
               </div>
