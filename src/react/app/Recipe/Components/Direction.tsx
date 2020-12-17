@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Timer from "./Timer";
 import { IDirection } from "../../../types/types";
 
@@ -14,7 +14,7 @@ function extractTiming(text: string) {
   let timeAmount = 0;
   if (timeIndex > -1) {
     timeAmount = parseInt(words[timeIndex - 1], 10);
-    if (isNaN(timeAmount)) timeAmount = 0;
+    if (Number.isNaN(timeAmount)) timeAmount = 0;
 
     let isHours = false;
     if (words[timeIndex].indexOf("hour") > -1) isHours = true;
@@ -25,15 +25,24 @@ function extractTiming(text: string) {
   return timeAmount;
 }
 
-function Direction(props: IDirectionProps) {
-  const { direction } = props;
 
+function Direction({ direction }: IDirectionProps) {
+  const [isDone, setIsDone] = useState(false);
   const timeAmount = extractTiming(direction.text);
   const timer = timeAmount > 0 ? <Timer minutes={timeAmount} /> : null;
 
   return (
-    <li key={direction.text}>
-      {direction.text} {timer}
+    <li
+      key={direction.text}
+    >
+      <span
+        onClick={(e) => setIsDone(!isDone)}
+      style={{
+          opacity: isDone ? "0.5" : "",
+        textDecoration: isDone ? "line-through" : "",
+          cursor: 'pointer'
+          }}>{direction.text}</span>
+      {timer}
     </li>
   );
 }

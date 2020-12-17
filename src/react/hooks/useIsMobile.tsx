@@ -10,7 +10,7 @@ function useIsMobile(): boolean {
             setSize(window.innerWidth);
         }
         window.addEventListener('resize', handleResize);
-    })
+    }, []);
 
     return !!(size && size <= 768);
 }

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Hero from "../../components/Hero";
 import { IRecipe, IUser } from "../../types/types";
-import { useLocation } from "react-router-dom";
 import Carousel, { ResponsiveType } from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import useIsMobile from "../../hooks/useIsMobile";
 import MyAccountComponent from "./components/MyAccountComponent";
+import authFetch from "../../authFetch";
 
 interface IProps {
   user: IUser | undefined;
@@ -18,12 +18,13 @@ function MyAccount(props: IProps) {
   const location = useLocation();
 
   useEffect(() => {
-    const myRecipes = props.recipes?.slice(0, 5).filter((e) => {
-      // return e.createdBy === props.user?.id;
-      return true;
-    });
-    setMyRecipes(myRecipes);
-  }, [location, props.recipes]);
+    function fetchMyRecipes() {
+      authFetch("/recipe/user")
+          .then(json => setMyRecipes(json));
+    }
+
+    fetchMyRecipes();
+  }, []);
 
   function getResponsive(): ResponsiveType {
     return {

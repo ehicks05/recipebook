@@ -23,6 +23,11 @@ public class RecipeController
         return recipeService.getAllRecipes();
     }
 
+    @GetMapping("/user")
+    public List<Recipe> getRecipesForUser(@AuthenticationPrincipal User user) {
+        return recipeService.getRecipesForUser(user);
+    }
+
     @GetMapping("/{recipeId}")
     public Recipe getRecipe(@PathVariable int recipeId) {
         return recipeService.getRecipe(recipeId);
