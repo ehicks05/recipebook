@@ -1,6 +1,6 @@
-import React from "react";
-import { Direction } from ".";
-import { IDirection } from "../../../types/types";
+import React from 'react';
+import { Direction } from '.';
+import { IDirection } from '../../../types/types';
 
 interface IProps {
   directions: IDirection[];
@@ -8,9 +8,9 @@ interface IProps {
 
 function Directions({ directions }: IProps) {
   return (
-    <div className={"content"}>
-      <ol style={{ marginLeft: "16px" }}>
-        {directions.map((direction) => (
+    <div className="content">
+      <ol style={{ marginLeft: '16px' }}>
+        {directions.map(direction => (
           <Direction key={direction.text} direction={direction} />
         ))}
       </ol>

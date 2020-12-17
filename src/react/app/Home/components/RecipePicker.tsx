@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { IRecipe } from "../../../types/types";
-import RecipeGrid from "./RecipeGrid";
+import React, { useEffect, useState } from 'react';
+import { IRecipe } from '../../../types/types';
+import RecipeGrid from './RecipeGrid';
 
 interface IProps {
   recipes: IRecipe[];
@@ -12,13 +12,13 @@ function RecipePicker({ recipes }: IProps) {
 
   // handle recipeFilters changing...
   useEffect(() => {
-    const filteredRecipes = recipes.filter((recipe) => {
+    const filteredRecipes = recipes.filter(recipe => {
       const recipeIngredients = recipe.ingredients
-        .map((x) => x.name.toLowerCase())
+        .map(x => x.name.toLowerCase())
         .join();
 
       let keep = true;
-      recipeFilters.forEach((element) => {
+      recipeFilters.forEach(element => {
         if (!recipeIngredients.includes(element)) {
           keep = false;
         }
@@ -31,36 +31,34 @@ function RecipePicker({ recipes }: IProps) {
   }, [recipeFilters, recipes]);
 
   function handleAddRecipeFilter() {
-    const input = document.getElementById(
-      "recipeFilterInput"
-    ) as HTMLFormElement;
+    const input = document.getElementById('recipeFilterInput') as HTMLFormElement;
     const newFilter = input.value.toLowerCase();
     if (newFilter.length > 1 && !recipeFilters.includes(newFilter)) {
       setRecipeFilters([...recipeFilters, newFilter]);
     }
 
-    input.value = "";
+    input.value = '';
   }
 
   function handleClearRecipeFilter(filter: string) {
-    setRecipeFilters(recipeFilters.filter((f) => f !== filter));
+    setRecipeFilters(recipeFilters.filter(f => f !== filter));
   }
 
   function handleClearAllRecipeFilters() {
     setRecipeFilters([]);
   }
 
-  const filterPills = recipeFilters.map((f) => (
-    <span key={f} className={"tag is-link"}>
+  const filterPills = recipeFilters.map(f => (
+    <span key={f} className="tag is-link">
       {f}
-      <button className={"delete"} onClick={() => handleClearRecipeFilter(f)} />
+      <button className="delete" onClick={() => handleClearRecipeFilter(f)} />
     </span>
   ));
 
   return (
     <div>
       <form
-        onSubmit={(e) => {
+        onSubmit={e => {
           e.preventDefault();
         }}
       >
@@ -75,15 +73,12 @@ function RecipePicker({ recipes }: IProps) {
               />
             </div>
             <div className="control">
-              <button
-                className={"button"}
-                onClick={() => handleAddRecipeFilter()}
-              >
+              <button className="button" onClick={() => handleAddRecipeFilter()}>
                 Add
               </button>
               {recipeFilters.length > 0 && (
                 <button
-                  className={"button"}
+                  className="button"
                   onClick={() => handleClearAllRecipeFilters()}
                 >
                   Clear

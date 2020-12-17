@@ -1,6 +1,6 @@
-import React, { FormEvent, useCallback, useEffect, useState } from "react";
-import authFetch from "../../../authFetch";
-import { IUser } from "../../../types/types";
+import React, { FormEvent, useCallback, useEffect, useState } from 'react';
+import authFetch from '../../../authFetch';
+import { IUser } from '../../../types/types';
 
 interface IProps {
   user: IUser | undefined;
@@ -8,10 +8,10 @@ interface IProps {
 }
 
 function LoginForm({ user, setUser }: IProps) {
-  const [failureMessage, setFailureMessage] = useState<string>("");
+  const [failureMessage, setFailureMessage] = useState<string>('');
 
   const fetchUser = useCallback(() => {
-    authFetch("/me").then((json) => {
+    authFetch('/me').then(json => {
       if (json) setUser(json);
     });
   }, [setUser]);
@@ -20,27 +20,27 @@ function LoginForm({ user, setUser }: IProps) {
 
   function login(e: FormEvent) {
     e.preventDefault();
-    const formElement = document.getElementById("loginForm") as HTMLFormElement;
+    const formElement = document.getElementById('loginForm') as HTMLFormElement;
     const formData = new FormData(formElement);
 
-    setFailureMessage("");
+    setFailureMessage('');
 
     authFetch(
-      "/login",
+      '/login',
       {
-        method: "POST",
+        method: 'POST',
         body: new URLSearchParams(formData as any),
       },
-      false
-    ).then((response) => {
+      false,
+    ).then(response => {
       if (response?.status !== 200)
-        setFailureMessage("Invalid username and/or password");
+        setFailureMessage('Invalid username and/or password');
       fetchUser();
     });
   }
 
   return (
-    <div style={{ minWidth: "320px" }}>
+    <div style={{ minWidth: '320px' }}>
       {!user && (
         <form method="POST" action="/" id="loginForm" onSubmit={login}>
           <div className="field">
@@ -67,10 +67,7 @@ function LoginForm({ user, setUser }: IProps) {
               />
             </div>
           </div>
-          <button
-            type="submit"
-            className="button is-block is-primary is-fullwidth"
-          >
+          <button type="submit" className="button is-block is-primary is-fullwidth">
             Log in
           </button>
         </form>

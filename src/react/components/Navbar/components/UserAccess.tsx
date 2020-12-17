@@ -1,20 +1,20 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
-import LoginForm from "./LoginForm";
-import SignUpForm from "./SignUpForm";
-import { IUser } from "../../../types/types";
-import authFetch from "../../../authFetch";
+import React, { Dispatch, SetStateAction, useState } from 'react';
+import LoginForm from './LoginForm';
+import SignUpForm from './SignUpForm';
+import { IUser } from '../../../types/types';
+import authFetch from '../../../authFetch';
 
 interface IProps {
   user?: IUser;
-  setUser: (user: IUser | undefined) => void
+  setUser: (user: IUser | undefined) => void;
 }
 
 function UserAccess(props: IProps) {
-  const [tab, setTab] = useState<string>("Login");
-  const [accessMessage, setAccessMessage] = useState<string>("");
+  const [tab, setTab] = useState<string>('Login');
+  const [accessMessage, setAccessMessage] = useState<string>('');
 
   function logout() {
-    authFetch("/logout", undefined, false).then(() => {
+    authFetch('/logout', undefined, false).then(() => {
       props.setUser(undefined);
     });
   }
@@ -26,16 +26,16 @@ function UserAccess(props: IProps) {
           <ul>
             <li>
               <button
-                className={`button ${tab === "Login" && "is-primary"}`}
-                onClick={(e) => setTab(e.currentTarget.innerText)}
+                className={`button ${tab === 'Login' && 'is-primary'}`}
+                onClick={e => setTab(e.currentTarget.innerText)}
               >
                 Login
               </button>
             </li>
             <li>
               <button
-                className={`button ${tab === "Sign Up" && "is-primary"}`}
-                onClick={(e) => setTab(e.currentTarget.innerText)}
+                className={`button ${tab === 'Sign Up' && 'is-primary'}`}
+                onClick={e => setTab(e.currentTarget.innerText)}
               >
                 Sign Up
               </button>
@@ -46,7 +46,7 @@ function UserAccess(props: IProps) {
 
       {accessMessage}
 
-      {tab === "Login" ? (
+      {tab === 'Login' ? (
         <LoginForm user={props.user} setUser={props.setUser} />
       ) : (
         <SignUpForm setAccessMessage={setAccessMessage} setTab={setTab} />

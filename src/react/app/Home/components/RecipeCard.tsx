@@ -1,7 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { IRecipe } from "../../../types/types";
-import { FcClock, IoIosFitness } from "react-icons/all";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { FcClock, IoIosFitness } from 'react-icons/all';
+import { IRecipe } from '../../../types/types';
 
 interface IRecipeCardProps {
   recipe: IRecipe;
@@ -10,15 +10,15 @@ interface IRecipeCardProps {
 function RecipeCard({ recipe }: IRecipeCardProps) {
   return (
     <div className="column is-half-tablet is-one-third-desktop">
-      <Link to={"/recipe/" + recipe.id}>
+      <Link to={`/recipe/${recipe.id}`}>
         <div className="card grow">
           <div
             className="card-content is-flex is-flex-direction-column"
-            style={{ height: "14em" }}
+            style={{ height: '14em' }}
           >
             <div className="media">
               <div className="media-left">
-                <figure className="image is-64x64" style={{ fontSize: "3em" }}>
+                <figure className="image is-64x64" style={{ fontSize: '3em' }}>
                   {recipe.emoji}
                 </figure>
               </div>
@@ -30,24 +30,24 @@ function RecipeCard({ recipe }: IRecipeCardProps) {
               </div>
             </div>
 
-            <div className="content" style={{ overflowY: "auto" }}>
+            <div className="content" style={{ overflowY: 'auto' }}>
               <div>
                 {recipe.description ||
-                  "This is where a description would go...if we HAD one! " +
-                    "It would tell you what you can expect from this recipe."}
+                  'This is where a description would go...if we HAD one! ' +
+                    'It would tell you what you can expect from this recipe.'}
               </div>
             </div>
           </div>
 
           <footer className="card-footer">
             <CardFooterItem
-              title={"Time"}
-              icon={<FcClock size={"2em"} />}
+              title="Time"
+              icon={<FcClock size="2em" />}
               value={recipe.cookingTime}
             />
             <CardFooterItem
-              title={"Difficulty"}
-              icon={<IoIosFitness size={"2em"} />}
+              title="Difficulty"
+              icon={<IoIosFitness size="2em" />}
               value={recipe.difficulty}
             />
           </footer>

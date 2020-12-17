@@ -1,6 +1,6 @@
-import React, { useReducer } from "react";
-import "@creativebulma/bulma-tooltip/dist/bulma-tooltip.min.css";
-import authFetch from "../../../authFetch";
+import React, { useReducer } from 'react';
+import '@creativebulma/bulma-tooltip/dist/bulma-tooltip.min.css';
+import authFetch from '../../../authFetch';
 
 interface IErrorMessage {
   emailMessage: string;
@@ -15,12 +15,12 @@ interface IProps {
 function SignUpForm(props: IProps) {
   function reducer(
     state: IErrorMessage,
-    action: { key: string; value: string }
+    action: { key: string; value: string },
   ): IErrorMessage {
     switch (action.key) {
-      case "email":
+      case 'email':
         return { ...state, emailMessage: action.value };
-      case "password":
+      case 'password':
         return { ...state, passwordMessage: action.value };
       default:
         return state;
@@ -28,34 +28,36 @@ function SignUpForm(props: IProps) {
   }
 
   const [errorMessageState, dispatch] = useReducer(reducer, {
-    emailMessage: "",
-    passwordMessage: "",
+    emailMessage: '',
+    passwordMessage: '',
   });
 
   function validateEmail(e: React.ChangeEvent<HTMLInputElement>) {
-    const emailInput = document.getElementById("email");
-    emailInput?.classList.remove("is-danger");
+    const emailInput = document.getElementById('email');
+    emailInput?.classList.remove('is-danger');
 
     const enteredValue = e.target.value;
     const emailPattern = /[a-zA-Z0-9]*@[a-zA-Z0-9]*\.[a-zA-Z0-9]*/;
 
     if (emailPattern[Symbol.search](enteredValue) === -1)
-      dispatch({ key: "email", value: "not a valid email" });
-    else dispatch({ key: "email", value: "" });
+      dispatch({ key: 'email', value: 'not a valid email' });
+    else dispatch({ key: 'email', value: '' });
   }
 
   function validatePasswords() {
-    const passwordInput = document.getElementById("password");
-    passwordInput?.classList.remove("is-danger");
-    const passwordCheckInput = document.getElementById("passwordCheck");
-    passwordCheckInput?.classList.remove("is-danger");
+    const passwordInput = document.getElementById('password');
+    passwordInput?.classList.remove('is-danger');
+    const passwordCheckInput = document.getElementById('passwordCheck');
+    passwordCheckInput?.classList.remove('is-danger');
 
-    const password1 = (document.getElementById("password") as HTMLInputElement)?.value;
-    const password2 = (document.getElementById("passwordCheck")as HTMLInputElement)?.value;
+    const password1 = (document.getElementById('password') as HTMLInputElement)
+      ?.value;
+    const password2 = (document.getElementById('passwordCheck') as HTMLInputElement)
+      ?.value;
 
     if (password1.length > 0 && password2.length > 0 && password1 !== password2)
-      dispatch({ key: "password", value: "passwords do not match" });
-    else dispatch({ key: "password", value: "" });
+      dispatch({ key: 'password', value: 'passwords do not match' });
+    else dispatch({ key: 'password', value: '' });
   }
 
   function isFormDataValid(formData: FormData): boolean {
@@ -63,15 +65,15 @@ function SignUpForm(props: IProps) {
     if (errorMessageState.emailMessage) return false;
 
     const reqs = document
-      .getElementById("signUpForm")
-      ?.querySelectorAll("[required]");
+      .getElementById('signUpForm')
+      ?.querySelectorAll('[required]');
     let valid = true;
 
-    reqs?.forEach((element) => {
-      const id = element.id;
+    reqs?.forEach(element => {
+      const { id } = element;
       const formValue = formData.get(id) as string;
       if (!formValue || formValue.length === 0) {
-        element.classList.add("is-danger");
+        element.classList.add('is-danger');
         valid = false;
       }
     });
@@ -82,40 +84,38 @@ function SignUpForm(props: IProps) {
   async function signUp(e: React.FormEvent) {
     e.preventDefault();
 
-    const formElement = document.getElementById(
-      "signUpForm"
-    ) as HTMLFormElement;
+    const formElement = document.getElementById('signUpForm') as HTMLFormElement;
     const formData = new FormData(formElement);
 
     if (!isFormDataValid(formData)) return;
 
     authFetch(
-      "/user",
+      '/user',
       {
-        method: "POST",
+        method: 'POST',
         body: new URLSearchParams(formData as any),
       },
-      false
+      false,
     )
-      .then((response) => {
+      .then(response => {
         if (response.ok) return response.json();
         return response.text().then((text: any) => {
           throw new Error(text);
         });
       })
       .then(() => {
-        props.setAccessMessage("Account successfully created");
-        props.setTab("Login");
+        props.setAccessMessage('Account successfully created');
+        props.setTab('Login');
       })
-      .catch((reason) => {
+      .catch(reason => {
         props.setAccessMessage(reason.message);
       });
   }
 
   return (
-    <div style={{ minWidth: "320px" }}>
+    <div style={{ minWidth: '320px' }}>
       <form method="POST" id="signUpForm" onSubmit={signUp}>
-        {/*USERNAME*/}
+        {/* USERNAME */}
         <div className="field">
           <div className="field has-addons">
             <p className="control is-expanded">
@@ -125,7 +125,7 @@ function SignUpForm(props: IProps) {
                 placeholder="Username"
                 id="username"
                 name="username"
-                required={true}
+                required
                 onChange={validateEmail}
               />
             </p>
@@ -140,12 +140,10 @@ function SignUpForm(props: IProps) {
               </button>
             </p>
           </div>
-          <p className="help has-text-danger">
-            {errorMessageState.emailMessage}
-          </p>
+          <p className="help has-text-danger">{errorMessageState.emailMessage}</p>
         </div>
 
-        {/*EMAIL*/}
+        {/* EMAIL */}
         <div className="field">
           <div className="field has-addons">
             <p className="control is-expanded">
@@ -155,7 +153,7 @@ function SignUpForm(props: IProps) {
                 placeholder="Display Name"
                 id="displayName"
                 name="displayName"
-                required={true}
+                required
               />
             </p>
             <p className="control">
@@ -171,7 +169,7 @@ function SignUpForm(props: IProps) {
           </div>
         </div>
 
-        {/*PASSWORD*/}
+        {/* PASSWORD */}
         <div className="field has-addons">
           <p className="control is-expanded">
             <input
@@ -181,7 +179,7 @@ function SignUpForm(props: IProps) {
               id="password"
               name="password"
               onChange={validatePasswords}
-              required={true}
+              required
             />
           </p>
           <p className="control">
@@ -196,7 +194,7 @@ function SignUpForm(props: IProps) {
           </p>
         </div>
 
-        {/*PASSWORD CHECK*/}
+        {/* PASSWORD CHECK */}
         <div className="field">
           <div className="field has-addons">
             <p className="control is-expanded">
@@ -207,13 +205,11 @@ function SignUpForm(props: IProps) {
                 id="passwordCheck"
                 name="passwordCheck"
                 onChange={validatePasswords}
-                required={true}
+                required
               />
             </p>
           </div>
-          <p className="help has-text-danger">
-            {errorMessageState.passwordMessage}
-          </p>
+          <p className="help has-text-danger">{errorMessageState.passwordMessage}</p>
         </div>
 
         <button

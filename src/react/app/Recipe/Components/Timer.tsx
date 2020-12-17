@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from 'react';
 
 interface IProps {
   minutes: number;
@@ -12,9 +12,7 @@ function Timer({ minutes: inputMinutes }: IProps) {
   const secondsRef = useRef(seconds);
   const interval = useRef(0);
 
-  useEffect(() => {
-    return () => clearInterval(interval.current);
-  }, []);
+  useEffect(() => () => clearInterval(interval.current), []);
 
   useEffect(() => {
     secondsRef.current = seconds;
@@ -51,16 +49,16 @@ function Timer({ minutes: inputMinutes }: IProps) {
   function displayTime() {
     const min = Math.floor(seconds / 60);
     const sec = seconds % 60;
-    return min + ":" + (sec < 10 ? `0${sec}` : sec);
+    return `${min}:${sec < 10 ? `0${sec}` : sec}`;
   }
 
   function handleSetTime(e: React.ChangeEvent<HTMLInputElement>) {
     if (expired) {
       return;
     }
-    const value = e.target.value;
-    if (value.indexOf(":") === -1) return;
-    const [minutes, seconds] = value.split(":").map((it) => Number(it));
+    const { value } = e.target;
+    if (value.indexOf(':') === -1) return;
+    const [minutes, seconds] = value.split(':').map(it => Number(it));
     if (Number.isNaN(minutes) || Number.isNaN(seconds)) return;
     const newSeconds = Math.min(minutes * 60 + seconds, 999 * 60 + 59);
     setSeconds(newSeconds);
@@ -73,7 +71,7 @@ function Timer({ minutes: inputMinutes }: IProps) {
           <input
             type="text"
             className={`input is-small has-text-centered ${
-              expired ? "is-danger" : ""
+              expired ? 'is-danger' : ''
             }`}
             size={Math.max(displayTime().length - 4, 1)}
             value={displayTime()}
@@ -83,14 +81,14 @@ function Timer({ minutes: inputMinutes }: IProps) {
         </p>
         <p className="control is-expanded">
           {!expired && (
-            <button className={"button is-small"} onClick={toggleTimer}>
-              {paused ? "Start" : "Pause"}
+            <button className="button is-small" onClick={toggleTimer}>
+              {paused ? 'Start' : 'Pause'}
             </button>
           )}
 
           {paused && seconds !== inputMinutes * 60 && (
-            <button className={"button is-small"} onClick={reset}>
-              {"Reset"}
+            <button className="button is-small" onClick={reset}>
+              Reset
             </button>
           )}
         </p>

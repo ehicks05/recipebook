@@ -1,7 +1,7 @@
-import React from "react";
-import { Ingredient } from ".";
-import { IIngredient } from "../../../types/types";
-import { FaMinus, FaPlus } from "react-icons/all";
+import React from 'react';
+import { FaMinus, FaPlus } from 'react-icons/all';
+import { Ingredient } from '.';
+import { IIngredient } from '../../../types/types';
 
 interface IProps {
   ingredients: IIngredient[];
@@ -19,14 +19,11 @@ function Ingredients({
   decrementServings,
 }: IProps) {
   return (
-    <div className={"content"}>
+    <div className="content">
       <nav className="level is-mobile mb-2">
         <div className="level-left">
           <span className="level-item">
-            <span
-              className="mr-2"
-              title={`default servings: ${defaultServings}`}
-            >
+            <span className="mr-2" title={`default servings: ${defaultServings}`}>
               Servings: {desiredServings}
             </span>
             <button
@@ -47,7 +44,7 @@ function Ingredients({
         </div>
       </nav>
 
-      {ingredients.map((ingredient) => (
+      {ingredients.map(ingredient => (
         <Ingredient
           key={ingredient.name}
           ingredient={ingredient}
