@@ -50,7 +50,7 @@ function getDesiredQuantity(
   return (
     <>
       {nonfractional ? `${nonfractional} ` : ''}
-      <sup>{fraction.n}</sup>/<sub>{fraction.d}</sub>
+      {`${fraction.n}${String.fromCharCode(8260)}${fraction.d}`}
     </>
   );
 }

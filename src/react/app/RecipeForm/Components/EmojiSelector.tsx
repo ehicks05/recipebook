@@ -18,7 +18,7 @@ interface IProps {
 function EmojiSelector(props: IProps) {
   const [emojis, setEmojis] = useState<IEmojiOption[] | undefined>([]);
 
-  const onSelectChange = (v?: ValueType<IEmojiOption>) => {
+  const onSelectChange = (v?: ValueType<IEmojiOption, false>) => {
     if (v && 'value' in v) {
       props.updateEmoji(v.value);
     }

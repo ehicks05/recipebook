@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Carousel, { ResponsiveType } from 'react-multi-carousel';
 import Hero from '../../components/Hero';
-import { IFavorite, IRecipe, IUser } from '../../types/types';
+import { IRecipe, IUser } from '../../types/types';
 import 'react-multi-carousel/lib/styles.css';
 import useIsMobile from '../../hooks/useIsMobile';
 import MyAccountComponent from './components/MyAccountComponent';
