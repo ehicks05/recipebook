@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent } from 'react';
 
 interface IProps {
   title?: string;
@@ -6,22 +6,16 @@ interface IProps {
   children?: React.ReactNode;
 }
 
-const Hero: FunctionComponent<IProps> = ({
-  title,
-  subtitle,
-  children,
-}: IProps) => {
-  return (
-    <section className={"hero is-info"}>
-      <div className={"hero-body"}>
-        <div className={"container"}>
-          <h1 className="title">{title}</h1>
-          {subtitle && <h3 className="subtitle">{subtitle}</h3>}
-          {children && children}
-        </div>
+const Hero: FunctionComponent<IProps> = ({ title, subtitle, children }: IProps) => (
+  <section className="hero is-info">
+    <div className="hero-body">
+      <div className="container">
+        <h1 className="title">{title}</h1>
+        {subtitle && <h3 className="subtitle">{subtitle}</h3>}
+        {children && children}
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default Hero;

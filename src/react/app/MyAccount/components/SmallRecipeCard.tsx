@@ -1,6 +1,6 @@
-import React from "react";
-import { IRecipe } from "../../../types/types";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { IRecipe } from '../../../types/types';
 
 interface ISmallRecipeCardProps {
   recipe: IRecipe;
@@ -9,15 +9,15 @@ interface ISmallRecipeCardProps {
 function SmallRecipeCard({ recipe }: ISmallRecipeCardProps) {
   return (
     <div className="column is-full-tablet">
-      <Link to={"/recipe/" + recipe.id}>
+      <Link to={`/recipe/${recipe.id}`}>
         <div className="card grow">
           <div
             className="card-content is-flex is-flex-direction-column"
-            style={{ height: "8em" }}
+            style={{ height: '8em' }}
           >
             <div className="media">
               <div className="media-left">
-                <figure className="image is-64x64" style={{ fontSize: "3em" }}>
+                <figure className="image is-64x64" style={{ fontSize: '3em' }}>
                   {recipe.emoji}
                 </figure>
               </div>

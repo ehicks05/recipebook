@@ -1,9 +1,9 @@
-import React from "react";
-import FavoriteButton from "../../../components/FavoriteButton";
-import { Link } from "react-router-dom";
-import { IRecipe } from "../../../types/types";
-import { FcClock, IoIosFitness, BiHeart } from "react-icons/all";
-import {UserContext} from "../../../UserContext";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { FcClock, IoIosFitness } from 'react-icons/all';
+import { IRecipe } from '../../../types/types';
+import FavoriteButton from '../../../components/FavoriteButton';
+import { UserContext } from '../../../UserContext';
 
 interface IRecipeCardProps {
   recipe: IRecipe;
@@ -12,15 +12,15 @@ interface IRecipeCardProps {
 function RecipeCard({ recipe }: IRecipeCardProps) {
   return (
     <div className="column is-half-tablet is-one-third-desktop">
-      <Link to={"/recipe/" + recipe.id}>
+      <Link to={`/recipe/${recipe.id}`}>
         <div className="card grow">
           <div
             className="card-content is-flex is-flex-direction-column"
-            style={{ height: "14em" }}
+            style={{ height: '14em' }}
           >
             <div className="media">
               <div className="media-left">
-                <figure className="image is-64x64" style={{ fontSize: "3em" }}>
+                <figure className="image is-64x64" style={{ fontSize: '3em' }}>
                   {recipe.emoji}
                 </figure>
               </div>
@@ -30,34 +30,50 @@ function RecipeCard({ recipe }: IRecipeCardProps) {
                   {recipe.author.displayName}
                 </div>
               </div>
-              <div className="media-right" onClick={(e) => {e.preventDefault()}}>
+              <div
+                className="media-right"
+                onClick={e => {
+                  e.preventDefault();
+                }}
+              >
                 <UserContext.Consumer>
-                  {({user, setUser, favoriteIds, setFavoriteIds, fetchFavoriteIds}) => (
-                      user &&
-                      <FavoriteButton recipeId={recipe.id} favoriteIds={favoriteIds} fetchFavorites={fetchFavoriteIds} />
-                  )}
+                  {({
+                    user,
+                    setUser,
+                    favoriteIds,
+                    setFavoriteIds,
+                    fetchFavoriteIds,
+                  }) =>
+                    user && (
+                      <FavoriteButton
+                        recipeId={recipe.id}
+                        favoriteIds={favoriteIds}
+                        fetchFavorites={fetchFavoriteIds}
+                      />
+                    )
+                  }
                 </UserContext.Consumer>
               </div>
             </div>
 
-            <div className="content" style={{ overflowY: "auto" }}>
+            <div className="content" style={{ overflowY: 'auto' }}>
               <div>
                 {recipe.description ||
-                  "This is where a description would go...if we HAD one! " +
-                    "It would tell you what you can expect from this recipe."}
+                  'This is where a description would go...if we HAD one! ' +
+                    'It would tell you what you can expect from this recipe.'}
               </div>
             </div>
           </div>
 
           <footer className="card-footer">
             <CardFooterItem
-              title={"Time"}
-              icon={<FcClock size={"2em"} />}
+              title="Time"
+              icon={<FcClock size="2em" />}
               value={recipe.cookingTime}
             />
             <CardFooterItem
-              title={"Difficulty"}
-              icon={<IoIosFitness size={"2em"} />}
+              title="Difficulty"
+              icon={<IoIosFitness size="2em" />}
               value={recipe.difficulty}
             />
           </footer>

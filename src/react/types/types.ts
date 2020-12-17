@@ -39,9 +39,9 @@ interface IEmoji {
 }
 
 interface IFavorite {
-  id: number,
-  user: IUser,
-  recipe: IRecipe
+  id: number;
+  user: IUser;
+  recipe: IRecipe;
 }
 
 export type { IRecipe, IIngredient, IDirection, IUser, IEmoji, IFavorite };

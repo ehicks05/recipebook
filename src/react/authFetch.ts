@@ -1,25 +1,25 @@
-import apiUrl from "./apiUrl";
+import apiUrl from './apiUrl';
 
 function authFetch(
   input: Request | string,
   init?: RequestInit | undefined,
-  json: boolean = true
+  json = true,
 ) {
   function buildErrorMessage(response: Response) {
-    let message = "";
-    if (response.status === 401) message = "authenticated";
-    if (response.status === 403) message = "authorized";
+    let message = '';
+    if (response.status === 401) message = 'authenticated';
+    if (response.status === 403) message = 'authorized';
     return `${input} - not ${message}`;
   }
 
-  console.log(`${input} ${init || ""}`);
+  console.log(`${input} ${init || ''}`);
 
-  return fetch(apiUrl + input, { ...init, credentials: "include" })
-    .then((response) => {
+  return fetch(apiUrl + input, { ...init, credentials: 'include' })
+    .then(response => {
       if (!response.ok) throw new Error(buildErrorMessage(response));
       return json ? response.json() : response;
     })
-    .catch((error) => {
+    .catch(error => {
       console.log(`${input} - ${error}`);
     });
 }

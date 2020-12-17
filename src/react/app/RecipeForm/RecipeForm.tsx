@@ -1,30 +1,30 @@
-import React, { ChangeEvent, useReducer, useState } from "react";
-import { useHistory } from "react-router-dom";
-import Hero from "../../components/Hero";
-import EmojiSelector from "./Components/EmojiSelector";
-import { IDirection, IIngredient, IRecipe } from "../../types/types";
-import { FaMinus, FaPlus } from "react-icons/all";
-import authFetch from "../../authFetch";
+import React, { ChangeEvent, useReducer, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { FaMinus, FaPlus } from 'react-icons/all';
+import Hero from '../../components/Hero';
+import EmojiSelector from './Components/EmojiSelector';
+import { IDirection, IIngredient, IRecipe } from '../../types/types';
+import authFetch from '../../authFetch';
 
 interface IProps {
   fetchRecipes: () => void;
 }
 
 const initialIngredientState: IIngredient = {
-  name: "",
-  quantity: "0",
-  unit: "",
+  name: '',
+  quantity: '0',
+  unit: '',
 };
-const initialDirectionState: IDirection = { index: "", text: "" };
+const initialDirectionState: IDirection = { index: '', text: '' };
 const initialRecipeState: IRecipe = {
-  name: "",
-  description: "",
-  emoji: ":)",
+  name: '',
+  description: '',
+  emoji: ':)',
   difficulty: 1,
-  cookingTime: "1",
+  cookingTime: '1',
   servings: 1,
-  course: "",
-  author: { username: "unknown", displayName: "Unknown" },
+  course: '',
+  author: { username: 'unknown', displayName: 'Unknown' },
   createdBy: 0,
   ingredients: [initialIngredientState],
   directions: [initialDirectionState],
@@ -32,21 +32,21 @@ const initialRecipeState: IRecipe = {
 
 function fitToContent(e: React.FormEvent<HTMLTextAreaElement>) {
   const target = e.target as HTMLElement;
-  target.style.height = "";
-  target.style.height = target.scrollHeight + 2 + "px";
+  target.style.height = '';
+  target.style.height = `${target.scrollHeight + 2}px`;
 }
 
 function RecipeForm(props: IProps) {
-  let history = useHistory();
+  const history = useHistory();
 
   function updateEmoji(code: string) {
-    dispatch({ field: "emoji", value: code });
+    dispatch({ field: 'emoji', value: code });
   }
 
   // RECIPE
   function reducer(
     state: IRecipe,
-    { field, value }: { field: string; value: string | number | IDirection[] }
+    { field, value }: { field: string; value: string | number | IDirection[] },
   ): IRecipe {
     return {
       ...state,
@@ -60,12 +60,19 @@ function RecipeForm(props: IProps) {
     e:
       | React.ChangeEvent<HTMLInputElement>
       | React.ChangeEvent<HTMLSelectElement>
-      | React.ChangeEvent<HTMLTextAreaElement>
+      | React.ChangeEvent<HTMLTextAreaElement>,
   ) => {
     dispatch({ field: e.target.name, value: e.target.value });
   };
 
-  const { name, description, difficulty, cookingTime, servings } = recipeState;
+  const {
+    name,
+    description,
+    difficulty,
+    cookingTime,
+    servings,
+    emoji,
+  } = recipeState;
 
   // INGREDIENTS
   const [ingredients, setIngredients] = useState<IIngredient[]>([
@@ -77,14 +84,12 @@ function RecipeForm(props: IProps) {
   }
 
   function updateIngredient(
-    e:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>,
   ) {
-    const name = e.target.name;
-    const value = e.target.value;
+    const { name } = e.target;
+    const { value } = e.target;
 
-    const parts = name.split("_");
+    const parts = name.split('_');
     const field = parts[1];
     const index = Number(parts[2]);
 
@@ -94,12 +99,10 @@ function RecipeForm(props: IProps) {
     setIngredients(copy);
   }
 
-  function removeIngredient(
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) {
+  function removeIngredient(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     const field = e.currentTarget.name;
 
-    const index = Number(field.substring(field.lastIndexOf("_") + 1));
+    const index = Number(field.substring(field.lastIndexOf('_') + 1));
 
     const copy = [...ingredients];
     copy.splice(index, 1);
@@ -116,10 +119,10 @@ function RecipeForm(props: IProps) {
   }
 
   function updateDirection(e: React.ChangeEvent<HTMLTextAreaElement>) {
-    const name = e.target.name;
-    const value = e.target.value;
+    const { name } = e.target;
+    const { value } = e.target;
 
-    const parts = name.split("_");
+    const parts = name.split('_');
     const field = parts[1];
     const index = Number(parts[2]);
 
@@ -132,7 +135,7 @@ function RecipeForm(props: IProps) {
   function removeDirection(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     const field = e.currentTarget.name;
 
-    const index = Number(field.substring(field.lastIndexOf("_") + 1));
+    const index = Number(field.substring(field.lastIndexOf('_') + 1));
 
     const copy = [...directions];
     copy.splice(index, 1);
@@ -140,20 +143,20 @@ function RecipeForm(props: IProps) {
   }
 
   function createRecipe() {
-    let recipe = recipeState;
+    const recipe = recipeState;
     recipe.ingredients = ingredients;
     recipe.directions = directions;
 
-    authFetch("/recipe", {
-      method: "POST",
+    authFetch('/recipe', {
+      method: 'POST',
       body: JSON.stringify(recipe),
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
-    }).then((response) => {
-      let newlyCreatedId: number = response.id;
-      props.fetchRecipes(); //to refresh the apps list of recipes, will also refresh side bar
-      history.push("/recipe/" + newlyCreatedId);
+    }).then(response => {
+      const newlyCreatedId: number = response.id;
+      props.fetchRecipes(); // to refresh the apps list of recipes, will also refresh side bar
+      history.push(`/recipe/${newlyCreatedId}`);
     });
   }
 
@@ -245,7 +248,10 @@ function RecipeForm(props: IProps) {
                     <div className="field">
                       <label className="label">Emoji</label>
                       <div className="control">
-                        <EmojiSelector updateEmoji={updateEmoji} />
+                        <EmojiSelector
+                          data={{ value: emoji }}
+                          updateEmoji={updateEmoji}
+                        />
                       </div>
                     </div>
                   </div>
@@ -275,22 +281,17 @@ function RecipeForm(props: IProps) {
             <div className="column">
               <div className="box">
                 <h2 className="subtitle">Ingredients</h2>
-                {ingredients.map((ingredient, i) => {
-                  return (
-                    <IngredientForm
-                      ingredient={ingredient}
-                      key={i}
-                      i={i}
-                      updateIngredient={updateIngredient}
-                      removeIngredient={removeIngredient}
-                    />
-                  );
-                })}
+                {ingredients.map((ingredient, i) => (
+                  <IngredientForm
+                    ingredient={ingredient}
+                    key={i}
+                    i={i}
+                    updateIngredient={updateIngredient}
+                    removeIngredient={removeIngredient}
+                  />
+                ))}
 
-                <button
-                  className="button is-success"
-                  onClick={addBlankIngredient}
-                >
+                <button className="button is-success" onClick={addBlankIngredient}>
                   <span className="icon">
                     <FaPlus />
                   </span>
@@ -299,22 +300,17 @@ function RecipeForm(props: IProps) {
 
               <div className="box mt-6">
                 <h2 className="subtitle">Directions</h2>
-                {directions.map((direction, i) => {
-                  return (
-                    <DirectionForm
-                      direction={direction}
-                      i={i}
-                      key={direction.index}
-                      updateDirection={updateDirection}
-                      removeDirection={removeDirection}
-                    />
-                  );
-                })}
+                {directions.map((direction, i) => (
+                  <DirectionForm
+                    direction={direction}
+                    i={i}
+                    key={direction.index}
+                    updateDirection={updateDirection}
+                    removeDirection={removeDirection}
+                  />
+                ))}
 
-                <button
-                  className="button is-success"
-                  onClick={addBlankDirection}
-                >
+                <button className="button is-success" onClick={addBlankDirection}>
                   <span className="icon">
                     <FaPlus />
                   </span>
@@ -339,20 +335,16 @@ interface IIngredientFormProps {
   ingredient: IIngredient;
   i: number;
   updateIngredient: (
-    e:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>,
   ) => void;
-  removeIngredient: (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => void;
+  removeIngredient: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 function IngredientForm(props: IIngredientFormProps) {
-  const ingredient = props.ingredient;
-  const i = props.i;
-  const updateIngredient = props.updateIngredient;
-  const removeIngredient = props.removeIngredient;
+  const { ingredient } = props;
+  const { i } = props;
+  const { updateIngredient } = props;
+  const { removeIngredient } = props;
 
   return (
     <div className="field is-grouped">
@@ -369,7 +361,7 @@ function IngredientForm(props: IIngredientFormProps) {
       <div className="control">
         <input
           className="input"
-          style={{ width: "5em" }}
+          style={{ width: '5em' }}
           type="number"
           maxLength={5}
           min="1"
@@ -418,10 +410,10 @@ interface IDirectionFormProps {
 }
 
 function DirectionForm(props: IDirectionFormProps) {
-  const direction = props.direction;
-  const i = props.i;
-  const updateDirection = props.updateDirection;
-  const removeDirection = props.removeDirection;
+  const { direction } = props;
+  const { i } = props;
+  const { updateDirection } = props;
+  const { removeDirection } = props;
 
   return (
     <div className="field is-grouped" key={i}>
