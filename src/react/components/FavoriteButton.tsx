@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { BiHeart, BsFillHeartFill } from 'react-icons/all';
+import React from 'react';
+import { BsHeart, BsHeartFill } from 'react-icons/all';
 
 import { IconContext } from 'react-icons';
 import authFetch from '../authFetch';
@@ -11,20 +11,10 @@ interface IProps {
 }
 
 function FavoriteButton({ recipeId, favoriteIds, fetchFavorites }: IProps) {
-  const [size, setSize] = useState<string>('1em');
-
-  function iconHover(e: React.MouseEvent) {
-    setSize('1.3em');
-  }
-
-  function iconLeaveHover(e: React.MouseEvent) {
-    setSize('1em');
-  }
-
   function saveFavorite() {
     authFetch(`/recipe/favorite/${recipeId}`, {
       method: 'POST',
-    }).then(json => {
+    }).then(() => {
       fetchFavorites();
     });
   }
@@ -32,26 +22,20 @@ function FavoriteButton({ recipeId, favoriteIds, fetchFavorites }: IProps) {
   function removeFavorite() {
     authFetch(`/recipe/favorite/${recipeId}`, {
       method: 'DELETE',
-    }).then(json => {
+    }).then(() => {
       fetchFavorites();
     });
   }
 
   return (
     <div>
-      <IconContext.Provider value={{ size }}>
+      <IconContext.Provider
+        value={{ size: '1.3em', color: '#E00', className: 'grow' }}
+      >
         {recipeId && favoriteIds.includes(recipeId) ? (
-          <BsFillHeartFill
-            onMouseEnter={iconHover}
-            onMouseLeave={iconLeaveHover}
-            onClick={removeFavorite}
-          />
+          <BsHeartFill onClick={removeFavorite} />
         ) : (
-          <BiHeart
-            onMouseEnter={iconHover}
-            onMouseLeave={iconLeaveHover}
-            onClick={saveFavorite}
-          />
+          <BsHeart onClick={saveFavorite} />
         )}
       </IconContext.Provider>
     </div>

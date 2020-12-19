@@ -1,5 +1,5 @@
-import React, { createContext, Dispatch, SetStateAction } from 'react';
-import { IFavorite, IUser } from './types/types';
+import React, { Dispatch, SetStateAction } from 'react';
+import { IUser } from './types/types';
 
 interface IUserContext {
   user: IUser | undefined;

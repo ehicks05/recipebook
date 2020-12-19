@@ -284,7 +284,7 @@ function RecipeForm(props: IProps) {
                 {ingredients.map((ingredient, i) => (
                   <IngredientForm
                     ingredient={ingredient}
-                    key={i}
+                    key={ingredient.name}
                     i={i}
                     updateIngredient={updateIngredient}
                     removeIngredient={removeIngredient}

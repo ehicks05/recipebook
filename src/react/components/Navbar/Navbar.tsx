@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FaPlus } from 'react-icons/all';
 import UserAccess from './components/UserAccess';
@@ -10,6 +10,7 @@ const clickBurger = (e: React.MouseEvent<HTMLDivElement>) => {
 };
 
 function Navbar() {
+  const { user, setUser } = useContext(UserContext);
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="container">
@@ -50,23 +51,17 @@ function Navbar() {
 
           <div className="navbar-end">
             <div className="navbar-item has-dropdown is-hoverable">
-              <UserContext.Consumer>
-                {({ user, setUser }) => (
-                  <>
-                    <div className="navbar-link">
-                      {user ? <Link to="/myAccount">My Account</Link> : 'Log In'}
-                    </div>
+              <div className="navbar-link">
+                {user ? <Link to="/myAccount">My Account</Link> : 'Log In'}
+              </div>
 
-                    <div className="navbar-dropdown is-right">
-                      <div className="navbar-item">
-                        <div>
-                          <UserAccess user={user} setUser={setUser} />
-                        </div>
-                      </div>
-                    </div>
-                  </>
-                )}
-              </UserContext.Consumer>
+              <div className="navbar-dropdown is-right">
+                <div className="navbar-item">
+                  <div>
+                    <UserAccess user={user} setUser={setUser} />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
