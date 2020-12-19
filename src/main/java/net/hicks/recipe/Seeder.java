@@ -131,6 +131,11 @@ public class Seeder
             ObjectMapper objectMapper = new ObjectMapper();
             List<Recipe> recipes = objectMapper.readValue(inputStream, new TypeReference<>() {});
             recipes.forEach(recipe -> recipe.setId(null));
+            recipes.forEach(recipe -> {
+                List<Direction> directions = recipe.getDirections();
+                for (int i = 0; i < directions.size(); i++)
+                    directions.get(i).setIndex(i);
+            });
             recipeService.createRecipes(recipes);
 
             User user = userRepository.findByUsername("admin@test.com");
