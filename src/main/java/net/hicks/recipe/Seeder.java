@@ -137,6 +137,7 @@ public class Seeder
                 for (int i = 0; i < directions.size(); i++)
                     directions.get(i).setIndex(i);
             });
+            recipes.forEach(recipe -> recipe.setAuthor(user));
             recipeService.createRecipes(recipes);
 
             recipes.stream().limit(new Random().nextInt(10)+1).forEach(x -> {
