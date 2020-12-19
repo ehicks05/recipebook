@@ -33,7 +33,7 @@ function Direction({ direction }: IDirectionProps) {
   return (
     <li key={direction.text}>
       <span
-        onClick={e => setIsDone(!isDone)}
+        onClick={() => setIsDone(!isDone)}
         style={{
           opacity: isDone ? '0.5' : '',
           textDecoration: isDone ? 'line-through' : '',

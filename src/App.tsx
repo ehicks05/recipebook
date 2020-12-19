@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext, useCallback } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Route } from 'react-router-dom';
 import Recipe from './react/app/Recipe/Recipe';
 import Navbar from './react/components/Navbar/Navbar';

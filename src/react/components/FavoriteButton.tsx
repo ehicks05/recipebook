@@ -14,7 +14,7 @@ function FavoriteButton({ recipeId, favoriteIds, fetchFavorites }: IProps) {
   function saveFavorite() {
     authFetch(`/recipe/favorite/${recipeId}`, {
       method: 'POST',
-    }).then(json => {
+    }).then(() => {
       fetchFavorites();
     });
   }
@@ -22,7 +22,7 @@ function FavoriteButton({ recipeId, favoriteIds, fetchFavorites }: IProps) {
   function removeFavorite() {
     authFetch(`/recipe/favorite/${recipeId}`, {
       method: 'DELETE',
-    }).then(json => {
+    }).then(() => {
       fetchFavorites();
     });
   }

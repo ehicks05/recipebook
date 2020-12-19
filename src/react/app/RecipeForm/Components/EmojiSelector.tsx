@@ -1,7 +1,7 @@
 import Select, { Styles } from 'react-select';
 import React, { CSSProperties, useEffect, useState } from 'react';
 import { Props } from 'react-select/src/styles';
-import { ActionMeta, ValueType } from 'react-select/src/types';
+import { ValueType } from 'react-select/src/types';
 import { IEmoji } from '../../../types/types';
 import authFetch from '../../../authFetch';
 
