@@ -125,6 +125,7 @@ public class Seeder
 
     public void createRecipes() {
         Resource recipesFile = new ClassPathResource("recipes.json");
+        User user = userRepository.findByUsername("admin@test.com");
         try {
             InputStream inputStream = recipesFile.getInputStream();
 
@@ -138,7 +139,6 @@ public class Seeder
             });
             recipeService.createRecipes(recipes);
 
-            User user = userRepository.findByUsername("admin@test.com");
             recipes.stream().limit(new Random().nextInt(10)+1).forEach(x -> {
                 UserFavorite favorite = new UserFavorite(user, x);
                 userFavoriteRepository.save(favorite);

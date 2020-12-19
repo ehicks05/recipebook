@@ -50,17 +50,13 @@ public class RecipeServiceTest {
 
         when(recipeRepository.findByOrderByIdDesc())
                 .thenReturn(allRecipes);
-        when(userRepository.getUserOrSystemUser(0L))
-                .thenReturn(anon);
 
         List<Recipe> recipes = recipeService.getAllRecipes();
 
         verify(recipeRepository, times(1)).findByOrderByIdDesc();
-        verify(userRepository, times(1)).getUserOrSystemUser(0L);
         assertThat(recipes).isNotNull();
         assertThat(recipes.size()).isGreaterThan(0);
         verifyNoMoreInteractions(recipeRepository);
-        verifyNoMoreInteractions(userRepository);
     }
 
     @Test

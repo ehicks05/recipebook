@@ -22,14 +22,6 @@ public class AuditClass {
     @LastModifiedDate
     private LocalDateTime lastUpdated;
 
-    @Column(name = "created_by")
-    @CreatedBy
-    private Long createdBy;
-
-    @Column(name = "modified_by")
-    @LastModifiedBy
-    private Long modifiedBy;
-
     public LocalDateTime getAddedOn() {
         return addedOn;
     }
@@ -44,21 +36,5 @@ public class AuditClass {
 
     public void setLastUpdated(LocalDateTime lastUpdated) {
         this.lastUpdated = lastUpdated;
-    }
-
-    public Long getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(Long createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public Long getModifiedBy() {
-        return modifiedBy;
-    }
-
-    public void setModifiedBy(Long modifiedBy) {
-        this.modifiedBy = modifiedBy;
     }
 }
