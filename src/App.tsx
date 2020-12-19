@@ -35,7 +35,7 @@ export default function App() {
     fetchRecipes();
     fetchUser();
     fetchFavoriteIds();
-  }, []);
+  }, [fetchUser]);
 
   return (
     <UserContext.Provider
