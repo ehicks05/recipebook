@@ -64,7 +64,6 @@ public class TestUtils {
         taco.setEmoji("");
         taco.setDirections(getTacoDirections());
         taco.setIngredients(getTacoIngredients());
-        taco.setCreatedBy(0L);
 
         return taco;
     }
@@ -72,7 +71,6 @@ public class TestUtils {
     public static User getUser() {
         User user = new User();
         user.setId(0L);
-        user.setCreatedBy(0L);
         user.setUsername("Somedude");
         user.setDisplayName("Dude");
 
