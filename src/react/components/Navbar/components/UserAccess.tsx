@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { useState } from 'react';
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
 import { IUser } from '../../../types/types';
@@ -53,12 +53,9 @@ function UserAccess(props: IProps) {
       )}
 
       {props.user && (
-        <>
-          Hi {props.user.displayName}
-          <button className="button is-danger is-fullwidth" onClick={logout}>
-            Logout
-          </button>
-        </>
+        <button className="button is-danger is-fullwidth" onClick={logout}>
+          Logout
+        </button>
       )}
     </>
   );

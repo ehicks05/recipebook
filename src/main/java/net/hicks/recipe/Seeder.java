@@ -8,7 +8,6 @@ import net.hicks.recipe.repos.RoleRepository;
 import net.hicks.recipe.repos.UserFavoriteRepository;
 import net.hicks.recipe.repos.UserRepository;
 import net.hicks.recipe.security.PasswordEncoder;
-import net.hicks.recipe.services.EmojiService;
 import net.hicks.recipe.services.RecipeService;
 import org.hibernate.exception.SQLGrammarException;
 import org.slf4j.Logger;
@@ -37,7 +36,6 @@ public class Seeder
     private final UserFavoriteRepository userFavoriteRepository;
     private final PasswordEncoder passwordEncoder;
     private final EntityManagerFactory entityManagerFactory;
-    private final EmojiService emojiService;
 
     private final RecipeService recipeService;
 
@@ -47,8 +45,7 @@ public class Seeder
                   UserFavoriteRepository userFavoriteRepository,
                   PasswordEncoder passwordEncoder,
                   EntityManagerFactory entityManagerFactory,
-                  RecipeService recipeService,
-                  EmojiService emojiService)
+                  RecipeService recipeService)
     {
         this.mySystemRepository = mySystemRepository;
         this.roleRepository = roleRepository;
@@ -57,7 +54,6 @@ public class Seeder
         this.passwordEncoder = passwordEncoder;
         this.entityManagerFactory = entityManagerFactory;
         this.recipeService = recipeService;
-        this.emojiService = emojiService;
     }
 
     @Transactional
@@ -113,9 +109,6 @@ public class Seeder
         log.info("created recipes");
         log.info("created favorites");
 
-        createEmojis();
-        log.info("created emojis");
-
         log.info("Done seeding data");
     }
 
@@ -139,31 +132,16 @@ public class Seeder
             ObjectMapper objectMapper = new ObjectMapper();
             List<Recipe> recipes = objectMapper.readValue(inputStream, new TypeReference<>() {});
             recipes.forEach(recipe -> recipe.setId(null));
-            recipes.forEach(recipe -> recipe.setAuthor(user));
+            recipes.forEach(recipe -> {
+                List<Direction> directions = recipe.getDirections();
+                for (int i = 0; i < directions.size(); i++)
+                    directions.get(i).setIndex(i);
+            });
             recipeService.createRecipes(recipes);
 
             recipes.stream().limit(new Random().nextInt(10)+1).forEach(x -> {
                 UserFavorite favorite = new UserFavorite(user, x);
                 userFavoriteRepository.save(favorite);
-            });
-
-        } catch (Exception e) {
-            log.error(e.getLocalizedMessage(), e);
-        }
-    }
-
-    public void createEmojis() {
-        Resource emojiFile = new ClassPathResource("emojis.json");
-        try {
-            InputStream inputStream = emojiFile.getInputStream();
-
-            ObjectMapper objectMapper = new ObjectMapper();
-            List<Emoji> emojies = objectMapper.readValue(inputStream, new TypeReference<>() {});
-            emojies.forEach(e -> {
-                e.setCharacter(
-                        new StringBuilder().appendCodePoint(Integer.parseInt(e.getCodePoint(), 16)).toString()
-                );
-                emojiService.save(e);
             });
 
         } catch (Exception e) {

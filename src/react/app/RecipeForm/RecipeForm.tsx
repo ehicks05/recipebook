@@ -24,7 +24,7 @@ const initialRecipeState: IRecipe = {
   cookingTime: '1',
   servings: 1,
   course: '',
-  author: { username: 'unknown', displayName: 'Unknown' },
+  author: { id: 0, username: 'unknown', displayName: 'Unknown' },
   createdBy: 0,
   ingredients: [initialIngredientState],
   directions: [initialDirectionState],
@@ -284,7 +284,7 @@ function RecipeForm(props: IProps) {
                 {ingredients.map((ingredient, i) => (
                   <IngredientForm
                     ingredient={ingredient}
-                    key={i}
+                    key={ingredient.name}
                     i={i}
                     updateIngredient={updateIngredient}
                     removeIngredient={removeIngredient}
