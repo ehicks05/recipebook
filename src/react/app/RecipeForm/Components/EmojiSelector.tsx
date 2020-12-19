@@ -1,9 +1,10 @@
 import Select, { Styles } from 'react-select';
-import React, { CSSProperties, useEffect, useState } from 'react';
+import React, { CSSProperties } from 'react';
 import { Props } from 'react-select/src/styles';
 import { ValueType } from 'react-select/src/types';
 import { IEmoji } from '../../../types/types';
 import authFetch from '../../../authFetch';
+import EMOJI_OPTIONS from '../../../constants/emojis';
 
 interface IEmojiOption {
   value: string;
@@ -16,8 +17,6 @@ interface IProps {
 }
 
 function EmojiSelector(props: IProps) {
-  const [emojis, setEmojis] = useState<IEmojiOption[] | undefined>([]);
-
   const onSelectChange = (v?: ValueType<IEmojiOption, false>) => {
     if (v && 'value' in v) {
       props.updateEmoji(v.value);
@@ -55,22 +54,13 @@ function EmojiSelector(props: IProps) {
     }),
   };
 
-  useEffect(() => {
-    loadEmojis();
-  }, []);
-
-  function loadEmojis() {
-    authFetch('/emoji').then(json =>
-      setEmojis(
-        json.map((emoji: IEmoji) => ({
-          value: emoji.character,
-          label: emoji.slug,
-        })),
-      ),
-    );
-  }
-
-  return <Select options={emojis} styles={customStyles} onChange={onSelectChange} />;
+  return (
+    <Select
+      options={EMOJI_OPTIONS}
+      styles={customStyles}
+      onChange={onSelectChange}
+    />
+  );
 }
 
 export default EmojiSelector;
