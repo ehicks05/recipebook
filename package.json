@@ -8,10 +8,6 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "css-build": "node-sass --omit-source-map-url src/App.scss src/App.css"
   },
   "dependencies": {
     "@creativebulma/bulma-tooltip": "^1.2.0",
