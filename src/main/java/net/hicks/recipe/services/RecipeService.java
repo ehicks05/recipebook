@@ -4,33 +4,26 @@ import net.hicks.recipe.beans.Recipe;
 import net.hicks.recipe.beans.User;
 import net.hicks.recipe.config.RecipeBookException;
 import net.hicks.recipe.repos.RecipeRepository;
-import net.hicks.recipe.repos.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class RecipeService {
-
-    private final RecipeRepository recipeRepository;
-    private final UserRepository userRepository;
-
     private static final Logger log = LoggerFactory.getLogger(RecipeService.class);
 
-    public RecipeService(RecipeRepository recipeRepository, UserRepository userRepository) {
+    private final RecipeRepository recipeRepository;
+
+    public RecipeService(RecipeRepository recipeRepository) {
         this.recipeRepository = recipeRepository;
-        this.userRepository = userRepository;
     }
 
     public List<Recipe> getAllRecipes() {
         try
         {
-            List<Recipe> recipes = recipeRepository.findByOrderByIdDesc();
-            recipes.forEach(e -> e.setAuthor(userRepository.getUserOrSystemUser(e.getCreatedBy())));
-            return recipes;
+            return recipeRepository.findByOrderByIdDesc();
         }
         catch (Exception e)
         {
@@ -41,9 +34,7 @@ public class RecipeService {
 
     public Recipe getRecipe(long recipeId) {
         try {
-            Recipe recipe = recipeRepository.findById(recipeId).get();
-            recipe.setAuthor(userRepository.getUserOrSystemUser(recipe.getCreatedBy()));
-            return recipe;
+            return recipeRepository.findById(recipeId).get();
         } catch (Exception e) {
             log.error(e.getLocalizedMessage(), e);
             throw new RecipeBookException(10, "Unable to retrieve recipe with id " + recipeId);
@@ -52,9 +43,7 @@ public class RecipeService {
 
     public List<Recipe> getRecipesForUser(User user) {
         try {
-            List<Recipe> recipes = recipeRepository.findAllByUserId(user.getId());
-            recipes.forEach(it -> it.setAuthor(userRepository.getUserOrSystemUser(it.getCreatedBy())));
-            return recipes;
+            return recipeRepository.findByAuthor(user);
         } catch (Exception e) {
             log.error(e.getLocalizedMessage(), e);
             throw new RecipeBookException(10, "Unable to retrieve user recipe ids for user " + user.getId());

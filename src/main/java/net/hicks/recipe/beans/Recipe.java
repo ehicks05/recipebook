@@ -22,7 +22,7 @@ public class Recipe extends AuditClass
     private int servings;
     private String course;
 
-    @Transient
+    @ManyToOne
     private User author;
 
     @ManyToMany(cascade = CascadeType.ALL)

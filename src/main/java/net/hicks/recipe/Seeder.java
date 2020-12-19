@@ -132,15 +132,16 @@ public class Seeder
 
     public void createRecipes() {
         Resource recipesFile = new ClassPathResource("recipes.json");
+        User user = userRepository.findByUsername("admin@test.com");
         try {
             InputStream inputStream = recipesFile.getInputStream();
 
             ObjectMapper objectMapper = new ObjectMapper();
             List<Recipe> recipes = objectMapper.readValue(inputStream, new TypeReference<>() {});
             recipes.forEach(recipe -> recipe.setId(null));
+            recipes.forEach(recipe -> recipe.setAuthor(user));
             recipeService.createRecipes(recipes);
 
-            User user = userRepository.findByUsername("admin@test.com");
             recipes.stream().limit(new Random().nextInt(10)+1).forEach(x -> {
                 UserFavorite favorite = new UserFavorite(user, x);
                 userFavoriteRepository.save(favorite);
