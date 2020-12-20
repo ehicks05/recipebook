@@ -55,7 +55,8 @@ public class RecipeService {
         return recipeRepository.save(recipeToUpdate);
     }
 
-    public Recipe createRecipe(Recipe recipe) {
+    public Recipe createRecipe(User user, Recipe recipe) {
+        recipe.setAuthor(user);
         return recipeRepository.save(recipe);
     }
 
