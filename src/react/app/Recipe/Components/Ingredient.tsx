@@ -76,7 +76,14 @@ function Ingredient({
           checked={isChecked}
           onChange={e => setIsChecked(e.target.checked)}
         />
-        <span style={{ opacity: isChecked ? '.5' : '', paddingLeft: '.25em' }}>
+        <span
+          style={{
+            opacity: isChecked ? '.5' : '',
+            display: 'block',
+            marginLeft: '1.2rem',
+            marginTop: '-1.2rem',
+          }}
+        >
           {desiredQuantity}
           {` ${ingredient.unit || ''} ${ingredient.name}`}
         </span>
