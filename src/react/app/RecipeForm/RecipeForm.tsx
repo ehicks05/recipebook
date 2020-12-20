@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useReducer, useState } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FaMinus, FaPlus } from 'react-icons/all';
 import Hero from '../../components/Hero';
@@ -25,30 +25,20 @@ function fitToContent(e: React.FormEvent<HTMLTextAreaElement>) {
 function RecipeForm(props: IProps) {
   const history = useHistory();
 
-  function updateEmoji(code: string) {
-    dispatch({ field: 'emoji', value: code });
-  }
-
   // RECIPE
-  function reducer(
-    state: IRecipe,
-    { field, value }: { field: string; value: string | number | IDirection[] },
-  ): IRecipe {
-    return {
-      ...state,
-      [field]: value,
-    };
-  }
+  const [recipeState, setRecipeState] = useState(DEFAULT_RECIPE);
 
-  const [recipeState, dispatch] = useReducer(reducer, DEFAULT_RECIPE);
+  function updateEmoji(code: string) {
+    setRecipeState({ ...recipeState, ['emoji' as keyof IRecipe]: code });
+  }
 
   const onChange = (
-    e:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLSelectElement>
-      | React.ChangeEvent<HTMLTextAreaElement>,
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
   ) => {
-    dispatch({ field: e.target.name, value: e.target.value });
+    setRecipeState({
+      ...recipeState,
+      [e.target.name]: e.target.value,
+    });
   };
 
   // INGREDIENTS
@@ -59,7 +49,7 @@ function RecipeForm(props: IProps) {
   }
 
   function updateIngredient(
-    e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>,
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) {
     const { name, value } = e.target;
 
@@ -251,7 +241,7 @@ function RecipeForm(props: IProps) {
                 {ingredients.map((ingredient, i) => (
                   <IngredientForm
                     ingredient={ingredient}
-                    key={ingredient.name}
+                    key={i} // ingredient.name will lose focus every time name changes
                     i={i}
                     updateIngredient={updateIngredient}
                     removeIngredient={removeIngredient}
@@ -302,7 +292,7 @@ interface IIngredientFormProps {
   ingredient: IIngredient;
   i: number;
   updateIngredient: (
-    e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>,
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => void;
   removeIngredient: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
@@ -367,7 +357,7 @@ function IngredientForm(props: IIngredientFormProps) {
 interface IDirectionFormProps {
   direction: { text: string };
   i: number;
-  updateDirection: (e: ChangeEvent<HTMLTextAreaElement>) => void;
+  updateDirection: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   removeDirection: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
