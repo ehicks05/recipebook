@@ -10,6 +10,7 @@ import RecipeForm from './react/app/RecipeForm/RecipeForm';
 import authFetch from './react/authFetch';
 import { UserContext } from './react/UserContext';
 import UserAccess from './react/app/Login/UserAccess';
+import setDefaultDescription from './utils';
 
 export default function App() {
   const [recipes, setRecipes] = useState<IRecipe[]>([]);
@@ -24,7 +25,7 @@ export default function App() {
 
   function fetchRecipes() {
     authFetch('/recipe').then(json => {
-      setRecipes(json);
+      setRecipes(json.map(setDefaultDescription));
     });
   }
 
