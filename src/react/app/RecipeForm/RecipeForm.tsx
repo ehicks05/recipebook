@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FaMinus, FaPlus } from 'react-icons/all';
 import Fraction from 'fraction.js';
+import TextareaAutosize from 'react-textarea-autosize';
 import Hero from '../../components/Hero';
 import EmojiSelector from './Components/EmojiSelector';
 import { IDirection, IIngredient, IRecipe } from '../../types/types';
@@ -15,12 +16,6 @@ import {
 
 interface IProps {
   fetchRecipes: () => void;
-}
-
-function fitToContent(e: React.FormEvent<HTMLTextAreaElement>) {
-  const target = e.target as HTMLElement;
-  target.style.height = '';
-  target.style.height = `${target.scrollHeight + 2}px`;
 }
 
 function RecipeForm(props: IProps) {
@@ -160,13 +155,12 @@ function RecipeForm(props: IProps) {
                 <div className="field">
                   <label className="label">Description</label>
                   <div className="control">
-                    <textarea
+                    <TextareaAutosize
                       className="textarea"
                       name="description"
                       placeholder="Description"
                       rows={1}
                       value={recipeState.description}
-                      onInput={fitToContent}
                       onChange={onChange}
                     />
                   </div>
@@ -398,13 +392,12 @@ function DirectionForm(props: IDirectionFormProps) {
         <span>{`${i + 1}.`}</span>
       </div>
       <div className="control is-expanded">
-        <textarea
+        <TextareaAutosize
           className="textarea"
           name={`direction_text_${i}`}
           placeholder="Description"
           rows={1}
           value={direction.text}
-          onInput={fitToContent}
           onChange={updateDirection}
         />
       </div>
