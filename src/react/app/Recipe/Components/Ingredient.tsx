@@ -1,8 +1,18 @@
-import { create, all, MathJsStatic, Fraction } from 'mathjs';
+import {
+  create,
+  evaluateDependencies,
+  fractionDependencies,
+  roundDependencies,
+  MathJsStatic,
+  Fraction,
+} from 'mathjs';
 import React, { useState } from 'react';
 import { IIngredient } from '../../../types/types';
 
-const math = create(all, {}) as MathJsStatic;
+const math = create(
+  { evaluateDependencies, fractionDependencies, roundDependencies },
+  {},
+) as MathJsStatic;
 
 interface IIngredientProps {
   ingredient: IIngredient;
