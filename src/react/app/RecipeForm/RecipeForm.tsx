@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FaMinus, FaPlus } from 'react-icons/all';
+import Fraction from 'fraction.js';
 import Hero from '../../components/Hero';
 import EmojiSelector from './Components/EmojiSelector';
 import { IDirection, IIngredient, IRecipe } from '../../types/types';
@@ -48,6 +49,19 @@ function RecipeForm(props: IProps) {
     setIngredients([...ingredients, { ...DEFAULT_INGREDIENT }]);
   }
 
+  const [isInvalidQuantity, setIsInvalidQuantity] = useState(false);
+
+  const isValid = (quantity: string) => {
+    let isValid = false;
+    try {
+      console.log(`fraction.js says ${quantity} is ${new Fraction(quantity)}`);
+      isValid = true;
+    } catch (e) {
+      // noop
+    }
+    return isValid;
+  };
+
   function updateIngredient(
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) {
@@ -61,6 +75,7 @@ function RecipeForm(props: IProps) {
     copy[index][field as keyof IIngredient] = value;
 
     setIngredients(copy);
+    setIsInvalidQuantity(copy.some(ingredient => !isValid(ingredient.quantity)));
   }
 
   function removeIngredient(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
@@ -71,6 +86,7 @@ function RecipeForm(props: IProps) {
     const copy = [...ingredients];
     copy.splice(index, 1);
     setIngredients(copy);
+    setIsInvalidQuantity(copy.some(ingredient => !isValid(ingredient.quantity)));
   }
 
   // DIRECTIONS
@@ -276,10 +292,21 @@ function RecipeForm(props: IProps) {
             </div>
           </div>
           <nav className="level">
-            <div className="level-item">
-              <button className="button is-success" onClick={createRecipe}>
-                Create Recipe
-              </button>
+            <div className="level-item has-text-centered">
+              <div>
+                {isInvalidQuantity && (
+                  <p className="has-text-danger">
+                    Please check that ingredient quantities are all valid numbers
+                  </p>
+                )}
+                <button
+                  className="button is-success"
+                  onClick={createRecipe}
+                  disabled={isInvalidQuantity}
+                >
+                  Create Recipe
+                </button>
+              </div>
             </div>
           </nav>
         </div>
@@ -319,9 +346,7 @@ function IngredientForm(props: IIngredientFormProps) {
         <input
           className="input"
           style={{ width: '5em' }}
-          type="number"
-          maxLength={5}
-          min="1"
+          type="text"
           name={`ingredient_quantity_${i}`}
           placeholder="Quantity"
           value={ingredient.quantity}
