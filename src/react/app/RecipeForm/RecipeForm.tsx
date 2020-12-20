@@ -5,7 +5,12 @@ import Hero from '../../components/Hero';
 import EmojiSelector from './Components/EmojiSelector';
 import { IDirection, IIngredient, IRecipe } from '../../types/types';
 import authFetch from '../../authFetch';
-import { defaultIngredient, defaultDirection, defaultRecipe } from './constants';
+import {
+  DEFAULT_INGREDIENT,
+  DEFAULT_DIRECTION,
+  DEFAULT_RECIPE,
+  UNIT_OPTIONS,
+} from './constants';
 
 interface IProps {
   fetchRecipes: () => void;
@@ -35,7 +40,7 @@ function RecipeForm(props: IProps) {
     };
   }
 
-  const [recipeState, dispatch] = useReducer(reducer, defaultRecipe);
+  const [recipeState, dispatch] = useReducer(reducer, DEFAULT_RECIPE);
 
   const onChange = (
     e:
@@ -47,10 +52,10 @@ function RecipeForm(props: IProps) {
   };
 
   // INGREDIENTS
-  const [ingredients, setIngredients] = useState([{ ...defaultIngredient }]);
+  const [ingredients, setIngredients] = useState([{ ...DEFAULT_INGREDIENT }]);
 
   function addDefaultIngredient() {
-    setIngredients([...ingredients, { ...defaultIngredient }]);
+    setIngredients([...ingredients, { ...DEFAULT_INGREDIENT }]);
   }
 
   function updateIngredient(
@@ -79,10 +84,10 @@ function RecipeForm(props: IProps) {
   }
 
   // DIRECTIONS
-  const [directions, setDirections] = useState([{ ...defaultDirection }]);
+  const [directions, setDirections] = useState([{ ...DEFAULT_DIRECTION }]);
 
   function addDefaultDirection() {
-    setDirections([...directions, { ...defaultDirection }]);
+    setDirections([...directions, { ...DEFAULT_DIRECTION }]);
   }
 
   function updateDirection(e: React.ChangeEvent<HTMLTextAreaElement>) {
@@ -340,12 +345,7 @@ function IngredientForm(props: IIngredientFormProps) {
             value={ingredient.unit}
             onChange={updateIngredient}
           >
-            <option value="">unit</option>
-            <option value="oz">oz</option>
-            <option value="lb">lb</option>
-            <option value="ml">ml</option>
-            <option value="L">L</option>
-            <option value="g">g</option>
+            {UNIT_OPTIONS}
           </select>
         </div>
       </div>
