@@ -58,37 +58,38 @@ function MyAccount() {
       <Hero title="Your Profile" subtitle={user?.displayName} />
 
       {isMobile && (
-        <Carousel
-          swipeable
-          draggable
-          showDots={false}
-          responsive={getResponsive()}
-          centerMode={false}
-          ssr // means to render carousel on server-side.
-          infinite={false}
-          autoPlay={false}
-          keyBoardControl
-          customTransition="transform 400ms ease-in-out"
-          transitionDuration={500}
-          containerClass="carousel-container"
-          removeArrowOnDeviceType={['']}
-          deviceType="mobile"
-          dotListClass="custom-dot-list-style"
-          itemClass="carousel-item-padding-40-px"
-        >
-          <div>
-            <MyAccountComponent recipes={myRecipes} title="My Recipes" />
+        <section className="section">
+          <div className="container">
+            <Carousel
+              swipeable
+              draggable
+              showDots={false}
+              responsive={getResponsive()}
+              centerMode={false}
+              ssr // means to render carousel on server-side.
+              infinite={false}
+              autoPlay={false}
+              keyBoardControl
+              customTransition="transform 400ms ease-in-out"
+              transitionDuration={500}
+              containerClass="carousel-container"
+              removeArrowOnDeviceType={['']}
+              deviceType="mobile"
+              dotListClass="custom-dot-list-style"
+              itemClass="carousel-item-padding-40-px"
+            >
+              <div>
+                <MyAccountComponent recipes={myRecipes} title="My Recipes" />
+              </div>
+              <div>
+                <MyAccountComponent recipes={myFavorites} title="My Favorites" />
+              </div>
+              <div>
+                <MyAccountComponent recipes={[]} title="My Lists" />
+              </div>
+            </Carousel>
           </div>
-          <div>
-            <MyAccountComponent recipes={myFavorites} title="My Favorites" />
-          </div>
-          <div>
-            <p className="has-text-centered">My Sneed</p>
-            {myRecipes?.map(it => (
-              <div key={it.id}>{it.name}</div>
-            ))}
-          </div>
-        </Carousel>
+        </section>
       )}
 
       {!isMobile && (
@@ -102,7 +103,7 @@ function MyAccount() {
                 <MyAccountComponent recipes={myFavorites} title="My Favorites" />
               </div>
               <div className="column is-one-third">
-                <p className="has-text-centered">My Lists</p>
+                <MyAccountComponent recipes={[]} title="My Lists" />
               </div>
             </div>
           </div>
