@@ -7,7 +7,7 @@ interface IProps {
 }
 
 const Hero: FunctionComponent<IProps> = ({ title, subtitle, children }: IProps) => (
-  <section className="hero is-info">
+  <section className="hero">
     <div className="hero-body">
       <div className="container">
         <h1 className="title">{title}</h1>
