@@ -11,6 +11,7 @@ import authFetch from './react/authFetch';
 import { UserContext } from './react/UserContext';
 import UserAccess from './react/app/Login/UserAccess';
 import setDefaultDescription from './utils';
+import Loading from './react/components/Loading';
 
 export default function App() {
   const [recipes, setRecipes] = useState<IRecipe[]>([]);
@@ -25,7 +26,7 @@ export default function App() {
 
   function fetchRecipes() {
     authFetch('/recipe').then(json => {
-      setRecipes(json.map(setDefaultDescription));
+      setRecipes(json ? json.map(setDefaultDescription) : []);
     });
   }
 
@@ -38,6 +39,9 @@ export default function App() {
     fetchUser();
     fetchFavoriteIds();
   }, [fetchUser]);
+
+  if (!recipes || !favoriteIds)
+    return <Loading title="Loading..." subtitle="Please wait..." />;
 
   return (
     <UserContext.Provider
