@@ -5,30 +5,11 @@ import Hero from '../../components/Hero';
 import EmojiSelector from './Components/EmojiSelector';
 import { IDirection, IIngredient, IRecipe } from '../../types/types';
 import authFetch from '../../authFetch';
+import { defaultIngredient, defaultDirection, defaultRecipe } from './constants';
 
 interface IProps {
   fetchRecipes: () => void;
 }
-
-const initialIngredientState: IIngredient = {
-  name: '',
-  quantity: '0',
-  unit: '',
-};
-const initialDirectionState: IDirection = { index: '', text: '' };
-const initialRecipeState: IRecipe = {
-  name: '',
-  description: '',
-  emoji: ':)',
-  difficulty: 1,
-  cookingTime: '1',
-  servings: 1,
-  course: '',
-  author: { id: 0, username: 'unknown', displayName: 'Unknown' },
-  createdBy: 0,
-  ingredients: [initialIngredientState],
-  directions: [initialDirectionState],
-};
 
 function fitToContent(e: React.FormEvent<HTMLTextAreaElement>) {
   const target = e.target as HTMLElement;
@@ -54,7 +35,7 @@ function RecipeForm(props: IProps) {
     };
   }
 
-  const [recipeState, dispatch] = useReducer(reducer, initialRecipeState);
+  const [recipeState, dispatch] = useReducer(reducer, defaultRecipe);
 
   const onChange = (
     e:
@@ -65,29 +46,17 @@ function RecipeForm(props: IProps) {
     dispatch({ field: e.target.name, value: e.target.value });
   };
 
-  const {
-    name,
-    description,
-    difficulty,
-    cookingTime,
-    servings,
-    emoji,
-  } = recipeState;
-
   // INGREDIENTS
-  const [ingredients, setIngredients] = useState<IIngredient[]>([
-    { ...initialIngredientState },
-  ]);
+  const [ingredients, setIngredients] = useState([{ ...defaultIngredient }]);
 
-  function addBlankIngredient() {
-    setIngredients([...ingredients, { ...initialIngredientState }]);
+  function addDefaultIngredient() {
+    setIngredients([...ingredients, { ...defaultIngredient }]);
   }
 
   function updateIngredient(
     e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>,
   ) {
-    const { name } = e.target;
-    const { value } = e.target;
+    const { name, value } = e.target;
 
     const parts = name.split('_');
     const field = parts[1];
@@ -110,17 +79,14 @@ function RecipeForm(props: IProps) {
   }
 
   // DIRECTIONS
-  const [directions, setDirections] = useState<IDirection[]>([
-    { ...initialDirectionState },
-  ]);
+  const [directions, setDirections] = useState([{ ...defaultDirection }]);
 
-  function addBlankDirection() {
-    setDirections([...directions, { ...initialDirectionState }]);
+  function addDefaultDirection() {
+    setDirections([...directions, { ...defaultDirection }]);
   }
 
   function updateDirection(e: React.ChangeEvent<HTMLTextAreaElement>) {
-    const { name } = e.target;
-    const { value } = e.target;
+    const { name, value } = e.target;
 
     const parts = name.split('_');
     const field = parts[1];
@@ -143,13 +109,9 @@ function RecipeForm(props: IProps) {
   }
 
   function createRecipe() {
-    const recipe = recipeState;
-    recipe.ingredients = ingredients;
-    recipe.directions = directions;
-
     authFetch('/recipe', {
       method: 'POST',
-      body: JSON.stringify(recipe),
+      body: JSON.stringify({ ...recipeState, ingredients, directions }),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -178,7 +140,7 @@ function RecipeForm(props: IProps) {
                       type="text"
                       name="name"
                       placeholder="Name"
-                      value={name}
+                      value={recipeState.name}
                       onChange={onChange}
                     />
                   </div>
@@ -192,7 +154,7 @@ function RecipeForm(props: IProps) {
                       name="description"
                       placeholder="Description"
                       rows={1}
-                      value={description}
+                      value={recipeState.description}
                       onInput={fitToContent}
                       onChange={onChange}
                     />
@@ -214,7 +176,7 @@ function RecipeForm(props: IProps) {
                               min="1"
                               name="cookingTime"
                               placeholder="1"
-                              value={cookingTime}
+                              value={recipeState.cookingTime}
                               onChange={onChange}
                             />
                           </div>
@@ -238,7 +200,7 @@ function RecipeForm(props: IProps) {
                           min="1"
                           name="servings"
                           placeholder="1"
-                          value={servings}
+                          value={recipeState.servings}
                           onChange={onChange}
                         />
                       </div>
@@ -249,7 +211,7 @@ function RecipeForm(props: IProps) {
                       <label className="label">Emoji</label>
                       <div className="control">
                         <EmojiSelector
-                          data={{ value: emoji }}
+                          data={{ value: recipeState.emoji }}
                           updateEmoji={updateEmoji}
                         />
                       </div>
@@ -262,7 +224,7 @@ function RecipeForm(props: IProps) {
                         <div className="select">
                           <select
                             name="difficulty"
-                            value={difficulty}
+                            value={recipeState.difficulty}
                             onChange={onChange}
                           >
                             <option value="1">1</option>
@@ -291,7 +253,7 @@ function RecipeForm(props: IProps) {
                   />
                 ))}
 
-                <button className="button is-success" onClick={addBlankIngredient}>
+                <button className="button is-success" onClick={addDefaultIngredient}>
                   <span className="icon">
                     <FaPlus />
                   </span>
@@ -310,7 +272,7 @@ function RecipeForm(props: IProps) {
                   />
                 ))}
 
-                <button className="button is-success" onClick={addBlankDirection}>
+                <button className="button is-success" onClick={addDefaultDirection}>
                   <span className="icon">
                     <FaPlus />
                   </span>
