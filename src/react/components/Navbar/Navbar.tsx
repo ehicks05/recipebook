@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, Redirect } from 'react-router-dom';
 import { UserContext } from '../../UserContext';
 import authFetch from '../../authFetch';
 
@@ -10,12 +10,16 @@ const clickBurger = (e: React.MouseEvent<HTMLDivElement>) => {
 
 function Navbar() {
   const { user, setUser } = useContext(UserContext);
+  const [isRedirect, setIsRedirect] = useState(false);
 
   function logout() {
     authFetch('/logout', undefined, false).then(() => {
       setUser(undefined);
+      setIsRedirect(true);
     });
   }
+
+  if (isRedirect) return <Redirect to="/" />;
 
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
