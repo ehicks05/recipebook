@@ -37,6 +37,10 @@ body {font-family: "Ubuntu", sans-serif}
   transform: scale(1.025);
 }
 
+@media (prefers-color-scheme: dark) {
+  .glow:hover {color: #dbdbdb;}
+}
+
 /* make ingredients appear in rightmost column on wider screens. */
 @media (min-width: 768px) {
   #directions-column {
