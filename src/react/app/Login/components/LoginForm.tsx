@@ -1,13 +1,15 @@
-import React, { FormEvent, useCallback, useEffect, useState } from 'react';
+import React, {
+  FormEvent,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import authFetch from '../../../authFetch';
-import { IUser } from '../../../types/types';
+import { UserContext } from '../../../UserContext';
 
-interface IProps {
-  user: IUser | undefined;
-  setUser: (user: IUser | undefined) => void;
-}
-
-function LoginForm({ user, setUser }: IProps) {
+function LoginForm() {
+  const { user, setUser } = useContext(UserContext);
   const [failureMessage, setFailureMessage] = useState<string>('');
 
   const fetchUser = useCallback(() => {
@@ -40,7 +42,7 @@ function LoginForm({ user, setUser }: IProps) {
   }
 
   return (
-    <div style={{ minWidth: '320px' }}>
+    <div>
       {!user && (
         <form method="POST" action="/" id="loginForm" onSubmit={login}>
           <div className="field">

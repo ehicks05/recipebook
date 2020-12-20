@@ -105,7 +105,7 @@ function SignUpForm(props: IProps) {
       })
       .then(() => {
         props.setAccessMessage('Account successfully created');
-        props.setTab('Login');
+        props.setTab('Log In');
       })
       .catch(reason => {
         props.setAccessMessage(reason.message);
@@ -113,7 +113,7 @@ function SignUpForm(props: IProps) {
   }
 
   return (
-    <div style={{ minWidth: '320px' }}>
+    <div>
       <form method="POST" id="signUpForm" onSubmit={signUp}>
         {/* USERNAME */}
         <div className="field">

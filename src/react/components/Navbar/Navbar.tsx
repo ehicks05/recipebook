@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { FaPlus } from 'react-icons/all';
-import UserAccess from './components/UserAccess';
 import { UserContext } from '../../UserContext';
+import authFetch from '../../authFetch';
 
 const clickBurger = (e: React.MouseEvent<HTMLDivElement>) => {
   (e.target as HTMLDivElement).classList.toggle('is-active');
@@ -11,25 +10,23 @@ const clickBurger = (e: React.MouseEvent<HTMLDivElement>) => {
 
 function Navbar() {
   const { user, setUser } = useContext(UserContext);
+
+  function logout() {
+    authFetch('/logout', undefined, false).then(() => {
+      setUser(undefined);
+    });
+  }
+
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="container">
         <div className="navbar-brand">
           <div className="navbar-item">
-            <span className="title" style={{ fontFamily: "'Ubuntu Light'" }}>
-              <Link className="has-text-grey-light" to="/">
+            <span className="title">
+              <Link to="/">
                 <img className="image" src="/logo.png" alt="logo" />
               </Link>
             </span>
-          </div>
-          <div className="navbar-item">
-            <Link to="/create-recipe">
-              <button className="button is-primary is-small">
-                <span className="icon">
-                  <FaPlus />
-                </span>
-              </button>
-            </Link>
           </div>
 
           <div
@@ -50,19 +47,29 @@ function Navbar() {
           <div className="navbar-start" />
 
           <div className="navbar-end">
-            <div className="navbar-item has-dropdown is-hoverable">
-              <div className="navbar-link">
-                {user ? <Link to="/myAccount">My Account</Link> : 'Log In'}
-              </div>
+            {!user && (
+              <Link className="navbar-item" to="/login">
+                Log In
+              </Link>
+            )}
+            {user && (
+              <div className="navbar-item has-dropdown is-hoverable">
+                <div className="navbar-item">Menu</div>
 
-              <div className="navbar-dropdown is-right">
-                <div className="navbar-item">
-                  <div>
-                    <UserAccess user={user} setUser={setUser} />
-                  </div>
+                <div className="navbar-dropdown is-right is-boxed">
+                  <Link className="navbar-item" to="/myAccount">
+                    My Account
+                  </Link>
+                  <Link className="navbar-item" to="/create-recipe">
+                    Create a Recipe
+                  </Link>
+                  <hr className="navbar-divider" />
+                  <a className="navbar-item" onClick={logout}>
+                    Logout
+                  </a>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

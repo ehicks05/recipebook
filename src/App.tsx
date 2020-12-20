@@ -9,6 +9,7 @@ import Home from './react/app/Home/Home';
 import RecipeForm from './react/app/RecipeForm/RecipeForm';
 import authFetch from './react/authFetch';
 import { UserContext } from './react/UserContext';
+import UserAccess from './react/app/Login/UserAccess';
 
 export default function App() {
   const [recipes, setRecipes] = useState<IRecipe[]>([]);
@@ -53,7 +54,10 @@ export default function App() {
         <RecipeForm fetchRecipes={fetchRecipes} />
       </Route>
       <Route path="/myAccount">
-        <MyAccount user={user} />
+        <MyAccount />
+      </Route>
+      <Route path="/login">
+        <UserAccess />
       </Route>
 
       <Footer />

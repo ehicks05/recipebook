@@ -1,19 +1,38 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Carousel, { ResponsiveType } from 'react-multi-carousel';
 import Hero from '../../components/Hero';
-import { IFavorite, IRecipe, IUser } from '../../types/types';
+import { IFavorite, IRecipe } from '../../types/types';
 import 'react-multi-carousel/lib/styles.css';
 import useIsMobile from '../../hooks/useIsMobile';
 import MyAccountComponent from './components/MyAccountComponent';
 import authFetch from '../../authFetch';
+import { UserContext } from '../../UserContext';
 
-interface IProps {
-  user: IUser | undefined;
+function getResponsive(): ResponsiveType {
+  return {
+    superLargeDesktop: {
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 1,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 1,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
+  };
 }
 
-function MyAccount(props: IProps) {
+function MyAccount() {
   const [myRecipes, setMyRecipes] = useState<IRecipe[] | undefined>([]);
   const [myFavorites, setMyFavorites] = useState<IRecipe[] | undefined>([]);
+  const { user } = useContext(UserContext);
   const isMobile = useIsMobile();
 
   useEffect(() => {
@@ -34,30 +53,9 @@ function MyAccount(props: IProps) {
     fetchMyFavorites();
   }, []);
 
-  function getResponsive(): ResponsiveType {
-    return {
-      superLargeDesktop: {
-        breakpoint: { max: 4000, min: 3000 },
-        items: 5,
-      },
-      desktop: {
-        breakpoint: { max: 3000, min: 1024 },
-        items: 1,
-      },
-      tablet: {
-        breakpoint: { max: 1024, min: 464 },
-        items: 1,
-      },
-      mobile: {
-        breakpoint: { max: 464, min: 0 },
-        items: 1,
-      },
-    };
-  }
-
   return (
     <>
-      <Hero title="Edit Your Account" subtitle={props.user?.displayName} />
+      <Hero title="Your Profile" subtitle={user?.displayName} />
 
       {isMobile && (
         <Carousel
