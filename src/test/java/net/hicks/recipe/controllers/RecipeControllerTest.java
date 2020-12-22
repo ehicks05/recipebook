@@ -103,7 +103,7 @@ public class RecipeControllerTest {
 
         Recipe taco = TestUtils.getTacoRecipe();
 
-        when(recipeService.createRecipe(any()))
+        when(recipeService.createRecipe(any(), any()))
                 .thenThrow(e);
 
         mockMvc.perform(post("/recipe")

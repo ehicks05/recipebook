@@ -19,8 +19,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static net.hicks.recipe.utils.TestUtils.getTacoRecipe;
-import static net.hicks.recipe.utils.TestUtils.getTacoRecipeOptional;
+import static net.hicks.recipe.utils.TestUtils.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.mockito.Mockito.*;
@@ -105,10 +104,12 @@ public class RecipeServiceTest {
         Recipe unsavedTaco = getTacoRecipe();
         unsavedTaco.setId(null);
 
+        User user = getUser();
+
         when(recipeRepository.save(unsavedTaco))
                 .thenReturn(taco);
 
-        Recipe savedTaco = recipeService.createRecipe(unsavedTaco);
+        Recipe savedTaco = recipeService.createRecipe(user, unsavedTaco);
 
         assertThat(savedTaco).isEqualTo(taco);
 
