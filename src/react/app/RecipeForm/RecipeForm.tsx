@@ -1,34 +1,20 @@
-import React, { ChangeEvent, useReducer, useState } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FaMinus, FaPlus } from 'react-icons/all';
 import Hero from '../../components/Hero';
 import EmojiSelector from './Components/EmojiSelector';
 import { IDirection, IIngredient, IRecipe } from '../../types/types';
 import authFetch from '../../authFetch';
+import {
+  DEFAULT_INGREDIENT,
+  DEFAULT_DIRECTION,
+  DEFAULT_RECIPE,
+  UNIT_OPTIONS,
+} from './constants';
 
 interface IProps {
   fetchRecipes: () => void;
 }
-
-const initialIngredientState: IIngredient = {
-  name: '',
-  quantity: '0',
-  unit: '',
-};
-const initialDirectionState: IDirection = { index: '', text: '' };
-const initialRecipeState: IRecipe = {
-  name: '',
-  description: '',
-  emoji: ':)',
-  difficulty: 1,
-  cookingTime: '1',
-  servings: 1,
-  course: '',
-  author: { id: 0, username: 'unknown', displayName: 'Unknown' },
-  createdBy: 0,
-  ingredients: [initialIngredientState],
-  directions: [initialDirectionState],
-};
 
 function fitToContent(e: React.FormEvent<HTMLTextAreaElement>) {
   const target = e.target as HTMLElement;
@@ -39,55 +25,33 @@ function fitToContent(e: React.FormEvent<HTMLTextAreaElement>) {
 function RecipeForm(props: IProps) {
   const history = useHistory();
 
-  function updateEmoji(code: string) {
-    dispatch({ field: 'emoji', value: code });
-  }
-
   // RECIPE
-  function reducer(
-    state: IRecipe,
-    { field, value }: { field: string; value: string | number | IDirection[] },
-  ): IRecipe {
-    return {
-      ...state,
-      [field]: value,
-    };
-  }
+  const [recipeState, setRecipeState] = useState(DEFAULT_RECIPE);
 
-  const [recipeState, dispatch] = useReducer(reducer, initialRecipeState);
+  function updateEmoji(code: string) {
+    setRecipeState({ ...recipeState, ['emoji' as keyof IRecipe]: code });
+  }
 
   const onChange = (
-    e:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLSelectElement>
-      | React.ChangeEvent<HTMLTextAreaElement>,
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
   ) => {
-    dispatch({ field: e.target.name, value: e.target.value });
+    setRecipeState({
+      ...recipeState,
+      [e.target.name]: e.target.value,
+    });
   };
 
-  const {
-    name,
-    description,
-    difficulty,
-    cookingTime,
-    servings,
-    emoji,
-  } = recipeState;
-
   // INGREDIENTS
-  const [ingredients, setIngredients] = useState<IIngredient[]>([
-    { ...initialIngredientState },
-  ]);
+  const [ingredients, setIngredients] = useState([{ ...DEFAULT_INGREDIENT }]);
 
-  function addBlankIngredient() {
-    setIngredients([...ingredients, { ...initialIngredientState }]);
+  function addDefaultIngredient() {
+    setIngredients([...ingredients, { ...DEFAULT_INGREDIENT }]);
   }
 
   function updateIngredient(
-    e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>,
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) {
-    const { name } = e.target;
-    const { value } = e.target;
+    const { name, value } = e.target;
 
     const parts = name.split('_');
     const field = parts[1];
@@ -110,17 +74,14 @@ function RecipeForm(props: IProps) {
   }
 
   // DIRECTIONS
-  const [directions, setDirections] = useState<IDirection[]>([
-    { ...initialDirectionState },
-  ]);
+  const [directions, setDirections] = useState([{ ...DEFAULT_DIRECTION }]);
 
-  function addBlankDirection() {
-    setDirections([...directions, { ...initialDirectionState }]);
+  function addDefaultDirection() {
+    setDirections([...directions, { ...DEFAULT_DIRECTION }]);
   }
 
   function updateDirection(e: React.ChangeEvent<HTMLTextAreaElement>) {
-    const { name } = e.target;
-    const { value } = e.target;
+    const { name, value } = e.target;
 
     const parts = name.split('_');
     const field = parts[1];
@@ -143,13 +104,9 @@ function RecipeForm(props: IProps) {
   }
 
   function createRecipe() {
-    const recipe = recipeState;
-    recipe.ingredients = ingredients;
-    recipe.directions = directions;
-
     authFetch('/recipe', {
       method: 'POST',
-      body: JSON.stringify(recipe),
+      body: JSON.stringify({ ...recipeState, ingredients, directions }),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -178,7 +135,7 @@ function RecipeForm(props: IProps) {
                       type="text"
                       name="name"
                       placeholder="Name"
-                      value={name}
+                      value={recipeState.name}
                       onChange={onChange}
                     />
                   </div>
@@ -192,7 +149,7 @@ function RecipeForm(props: IProps) {
                       name="description"
                       placeholder="Description"
                       rows={1}
-                      value={description}
+                      value={recipeState.description}
                       onInput={fitToContent}
                       onChange={onChange}
                     />
@@ -214,7 +171,7 @@ function RecipeForm(props: IProps) {
                               min="1"
                               name="cookingTime"
                               placeholder="1"
-                              value={cookingTime}
+                              value={recipeState.cookingTime}
                               onChange={onChange}
                             />
                           </div>
@@ -238,7 +195,7 @@ function RecipeForm(props: IProps) {
                           min="1"
                           name="servings"
                           placeholder="1"
-                          value={servings}
+                          value={recipeState.servings}
                           onChange={onChange}
                         />
                       </div>
@@ -249,7 +206,7 @@ function RecipeForm(props: IProps) {
                       <label className="label">Emoji</label>
                       <div className="control">
                         <EmojiSelector
-                          data={{ value: emoji }}
+                          data={{ value: recipeState.emoji }}
                           updateEmoji={updateEmoji}
                         />
                       </div>
@@ -262,7 +219,7 @@ function RecipeForm(props: IProps) {
                         <div className="select">
                           <select
                             name="difficulty"
-                            value={difficulty}
+                            value={recipeState.difficulty}
                             onChange={onChange}
                           >
                             <option value="1">1</option>
@@ -284,14 +241,14 @@ function RecipeForm(props: IProps) {
                 {ingredients.map((ingredient, i) => (
                   <IngredientForm
                     ingredient={ingredient}
-                    key={ingredient.name}
+                    key={i} // ingredient.name will lose focus every time name changes
                     i={i}
                     updateIngredient={updateIngredient}
                     removeIngredient={removeIngredient}
                   />
                 ))}
 
-                <button className="button is-success" onClick={addBlankIngredient}>
+                <button className="button is-success" onClick={addDefaultIngredient}>
                   <span className="icon">
                     <FaPlus />
                   </span>
@@ -310,7 +267,7 @@ function RecipeForm(props: IProps) {
                   />
                 ))}
 
-                <button className="button is-success" onClick={addBlankDirection}>
+                <button className="button is-success" onClick={addDefaultDirection}>
                   <span className="icon">
                     <FaPlus />
                   </span>
@@ -335,7 +292,7 @@ interface IIngredientFormProps {
   ingredient: IIngredient;
   i: number;
   updateIngredient: (
-    e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>,
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => void;
   removeIngredient: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
@@ -378,12 +335,7 @@ function IngredientForm(props: IIngredientFormProps) {
             value={ingredient.unit}
             onChange={updateIngredient}
           >
-            <option value="">unit</option>
-            <option value="oz">oz</option>
-            <option value="lb">lb</option>
-            <option value="ml">ml</option>
-            <option value="L">L</option>
-            <option value="g">g</option>
+            {UNIT_OPTIONS}
           </select>
         </div>
       </div>
@@ -405,7 +357,7 @@ function IngredientForm(props: IIngredientFormProps) {
 interface IDirectionFormProps {
   direction: { text: string };
   i: number;
-  updateDirection: (e: ChangeEvent<HTMLTextAreaElement>) => void;
+  updateDirection: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   removeDirection: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 

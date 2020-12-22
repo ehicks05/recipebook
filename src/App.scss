@@ -3,6 +3,12 @@
 
 body {font-family: "Ubuntu", sans-serif}
 
+.hero {background-color: #fafafa}
+@media (prefers-color-scheme: dark) {
+  .hero {background-color: #121212}
+}
+.hero-body {padding: 1.5rem;}
+
 /* SCROLLBAR */
 /* width */
 ::-webkit-scrollbar {
@@ -29,6 +35,10 @@ body {font-family: "Ubuntu", sans-serif}
 }
 .grow:hover {
   transform: scale(1.025);
+}
+
+@media (prefers-color-scheme: dark) {
+  .glow:hover {color: #dbdbdb;}
 }
 
 /* make ingredients appear in rightmost column on wider screens. */

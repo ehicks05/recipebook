@@ -31,17 +31,22 @@ function Direction({ direction }: IDirectionProps) {
   const timer = timeAmount > 0 ? <Timer minutes={timeAmount} /> : null;
 
   return (
-    <li key={direction.text}>
-      <span
-        onClick={() => setIsDone(!isDone)}
+    <li
+      key={direction.text}
+      style={{
+        opacity: isDone ? '0.5' : '',
+      }}
+      className="glow"
+    >
+      <div
         style={{
-          opacity: isDone ? '0.5' : '',
           textDecoration: isDone ? 'line-through' : '',
           cursor: 'pointer',
         }}
+        onClick={() => setIsDone(!isDone)}
       >
         {direction.text}
-      </span>
+      </div>
       {timer}
     </li>
   );

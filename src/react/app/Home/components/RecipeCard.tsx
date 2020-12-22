@@ -44,11 +44,7 @@ function RecipeCard({ recipe }: IRecipeCardProps) {
             </div>
 
             <div className="content" style={{ overflowY: 'auto' }}>
-              <div>
-                {recipe.description ||
-                  'This is where a description would go...if we HAD one! ' +
-                    'It would tell you what you can expect from this recipe.'}
-              </div>
+              <div>{recipe.description}</div>
             </div>
           </div>
 

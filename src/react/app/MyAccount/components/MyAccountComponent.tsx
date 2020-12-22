@@ -10,7 +10,7 @@ interface IMyAccountComponentType {
 function MyAccountComponent(props: IMyAccountComponentType) {
   return (
     <>
-      <p className="has-text-centered">{props.title}</p>
+      <p className="title has-text-centered">{props.title}</p>
       {props.recipes?.map(it => (
         <SmallRecipeCard key={it.id} recipe={it} />
       ))}

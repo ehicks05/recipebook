@@ -32,18 +32,29 @@ function Recipe({ recipes }: IProps) {
   if (!recipe) return <Hero title="Loading..." />;
 
   const title = `${recipe.name} ${recipe.emoji}`;
-  const subtitle = `Cooking Time: ${recipe.cookingTime} - Difficulty: ${recipe.difficulty}`;
 
   return (
     <>
-      <Hero title={title} subtitle={subtitle}>
-        <p>
+      <Hero title={title}>
+        <div className="subtitle is-6">
           by <b>{recipe.author.displayName}</b>
-        </p>
+        </div>
       </Hero>
       <section className="section">
         <div className="container">
           <div className="columns is-centered">
+            <div id="details-column" className="column is-one-quarter">
+              <div key={recipe.name}>
+                <h3 className="subtitle has-text-weight-bold">Details</h3>
+                <div className="">
+                  <b>Time:</b> {recipe.cookingTime}
+                </div>
+                <br />
+                <div className="">
+                  <b>Description</b>: {recipe.description}
+                </div>
+              </div>
+            </div>
             <div id="ingredients-column" className="column is-one-quarter">
               <div key={recipe.name}>
                 <h3 className="subtitle has-text-weight-bold">Ingredients</h3>
@@ -56,12 +67,8 @@ function Recipe({ recipes }: IProps) {
                 />
               </div>
             </div>
-            <div
-              id="directions-column"
-              className="column"
-              style={{ maxWidth: '40em' }}
-            >
-              <div key={recipe.name}>
+            <div id="directions-column" className="column">
+              <div key={recipe.name} style={{ maxWidth: '40em' }}>
                 <h3 className="subtitle has-text-weight-bold">Directions</h3>
                 <Directions directions={recipe.directions} />
               </div>

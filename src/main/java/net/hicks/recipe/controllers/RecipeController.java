@@ -61,8 +61,8 @@ public class RecipeController
     }
 
     @PostMapping
-    public Recipe createRecipe(@RequestBody Recipe recipe) {
-        return recipeService.createRecipe(recipe);
+    public Recipe createRecipe(@AuthenticationPrincipal User user, @RequestBody Recipe recipe) {
+        return recipeService.createRecipe(user, recipe);
     }
 
     @PutMapping("/{recipeId}")

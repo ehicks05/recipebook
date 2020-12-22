@@ -2,8 +2,6 @@ import Select, { Styles } from 'react-select';
 import React, { CSSProperties } from 'react';
 import { Props } from 'react-select/src/styles';
 import { ValueType } from 'react-select/src/types';
-import { IEmoji } from '../../../types/types';
-import authFetch from '../../../authFetch';
 import EMOJI_OPTIONS from '../../../constants/emojis';
 
 interface IEmojiOption {

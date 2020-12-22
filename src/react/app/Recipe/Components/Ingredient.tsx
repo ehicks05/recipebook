@@ -1,8 +1,6 @@
-import { create, all, MathJsStatic, Fraction } from 'mathjs';
 import React, { useState } from 'react';
+import Fraction from 'fraction.js';
 import { IIngredient } from '../../../types/types';
-
-const math = create(all, {}) as MathJsStatic;
 
 interface IIngredientProps {
   ingredient: IIngredient;
@@ -10,20 +8,8 @@ interface IIngredientProps {
   desiredServings: number;
 }
 
-// parses numbers, as well as fractions and fractions like '1 1/4'
-function parseQuantity(quantity: string) {
-  if (!Number.isNaN(Number(quantity))) return quantity;
-
-  if (quantity.indexOf(' ') !== -1) {
-    const parts = quantity.split(' ');
-
-    return parts.reduce(
-      (accumulator, part) => Number(accumulator) + math.evaluate(part),
-    );
-  }
-
-  return math.evaluate(quantity);
-}
+const formatFraction = (numerator: number, denominator: number) =>
+  `${numerator}${String.fromCharCode(8260)}${denominator}`;
 
 // figures out the desired quantity and formats it as a nice fraction if necessary.
 function getDesiredQuantity(
@@ -32,25 +18,25 @@ function getDesiredQuantity(
   desiredServings: number,
 ): JSX.Element {
   const ratio = desiredServings / defaultServings;
-  const desiredQuantity = parseQuantity(ingredient.quantity) * ratio;
+  const desiredQuantity = new Fraction(ingredient.quantity).valueOf() * ratio;
 
   if (desiredQuantity === 0) return <></>;
 
   if (desiredQuantity === Math.round(desiredQuantity)) return <>{desiredQuantity}</>;
 
   let fractional = desiredQuantity;
-  let nonfractional = 0;
+  let wholeNumber = 0;
   while (fractional > 1) {
-    nonfractional += 1;
+    wholeNumber += 1;
     fractional -= 1;
   }
 
-  const fraction = math.fraction(fractional) as Fraction;
+  const fraction = new Fraction(fractional);
 
   return (
     <>
-      {nonfractional ? `${nonfractional} ` : ''}
-      {`${fraction.n}${String.fromCharCode(8260)}${fraction.d}`}
+      {wholeNumber ? `${wholeNumber} ` : ''}
+      {formatFraction(fraction.n, fraction.d)}
     </>
   );
 }
@@ -76,7 +62,14 @@ function Ingredient({
           checked={isChecked}
           onChange={e => setIsChecked(e.target.checked)}
         />
-        <span style={{ opacity: isChecked ? '.5' : '', paddingLeft: '.25em' }}>
+        <span
+          style={{
+            opacity: isChecked ? '.5' : '',
+            display: 'block',
+            marginLeft: '1.2rem',
+            marginTop: '-1.2rem',
+          }}
+        >
           {desiredQuantity}
           {` ${ingredient.unit || ''} ${ingredient.name}`}
         </span>
