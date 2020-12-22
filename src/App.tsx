@@ -40,7 +40,7 @@ export default function App() {
     fetchFavoriteIds();
   }, [fetchUser]);
 
-  if (!recipes || !favoriteIds)
+  if (!recipes || (user && !favoriteIds))
     return <Loading title="Loading..." subtitle="Please wait..." />;
 
   return (
