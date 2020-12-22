@@ -35,7 +35,7 @@ function getDesiredQuantity(
 
   return (
     <>
-      {wholeNumber || ''}
+      {wholeNumber ? `${wholeNumber} ` : ''}
       {formatFraction(fraction.n, fraction.d)}
     </>
   );
