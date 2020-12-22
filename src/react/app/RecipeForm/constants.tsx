@@ -8,16 +8,16 @@ const UNIT_OPTIONS = ['', ...UNITS].map(unit => (
 
 const DEFAULT_INGREDIENT: IIngredient = {
   name: '',
-  quantity: '0',
+  quantity: '',
   unit: '',
 };
-const DEFAULT_DIRECTION: IDirection = { index: '', text: '' };
+const DEFAULT_DIRECTION: IDirection = { index: '0', text: '' };
 const DEFAULT_RECIPE: IRecipe = {
   name: '',
   description: '',
   emoji: ':)',
   difficulty: 1,
-  cookingTime: '1',
+  cookingTime: '',
   servings: 1,
   course: '',
   author: { id: 0, username: 'unknown', displayName: 'Unknown' },
