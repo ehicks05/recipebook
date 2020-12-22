@@ -54,7 +54,11 @@ function Navbar() {
 
           <div className="navbar-end">
             {!user && (
-              <Link className="navbar-item" to="/login">
+              <Link
+                className="navbar-item"
+                to="/login"
+                onClick={handleClickNavbarItem}
+              >
                 Log In
               </Link>
             )}
