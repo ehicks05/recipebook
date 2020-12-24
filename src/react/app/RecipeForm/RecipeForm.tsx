@@ -102,12 +102,12 @@ function RecipeForm(props: IProps) {
               });
             }}
           >
-            {({ values, setFieldValue }) => (
+            {({ values, setFieldValue, isValid, isSubmitting }) => (
               <Form>
                 <div className="columns">
                   <div className="column is-one-third">
-                    <div className="box">
-                      <h2 className="subtitle">Recipe Details</h2>
+                    <div className="">
+                      <h2 className="subtitle is-4">Recipe Details</h2>
 
                       <MyInput label="Name" name="name" placeholder="Name" />
                       <MyTextArea
@@ -159,34 +159,58 @@ function RecipeForm(props: IProps) {
                     </div>
                   </div>
                   <div className="column">
-                    <div className="box">
-                      <h2 className="subtitle">Ingredients</h2>
+                    <div className="">
+                      <h2 className="subtitle is-4">Ingredients</h2>
                       <FieldArray name="ingredients">
                         {({ remove, push }) => (
                           <div>
                             {values.ingredients.length > 0 &&
                               values.ingredients.map((ingredient, index) => (
-                                <div key={index} className="field is-grouped">
-                                  <MyInput
-                                    name={`ingredients.${index}.name`}
-                                    placeholder="Name"
-                                  />
-                                  <MyInput
-                                    name={`ingredients.${index}.quantity`}
-                                    placeholder="Quantity"
-                                  />
-                                  <MySelect name={`ingredients.${index}.unit`}>
-                                    {UNIT_OPTIONS}
-                                  </MySelect>
-
-                                  <button
-                                    className="button is-danger"
-                                    onClick={() => remove(index)}
-                                  >
-                                    <span className="icon">
-                                      <FaMinus />
-                                    </span>
-                                  </button>
+                                <div
+                                  key={index}
+                                  className="columns is-mobile is-variable is-1"
+                                >
+                                  <div className="column is-narrow">
+                                    <div className="control">
+                                      <input
+                                        type="text"
+                                        className="input is-static"
+                                        readOnly
+                                        value={`${index + 1}.`}
+                                        style={{ width: '1rem' }}
+                                      />
+                                    </div>
+                                  </div>
+                                  <div className="column">
+                                    <MyInput
+                                      name={`ingredients.${index}.name`}
+                                      placeholder="Name"
+                                    />
+                                    <div className="columns is-mobile is-variable is-0">
+                                      <div className="column">
+                                        <MyInput
+                                          name={`ingredients.${index}.quantity`}
+                                          placeholder="Quantity"
+                                          isExpanded
+                                        />
+                                      </div>
+                                      <div className="column is-narrow">
+                                        <MySelect name={`ingredients.${index}.unit`}>
+                                          {UNIT_OPTIONS}
+                                        </MySelect>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div className="column is-narrow">
+                                    <button
+                                      className="button is-danger is-small"
+                                      onClick={() => remove(index)}
+                                    >
+                                      <span className="icon">
+                                        <FaMinus />
+                                      </span>
+                                    </button>
+                                  </div>
                                 </div>
                               ))}
                             <button
@@ -201,34 +225,49 @@ function RecipeForm(props: IProps) {
                         )}
                       </FieldArray>
                     </div>
-
-                    <div className="box mt-6">
-                      <h2 className="subtitle">Directions</h2>
+                  </div>
+                  <div className="column">
+                    <div className="">
+                      <h2 className="subtitle is-4">Directions</h2>
                       <FieldArray name="directions">
                         {({ remove, push }) => (
                           <div>
                             {values.directions.length > 0 &&
                               values.directions.map((direction, index) => (
-                                <div key={index} className="field is-grouped">
-                                  <div className="control">
-                                    <span>{`${index + 1}.`}</span>
+                                <div
+                                  key={index}
+                                  className="columns is-mobile is-variable is-1"
+                                >
+                                  <div className="column is-narrow">
+                                    <div className="control">
+                                      <input
+                                        type="text"
+                                        className="input is-static"
+                                        readOnly
+                                        value={`${index + 1}.`}
+                                        style={{ width: '1rem' }}
+                                      />
+                                    </div>
+                                    <MyHiddenInput
+                                      name={`directions.${index}.index`}
+                                    />
                                   </div>
-                                  <MyHiddenInput
-                                    name={`directions.${index}.index`}
-                                  />
-                                  <MyTextArea
-                                    name={`directions.${index}.text`}
-                                    placeholder="Description"
-                                  />
-
-                                  <button
-                                    className="button is-danger"
-                                    onClick={() => remove(index)}
-                                  >
-                                    <span className="icon">
-                                      <FaMinus />
-                                    </span>
-                                  </button>
+                                  <div className="column">
+                                    <MyTextArea
+                                      name={`directions.${index}.text`}
+                                      placeholder="Description"
+                                    />
+                                  </div>
+                                  <div className="column is-narrow">
+                                    <button
+                                      className="button is-danger is-small"
+                                      onClick={() => remove(index)}
+                                    >
+                                      <span className="icon">
+                                        <FaMinus />
+                                      </span>
+                                    </button>
+                                  </div>
                                 </div>
                               ))}
                             <button
@@ -253,7 +292,14 @@ function RecipeForm(props: IProps) {
                 <nav className="level">
                   <div className="level-item has-text-centered">
                     <div>
-                      <button className="button is-success">Create Recipe</button>
+                      <button
+                        disabled={!isValid || isSubmitting}
+                        className={`button is-success ${
+                          isSubmitting ? 'is-loading' : ''
+                        }`}
+                      >
+                        Create Recipe
+                      </button>
                     </div>
                   </div>
                 </nav>

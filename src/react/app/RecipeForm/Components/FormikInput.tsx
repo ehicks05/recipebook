@@ -7,6 +7,7 @@ interface IMyInputProps {
   name: string;
   label?: string;
   type?: string;
+  isExpanded?: boolean;
   [x: string]: any;
 }
 
@@ -19,7 +20,7 @@ const MyInput = ({ label, ...props }: IMyInputProps) => {
           {label}
         </label>
       )}
-      <div className="control">
+      <div className={`control ${props.isExpanded ? 'is-expanded' : ''}`}>
         <input
           type={props.type || 'text'}
           className={`input ${meta.touched && meta.error ? 'is-danger' : ''}`}
