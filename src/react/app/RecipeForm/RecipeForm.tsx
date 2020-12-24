@@ -1,8 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { FaMinus, FaPlus } from 'react-icons/all';
-import Fraction from 'fraction.js';
-import * as Yup from 'yup';
 
 import { FieldArray, Form, Formik } from 'formik';
 import Hero from '../../components/Hero';
@@ -13,6 +11,7 @@ import {
   DEFAULT_DIRECTION,
   DEFAULT_RECIPE,
   UNIT_OPTIONS,
+  RECIPE_SCHEMA,
 } from './constants';
 import {
   MyHiddenInput,
@@ -28,19 +27,6 @@ interface IProps {
 function RecipeForm(props: IProps) {
   const history = useHistory();
 
-  const validateQuantity = (quantity: string | undefined) => {
-    let isValid = false;
-    try {
-      console.log(
-        `fraction.js says ${quantity} is ${quantity && new Fraction(quantity)}`,
-      );
-      isValid = true;
-    } catch (e) {
-      // noop
-    }
-    return isValid;
-  };
-
   return (
     <>
       <Hero title="Create a Recipe" />
@@ -48,46 +34,7 @@ function RecipeForm(props: IProps) {
         <div className="container">
           <Formik
             initialValues={DEFAULT_RECIPE}
-            validationSchema={Yup.object({
-              name: Yup.string()
-                .max(30, 'Must be 15 characters or less')
-                .required('Required'),
-              description: Yup.string().required('Required'),
-              cookingTime: Yup.number()
-                .min(1, 'Must be at least 1')
-                .required('Required'),
-              servings: Yup.number()
-                .min(1, 'Must be 1 serving or more')
-                .required('Required'),
-              emoji: Yup.string(),
-              difficulty: Yup.number()
-                .min(1, 'Must be at least 1')
-                .max(5, 'Must be at most 5')
-                .required('Required'),
-              ingredients: Yup.array()
-                .of(
-                  Yup.object({
-                    name: Yup.string().required('Required'),
-                    quantity: Yup.string()
-                      .test(
-                        'is-valid-quantity',
-                        'Must be a valid number',
-                        validateQuantity,
-                      )
-                      .required('Required'),
-                    unit: Yup.string(),
-                  }),
-                )
-                .required('Required'),
-              directions: Yup.array()
-                .of(
-                  Yup.object({
-                    index: Yup.number().required('Required'),
-                    text: Yup.string().required('Required'),
-                  }),
-                )
-                .required('Required'),
-            })}
+            validationSchema={RECIPE_SCHEMA}
             onSubmit={(values, { setSubmitting }) => {
               authFetch('/recipe', {
                 method: 'POST',
