@@ -30,16 +30,16 @@
 		"name": "Chicken & Vegetable Udon Soup",
 		"difficulty": "2",
 		"ingredients": [
-			{"quantity": "1/2", "unit": "package", "name": "udon noodles"},
+			{"quantity": "7", "unit": "oz", "name": "udon noodles"},
 			{"quantity": "1", "unit": "tbsp", "name": "oil"},
 			{"quantity": "1", "unit": "tbsp", "name": "minced garlic"},
 			{"quantity": "1", "unit": "tbsp", "name": "minced ginger"},
 			{"quantity": "1/2", "unit": "lb", "name": "boneless skinless chicken breast cut into strips"},
-			{"quantity": "4", "unit": "cups", "name": "chicken stock"},
+			{"quantity": "4", "unit": "cup", "name": "chicken stock"},
 			{"quantity": "1", "unit": "cup", "name": "diced carrots"},
 			{"quantity": "2", "unit": "tbsp", "name": "soy sauce"},
 			{"quantity": "1/2", "unit": "tsp", "name": "salt"},
-			{"quantity": "1 1/2", "unit": "cups", "name": "snow peas, julienne sliced"},
+			{"quantity": "1 1/2", "unit": "cup", "name": "snow peas, julienne sliced"},
 			{"quantity": "1/2", "unit": "cup", "name": "sliced mushrooms"},
 			{"quantity": "2", "unit": "tbsp", "name": "green onions, thinly sliced"}
 		],
@@ -78,19 +78,19 @@
 		"name": "Peanut Butter Blossoms",
 		"difficulty": "6",
 		"ingredients": [
-			{"quantity": "1 3/4", "unit": "cups", "name": "flour"},
-			{"quantity": "1", "unit": "teaspoon", "name": "baking soda"},
-			{"quantity": "1/2", "unit": "teaspon", "name": "salt"},
-			{"quantity": "4", "unit": "ounces", "name": "softened butter"},
+			{"quantity": "1 3/4", "unit": "cup", "name": "flour"},
+			{"quantity": "1", "unit": "tsp", "name": "baking soda"},
+			{"quantity": "1/2", "unit": "tsp", "name": "salt"},
+			{"quantity": "4", "unit": "oz", "name": "softened butter"},
 			{"quantity": "1/2", "unit": "cup", "name": "smooth peanut butter"},
 			{"quantity": "1/2", "unit": "cup", "name": "sugar"},
 			{"quantity": "1/2", "unit": "cup", "name": "brown sugar"},
 			{"quantity": "1", "unit": "", "name": "large egg"},
-			{"quantity": "1", "unit": "tablespoon", "name": "milk"},
-			{"quantity": "1", "unit": "teaspoon", "name": "vanilla"},
-			{"quantity": "5", "unit": "dozen", "name": "Hersey Kisses"}
+			{"quantity": "1", "unit": "tbsp", "name": "milk"},
+			{"quantity": "1", "unit": "tsp", "name": "vanilla"},
+			{"quantity": "60", "unit": "", "name": "Hersey Kisses"}
 		],
-		"cookingTime": "35 Minutes",
+		"cookingTime": "35",
 		"servings": "4",
 		"directions": [
 			{"text": "Sift together flour, baking soda and salt; set aside. Using an electric mixer, cream together butter, peanut butter, 1/2 cup granulated sugar and light brown sugar. Add egg, milk and vanilla; beat until well blended. Gradually add flour mixture, mixing thoroughly. If the dough is very soft, refrigerate for about 1 hour."},
@@ -104,25 +104,25 @@
 		"name": "Thick Cut-Out Cookies",
 		"difficulty": "5",
 		"ingredients": [
-			{"quantity": "2 1/8", "unit": "cups", "name": "sugar"},
-			{"quantity": "2", "unit": "cups", "name": "softened butter"},
+			{"quantity": "2 1/8", "unit": "cup", "name": "sugar"},
+			{"quantity": "2", "unit": "cup", "name": "softened butter"},
 			{"quantity": "4", "unit": "", "name": "eggs"},
 			{"quantity": "6", "unit": "", "name": "egg yolks"},
-			{"quantity": "1 1/2", "unit": "teaspons", "name": "vanilla extract"},
-			{"quantity": "7", "unit": "cups", "name": "flour"},
-			{"quantity": "1", "unit": "tablespoon", "name": "baking powder"},
-			{"quantity": "1/2", "unit": "teaspoon", "name": "salt"},
-			{"quantity": "4", "unit": "cups", "name": "sugar"},
+			{"quantity": "1 1/2", "unit": "tsp", "name": "vanilla extract"},
+			{"quantity": "7", "unit": "cup", "name": "flour"},
+			{"quantity": "1", "unit": "tbsp", "name": "baking powder"},
+			{"quantity": "1/2", "unit": "tsp", "name": "salt"},
+			{"quantity": "4", "unit": "cup", "name": "sugar"},
 			{"quantity": "1/4", "unit": "", "name": "vegetable oil"},
-			{"quantity": "1", "unit": "tablespoon", "name": "hot water"}
+			{"quantity": "1", "unit": "tbsp", "name": "hot water"}
 		],
-		"cookingTime": "8 minutes",
+		"cookingTime": "8",
 		"servings": "4",
 		"directions": [
 			{"text": "In a large bowl, cream together the sugar and butter until smooth. Beat in the eggs and egg yolks, one at a time, mixing well after each. Mix in vanilla extract. Combine flour, baking powder, and salt; stir into the sugar mixture. Cover dough and chill for at least 1 hour."},
 			{"text": "Preheat the oven to 375 degrees F (190 degrees C). Grease cookie sheets. On a floured surface, roll the dough out to 1/2 inch thickness and cut into desired shapes using cookie cutters. Place 2 inches apart on the prepared baking sheets."},
 			{"text": "Bake for 8 to 10 minutes in the preheated oven. Allow cookies to cool on baking sheet for 5 minutes before removing to a wire rack."},
-			{"text": "To make frosting, mix together the confectioners' sugar, oil and 1 teaspoon vanilla until smooth. gradually add enough hot water to achieve a spreadable consistency. Spread over warm cookies."}
+			{"text": "To make frosting, mix together the confectioners' sugar, oil and 1 tsp vanilla until smooth. gradually add enough hot water to achieve a spreadable consistency. Spread over warm cookies."}
 		],
 		"emoji": "\ud83c\udf6a"
 	},
@@ -132,13 +132,13 @@
 		"difficulty": "5",
 		"ingredients": [
 			{"quantity": "1", "unit": "cup", "name": "butter"},
-			{"quantity": "1", "unit": "teaspon", "name": "vanilla extract"},
-			{"quantity": "6", "unit": "tablespoons", "name": "sugar"},
-			{"quantity": "2", "unit": "cups", "name": "flour"},
+			{"quantity": "1", "unit": "tsp", "name": "vanilla extract"},
+			{"quantity": "6", "unit": "tbsp", "name": "sugar"},
+			{"quantity": "2", "unit": "cup", "name": "flour"},
 			{"quantity": "1", "unit": "cup", "name": "chopped walnuts"},
 			{"quantity": "1/3", "unit": "cup", "name": "sugar"}
 		],
-		"cookingTime": "12 minutes",
+		"cookingTime": "12",
 		"servings": "4",
 		"directions": [
 			{"text": "Preheat oven to 350 degrees F (175 degrees C)."},
@@ -167,7 +167,7 @@
 			{"quantity": "96", "unit": "", "name": "candy eyes"},
 			{"quantity": "1/2", "unit": "cup", "name": "chocolate chips"}
 		],
-		"cookingTime": "12 minutes",
+		"cookingTime": "12",
 		"servings": "4",
 		"directions": [
 			{"text": "Preheat oven to 375 degrees F."},
@@ -182,11 +182,11 @@
 		"difficulty": "4",
 		"ingredients": [
 			{"quantity": "", "unit": "", "name": "Crispy Breaded Cauliflower"},
-			{"quantity": "15", "unit": "ounce", "name": "vegetarian refried beans"},
-			{"quantity": "1/2", "unit": "teaspoon", "name": "cumin"},
-			{"quantity": "2", "unit": "cups", "name": "red cabbage, shredded"},
+			{"quantity": "15", "unit": "oz", "name": "vegetarian refried beans"},
+			{"quantity": "1/2", "unit": "tsp", "name": "cumin"},
+			{"quantity": "2", "unit": "cup", "name": "red cabbage, shredded"},
 			{"quantity": "2", "unit": "", "name": "limes (1 for the cabbage & 1 to serve)"},
-			{"quantity": "3", "unit": "tablespoons", "name": "Yum Yum Sauce"},
+			{"quantity": "3", "unit": "tbsp", "name": "Yum Yum Sauce"},
 			{"quantity": "8", "unit": "", "name": "corn tortillas"},
 			{"quantity": "", "unit": "", "name": "Fresh cilantro, for garnish"}
 		],
@@ -194,7 +194,7 @@
 		"servings": "4",
 		"directions": [
 			{"text": "Make the Crispy Breaded Cauliflower (about 40 minutes total; use the remaining time to complete the steps below.)"},
-			{"text": "If using purchased refried beans, taste and if needed, mix with 1/2 teaspoon cumin and/or a pinch or two kosher salt."},
+			{"text": "If using purchased refried beans, taste and if needed, mix with 1/2 tsp cumin and/or a pinch or two kosher salt."},
 			{"text": "Thinly slice the cabbage, enough for 2 cups. Mix it with 2 tablespoons lime juice and a pinch or two of salt. Allow it to stand at room temperature until serving."},
 			{"text": "Make the Yum Yum Sauce."},
 			{"text": "Warm the tortillas, or char them by placing them on grates above an open gas flame on medium heat for a few seconds per side, flipping with tongs, until they are slightly blackened and warm."},
@@ -208,14 +208,14 @@
 		"name": "Garlic Roasted Mhmm Potatoes",
 		"difficulty": "2",
 		"ingredients": [
-			{"quantity": "3", "unit": "pounds", "name": "small red or white potatoes"},
+			{"quantity": "3", "unit": "lb", "name": "small red or white potatoes"},
 			{"quantity": "1/4", "unit": "cup", "name": "good olive oil"},
-			{"quantity": "1 1/2", "unit": "teaspoons", "name": "kosher salt"},
-			{"quantity": "1", "unit": "teaspoon", "name": "freshly ground black pepper"},
-			{"quantity": "2", "unit": "tablespoons", "name": "minced garlic (6 cloves)"},
-			{"quantity": "2", "unit": "tablespoons", "name": "minced fresh parsley"}
+			{"quantity": "1 1/2", "unit": "tsp", "name": "kosher salt"},
+			{"quantity": "1", "unit": "tsp", "name": "freshly ground black pepper"},
+			{"quantity": "2", "unit": "tbsp", "name": "minced garlic (6 cloves)"},
+			{"quantity": "2", "unit": "tbsp", "name": "minced fresh parsley"}
 		],
-		"cookingTime": "1 hour",
+		"cookingTime": "60",
 		"servings": "4",
 		"directions": [
 			{"text": "Preheat oven to 400 degrees F."},
@@ -235,7 +235,7 @@
 			{"quantity": "1", "unit": "oz", "name": "Sauce"},
 			{"quantity": "1", "unit": "oz", "name": "'Herbs' as necessary"}
 		],
-		"cookingTime": "Unknown",
+		"cookingTime": "0",
 		"description": "Depends on how baked you are/like your food",
 		"servings": "4",
 		"directions": [
@@ -253,21 +253,21 @@
 		"name": "White Chocolate Dipped Peppermint Sugar Cookies",
 		"difficulty": "2",
 		"ingredients": [
-			{"quantity": "2 3/4", "unit": "cups", "name": "all-purpose flour"},
+			{"quantity": "2 3/4", "unit": "cup", "name": "all-purpose flour"},
 			{"quantity": "1", "unit": "tsp", "name": "baking soda"},
 			{"quantity": "1/2", "unit": "tsp", "name": "salt"},
 			{"quantity": "1/2", "unit": "tsp", "name": "cream of tartar"},
-			{"quantity": "1 1/2", "unit": "cups", "name": "granulated sugar"},
+			{"quantity": "1 1/2", "unit": "cup", "name": "granulated sugar"},
 			{"quantity": "1", "unit": "cup", "name": "unsalted butter, softened"},
 			{"quantity": "1", "unit": "", "name": "large egg"},
 			{"quantity": "1", "unit": "", "name": "large egg yolk"},
 			{"quantity": "1", "unit": "tsp", "name": "vanilla extract"},
 			{"quantity": "3/4", "unit": "tsp", "name": "peppermint extract"},
-			{"quantity": "2 1/2", "unit": "cups (15 oz)", "name": "white chocolate chips"},
-			{"quantity": "2 1/2", "unit": "Tbsp (30g)", "name": "shortening"},
-			{"quantity": "1/3", "unit": "cup (60g)", "name": "peppermint bits or finely crushed candy canes"}
+			{"quantity": "2 1/2", "unit": "cup", "name": "white chocolate chips"},
+			{"quantity": "2 1/2", "unit": "tbsp", "name": "shortening"},
+			{"quantity": "1/3", "unit": "cup", "name": "peppermint bits or finely crushed candy canes"}
 		],
-		"cookingTime": "30 minutes",
+		"cookingTime": "30",
 		"servings": "4",
 		"directions": [
 			{"text": "For the cookies: Preheat oven to 350 degrees. In a mixing bowl whisk together flour, baking soda, salt and cream of tartar, set aside."},
@@ -286,12 +286,12 @@
 		"name": "Valerie's Artisan Bread",
 		"difficulty": "2",
 		"ingredients": [
-			{"quantity": "3", "unit": "cups", "name": "flour"},
+			{"quantity": "3", "unit": "cup", "name": "flour"},
 			{"quantity": "1/4", "unit": "tsp", "name": "yeast"},
 			{"quantity": "1", "unit": "tsp", "name": "salt"},
-			{"quantity": "1 1/2", "unit": "cups", "name": "warm water"}
+			{"quantity": "1 1/2", "unit": "cup", "name": "warm water"}
 		],
-		"cookingTime": "4 hours",
+		"cookingTime": "240",
 		"description": "10 minutes prep, 3 hour wait, 45 minute cook",
 		"servings": "12",
 		"directions": [
@@ -315,9 +315,9 @@
 		"ingredients": [
 			{"quantity": "4", "unit": "lb", "name": "pork spare ribs"},
 			{"quantity": "24", "unit": "oz", "name": "BBQ Sauce"},
-			{"quantity": "2", "unit": "pinches", "name": "salt"}
+			{"quantity": "1/8", "unit": "tsp", "name": "salt"}
 		],
-		"cookingTime": "3 hours",
+		"cookingTime": "180",
 		"servings": "4",
 		"directions": [
 			{"text": "Sprinkle with salt."},
@@ -341,12 +341,12 @@
 		"difficulty": "1",
 		"course":  "Dessert",
 		"ingredients": [
-			{"quantity": "1", "unit": "medium", "name": "banana"},
+			{"quantity": "1", "unit": "", "name": "medium banana"},
 			{"quantity": "1", "unit": "cup", "name": "good quality white chocolate"},
-			{"quantity": "8", "unit": "mini", "name": "chocolate chips for the eyes"},
-			{"quantity": "4", "unit": "sticks", "name": "popsicle sticks"}
+			{"quantity": "8", "unit": "", "name": "mini chocolate chips for the eyes"},
+			{"quantity": "4", "unit": "", "name": "popsicle sticks"}
 		],
-		"cookingTime": "20 minutes",
+		"cookingTime": "20",
 		"servings": "4",
 		"directions": [
 			{"text": "Cut banana in half lengthwise, then in half to make four quarters. Insert popsicle sticks into bananas, and freeze bananas on a wax paper lined cookie sheet."},
@@ -363,7 +363,7 @@
 		"difficulty": "10",
 		"ingredients": [
 			{"quantity": "1", "unit": "tbsp", "name": "olive oil"},
-			{"quantity": "1", "unit": "medium", "name": "yellow diced onion"},
+			{"quantity": "1", "unit": "", "name": "medium yellow diced onion"},
 			{"quantity": "1", "unit": "lb", "name": "90 percent ground beef"},
 			{"quantity": "2 1/2", "unit": "tbsp", "name": "chili powder"},
 			{"quantity": "2", "unit": "tbsp", "name": "ground cumin"},
@@ -372,12 +372,12 @@
 			{"quantity": "1", "unit": "tbsp", "name": "garlic powder"},
 			{"quantity": "1 1/2", "unit": "tsp", "name": "salt"},
 			{"quantity": "1/2", "unit": "tsp", "name": "black pepper"},
-			{"quantity": "1 1/2", "unit": "cups", "name": "beef broth"},
+			{"quantity": "1 1/2", "unit": "cup", "name": "beef broth"},
 			{"quantity": "15", "unit": "oz", "name": "petite diced tomatoes"},
 			{"quantity": "16", "unit": "oz", "name": "red kidney beans"},
 			{"quantity": "8", "unit": "oz", "name": "tomato sauce"}
 		],
-		"cookingTime": "25 minutes",
+		"cookingTime": "25",
 		"servings": "6",
 		"directions": [
 			{"text": "Head on over to Walmart and pick up a nice big 5 gallon stainless steel kettle bucket. Find the most expensive bucket because you only need it once and then will throw it in a cabinet never to be seen again. Go on home and go upstairs to start the gurgling process. Come back downstairs after 20 minutes and begin the process. Fall asleep 5 minutes later from 'exhaustion'."},
@@ -395,17 +395,17 @@
 		"name": "Creamy Beef and Shells",
 		"difficulty": "4",
 		"ingredients": [
-			{"quantity": "8", "unit": "ounce", "name": "medium pasta shells"},
+			{"quantity": "8", "unit": "oz", "name": "medium pasta shells"},
 			{"quantity": "1", "unit": "tbsp", "name": "olive oil"},
 			{"quantity": "1", "unit": "lb", "name": "ground beef"},
 			{"quantity": "1/2", "unit": "", "name": "medium sweet onion, diced"},
-			{"quantity": "2", "unit": "cloves", "name": "garlic, minced"},
+			{"quantity": "2", "unit": "", "name": "garlic cloves, minced"},
 			{"quantity": "1 1/2", "unit": "tsp", "name": "Italian seasoning"},
 			{"quantity": "2", "unit": "tbsp", "name": "flour"},
-			{"quantity": "2", "unit": "cups", "name": "beef stock"},
+			{"quantity": "2", "unit": "cup", "name": "beef stock"},
 			{"quantity": "15", "unit": "oz", "name": "tomato sauce"},
-			{"quantity": "3/4", "unit": "cups", "name": "heavy cream"},
-			{"quantity": "1 1/2", "unit": "cups", "name": "extra sharp cheddar cheese"}
+			{"quantity": "3/4", "unit": "cup", "name": "heavy cream"},
+			{"quantity": "1 1/2", "unit": "cup", "name": "extra sharp cheddar cheese"}
 		],
 		"cookingTime": "25",
 		"servings": "4",
@@ -437,7 +437,7 @@
 			{"quantity": "1/2", "unit": "tsp", "name": "rum extract"},
 			{"quantity": "1/2", "unit": "cup", "name": "miniature semisweet chocolate chips"}
 		],
-		"cookingTime": "25 Minutes",
+		"cookingTime": "25",
 		"servings": "8",
 		"directions": [
 			{"text": "Pulse cannoli shells in a food processor until coarse crumbs form. Add sugar, cracker crumbs and melted butter; pulse just until combined. Press onto bottom and sides of a greased 9-in. pie plate. Refrigerate until firm, about 1 hour."},
