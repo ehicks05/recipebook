@@ -1,6 +1,5 @@
 [
 	{
-		"id": 1,
 		"name": "Steve's Classic Wok",
 		"difficulty": "4",
 		"ingredients": [
@@ -26,7 +25,6 @@
 		"emoji": "\uD83E\uDD58"
 	},
 	{
-		"id": 4,
 		"name": "Chicken & Vegetable Udon Soup",
 		"difficulty": "2",
 		"ingredients": [
@@ -57,7 +55,6 @@
 		"emoji": "\uD83C\uDF5C"
 	},
 	{
-		"id": 5,
 		"name": "Homemade Cookie Dough",
 		"difficulty": "3",
 		"ingredients": [
@@ -74,7 +71,6 @@
 		"emoji": "\ud83c\udf6a"
 	},
 	{
-		"id": 6,
 		"name": "Peanut Butter Blossoms",
 		"difficulty": "6",
 		"ingredients": [
@@ -100,7 +96,6 @@
 		"emoji": "\ud83c\udf6a"
 	},
 	{
-		"id": 7,
 		"name": "Thick Cut-Out Cookies",
 		"difficulty": "5",
 		"ingredients": [
@@ -127,7 +122,6 @@
 		"emoji": "\ud83c\udf6a"
 	},
 	{
-		"id": 8,
 		"name": "Russian Tea Cakes",
 		"difficulty": "5",
 		"ingredients": [
@@ -148,7 +142,6 @@
 		"emoji": "\ud83c\udf6a"
 	},
 	{
-		"id": 9,
 		"name": "Halloween Peanut Butter 'Barking' Spider Cookies",
 		"difficulty": "5",
 		"ingredients": [
@@ -177,7 +170,6 @@
 		"emoji": "\ud83c\udf6a"
 	},
 	{
-		"id": 10,
 		"name": "Crispy Cauliflower Tacos",
 		"difficulty": "4",
 		"ingredients": [
@@ -204,7 +196,6 @@
 		"emoji": "\uD83C\uDF2E"
 	},
 	{
-		"id": 11,
 		"name": "Garlic Roasted Mhmm Potatoes",
 		"difficulty": "2",
 		"ingredients": [
@@ -225,7 +216,6 @@
 		"emoji": "\uD83E\uDD54"
 	},
 	{
-		"id": 13,
 		"name": "Big Al's 'Dunkin' Dino Nuggets",
 		"difficulty": "0",
 		"ingredients": [
@@ -249,7 +239,6 @@
 		"emoji": "\uD83C\uDF57"
 	},
 	{
-		"id": 12,
 		"name": "White Chocolate Dipped Peppermint Sugar Cookies",
 		"difficulty": "2",
 		"ingredients": [
@@ -282,7 +271,6 @@
 		"emoji": "\ud83c\udf6a"
 	},
 	{
-		"id": 13,
 		"name": "Valerie's Artisan Bread",
 		"difficulty": "2",
 		"ingredients": [
@@ -309,7 +297,6 @@
 		"emoji": "\uD83C\uDF5E"
 	},
 	{
-		"id": 14,
 		"name": "BBQ Pork Spare Ribs",
 		"difficulty": "1",
 		"ingredients": [
@@ -336,7 +323,6 @@
 		"emoji": "\uD83C\uDF56"
 	},
 	{
-		"id": 15,
 		"name": "Frozen BooNana Pops",
 		"difficulty": "1",
 		"course":  "Dessert",
@@ -358,7 +344,6 @@
     "emoji": "\uD83C\uDF4C"
 	},
 	{
-		"id": 16,
 		"name": "Superbowl '5 Gallon' Chili",
 		"difficulty": "10",
 		"ingredients": [
@@ -391,7 +376,6 @@
     "emoji": "\uD83E\uDD58"
 	},
 	{
-		"id": 17,
 		"name": "Creamy Beef and Shells",
 		"difficulty": "4",
 		"ingredients": [
@@ -420,7 +404,6 @@
     "emoji": "\uD83C\uDF2E"
 	},
  	{
-		"id": 18,
 		"name": "No-Bake Chocolate Chip Cannoli Cheesecake",
 		"difficulty": "4",
 		"ingredients": [
