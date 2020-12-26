@@ -36,7 +36,7 @@ function RecipeForm({ fetchRecipes, recipes }: IProps) {
 
   return (
     <>
-      <Hero title="Create a Recipe" />
+      <Hero title={`${recipe ? 'Edit' : 'Create'} Recipe`} />
       <div className="section">
         <div className="container">
           <Formik
