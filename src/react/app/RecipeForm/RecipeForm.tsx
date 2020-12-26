@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
-import { FaMinus, FaPlus } from 'react-icons/all';
+import { FaPlus } from 'react-icons/all';
 
 import { FieldArray, Form, Formik } from 'formik';
 import Hero from '../../components/Hero';
@@ -166,13 +166,12 @@ function RecipeForm({ fetchRecipes, recipes }: IProps) {
                                     </div>
                                     <div className="column is-narrow">
                                       <button
-                                        className="button is-danger is-small"
-                                        onClick={() => remove(index)}
-                                      >
-                                        <span className="icon">
-                                          <FaMinus />
-                                        </span>
-                                      </button>
+                                        className="delete has-background-danger"
+                                        onClick={e => {
+                                          e.preventDefault();
+                                          remove(index);
+                                        }}
+                                      />
                                     </div>
                                   </div>
                                 </>
@@ -227,13 +226,12 @@ function RecipeForm({ fetchRecipes, recipes }: IProps) {
                                   </div>
                                   <div className="column is-narrow">
                                     <button
-                                      className="button is-danger is-small"
-                                      onClick={() => remove(index)}
-                                    >
-                                      <span className="icon">
-                                        <FaMinus />
-                                      </span>
-                                    </button>
+                                      className="delete has-background-danger"
+                                      onClick={e => {
+                                        e.preventDefault();
+                                        remove(index);
+                                      }}
+                                    />
                                   </div>
                                 </div>
                               ))}
