@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 import { IDirection, IIngredient, IRecipe } from '../../types/types';
 import { validateQuantity } from './utils';
 
-const UNITS = ['oz', 'lb', 'ml', 'L', 'g'];
+const UNITS = ['tsp', 'tbsp', 'cup', 'oz', 'lb', 'ml', 'L', 'g'];
 const UNIT_OPTIONS = ['', ...UNITS].map(unit => (
   <option value={unit}>{unit}</option>
 ));
