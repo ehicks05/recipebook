@@ -28,7 +28,7 @@ const DEFAULT_RECIPE: IRecipe = {
 };
 
 const RECIPE_SCHEMA = Yup.object({
-  name: Yup.string().max(30, 'Must be 15 characters or less').required('Required'),
+  name: Yup.string().max(50, 'Must be 50 characters or less').required('Required'),
   description: Yup.string().required('Required'),
   cookingTime: Yup.number().min(1, 'Must be at least 1').required('Required'),
   servings: Yup.number().min(1, 'Must be 1 serving or more').required('Required'),
