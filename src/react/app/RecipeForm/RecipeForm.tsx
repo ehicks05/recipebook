@@ -120,52 +120,60 @@ function RecipeForm({ fetchRecipes, recipes }: IProps) {
                           <div>
                             {values.ingredients.length > 0 &&
                               values.ingredients.map((ingredient, index) => (
-                                <div
-                                  key={index}
-                                  className="columns is-mobile is-variable is-1"
-                                >
-                                  <div className="column is-narrow">
-                                    <div className="control">
-                                      <input
-                                        type="text"
-                                        className="input is-static"
-                                        readOnly
-                                        value={`${index + 1}.`}
-                                        style={{ width: '1rem' }}
-                                      />
-                                    </div>
-                                  </div>
-                                  <div className="column">
-                                    <MyInput
-                                      name={`ingredients.${index}.name`}
-                                      placeholder="Name"
-                                    />
-                                    <div className="columns is-mobile is-variable is-0">
-                                      <div className="column">
-                                        <MyInput
-                                          name={`ingredients.${index}.quantity`}
-                                          placeholder="Quantity"
-                                          isExpanded
+                                <>
+                                  {index !== 0 && <hr />}
+                                  <div
+                                    key={index}
+                                    className="columns is-mobile is-variable is-1"
+                                  >
+                                    <div className="column is-narrow">
+                                      <div className="control">
+                                        <input
+                                          type="text"
+                                          className="input is-static"
+                                          readOnly
+                                          value={`${index + 1}.`}
+                                          style={{
+                                            textAlign: 'right',
+                                            width: '1.35rem',
+                                          }}
                                         />
                                       </div>
-                                      <div className="column is-narrow">
-                                        <MySelect name={`ingredients.${index}.unit`}>
-                                          {UNIT_OPTIONS}
-                                        </MySelect>
+                                    </div>
+                                    <div className="column">
+                                      <MyInput
+                                        name={`ingredients.${index}.name`}
+                                        placeholder="Name"
+                                      />
+                                      <div className="columns is-mobile is-variable is-0">
+                                        <div className="column">
+                                          <MyInput
+                                            name={`ingredients.${index}.quantity`}
+                                            placeholder="Quantity"
+                                            isExpanded
+                                          />
+                                        </div>
+                                        <div className="column is-narrow">
+                                          <MySelect
+                                            name={`ingredients.${index}.unit`}
+                                          >
+                                            {UNIT_OPTIONS}
+                                          </MySelect>
+                                        </div>
                                       </div>
                                     </div>
+                                    <div className="column is-narrow">
+                                      <button
+                                        className="button is-danger is-small"
+                                        onClick={() => remove(index)}
+                                      >
+                                        <span className="icon">
+                                          <FaMinus />
+                                        </span>
+                                      </button>
+                                    </div>
                                   </div>
-                                  <div className="column is-narrow">
-                                    <button
-                                      className="button is-danger is-small"
-                                      onClick={() => remove(index)}
-                                    >
-                                      <span className="icon">
-                                        <FaMinus />
-                                      </span>
-                                    </button>
-                                  </div>
-                                </div>
+                                </>
                               ))}
                             <button
                               className="button is-success"
@@ -199,7 +207,10 @@ function RecipeForm({ fetchRecipes, recipes }: IProps) {
                                         className="input is-static"
                                         readOnly
                                         value={`${index + 1}.`}
-                                        style={{ width: '1rem' }}
+                                        style={{
+                                          textAlign: 'right',
+                                          width: '1.35rem',
+                                        }}
                                       />
                                     </div>
                                     <MyHiddenInput
