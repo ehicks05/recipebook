@@ -29,7 +29,9 @@ interface IProps {
 function RecipeForm({ fetchRecipes, recipes }: IProps) {
   const history = useHistory();
   const { pathname } = useLocation();
-  const id = pathname.slice(pathname.lastIndexOf('/') + 1);
+  const id = pathname.includes('edit-recipe')
+    ? pathname.slice(pathname.lastIndexOf('/') + 1)
+    : undefined;
   const recipe = id ? recipes?.find(r => r.id === Number(id)) : undefined;
 
   if (id && !recipe) return <div>Loading...</div>;
