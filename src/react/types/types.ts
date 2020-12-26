@@ -10,16 +10,19 @@ interface IRecipe {
   ingredients: IIngredient[];
   directions: IDirection[];
   author: IUser;
-  createdBy: number;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 interface IIngredient {
+  id?: number;
   name: string;
   quantity: string;
   unit: string;
 }
 
 interface IDirection {
+  id?: number;
   index: string;
   text: string;
 }

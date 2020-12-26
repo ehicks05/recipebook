@@ -23,7 +23,6 @@ const DEFAULT_RECIPE: IRecipe = {
   servings: 1,
   course: '',
   author: { id: 0, username: 'unknown', displayName: 'Unknown' },
-  createdBy: 0,
   ingredients: [DEFAULT_INGREDIENT],
   directions: [DEFAULT_DIRECTION],
 };
