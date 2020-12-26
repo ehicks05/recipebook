@@ -428,5 +428,97 @@
 			{"text": "Refrigerate, covered, until set, about 4 hours."}
 		],
 		"emoji": "\ud83c\udf6a"
+	},
+	{
+		"name": "Blackened Chicken Penne",
+		"emoji": "🍝",
+		"description": "with Charred Poblano & Monterey Jack Cheese\n\nThis pasta may break the rules, but it does so deliciously: Instead of going the traditional Italian route, our chefs opted to mix things up with a jumble of Southwestern flavors. The pre-cut chicken breast strips are seasoned with blackening spices and tossed in the pan until they’re perfectly smoky and savory. Poblano pepper and diced tomato add texture and more unconventional flair, while the Monterey Jack cheese sauce brings supreme creaminess to the penne.",
+		"difficulty": 3,
+		"cookingTime": "25",
+		"servings": 4,
+		"course": "",
+		"ingredients": [
+			{
+				"name": "Poblano Pepper",
+				"quantity": "2",
+				"unit": ""
+			},
+			{
+				"name": "Scallion",
+				"quantity": "2",
+				"unit": ""
+			},
+			{
+				"name": "Garlic Clove",
+				"quantity": "2",
+				"unit": ""
+			},
+			{
+				"name": "Roma Tomato",
+				"quantity": "2",
+				"unit": ""
+			},
+			{
+				"name": "Chicken Breast Strips",
+				"quantity": "20",
+				"unit": "oz"
+			},
+			{
+				"name": "Blackening Spice",
+				"quantity": "2",
+				"unit": "tbsp"
+			},
+			{
+				"name": "Penne Pasta",
+				"quantity": "12",
+				"unit": "oz"
+			},
+			{
+				"name": "Cream Cheese",
+				"quantity": "8",
+				"unit": "tbsp"
+			},
+			{
+				"name": "Monterey Jack Cheese",
+				"quantity": "1/2",
+				"unit": "cup"
+			},
+			{
+				"name": "Chicken Stock Concentrate",
+				"quantity": "2",
+				"unit": ""
+			},
+			{
+				"name": "Hot Sauce",
+				"quantity": "1",
+				"unit": "tsp"
+			}
+		],
+		"directions": [
+			{
+				"index": 0,
+				"text": "Bring a large pot of salted water to a boil. Wash and dry all produce. Core, deseed, and dice poblano into ½-inch pieces. Trim and thinly slice scallions, separating whites from greens. Peel and thinly slice garlic. Finely chop tomato."
+			},
+			{
+				"index": 1,
+				"text": "Pat chicken dry with paper towels. Toss in a large bowl with a large drizzle of olive oil, Blackening Spice, and a few big pinches of salt."
+			},
+			{
+				"index": 2,
+				"text": "Once water is boiling, add penne to pot. Cook until al dente, 9-11 minutes. Reserve ½ cup pasta cooking water (1 cup for 4 servings), then drain and set aside."
+			},
+			{
+				"index": 3,
+				"text": "While pasta cooks, heat a drizzle of olive oil in a large pan over medium-high heat. Add poblano and a pinch of salt. Cook, without stirring, until lightly charred, 3-4 minutes. Add chicken and cook, stirring occasionally, until browned and cooked through, 4-6 minutes. Stir in scallion whites and garlic. Cook until fragrant, 1 minute. Stir in half the tomato and a pinch of salt. Reduce heat under pan to medium low."
+			},
+			{
+				"index": 4,
+				"text": "Stir in cream cheese and 1⁄3 cup reserved pasta cooking water (2⁄3 cup for 4 servings). Add penne and cook, stirring, until thoroughly combined, 1-2 minutes. Turn off heat. Add Monterey Jack, stock concentrate, 2 TBSP butter (3 TBSP for 4), and as much hot sauce as you like; stir until butter has melted. (TIP: If needed, stir in more reserved cooking water a splash at a time until pasta is coated in a creamy sauce.) Season with salt and pepper."
+			},
+			{
+				"index": 5,
+				"text": "Divide pasta between bowls or plates. Garnish with scallion greens and remaining tomato. Drizzle with any remaining hot sauce if desired and serve."
+			}
+		]
 	}
 ]
