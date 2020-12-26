@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { FaMinus, FaPlus } from 'react-icons/all';
 
 import { FieldArray, Form, Formik } from 'formik';
@@ -19,13 +19,20 @@ import {
   MySelect,
   MyTextArea,
 } from './Components/FormikInput';
+import { IRecipe } from '../../types/types';
 
 interface IProps {
   fetchRecipes: () => void;
+  recipes?: IRecipe[];
 }
 
-function RecipeForm(props: IProps) {
+function RecipeForm({ fetchRecipes, recipes }: IProps) {
   const history = useHistory();
+  const { pathname } = useLocation();
+  const id = pathname.slice(pathname.lastIndexOf('/') + 1);
+  const recipe = id ? recipes?.find(r => r.id === Number(id)) : undefined;
+
+  if (id && !recipe) return <div>Loading...</div>;
 
   return (
     <>
@@ -33,7 +40,7 @@ function RecipeForm(props: IProps) {
       <div className="section">
         <div className="container">
           <Formik
-            initialValues={DEFAULT_RECIPE}
+            initialValues={recipe || DEFAULT_RECIPE}
             validationSchema={RECIPE_SCHEMA}
             onSubmit={(values, { setSubmitting }) => {
               authFetch('/recipe', {
@@ -43,7 +50,7 @@ function RecipeForm(props: IProps) {
                   'Content-Type': 'application/json',
                 },
               }).then(response => {
-                props.fetchRecipes();
+                fetchRecipes();
                 setSubmitting(false);
                 history.push(`/recipe/${response.id}`);
               });

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Recipe from './react/app/Recipe/Recipe';
 import Navbar from './react/components/Navbar/Navbar';
 import Footer from './react/components/Footer';
@@ -49,21 +49,26 @@ export default function App() {
     >
       <Navbar />
 
-      <Route exact path="/">
-        <Home recipes={recipes} />
-      </Route>
-      <Route path="/recipe/:id">
-        <Recipe recipes={recipes} />
-      </Route>
-      <Route path="/create-recipe">
-        <RecipeForm fetchRecipes={fetchRecipes} />
-      </Route>
-      <Route path="/myAccount">
-        <MyAccount />
-      </Route>
-      <Route path="/login">
-        <UserAccess />
-      </Route>
+      <Switch>
+        <Route exact path="/">
+          <Home recipes={recipes} />
+        </Route>
+        <Route path="/recipe/:id">
+          <Recipe recipes={recipes} />
+        </Route>
+        <Route path="/edit-recipe/:id">
+          <RecipeForm fetchRecipes={fetchRecipes} recipes={recipes} />
+        </Route>
+        <Route path="/create-recipe">
+          <RecipeForm fetchRecipes={fetchRecipes} />
+        </Route>
+        <Route path="/myAccount">
+          <MyAccount />
+        </Route>
+        <Route path="/login">
+          <UserAccess />
+        </Route>
+      </Switch>
 
       <Footer />
     </UserContext.Provider>
