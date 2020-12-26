@@ -50,11 +50,11 @@ function Recipe({ recipes }: IProps) {
             <div id="details-column" className="column is-one-quarter">
               <div key={recipe.name}>
                 <h3 className="subtitle has-text-weight-bold">Details</h3>
-                <div className="">
+                <div>
                   <b>Time:</b> {recipe.cookingTime}
                 </div>
                 <br />
-                <div className="">
+                <div>
                   <b>Description</b>: {recipe.description}
                 </div>
               </div>
