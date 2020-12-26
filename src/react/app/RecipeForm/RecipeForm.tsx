@@ -43,8 +43,10 @@ function RecipeForm({ fetchRecipes, recipes }: IProps) {
             initialValues={recipe || DEFAULT_RECIPE}
             validationSchema={RECIPE_SCHEMA}
             onSubmit={(values, { setSubmitting }) => {
-              authFetch('/recipe', {
-                method: 'POST',
+              const path = recipe ? `/recipe/${recipe.id}` : '/recipe';
+              const method = recipe ? 'PUT' : 'POST';
+              authFetch(path, {
+                method,
                 body: JSON.stringify(values),
                 headers: {
                   'Content-Type': 'application/json',
@@ -263,7 +265,7 @@ function RecipeForm({ fetchRecipes, recipes }: IProps) {
                           isSubmitting ? 'is-loading' : ''
                         }`}
                       >
-                        Create Recipe
+                        {`${recipe ? 'Save Changes' : 'CreateRecipe '}`}
                       </button>
                     </div>
                   </div>
