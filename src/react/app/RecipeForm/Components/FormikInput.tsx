@@ -8,10 +8,11 @@ interface IMyInputProps {
   label?: string;
   type?: string;
   isExpanded?: boolean;
+  leftIcon?: JSX.Element;
   [x: string]: any;
 }
 
-const MyInput = ({ label, ...props }: IMyInputProps) => {
+const MyInput = ({ label, leftIcon, ...props }: IMyInputProps) => {
   const [field, meta] = useField(props);
   return (
     <div className="field">
@@ -20,13 +21,18 @@ const MyInput = ({ label, ...props }: IMyInputProps) => {
           {label}
         </label>
       )}
-      <div className={`control ${props.isExpanded ? 'is-expanded' : ''}`}>
+      <div
+        className={`control ${props.isExpanded ? 'is-expanded' : ''} ${
+          leftIcon ? 'has-icons-left' : ''
+        }`}
+      >
         <input
           type={props.type || 'text'}
           className={`input ${meta.touched && meta.error ? 'is-danger' : ''}`}
           {...field}
           {...props}
         />
+        {leftIcon && <span className="icon is-left">{leftIcon}</span>}
         {meta.touched && meta.error ? (
           <div className="help is-danger">{meta.error}</div>
         ) : null}
