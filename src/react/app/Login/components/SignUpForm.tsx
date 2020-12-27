@@ -1,5 +1,6 @@
 import React, { useReducer } from 'react';
 import '@creativebulma/bulma-tooltip/dist/bulma-tooltip.min.css';
+import { FaEnvelope, FaLock } from 'react-icons/all';
 import authFetch from '../../../authFetch';
 
 interface IErrorMessage {
@@ -118,7 +119,7 @@ function SignUpForm(props: IProps) {
         {/* USERNAME */}
         <div className="field">
           <div className="field has-addons">
-            <p className="control is-expanded">
+            <p className="control is-expanded has-icons-left">
               <input
                 className="input"
                 type="email"
@@ -128,6 +129,9 @@ function SignUpForm(props: IProps) {
                 required
                 onChange={validateEmail}
               />
+              <span className="icon is-left">
+                <FaEnvelope />
+              </span>
             </p>
             <p className="control">
               <button
@@ -171,7 +175,7 @@ function SignUpForm(props: IProps) {
 
         {/* PASSWORD */}
         <div className="field has-addons">
-          <p className="control is-expanded">
+          <p className="control is-expanded has-icons-left">
             <input
               className="input"
               type="password"
@@ -181,6 +185,9 @@ function SignUpForm(props: IProps) {
               onChange={validatePasswords}
               required
             />
+            <span className="icon is-left">
+              <FaLock />
+            </span>
           </p>
           <p className="control">
             <button
@@ -197,7 +204,7 @@ function SignUpForm(props: IProps) {
         {/* PASSWORD CHECK */}
         <div className="field">
           <div className="field has-addons">
-            <p className="control is-expanded">
+            <p className="control is-expanded has-icons-left">
               <input
                 className="input"
                 type="password"
@@ -207,6 +214,9 @@ function SignUpForm(props: IProps) {
                 onChange={validatePasswords}
                 required
               />
+              <span className="icon is-left">
+                <FaLock />
+              </span>
             </p>
           </div>
           <p className="help has-text-danger">{errorMessageState.passwordMessage}</p>
