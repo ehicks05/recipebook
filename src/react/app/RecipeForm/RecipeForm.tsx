@@ -18,7 +18,7 @@ import {
   MyInput,
   MySelect,
   MyTextArea,
-} from './Components/FormikInput';
+} from '../../components/FormikInput';
 import { IRecipe } from '../../types/types';
 
 interface IProps {
