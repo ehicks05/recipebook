@@ -38,7 +38,7 @@ function RecipeForm({ fetchRecipes, recipes }: IProps) {
     <>
       <Hero title={`${recipe ? 'Edit' : 'Create'} Recipe`} />
       <div className="section">
-        <div className="container">
+        <div key={id} className="container">
           <Formik
             initialValues={recipe || DEFAULT_RECIPE}
             validationSchema={RECIPE_SCHEMA}
