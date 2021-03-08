@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { FaPlus } from 'react-icons/all';
 
 import { FieldArray, Form, Formik } from 'formik';
@@ -28,10 +28,8 @@ interface IProps {
 
 function RecipeForm({ fetchRecipes, recipes }: IProps) {
   const history = useHistory();
-  const { pathname } = useLocation();
-  const id = pathname.includes('edit-recipe')
-    ? pathname.slice(pathname.lastIndexOf('/') + 1)
-    : undefined;
+  const { id } = useParams<{ id: string }>();
+
   const recipe = id ? recipes?.find(r => r.id === Number(id)) : undefined;
 
   if (id && !recipe) return <div>Loading...</div>;

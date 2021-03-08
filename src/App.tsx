@@ -53,19 +53,19 @@ export default function App() {
         <Route exact path="/">
           <Home recipes={recipes} />
         </Route>
-        <Route path="/recipe/:id">
+        <Route exact path="/recipe/:id">
           <Recipe recipes={recipes} />
         </Route>
-        <Route path="/edit-recipe/:id">
+        <Route exact path="/edit-recipe/:id">
           <RecipeForm fetchRecipes={fetchRecipes} recipes={recipes} />
         </Route>
-        <Route path="/create-recipe">
+        <Route exact path="/create-recipe">
           <RecipeForm fetchRecipes={fetchRecipes} />
         </Route>
-        <Route path="/myAccount">
+        <Route exact path="/myAccount">
           <MyAccount />
         </Route>
-        <Route path="/login">
+        <Route exact path="/login">
           <UserAccess />
         </Route>
       </Switch>
