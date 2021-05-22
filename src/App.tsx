@@ -40,6 +40,10 @@ export default function App() {
     fetchFavoriteIds();
   }, [fetchUser]);
 
+  useEffect(() => {
+    fetchFavoriteIds();
+  }, [user]);
+
   if (!recipes || (user && !favoriteIds))
     return <Loading title="Loading..." subtitle="Please wait..." />;
 
