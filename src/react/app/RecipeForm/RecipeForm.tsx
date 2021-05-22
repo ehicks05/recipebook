@@ -263,7 +263,7 @@ function RecipeForm({ fetchRecipes, recipes }: IProps) {
                           isSubmitting ? 'is-loading' : ''
                         }`}
                       >
-                        {`${recipe ? 'Save Changes' : 'CreateRecipe '}`}
+                        {`${recipe ? 'Save Changes' : 'Create Recipe '}`}
                       </button>
                     </div>
                   </div>
