@@ -520,5 +520,116 @@
 				"text": "Divide pasta between bowls or plates. Garnish with scallion greens and remaining tomato. Drizzle with any remaining hot sauce if desired and serve."
 			}
 		]
+	},
+	{
+		"name": "Chuck Stew",
+		"emoji": "\uD83E\uDD58",
+		"description": "A savory stew",
+		"difficulty": 1,
+		"cookingTime": "75",
+		"servings": 4,
+		"course": "",
+		"ingredients": [
+			{
+				"name": "chuck",
+				"quantity": "2",
+				"unit": "lb"
+			},
+			{
+				"name": "large onion, diced",
+				"quantity": "1",
+				"unit": ""
+			},
+			{
+				"name": "garlic clove, diced",
+				"quantity": "3",
+				"unit": ""
+			},
+			{
+				"name": "tomato paste",
+				"quantity": "2",
+				"unit": "tbsp"
+			},
+			{
+				"name": "chili paste (optional)",
+				"quantity": "1",
+				"unit": "tbsp"
+			},
+			{
+				"name": "paprika (optional)",
+				"quantity": "1",
+				"unit": "tsp"
+			},
+			{
+				"name": "better than bullion (optional)",
+				"quantity": "1",
+				"unit": "tsp"
+			},
+			{
+				"name": "medium potato, cut into 1/4 inch pieces",
+				"quantity": "4",
+				"unit": ""
+			},
+			{
+				"name": "carrots, sliced",
+				"quantity": "2",
+				"unit": "cup"
+			},
+			{
+				"name": "red wine",
+				"quantity": "1",
+				"unit": "cup"
+			},
+			{
+				"name": "beef stock",
+				"quantity": "3",
+				"unit": "cup"
+			},
+			{
+				"name": "garlic powder",
+				"quantity": "1",
+				"unit": "tsp"
+			},
+			{
+				"name": "onion powder",
+				"quantity": "1",
+				"unit": "tsp"
+			},
+			{
+				"name": "herbes de provence",
+				"quantity": "1",
+				"unit": "tsp"
+			}
+		],
+		"directions": [
+			{
+				"index": 0,
+				"text": "heat oil, saute onion until translucent, add garlic"
+			},
+			{
+				"index": 1,
+				"text": "salt and pepper meat generously, then brown it"
+			},
+			{
+				"index": 2,
+				"text": "add tomato paste, cook and stir occassionally for 2 minutes. Add any other pastes here."
+			},
+			{
+				"index": 3,
+				"text": "add potatoes and carrots and whatever other vegetables, cook and stir for 3 minutes"
+			},
+			{
+				"index": 4,
+				"text": "add the wine, stir, cook for 5 minutes"
+			},
+			{
+				"index": 5,
+				"text": "add the stock and seasonings, bring to boil, reduce heat, cover, cook for 20 minutes"
+			},
+			{
+				"index": 6,
+				"text": "remove lid, stir, cook for another 10 minutes, or until meat is tender and potatoes are cooked."
+			}
+		]
 	}
 ]
