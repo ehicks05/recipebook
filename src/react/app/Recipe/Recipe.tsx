@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { IoIosCopy, IoIosSettings } from 'react-icons/all';
 import Hero from '../../components/Hero';
 import { IRecipe } from '../../types/types';
 import Directions from './Components/Directions';
 import Ingredients from './Components/Ingredients';
+import { UserContext } from '../../UserContext';
+import { stripRecipe, updateClipboard } from './utils';
 
 interface IProps {
   recipes: IRecipe[];
 }
 
 function Recipe({ recipes }: IProps) {
+  const { user } = useContext(UserContext);
   const [recipe, setRecipe] = useState<IRecipe | undefined>(undefined);
   const [desiredServings, setDesiredServings] = useState(0);
 
@@ -46,11 +50,11 @@ function Recipe({ recipes }: IProps) {
             <div id="details-column" className="column is-one-quarter">
               <div key={recipe.name}>
                 <h3 className="subtitle has-text-weight-bold">Details</h3>
-                <div className="">
+                <div>
                   <b>Time:</b> {recipe.cookingTime}
                 </div>
                 <br />
-                <div className="">
+                <div>
                   <b>Description</b>: {recipe.description}
                 </div>
               </div>
@@ -74,6 +78,38 @@ function Recipe({ recipes }: IProps) {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+      <section className="section">
+        <div className="container">
+          <nav className="level">
+            <div className="level-left">
+              {user?.id === recipe.author.id && (
+                <div className="level-item has-text-centered">
+                  <div>
+                    <p className="heading">Edit Recipe</p>
+                    <p className="title">
+                      <Link to={`/edit-recipe/${recipe.id}`} title="Edit Recipe">
+                        <IoIosSettings />
+                      </Link>
+                    </p>
+                  </div>
+                </div>
+              )}
+              <div className="level-item has-text-centered">
+                <div>
+                  <p className="heading">Copy JSON</p>
+                  <p className="title" style={{ cursor: 'pointer' }}>
+                    <IoIosCopy
+                      onClick={() =>
+                        updateClipboard(JSON.stringify(stripRecipe(recipe), null, 2))
+                      }
+                    />
+                  </p>
+                </div>
+              </div>
+            </div>
+          </nav>
         </div>
       </section>
     </>

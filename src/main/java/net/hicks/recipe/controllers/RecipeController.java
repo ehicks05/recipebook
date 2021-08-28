@@ -3,6 +3,7 @@ package net.hicks.recipe.controllers;
 import net.hicks.recipe.beans.Recipe;
 import net.hicks.recipe.beans.User;
 import net.hicks.recipe.beans.UserFavorite;
+import net.hicks.recipe.config.RecipeBookException;
 import net.hicks.recipe.services.RecipeService;
 import net.hicks.recipe.services.UserFavoriteService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -66,8 +67,11 @@ public class RecipeController
     }
 
     @PutMapping("/{recipeId}")
-    public void updateRecipe(@PathVariable long recipeId, @RequestBody Recipe recipe) {
-        recipe.setId(recipeId);
-        recipeService.updateRecipe(recipe);
+    public Recipe updateRecipe(@AuthenticationPrincipal User user, @PathVariable long recipeId, @RequestBody Recipe updatedRecipe) {
+        Recipe existingRecipe = recipeService.getRecipe(recipeId);
+        if (existingRecipe == null || !existingRecipe.getAuthor().equals(user))
+            throw new RecipeBookException(10, "Unable to find recipe to update");
+        updatedRecipe.setId(recipeId);
+        return recipeService.updateRecipe(updatedRecipe);
     }
 }

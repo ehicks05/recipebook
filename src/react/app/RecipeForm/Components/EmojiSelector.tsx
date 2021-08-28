@@ -57,6 +57,7 @@ function EmojiSelector(props: IProps) {
       options={EMOJI_OPTIONS}
       styles={customStyles}
       onChange={onSelectChange}
+      value={{ value: props.data.value, label: '' }}
     />
   );
 }

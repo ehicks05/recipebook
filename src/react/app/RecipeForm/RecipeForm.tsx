@@ -1,6 +1,6 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
-import { FaMinus, FaPlus } from 'react-icons/all';
+import { useHistory, useParams } from 'react-router-dom';
+import { FaPlus } from 'react-icons/all';
 
 import { FieldArray, Form, Formik } from 'formik';
 import Hero from '../../components/Hero';
@@ -18,32 +18,41 @@ import {
   MyInput,
   MySelect,
   MyTextArea,
-} from './Components/FormikInput';
+} from '../../components/FormikInput';
+import { IRecipe } from '../../types/types';
 
 interface IProps {
   fetchRecipes: () => void;
+  recipes?: IRecipe[];
 }
 
-function RecipeForm(props: IProps) {
+function RecipeForm({ fetchRecipes, recipes }: IProps) {
   const history = useHistory();
+  const { id } = useParams<{ id: string }>();
+
+  const recipe = id ? recipes?.find(r => r.id === Number(id)) : undefined;
+
+  if (id && !recipe) return <div>Loading...</div>;
 
   return (
     <>
-      <Hero title="Create a Recipe" />
+      <Hero title={`${recipe ? 'Edit' : 'Create'} Recipe`} />
       <div className="section">
-        <div className="container">
+        <div key={id} className="container">
           <Formik
-            initialValues={DEFAULT_RECIPE}
+            initialValues={recipe || DEFAULT_RECIPE}
             validationSchema={RECIPE_SCHEMA}
             onSubmit={(values, { setSubmitting }) => {
-              authFetch('/recipe', {
-                method: 'POST',
+              const path = recipe ? `/recipe/${recipe.id}` : '/recipe';
+              const method = recipe ? 'PUT' : 'POST';
+              authFetch(path, {
+                method,
                 body: JSON.stringify(values),
                 headers: {
                   'Content-Type': 'application/json',
                 },
               }).then(response => {
-                props.fetchRecipes();
+                fetchRecipes();
                 setSubmitting(false);
                 history.push(`/recipe/${response.id}`);
               });
@@ -113,52 +122,59 @@ function RecipeForm(props: IProps) {
                           <div>
                             {values.ingredients.length > 0 &&
                               values.ingredients.map((ingredient, index) => (
-                                <div
-                                  key={index}
-                                  className="columns is-mobile is-variable is-1"
-                                >
-                                  <div className="column is-narrow">
-                                    <div className="control">
-                                      <input
-                                        type="text"
-                                        className="input is-static"
-                                        readOnly
-                                        value={`${index + 1}.`}
-                                        style={{ width: '1rem' }}
+                                <>
+                                  {index !== 0 && <hr />}
+                                  <div
+                                    key={index}
+                                    className="columns is-mobile is-variable is-1"
+                                  >
+                                    <div className="column is-narrow">
+                                      <div className="control">
+                                        <input
+                                          type="text"
+                                          className="input is-static"
+                                          readOnly
+                                          value={`${index + 1}.`}
+                                          style={{
+                                            textAlign: 'right',
+                                            width: '1.35rem',
+                                          }}
+                                        />
+                                      </div>
+                                    </div>
+                                    <div className="column">
+                                      <MyInput
+                                        name={`ingredients.${index}.name`}
+                                        placeholder="Name"
+                                      />
+                                      <div className="columns is-mobile is-variable is-0">
+                                        <div className="column">
+                                          <MyInput
+                                            name={`ingredients.${index}.quantity`}
+                                            placeholder="Quantity"
+                                            isExpanded
+                                          />
+                                        </div>
+                                        <div className="column is-narrow">
+                                          <MySelect
+                                            name={`ingredients.${index}.unit`}
+                                          >
+                                            {UNIT_OPTIONS}
+                                          </MySelect>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div className="column is-narrow">
+                                      <button
+                                        className="delete has-background-danger"
+                                        onClick={e => {
+                                          e.preventDefault();
+                                          remove(index);
+                                        }}
                                       />
                                     </div>
                                   </div>
-                                  <div className="column">
-                                    <MyInput
-                                      name={`ingredients.${index}.name`}
-                                      placeholder="Name"
-                                    />
-                                    <div className="columns is-mobile is-variable is-0">
-                                      <div className="column">
-                                        <MyInput
-                                          name={`ingredients.${index}.quantity`}
-                                          placeholder="Quantity"
-                                          isExpanded
-                                        />
-                                      </div>
-                                      <div className="column is-narrow">
-                                        <MySelect name={`ingredients.${index}.unit`}>
-                                          {UNIT_OPTIONS}
-                                        </MySelect>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div className="column is-narrow">
-                                    <button
-                                      className="button is-danger is-small"
-                                      onClick={() => remove(index)}
-                                    >
-                                      <span className="icon">
-                                        <FaMinus />
-                                      </span>
-                                    </button>
-                                  </div>
-                                </div>
+                                </>
                               ))}
                             <button
                               className="button is-success"
@@ -192,7 +208,10 @@ function RecipeForm(props: IProps) {
                                         className="input is-static"
                                         readOnly
                                         value={`${index + 1}.`}
-                                        style={{ width: '1rem' }}
+                                        style={{
+                                          textAlign: 'right',
+                                          width: '1.35rem',
+                                        }}
                                       />
                                     </div>
                                     <MyHiddenInput
@@ -207,13 +226,12 @@ function RecipeForm(props: IProps) {
                                   </div>
                                   <div className="column is-narrow">
                                     <button
-                                      className="button is-danger is-small"
-                                      onClick={() => remove(index)}
-                                    >
-                                      <span className="icon">
-                                        <FaMinus />
-                                      </span>
-                                    </button>
+                                      className="delete has-background-danger"
+                                      onClick={e => {
+                                        e.preventDefault();
+                                        remove(index);
+                                      }}
+                                    />
                                   </div>
                                 </div>
                               ))}
@@ -245,7 +263,7 @@ function RecipeForm(props: IProps) {
                           isSubmitting ? 'is-loading' : ''
                         }`}
                       >
-                        Create Recipe
+                        {`${recipe ? 'Save Changes' : 'Create Recipe '}`}
                       </button>
                     </div>
                   </div>
