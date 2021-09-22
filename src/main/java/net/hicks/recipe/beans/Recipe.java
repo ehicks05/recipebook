@@ -16,6 +16,7 @@ public class Recipe extends AuditClass
 
     private String name;
     private String emoji;
+    @Column(length = 1024)
     private String description;
     private int difficulty;
     private String cookingTime;

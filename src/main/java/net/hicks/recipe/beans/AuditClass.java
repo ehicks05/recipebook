@@ -1,40 +1,33 @@
 package net.hicks.recipe.beans;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
-import javax.persistence.*;
+import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
 @MappedSuperclass
 public class AuditClass {
 
-    @Column(name = "added_on")
-    @JsonFormat(pattern = "MMMM dd, yyyy")
     @CreatedDate
-    private LocalDateTime addedOn;
+    private LocalDateTime createdAt;
 
-    @Column(name = "last_updated")
-    @JsonFormat(pattern = "MMMM dd, yyyy")
     @LastModifiedDate
-    private LocalDateTime lastUpdated;
+    private LocalDateTime updatedAt;
 
-    public LocalDateTime getAddedOn() {
-        return addedOn;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setAddedOn(LocalDateTime addedOn) {
-        this.addedOn = addedOn;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public LocalDateTime getLastUpdated() {
-        return lastUpdated;
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setLastUpdated(LocalDateTime lastUpdated) {
-        this.lastUpdated = lastUpdated;
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }
