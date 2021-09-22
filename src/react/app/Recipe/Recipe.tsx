@@ -16,6 +16,9 @@ function Recipe({ recipes }: IProps) {
   const { user } = useContext(UserContext);
   const [recipe, setRecipe] = useState<IRecipe | undefined>(undefined);
   const [desiredServings, setDesiredServings] = useState(0);
+  const [highlightedIngredient, setHighlightedIngredient] = useState<
+    string | undefined
+  >(undefined);
 
   const location = useLocation();
 
@@ -68,13 +71,20 @@ function Recipe({ recipes }: IProps) {
                   desiredServings={desiredServings}
                   incrementServings={() => setDesiredServings(desiredServings + 1)}
                   decrementServings={() => setDesiredServings(desiredServings - 1)}
+                  highlightedIngredient={highlightedIngredient}
+                  setHighlightedIngredient={setHighlightedIngredient}
                 />
               </div>
             </div>
             <div id="directions-column" className="column">
               <div key={recipe.name} style={{ maxWidth: '40em' }}>
                 <h3 className="subtitle has-text-weight-bold">Directions</h3>
-                <Directions directions={recipe.directions} />
+                <Directions
+                  ingredients={recipe.ingredients}
+                  directions={recipe.directions}
+                  highlightedIngredient={highlightedIngredient}
+                  setHighlightedIngredient={setHighlightedIngredient}
+                />
               </div>
             </div>
           </div>

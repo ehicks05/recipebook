@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { FaMinus, FaPlus } from 'react-icons/all';
 import { Ingredient } from '.';
 import { IIngredient } from '../../../types/types';
@@ -9,6 +9,8 @@ interface IProps {
   desiredServings: number;
   incrementServings: () => void;
   decrementServings: () => void;
+  highlightedIngredient?: string;
+  setHighlightedIngredient: Dispatch<SetStateAction<string | undefined>>;
 }
 
 function Ingredients({
@@ -17,6 +19,8 @@ function Ingredients({
   desiredServings,
   incrementServings,
   decrementServings,
+  highlightedIngredient,
+  setHighlightedIngredient,
 }: IProps) {
   return (
     <div className="content">
@@ -50,6 +54,8 @@ function Ingredients({
           ingredient={ingredient}
           recipeServings={defaultServings}
           desiredServings={desiredServings}
+          highlightedIngredient={highlightedIngredient}
+          setHighlightedIngredient={setHighlightedIngredient}
         />
       ))}
     </div>

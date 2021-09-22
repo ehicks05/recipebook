@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import Fraction from 'fraction.js';
 import { IIngredient } from '../../../types/types';
 
@@ -6,6 +6,8 @@ interface IIngredientProps {
   ingredient: IIngredient;
   recipeServings: number;
   desiredServings: number;
+  highlightedIngredient?: string;
+  setHighlightedIngredient: Dispatch<SetStateAction<string | undefined>>;
 }
 
 const formatFraction = (numerator: number, denominator: number) =>
@@ -45,6 +47,8 @@ function Ingredient({
   ingredient,
   recipeServings,
   desiredServings,
+  highlightedIngredient,
+  setHighlightedIngredient,
 }: IIngredientProps) {
   const [isChecked, setIsChecked] = useState(false);
 
@@ -55,7 +59,11 @@ function Ingredient({
   );
 
   return (
-    <div key={ingredient.name}>
+    <div
+      key={ingredient.name}
+      onMouseEnter={() => setHighlightedIngredient(ingredient.name)}
+      onMouseLeave={() => setHighlightedIngredient(undefined)}
+    >
       <label className="checkbox">
         <input
           type="checkbox"
@@ -68,6 +76,8 @@ function Ingredient({
             display: 'block',
             marginLeft: '1.2rem',
             marginTop: '-1.2rem',
+            fontWeight:
+              highlightedIngredient === ingredient.name ? 'bold' : 'normal',
           }}
         >
           {desiredQuantity}
