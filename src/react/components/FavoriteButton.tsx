@@ -11,21 +11,21 @@ interface IProps {
 }
 
 function FavoriteButton({ recipeId, favoriteIds, fetchFavorites }: IProps) {
-  function saveFavorite() {
+  const saveFavorite = () => {
     authFetch(`/recipe/favorite/${recipeId}`, {
       method: 'POST',
     }).then(() => {
       fetchFavorites();
     });
-  }
+  };
 
-  function removeFavorite() {
+  const removeFavorite = () => {
     authFetch(`/recipe/favorite/${recipeId}`, {
       method: 'DELETE',
     }).then(() => {
       fetchFavorites();
     });
-  }
+  };
 
   return (
     <div>
