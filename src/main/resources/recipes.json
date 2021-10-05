@@ -631,5 +631,32 @@
 				"text": "remove lid, stir, cook for another 10 minutes, or until meat is tender and potatoes are cooked."
 			}
 		]
-	}
+	},
+	{
+		"name": "Jewel Osco Baked Apple Cider Donuts",
+		"difficulty": "10",
+		"ingredients": [
+			{"quantity": "1 3/4", "unit": "cup", "name": "all purpose flour"},
+			{"quantity": "1", "unit": "", "name": "nonstick cooking spray"},
+			{"quantity": "1 1/4", "unit": "tsp", "name": "baking powder"},
+			{"quantity": "3/4", "unit": "tsp", "name": "fine sea salt"},
+			{"quantity": "2", "unit": "tsp", "name": "ground cinnamon"},
+			{"quantity": "1/2", "unit": "tsp", "name": "freshly grated nutmeg"},
+			{"quantity": "1", "unit": "cup", "name": "unsalted butter at room temperature"},
+			{"quantity": "3/4", "unit": "cup", "name": "light brown sugar"},
+			{"quantity": "3/4", "unit": "cup", "name": "granulated sugar"},
+			{"quantity": "2", "unit": "large", "name": "Eggs"},
+			{"quantity": "1", "unit": "tsp", "name": "vanilla extract"},
+			{"quantity": "1/2", "unit": "cup", "name": "apple cider"}
+		],
+		"cookingTime": "35",
+		"servings": "12",
+		"directions": [
+			{"text": "Heat oven to 350 degrees. Lightly grease 2 doughnut pans (or a 12-cup muffin tin) with nonstick spray. In a medium bowl, add flour, baking powder, salt, 1 teaspoon cinnamon and nutmeg and whisk to combine. Set aside."},
+			{"text": "In the bowl of a stand mixer fitted with the paddle attachment, cream 10 tablespoons butter, brown sugar and 1/4 cup granulated sugar on medium speed until light and fluffy, 3 to 4 minutes. Add the eggs one at a time and mix until well incorporated after each addition, scraping the bowl as necessary. Beat in the vanilla extract."},
+			{"text": "Add the flour mixture and mix on low speed until incorporated. With the mixer running, add the apple cider in a slow, steady stream and mix to combine. Scrape the bowl well to make sure the batter is homogeneous."},
+			{"text": "Spoon the batter into prepared doughnut pans, filling them about 2/3 of the way. (You can also do this using a disposable piping bag or a resealable plastic bag with a 1/2-inch opening cut from one corner.) Bake until evenly golden brown and a toothpick inserted into the center of the thickest portion comes out clean, 12 to 15 minutes. Rotate the pans halfway through baking. (If you are making muffins, divide batter evenly between the prepared cups and bake for 15 to 20 minutes, rotating halfway through.)"},
+			{"text": "While the doughnuts bake, whisk the remaining 1/2 cup granulated sugar and 1 teaspoon cinnamon together in a small bowl to combine. In a separate small bowl, melt the remaining 6 tablespoons butter in the microwave. Let the doughnuts cool for 5 minutes after baking, then unmold them from the pans, brush with the melted butter and dredge them in the cinnamon sugar while they are still warm. Serve immediately, or let cool to room temperature."},
+		],
+    "emoji": "\uD83E\uDD58"
 ]
