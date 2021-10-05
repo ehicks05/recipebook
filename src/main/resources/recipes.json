@@ -631,5 +631,29 @@
 				"text": "remove lid, stir, cook for another 10 minutes, or until meat is tender and potatoes are cooked."
 			}
 		]
-	}
+	},
+	{
+		"name": "Broccoli Pesto Pasta",
+		"difficulty": "2",
+		"ingredients": [
+			{"quantity": "1", "unit": "lb", "name": "cooked pasta of your choice"},
+			{"quantity": "4", "unit": "cups", "name": "broccoli florets"},
+			{"quantity": "2", "unit": "cups", "name": "basil leaves"},
+			{"quantity": "2", "unit": "", "name": "garlic cloves"},
+			{"quantity": "1/4", "unit": "cup", "name": "pine nuts"},
+			{"quantity": "1", "unit": "cup", "name": "extra virgin olive oil"},
+			{"quantity": "1/2", "unit": "tsp", "name": "salt"},
+			{"quantity": "1", "unit": "cup", "name": "psrmigisno-reggiano, grated"}
+		],
+		"cookingTime": "15",
+		"servings": "6",
+		"directions": [
+			{"text": "Bring large pot of water to boil."},
+			{"text": "Add the broccoli, bring the water back up to a boil for two minutes. Do not drain the water! Immediately transfer broccoli (with a slotted spoon) to a colander place under cold running water to stop further cooking."},
+			{"text": "Bring the water back to a boil and add your favorite pasta and cook according to the package (reserve 1 cup of pasta cooking water before draining)."},
+			{"text": "In a large blender or food processor, blend together broccoli, basil, garlic, pine nuts, olive oil, salt and Parmigiano-Reggiano until smooth. Slowly pour in 1 cup of reserved pasta water until a nice sauce is formed. If sauce is too thick, add more pasta water one tablespoon at a time."},
+			{"text": "Toss hot pasta with sauce until completely coated. Top with extra Parmesan, pine nuts and chili flakes if desired. Enjoy!"}
+		],
+		"emoji": "\uD83C\uDF5C"
 ]
+
