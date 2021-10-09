@@ -1,9 +1,9 @@
 buildscript {
     ext {
-        springBootVersion = '2.4.0'
+        springBootVersion = '2.5.5'
     }
     repositories {
-        jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -15,8 +15,8 @@ plugins {
     id 'idea'
     id 'org.springframework.boot' version "${springBootVersion}"
     id 'jacoco'
-    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
-    id 'com.github.ben-manes.versions' version '0.36.0'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'com.github.ben-manes.versions' version '0.39.0'
     id "com.heroku.sdk.heroku-gradle" version "2.0.0"
 }
 
@@ -29,12 +29,11 @@ java {
 }
 
 jar {
-    baseName = 'RecipeBook'
-    version = '0.0.1'
+    archiveBaseName = 'RecipeBook'
+    archiveVersion = '0.0.1'
 }
 
 bootJar {
-  baseName "RecipeBook"
   launchScript()
 }
 
@@ -50,7 +49,6 @@ springBoot {
 
 repositories {
     mavenCentral()
-    jcenter()
 }
 
 dependencies {
@@ -63,8 +61,8 @@ dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
     //implementation 'org.apache.commons:commons-lang3:3.11'
-    implementation 'org.postgresql:postgresql:42.2.18'
-    implementation 'org.springdoc:springdoc-openapi-ui:1.5.0'
+    implementation 'org.postgresql:postgresql:42.2.24'
+    implementation 'org.springdoc:springdoc-openapi-ui:1.5.10'
 
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
@@ -80,8 +78,8 @@ test {
 }
 
 jacoco {
-    toolVersion = "0.8.5"
-    reportsDir = file("$buildDir/jacacoReports")
+    toolVersion = "0.8.7"
+    reportsDirectory = file("$buildDir/jacacoReports")
 }
 
 jacocoTestReport {

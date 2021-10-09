@@ -24,11 +24,11 @@ export default function App() {
     });
   }, [setUser]);
 
-  function fetchRecipes() {
+  const fetchRecipes = () => {
     authFetch('/recipe').then(json => {
       setRecipes(json ? json.map(setDefaultDescription) : []);
     });
-  }
+  };
 
   function fetchFavoriteIds() {
     authFetch('/recipe/favoriteIds').then(json => setFavoriteIds(json));

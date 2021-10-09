@@ -659,4 +659,27 @@
 			{"text": "While the doughnuts bake, whisk the remaining 1/2 cup granulated sugar and 1 teaspoon cinnamon together in a small bowl to combine. In a separate small bowl, melt the remaining 6 tablespoons butter in the microwave. Let the doughnuts cool for 5 minutes after baking, then unmold them from the pans, brush with the melted butter and dredge them in the cinnamon sugar while they are still warm. Serve immediately, or let cool to room temperature."},
 		],
     "emoji": "\uD83E\uDD58"
+  },
+  {
+    "name": "Valentine's Day Red Velvet Truffles",
+		"difficulty": "1",
+		"ingredients": [
+			{"quantity": "1", "unit": "box", "name": "red velvet cake mix"},
+			{"quantity": "8", "unit": "oz", "name": "softened cream cheese"},
+			{"quantity": "16", "unit": "oz", "name": "white chocolate chips"},
+		],
+		"cookingTime": "20",
+		"servings": "30",
+		"directions": [
+			{"text": "Prepare red velvet cake according to instructions on box."},
+			{"text": "In a bowl, crumble the red velvet cake."},
+			{"text": "Mix in cream cheese until smooth."},
+			{"text": "Roll into 1- to 2-Tbsp.-sized balls, and chill."},
+			{"text": "Melt the white chocolate."},			
+			{"text": "Roll the balls in the chocolate to coat evenly. Set aside."},
+			{"text": "Decorate! Let the chocolate harden before serving."}
+		],
+		"emoji": "\ud83c\udf6a"
+	}
 ]
+
