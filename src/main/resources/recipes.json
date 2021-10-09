@@ -634,7 +634,7 @@
 	},
 	{
 		"name": "Cinnamon Baked French Toast",
-		"difficulty": "Easy",
+		"difficulty": 1,
 		"ingredients": [
 			{"quantity": "1", "unit": "loaf", "name": "crusty sourdough or French bread"},
 			{"quantity": "1", "unit": "whole", "name": "eggs"},
@@ -653,7 +653,7 @@
 			{"quantity": "1", "unit": "cup", "name": "blueberries"}
 		],
 		"cookingTime": "45",
-		"servings": "12",
+		"servings": 12,
 		"directions": [
 			{"text": "For the French toast: Grease the baking pan with butter. Tear the bread into chunks, or cut into cubes, and evenly distribute in the pan. Crack the eggs in a big bowl. Whisk together the eggs, milk, cream, granulated sugar, brown sugar and vanilla. Pour evenly over the bread. Cover the pan tightly and store in the fridge until needed (overnight preferably)."},
 			{"text": "For the topping: Mix the flour, brown sugar, cinnamon, salt and some nutmeg in a separate bowl. Stir together using a fork. Add the butter and with a pastry cutter, and mix it all together until the mixture resembles fine pebbles. Store in a re-sealable plastic bag in the fridge."},
@@ -666,7 +666,7 @@
 	},
 	{
     "name": "Broccoli Pesto Pasta",
-		"difficulty": "2",
+		"difficulty": 2,
 		"ingredients": [
 			{"quantity": "1", "unit": "lb", "name": "cooked pasta of your choice"},
 			{"quantity": "4", "unit": "cups", "name": "broccoli florets"},
@@ -678,7 +678,7 @@
 			{"quantity": "1", "unit": "cup", "name": "psrmigisno-reggiano, grated"}
 		],
 		"cookingTime": "15",
-		"servings": "6",
+		"servings": 6,
 		"directions": [
 			{"text": "Bring large pot of water to boil."},
 			{"text": "Add the broccoli, bring the water back up to a boil for two minutes. Do not drain the water! Immediately transfer broccoli (with a slotted spoon) to a colander place under cold running water to stop further cooking."},
@@ -690,7 +690,7 @@
   },
   {
 		"name": "Jewel Osco Baked Apple Cider Donuts",
-		"difficulty": "10",
+		"difficulty": 10,
 		"ingredients": [
 			{"quantity": "1 3/4", "unit": "cup", "name": "all purpose flour"},
 			{"quantity": "1", "unit": "", "name": "nonstick cooking spray"},
@@ -706,7 +706,7 @@
 			{"quantity": "1/2", "unit": "cup", "name": "apple cider"}
 		],
 		"cookingTime": "35",
-		"servings": "12",
+		"servings": 12,
 		"directions": [
 			{"text": "Heat oven to 350 degrees. Lightly grease 2 doughnut pans (or a 12-cup muffin tin) with nonstick spray. In a medium bowl, add flour, baking powder, salt, 1 teaspoon cinnamon and nutmeg and whisk to combine. Set aside."},
 			{"text": "In the bowl of a stand mixer fitted with the paddle attachment, cream 10 tablespoons butter, brown sugar and 1/4 cup granulated sugar on medium speed until light and fluffy, 3 to 4 minutes. Add the eggs one at a time and mix until well incorporated after each addition, scraping the bowl as necessary. Beat in the vanilla extract."},
@@ -718,14 +718,14 @@
   },
   {
     "name": "Valentine's Day Red Velvet Truffles",
-		"difficulty": "1",
+		"difficulty": 1,
 		"ingredients": [
 			{"quantity": "1", "unit": "box", "name": "red velvet cake mix"},
 			{"quantity": "8", "unit": "oz", "name": "softened cream cheese"},
 			{"quantity": "16", "unit": "oz", "name": "white chocolate chips"}
 		],
 		"cookingTime": "20",
-		"servings": "30",
+		"servings": 30,
 		"directions": [
 			{"text": "Prepare red velvet cake according to instructions on box."},
 			{"text": "In a bowl, crumble the red velvet cake."},
