@@ -29,9 +29,7 @@ function FavoriteButton({ recipeId, favoriteIds, fetchFavorites }: IProps) {
 
   return (
     <div>
-      <IconContext.Provider
-        value={{ size: '1.3em', color: '#E00', className: 'grow' }}
-      >
+      <IconContext.Provider value={{ size: '1.3em', color: '#E00' }}>
         {recipeId && favoriteIds.includes(recipeId) ? (
           <BsHeartFill onClick={removeFavorite} />
         ) : (

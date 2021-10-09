@@ -10,7 +10,7 @@ function SmallRecipeCard({ recipe }: ISmallRecipeCardProps) {
   return (
     <div className="column is-full-tablet">
       <Link to={`/recipe/${recipe.id}`}>
-        <div className="card grow">
+        <div className="card lift">
           <div
             className="card-content is-flex is-flex-direction-column"
             style={{ height: '8em' }}
