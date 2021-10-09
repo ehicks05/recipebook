@@ -125,7 +125,7 @@ function RecipeForm({ fetchRecipes, recipes }: IProps) {
                                 <>
                                   {index !== 0 && <hr />}
                                   <div
-                                    key={index}
+                                    key={ingredient.name}
                                     className="columns is-mobile is-variable is-1"
                                   >
                                     <div className="column is-narrow">
@@ -198,7 +198,7 @@ function RecipeForm({ fetchRecipes, recipes }: IProps) {
                             {values.directions.length > 0 &&
                               values.directions.map((direction, index) => (
                                 <div
-                                  key={index}
+                                  key={direction.text}
                                   className="columns is-mobile is-variable is-1"
                                 >
                                   <div className="column is-narrow">
