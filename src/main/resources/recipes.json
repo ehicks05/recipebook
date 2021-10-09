@@ -664,7 +664,7 @@
 		],
 		"emoji": "\uD83E\uDD58"
 	},
-  }
+	{
     "name": "Broccoli Pesto Pasta",
 		"difficulty": "2",
 		"ingredients": [
@@ -712,7 +712,7 @@
 			{"text": "In the bowl of a stand mixer fitted with the paddle attachment, cream 10 tablespoons butter, brown sugar and 1/4 cup granulated sugar on medium speed until light and fluffy, 3 to 4 minutes. Add the eggs one at a time and mix until well incorporated after each addition, scraping the bowl as necessary. Beat in the vanilla extract."},
 			{"text": "Add the flour mixture and mix on low speed until incorporated. With the mixer running, add the apple cider in a slow, steady stream and mix to combine. Scrape the bowl well to make sure the batter is homogeneous."},
 			{"text": "Spoon the batter into prepared doughnut pans, filling them about 2/3 of the way. (You can also do this using a disposable piping bag or a resealable plastic bag with a 1/2-inch opening cut from one corner.) Bake until evenly golden brown and a toothpick inserted into the center of the thickest portion comes out clean, 12 to 15 minutes. Rotate the pans halfway through baking. (If you are making muffins, divide batter evenly between the prepared cups and bake for 15 to 20 minutes, rotating halfway through.)"},
-			{"text": "While the doughnuts bake, whisk the remaining 1/2 cup granulated sugar and 1 teaspoon cinnamon together in a small bowl to combine. In a separate small bowl, melt the remaining 6 tablespoons butter in the microwave. Let the doughnuts cool for 5 minutes after baking, then unmold them from the pans, brush with the melted butter and dredge them in the cinnamon sugar while they are still warm. Serve immediately, or let cool to room temperature."},
+			{"text": "While the doughnuts bake, whisk the remaining 1/2 cup granulated sugar and 1 teaspoon cinnamon together in a small bowl to combine. In a separate small bowl, melt the remaining 6 tablespoons butter in the microwave. Let the doughnuts cool for 5 minutes after baking, then unmold them from the pans, brush with the melted butter and dredge them in the cinnamon sugar while they are still warm. Serve immediately, or let cool to room temperature."}
 		],
     "emoji": "\uD83E\uDD58"
   },
@@ -722,7 +722,7 @@
 		"ingredients": [
 			{"quantity": "1", "unit": "box", "name": "red velvet cake mix"},
 			{"quantity": "8", "unit": "oz", "name": "softened cream cheese"},
-			{"quantity": "16", "unit": "oz", "name": "white chocolate chips"},
+			{"quantity": "16", "unit": "oz", "name": "white chocolate chips"}
 		],
 		"cookingTime": "20",
 		"servings": "30",
