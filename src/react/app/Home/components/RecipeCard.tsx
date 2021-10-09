@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import _ from 'lodash';
 import { FcClock, IoIosFitness } from 'react-icons/all';
 import { IRecipe } from '../../../types/types';
 import FavoriteButton from '../../../components/FavoriteButton';
@@ -44,7 +45,7 @@ function RecipeCard({ recipe }: IRecipeCardProps) {
             </div>
 
             <div className="content" style={{ overflowY: 'auto' }}>
-              <div>{recipe.description}</div>
+              <div>{_.truncate(recipe.description, { length: 128 })}</div>
             </div>
           </div>
 
