@@ -15,7 +15,7 @@ function RecipeCard({ recipe }: IRecipeCardProps) {
   return (
     <div className="column is-half-tablet is-one-third-desktop">
       <Link to={`/recipe/${recipe.id}`}>
-        <div className="card grow">
+        <div className="card lift">
           <div
             className="card-content is-flex is-flex-direction-column"
             style={{ height: '14em' }}
