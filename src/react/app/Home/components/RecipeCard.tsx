@@ -18,7 +18,7 @@ function RecipeCard({ recipe }: IRecipeCardProps) {
         <div className="card grow">
           <div
             className="card-content is-flex is-flex-direction-column"
-            style={{ height: '14em' }}
+            style={{ height: '14em', padding: '1rem' }}
           >
             <div className="media">
               <div className="media-left">
