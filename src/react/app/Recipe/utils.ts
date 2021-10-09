@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { IRecipe } from '../../types/types';
 
 function updateClipboard(newClip: string) {
@@ -18,27 +19,13 @@ function updateClipboard(newClip: string) {
 // 4. emoji is a literal emoji
 // 5. direction indexes are added
 function stripRecipe(recipe: IRecipe) {
-  const ingredients = recipe.ingredients.map(i => ({
-    name: i.name,
-    quantity: i.quantity,
-    unit: i.unit,
-  }));
-  const directions = recipe.directions.map(d => ({
-    index: d.index,
-    text: d.text,
-  }));
-  const author = recipe.author.id;
-  const {
-    id,
-    ingredients: i,
-    directions: d,
-    author: a,
-    createdAt,
-    updatedAt,
-    ...rest
-  } = recipe;
+  const removedFields = ['id', 'createdAt', 'updatedAt'];
 
-  return { ...rest, ingredients, directions };
+  return {
+    ..._.omit(recipe, [...removedFields, 'author']),
+    ingredients: recipe.ingredients.map(i => _.omit(i, [...removedFields])),
+    directions: recipe.directions.map(d => _.omit(d, [...removedFields, 'index'])),
+  };
 }
 
 export { updateClipboard, stripRecipe };
