@@ -10,11 +10,13 @@ import RecipeForm from './react/app/RecipeForm/RecipeForm';
 import authFetch from './react/authFetch';
 import { UserContext } from './react/UserContext';
 import UserAccess from './react/app/Login/UserAccess';
-import setDefaultDescription from './utils';
+import { setDefaultDescription, setDefaultAuthor } from './utils';
 import Loading from './react/components/Loading';
+import backupRecipes from './recipes.json';
 
 export default function App() {
   const [recipes, setRecipes] = useState<IRecipe[]>([]);
+  const [fetchError, setFetchError] = useState<any | undefined>(undefined);
   const [favoriteIds, setFavoriteIds] = useState<number[]>([]);
   const [user, setUser] = useState<IUser | undefined>(undefined);
 
@@ -24,10 +26,17 @@ export default function App() {
     });
   }, [setUser]);
 
-  const fetchRecipes = () => {
-    authFetch('/recipe').then(json => {
-      setRecipes(json ? json.map(setDefaultDescription) : []);
-    });
+  const fetchRecipes = async () => {
+    try {
+      const recipes = await authFetch('/recipe');
+      if (!recipes) throw new Error('data error');
+      setRecipes(recipes ? recipes.map(setDefaultDescription) : []);
+    } catch (e) {
+      setFetchError(e);
+      setRecipes(
+        (backupRecipes as any).map(setDefaultDescription).map(setDefaultAuthor),
+      );
+    }
   };
 
   function fetchFavoriteIds() {
@@ -51,6 +60,7 @@ export default function App() {
     <UserContext.Provider
       value={{ user, setUser, favoriteIds, setFavoriteIds, fetchFavoriteIds }}
     >
+      {fetchError && <ErrorBar />}
       <Navbar />
 
       <Switch>
@@ -78,3 +88,20 @@ export default function App() {
     </UserContext.Provider>
   );
 }
+
+const ErrorBar = () => (
+  <div
+    style={{
+      padding: '0.5rem 1rem',
+      position: 'sticky',
+      top: 0,
+      left: 0,
+      zIndex: 1000,
+    }}
+    className="has-text-white has-background-danger"
+  >
+    <div className="container">
+      Unable to fetch recipes, showing default recipes instead
+    </div>
+  </div>
+);
