@@ -10,7 +10,7 @@ import RecipeForm from './react/app/RecipeForm/RecipeForm';
 import authFetch from './react/authFetch';
 import { UserContext } from './react/UserContext';
 import UserAccess from './react/app/Login/UserAccess';
-import { setDefaultDescription, setDefaultAuthor } from './utils';
+import { setDefaultDescription, setDefaultAuthor, setDefaultId } from './utils';
 import Loading from './react/components/Loading';
 import backupRecipes from './recipes.json';
 
@@ -34,7 +34,10 @@ export default function App() {
     } catch (e) {
       setFetchError(e);
       setRecipes(
-        (backupRecipes as any).map(setDefaultDescription).map(setDefaultAuthor),
+        (backupRecipes as any)
+          .map(setDefaultDescription)
+          .map(setDefaultAuthor)
+          .map((r: any, i: number) => setDefaultId(r, i)),
       );
     }
   };

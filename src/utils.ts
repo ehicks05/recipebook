@@ -9,9 +9,14 @@ const setDefaultDescription = (recipe: IRecipe) => ({
   description: recipe.description || DEFAULT_DESCRIPTION,
 });
 
+const setDefaultId = (recipe: IRecipe, id: number) => ({
+  ...recipe,
+  id,
+});
+
 const setDefaultAuthor = (recipe: IRecipe) => ({
   ...recipe,
   author: recipe.author || { id: 1, username: 'admin', displayName: 'adminGuy' },
 });
 
-export { setDefaultDescription, setDefaultAuthor };
+export { setDefaultDescription, setDefaultAuthor, setDefaultId };
