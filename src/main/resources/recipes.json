@@ -988,5 +988,40 @@
       }
     ],
     "emoji": "🥘"
+  },
+  {
+    "name": "Spaghetti with Baked Brie, Mushrooms & Spinach",
+    "difficulty": 2,
+    "ingredients": [
+      { "quantity": "8", "unit": "oz", "name": "thickly sliced mushroom" },
+      {
+        "quantity": "1",
+        "unit": "cup",
+        "name": "halved and thinly sliced onion"
+      },
+      { "quantity": "1/4", "unit": "cup", "name": "evoo" },
+      { "quantity": "4", "unit": "", "name": "cloves garlic, minced" },
+      { "quantity": "1 1/4", "unit": "tsp", "name": "italian seasoning" },
+      { "quantity": "1/2", "unit": "tsp", "name": "salt" },
+      { "quantity": "1/2", "unit": "tsp", "name": "pepper" },
+      { "quantity": "8", "unit": "oz", "name": "brie, rind removed" },
+      { "quantity": "8", "unit": "oz", "name": "spaghetti" },
+      { "quantity": "4", "unit": "cups", "name": "coursely ground spinach" },
+      { "quantity": "2", "unit": "tbsp", "name": "white balsamic vinegar" }
+    ],
+    "cookingTime": "45",
+    "servings": 4,
+    "directions": [
+      {
+        "text": "Preheat oven to 375°F."
+      },
+      {
+        "text": "Toss mushrooms, onion, oil, garlic, Italian seasoning, salt and pepper together on a large rimmed baking sheet. Move some vegetables aside and place Brie on the baking sheet. Bake until the vegetables are tender and the cheese is hot and melted, 25 to 30 minutes."
+      },
+      {
+        "text": "Meanwhile, bring a large saucepan of water to a boil. Add spaghetti and cook according to package directions. Place the spinach in a large colander and drain the pasta over the spinach. Return the pasta and spinach to the saucepan. When the veggies and Brie are done, add them to the saucepan. Add vinegar and stir well, making sure that everything gets coated with cheese."
+      }
+    ],
+    "emoji": "🍝"
   }
 ]
