@@ -1023,5 +1023,47 @@
       }
     ],
     "emoji": "🍝"
+  },
+  {
+    "name": "Easy Creamy Chicken Marsala",
+    "difficulty": 1,
+    "ingredients": [
+      { "quantity": "1/2", "unit": "cup", "name": "all-purpose flour" },
+      { "quantity": "1", "unit": "tbsp", "name": "Emeril's essence" },
+      { "quantity": "1", "unit": "lb", "name": "chicken breast" },
+      { "quantity": "2", "unit": "tbsp", "name": "olive oil" },
+      { "quantity": "16", "unit": "oz", "name": "sliced mushroom" },
+      { "quantity": "3/4", "unit": "cup", "name": "dry marsala" },
+      { "quantity": "1", "unit": "cup", "name": "chicken broth" },
+      { "quantity": "1/4", "unit": "cup", "name": "sour cream" },
+      { "quantity": "1", "unit": "", "name": "salt and pepper to taste" },
+      { "quantity": "1", "unit": "", "name": "green onion or chives to taste" }
+    ],
+    "cookingTime": "35",
+    "servings": 6,
+    "directions": [
+      {
+        "text": "Combine flour and essence in a ziplock bag. Set aside."
+      },
+      {
+        "text": "Trim chicken breasts of all fat. Horizontally slice chicken breasts into two to three thin slices. Place in ziplock bag. Shake to thoroughly coat."
+      },
+      {
+        "text": "Heat the oil in a large skillet over medium-high heat until hot, but not smoking. Cook the chicken breasts until golden brown on both sides, about three minutes per side. Transfer to a plate and set aside."
+      },
+      {
+        "text": "Add the mushrooms to skillet; cook over high heat, stirring frequently, until the mushrooms are golden brown around the edges and have given off their liquid."
+      },
+      {
+        "text": "Add the Marsala wine and bring to a boil, scraping to remove any browned bits from the bottom of the pan. When the wine has reduced by half, add the chicken stock and cook for 3 minutes, or until the sauce has thickened slightly."
+      },
+      {
+        "text": "If desired, add sour cream and stir until well combined. Lower the heat to medium and return the chicken breasts to the pan. Continue to cook until the chicken breasts are cooked through and the sauce has thickened, about 5 to 6 minutes."
+      },
+      {
+        "text": "Season to taste with salt and pepper. Garnish with chopped chives or green onions and serve immediately. Yield: 6 servings."
+      }
+    ],
+    "emoji": "🥘"
   }
 ]
