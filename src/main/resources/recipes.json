@@ -1065,5 +1065,42 @@
       }
     ],
     "emoji": "🥘"
+  },
+  {
+    "name": "Chicken Lombardy",
+    "difficulty": 2,
+    "ingredients": [
+      { "quantity": "1", "unit": "lb", "name": "chicken breast" },
+      { "quantity": "1/2", "unit": "tsp", "name": "garlic powder" },
+      { "quantity": "1/4", "unit": "cup", "name": "flour" },
+      { "quantity": "1", "unit": "tbsp", "name": "olive oil" },
+      { "quantity": "2", "unit": "tbsp", "name": "butter" },
+      { "quantity": "8", "unit": "oz", "name": "fresh sliced mushroom" },
+      { "quantity": "1/2", "unit": "cup", "name": "marsala" },
+      { "quantity": "1/4", "unit": "cup", "name": "chicken broth" },
+      { "quantity": "1", "unit": "cup", "name": "grated mozzarella" },
+      { "quantity": "1", "unit": "tbsp", "name": "minced fresh parsley" }
+    ],
+    "description": "Chicken Lombardy is kind of like chicken marsala, just baked and with mozzarella cheese. Yum! This easy chicken Lombardy recipe is ready in about 30 minutes.",
+    "cookingTime": "25",
+    "servings": 4,
+    "directions": [
+      {
+        "text": "Season the chicken with salt, pepper and the garlic powder. Dredge it in the flour."
+      },
+      {
+        "text": "Heat the oil in an ovenproof skillet. Add the chicken and cook until golden brown on both sides, about 5 to 6 minutes per side. Remove the chicken from the skillet to a plate."
+      },
+      {
+        "text": "Melt the butter in the skillet. Add the mushrooms and cook until soft, about 5 minutes. Add the marsala and chicken broth. Cook about 2 minutes."
+      },
+      {
+        "text": "Put the chicken back into the skillet and cook about 3 to 4 minutes. Top the chicken with the cheese and minced parsley."
+      },
+      {
+        "text": "Bake in a preheated 400-degree F oven for about 5 to 6 minutes or until cheese is melted."
+      }
+    ],
+    "emoji": "🥘"
   }
 ]
