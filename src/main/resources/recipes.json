@@ -1102,5 +1102,91 @@
       }
     ],
     "emoji": "🥘"
+  },
+  {
+    "name": "Irish Guinness Beef Stew",
+    "difficulty": 3,
+    "ingredients": [
+      { "quantity": "4", "unit": "", "name": "slices thick cut bacon, diced" },
+      {
+        "quantity": "3",
+        "unit": "lb",
+        "name": "boneless beef chuck, cut into 2-inch cubes"
+      },
+      { "quantity": "1", "unit": "tsp", "name": "salt" },
+      { "quantity": "1", "unit": "tsp", "name": "pepper" },
+      { "quantity": "2", "unit": "", "name": "small yellow onions, chopped" },
+      { "quantity": "4", "unit": "", "name": "cloves garlic, minced" },
+      {
+        "quantity": "3",
+        "unit": "",
+        "name": "carrots, cut into 1-inch pieces"
+      },
+      {
+        "quantity": "3",
+        "unit": "",
+        "name": "stalks celery, cut into 1-inch pieces"
+      },
+      {
+        "quantity": "1",
+        "unit": "lb",
+        "name": "yukon gold potatoes, peeled and cut into cubes"
+      },
+      { "quantity": "1", "unit": "lb", "name": "button mushrooms, halved" },
+      {
+        "quantity": "3",
+        "unit": "tbsp",
+        "name": "all purpose flour (or cornstarch)"
+      },
+      { "quantity": "12", "unit": "oz", "name": "guinness beer" },
+      { "quantity": "1/4", "unit": "cup", "name": "tomato paste" },
+      { "quantity": "4", "unit": "cup", "name": "beef broth" },
+      { "quantity": "2", "unit": "", "name": "bay leaves" },
+      {
+        "quantity": "1",
+        "unit": "",
+        "name": "chopped fresh parsley for garnish"
+      }
+    ],
+    "description": "This hearty Guinness Beef Stew is filled to the brim with tender beef, potatoes, carrots, and mushrooms, all cooked in a thick and fragrant broth flavored with stout, tomato paste, and bacon.",
+    "cookingTime": "150",
+    "servings": 8,
+    "directions": [
+      {
+        "text": "Add the bacon to a 7-quart Dutch oven, or any other heavy-based pot, set over medium heat."
+      },
+      {
+        "text": "Cook the bacon to a crisp and remove bacon from the pot; do not pour out the bacon fat."
+      },
+      {
+        "text": "Increase heat to medium-high and to the bacon grease add the cubes of beef and season them with salt and pepper; sear the beef on all sides until browned."
+      },
+      { "text": "Remove browned beef from the pot and set it aside." },
+      {
+        "text": "Reduce heat to medium and stir in the onions. If the pot looks dry, add a bit of olive oil."
+      },
+      { "text": "Cook the onions for 2 minutes." },
+      { "text": "Stir in the garlic and cook for 15 seconds." },
+      { "text": "Add in the carrots, celery, potatoes, and mushrooms." },
+      { "text": "Cook for 4 minutes. Add oil, if needed." },
+      {
+        "text": "Sprinkle the flour over the vegetables; stir and cook for one minute."
+      },
+      {
+        "text": "Add the beer, tomato paste, and beef broth; stir until everything is well combined."
+      },
+      { "text": "Return the beef and bacon to the pot." },
+      {
+        "text": "Add in the bay leaves and bring mixture to a boil; then reduce heat to a low simmer."
+      },
+      { "text": "Cover and cook for 1 1/2 hours." },
+      {
+        "text": "Remove lid and continue cooking for 30 more minutes, or until the sauce is reduced and thickened, and the beef is tender."
+      },
+      {
+        "text": "Remove from heat; taste for salt and pepper, and adjust accordingly."
+      }
+    ],
+    "emoji": "🥘"
   }
 ]
