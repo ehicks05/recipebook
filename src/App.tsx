@@ -10,7 +10,7 @@ import RecipeForm from './react/app/RecipeForm/RecipeForm';
 import authFetch from './react/authFetch';
 import { UserContext } from './react/UserContext';
 import UserAccess from './react/app/Login/UserAccess';
-import setDefaultDescription from './utils';
+import { setDefaultDescription, sortDirections } from './utils';
 import Loading from './react/components/Loading';
 
 export default function App() {
@@ -26,7 +26,9 @@ export default function App() {
 
   const fetchRecipes = () => {
     authFetch('/recipe').then(json => {
-      setRecipes(json ? json.map(setDefaultDescription) : []);
+      setRecipes(
+        json ? json.map(setDefaultDescription).map(sortDirections) : []
+      );
     });
   };
 

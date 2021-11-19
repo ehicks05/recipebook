@@ -1,3 +1,4 @@
+import { sortBy } from 'lodash';
 import { IRecipe } from './react/types/types';
 
 const DEFAULT_DESCRIPTION =
@@ -9,4 +10,9 @@ const setDefaultDescription = (recipe: IRecipe) => ({
   description: recipe.description || DEFAULT_DESCRIPTION,
 });
 
-export default setDefaultDescription;
+const sortDirections = (recipe: IRecipe) => ({
+  ...recipe,
+  directions: sortBy(recipe.directions, ['index']),
+});
+
+export { setDefaultDescription, sortDirections };
