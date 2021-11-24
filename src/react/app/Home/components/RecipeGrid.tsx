@@ -6,11 +6,11 @@ interface IProps {
   recipes: IRecipe[];
 }
 
-function RecipeGrid(props: IProps) {
-  const recipeGrid = props.recipes.map(recipe => (
+const RecipeGrid = ({ recipes }: IProps) => {
+  const recipeGrid = recipes.map(recipe => (
     <RecipeCard key={recipe.id} recipe={recipe} />
   ));
   return <div className="columns is-variable is-2 is-multiline">{recipeGrid}</div>;
-}
+};
 
 export default RecipeGrid;

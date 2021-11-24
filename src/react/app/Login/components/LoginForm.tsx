@@ -36,8 +36,7 @@ function LoginForm() {
       },
       false,
     ).then(response => {
-      if (response?.status !== 200)
-        setFailureMessage('Invalid username and/or password');
+      if (response?.status !== 200) { setFailureMessage('Invalid username and/or password'); }
       fetchUser();
     });
   }
@@ -83,9 +82,7 @@ function LoginForm() {
       )}
 
       {!user && failureMessage && (
-        <>
-          <div className="has-text-danger">{failureMessage}</div>
-        </>
+        <div className="has-text-danger">{failureMessage}</div>
       )}
     </div>
   );

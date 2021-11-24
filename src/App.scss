@@ -9,6 +9,13 @@ body {font-family: "Ubuntu", sans-serif}
 }
 .hero-body {padding: 1.5rem;}
 
+
+.emoji-picker-react .emoji-categories {
+  display: none;
+}
+.emoji-picker-react .emoji-group:before {
+  background: #222;
+}
 /* SCROLLBAR */
 /* width */
 ::-webkit-scrollbar {

@@ -6,6 +6,27 @@ import { IRecipe } from '../../../types/types';
 import FavoriteButton from '../../../components/FavoriteButton';
 import { UserContext } from '../../../UserContext';
 
+interface ICardFooterItemProps {
+  title: string;
+  icon: JSX.Element;
+  value: string | number;
+}
+
+function CardFooterItem({ title, icon, value }: ICardFooterItemProps) {
+  return (
+    <div className="card-footer-item" title={title}>
+      <nav className="level">
+        <div className="level-item">
+          <span className="icon">{icon}</span>
+        </div>
+        <div className="level-item">
+          <span className="mx-1 has-text-weight-bold">{value}</span>
+        </div>
+      </nav>
+    </div>
+  );
+}
+
 interface IRecipeCardProps {
   recipe: IRecipe;
 }
@@ -63,27 +84,6 @@ function RecipeCard({ recipe }: IRecipeCardProps) {
           </footer>
         </div>
       </Link>
-    </div>
-  );
-}
-
-interface ICardFooterItemProps {
-  title: string;
-  icon: JSX.Element;
-  value: string | number;
-}
-
-function CardFooterItem({ title, icon, value }: ICardFooterItemProps) {
-  return (
-    <div className="card-footer-item" title={title}>
-      <nav className="level">
-        <div className="level-item">
-          <span className="icon">{icon}</span>
-        </div>
-        <div className="level-item">
-          <span className="mx-1 has-text-weight-bold">{value}</span>
-        </div>
-      </nav>
     </div>
   );
 }

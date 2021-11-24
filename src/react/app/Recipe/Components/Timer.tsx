@@ -58,10 +58,9 @@ function Timer({ minutes: inputMinutes }: IProps) {
     }
     const { value } = e.target;
     if (value.indexOf(':') === -1) return;
-    const [minutes, seconds] = value.split(':').map(it => Number(it));
-    if (Number.isNaN(minutes) || Number.isNaN(seconds)) return;
-    const newSeconds = Math.min(minutes * 60 + seconds, 999 * 60 + 59);
-    setSeconds(newSeconds);
+    const [m, s] = value.split(':').map(it => Number(it));
+    if (Number.isNaN(m) || Number.isNaN(s)) return;
+    setSeconds(Math.min(m * 60 + s, 999 * 60 + 59));
   }
 
   return (
@@ -81,13 +80,21 @@ function Timer({ minutes: inputMinutes }: IProps) {
         </p>
         <p className="control is-expanded">
           {!expired && (
-            <button className="button is-small" onClick={toggleTimer}>
+            <button
+              type="button"
+              className="button is-small"
+              onClick={toggleTimer}
+            >
               {paused ? 'Start' : 'Pause'}
             </button>
           )}
 
           {paused && seconds !== inputMinutes * 60 && (
-            <button className="button is-small" onClick={reset}>
+            <button
+              type="button"
+              className="button is-small"
+              onClick={reset}
+            >
               Reset
             </button>
           )}

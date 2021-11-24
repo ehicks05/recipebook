@@ -25,11 +25,11 @@ function Recipe({ recipes }: IProps) {
     }
 
     const locationRecipeId = Number(location.pathname.replace('/recipe/', ''));
-    const recipe = getSelectedRecipe(locationRecipeId);
+    const recipeFromLocation = getSelectedRecipe(locationRecipeId);
 
-    if (recipe) {
-      setRecipe(recipe);
-      setDesiredServings(recipe.servings);
+    if (recipeFromLocation) {
+      setRecipe(recipeFromLocation);
+      setDesiredServings(recipeFromLocation.servings);
     }
   }, [location, recipes]);
 
@@ -41,7 +41,9 @@ function Recipe({ recipes }: IProps) {
     <>
       <Hero title={title}>
         <div className="subtitle is-6">
-          by <b>{recipe.author.displayName}</b>
+          by
+          {' '}
+          <b>{recipe.author.displayName}</b>
         </div>
       </Hero>
       <section className="section">
@@ -51,11 +53,15 @@ function Recipe({ recipes }: IProps) {
               <div key={recipe.name}>
                 <h3 className="subtitle has-text-weight-bold">Details</h3>
                 <div>
-                  <b>Time:</b> {recipe.cookingTime}
+                  <b>Time:</b>
+                  {' '}
+                  {recipe.cookingTime}
                 </div>
                 <br />
                 <div>
-                  <b>Description</b>: {recipe.description}
+                  <b>Description:</b>
+                  {' '}
+                  {recipe.description}
                 </div>
               </div>
             </div>
@@ -101,9 +107,7 @@ function Recipe({ recipes }: IProps) {
                   <p className="heading">Copy JSON</p>
                   <p className="title" style={{ cursor: 'pointer' }}>
                     <IoIosCopy
-                      onClick={() =>
-                        updateClipboard(JSON.stringify(stripRecipe(recipe), null, 2))
-                      }
+                      onClick={() => updateClipboard(JSON.stringify(stripRecipe(recipe), null, 2))}
                     />
                   </p>
                 </div>

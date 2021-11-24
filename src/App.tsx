@@ -1,4 +1,6 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, {
+  useEffect, useState, useCallback,
+} from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Recipe from './react/app/Recipe/Recipe';
 import Navbar from './react/components/Navbar/Navbar';
@@ -13,7 +15,7 @@ import UserAccess from './react/app/Login/UserAccess';
 import { setDefaultDescription, sortDirections } from './utils';
 import Loading from './react/components/Loading';
 
-export default function App() {
+const App = () => {
   const [recipes, setRecipes] = useState<IRecipe[]>([]);
   const [favoriteIds, setFavoriteIds] = useState<number[]>([]);
   const [user, setUser] = useState<IUser | undefined>(undefined);
@@ -27,7 +29,7 @@ export default function App() {
   const fetchRecipes = () => {
     authFetch('/recipe').then(json => {
       setRecipes(
-        json ? json.map(setDefaultDescription).map(sortDirections) : []
+        json ? json.map(setDefaultDescription).map(sortDirections) : [],
       );
     });
   };
@@ -46,12 +48,15 @@ export default function App() {
     fetchFavoriteIds();
   }, [user]);
 
-  if (!recipes || (user && !favoriteIds))
+  if (!recipes || (user && !favoriteIds)) {
     return <Loading title="Loading..." subtitle="Please wait..." />;
+  }
 
   return (
     <UserContext.Provider
-      value={{ user, setUser, favoriteIds, setFavoriteIds, fetchFavoriteIds }}
+      value={{
+        user, setUser, favoriteIds, setFavoriteIds, fetchFavoriteIds,
+      }}
     >
       <Navbar />
 
@@ -79,4 +84,6 @@ export default function App() {
       <Footer />
     </UserContext.Provider>
   );
-}
+};
+
+export default App;

@@ -1,65 +1,42 @@
-import Select, { Styles } from 'react-select';
-import React, { CSSProperties } from 'react';
-import { Props } from 'react-select/src/styles';
-import { ValueType } from 'react-select/src/types';
-import EMOJI_OPTIONS from '../../../constants/emojis';
-
-interface IEmojiOption {
-  value: string;
-  label: string;
-}
+import React, { useState } from 'react';
+import Picker, { IEmojiData } from 'emoji-picker-react';
 
 interface IProps {
   updateEmoji: (code: string) => void;
   data: { value: string };
 }
 
-function EmojiSelector(props: IProps) {
-  const onSelectChange = (v?: ValueType<IEmojiOption, false>) => {
-    if (v && 'value' in v) {
-      props.updateEmoji(v.value);
-    }
+function EmojiSelector({ updateEmoji, data }: IProps) {
+  const [isEditing, setIsEditing] = useState(false);
+  const onEmojiClick = (event: React.MouseEvent<Element, MouseEvent>, emojiObject: IEmojiData) => {
+    updateEmoji(emojiObject.emoji);
+    setIsEditing(false);
   };
 
-  const customStyles: Partial<Styles> = {
-    singleValue: (base: CSSProperties, props: Props) => ({
-      ...base,
-      alignItems: 'center',
-      display: 'flex',
-      ':before': {
-        content: `'${props.data.value}'`,
-        borderRadius: 10,
-        display: 'block',
-        marginRight: 8,
-        marginBottom: 8,
-        height: 15,
-        width: 15,
-      },
-    }),
-    option: (base: CSSProperties, props: Props) => ({
-      ...base,
-      alignItems: 'center',
-      display: 'flex',
-      ':before': {
-        content: `'${props.data.value}'`,
-        borderRadius: 10,
-        display: 'block',
-        marginRight: 8,
-        marginBottom: 8,
-        height: 15,
-        width: 15,
-      },
-    }),
-  };
-
-  return (
-    <Select
-      options={EMOJI_OPTIONS}
-      styles={customStyles}
-      onChange={onSelectChange}
-      value={{ value: props.data.value, label: '' }}
-    />
-  );
+  return isEditing ? (
+    <div>
+      <Picker
+        onEmojiClick={onEmojiClick}
+        disableAutoFocus
+        disableSkinTonePicker
+        disableSearchBar
+        pickerStyle={{
+          width: '100%', boxShadow: 'none', background: '#222', borderColor: '#444',
+        }}
+        native
+        groupVisibility={{
+          smileys_people: false,
+          animals_nature: false,
+          travel_places: false,
+          activities: false,
+          objects: false,
+          symbols: false,
+          flags: false,
+        }}
+      />
+      <button className="button is-fullwidth" type="button" onClick={() => setIsEditing(false)}>Close</button>
+    </div>
+  ) : (<button className="button is-size-1" type="button" onClick={() => setIsEditing(true)}>{ data.value }</button>);
 }
 
 export default EmojiSelector;

@@ -51,7 +51,7 @@ function RecipePicker({ recipes }: IProps) {
   const filterPills = recipeFilters.map(f => (
     <span key={f} className="tag is-link">
       {f}
-      <button className="delete" onClick={() => handleClearRecipeFilter(f)} />
+      <button type="button" className="delete" onClick={() => handleClearRecipeFilter(f)} />
     </span>
   ));
 
@@ -73,11 +73,12 @@ function RecipePicker({ recipes }: IProps) {
               />
             </div>
             <div className="control">
-              <button className="button" onClick={() => handleAddRecipeFilter()}>
+              <button type="button" className="button" onClick={() => handleAddRecipeFilter()}>
                 Add
               </button>
               {recipeFilters.length > 0 && (
                 <button
+                  type="button"
                   className="button"
                   onClick={() => handleClearAllRecipeFilters()}
                 >

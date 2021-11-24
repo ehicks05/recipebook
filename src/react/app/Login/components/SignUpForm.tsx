@@ -9,11 +9,11 @@ interface IErrorMessage {
 }
 
 interface IProps {
-  setTab: (tab: string) => void;
-  setAccessMessage: (message: string) => void;
+  setTab: React.Dispatch<React.SetStateAction<string>>;
+  setAccessMessage: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function SignUpForm(props: IProps) {
+function SignUpForm({ setTab, setAccessMessage }: IProps) {
   function reducer(
     state: IErrorMessage,
     action: { key: string; value: string },
@@ -40,9 +40,7 @@ function SignUpForm(props: IProps) {
     const enteredValue = e.target.value;
     const emailPattern = /[a-zA-Z0-9]*@[a-zA-Z0-9]*\.[a-zA-Z0-9]*/;
 
-    if (emailPattern[Symbol.search](enteredValue) === -1)
-      dispatch({ key: 'email', value: 'not a valid email' });
-    else dispatch({ key: 'email', value: '' });
+    if (emailPattern[Symbol.search](enteredValue) === -1) { dispatch({ key: 'email', value: 'not a valid email' }); } else dispatch({ key: 'email', value: '' });
   }
 
   function validatePasswords() {
@@ -56,9 +54,7 @@ function SignUpForm(props: IProps) {
     const password2 = (document.getElementById('passwordCheck') as HTMLInputElement)
       ?.value;
 
-    if (password1.length > 0 && password2.length > 0 && password1 !== password2)
-      dispatch({ key: 'password', value: 'passwords do not match' });
-    else dispatch({ key: 'password', value: '' });
+    if (password1.length > 0 && password2.length > 0 && password1 !== password2) { dispatch({ key: 'password', value: 'passwords do not match' }); } else dispatch({ key: 'password', value: '' });
   }
 
   function isFormDataValid(formData: FormData): boolean {
@@ -100,16 +96,16 @@ function SignUpForm(props: IProps) {
     )
       .then(response => {
         if (response.ok) return response.json();
-        return response.text().then((text: any) => {
+        return response.text().then((text: string) => {
           throw new Error(text);
         });
       })
       .then(() => {
-        props.setAccessMessage('Account successfully created');
-        props.setTab('Log In');
+        setAccessMessage('Account successfully created');
+        setTab('Log In');
       })
       .catch(reason => {
-        props.setAccessMessage(reason.message);
+        setAccessMessage(reason.message);
       });
   }
 

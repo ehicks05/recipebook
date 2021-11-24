@@ -47,7 +47,7 @@ interface IMyHiddenInputProps {
 }
 
 const MyHiddenInput = ({ ...props }: IMyHiddenInputProps) => {
-  const [field, meta] = useField(props);
+  const [field] = useField(props);
   return <input type="hidden" {...field} {...props} />;
 };
 
@@ -112,4 +112,6 @@ const MySelect = ({ label, ...props }: IMySelectProps) => {
   );
 };
 
-export { MyInput, MyHiddenInput, MyTextArea, MySelect };
+export {
+  MyInput, MyHiddenInput, MyTextArea, MySelect,
+};

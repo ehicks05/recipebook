@@ -48,4 +48,6 @@ interface IFavorite {
   recipe: IRecipe;
 }
 
-export type { IRecipe, IIngredient, IDirection, IUser, IEmoji, IFavorite };
+export type {
+  IRecipe, IIngredient, IDirection, IUser, IEmoji, IFavorite,
+};

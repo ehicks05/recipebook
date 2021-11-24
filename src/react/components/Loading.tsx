@@ -13,23 +13,21 @@ const Loading: FunctionComponent<IProps> = ({
   subtitle,
   children,
 }: IProps) => (
-  <>
-    <section className="hero is-fullheight">
-      <div className="hero-head">
-        <Navbar />
+  <section className="hero is-fullheight">
+    <div className="hero-head">
+      <Navbar />
+    </div>
+    <div className="hero-body">
+      <div className="container">
+        {title && <h1 className="title">{title}</h1>}
+        {subtitle && <h3 className="subtitle">{subtitle}</h3>}
+        {children && children}
       </div>
-      <div className="hero-body">
-        <div className="container">
-          {title && <h1 className="title">{title}</h1>}
-          {subtitle && <h3 className="subtitle">{subtitle}</h3>}
-          {children && children}
-        </div>
-      </div>
-      <div className="hero-foot">
-        <Footer />
-      </div>
-    </section>
-  </>
+    </div>
+    <div className="hero-foot">
+      <Footer />
+    </div>
+  </section>
 );
 
 export default Loading;

@@ -24,9 +24,12 @@ function Ingredients({
         <div className="level-left">
           <span className="level-item">
             <span className="mr-2" title={`default servings: ${defaultServings}`}>
-              Servings: {desiredServings}
+              Servings:
+              {' '}
+              {desiredServings}
             </span>
             <button
+              type="button"
               className="button is-small"
               onClick={decrementServings}
               disabled={desiredServings === 1}
@@ -35,7 +38,11 @@ function Ingredients({
                 <FaMinus />
               </span>
             </button>
-            <button className="button is-small" onClick={incrementServings}>
+            <button
+              type="button"
+              className="button is-small"
+              onClick={incrementServings}
+            >
               <span className="icon">
                 <FaPlus />
               </span>

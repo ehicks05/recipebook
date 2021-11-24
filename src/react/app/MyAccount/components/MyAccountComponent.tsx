@@ -3,15 +3,15 @@ import SmallRecipeCard from './SmallRecipeCard';
 import { IRecipe } from '../../../types/types';
 
 interface IMyAccountComponentType {
-  recipes: IRecipe[] | undefined;
   title: string;
+  recipes: IRecipe[] | undefined;
 }
 
-function MyAccountComponent(props: IMyAccountComponentType) {
+function MyAccountComponent({ title, recipes }: IMyAccountComponentType) {
   return (
     <>
-      <p className="title has-text-centered">{props.title}</p>
-      {props.recipes?.map(it => (
+      <p className="title has-text-centered">{title}</p>
+      {recipes?.map(it => (
         <SmallRecipeCard key={it.id} recipe={it} />
       ))}
     </>
