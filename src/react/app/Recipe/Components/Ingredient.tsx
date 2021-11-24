@@ -18,7 +18,7 @@ function getDesiredQuantity(
   desiredServings: number,
 ): JSX.Element {
   const ratio = desiredServings / defaultServings;
-  const desiredQuantity = new Fraction(ingredient.quantity).valueOf() * ratio;
+  const desiredQuantity = new Fraction(ingredient.quantity || 0).valueOf() * ratio;
 
   if (desiredQuantity === 0) return <></>;
 
