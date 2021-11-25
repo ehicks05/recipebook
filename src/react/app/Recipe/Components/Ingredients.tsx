@@ -23,10 +23,11 @@ function Ingredients({
       <nav className="level is-mobile mb-2">
         <div className="level-left">
           <span className="level-item">
-            <span className="mr-2" title={`default servings: ${defaultServings}`}>
-              Servings:
-              {' '}
-              {desiredServings}
+            <span
+              className="mr-2"
+              title={`default servings: ${defaultServings}`}
+            >
+              Servings: {desiredServings}
             </span>
             <button
               type="button"

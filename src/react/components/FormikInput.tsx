@@ -69,7 +69,9 @@ const MyTextArea = ({ label, ...props }: IMyTextAreaProps) => {
       )}
       <div className="control">
         <TextareaAutosize
-          className={`textarea ${meta.touched && meta.error ? 'is-danger' : ''}`}
+          className={`textarea ${
+            meta.touched && meta.error ? 'is-danger' : ''
+          }`}
           rows={1}
           {...field}
           {...props}
@@ -112,6 +114,4 @@ const MySelect = ({ label, ...props }: IMySelectProps) => {
   );
 };
 
-export {
-  MyInput, MyHiddenInput, MyTextArea, MySelect,
-};
+export { MyInput, MyHiddenInput, MyTextArea, MySelect };

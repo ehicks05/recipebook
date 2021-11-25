@@ -8,7 +8,10 @@ interface IProps {
 
 function EmojiSelector({ updateEmoji, data }: IProps) {
   const [isEditing, setIsEditing] = useState(false);
-  const onEmojiClick = (event: React.MouseEvent<Element, MouseEvent>, emojiObject: IEmojiData) => {
+  const onEmojiClick = (
+    event: React.MouseEvent<Element, MouseEvent>,
+    emojiObject: IEmojiData
+  ) => {
     updateEmoji(emojiObject.emoji);
     setIsEditing(false);
   };
@@ -21,7 +24,10 @@ function EmojiSelector({ updateEmoji, data }: IProps) {
         disableSkinTonePicker
         disableSearchBar
         pickerStyle={{
-          width: '100%', boxShadow: 'none', background: '#222', borderColor: '#444',
+          width: '100%',
+          boxShadow: 'none',
+          background: '#222',
+          borderColor: '#444',
         }}
         native
         groupVisibility={{
@@ -34,9 +40,23 @@ function EmojiSelector({ updateEmoji, data }: IProps) {
           flags: false,
         }}
       />
-      <button className="button is-fullwidth" type="button" onClick={() => setIsEditing(false)}>Close</button>
+      <button
+        className="button is-fullwidth"
+        type="button"
+        onClick={() => setIsEditing(false)}
+      >
+        Close
+      </button>
     </div>
-  ) : (<button className="button is-size-1" type="button" onClick={() => setIsEditing(true)}>{ data.value }</button>);
+  ) : (
+    <button
+      className="button is-size-1"
+      type="button"
+      onClick={() => setIsEditing(true)}
+    >
+      {data.value}
+    </button>
+  );
 }
 
 export default EmojiSelector;

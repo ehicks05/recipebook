@@ -7,7 +7,7 @@ module.exports = {
     'plugin:react/recommended',
     'airbnb',
     'plugin:@typescript-eslint/recommended',
-    'prettier',
+    'plugin:prettier/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -17,7 +17,7 @@ module.exports = {
     ecmaVersion: 13,
     sourceType: 'module',
   },
-  plugins: ['react', '@typescript-eslint', 'react-hooks', 'prettier'],
+  plugins: ['react', '@typescript-eslint', 'react-hooks'],
   rules: {
     'import/extensions': [
       'error',
@@ -29,7 +29,6 @@ module.exports = {
     ],
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-use-before-define': ['error'],
-    'arrow-parens': 'off',
     'import/prefer-default-export': 'off',
     'no-use-before-define': 'off',
     'no-undef': 'off',
@@ -43,10 +42,8 @@ module.exports = {
     'jsx-a11y/control-has-associated-label': 'off',
     'jsx-a11y/label-has-associated-control': 'off',
     'jsx-a11y/no-static-element-interactions': 'off',
-    'max-len': ['warn', { code: 80 }],
     'no-console': 'off',
     'no-unused-vars': 'off',
-    'prettier/prettier': 'error',
     '@typescript-eslint/no-unused-vars': ['error'],
   },
   settings: {
