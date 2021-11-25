@@ -5,25 +5,25 @@ import { IIngredient } from '../../../types/types';
 interface IIngredientProps {
   ingredient: IIngredient;
   recipeServings: number;
-  desiredServings: number;
+  scaledServings: number;
 }
 
 const formatFraction = (numerator: number, denominator: number) => `${numerator}${String.fromCharCode(8260)}${denominator}`;
 
 // figures out the desired quantity and formats it as a nice fraction if necessary.
-function getDesiredQuantity(
+function scaleQuantity(
   ingredient: IIngredient,
   defaultServings: number,
   desiredServings: number,
 ): JSX.Element {
   const ratio = desiredServings / defaultServings;
-  const desiredQuantity = new Fraction(ingredient.quantity || 0).valueOf() * ratio;
+  const scaledQuantity = new Fraction(ingredient.quantity || 0).valueOf() * ratio;
 
-  if (desiredQuantity === 0) return <span />;
+  if (scaledQuantity === 0) return <span />;
 
-  if (desiredQuantity === Math.round(desiredQuantity)) return <span>{desiredQuantity}</span>;
+  if (scaledQuantity === Math.round(scaledQuantity)) return <span>{scaledQuantity}</span>;
 
-  let fractional = desiredQuantity;
+  let fractional = scaledQuantity;
   let wholeNumber = 0;
   while (fractional > 1) {
     wholeNumber += 1;
@@ -43,32 +43,26 @@ function getDesiredQuantity(
 function Ingredient({
   ingredient,
   recipeServings,
-  desiredServings,
+  scaledServings,
 }: IIngredientProps) {
   const [isChecked, setIsChecked] = useState(false);
 
-  const desiredQuantity = getDesiredQuantity(
+  const desiredQuantity = scaleQuantity(
     ingredient,
     recipeServings,
-    desiredServings,
+    scaledServings,
   );
 
   return (
     <div key={ingredient.name}>
-      <label className="checkbox">
+      <label className="flex gap-2">
         <input
+          className="mt-1.5"
           type="checkbox"
           checked={isChecked}
           onChange={e => setIsChecked(e.target.checked)}
         />
-        <span
-          style={{
-            opacity: isChecked ? '.5' : '',
-            display: 'block',
-            marginLeft: '1.2rem',
-            marginTop: '-1.2rem',
-          }}
-        >
+        <span className={`${isChecked ? 'opacity-50' : ''}`}>
           {desiredQuantity}
           {` ${ingredient.unit || ''} ${ingredient.name}`}
         </span>

@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { IoIosCopy, IoIosSettings } from 'react-icons/all';
+import React, { useContext, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { BiDownload, BiEdit } from 'react-icons/all';
 import Hero from '../../components/Hero';
 import { IRecipe } from '../../types/types';
 import Directions from './Components/Directions';
@@ -14,106 +14,61 @@ interface IProps {
 
 function Recipe({ recipes }: IProps) {
   const { user } = useContext(UserContext);
-  const [recipe, setRecipe] = useState<IRecipe | undefined>(undefined);
-  const [desiredServings, setDesiredServings] = useState(0);
-
-  const location = useLocation();
-
-  useEffect(() => {
-    function getSelectedRecipe(id: number) {
-      return recipes.find(item => item.id === id);
-    }
-
-    const locationRecipeId = Number(location.pathname.replace('/recipe/', ''));
-    const recipeFromLocation = getSelectedRecipe(locationRecipeId);
-
-    if (recipeFromLocation) {
-      setRecipe(recipeFromLocation);
-      setDesiredServings(recipeFromLocation.servings);
-    }
-  }, [location, recipes]);
+  const { id } = useParams<{id: string}>();
+  const recipe = recipes.find(item => item?.id === Number(id));
+  const [scaledServings, setScaledServings] = useState(recipe?.servings || 0);
 
   if (!recipe) return <Hero title="Loading..." />;
 
-  const title = `${recipe.name} ${recipe.emoji}`;
-
   return (
     <>
-      <Hero title={title}>
-        <div className="subtitle is-6">
-          by
-          {' '}
-          <b>{recipe.author.displayName}</b>
+      <Hero title={`${recipe.name} ${recipe.emoji}`}>
+        <div className="font-semibold text-sm">
+          {recipe.author.displayName}
         </div>
       </Hero>
       <section className="section">
         <div className="container">
-          <div className="columns is-centered">
-            <div id="details-column" className="column is-one-quarter">
-              <div key={recipe.name}>
-                <h3 className="subtitle has-text-weight-bold">Details</h3>
-                <div>
-                  <b>Time:</b>
-                  {' '}
-                  {recipe.cookingTime}
-                </div>
-                <br />
-                <div>
-                  <b>Description:</b>
-                  {' '}
-                  {recipe.description}
-                </div>
+          <div className="flex flex-col md:flex-row gap-6">
+            <div className="md:w-1/4">
+              <h3 className="subtitle font-semibold">Details</h3>
+              <div>
+                <b>Time:</b>
+                {' '}
+                {recipe.cookingTime}
+              </div>
+              <div>
+                <b>Description:</b>
+                {' '}
+                {recipe.description}
               </div>
             </div>
-            <div id="ingredients-column" className="column is-one-quarter">
-              <div key={recipe.name}>
-                <h3 className="subtitle has-text-weight-bold">Ingredients</h3>
-                <Ingredients
-                  ingredients={recipe.ingredients}
-                  defaultServings={recipe.servings}
-                  desiredServings={desiredServings}
-                  incrementServings={() => setDesiredServings(desiredServings + 1)}
-                  decrementServings={() => setDesiredServings(desiredServings - 1)}
-                />
-              </div>
+            <div className="order-2 md:order-3 md:max-w-sm">
+              <h3 className="subtitle font-semibold">Ingredients</h3>
+              <Ingredients
+                ingredients={recipe.ingredients}
+                defaultServings={recipe.servings}
+                scaledServings={scaledServings}
+                setScaledServings={setScaledServings}
+              />
             </div>
-            <div id="directions-column" className="column">
-              <div key={recipe.name} style={{ maxWidth: '40em' }}>
-                <h3 className="subtitle has-text-weight-bold">Directions</h3>
-                <Directions directions={recipe.directions} />
-              </div>
+            <div className="order-3 md:order-2 max-w-5xl md:max-w-full">
+              <h3 className="subtitle font-semibold">Directions</h3>
+              <Directions directions={recipe.directions} />
             </div>
           </div>
-        </div>
-      </section>
-      <section className="section">
-        <div className="container">
-          <nav className="level">
-            <div className="level-left">
-              {user?.id === recipe.author.id && (
-                <div className="level-item has-text-centered">
-                  <div>
-                    <p className="heading">Edit Recipe</p>
-                    <p className="title">
-                      <Link to={`/edit-recipe/${recipe.id}`} title="Edit Recipe">
-                        <IoIosSettings />
-                      </Link>
-                    </p>
-                  </div>
-                </div>
-              )}
-              <div className="level-item has-text-centered">
-                <div>
-                  <p className="heading">Copy JSON</p>
-                  <p className="title" style={{ cursor: 'pointer' }}>
-                    <IoIosCopy
-                      onClick={() => updateClipboard(JSON.stringify(stripRecipe(recipe), null, 2))}
-                    />
-                  </p>
-                </div>
-              </div>
-            </div>
-          </nav>
+          <div className="flex gap-2 p-4">
+            {user?.id === recipe.author.id && (
+            <Link to={`/edit-recipe/${recipe.id}`} title="Edit Recipe">
+              <BiEdit className="text-2xl" />
+            </Link>
+            )}
+            <BiDownload
+              title="Copy to Clipboard"
+              className="text-2xl cursor-pointer"
+              onClick={() => updateClipboard(JSON.stringify(stripRecipe(recipe), null, 2))}
+            />
+          </div>
         </div>
       </section>
     </>

@@ -53,16 +53,6 @@ body {font-family: "Ubuntu", sans-serif}
   .glow:hover {color: #dbdbdb;}
 }
 
-/* make ingredients appear in rightmost column on wider screens. */
-@media (min-width: 768px) {
-  #directions-column {
-    order: 1;
-  }
-  #ingredients-column {
-    order: 2;
-  }
-}
-
 // Fix scrollbars showing on .media-content on mobile
 @media screen and (max-width: 768px) {
   .media-content {
