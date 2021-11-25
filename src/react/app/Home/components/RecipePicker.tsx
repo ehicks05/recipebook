@@ -65,6 +65,7 @@ function RecipePicker({ recipes }: IProps) {
         {filteredRecipes.map(recipe => (
           <RecipeCard key={recipe.id} recipe={recipe} />
         ))}
+        {filteredRecipes.length === 0 && <div>No results...</div>}
       </div>
     </div>
   );
