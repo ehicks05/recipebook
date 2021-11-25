@@ -36,10 +36,6 @@ function Timer({ minutes: inputMinutes }: IProps) {
     else startTimer();
   }, [paused]);
 
-  function toggleTimer() {
-    setPaused(!paused);
-  }
-
   function reset() {
     setSeconds(60 * inputMinutes);
     setExpired(false);
@@ -64,37 +60,34 @@ function Timer({ minutes: inputMinutes }: IProps) {
   }
 
   return (
-    <div>
-      <div className="field has-addons">
-        <p className="control">
-          <input
-            type="text"
-            className={`input is-small has-text-centered ${
-              expired ? 'is-danger' : ''
-            }`}
-            size={Math.max(displayTime().length - 4, 1)}
-            value={displayTime()}
-            style={{ zIndex: 2 }}
-            onChange={handleSetTime}
-          />
-        </p>
-        <p className="control is-expanded">
-          {!expired && (
-            <button
-              type="button"
-              className="button is-small"
-              onClick={toggleTimer}
-            >
-              {paused ? 'Start' : 'Pause'}
-            </button>
-          )}
+    <div className="flex">
+      <div className="">
+        <input
+          type="text"
+          className={`input text-xs has-text-centered ${
+            expired ? 'bg-red-700' : ''
+          }`}
+          size={Math.max(displayTime().length - 4, 1)}
+          value={displayTime()}
+          onChange={handleSetTime}
+        />
+      </div>
+      <div className="">
+        {!expired && (
+          <button
+            type="button"
+            className="button text-xs"
+            onClick={() => setPaused(!paused)}
+          >
+            {paused ? 'Start' : 'Pause'}
+          </button>
+        )}
 
-          {paused && seconds !== inputMinutes * 60 && (
-            <button type="button" className="button is-small" onClick={reset}>
-              Reset
-            </button>
-          )}
-        </p>
+        {paused && seconds !== inputMinutes * 60 && (
+          <button type="button" className="button text-xs" onClick={reset}>
+            Reset
+          </button>
+        )}
       </div>
     </div>
   );
