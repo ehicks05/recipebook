@@ -6,7 +6,11 @@ interface IProps {
   children?: React.ReactNode;
 }
 
-const Hero: FunctionComponent<IProps> = ({ title, subtitle, children }: IProps) => (
+const Hero: FunctionComponent<IProps> = ({
+  title,
+  subtitle,
+  children,
+}: IProps) => (
   <section className="hero">
     <div className="hero-body">
       <div className="container">

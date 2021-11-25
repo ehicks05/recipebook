@@ -3,7 +3,7 @@ import apiUrl from './apiUrl';
 function authFetch(
   input: Request | string,
   init?: RequestInit | undefined,
-  json = true,
+  json = true
 ) {
   function buildErrorMessage(response: Response) {
     let message = '';
@@ -15,11 +15,11 @@ function authFetch(
   console.log(`${input} ${init || ''}`);
 
   return fetch(apiUrl + input, { ...init, credentials: 'include' })
-    .then(response => {
+    .then((response) => {
       if (!response.ok) throw new Error(buildErrorMessage(response));
       return json ? response.json() : response;
     })
-    .catch(error => {
+    .catch((error) => {
       console.log(`${input} - ${error}`);
     });
 }

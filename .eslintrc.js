@@ -3,7 +3,12 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:@typescript-eslint/recommended', 'airbnb'],
+  extends: [
+    'plugin:react/recommended',
+    'airbnb',
+    'plugin:@typescript-eslint/recommended',
+    'prettier',
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -12,7 +17,7 @@ module.exports = {
     ecmaVersion: 13,
     sourceType: 'module',
   },
-  plugins: ['react', '@typescript-eslint'],
+  plugins: ['react', '@typescript-eslint', 'react-hooks', 'prettier'],
   rules: {
     'import/extensions': [
       'error',
@@ -38,9 +43,10 @@ module.exports = {
     'jsx-a11y/control-has-associated-label': 'off',
     'jsx-a11y/label-has-associated-control': 'off',
     'jsx-a11y/no-static-element-interactions': 'off',
+    'max-len': ['warn', { code: 80 }],
     'no-console': 'off',
-
     'no-unused-vars': 'off',
+    'prettier/prettier': 'error',
     '@typescript-eslint/no-unused-vars': ['error'],
   },
   settings: {
