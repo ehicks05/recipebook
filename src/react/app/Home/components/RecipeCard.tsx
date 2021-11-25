@@ -14,15 +14,9 @@ interface ICardFooterItemProps {
 
 function CardFooterItem({ title, icon, value }: ICardFooterItemProps) {
   return (
-    <div className="card-footer-item" title={title}>
-      <nav className="level">
-        <div className="level-item">
-          <span className="icon">{icon}</span>
-        </div>
-        <div className="level-item">
-          <span className="mx-1 has-text-weight-bold">{value}</span>
-        </div>
-      </nav>
+    <div className="flex gap-2 p-2 justify-center items-center w-full" title={title}>
+      <div>{icon}</div>
+      <div className="mx-1 font-semibold">{value}</div>
     </div>
   );
 }
@@ -31,33 +25,28 @@ interface IRecipeCardProps {
   recipe: IRecipe;
 }
 
-function RecipeCard({ recipe }: IRecipeCardProps) {
+function RecipeCard({
+  recipe: {
+    id, emoji, name, author, description, cookingTime, difficulty,
+  },
+}: IRecipeCardProps) {
   const { user, favoriteIds, fetchFavoriteIds } = useContext(UserContext);
 
   return (
-    <div className="column is-half-tablet is-one-third-desktop">
-      <Link to={`/recipe/${recipe.id}`}>
+    <div className="">
+      <Link to={`/recipe/${id}`}>
         <div className="card lift">
-          <div
-            className="card-content is-flex is-flex-direction-column"
-            style={{ height: '14em', padding: '1rem' }}
-          >
-            <div className="media">
-              <div className="media-left">
-                <figure className="image is-64x64" style={{ fontSize: '3em' }}>
-                  {recipe.emoji}
-                </figure>
+          <div className="flex flex-col h-56 p-4">
+            <div className="flex gap-4">
+              <figure className="w-16 h-16 text-5xl pt-2">{emoji}</figure>
+              <div className="w-full">
+                <div className="font-semibold text-gray-200">{name}</div>
+                <div className="text-xs italic">{author.displayName}</div>
               </div>
-              <div className="media-content">
-                <div className="title is-6">{recipe.name}</div>
-                <div className="subtitle is-7 is-italic">
-                  {recipe.author.displayName}
-                </div>
-              </div>
-              <div className="media-right" onClick={e => e.preventDefault()}>
+              <div onClick={e => e.preventDefault()}>
                 {user && (
                   <FavoriteButton
-                    recipeId={recipe.id}
+                    recipeId={id}
                     favoriteIds={favoriteIds}
                     fetchFavorites={fetchFavoriteIds}
                   />
@@ -65,21 +54,21 @@ function RecipeCard({ recipe }: IRecipeCardProps) {
               </div>
             </div>
 
-            <div className="content" style={{ overflowY: 'auto' }}>
-              <div>{_.truncate(recipe.description, { length: 128 })}</div>
+            <div className="pt-4" style={{ overflowY: 'auto' }}>
+              <div>{_.truncate(description, { length: 128 })}</div>
             </div>
           </div>
 
-          <footer className="card-footer">
+          <footer className="flex border-t border-opacity-25">
             <CardFooterItem
               title="Time"
               icon={<FcClock size="2em" />}
-              value={recipe.cookingTime}
+              value={cookingTime}
             />
             <CardFooterItem
               title="Difficulty"
               icon={<IoIosFitness size="2em" />}
-              value={recipe.difficulty}
+              value={difficulty}
             />
           </footer>
         </div>
