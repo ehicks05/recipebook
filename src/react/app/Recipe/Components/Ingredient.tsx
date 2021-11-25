@@ -8,13 +8,14 @@ interface IIngredientProps {
   scaledServings: number;
 }
 
-const formatFraction = (numerator: number, denominator: number) => `${numerator}${String.fromCharCode(8260)}${denominator}`;
+const formatFraction = (numerator: number, denominator: number) =>
+  `${numerator}${String.fromCharCode(8260)}${denominator}`;
 
 // figures out the desired quantity and formats it as a nice fraction if necessary.
 function scaleQuantity(
   ingredient: IIngredient,
   defaultServings: number,
-  desiredServings: number,
+  desiredServings: number
 ): JSX.Element {
   const ratio = desiredServings / defaultServings;
   const scaledQuantity = new Fraction(ingredient.quantity || 0).valueOf() * ratio;

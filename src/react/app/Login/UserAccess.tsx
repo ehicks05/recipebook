@@ -18,7 +18,9 @@ function UserAccess() {
     SIGN_UP: {
       name: 'Sign Up',
       title: 'Create an account',
-      component: <SignUpForm setAccessMessage={setAccessMessage} setTab={setTab} />,
+      component: (
+        <SignUpForm setAccessMessage={setAccessMessage} setTab={setTab} />
+      ),
     },
   };
 
@@ -38,7 +40,9 @@ function UserAccess() {
                   <a onClick={e => setTab(e.currentTarget.innerText)}>Log In</a>
                 </li>
                 <li className={tab === TABS.SIGN_UP.name ? 'is-active' : ''}>
-                  <a onClick={e => setTab(e.currentTarget.innerText)}>Sign Up</a>
+                  <a onClick={e => setTab(e.currentTarget.innerText)}>
+                    Sign Up
+                  </a>
                 </li>
               </ul>
             </div>
@@ -46,7 +50,9 @@ function UserAccess() {
 
           {accessMessage}
 
-          {tab === TABS.LOG_IN.name ? TABS.LOG_IN.component : TABS.SIGN_UP.component}
+          {tab === TABS.LOG_IN.name
+            ? TABS.LOG_IN.component
+            : TABS.SIGN_UP.component}
         </div>
       </div>
     </section>

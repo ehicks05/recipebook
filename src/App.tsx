@@ -1,6 +1,4 @@
-import React, {
-  useEffect, useState, useCallback,
-} from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Recipe from './react/app/Recipe/Recipe';
 import Navbar from './react/components/Navbar/Navbar';
@@ -29,7 +27,7 @@ const App = () => {
   const fetchRecipes = () => {
     authFetch('/recipe').then(json => {
       setRecipes(
-        json ? json.map(setDefaultDescription).map(sortDirections) : [],
+        json ? json.map(setDefaultDescription).map(sortDirections) : []
       );
     });
   };
@@ -55,7 +53,11 @@ const App = () => {
   return (
     <UserContext.Provider
       value={{
-        user, setUser, favoriteIds, setFavoriteIds, fetchFavoriteIds,
+        user,
+        setUser,
+        favoriteIds,
+        setFavoriteIds,
+        fetchFavoriteIds,
       }}
     >
       <Navbar />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { BsHeart, BsHeartFill } from 'react-icons/all';
 
 import { IconContext } from 'react-icons';
@@ -27,9 +27,11 @@ function FavoriteButton({ recipeId, favoriteIds, fetchFavorites }: IProps) {
     });
   };
 
+  const style = useMemo(() => ({ size: '1.3em', color: '#E00' }), []);
+
   return (
     <div>
-      <IconContext.Provider value={{ size: '1.3em', color: '#E00' }}>
+      <IconContext.Provider value={style}>
         {recipeId && favoriteIds.includes(recipeId) ? (
           <BsHeartFill onClick={removeFavorite} />
         ) : (

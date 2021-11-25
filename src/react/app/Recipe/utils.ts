@@ -3,12 +3,8 @@ import { IRecipe } from '../../types/types';
 
 function updateClipboard(newClip: string) {
   navigator.clipboard.writeText(newClip).then(
-    (e) => {
-      console.log(e);
-    },
-    (e) => {
-      console.log(e);
-    },
+    e => console.log(e),
+    e => console.log(e)
   );
 }
 
@@ -24,7 +20,9 @@ function stripRecipe(recipe: IRecipe) {
   return {
     ..._.omit(recipe, [...removedFields, 'author']),
     ingredients: recipe.ingredients.map(i => _.omit(i, [...removedFields])),
-    directions: recipe.directions.map(d => _.omit(d, [...removedFields, 'index'])),
+    directions: recipe.directions.map(d =>
+      _.omit(d, [...removedFields, 'index'])
+    ),
   };
 }
 
