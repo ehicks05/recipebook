@@ -25,7 +25,7 @@ function Recipe({ recipe }: IProps) {
         <div className="container">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 justify-between gap-6">
             <div className="order-1">
-              <h3 className="subtitle font-semibold">Details</h3>
+              <h3 className="text-lg font-semibold">Details</h3>
               <div>
                 <b>Time:</b> {recipe.cookingTime}
               </div>
@@ -34,7 +34,7 @@ function Recipe({ recipe }: IProps) {
               </div>
             </div>
             <div className="order-2 md:order-3">
-              <h3 className="subtitle font-semibold">Ingredients</h3>
+              <h3 className="text-lg font-semibold">Ingredients</h3>
               <Ingredients
                 ingredients={recipe.ingredients}
                 defaultServings={recipe.servings}
@@ -43,7 +43,7 @@ function Recipe({ recipe }: IProps) {
               />
             </div>
             <div className="sm:col-span-2 order-3 md:order-2">
-              <h3 className="subtitle font-semibold">Directions</h3>
+              <h3 className="text-lg font-semibold">Directions</h3>
               <Directions directions={recipe.directions} />
             </div>
           </div>
