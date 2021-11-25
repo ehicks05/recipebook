@@ -14,7 +14,9 @@ const Hero: FunctionComponent<IProps> = ({
   <section className="hero">
     <div className="hero-body">
       <div className="container">
-        {title && <div className="text-3xl font-semibold text-gray-200">{title}</div>}
+        {title && (
+          <div className="text-3xl font-semibold text-gray-200">{title}</div>
+        )}
         {subtitle && <div className="subtitle">{subtitle}</div>}
         {children && children}
       </div>

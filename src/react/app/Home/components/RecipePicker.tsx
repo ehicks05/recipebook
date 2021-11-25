@@ -14,7 +14,9 @@ function RecipePicker({ recipes }: IProps) {
     const recipeIngredients = recipe.ingredients
       .map(x => x.name.toLowerCase())
       .join();
-    return ingredients.every(recipeFilter => recipeIngredients.includes(recipeFilter));
+    return ingredients.every(recipeFilter =>
+      recipeIngredients.includes(recipeFilter)
+    );
   });
 
   const handleAddFilter = () => {
@@ -30,18 +32,18 @@ function RecipePicker({ recipes }: IProps) {
         <input
           className="px-2 py-1 bg-gray-800"
           value={filterInput}
-          onChange={(e) => setFilterInput(e.target.value.toLowerCase())}
-          onKeyPress={(e) => e.key === 'Enter' && handleAddFilter()}
+          onChange={e => setFilterInput(e.target.value.toLowerCase())}
+          onKeyPress={e => e.key === 'Enter' && handleAddFilter()}
           placeholder="Search by Ingredient"
         />
         {ingredients.length > 0 && (
-        <button
-          type="button"
-          className="ml-2 bg-gray-800 border px-2 py-1 border-gray-600"
-          onClick={() => setIngredients([])}
-        >
-          Clear
-        </button>
+          <button
+            type="button"
+            className="ml-2 bg-gray-800 border px-2 py-1 border-gray-600"
+            onClick={() => setIngredients([])}
+          >
+            Clear
+          </button>
         )}
       </div>
       <div className="flex gap-2">
@@ -50,7 +52,9 @@ function RecipePicker({ recipes }: IProps) {
             key={ingredient}
             type="button"
             className="flex gap-1 px-2 py-0.5 rounded text-white bg-blue-600 text-sm"
-            onClick={() => setIngredients(ingredients.filter(i => i !== ingredient))}
+            onClick={() =>
+              setIngredients(ingredients.filter(i => i !== ingredient))
+            }
           >
             {ingredient}
           </button>

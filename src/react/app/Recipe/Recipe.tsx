@@ -14,7 +14,7 @@ interface IProps {
 
 function Recipe({ recipes }: IProps) {
   const { user } = useContext(UserContext);
-  const { id } = useParams<{id: string}>();
+  const { id } = useParams<{ id: string }>();
   const recipe = recipes.find(item => item?.id === Number(id));
   const [scaledServings, setScaledServings] = useState(recipe?.servings || 0);
 
@@ -23,9 +23,7 @@ function Recipe({ recipes }: IProps) {
   return (
     <>
       <Hero title={`${recipe.name} ${recipe.emoji}`}>
-        <div className="font-semibold text-sm">
-          {recipe.author.displayName}
-        </div>
+        <div className="font-semibold text-sm">{recipe.author.displayName}</div>
       </Hero>
       <section className="section">
         <div className="container">
@@ -33,14 +31,10 @@ function Recipe({ recipes }: IProps) {
             <div className="md:w-1/4">
               <h3 className="subtitle font-semibold">Details</h3>
               <div>
-                <b>Time:</b>
-                {' '}
-                {recipe.cookingTime}
+                <b>Time:</b> {recipe.cookingTime}
               </div>
               <div>
-                <b>Description:</b>
-                {' '}
-                {recipe.description}
+                <b>Description:</b> {recipe.description}
               </div>
             </div>
             <div className="order-2 md:order-3 md:max-w-sm">
@@ -59,14 +53,16 @@ function Recipe({ recipes }: IProps) {
           </div>
           <div className="flex gap-2 p-4">
             {user?.id === recipe.author.id && (
-            <Link to={`/edit-recipe/${recipe.id}`} title="Edit Recipe">
-              <BiEdit className="text-2xl" />
-            </Link>
+              <Link to={`/edit-recipe/${recipe.id}`} title="Edit Recipe">
+                <BiEdit className="text-2xl" />
+              </Link>
             )}
             <BiDownload
               title="Copy to Clipboard"
               className="text-2xl cursor-pointer"
-              onClick={() => updateClipboard(JSON.stringify(stripRecipe(recipe), null, 2))}
+              onClick={() =>
+                updateClipboard(JSON.stringify(stripRecipe(recipe), null, 2))
+              }
             />
           </div>
         </div>

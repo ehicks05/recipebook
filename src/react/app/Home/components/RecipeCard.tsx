@@ -14,7 +14,10 @@ interface ICardFooterItemProps {
 
 function CardFooterItem({ title, icon, value }: ICardFooterItemProps) {
   return (
-    <div className="flex gap-2 p-2 justify-center items-center w-full" title={title}>
+    <div
+      className="flex gap-2 p-2 justify-center items-center w-full"
+      title={title}
+    >
       <div>{icon}</div>
       <div className="mx-1 font-semibold">{value}</div>
     </div>
@@ -26,9 +29,7 @@ interface IRecipeCardProps {
 }
 
 function RecipeCard({
-  recipe: {
-    id, emoji, name, author, description, cookingTime, difficulty,
-  },
+  recipe: { id, emoji, name, author, description, cookingTime, difficulty },
 }: IRecipeCardProps) {
   const { user, favoriteIds, fetchFavoriteIds } = useContext(UserContext);
 

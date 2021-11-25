@@ -18,11 +18,14 @@ function scaleQuantity(
   desiredServings: number
 ): JSX.Element {
   const ratio = desiredServings / defaultServings;
-  const scaledQuantity = new Fraction(ingredient.quantity || 0).valueOf() * ratio;
+  const scaledQuantity =
+    new Fraction(ingredient.quantity || 0).valueOf() * ratio;
 
   if (scaledQuantity === 0) return <span />;
 
-  if (scaledQuantity === Math.round(scaledQuantity)) return <span>{scaledQuantity}</span>;
+  if (scaledQuantity === Math.round(scaledQuantity)) {
+    return <span>{scaledQuantity}</span>;
+  }
 
   let fractional = scaledQuantity;
   let wholeNumber = 0;
@@ -51,7 +54,7 @@ function Ingredient({
   const desiredQuantity = scaleQuantity(
     ingredient,
     recipeServings,
-    scaledServings,
+    scaledServings
   );
 
   return (

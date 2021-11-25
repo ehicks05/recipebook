@@ -20,9 +20,7 @@ function Ingredients({
     <div>
       <div className="flex items-center gap-2 mb-2">
         <span className="" title={`default servings: ${defaultServings}`}>
-          Servings:
-          {' '}
-          {scaledServings}
+          Servings: {scaledServings}
         </span>
         <div>
           <button
