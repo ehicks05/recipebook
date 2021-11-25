@@ -6,26 +6,19 @@ interface ISmallRecipeCardProps {
   recipe: IRecipe;
 }
 
-function SmallRecipeCard({ recipe }: ISmallRecipeCardProps) {
+function SmallRecipeCard({
+  recipe: { id, emoji, name, author },
+}: ISmallRecipeCardProps) {
   return (
-    <div className="column is-full-tablet">
-      <Link to={`/recipe/${recipe.id}`}>
+    <div className="">
+      <Link to={`/recipe/${id}`}>
         <div className="card lift">
-          <div
-            className="card-content is-flex is-flex-direction-column"
-            style={{ height: '8em' }}
-          >
-            <div className="media">
-              <div className="media-left">
-                <figure className="image is-64x64" style={{ fontSize: '3em' }}>
-                  {recipe.emoji}
-                </figure>
-              </div>
-              <div className="media-content">
-                <div className="title is-5">{recipe.name}</div>
-                <div className="subtitle is-6 is-italic">
-                  {recipe.author.displayName}
-                </div>
+          <div className="flex flex-col p-4">
+            <div className="flex gap-4">
+              <figure className="w-16 h-16 text-5xl pt-2">{emoji}</figure>
+              <div className="w-full">
+                <div className="font-semibold text-gray-200">{name}</div>
+                <div className="text-xs italic">{author.displayName}</div>
               </div>
             </div>
           </div>

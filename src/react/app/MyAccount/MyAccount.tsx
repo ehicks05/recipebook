@@ -3,7 +3,7 @@ import Carousel, { ResponsiveType } from 'react-multi-carousel';
 import Hero from '../../components/Hero';
 import { IFavorite, IRecipe } from '../../types/types';
 import 'react-multi-carousel/lib/styles.css';
-import useIsMobile from '../../hooks/useIsMobile';
+import useIsMobile from './useIsMobile';
 import MyAccountComponent from './components/MyAccountComponent';
 import authFetch from '../../authFetch';
 import { UserContext } from '../../UserContext';
@@ -56,10 +56,9 @@ function MyAccount() {
   return (
     <>
       <Hero title="Your Profile" subtitle={user?.displayName} />
-
-      {isMobile && (
-        <section className="section">
-          <div className="container">
+      <section className="section">
+        <div className="container">
+          {isMobile && (
             <Carousel
               swipeable
               draggable
@@ -91,30 +90,17 @@ function MyAccount() {
                 <MyAccountComponent recipes={[]} title="My Lists" />
               </div>
             </Carousel>
-          </div>
-        </section>
-      )}
+          )}
 
-      {!isMobile && (
-        <section className="section">
-          <div className="container">
-            <div className="columns is-centered">
-              <div className="column is-one-third">
-                <MyAccountComponent recipes={myRecipes} title="My Recipes" />
-              </div>
-              <div className="column is-one-third">
-                <MyAccountComponent
-                  recipes={myFavorites}
-                  title="My Favorites"
-                />
-              </div>
-              <div className="column is-one-third">
-                <MyAccountComponent recipes={[]} title="My Lists" />
-              </div>
+          {!isMobile && (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <MyAccountComponent recipes={myRecipes} title="My Recipes" />
+              <MyAccountComponent recipes={myFavorites} title="My Favorites" />
+              <MyAccountComponent recipes={[]} title="My Lists" />
             </div>
-          </div>
-        </section>
-      )}
+          )}
+        </div>
+      </section>
     </>
   );
 }

@@ -9,12 +9,14 @@ interface IMyAccountComponentType {
 
 function MyAccountComponent({ title, recipes }: IMyAccountComponentType) {
   return (
-    <>
-      <p className="title has-text-centered">{title}</p>
-      {recipes?.map(it => (
-        <SmallRecipeCard key={it.id} recipe={it} />
-      ))}
-    </>
+    <div>
+      <p className="text-lg font-semibold has-text-centered">{title}</p>
+      <div className="flex flex-col gap-4">
+        {recipes?.map(recipe => (
+          <SmallRecipeCard key={recipe.id} recipe={recipe} />
+        ))}
+      </div>
+    </div>
   );
 }
 
