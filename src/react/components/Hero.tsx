@@ -10,8 +10,8 @@ const Hero: FunctionComponent<IProps> = ({ title, subtitle, children }: IProps) 
   <section className="hero">
     <div className="hero-body">
       <div className="container">
-        {title && <h1 className="title">{title}</h1>}
-        {subtitle && <h3 className="subtitle">{subtitle}</h3>}
+        {title && <div className="text-3xl font-semibold text-gray-200">{title}</div>}
+        {subtitle && <div className="subtitle">{subtitle}</div>}
         {children && children}
       </div>
     </div>
