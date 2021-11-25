@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Recipe from './react/app/Recipe/Recipe';
+import RecipeLoader from './react/app/Recipe/RecipeLoader';
 import Navbar from './react/components/Navbar/Navbar';
 import Footer from './react/components/Footer';
 import { IRecipe, IUser } from './react/types/types';
@@ -67,7 +67,7 @@ const App = () => {
           <Home recipes={recipes} />
         </Route>
         <Route exact path="/recipe/:id">
-          <Recipe recipes={recipes} />
+          <RecipeLoader recipes={recipes} />
         </Route>
         <Route exact path="/edit-recipe/:id">
           <RecipeForm fetchRecipes={fetchRecipes} recipes={recipes} />
