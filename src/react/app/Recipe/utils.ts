@@ -3,10 +3,10 @@ import { IRecipe } from '../../types/types';
 
 function updateClipboard(newClip: string) {
   navigator.clipboard.writeText(newClip).then(
-    function (e) {
+    (e) => {
       console.log(e);
     },
-    function (e) {
+    (e) => {
       console.log(e);
     },
   );

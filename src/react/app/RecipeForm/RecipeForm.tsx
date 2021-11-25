@@ -58,7 +58,9 @@ function RecipeForm({ fetchRecipes, recipes }: IProps) {
               });
             }}
           >
-            {({ values, setFieldValue, isValid, isSubmitting }) => (
+            {({
+              values, setFieldValue, isValid, isSubmitting,
+            }) => (
               <Form>
                 <div className="columns">
                   <div className="column is-one-third">
@@ -120,8 +122,8 @@ function RecipeForm({ fetchRecipes, recipes }: IProps) {
                       <FieldArray name="ingredients">
                         {({ remove, push }) => (
                           <div>
-                            {values.ingredients.length > 0 &&
-                              values.ingredients.map((ingredient, index) => (
+                            {values.ingredients.length > 0
+                              && values.ingredients.map((ingredient, index) => (
                                 <>
                                   {index !== 0 && <hr />}
                                   <div
@@ -166,6 +168,7 @@ function RecipeForm({ fetchRecipes, recipes }: IProps) {
                                     </div>
                                     <div className="column is-narrow">
                                       <button
+                                        type="button"
                                         className="delete has-background-danger"
                                         onClick={e => {
                                           e.preventDefault();
@@ -177,6 +180,7 @@ function RecipeForm({ fetchRecipes, recipes }: IProps) {
                                 </>
                               ))}
                             <button
+                              type="button"
                               className="button is-success"
                               onClick={() => push(DEFAULT_INGREDIENT)}
                             >
@@ -195,8 +199,8 @@ function RecipeForm({ fetchRecipes, recipes }: IProps) {
                       <FieldArray name="directions">
                         {({ remove, push }) => (
                           <div>
-                            {values.directions.length > 0 &&
-                              values.directions.map((direction, index) => (
+                            {values.directions.length > 0
+                              && values.directions.map((direction, index) => (
                                 <div
                                   key={direction.text}
                                   className="columns is-mobile is-variable is-1"
@@ -226,6 +230,7 @@ function RecipeForm({ fetchRecipes, recipes }: IProps) {
                                   </div>
                                   <div className="column is-narrow">
                                     <button
+                                      type="button"
                                       className="delete has-background-danger"
                                       onClick={e => {
                                         e.preventDefault();
@@ -236,13 +241,12 @@ function RecipeForm({ fetchRecipes, recipes }: IProps) {
                                 </div>
                               ))}
                             <button
+                              type="button"
                               className="button is-success"
-                              onClick={() =>
-                                push({
-                                  ...DEFAULT_DIRECTION,
-                                  index: values.directions.length,
-                                })
-                              }
+                              onClick={() => push({
+                                ...DEFAULT_DIRECTION,
+                                index: values.directions.length,
+                              })}
                             >
                               <span className="icon">
                                 <FaPlus />
@@ -258,6 +262,7 @@ function RecipeForm({ fetchRecipes, recipes }: IProps) {
                   <div className="level-item has-text-centered">
                     <div>
                       <button
+                        type="submit"
                         disabled={!isValid || isSubmitting}
                         className={`button is-success ${
                           isSubmitting ? 'is-loading' : ''
