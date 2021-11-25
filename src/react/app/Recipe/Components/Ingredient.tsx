@@ -8,41 +8,35 @@ interface IIngredientProps {
   scaledServings: number;
 }
 
-const formatFraction = (numerator: number, denominator: number) =>
-  `${numerator}${String.fromCharCode(8260)}${denominator}`;
-
-// figures out the desired quantity and formats it as a nice fraction if necessary.
-function scaleQuantity(
+// determine desired quantity and provide fractional formatting
+const scaleQuantity = (
   ingredient: IIngredient,
   defaultServings: number,
   desiredServings: number
-): JSX.Element {
+) => {
   const ratio = desiredServings / defaultServings;
   const scaledQuantity =
     new Fraction(ingredient.quantity || 0).valueOf() * ratio;
 
-  if (scaledQuantity === 0) return <span />;
+  if (scaledQuantity === 0) return '';
 
   if (scaledQuantity === Math.round(scaledQuantity)) {
-    return <span>{scaledQuantity}</span>;
+    return String(scaledQuantity);
   }
 
   let fractional = scaledQuantity;
-  let wholeNumber = 0;
+  let integer = 0;
   while (fractional > 1) {
-    wholeNumber += 1;
+    integer += 1;
     fractional -= 1;
   }
 
   const fraction = new Fraction(fractional);
 
-  return (
-    <>
-      {wholeNumber ? `${wholeNumber} ` : ''}
-      {formatFraction(fraction.n, fraction.d)}
-    </>
-  );
-}
+  return `${integer || ''} ${fraction.n}${String.fromCharCode(8260)}${
+    fraction.d
+  }`;
+};
 
 function Ingredient({
   ingredient,
@@ -51,7 +45,7 @@ function Ingredient({
 }: IIngredientProps) {
   const [isChecked, setIsChecked] = useState(false);
 
-  const desiredQuantity = scaleQuantity(
+  const scaledQuantity = scaleQuantity(
     ingredient,
     recipeServings,
     scaledServings
@@ -67,8 +61,7 @@ function Ingredient({
           onChange={e => setIsChecked(e.target.checked)}
         />
         <span className={`${isChecked ? 'opacity-50' : ''}`}>
-          {desiredQuantity}
-          {` ${ingredient.unit || ''} ${ingredient.name}`}
+          {`${scaledQuantity} ${ingredient.unit || ''} ${ingredient.name}`}
         </span>
       </label>
     </div>
