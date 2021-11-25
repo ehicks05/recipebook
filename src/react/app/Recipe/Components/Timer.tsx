@@ -90,11 +90,7 @@ function Timer({ minutes: inputMinutes }: IProps) {
           )}
 
           {paused && seconds !== inputMinutes * 60 && (
-            <button
-              type="button"
-              className="button is-small"
-              onClick={reset}
-            >
+            <button type="button" className="button is-small" onClick={reset}>
               Reset
             </button>
           )}

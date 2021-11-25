@@ -9,7 +9,7 @@ interface IDirectionProps {
 function extractTiming(text: string) {
   const words = text.split(' ');
   const timeIndex = words.findIndex(
-    word => word.indexOf('minute') > -1 || word.indexOf('hour') > -1,
+    word => word.indexOf('minute') > -1 || word.indexOf('hour') > -1
   );
   let timeAmount = 0;
   if (timeIndex > -1) {

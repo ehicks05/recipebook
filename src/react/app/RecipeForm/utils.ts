@@ -4,7 +4,7 @@ const validateQuantity = (quantity: string | undefined) => {
   let isValid = false;
   try {
     console.log(
-      `fraction.js says ${quantity} is ${quantity && new Fraction(quantity)}`,
+      `fraction.js: ${quantity} is ${quantity && new Fraction(quantity)}`
     );
     isValid = true;
   } catch (e) {

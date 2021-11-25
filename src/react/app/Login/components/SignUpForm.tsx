@@ -16,7 +16,7 @@ interface IProps {
 function SignUpForm({ setTab, setAccessMessage }: IProps) {
   function reducer(
     state: IErrorMessage,
-    action: { key: string; value: string },
+    action: { key: string; value: string }
   ): IErrorMessage {
     switch (action.key) {
       case 'email':
@@ -40,7 +40,9 @@ function SignUpForm({ setTab, setAccessMessage }: IProps) {
     const enteredValue = e.target.value;
     const emailPattern = /[a-zA-Z0-9]*@[a-zA-Z0-9]*\.[a-zA-Z0-9]*/;
 
-    if (emailPattern[Symbol.search](enteredValue) === -1) { dispatch({ key: 'email', value: 'not a valid email' }); } else dispatch({ key: 'email', value: '' });
+    if (emailPattern[Symbol.search](enteredValue) === -1) {
+      dispatch({ key: 'email', value: 'not a valid email' });
+    } else dispatch({ key: 'email', value: '' });
   }
 
   function validatePasswords() {
@@ -51,10 +53,17 @@ function SignUpForm({ setTab, setAccessMessage }: IProps) {
 
     const password1 = (document.getElementById('password') as HTMLInputElement)
       ?.value;
-    const password2 = (document.getElementById('passwordCheck') as HTMLInputElement)
-      ?.value;
+    const password2 = (
+      document.getElementById('passwordCheck') as HTMLInputElement
+    )?.value;
 
-    if (password1.length > 0 && password2.length > 0 && password1 !== password2) { dispatch({ key: 'password', value: 'passwords do not match' }); } else dispatch({ key: 'password', value: '' });
+    if (
+      password1.length > 0 &&
+      password2.length > 0 &&
+      password1 !== password2
+    ) {
+      dispatch({ key: 'password', value: 'passwords do not match' });
+    } else dispatch({ key: 'password', value: '' });
   }
 
   function isFormDataValid(formData: FormData): boolean {
@@ -81,7 +90,9 @@ function SignUpForm({ setTab, setAccessMessage }: IProps) {
   async function signUp(e: React.FormEvent) {
     e.preventDefault();
 
-    const formElement = document.getElementById('signUpForm') as HTMLFormElement;
+    const formElement = document.getElementById(
+      'signUpForm'
+    ) as HTMLFormElement;
     const formData = new FormData(formElement);
 
     if (!isFormDataValid(formData)) return;
@@ -92,7 +103,7 @@ function SignUpForm({ setTab, setAccessMessage }: IProps) {
         method: 'POST',
         body: new URLSearchParams(formData as any),
       },
-      false,
+      false
     )
       .then(response => {
         if (response.ok) return response.json();
@@ -140,7 +151,9 @@ function SignUpForm({ setTab, setAccessMessage }: IProps) {
               </button>
             </p>
           </div>
-          <p className="help has-text-danger">{errorMessageState.emailMessage}</p>
+          <p className="help has-text-danger">
+            {errorMessageState.emailMessage}
+          </p>
         </div>
 
         {/* EMAIL */}
@@ -215,7 +228,9 @@ function SignUpForm({ setTab, setAccessMessage }: IProps) {
               </span>
             </p>
           </div>
-          <p className="help has-text-danger">{errorMessageState.passwordMessage}</p>
+          <p className="help has-text-danger">
+            {errorMessageState.passwordMessage}
+          </p>
         </div>
 
         <button

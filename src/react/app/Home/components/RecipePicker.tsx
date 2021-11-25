@@ -31,7 +31,9 @@ function RecipePicker({ recipes }: IProps) {
   }, [recipeFilters, recipes]);
 
   function handleAddRecipeFilter() {
-    const input = document.getElementById('recipeFilterInput') as HTMLFormElement;
+    const input = document.getElementById(
+      'recipeFilterInput'
+    ) as HTMLFormElement;
     const newFilter = input.value.toLowerCase();
     if (newFilter.length > 1 && !recipeFilters.includes(newFilter)) {
       setRecipeFilters([...recipeFilters, newFilter]);
@@ -51,7 +53,11 @@ function RecipePicker({ recipes }: IProps) {
   const filterPills = recipeFilters.map(f => (
     <span key={f} className="tag is-link">
       {f}
-      <button type="button" className="delete" onClick={() => handleClearRecipeFilter(f)} />
+      <button
+        type="button"
+        className="delete"
+        onClick={() => handleClearRecipeFilter(f)}
+      />
     </span>
   ));
 
@@ -73,7 +79,11 @@ function RecipePicker({ recipes }: IProps) {
               />
             </div>
             <div className="control">
-              <button type="button" className="button" onClick={() => handleAddRecipeFilter()}>
+              <button
+                type="button"
+                className="button"
+                onClick={() => handleAddRecipeFilter()}
+              >
                 Add
               </button>
               {recipeFilters.length > 0 && (

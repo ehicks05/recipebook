@@ -5,9 +5,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="content has-text-centered">
         <p>
-          <strong>Recipe Book</strong>
-          {' '}
-          by Hicks_Team
+          <strong>Recipe Book</strong> by Hicks_Team
         </p>
       </div>
     </footer>

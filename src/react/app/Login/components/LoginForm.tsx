@@ -34,9 +34,11 @@ function LoginForm() {
         method: 'POST',
         body: new URLSearchParams(formData as any),
       },
-      false,
+      false
     ).then(response => {
-      if (response?.status !== 200) { setFailureMessage('Invalid username and/or password'); }
+      if (response?.status !== 200) {
+        setFailureMessage('Invalid username and/or password');
+      }
       fetchUser();
     });
   }
@@ -75,7 +77,10 @@ function LoginForm() {
               </span>
             </div>
           </div>
-          <button type="submit" className="button is-block is-primary is-fullwidth">
+          <button
+            type="submit"
+            className="button is-block is-primary is-fullwidth"
+          >
             Log in
           </button>
         </form>

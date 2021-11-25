@@ -82,7 +82,10 @@ function MyAccount() {
                 <MyAccountComponent recipes={myRecipes} title="My Recipes" />
               </div>
               <div>
-                <MyAccountComponent recipes={myFavorites} title="My Favorites" />
+                <MyAccountComponent
+                  recipes={myFavorites}
+                  title="My Favorites"
+                />
               </div>
               <div>
                 <MyAccountComponent recipes={[]} title="My Lists" />
@@ -100,7 +103,10 @@ function MyAccount() {
                 <MyAccountComponent recipes={myRecipes} title="My Recipes" />
               </div>
               <div className="column is-one-third">
-                <MyAccountComponent recipes={myFavorites} title="My Favorites" />
+                <MyAccountComponent
+                  recipes={myFavorites}
+                  title="My Favorites"
+                />
               </div>
               <div className="column is-one-third">
                 <MyAccountComponent recipes={[]} title="My Lists" />

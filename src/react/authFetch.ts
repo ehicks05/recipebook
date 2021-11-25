@@ -3,7 +3,7 @@ import apiUrl from './apiUrl';
 function authFetch(
   input: Request | string,
   init?: RequestInit | undefined,
-  json = true,
+  json = true
 ) {
   function buildErrorMessage(response: Response) {
     let message = '';

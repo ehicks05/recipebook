@@ -8,20 +8,23 @@ interface IIngredientProps {
   desiredServings: number;
 }
 
-const formatFraction = (numerator: number, denominator: number) => `${numerator}${String.fromCharCode(8260)}${denominator}`;
+const formatFraction = (numerator: number, denominator: number) =>
+  `${numerator}${String.fromCharCode(8260)}${denominator}`;
 
 // figures out the desired quantity and formats it as a nice fraction if necessary.
 function getDesiredQuantity(
   ingredient: IIngredient,
   defaultServings: number,
-  desiredServings: number,
+  desiredServings: number
 ): JSX.Element {
   const ratio = desiredServings / defaultServings;
-  const desiredQuantity = new Fraction(ingredient.quantity || 0).valueOf() * ratio;
+  const desiredQuantity =
+    new Fraction(ingredient.quantity || 0).valueOf() * ratio;
 
   if (desiredQuantity === 0) return <span />;
 
-  if (desiredQuantity === Math.round(desiredQuantity)) return <span>{desiredQuantity}</span>;
+  if (desiredQuantity === Math.round(desiredQuantity))
+    return <span>{desiredQuantity}</span>;
 
   let fractional = desiredQuantity;
   let wholeNumber = 0;
@@ -50,7 +53,7 @@ function Ingredient({
   const desiredQuantity = getDesiredQuantity(
     ingredient,
     recipeServings,
-    desiredServings,
+    desiredServings
   );
 
   return (
