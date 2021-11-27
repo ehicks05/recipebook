@@ -7,6 +7,9 @@ import Directions from './Components/Directions';
 import Ingredients from './Components/Ingredients';
 import { UserContext } from '../../UserContext';
 import { stripRecipe, updateClipboard } from './utils';
+import Container from '../../components/Container';
+import T from '../../components/T';
+import Button from '../../components/Button';
 
 interface IProps {
   recipe: IRecipe;
@@ -19,50 +22,54 @@ function Recipe({ recipe }: IProps) {
   return (
     <>
       <Hero title={`${recipe.name} ${recipe.emoji}`}>
-        <div className="font-semibold text-sm">{recipe.author.displayName}</div>
+        <T className="font-semibold text-sm">{recipe.author.displayName}</T>
       </Hero>
-      <section className="section">
-        <div className="container">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 justify-between gap-6">
-            <div className="order-1">
-              <h3 className="text-lg font-semibold">Details</h3>
-              <div>
-                <b>Time:</b> {recipe.cookingTime}
-              </div>
-              <div>
-                <b>Description:</b> {recipe.description}
-              </div>
+      <Container>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 justify-between gap-6">
+          <div className="order-1">
+            <T className="text-lg font-semibold">Details</T>
+            <div>
+              <T className="font-semibold">Time:</T> <T>{recipe.cookingTime}</T>
             </div>
-            <div className="order-2 md:order-3">
-              <h3 className="text-lg font-semibold">Ingredients</h3>
-              <Ingredients
-                ingredients={recipe.ingredients}
-                defaultServings={recipe.servings}
-                scaledServings={scaledServings}
-                setScaledServings={setScaledServings}
-              />
-            </div>
-            <div className="sm:col-span-2 order-3 md:order-2">
-              <h3 className="text-lg font-semibold">Directions</h3>
-              <Directions directions={recipe.directions} />
+            <div>
+              <T className="font-semibold">Description:</T>{' '}
+              <T>{recipe.description}</T>
             </div>
           </div>
-          <div className="flex gap-2 p-4">
-            {user?.id === recipe.author.id && (
+          <div className="order-2 md:order-3">
+            <T className="text-lg font-semibold">Ingredients</T>
+            <Ingredients
+              ingredients={recipe.ingredients}
+              defaultServings={recipe.servings}
+              scaledServings={scaledServings}
+              setScaledServings={setScaledServings}
+            />
+          </div>
+          <div className="sm:col-span-2 order-3 md:order-2">
+            <T className="text-lg font-semibold">Directions</T>
+            <Directions directions={recipe.directions} />
+          </div>
+        </div>
+        <div className="flex gap-2 p-4">
+          {user?.id === recipe.author.id && (
+            <Button>
               <Link to={`/edit-recipe/${recipe.id}`} title="Edit Recipe">
                 <BiEdit className="text-2xl" />
               </Link>
-            )}
+            </Button>
+          )}
+          <Button
+            onClick={() =>
+              updateClipboard(JSON.stringify(stripRecipe(recipe), null, 2))
+            }
+          >
             <BiDownload
               title="Copy to Clipboard"
               className="text-2xl cursor-pointer"
-              onClick={() =>
-                updateClipboard(JSON.stringify(stripRecipe(recipe), null, 2))
-              }
             />
-          </div>
+          </Button>
         </div>
-      </section>
+      </Container>
     </>
   );
 }

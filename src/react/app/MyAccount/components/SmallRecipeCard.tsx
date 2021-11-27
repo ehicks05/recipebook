@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Card from '../../../components/Card';
+import T from '../../../components/T';
 import { IRecipe } from '../../../types/types';
 
 interface ISmallRecipeCardProps {
@@ -12,17 +14,19 @@ function SmallRecipeCard({
   return (
     <div className="">
       <Link to={`/recipe/${id}`}>
-        <div className="card lift">
-          <div className="flex flex-col p-4">
+        <Card className="lift">
+          <div className="flex flex-col">
             <div className="flex gap-4">
               <figure className="w-16 h-16 text-5xl pt-2">{emoji}</figure>
               <div className="w-full">
-                <div className="font-semibold text-gray-200">{name}</div>
-                <div className="text-xs italic">{author.displayName}</div>
+                <div>
+                  <T className="font-semibold">{name}</T>
+                </div>
+                <T className="text-xs italic">{author.displayName}</T>
               </div>
             </div>
           </div>
-        </div>
+        </Card>
       </Link>
     </div>
   );

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Fraction from 'fraction.js';
 import { IIngredient } from '../../../types/types';
+import T from '../../../components/T';
 
 interface IIngredientProps {
   ingredient: IIngredient;
@@ -60,9 +61,9 @@ function Ingredient({
           checked={isChecked}
           onChange={e => setIsChecked(e.target.checked)}
         />
-        <span className={`${isChecked ? 'opacity-50' : ''}`}>
+        <T className={`${isChecked ? 'opacity-50' : ''}`}>
           {`${scaledQuantity} ${ingredient.unit || ''} ${ingredient.name}`}
-        </span>
+        </T>
       </label>
     </div>
   );

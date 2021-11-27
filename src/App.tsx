@@ -75,7 +75,7 @@ const App = () => {
         <Route exact path="/create-recipe">
           <RecipeForm fetchRecipes={fetchRecipes} />
         </Route>
-        <Route exact path="/myAccount">
+        <Route exact path="/my-account">
           <MyAccount />
         </Route>
         <Route exact path="/login">

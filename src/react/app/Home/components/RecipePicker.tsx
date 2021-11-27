@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Button from '../../../components/Button';
 import { IRecipe } from '../../../types/types';
 import RecipeCard from './RecipeCard';
 
@@ -30,34 +31,29 @@ function RecipePicker({ recipes }: IProps) {
     <div className="flex flex-col gap-2">
       <div className="flex gap-1">
         <input
-          className="px-2 py-1 bg-gray-800"
+          className="px-2 py-1 bg-gray-100 dark:bg-gray-800 dark:text-gray-200"
           value={filterInput}
           onChange={e => setFilterInput(e.target.value.toLowerCase())}
           onKeyPress={e => e.key === 'Enter' && handleAddFilter()}
           placeholder="Search by Ingredient"
         />
         {ingredients.length > 0 && (
-          <button
-            type="button"
-            className="ml-2 bg-gray-800 border px-2 py-1 border-gray-600"
-            onClick={() => setIngredients([])}
-          >
+          <Button className="ml-2" onClick={() => setIngredients([])}>
             Clear
-          </button>
+          </Button>
         )}
       </div>
       <div className="flex gap-2">
         {ingredients.map(ingredient => (
-          <button
+          <Button
             key={ingredient}
-            type="button"
-            className="flex gap-1 px-2 py-0.5 rounded text-white bg-blue-600 text-sm"
+            className="text-xs"
             onClick={() =>
               setIngredients(ingredients.filter(i => i !== ingredient))
             }
           >
             {ingredient}
-          </button>
+          </Button>
         ))}
       </div>
 

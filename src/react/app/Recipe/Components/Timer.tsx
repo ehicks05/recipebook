@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import Button from '../../../components/Button';
 
 interface IProps {
   minutes: number;
@@ -61,34 +62,26 @@ function Timer({ minutes: inputMinutes }: IProps) {
 
   return (
     <div className="flex">
-      <div className="">
-        <input
-          type="text"
-          className={`input text-xs has-text-centered ${
-            expired ? 'bg-red-700' : ''
-          }`}
-          size={Math.max(displayTime().length - 4, 1)}
-          value={displayTime()}
-          onChange={handleSetTime}
-        />
-      </div>
-      <div className="">
-        {!expired && (
-          <button
-            type="button"
-            className="button text-xs"
-            onClick={() => setPaused(!paused)}
-          >
-            {paused ? 'Start' : 'Pause'}
-          </button>
-        )}
+      <input
+        type="text"
+        className={`px-2 py-1 text-xs text-center bg-gray-100 dark:bg-gray-500 dark:text-gray-200 ${
+          expired ? 'bg-red-700' : ''
+        }`}
+        size={Math.max(displayTime().length - 4, 1)}
+        value={displayTime()}
+        onChange={handleSetTime}
+      />
+      {!expired && (
+        <Button className="text-xs" onClick={() => setPaused(!paused)}>
+          {paused ? 'Start' : 'Pause'}
+        </Button>
+      )}
 
-        {paused && seconds !== inputMinutes * 60 && (
-          <button type="button" className="button text-xs" onClick={reset}>
-            Reset
-          </button>
-        )}
-      </div>
+      {paused && seconds !== inputMinutes * 60 && (
+        <Button className="text-xs" onClick={() => reset()}>
+          Reset
+        </Button>
+      )}
     </div>
   );
 }

@@ -2,39 +2,40 @@ import React from 'react';
 import { useField } from 'formik';
 import TextareaAutosize from 'react-textarea-autosize';
 
-interface IMyInputProps {
-  id?: string;
-  name: string;
+export interface IMyInputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
-  type?: string;
-  isExpanded?: boolean;
   leftIcon?: JSX.Element;
-  [x: string]: any;
+  grow?: boolean;
 }
 
-const MyInput = ({ label, leftIcon, ...props }: IMyInputProps) => {
+const MyInput = ({
+  className,
+  label,
+  leftIcon,
+  grow,
+  ...props
+}: IMyInputProps) => {
   const [field, meta] = useField(props);
   return (
-    <div className="field">
+    <div className={`${grow ? 'flex-grow' : ''}`}>
       {label && (
-        <label className="label" htmlFor={props.id || props.name}>
+        <label className="" htmlFor={props.id || props.name}>
           {label}
         </label>
       )}
-      <div
-        className={`control ${props.isExpanded ? 'is-expanded' : ''} ${
-          leftIcon ? 'has-icons-left' : ''
-        }`}
-      >
+      <div>
         <input
           type={props.type || 'text'}
-          className={`input ${meta.touched && meta.error ? 'is-danger' : ''}`}
+          className={`${grow ? 'w-full' : ''} ${className} ${
+            meta.touched && meta.error ? 'border-red-600' : ''
+          }`}
           {...field}
           {...props}
         />
-        {leftIcon && <span className="icon is-left">{leftIcon}</span>}
+        {leftIcon && <span className="">{leftIcon}</span>}
         {meta.touched && meta.error ? (
-          <div className="help is-danger">{meta.error}</div>
+          <div className="text-red-600">{meta.error}</div>
         ) : null}
       </div>
     </div>
@@ -69,9 +70,7 @@ const MyTextArea = ({ label, ...props }: IMyTextAreaProps) => {
       )}
       <div className="control">
         <TextareaAutosize
-          className={`textarea ${
-            meta.touched && meta.error ? 'is-danger' : ''
-          }`}
+          className={`${meta.touched && meta.error ? 'is-danger' : ''}`}
           rows={1}
           {...field}
           {...props}
@@ -101,7 +100,7 @@ const MySelect = ({ label, ...props }: IMySelectProps) => {
         </label>
       )}
       <div className="control">
-        <div className="select">
+        <div className="">
           <select {...field} {...props}>
             {props.children}
           </select>

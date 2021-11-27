@@ -9,7 +9,7 @@ interface IProps {
 function Directions({ directions }: IProps) {
   return (
     <div className="content">
-      <ol className="ml-4">
+      <ol className="ml-4 list-decimal dark:text-gray-200">
         {directions.map(direction => (
           <Direction key={direction.text} direction={direction} />
         ))}

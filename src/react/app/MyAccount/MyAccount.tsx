@@ -7,6 +7,7 @@ import useIsMobile from './useIsMobile';
 import MyAccountComponent from './components/MyAccountComponent';
 import authFetch from '../../authFetch';
 import { UserContext } from '../../UserContext';
+import Container from '../../components/Container';
 
 function getResponsive(): ResponsiveType {
   return {
@@ -56,51 +57,46 @@ function MyAccount() {
   return (
     <>
       <Hero title="Your Profile" subtitle={user?.displayName} />
-      <section className="section">
-        <div className="container">
-          {isMobile && (
-            <Carousel
-              swipeable
-              draggable
-              showDots={false}
-              responsive={getResponsive()}
-              centerMode={false}
-              ssr // means to render carousel on server-side.
-              infinite={false}
-              autoPlay={false}
-              keyBoardControl
-              customTransition="transform 400ms ease-in-out"
-              transitionDuration={500}
-              containerClass="carousel-container"
-              removeArrowOnDeviceType={['']}
-              deviceType="mobile"
-              dotListClass="custom-dot-list-style"
-              itemClass="carousel-item-padding-40-px"
-            >
-              <div>
-                <MyAccountComponent recipes={myRecipes} title="My Recipes" />
-              </div>
-              <div>
-                <MyAccountComponent
-                  recipes={myFavorites}
-                  title="My Favorites"
-                />
-              </div>
-              <div>
-                <MyAccountComponent recipes={[]} title="My Lists" />
-              </div>
-            </Carousel>
-          )}
-
-          {!isMobile && (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <Container>
+        {isMobile && (
+          <Carousel
+            swipeable
+            draggable
+            showDots={false}
+            responsive={getResponsive()}
+            centerMode={false}
+            ssr // means to render carousel on server-side.
+            infinite={false}
+            autoPlay={false}
+            keyBoardControl
+            customTransition="transform 400ms ease-in-out"
+            transitionDuration={500}
+            containerClass="carousel-container"
+            removeArrowOnDeviceType={['']}
+            deviceType="mobile"
+            dotListClass="custom-dot-list-style"
+            itemClass="carousel-item-padding-40-px"
+          >
+            <div>
               <MyAccountComponent recipes={myRecipes} title="My Recipes" />
+            </div>
+            <div>
               <MyAccountComponent recipes={myFavorites} title="My Favorites" />
+            </div>
+            <div>
               <MyAccountComponent recipes={[]} title="My Lists" />
             </div>
-          )}
-        </div>
-      </section>
+          </Carousel>
+        )}
+
+        {!isMobile && (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <MyAccountComponent recipes={myRecipes} title="My Recipes" />
+            <MyAccountComponent recipes={myFavorites} title="My Favorites" />
+            <MyAccountComponent recipes={[]} title="My Lists" />
+          </div>
+        )}
+      </Container>
     </>
   );
 }

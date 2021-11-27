@@ -1,6 +1,8 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { FaMinus, FaPlus } from 'react-icons/all';
 import { Ingredient } from '.';
+import Button from '../../../components/Button';
+import T from '../../../components/T';
 import { IIngredient } from '../../../types/types';
 
 interface IProps {
@@ -19,25 +21,21 @@ function Ingredients({
   return (
     <div>
       <div className="flex items-center gap-2 mb-2">
-        <span className="" title={`default servings: ${defaultServings}`}>
-          Servings: {scaledServings}
-        </span>
+        <T>Servings: {scaledServings}</T>
         <div>
-          <button
-            type="button"
-            className="button is-small"
+          <Button
+            className="is-small"
             onClick={() => setScaledServings(scaledServings - 1)}
             disabled={scaledServings === 1}
           >
             <FaMinus />
-          </button>
-          <button
-            type="button"
-            className="button is-small"
+          </Button>
+          <Button
+            className="is-small"
             onClick={() => setScaledServings(scaledServings + 1)}
           >
             <FaPlus />
-          </button>
+          </Button>
         </div>
       </div>
 

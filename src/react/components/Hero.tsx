@@ -11,14 +11,18 @@ const Hero: FunctionComponent<IProps> = ({
   subtitle,
   children,
 }: IProps) => (
-  <section className="hero">
-    <div className="hero-body">
-      <div className="container">
+  <section className="bg-gray-100 dark:bg-gray-800">
+    <div className="max-w-screen-xl mx-auto px-4 py-6">
+      <div className="">
         {title && (
-          <div className="text-3xl font-semibold text-gray-200">{title}</div>
+          <div className="text-3xl font-semibold text-gray-700 dark:text-gray-200">
+            {title}
+          </div>
         )}
-        {subtitle && <div className="subtitle">{subtitle}</div>}
-        {children && children}
+        {subtitle && (
+          <div className="text-gray-600 dark:text-gray-300">{subtitle}</div>
+        )}
+        {children}
       </div>
     </div>
   </section>

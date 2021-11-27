@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Timer from './Timer';
 import { IDirection } from '../../../types/types';
+import T from '../../../components/T';
 
 interface IDirectionProps {
   direction: IDirection;
@@ -33,21 +34,12 @@ function Direction({ direction }: IDirectionProps) {
   return (
     <li
       key={direction.text}
-      style={{
-        opacity: isDone ? '0.5' : '',
-      }}
-      className="glow"
+      className={`cursor-pointer ${isDone ? 'line-through opacity-50' : ''}`}
     >
-      <div
-        style={{
-          textDecoration: isDone ? 'line-through' : '',
-          cursor: 'pointer',
-        }}
-        onClick={() => setIsDone(!isDone)}
-      >
-        {direction.text}
+      <div onClick={() => setIsDone(!isDone)}>
+        <T>{direction.text}</T>
       </div>
-      {timer}
+      {!isDone && timer}
     </li>
   );
 }
