@@ -145,7 +145,6 @@ function RecipeForm({ fetchRecipes, recipes }: IProps) {
                               </Button>
                             </div>
                             <MyInput
-                              grow
                               name={`ingredients.${index}.name`}
                               placeholder="Name"
                             />

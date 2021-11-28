@@ -6,7 +6,6 @@ export interface IMyInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   leftIcon?: JSX.Element;
-  grow?: boolean;
   containerClassName?: string;
 }
 
@@ -17,7 +16,7 @@ const MyInput = ({
   containerClassName,
   ...props
 }: IMyInputProps) => {
-  const [field, meta] = useField(props);
+  const [field, meta] = useField({ ...props, name: props.name || '' });
   return (
     <div className={`w-full ${containerClassName}`}>
       {label && (

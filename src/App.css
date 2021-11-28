@@ -12,34 +12,15 @@ body {font-family: "Ubuntu", sans-serif}
 }
 
 /* SCROLLBAR */
-/* width */
 ::-webkit-scrollbar {
   width: 8px;
 }
-
-/* Track */
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
-
-/* Handle */
 ::-webkit-scrollbar-thumb {
   background: #aaa;
 }
-
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #777;
-}
-
-.lift {
-  transition: all 0.2s ease-in-out;
-}
-.lift:hover {
-  transform: scale(1.025);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-
-@media (prefers-color-scheme: dark) {
-  .glow:hover {color: #dbdbdb;}
 }

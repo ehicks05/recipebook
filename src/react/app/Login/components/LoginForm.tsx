@@ -5,8 +5,9 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { FaEnvelope, FaLock } from 'react-icons/all';
+// import { FaEnvelope, FaLock } from 'react-icons/all';
 import authFetch from '../../../authFetch';
+import Button from '../../../components/Button';
 import { UserContext } from '../../../UserContext';
 
 function LoginForm() {
@@ -56,9 +57,9 @@ function LoginForm() {
                 id="username"
                 name="username"
               />
-              <span className="icon is-left">
+              {/* <span className="icon is-left">
                 <FaEnvelope />
-              </span>
+              </span> */}
             </div>
           </div>
 
@@ -72,17 +73,14 @@ function LoginForm() {
                 name="password"
                 autoComplete="password"
               />
-              <span className="icon is-left">
+              {/* <span className="icon is-left">
                 <FaLock />
-              </span>
+              </span> */}
             </div>
           </div>
-          <button
-            type="submit"
-            className="button is-block is-primary is-fullwidth"
-          >
+          <Button type="submit" className="bg-green-500 text-white">
             Log in
-          </button>
+          </Button>
         </form>
       )}
 

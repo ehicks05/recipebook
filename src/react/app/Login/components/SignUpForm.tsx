@@ -1,7 +1,8 @@
-import React, { useReducer } from 'react';
-import '@creativebulma/bulma-tooltip/dist/bulma-tooltip.min.css';
-import { FaEnvelope, FaLock } from 'react-icons/all';
+import React, { useReducer, useState } from 'react';
+// import { FaEnvelope, FaLock } from 'react-icons/all';
 import authFetch from '../../../authFetch';
+import Button from '../../../components/Button';
+import { AUTH_TAB } from '../UserAccess';
 
 interface IErrorMessage {
   emailMessage: string;
@@ -9,11 +10,18 @@ interface IErrorMessage {
 }
 
 interface IProps {
-  setTab: React.Dispatch<React.SetStateAction<string>>;
+  setSelectedTab: React.Dispatch<React.SetStateAction<AUTH_TAB>>;
   setAccessMessage: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function SignUpForm({ setTab, setAccessMessage }: IProps) {
+function SignUpForm({ setSelectedTab, setAccessMessage }: IProps) {
+  const [formState, setFormState] = useState({
+    email: '',
+    displayName: '',
+    password: '',
+    confirmPassword: '',
+  });
+
   function reducer(
     state: IErrorMessage,
     action: { key: string; value: string }
@@ -33,75 +41,39 @@ function SignUpForm({ setTab, setAccessMessage }: IProps) {
     passwordMessage: '',
   });
 
-  function validateEmail(e: React.ChangeEvent<HTMLInputElement>) {
-    const emailInput = document.getElementById('email');
-    emailInput?.classList.remove('is-danger');
-
-    const enteredValue = e.target.value;
+  function validateEmail() {
     const emailPattern = /[a-zA-Z0-9]*@[a-zA-Z0-9]*\.[a-zA-Z0-9]*/;
-
-    if (emailPattern[Symbol.search](enteredValue) === -1) {
+    if (emailPattern[Symbol.search](formState.email) === -1) {
       dispatch({ key: 'email', value: 'not a valid email' });
     } else dispatch({ key: 'email', value: '' });
   }
 
   function validatePasswords() {
-    const passwordInput = document.getElementById('password');
-    passwordInput?.classList.remove('is-danger');
-    const passwordCheckInput = document.getElementById('passwordCheck');
-    passwordCheckInput?.classList.remove('is-danger');
-
-    const password1 = (document.getElementById('password') as HTMLInputElement)
-      ?.value;
-    const password2 = (
-      document.getElementById('passwordCheck') as HTMLInputElement
-    )?.value;
-
+    const { password, confirmPassword } = formState;
     if (
-      password1.length > 0 &&
-      password2.length > 0 &&
-      password1 !== password2
+      password.length > 0 &&
+      confirmPassword.length > 0 &&
+      password !== confirmPassword
     ) {
       dispatch({ key: 'password', value: 'passwords do not match' });
     } else dispatch({ key: 'password', value: '' });
   }
 
-  function isFormDataValid(formData: FormData): boolean {
+  function isFormDataValid(): boolean {
     if (errorMessageState.passwordMessage) return false;
     if (errorMessageState.emailMessage) return false;
 
-    const reqs = document
-      .getElementById('signUpForm')
-      ?.querySelectorAll('[required]');
-    let valid = true;
-
-    reqs?.forEach(element => {
-      const { id } = element;
-      const formValue = formData.get(id) as string;
-      if (!formValue || formValue.length === 0) {
-        element.classList.add('is-danger');
-        valid = false;
-      }
-    });
-
-    return valid;
+    return Object.values(formState).every(v => v.length > 0);
   }
 
-  async function signUp(e: React.FormEvent) {
-    e.preventDefault();
-
-    const formElement = document.getElementById(
-      'signUpForm'
-    ) as HTMLFormElement;
-    const formData = new FormData(formElement);
-
-    if (!isFormDataValid(formData)) return;
+  async function signUp() {
+    if (!isFormDataValid()) return;
 
     authFetch(
       '/user',
       {
         method: 'POST',
-        body: new URLSearchParams(formData as any),
+        body: new URLSearchParams(formState),
       },
       false
     )
@@ -113,7 +85,7 @@ function SignUpForm({ setTab, setAccessMessage }: IProps) {
       })
       .then(() => {
         setAccessMessage('Account successfully created');
-        setTab('Log In');
+        setSelectedTab('LOG_IN');
       })
       .catch(reason => {
         setAccessMessage(reason.message);
@@ -122,125 +94,63 @@ function SignUpForm({ setTab, setAccessMessage }: IProps) {
 
   return (
     <div>
-      <form method="POST" id="signUpForm" onSubmit={signUp}>
-        {/* USERNAME */}
-        <div className="field">
-          <div className="field has-addons">
-            <p className="control is-expanded has-icons-left">
-              <input
-                className="input"
-                type="email"
-                placeholder="Username"
-                id="username"
-                name="username"
-                required
-                onChange={validateEmail}
-              />
-              <span className="icon is-left">
-                <FaEnvelope />
-              </span>
-            </p>
-            <p className="control">
-              <button
-                tabIndex={-1}
-                type="button"
-                className="button has-tooltip-left"
-                data-tooltip="This will be your login"
-              >
-                ?
-              </button>
-            </p>
-          </div>
-          <p className="help has-text-danger">
-            {errorMessageState.emailMessage}
-          </p>
-        </div>
+      <div className="flex">
+        <input
+          type="email"
+          placeholder="Username"
+          onChange={e => {
+            setFormState({ ...formState, email: e.currentTarget.value });
+            validateEmail();
+          }}
+        />
+        <Button tabIndex={-1} className="" title="This will be your login">
+          ?
+        </Button>
+      </div>
+      <p className="help has-text-danger">{errorMessageState.emailMessage}</p>
 
-        {/* EMAIL */}
-        <div className="field">
-          <div className="field has-addons">
-            <p className="control is-expanded">
-              <input
-                className="input"
-                type="text"
-                placeholder="Display Name"
-                id="displayName"
-                name="displayName"
-                required
-              />
-            </p>
-            <p className="control">
-              <button
-                tabIndex={-1}
-                type="button"
-                className="button has-tooltip-left"
-                data-tooltip="This is how you will be known on the site"
-              >
-                ?
-              </button>
-            </p>
-          </div>
-        </div>
+      <div className="flex">
+        <input
+          type="text"
+          placeholder="Display Name"
+          onChange={e => {
+            setFormState({ ...formState, displayName: e.currentTarget.value });
+          }}
+        />
+        <Button tabIndex={-1} title="This is how you will be known on the site">
+          ?
+        </Button>
+      </div>
 
-        {/* PASSWORD */}
-        <div className="field has-addons">
-          <p className="control is-expanded has-icons-left">
-            <input
-              className="input"
-              type="password"
-              placeholder="Password"
-              id="password"
-              name="password"
-              onChange={validatePasswords}
-              required
-            />
-            <span className="icon is-left">
-              <FaLock />
-            </span>
-          </p>
-          <p className="control">
-            <button
-              tabIndex={-1}
-              type="button"
-              className="button has-tooltip-left"
-              data-tooltip="Enter a valid password"
-            >
-              ?
-            </button>
-          </p>
-        </div>
+      <div className="flex">
+        <input
+          type="password"
+          placeholder="Password"
+          onChange={e => {
+            setFormState({ ...formState, password: e.currentTarget.value });
+            validatePasswords();
+          }}
+        />
+      </div>
 
-        {/* PASSWORD CHECK */}
-        <div className="field">
-          <div className="field has-addons">
-            <p className="control is-expanded has-icons-left">
-              <input
-                className="input"
-                type="password"
-                placeholder="Please reenter your password"
-                id="passwordCheck"
-                name="passwordCheck"
-                onChange={validatePasswords}
-                required
-              />
-              <span className="icon is-left">
-                <FaLock />
-              </span>
-            </p>
-          </div>
-          <p className="help has-text-danger">
-            {errorMessageState.passwordMessage}
-          </p>
-        </div>
+      <div className="flex">
+        <input
+          type="password"
+          placeholder="Confirm password"
+          onChange={e => {
+            setFormState({
+              ...formState,
+              confirmPassword: e.currentTarget.value,
+            });
+            validatePasswords();
+          }}
+        />
+        <p className="text-red-500">{errorMessageState.passwordMessage}</p>
+      </div>
 
-        <button
-          type="submit"
-          value="Sign Up"
-          className="button is-block is-primary is-fullwidth"
-        >
-          Sign Up
-        </button>
-      </form>
+      <Button onClick={() => signUp()} className="bg-green-500 text-white">
+        Sign Up
+      </Button>
     </div>
   );
 }
