@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import RecipeLoader from './react/app/Recipe/RecipeLoader';
-import Navbar from './react/components/Navbar/Navbar';
 import Footer from './react/components/Footer';
 import { IRecipe, IUser } from './react/types/types';
 import MyAccount from './react/app/MyAccount/MyAccount';
@@ -13,6 +12,7 @@ import UserAccess from './react/app/Login/UserAccess';
 import { setDefaultDescription, sortDirections } from './utils';
 import Hero from './react/components/Hero';
 import Loading from './react/components/Loading';
+import Nav from './react/components/Navbar/Nav';
 
 const App = () => {
   const [recipes, setRecipes] = useState<IRecipe[]>([]);
@@ -47,7 +47,10 @@ const App = () => {
     fetchFavoriteIds();
   }, [user]);
 
-  const isLoading = recipes.length === 0 || (user && favoriteIds.length === 0);
+  const isLoading =
+    !recipes ||
+    recipes?.length === 0 ||
+    (user && (!favoriteIds || favoriteIds?.length === 0));
 
   return (
     <UserContext.Provider
@@ -60,7 +63,7 @@ const App = () => {
       }}
     >
       <div className="h-screen flex flex-col">
-        <Navbar />
+        <Nav />
 
         {isLoading ? (
           <>
@@ -85,6 +88,9 @@ const App = () => {
             </Route>
             <Route exact path="/my-account">
               <MyAccount />
+            </Route>
+            <Route exact path="/blog">
+              <div>there is no blog, lol</div>
             </Route>
             <Route exact path="/login">
               <UserAccess />
