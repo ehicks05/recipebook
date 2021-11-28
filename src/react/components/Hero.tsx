@@ -11,7 +11,7 @@ const Hero: FunctionComponent<IProps> = ({
   subtitle,
   children,
 }: IProps) => (
-  <section className="bg-gray-100 dark:bg-gray-800">
+  <section className="bg-gray-50 dark:bg-gray-800">
     <div className="max-w-screen-xl mx-auto px-4 py-6">
       <div className="">
         {title && (

@@ -71,7 +71,7 @@ function RecipeCard({
             />
             <CardFooterItem
               title="Difficulty"
-              icon={<IoIosFitness size="2em" color="lightgray" />}
+              icon={<IoIosFitness size="2em" color="gray" />}
               value={difficulty}
             />
           </footer>

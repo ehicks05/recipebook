@@ -16,7 +16,10 @@ const Button: FC<IProps> = ({
   return (
     <button
       type={props.type || 'button'}
-      className={`px-2 py-1 rounded-sm border border-gray-500 hover:border-gray-400 dark:bg-gray-700 dark:text-gray-200 ${className}`}
+      disabled={props.disabled || loading}
+      className={`px-3 py-2 rounded-sm border border-gray-500 hover:border-gray-400 dark:bg-gray-700 dark:text-gray-200 ${
+        loading ? 'opacity-50' : ''
+      } ${className}`}
       {...props}
     >
       <div className="flex items-center gap-2">

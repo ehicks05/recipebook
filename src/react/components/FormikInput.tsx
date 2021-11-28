@@ -7,18 +7,19 @@ export interface IMyInputProps
   label?: string;
   leftIcon?: JSX.Element;
   grow?: boolean;
+  containerClassName?: string;
 }
 
 const MyInput = ({
   className,
   label,
   leftIcon,
-  grow,
+  containerClassName,
   ...props
 }: IMyInputProps) => {
   const [field, meta] = useField(props);
   return (
-    <div className={`${grow ? 'flex-grow' : ''}`}>
+    <div className={`w-full ${containerClassName}`}>
       {label && (
         <label className="" htmlFor={props.id || props.name}>
           {label}
@@ -27,7 +28,7 @@ const MyInput = ({
       <div>
         <input
           type={props.type || 'text'}
-          className={`${grow ? 'w-full' : ''} ${className} ${
+          className={`w-full ${className} ${
             meta.touched && meta.error ? 'border-red-600' : ''
           }`}
           {...field}
@@ -53,6 +54,7 @@ const MyHiddenInput = ({ ...props }: IMyHiddenInputProps) => {
 };
 
 interface IMyTextAreaProps {
+  // extends React.TextareaHTMLAttributes<HTMLTextAreaElement>
   id?: string;
   name: string;
   label?: string;
@@ -62,21 +64,23 @@ interface IMyTextAreaProps {
 const MyTextArea = ({ label, ...props }: IMyTextAreaProps) => {
   const [field, meta] = useField(props);
   return (
-    <div className="field">
+    <div className="w-full">
       {label && (
         <label className="label" htmlFor={props.id || props.name}>
           {label}
         </label>
       )}
-      <div className="control">
+      <div className="">
         <TextareaAutosize
-          className={`${meta.touched && meta.error ? 'is-danger' : ''}`}
+          className={`w-full ${
+            meta.touched && meta.error ? 'border-red-600' : ''
+          }`}
           rows={1}
           {...field}
           {...props}
         />
         {meta.touched && meta.error ? (
-          <div className="help is-danger">{meta.error}</div>
+          <div className="text-red-600">{meta.error}</div>
         ) : null}
       </div>
     </div>

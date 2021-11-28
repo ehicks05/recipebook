@@ -24,7 +24,7 @@ import Container from '../../components/Container';
 import Button from '../../components/Button';
 
 interface IProps {
-  fetchRecipes: () => void;
+  fetchRecipes: () => Promise<void>;
   recipes?: IRecipe[];
 }
 
@@ -43,20 +43,19 @@ function RecipeForm({ fetchRecipes, recipes }: IProps) {
         <Formik
           initialValues={recipe || DEFAULT_RECIPE}
           validationSchema={RECIPE_SCHEMA}
-          onSubmit={(values, { setSubmitting }) => {
+          onSubmit={async (values, { setSubmitting }) => {
             const path = recipe ? `/recipe/${recipe.id}` : '/recipe';
             const method = recipe ? 'PUT' : 'POST';
-            authFetch(path, {
+            const response = await authFetch(path, {
               method,
               body: JSON.stringify(values),
               headers: {
                 'Content-Type': 'application/json',
               },
-            }).then(response => {
-              fetchRecipes();
-              setSubmitting(false);
-              if (!recipe) history.push(`/edit-recipe/${response.id}`);
             });
+            await fetchRecipes();
+            setSubmitting(false);
+            if (!recipe) history.push(`/edit-recipe/${response.id}`);
           }}
         >
           {({ values, setFieldValue, isValid, isSubmitting }) => (
@@ -84,7 +83,7 @@ function RecipeForm({ fetchRecipes, recipes }: IProps) {
 
                   <div className="flex">
                     <MyInput
-                      className="w-20"
+                      containerClassName=""
                       type="number"
                       name="cookingTime"
                       label="Time"
@@ -117,25 +116,69 @@ function RecipeForm({ fetchRecipes, recipes }: IProps) {
                     </div>
                   </div>
                 </div>
-                <div className="md:col-span-3">
+                <div className="md:col-span-2">
                   <h2 className="text-lg font-semibold">Ingredients</h2>
                   <FieldArray name="ingredients">
                     {({ remove, push }) => (
-                      <div className="flex flex-col gap-2 w-full">
+                      <div className="flex flex-col gap-2">
                         {values.ingredients.map((ingredient, index) => (
-                          <div key={ingredient.name} className="flex w-full">
-                            <MyInput
-                              className="w-20"
-                              name={`ingredients.${index}.quantity`}
-                              placeholder="Quantity"
+                          <div key={ingredient.index} className="flex flex-col">
+                            <MyHiddenInput
+                              name={`ingredients.${index}.index`}
                             />
-                            <MySelect name={`ingredients.${index}.unit`}>
-                              {UNIT_OPTIONS}
-                            </MySelect>
+                            <div className="flex items-start">
+                              <MyInput
+                                className="w-20"
+                                name={`ingredients.${index}.quantity`}
+                                placeholder="Quantity"
+                              />
+                              <MySelect name={`ingredients.${index}.unit`}>
+                                {UNIT_OPTIONS}
+                              </MySelect>
+                              <Button
+                                onClick={e => {
+                                  e.preventDefault();
+                                  remove(index);
+                                }}
+                              >
+                                <MdDelete />
+                              </Button>
+                            </div>
                             <MyInput
                               grow
                               name={`ingredients.${index}.name`}
                               placeholder="Name"
+                            />
+                          </div>
+                        ))}
+                        <div>
+                          <Button
+                            onClick={() =>
+                              push({
+                                ...DEFAULT_INGREDIENT,
+                                index: values.ingredients.length,
+                              })
+                            }
+                          >
+                            <FaPlus />
+                          </Button>
+                        </div>
+                      </div>
+                    )}
+                  </FieldArray>
+                </div>
+                <div className="md:col-span-3">
+                  <h2 className="text-lg font-semibold">Directions</h2>
+                  <FieldArray name="directions">
+                    {({ remove, push }) => (
+                      <div className="flex flex-col gap-2">
+                        {values.directions.map((direction, index) => (
+                          <div key={direction.index} className="flex">
+                            <div className="">{index + 1}.</div>
+                            <MyHiddenInput name={`directions.${index}.index`} />
+                            <MyTextArea
+                              name={`directions.${index}.text`}
+                              placeholder="Description"
                             />
                             <Button
                               onClick={e => {
@@ -148,62 +191,20 @@ function RecipeForm({ fetchRecipes, recipes }: IProps) {
                           </div>
                         ))}
                         <div>
-                          <Button onClick={() => push(DEFAULT_INGREDIENT)}>
+                          <Button
+                            onClick={() =>
+                              push({
+                                ...DEFAULT_DIRECTION,
+                                index: values.directions.length,
+                              })
+                            }
+                          >
                             <FaPlus />
                           </Button>
                         </div>
                       </div>
                     )}
                   </FieldArray>
-                </div>
-                <div className="md:col-span-2">
-                  <div className="">
-                    <h2 className="text-lg font-semibold">Directions</h2>
-                    <FieldArray name="directions">
-                      {({ remove, push }) => (
-                        <div className="flex flex-col gap-2">
-                          {values.directions.map((direction, index) => (
-                            <div key={direction.text} className="flex gap-2">
-                              <div className="">
-                                <div className="control">{index + 1}.</div>
-                                <MyHiddenInput
-                                  name={`directions.${index}.index`}
-                                />
-                              </div>
-                              <div className="">
-                                <MyTextArea
-                                  name={`directions.${index}.text`}
-                                  placeholder="Description"
-                                />
-                              </div>
-                              <div className="">
-                                <Button
-                                  onClick={e => {
-                                    e.preventDefault();
-                                    remove(index);
-                                  }}
-                                >
-                                  <MdDelete />
-                                </Button>
-                              </div>
-                            </div>
-                          ))}
-                          <div>
-                            <Button
-                              onClick={() =>
-                                push({
-                                  ...DEFAULT_DIRECTION,
-                                  index: values.directions.length,
-                                })
-                              }
-                            >
-                              <FaPlus />
-                            </Button>
-                          </div>
-                        </div>
-                      )}
-                    </FieldArray>
-                  </div>
                 </div>
               </div>
             </Form>

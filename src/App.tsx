@@ -24,7 +24,7 @@ const App = () => {
     });
   }, [setUser]);
 
-  const fetchRecipes = () => {
+  const fetchRecipes = async () => {
     authFetch('/recipe').then(json => {
       setRecipes(
         json ? json.map(setDefaultDescription).map(sortDirections) : []

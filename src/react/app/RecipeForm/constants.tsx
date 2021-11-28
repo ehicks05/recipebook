@@ -9,6 +9,7 @@ const UNIT_OPTIONS = ['', ...UNITS].map(unit => (
 ));
 
 const DEFAULT_INGREDIENT: IIngredient = {
+  index: '0',
   name: '',
   quantity: '',
   unit: '',
