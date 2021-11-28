@@ -11,6 +11,7 @@ import authFetch from './react/authFetch';
 import { UserContext } from './react/UserContext';
 import UserAccess from './react/app/Login/UserAccess';
 import { setDefaultDescription, sortDirections } from './utils';
+import Hero from './react/components/Hero';
 import Loading from './react/components/Loading';
 
 const App = () => {
@@ -22,7 +23,7 @@ const App = () => {
     authFetch('/me').then(json => {
       if (json) setUser(json);
     });
-  }, [setUser]);
+  }, []);
 
   const fetchRecipes = async () => {
     authFetch('/recipe').then(json => {
@@ -40,15 +41,13 @@ const App = () => {
     fetchRecipes();
     fetchUser();
     fetchFavoriteIds();
-  }, [fetchUser]);
+  }, []);
 
   useEffect(() => {
     fetchFavoriteIds();
   }, [user]);
 
-  if (!recipes || (user && !favoriteIds)) {
-    return <Loading title="Loading..." subtitle="Please wait..." />;
-  }
+  const isLoading = recipes.length === 0 || (user && favoriteIds.length === 0);
 
   return (
     <UserContext.Provider
@@ -60,30 +59,41 @@ const App = () => {
         fetchFavoriteIds,
       }}
     >
-      <Navbar />
+      <div className="h-screen flex flex-col">
+        <Navbar />
 
-      <Switch>
-        <Route exact path="/">
-          <Home recipes={recipes} />
-        </Route>
-        <Route exact path="/recipe/:id">
-          <RecipeLoader recipes={recipes} />
-        </Route>
-        <Route exact path="/edit-recipe/:id">
-          <RecipeForm fetchRecipes={fetchRecipes} recipes={recipes} />
-        </Route>
-        <Route exact path="/create-recipe">
-          <RecipeForm fetchRecipes={fetchRecipes} />
-        </Route>
-        <Route exact path="/my-account">
-          <MyAccount />
-        </Route>
-        <Route exact path="/login">
-          <UserAccess />
-        </Route>
-      </Switch>
+        {isLoading ? (
+          <>
+            <Hero title="Loading" subtitle="Please wait..." />
+            <div className="flex-grow flex items-center justify-center">
+              <Loading />
+            </div>
+          </>
+        ) : (
+          <Switch>
+            <Route exact path="/">
+              <Home recipes={recipes} />
+            </Route>
+            <Route exact path="/recipe/:id">
+              <RecipeLoader recipes={recipes} />
+            </Route>
+            <Route exact path="/edit-recipe/:id">
+              <RecipeForm fetchRecipes={fetchRecipes} recipes={recipes} />
+            </Route>
+            <Route exact path="/create-recipe">
+              <RecipeForm fetchRecipes={fetchRecipes} />
+            </Route>
+            <Route exact path="/my-account">
+              <MyAccount />
+            </Route>
+            <Route exact path="/login">
+              <UserAccess />
+            </Route>
+          </Switch>
+        )}
 
-      <Footer />
+        <Footer />
+      </div>
     </UserContext.Provider>
   );
 };
