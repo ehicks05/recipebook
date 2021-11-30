@@ -52,11 +52,11 @@ function Recipe({ recipe }: IProps) {
         </div>
         <div className="flex gap-2 p-4">
           {user?.id === recipe.author.id && (
-            <Button>
-              <Link to={`/edit-recipe/${recipe.id}`} title="Edit Recipe">
+            <Link to={`/edit-recipe/${recipe.id}`} title="Edit Recipe">
+              <Button>
                 <BiEdit className="text-2xl" />
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           )}
           <Button
             onClick={() =>

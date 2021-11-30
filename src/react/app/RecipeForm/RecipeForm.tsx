@@ -22,6 +22,7 @@ import {
 import { IRecipe } from '../../types/types';
 import Container from '../../components/Container';
 import Button from '../../components/Button';
+import T from '../../components/T';
 
 interface IProps {
   fetchRecipes: () => Promise<void>;
@@ -72,7 +73,7 @@ function RecipeForm({ fetchRecipes, recipes }: IProps) {
               </div>
               <div className="grid md:grid-cols-7 gap-4">
                 <div className="col-span-2 flex flex-col gap-2">
-                  <h2 className="text-lg font-semibold">Recipe Details</h2>
+                  <T className="text-lg font-semibold">Recipe Details</T>
 
                   <MyInput label="Name" name="name" placeholder="Name" />
                   <MyTextArea
@@ -107,7 +108,9 @@ function RecipeForm({ fetchRecipes, recipes }: IProps) {
                     </MySelect>
                   </div>
                   <div>
-                    <label className="label">Emoji</label>
+                    <label className="label">
+                      <T>Emoji</T>
+                    </label>
                     <div className="control">
                       <EmojiSelector
                         data={{ value: values.emoji }}
@@ -117,7 +120,7 @@ function RecipeForm({ fetchRecipes, recipes }: IProps) {
                   </div>
                 </div>
                 <div className="md:col-span-2">
-                  <h2 className="text-lg font-semibold">Ingredients</h2>
+                  <T className="text-lg font-semibold">Ingredients</T>
                   <FieldArray name="ingredients">
                     {({ remove, push }) => (
                       <div className="flex flex-col gap-2">
@@ -167,13 +170,13 @@ function RecipeForm({ fetchRecipes, recipes }: IProps) {
                   </FieldArray>
                 </div>
                 <div className="md:col-span-3">
-                  <h2 className="text-lg font-semibold">Directions</h2>
+                  <T className="text-lg font-semibold">Directions</T>
                   <FieldArray name="directions">
                     {({ remove, push }) => (
                       <div className="flex flex-col gap-2">
                         {values.directions.map((direction, index) => (
                           <div key={direction.index} className="flex">
-                            <div className="">{index + 1}.</div>
+                            <T className="pr-2">{index + 1}.</T>
                             <MyHiddenInput name={`directions.${index}.index`} />
                             <MyTextArea
                               name={`directions.${index}.text`}

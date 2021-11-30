@@ -1,10 +1,4 @@
-import React, {
-  FormEvent,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 // import { FaEnvelope, FaLock } from 'react-icons/all';
 import authFetch from '../../../authFetch';
 import Button from '../../../components/Button';
@@ -13,6 +7,10 @@ import { UserContext } from '../../../UserContext';
 function LoginForm() {
   const { user, setUser } = useContext(UserContext);
   const [failureMessage, setFailureMessage] = useState<string>('');
+  const [formState, setFormState] = useState({
+    username: '',
+    password: '',
+  });
 
   const fetchUser = useCallback(() => {
     authFetch('/me').then(json => {
@@ -22,18 +20,14 @@ function LoginForm() {
 
   useEffect(fetchUser, [fetchUser]);
 
-  function login(e: FormEvent) {
-    e.preventDefault();
-    const formElement = document.getElementById('loginForm') as HTMLFormElement;
-    const formData = new FormData(formElement);
-
+  function login() {
     setFailureMessage('');
 
     authFetch(
       '/login',
       {
         method: 'POST',
-        body: new URLSearchParams(formData as any),
+        body: new URLSearchParams(formState),
       },
       false
     ).then(response => {
@@ -47,41 +41,29 @@ function LoginForm() {
   return (
     <div>
       {!user && (
-        <form method="POST" action="/" id="loginForm" onSubmit={login}>
-          <div className="field">
-            <div className="control has-icons-left">
-              <input
-                className="input"
-                type="email"
-                placeholder="Username"
-                id="username"
-                name="username"
-              />
-              {/* <span className="icon is-left">
-                <FaEnvelope />
-              </span> */}
-            </div>
-          </div>
+        <div className="flex flex-col">
+          <input
+            type="email"
+            placeholder="Username"
+            value={formState.username}
+            onChange={e =>
+              setFormState({ ...formState, username: e.currentTarget.value })
+            }
+          />
 
-          <div className="field">
-            <div className="control has-icons-left">
-              <input
-                className="input"
-                type="password"
-                placeholder="Password"
-                id="password"
-                name="password"
-                autoComplete="password"
-              />
-              {/* <span className="icon is-left">
-                <FaLock />
-              </span> */}
-            </div>
-          </div>
-          <Button type="submit" className="bg-green-500 text-white">
+          <input
+            type="password"
+            placeholder="Password"
+            autoComplete="password"
+            value={formState.password}
+            onChange={e =>
+              setFormState({ ...formState, password: e.currentTarget.value })
+            }
+          />
+          <Button onClick={() => login()} className="bg-green-500 text-white">
             Log in
           </Button>
-        </form>
+        </div>
       )}
 
       {!user && failureMessage && (

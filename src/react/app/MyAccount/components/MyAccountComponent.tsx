@@ -1,6 +1,7 @@
 import React from 'react';
 import SmallRecipeCard from './SmallRecipeCard';
 import { IRecipe } from '../../../types/types';
+import T from '../../../components/T';
 
 interface IMyAccountComponentType {
   title: string;
@@ -10,7 +11,7 @@ interface IMyAccountComponentType {
 function MyAccountComponent({ title, recipes }: IMyAccountComponentType) {
   return (
     <div>
-      <p className="mb-4 text-lg font-semibold text-center">{title}</p>
+      <T className="mb-4 text-lg font-semibold text-center">{title}</T>
       <div className="flex flex-col gap-4">
         {recipes?.map(recipe => (
           <SmallRecipeCard key={recipe.id} recipe={recipe} />

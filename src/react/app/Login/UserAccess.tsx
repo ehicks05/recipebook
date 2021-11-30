@@ -5,6 +5,7 @@ import SignUpForm from './components/SignUpForm';
 import { UserContext } from '../../UserContext';
 import Container from '../../components/Container';
 import Card from '../../components/Card';
+import T from '../../components/T';
 
 export type AUTH_TAB = 'LOG_IN' | 'SIGN_UP';
 
@@ -38,7 +39,7 @@ function UserAccess() {
       <div className="w-96 mx-auto">
         <Card>
           <div className="mb-4 text-xl font-semibold text-center">
-            {TABS[selectedTab].title}
+            <T>{TABS[selectedTab].title}</T>
           </div>
           {!user && (
             <div className="flex gap-4 mb-4">
@@ -46,11 +47,13 @@ function UserAccess() {
                 return (
                   <a
                     className={`cursor-pointer ${
-                      id === selectedTab ? 'border-b-2  border-blue-500' : ''
+                      id === selectedTab
+                        ? 'font-semibold border-b-2 border-blue-500'
+                        : ''
                     }`}
                     onClick={() => setSelectedTab(id as AUTH_TAB)}
                   >
-                    {tab.name}
+                    <T>{tab.name}</T>
                   </a>
                 );
               })}

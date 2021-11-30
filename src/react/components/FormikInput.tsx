@@ -1,6 +1,7 @@
 import React from 'react';
 import { useField } from 'formik';
 import TextareaAutosize from 'react-textarea-autosize';
+import T from './T';
 
 export interface IMyInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -21,13 +22,13 @@ const MyInput = ({
     <div className={`w-full ${containerClassName}`}>
       {label && (
         <label className="" htmlFor={props.id || props.name}>
-          {label}
+          <T>{label}</T>
         </label>
       )}
       <div>
         <input
           type={props.type || 'text'}
-          className={`w-full ${className} ${
+          className={`w-full dark:bg-gray-700 dark:text-gray-100 ${className} ${
             meta.touched && meta.error ? 'border-red-600' : ''
           }`}
           {...field}
@@ -66,12 +67,12 @@ const MyTextArea = ({ label, ...props }: IMyTextAreaProps) => {
     <div className="w-full">
       {label && (
         <label className="label" htmlFor={props.id || props.name}>
-          {label}
+          <T>{label}</T>
         </label>
       )}
       <div className="">
         <TextareaAutosize
-          className={`w-full ${
+          className={`w-full dark:bg-gray-700 dark:text-gray-100 ${
             meta.touched && meta.error ? 'border-red-600' : ''
           }`}
           rows={1}
@@ -99,12 +100,16 @@ const MySelect = ({ label, ...props }: IMySelectProps) => {
     <div className="field">
       {label && (
         <label className="label" htmlFor={props.id || props.name}>
-          {label}
+          <T>{label}</T>
         </label>
       )}
       <div className="control">
         <div className="">
-          <select {...field} {...props}>
+          <select
+            className="dark:bg-gray-700 dark:text-gray-100"
+            {...field}
+            {...props}
+          >
             {props.children}
           </select>
         </div>

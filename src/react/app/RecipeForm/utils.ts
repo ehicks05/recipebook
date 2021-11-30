@@ -1,16 +1,15 @@
 import Fraction from 'fraction.js';
 
 const validateQuantity = (quantity: string | undefined) => {
-  let isValid = false;
+  if (!quantity) return false;
   try {
-    console.log(
-      `fraction.js: ${quantity} is ${quantity && new Fraction(quantity)}`
-    );
-    isValid = true;
+    // eslint-disable-next-line no-new
+    new Fraction(quantity);
+    return true;
   } catch (e) {
     // noop
   }
-  return isValid;
+  return false;
 };
 
 export { validateQuantity };
