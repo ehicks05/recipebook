@@ -2,7 +2,7 @@
 import React, { Fragment, useContext } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { HiMenu, HiUserCircle, HiX } from 'react-icons/hi';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import authFetch from '../../authFetch';
 import { UserContext } from '../../UserContext';
 
@@ -12,7 +12,7 @@ function classNames(...classes: string[]) {
 
 export default function Example() {
   const { user, setUser } = useContext(UserContext);
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
 
   const navigation = [
@@ -31,7 +31,7 @@ export default function Example() {
   function logout() {
     authFetch('/logout', undefined, false).then(() => {
       setUser(undefined);
-      history.push('/');
+      navigate('/');
     });
   }
   const loggedOutMenuItems = (
@@ -156,7 +156,7 @@ export default function Example() {
               {navigation.map(item => (
                 <a
                   key={item.name}
-                  onClick={() => history.push(item.href)}
+                  onClick={() => navigate(item.href)}
                   className={classNames(
                     item.current
                       ? 'bg-gray-900 text-white'

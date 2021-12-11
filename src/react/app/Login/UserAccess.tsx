@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import LoginForm from './components/LoginForm';
 import SignUpForm from './components/SignUpForm';
 import { UserContext } from '../../UserContext';
@@ -13,6 +13,7 @@ function UserAccess() {
   const [selectedTab, setSelectedTab] = useState<AUTH_TAB>('LOG_IN');
   const [accessMessage, setAccessMessage] = useState<string>('');
   const { user } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const TABS = {
     LOG_IN: {
@@ -32,7 +33,7 @@ function UserAccess() {
     },
   };
 
-  if (user) return <Redirect to="/" />;
+  if (user) navigate('/');
 
   return (
     <Container>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { IRecipe } from '../../../types/types';
 
 interface IRecipeLinkProps {
@@ -10,14 +10,14 @@ function RecipeLink(props: IRecipeLinkProps) {
   const { recipe } = props;
   return (
     <li>
-      <NavLink to={`/recipe/${recipe.id}`} activeClassName="is-active">
+      <Link to={`/recipe/${recipe.id}`}>
         <span className="panel-icon">
           <span className="" aria-hidden="true">
             {recipe.emoji}
           </span>
         </span>
         {recipe.name}
-      </NavLink>
+      </Link>
     </li>
   );
 }

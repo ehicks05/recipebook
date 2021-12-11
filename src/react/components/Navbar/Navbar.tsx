@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../UserContext';
 import authFetch from '../../authFetch';
 import Container from '../Container';
@@ -8,12 +8,12 @@ import T from '../T';
 function Navbar() {
   const { user, setUser } = useContext(UserContext);
   const [isActive, setIsActive] = useState(false);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   function logout() {
     authFetch('/logout', undefined, false).then(() => {
       setUser(undefined);
-      history.push('/');
+      navigate('/');
     });
   }
 

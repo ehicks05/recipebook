@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { FaPlus, MdDelete } from 'react-icons/all';
 
 import { FieldArray, Form, Formik } from 'formik';
@@ -30,7 +30,7 @@ interface IProps {
 }
 
 function RecipeForm({ fetchRecipes, recipes }: IProps) {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
 
   const recipe = id ? recipes?.find(r => r.id === Number(id)) : undefined;
@@ -56,7 +56,7 @@ function RecipeForm({ fetchRecipes, recipes }: IProps) {
             });
             await fetchRecipes();
             setSubmitting(false);
-            if (!recipe) history.push(`/edit-recipe/${response.id}`);
+            if (!recipe) navigate(`/edit-recipe/${response.id}`);
           }}
         >
           {({ values, setFieldValue, isValid, isSubmitting }) => (

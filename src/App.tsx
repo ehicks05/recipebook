@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import RecipeLoader from './react/app/Recipe/RecipeLoader';
 import Footer from './react/components/Footer';
 import { IRecipe, IUser } from './react/types/types';
@@ -73,29 +73,26 @@ const App = () => {
             </div>
           </>
         ) : (
-          <Switch>
-            <Route exact path="/">
-              <Home recipes={recipes} />
-            </Route>
-            <Route exact path="/recipe/:id">
-              <RecipeLoader recipes={recipes} />
-            </Route>
-            <Route exact path="/edit-recipe/:id">
-              <RecipeForm fetchRecipes={fetchRecipes} recipes={recipes} />
-            </Route>
-            <Route exact path="/create-recipe">
-              <RecipeForm fetchRecipes={fetchRecipes} />
-            </Route>
-            <Route exact path="/my-account">
-              <MyAccount />
-            </Route>
-            <Route exact path="/blog">
-              <div>there is no blog, lol</div>
-            </Route>
-            <Route exact path="/login">
-              <UserAccess />
-            </Route>
-          </Switch>
+          <Routes>
+            <Route path="/" element={<Home recipes={recipes} />} />
+            <Route
+              path="recipe/:id"
+              element={<RecipeLoader recipes={recipes} />}
+            />
+            <Route
+              path="edit-recipe/:id"
+              element={
+                <RecipeForm fetchRecipes={fetchRecipes} recipes={recipes} />
+              }
+            />
+            <Route
+              path="create-recipe"
+              element={<RecipeForm fetchRecipes={fetchRecipes} />}
+            />
+            <Route path="my-account" element={<MyAccount />} />
+            <Route path="blog" element={<div>there is no blog, lol</div>} />
+            <Route path="login" element={<UserAccess />} />
+          </Routes>
         )}
 
         <Footer />
