@@ -72,7 +72,7 @@ export default function Example() {
   ));
 
   return (
-    <Disclosure as="nav" className="bg-gray-800">
+    <Disclosure as="nav" className="bg-gray-900">
       {({ open }) => (
         <>
           <div className="max-w-screen-xl mx-auto px-4">
