@@ -1,6 +1,8 @@
 import React, { useReducer, useState } from 'react';
+import { MdLock, MdMail, MdPerson } from 'react-icons/md';
 import authFetch from '../../../authFetch';
 import Button from '../../../components/Button';
+import { Input } from '../../../components/FormikInput';
 import { AUTH_TAB } from '../UserAccess';
 
 interface IErrorMessage {
@@ -92,29 +94,30 @@ function SignUpForm({ setSelectedTab, setAccessMessage }: IProps) {
   }
 
   return (
-    <div>
+    <div className="flex flex-col gap-1">
       <div className="flex">
-        <input
+        <Input
           type="email"
           placeholder="Username"
           onChange={e => {
             setFormState({ ...formState, email: e.currentTarget.value });
             validateEmail();
           }}
+          LeftIcon={MdMail}
         />
         <Button tabIndex={-1} className="" title="This will be your login">
           ?
         </Button>
       </div>
-      <p className="help has-text-danger">{errorMessageState.emailMessage}</p>
 
       <div className="flex">
-        <input
+        <Input
           type="text"
           placeholder="Display Name"
           onChange={e => {
             setFormState({ ...formState, displayName: e.currentTarget.value });
           }}
+          LeftIcon={MdPerson}
         />
         <Button tabIndex={-1} title="This is how you will be known on the site">
           ?
@@ -122,18 +125,19 @@ function SignUpForm({ setSelectedTab, setAccessMessage }: IProps) {
       </div>
 
       <div className="flex">
-        <input
+        <Input
           type="password"
           placeholder="Password"
           onChange={e => {
             setFormState({ ...formState, password: e.currentTarget.value });
             validatePasswords();
           }}
+          LeftIcon={MdLock}
         />
       </div>
 
       <div className="flex">
-        <input
+        <Input
           type="password"
           placeholder="Confirm password"
           onChange={e => {
@@ -143,11 +147,12 @@ function SignUpForm({ setSelectedTab, setAccessMessage }: IProps) {
             });
             validatePasswords();
           }}
+          LeftIcon={MdLock}
         />
         <p className="text-red-500">{errorMessageState.passwordMessage}</p>
       </div>
 
-      <Button onClick={() => signUp()} className="bg-green-500 text-white">
+      <Button onClick={() => signUp()} className="mt-4 bg-green-500 text-white">
         Sign Up
       </Button>
     </div>

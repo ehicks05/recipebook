@@ -1,6 +1,7 @@
 import React from 'react';
 import { useField } from 'formik';
 import TextareaAutosize from 'react-textarea-autosize';
+import { IconType } from 'react-icons';
 import T from './T';
 
 export interface IMyInputProps
@@ -39,6 +40,30 @@ const MyInput = ({
           <div className="text-red-600">{meta.error}</div>
         ) : null}
       </div>
+    </div>
+  );
+};
+
+export interface IInputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
+  LeftIcon?: IconType;
+}
+
+const Input = ({ className, LeftIcon, ...props }: IInputProps) => {
+  return (
+    <div
+      className={`flex items-center w-full dark:bg-gray-700 dark:text-gray-100 ${className}`}
+    >
+      {LeftIcon && (
+        <div className="p-2">
+          <LeftIcon className="text-lg text-gray-400" />
+        </div>
+      )}
+      <input
+        type={props.type || 'text'}
+        className={`w-full dark:bg-gray-700 dark:text-gray-100 border-none ${className}`}
+        {...props}
+      />
     </div>
   );
 };
@@ -121,4 +146,4 @@ const MySelect = ({ label, ...props }: IMySelectProps) => {
   );
 };
 
-export { MyInput, MyHiddenInput, MyTextArea, MySelect };
+export { Input, MyInput, MyHiddenInput, MyTextArea, MySelect };

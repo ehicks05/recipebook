@@ -1,6 +1,8 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
+import { MdLock, MdMail } from 'react-icons/md';
 import authFetch from '../../../authFetch';
 import Button from '../../../components/Button';
+import { Input } from '../../../components/FormikInput';
 import { UserContext } from '../../../UserContext';
 
 function LoginForm() {
@@ -40,17 +42,19 @@ function LoginForm() {
   return (
     <div>
       {!user && (
-        <div className="flex flex-col">
-          <input
+        <div className="flex flex-col gap-1">
+          <Input
             type="email"
             placeholder="Username"
+            autoComplete="email"
             value={formState.username}
             onChange={e =>
               setFormState({ ...formState, username: e.currentTarget.value })
             }
+            LeftIcon={MdMail}
           />
 
-          <input
+          <Input
             type="password"
             placeholder="Password"
             autoComplete="password"
@@ -58,8 +62,12 @@ function LoginForm() {
             onChange={e =>
               setFormState({ ...formState, password: e.currentTarget.value })
             }
+            LeftIcon={MdLock}
           />
-          <Button onClick={() => login()} className="bg-green-500 text-white">
+          <Button
+            onClick={() => login()}
+            className="mt-4 bg-green-500 text-white"
+          >
             Log in
           </Button>
         </div>
