@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import { FaMinus, FaPlus } from 'react-icons/all';
+import { FaMinus, FaPlus } from 'react-icons/fa';
 import { Ingredient } from '.';
 import Button from '../../../components/Button';
 import T from '../../../components/T';

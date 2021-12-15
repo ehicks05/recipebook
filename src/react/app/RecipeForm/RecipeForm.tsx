@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { FaPlus, MdDelete } from 'react-icons/all';
+import { FaPlus, FaMinus } from 'react-icons/fa';
 
 import { FieldArray, Form, Formik } from 'formik';
 import Hero from '../../components/Hero';
@@ -144,7 +144,7 @@ function RecipeForm({ fetchRecipes, recipes }: IProps) {
                                   remove(index);
                                 }}
                               >
-                                <MdDelete />
+                                <FaMinus />
                               </Button>
                             </div>
                             <MyInput
@@ -188,7 +188,7 @@ function RecipeForm({ fetchRecipes, recipes }: IProps) {
                                 remove(index);
                               }}
                             >
-                              <MdDelete />
+                              <FaMinus />
                             </Button>
                           </div>
                         ))}

@@ -1,5 +1,4 @@
 import React, { useReducer, useState } from 'react';
-// import { FaEnvelope, FaLock } from 'react-icons/all';
 import authFetch from '../../../authFetch';
 import Button from '../../../components/Button';
 import { AUTH_TAB } from '../UserAccess';

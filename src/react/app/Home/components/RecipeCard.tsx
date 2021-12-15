@@ -1,36 +1,18 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { FcClock, IoIosFitness } from 'react-icons/all';
+import { FcClock } from 'react-icons/fc';
 import { IRecipe } from '../../../types/types';
 import FavoriteButton from '../../../components/FavoriteButton';
 import { UserContext } from '../../../UserContext';
 import Card from '../../../components/Card';
 import T from '../../../components/T';
 
-interface ICardFooterItemProps {
-  title: string;
-  icon: JSX.Element;
-  value: string | number;
-}
-
-function CardFooterItem({ title, icon, value }: ICardFooterItemProps) {
-  return (
-    <div
-      className="flex gap-2 justify-center items-center w-full"
-      title={title}
-    >
-      <div>{icon}</div>
-      <div className="font-semibold dark:text-gray-200">{value}</div>
-    </div>
-  );
-}
-
 interface IRecipeCardProps {
   recipe: IRecipe;
 }
 
 function RecipeCard({
-  recipe: { id, emoji, name, author, description, cookingTime, difficulty },
+  recipe: { id, emoji, name, author, description, cookingTime },
 }: IRecipeCardProps) {
   const { user, favoriteIds, fetchFavoriteIds } = useContext(UserContext);
 
@@ -46,6 +28,21 @@ function RecipeCard({
                 {author.displayName}
               </div>
             </div>
+          </div>
+
+          <T className="line-clamp-5">{description}</T>
+        </div>
+
+        <footer className="flex pt-4 border-t border-opacity-25">
+          <div className="flex gap-2 justify-center items-center w-full">
+            <div>
+              <FcClock size="2em" />
+            </div>
+            <div className="font-semibold dark:text-gray-200">
+              {cookingTime}
+            </div>
+          </div>
+          <div className="flex gap-2 justify-center items-center w-full">
             {user && (
               <div onClick={e => e.preventDefault()}>
                 <FavoriteButton
@@ -56,21 +53,6 @@ function RecipeCard({
               </div>
             )}
           </div>
-
-          <T className="line-clamp-5">{description}</T>
-        </div>
-
-        <footer className="flex pt-4 border-t border-opacity-25">
-          <CardFooterItem
-            title="Time"
-            icon={<FcClock size="2em" />}
-            value={cookingTime}
-          />
-          <CardFooterItem
-            title="Difficulty"
-            icon={<IoIosFitness size="2em" color="gray" />}
-            value={difficulty}
-          />
         </footer>
       </Card>
     </Link>

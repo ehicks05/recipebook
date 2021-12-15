@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { BiDownload, BiEdit } from 'react-icons/all';
+import { BiDownload, BiEdit } from 'react-icons/bi';
 import Hero from '../../components/Hero';
 import { IRecipe } from '../../types/types';
 import Directions from './Components/Directions';

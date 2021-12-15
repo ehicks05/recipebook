@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { FaHeart, FaRegHeart } from 'react-icons/all';
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
 
 import { IconContext } from 'react-icons';
 import authFetch from '../authFetch';

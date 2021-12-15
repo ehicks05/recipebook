@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { CgSpinner } from 'react-icons/all';
+import { CgSpinner } from 'react-icons/cg';
 
 interface IProps {
   className?: string;
