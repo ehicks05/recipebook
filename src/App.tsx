@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import RecipeLoader from './react/app/Recipe/RecipeLoader';
 import Footer from './react/components/Footer';
@@ -33,9 +33,9 @@ const App = () => {
     });
   };
 
-  function fetchFavoriteIds() {
+  const fetchFavoriteIds = useCallback(() => {
     authFetch('/recipe/favoriteIds').then(json => setFavoriteIds(json));
-  }
+  }, []);
 
   useEffect(() => {
     fetchRecipes();
@@ -52,16 +52,19 @@ const App = () => {
     recipes?.length === 0 ||
     (user && (!favoriteIds || favoriteIds?.length === 0));
 
+  const context = useMemo(
+    () => ({
+      user,
+      setUser,
+      favoriteIds,
+      setFavoriteIds,
+      fetchFavoriteIds,
+    }),
+    [user, favoriteIds]
+  );
+
   return (
-    <UserContext.Provider
-      value={{
-        user,
-        setUser,
-        favoriteIds,
-        setFavoriteIds,
-        fetchFavoriteIds,
-      }}
-    >
+    <UserContext.Provider value={context}>
       <div className="h-screen flex flex-col">
         <Nav />
 
