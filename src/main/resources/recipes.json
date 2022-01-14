@@ -1263,5 +1263,37 @@
       }
     ],
     "emoji": "🍝"
+  },
+  {
+    "name": "Honey Garlic Glazed Salmon",
+    "description": "This Honey Garlic Salmon is pan seared and topped with a sweet and savory sauce of garlic, ginger, honey and soy sauce.",
+    "difficulty": 2,
+    "cookingTime": "25",
+    "servings": 6,
+    "ingredients": [
+      { "quantity": "6", "unit": "", "name": "salmon filets 4-6oz" },
+      { "quantity": "3/4", "unit": "tsp", "name": "salt" },
+      { "quantity": "3/4", "unit": "tsp", "name": "pepper" },
+      { "quantity": "3/4", "unit": "tsp", "name": "paprika" },
+      { "quantity": "6", "unit": "tbsp", "name": "butter" },
+      { "quantity": "6", "unit": "", "name": "cloves garlic, minced" },
+      { "quantity": "9", "unit": "tbsp", "name": "honey (or less)" },
+      { "quantity": "3", "unit": "tbsp", "name": "soy sauce" },
+      { "quantity": "4 1/2", "unit": "tbsp", "name": "sriracha" },
+      { "quantity": "3", "unit": "tbsp", "name": "lemon juice" },
+      { "quantity": "3", "unit": "tbsp", "name": "chives, chopped" }
+    ],
+    "directions": [
+      {
+        "text": "Season the salmon fillets with salt, pepper, and paprika. Place them in a large pan over medium heat. Cook for 4 minutes per side, taking care when flipping not to break the fillet. Remove from pan and set aside."
+      },
+      {
+        "text": "Add the butter, garlic, honey, soy sauce, sriracha, and lemon juice in the pan. Whisk to combine. Heat over medium high heat until bubbly and slightly reduced, about 5 minutes."
+      },
+      {
+        "text": "Add the salmon back to the pan. Spoon the bubbling sauce over the top of the fillets. Cook for 2-3 mins, until heated through."
+      }
+    ],
+    "emoji": "🐟"
   }
 ]
