@@ -56,6 +56,9 @@ public class RecipeService {
     }
 
     public Recipe createRecipe(User user, Recipe recipe) {
+        if (user == null) {
+            return null;
+        }
         recipe.setAuthor(user);
         return recipeRepository.save(recipe);
     }
