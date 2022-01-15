@@ -1188,5 +1188,112 @@
       }
     ],
     "emoji": "🥘"
+  },
+  {
+    "name": "Snickerdoodle Cookies",
+    "difficulty": 2,
+    "ingredients": [
+      { "quantity": "1", "unit": "", "name": "stick soft butter" },
+      { "quantity": "3/4", "unit": "cup", "name": "sugar" },
+      { "quantity": "1", "unit": "", "name": "egg" },
+      { "quantity": "2", "unit": "cup", "name": "flour" },
+      { "quantity": "1 1/2", "unit": "tsp", "name": "baking powder" },
+      { "quantity": "1/2", "unit": "cup", "name": "milk" },
+      { "quantity": "1/2", "unit": "tsp", "name": "vanilla" },
+      { "quantity": "2", "unit": "tsbp", "name": "cinnamon" },
+      { "quantity": "2", "unit": "tsp", "name": "sugar (combine w/ cinnamon)" }
+    ],
+    "cookingTime": "25",
+    "servings": 6,
+    "directions": [
+      { "text": "Preheat oven to 325f." },
+      { "text": "Beat butter and sugar until creamy." },
+      { "text": "Add egg, vanilla, milk." },
+      { "text": "Mix flour, baking powder, and salt, then add to butter." },
+      { "text": "Drop onto cookie sheet." },
+      { "text": "Sprinkle with cinnamon-sugar." },
+      { "text": "Bake for 15 minutes." }
+    ],
+    "emoji": "🍪"
+  },
+  {
+    "name": "Pasta alla Norcina",
+    "difficulty": 2,
+    "ingredients": [
+      {
+        "quantity": "1",
+        "unit": "lb",
+        "name": "rigatoni or other tubular pasta"
+      },
+      { "quantity": "8", "unit": "oz", "name": "mushroom, diced" },
+      { "quantity": "1", "unit": "lb", "name": "bulk mild italian sausage" },
+      { "quantity": "1/4", "unit": "cup", "name": "olive oil" },
+      { "quantity": "1", "unit": "", "name": "small onion, diced" },
+      { "quantity": "3", "unit": "", "name": "cloves garlic" },
+      { "quantity": "1/2", "unit": "cup", "name": "dry white wine" },
+      { "quantity": "1 1/2", "unit": "cup", "name": "heavy cream" },
+      { "quantity": "2", "unit": "cup", "name": "reserved pasta water" },
+      { "quantity": "1", "unit": "", "name": "pinch nutmeg" },
+      { "quantity": "3/4", "unit": "cup", "name": "pecorino romano, grated" },
+      { "quantity": "1", "unit": "", "name": "salt and pepper to taste" }
+    ],
+    "cookingTime": "30",
+    "servings": 6,
+    "directions": [
+      {
+        "text": "Bring a large pot of salted (2 tablespoons kosher salt) water to boil."
+      },
+      {
+        "text": "Heat a large pan to medium heat then add in the olive oil and sausage. Brown the sausage (about 5-7 minutes) then make some room in the pan and add the mushrooms and continue to cook until they brown as well."
+      },
+      {
+        "text": "Once the sausage and mushrooms are brown add the onion and garlic. After 2 minutes remove the garlic from the pan and discard (or leave in). Continue cooking for a few more minutes until the onions are soft."
+      },
+      {
+        "text": "Turn heat to medium-high and add the wine. Cook for a minute to reduce the wine by about half. Scrape the bottom of the pan with a wooden spoon to remove all the brown bits. At this time begin cooking pasta to a bit less than al dente."
+      },
+      {
+        "text": "Add the cream and bring sauce to a simmer while stirring. Once simmering turn the heat down to low."
+      },
+      {
+        "text": "Once pasta is almost al dente add it to the sauce and mix to coat. Turn heat to medium. Add a bit of pasta water if needed to loosen things up. Continue to cook, stirring frequently, until the pasta is perfectly al dente."
+      },
+      {
+        "text": "Turn the heat off and remove the pan from the heat. Add the Pecorino, mix well, then taste test. Season with a good amount of black pepper, a pinch of nutmeg, and salt to taste. Serve with grated Pecorino. Enjoy!"
+      }
+    ],
+    "emoji": "🍝"
+  },
+  {
+    "name": "Honey Garlic Glazed Salmon",
+    "description": "This Honey Garlic Salmon is pan seared and topped with a sweet and savory sauce of garlic, ginger, honey and soy sauce.",
+    "difficulty": 2,
+    "cookingTime": "25",
+    "servings": 6,
+    "ingredients": [
+      { "quantity": "6", "unit": "", "name": "salmon filets 4-6oz" },
+      { "quantity": "3/4", "unit": "tsp", "name": "salt" },
+      { "quantity": "3/4", "unit": "tsp", "name": "pepper" },
+      { "quantity": "3/4", "unit": "tsp", "name": "paprika" },
+      { "quantity": "6", "unit": "tbsp", "name": "butter" },
+      { "quantity": "6", "unit": "", "name": "cloves garlic, minced" },
+      { "quantity": "9", "unit": "tbsp", "name": "honey (or less)" },
+      { "quantity": "3", "unit": "tbsp", "name": "soy sauce" },
+      { "quantity": "4 1/2", "unit": "tbsp", "name": "sriracha" },
+      { "quantity": "3", "unit": "tbsp", "name": "lemon juice" },
+      { "quantity": "3", "unit": "tbsp", "name": "chives, chopped" }
+    ],
+    "directions": [
+      {
+        "text": "Season the salmon fillets with salt, pepper, and paprika. Place them in a large pan over medium heat. Cook for 4 minutes per side, taking care when flipping not to break the fillet. Remove from pan and set aside."
+      },
+      {
+        "text": "Add the butter, garlic, honey, soy sauce, sriracha, and lemon juice in the pan. Whisk to combine. Heat over medium high heat until bubbly and slightly reduced, about 5 minutes."
+      },
+      {
+        "text": "Add the salmon back to the pan. Spoon the bubbling sauce over the top of the fillets. Cook for 2-3 mins, until heated through."
+      }
+    ],
+    "emoji": "🐟"
   }
 ]
