@@ -29,7 +29,7 @@ const MyInput = ({
       <div>
         <input
           type={props.type || 'text'}
-          className={`w-full dark:bg-gray-700 dark:text-gray-100 ${className} ${
+          className={`w-full dark:bg-neutral-700 dark:text-neutral-100 ${className} ${
             meta.touched && meta.error ? 'border-red-600' : ''
           }`}
           {...field}
@@ -37,7 +37,7 @@ const MyInput = ({
         />
         {leftIcon && <span className="">{leftIcon}</span>}
         {meta.touched && meta.error ? (
-          <div className="text-red-600">{meta.error}</div>
+          <div className="text-sm text-red-600">{meta.error}</div>
         ) : null}
       </div>
     </div>
@@ -52,16 +52,16 @@ export interface IInputProps
 const Input = ({ className, LeftIcon, ...props }: IInputProps) => {
   return (
     <div
-      className={`flex items-center w-full dark:bg-gray-700 dark:text-gray-100 ${className}`}
+      className={`flex items-center w-full dark:bg-neutral-700 dark:text-neutral-100 ${className}`}
     >
       {LeftIcon && (
         <div className="p-2">
-          <LeftIcon className="text-lg text-gray-400" />
+          <LeftIcon className="text-lg text-neutral-400" />
         </div>
       )}
       <input
         type={props.type || 'text'}
-        className={`w-full dark:bg-gray-700 dark:text-gray-100 border-none ${className}`}
+        className={`w-full dark:bg-neutral-700 dark:text-neutral-100 border-none ${className}`}
         {...props}
       />
     </div>
@@ -91,13 +91,13 @@ const MyTextArea = ({ label, ...props }: IMyTextAreaProps) => {
   return (
     <div className="w-full">
       {label && (
-        <label className="label" htmlFor={props.id || props.name}>
+        <label className="" htmlFor={props.id || props.name}>
           <T>{label}</T>
         </label>
       )}
       <div className="">
         <TextareaAutosize
-          className={`w-full dark:bg-gray-700 dark:text-gray-100 ${
+          className={`w-full dark:bg-neutral-700 dark:text-neutral-100 ${
             meta.touched && meta.error ? 'border-red-600' : ''
           }`}
           rows={1}
@@ -105,7 +105,7 @@ const MyTextArea = ({ label, ...props }: IMyTextAreaProps) => {
           {...props}
         />
         {meta.touched && meta.error ? (
-          <div className="text-red-600">{meta.error}</div>
+          <div className="-mt-1 text-sm text-red-600">{meta.error}</div>
         ) : null}
       </div>
     </div>
@@ -122,16 +122,16 @@ interface IMySelectProps {
 const MySelect = ({ label, ...props }: IMySelectProps) => {
   const [field, meta] = useField(props);
   return (
-    <div className="field">
+    <div className="w-full">
       {label && (
-        <label className="label" htmlFor={props.id || props.name}>
+        <label className="" htmlFor={props.id || props.name}>
           <T>{label}</T>
         </label>
       )}
-      <div className="control">
+      <div className="">
         <div className="">
           <select
-            className="dark:bg-gray-700 dark:text-gray-100"
+            className="w-full dark:bg-neutral-700 dark:text-neutral-100"
             {...field}
             {...props}
           >
@@ -139,7 +139,7 @@ const MySelect = ({ label, ...props }: IMySelectProps) => {
           </select>
         </div>
         {meta.touched && meta.error ? (
-          <div className="help is-danger">{meta.error}</div>
+          <div className="text-sm text-red-600">{meta.error}</div>
         ) : null}
       </div>
     </div>
