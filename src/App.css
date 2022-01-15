@@ -2,13 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-body {font-family: "Ubuntu", sans-serif}
+body {
+  font-family: 'Ubuntu', sans-serif;
+}
 
 .emoji-picker-react .emoji-categories {
   display: none;
 }
 .emoji-picker-react .emoji-group:before {
   background: #222;
+}
+.emoji-picker-react .emoji-search {
+  margin-top: 1rem;
+  color: #aaa;
+  background: #444;
+  border: 1px solid #777 !important;
 }
 
 /* SCROLLBAR */

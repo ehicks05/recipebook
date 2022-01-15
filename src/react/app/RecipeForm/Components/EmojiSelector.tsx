@@ -23,7 +23,6 @@ function EmojiSelector({ updateEmoji, data }: IProps) {
         onEmojiClick={onEmojiClick}
         disableAutoFocus
         disableSkinTonePicker
-        disableSearchBar
         pickerStyle={{
           width: '100%',
           boxShadow: 'none',
