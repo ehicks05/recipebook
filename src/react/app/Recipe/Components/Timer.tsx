@@ -64,7 +64,7 @@ function Timer({ minutes: inputMinutes }: IProps) {
     <div className="flex">
       <input
         type="text"
-        className={`px-2 py-1 text-xs text-center bg-gray-100 dark:bg-gray-500 dark:text-gray-200 ${
+        className={`px-2 py-1 text-xs text-center bg-neutral-100 dark:bg-neutral-500 dark:text-neutral-200 ${
           expired ? 'bg-red-700' : ''
         }`}
         size={Math.max(displayTime().length - 4, 1)}

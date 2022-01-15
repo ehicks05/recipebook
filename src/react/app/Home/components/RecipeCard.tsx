@@ -23,8 +23,8 @@ function RecipeCard({
           <div className="flex gap-2">
             <figure className="w-16 h-16 text-5xl pt-2">{emoji}</figure>
             <div className="w-full">
-              <div className="font-semibold dark:text-gray-200">{name}</div>
-              <div className="text-xs italic dark:text-gray-200">
+              <div className="font-semibold dark:text-neutral-200">{name}</div>
+              <div className="text-xs italic dark:text-neutral-200">
                 {author.displayName}
               </div>
             </div>
@@ -38,7 +38,7 @@ function RecipeCard({
             <div>
               <FcClock size="2em" />
             </div>
-            <div className="font-semibold dark:text-gray-200">
+            <div className="font-semibold dark:text-neutral-200">
               {cookingTime}
             </div>
           </div>

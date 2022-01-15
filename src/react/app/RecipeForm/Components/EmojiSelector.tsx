@@ -47,7 +47,7 @@ function EmojiSelector({ updateEmoji, data }: IProps) {
     </div>
   ) : (
     <Button
-      className="px-3 py-3 bg-gray-100 dark:bg-gray-800 text-5xl"
+      className="px-3 py-3 bg-neutral-100 dark:bg-neutral-800 text-5xl"
       onClick={() => setIsEditing(true)}
     >
       {data.value}

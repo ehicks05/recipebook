@@ -31,7 +31,7 @@ function RecipePicker({ recipes }: IProps) {
     <div className="flex flex-col gap-2">
       <div className="flex gap-1">
         <input
-          className="px-2 py-1 bg-gray-100 dark:bg-gray-800 dark:text-gray-200"
+          className="px-2 py-1 bg-neutral-100 dark:bg-neutral-800 dark:text-neutral-200"
           value={filterInput}
           onChange={e => setFilterInput(e.target.value.toLowerCase())}
           onKeyPress={e => e.key === 'Enter' && handleAddFilter()}
