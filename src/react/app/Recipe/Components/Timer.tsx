@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import Button from '../../../components/Button';
 
 interface IProps {
   minutes: number;
@@ -36,10 +37,6 @@ function Timer({ minutes: inputMinutes }: IProps) {
     else startTimer();
   }, [paused]);
 
-  function toggleTimer() {
-    setPaused(!paused);
-  }
-
   function reset() {
     setSeconds(60 * inputMinutes);
     setExpired(false);
@@ -64,38 +61,27 @@ function Timer({ minutes: inputMinutes }: IProps) {
   }
 
   return (
-    <div>
-      <div className="field has-addons">
-        <p className="control">
-          <input
-            type="text"
-            className={`input is-small has-text-centered ${
-              expired ? 'is-danger' : ''
-            }`}
-            size={Math.max(displayTime().length - 4, 1)}
-            value={displayTime()}
-            style={{ zIndex: 2 }}
-            onChange={handleSetTime}
-          />
-        </p>
-        <p className="control is-expanded">
-          {!expired && (
-            <button
-              type="button"
-              className="button is-small"
-              onClick={toggleTimer}
-            >
-              {paused ? 'Start' : 'Pause'}
-            </button>
-          )}
+    <div className="flex">
+      <input
+        type="text"
+        className={`px-2 py-1 text-xs text-center bg-neutral-100 dark:bg-neutral-500 dark:text-neutral-200 ${
+          expired ? 'bg-red-700' : ''
+        }`}
+        size={Math.max(displayTime().length - 4, 1)}
+        value={displayTime()}
+        onChange={handleSetTime}
+      />
+      {!expired && (
+        <Button className="text-xs" onClick={() => setPaused(!paused)}>
+          {paused ? 'Start' : 'Pause'}
+        </Button>
+      )}
 
-          {paused && seconds !== inputMinutes * 60 && (
-            <button type="button" className="button is-small" onClick={reset}>
-              Reset
-            </button>
-          )}
-        </p>
-      </div>
+      {paused && seconds !== inputMinutes * 60 && (
+        <Button className="text-xs" onClick={() => reset()}>
+          Reset
+        </Button>
+      )}
     </div>
   );
 }

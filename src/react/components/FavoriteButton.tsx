@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { BsHeart, BsHeartFill } from 'react-icons/all';
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
 
 import { IconContext } from 'react-icons';
 import authFetch from '../authFetch';
@@ -33,9 +33,9 @@ function FavoriteButton({ recipeId, favoriteIds, fetchFavorites }: IProps) {
     <div>
       <IconContext.Provider value={style}>
         {recipeId && favoriteIds.includes(recipeId) ? (
-          <BsHeartFill onClick={removeFavorite} />
+          <FaHeart onClick={removeFavorite} />
         ) : (
-          <BsHeart onClick={saveFavorite} />
+          <FaRegHeart onClick={saveFavorite} />
         )}
       </IconContext.Provider>
     </div>

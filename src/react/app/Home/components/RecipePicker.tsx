@@ -1,108 +1,68 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import Button from '../../../components/Button';
 import { IRecipe } from '../../../types/types';
-import RecipeGrid from './RecipeGrid';
+import RecipeCard from './RecipeCard';
 
 interface IProps {
   recipes: IRecipe[];
 }
 
 function RecipePicker({ recipes }: IProps) {
-  const [recipeFilters, setRecipeFilters] = useState<string[]>([]);
-  const [usableRecipes, setUsableRecipes] = useState(recipes);
+  const [filterInput, setFilterInput] = useState('');
+  const [ingredients, setIngredients] = useState<string[]>([]);
 
-  // handle recipeFilters changing...
-  useEffect(() => {
-    const filteredRecipes = recipes.filter(recipe => {
-      const recipeIngredients = recipe.ingredients
-        .map(x => x.name.toLowerCase())
-        .join();
+  const filteredRecipes = recipes.filter(recipe => {
+    const recipeIngredients = recipe.ingredients
+      .map(x => x.name.toLowerCase())
+      .join();
+    return ingredients.every(recipeFilter =>
+      recipeIngredients.includes(recipeFilter)
+    );
+  });
 
-      let keep = true;
-      recipeFilters.forEach(element => {
-        if (!recipeIngredients.includes(element)) {
-          keep = false;
-        }
-      });
-
-      return keep;
-    });
-
-    setUsableRecipes(filteredRecipes);
-  }, [recipeFilters, recipes]);
-
-  function handleAddRecipeFilter() {
-    const input = document.getElementById(
-      'recipeFilterInput'
-    ) as HTMLFormElement;
-    const newFilter = input.value.toLowerCase();
-    if (newFilter.length > 1 && !recipeFilters.includes(newFilter)) {
-      setRecipeFilters([...recipeFilters, newFilter]);
+  const handleAddFilter = () => {
+    if (!ingredients.includes(filterInput)) {
+      setIngredients([...ingredients, filterInput.toLowerCase()]);
+      setFilterInput('');
     }
-
-    input.value = '';
-  }
-
-  function handleClearRecipeFilter(filter: string) {
-    setRecipeFilters(recipeFilters.filter(f => f !== filter));
-  }
-
-  function handleClearAllRecipeFilters() {
-    setRecipeFilters([]);
-  }
-
-  const filterPills = recipeFilters.map(f => (
-    <span key={f} className="tag is-link">
-      {f}
-      <button
-        type="button"
-        className="delete"
-        onClick={() => handleClearRecipeFilter(f)}
-      />
-    </span>
-  ));
+  };
 
   return (
-    <div>
-      <form
-        onSubmit={e => {
-          e.preventDefault();
-        }}
-      >
-        <div className="control">
-          <div className="field has-addons">
-            <div className="control">
-              <input
-                id="recipeFilterInput"
-                className="input"
-                type="text"
-                placeholder="Search by Ingredient"
-              />
-            </div>
-            <div className="control">
-              <button
-                type="button"
-                className="button"
-                onClick={() => handleAddRecipeFilter()}
-              >
-                Add
-              </button>
-              {recipeFilters.length > 0 && (
-                <button
-                  type="button"
-                  className="button"
-                  onClick={() => handleClearAllRecipeFilters()}
-                >
-                  Clear
-                </button>
-              )}
-            </div>
-          </div>
+    <div className="flex flex-col gap-2">
+      <div className="flex gap-1">
+        <input
+          className="px-2 py-1 bg-neutral-100 dark:bg-neutral-800 dark:text-neutral-200"
+          value={filterInput}
+          onChange={e => setFilterInput(e.target.value.toLowerCase())}
+          onKeyPress={e => e.key === 'Enter' && handleAddFilter()}
+          placeholder="Search by Ingredient"
+        />
+        {ingredients.length > 0 && (
+          <Button className="ml-2" onClick={() => setIngredients([])}>
+            Clear
+          </Button>
+        )}
+      </div>
+      <div className="flex gap-2">
+        {ingredients.map(ingredient => (
+          <Button
+            key={ingredient}
+            className="text-xs"
+            onClick={() =>
+              setIngredients(ingredients.filter(i => i !== ingredient))
+            }
+          >
+            {ingredient}
+          </Button>
+        ))}
+      </div>
 
-          <div className="tags">{recipeFilters.length > 0 && filterPills}</div>
-        </div>
-      </form>
-
-      <RecipeGrid recipes={usableRecipes} />
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {filteredRecipes.map(recipe => (
+          <RecipeCard key={recipe.id} recipe={recipe} />
+        ))}
+        {filteredRecipes.length === 0 && <div>No results...</div>}
+      </div>
     </div>
   );
 }

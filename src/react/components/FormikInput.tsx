@@ -1,42 +1,69 @@
 import React from 'react';
 import { useField } from 'formik';
 import TextareaAutosize from 'react-textarea-autosize';
+import { IconType } from 'react-icons';
+import T from './T';
 
-interface IMyInputProps {
-  id?: string;
-  name: string;
+export interface IMyInputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
-  type?: string;
-  isExpanded?: boolean;
   leftIcon?: JSX.Element;
-  [x: string]: any;
+  containerClassName?: string;
 }
 
-const MyInput = ({ label, leftIcon, ...props }: IMyInputProps) => {
-  const [field, meta] = useField(props);
+const MyInput = ({
+  className,
+  label,
+  leftIcon,
+  containerClassName,
+  ...props
+}: IMyInputProps) => {
+  const [field, meta] = useField({ ...props, name: props.name || '' });
   return (
-    <div className="field">
+    <div className={`w-full ${containerClassName}`}>
       {label && (
-        <label className="label" htmlFor={props.id || props.name}>
-          {label}
+        <label className="" htmlFor={props.id || props.name}>
+          <T>{label}</T>
         </label>
       )}
-      <div
-        className={`control ${props.isExpanded ? 'is-expanded' : ''} ${
-          leftIcon ? 'has-icons-left' : ''
-        }`}
-      >
+      <div>
         <input
           type={props.type || 'text'}
-          className={`input ${meta.touched && meta.error ? 'is-danger' : ''}`}
+          className={`w-full dark:bg-neutral-700 dark:text-neutral-100 ${className} ${
+            meta.touched && meta.error ? 'border-red-600' : ''
+          }`}
           {...field}
           {...props}
         />
-        {leftIcon && <span className="icon is-left">{leftIcon}</span>}
+        {leftIcon && <span className="">{leftIcon}</span>}
         {meta.touched && meta.error ? (
-          <div className="help is-danger">{meta.error}</div>
+          <div className="text-sm text-red-600">{meta.error}</div>
         ) : null}
       </div>
+    </div>
+  );
+};
+
+export interface IInputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
+  LeftIcon?: IconType;
+}
+
+const Input = ({ className, LeftIcon, ...props }: IInputProps) => {
+  return (
+    <div
+      className={`flex items-center w-full dark:bg-neutral-700 dark:text-neutral-100 ${className}`}
+    >
+      {LeftIcon && (
+        <div className="p-2">
+          <LeftIcon className="text-lg text-neutral-400" />
+        </div>
+      )}
+      <input
+        type={props.type || 'text'}
+        className={`w-full dark:bg-neutral-700 dark:text-neutral-100 border-none ${className}`}
+        {...props}
+      />
     </div>
   );
 };
@@ -52,6 +79,7 @@ const MyHiddenInput = ({ ...props }: IMyHiddenInputProps) => {
 };
 
 interface IMyTextAreaProps {
+  // extends React.TextareaHTMLAttributes<HTMLTextAreaElement>
   id?: string;
   name: string;
   label?: string;
@@ -61,23 +89,23 @@ interface IMyTextAreaProps {
 const MyTextArea = ({ label, ...props }: IMyTextAreaProps) => {
   const [field, meta] = useField(props);
   return (
-    <div className="field">
+    <div className="w-full">
       {label && (
-        <label className="label" htmlFor={props.id || props.name}>
-          {label}
+        <label className="" htmlFor={props.id || props.name}>
+          <T>{label}</T>
         </label>
       )}
-      <div className="control">
+      <div className="">
         <TextareaAutosize
-          className={`textarea ${
-            meta.touched && meta.error ? 'is-danger' : ''
+          className={`w-full dark:bg-neutral-700 dark:text-neutral-100 ${
+            meta.touched && meta.error ? 'border-red-600' : ''
           }`}
           rows={1}
           {...field}
           {...props}
         />
         {meta.touched && meta.error ? (
-          <div className="help is-danger">{meta.error}</div>
+          <div className="-mt-1 text-sm text-red-600">{meta.error}</div>
         ) : null}
       </div>
     </div>
@@ -94,24 +122,28 @@ interface IMySelectProps {
 const MySelect = ({ label, ...props }: IMySelectProps) => {
   const [field, meta] = useField(props);
   return (
-    <div className="field">
+    <div className="w-full">
       {label && (
-        <label className="label" htmlFor={props.id || props.name}>
-          {label}
+        <label className="" htmlFor={props.id || props.name}>
+          <T>{label}</T>
         </label>
       )}
-      <div className="control">
-        <div className="select">
-          <select {...field} {...props}>
+      <div className="">
+        <div className="">
+          <select
+            className="w-full dark:bg-neutral-700 dark:text-neutral-100"
+            {...field}
+            {...props}
+          >
             {props.children}
           </select>
         </div>
         {meta.touched && meta.error ? (
-          <div className="help is-danger">{meta.error}</div>
+          <div className="text-sm text-red-600">{meta.error}</div>
         ) : null}
       </div>
     </div>
   );
 };
 
-export { MyInput, MyHiddenInput, MyTextArea, MySelect };
+export { Input, MyInput, MyHiddenInput, MyTextArea, MySelect };

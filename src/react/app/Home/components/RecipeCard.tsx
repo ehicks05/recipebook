@@ -1,90 +1,61 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import _ from 'lodash';
-import { FcClock, IoIosFitness } from 'react-icons/all';
+import { FcClock } from 'react-icons/fc';
 import { IRecipe } from '../../../types/types';
 import FavoriteButton from '../../../components/FavoriteButton';
 import { UserContext } from '../../../UserContext';
-
-interface ICardFooterItemProps {
-  title: string;
-  icon: JSX.Element;
-  value: string | number;
-}
-
-function CardFooterItem({ title, icon, value }: ICardFooterItemProps) {
-  return (
-    <div className="card-footer-item" title={title}>
-      <nav className="level">
-        <div className="level-item">
-          <span className="icon">{icon}</span>
-        </div>
-        <div className="level-item">
-          <span className="mx-1 has-text-weight-bold">{value}</span>
-        </div>
-      </nav>
-    </div>
-  );
-}
+import Card from '../../../components/Card';
+import T from '../../../components/T';
 
 interface IRecipeCardProps {
   recipe: IRecipe;
 }
 
-function RecipeCard({ recipe }: IRecipeCardProps) {
+function RecipeCard({
+  recipe: { id, emoji, name, author, description, cookingTime },
+}: IRecipeCardProps) {
   const { user, favoriteIds, fetchFavoriteIds } = useContext(UserContext);
 
   return (
-    <div className="column is-half-tablet is-one-third-desktop">
-      <Link to={`/recipe/${recipe.id}`}>
-        <div className="card lift">
-          <div
-            className="card-content is-flex is-flex-direction-column"
-            style={{ height: '14em', padding: '1rem' }}
-          >
-            <div className="media">
-              <div className="media-left">
-                <figure className="image is-64x64" style={{ fontSize: '3em' }}>
-                  {recipe.emoji}
-                </figure>
+    <Link to={`/recipe/${id}`}>
+      <Card className="hover:shadow-2xl transform transition-all hover:scale-105">
+        <div className="flex flex-col gap-4 h-56">
+          <div className="flex gap-2">
+            <figure className="w-16 h-16 text-5xl pt-2">{emoji}</figure>
+            <div className="w-full">
+              <div className="font-semibold dark:text-neutral-200">{name}</div>
+              <div className="text-xs italic dark:text-neutral-200">
+                {author.displayName}
               </div>
-              <div className="media-content">
-                <div className="title is-6">{recipe.name}</div>
-                <div className="subtitle is-7 is-italic">
-                  {recipe.author.displayName}
-                </div>
-              </div>
-              <div className="media-right" onClick={e => e.preventDefault()}>
-                {user && (
-                  <FavoriteButton
-                    recipeId={recipe.id}
-                    favoriteIds={favoriteIds}
-                    fetchFavorites={fetchFavoriteIds}
-                  />
-                )}
-              </div>
-            </div>
-
-            <div className="content" style={{ overflowY: 'auto' }}>
-              <div>{_.truncate(recipe.description, { length: 128 })}</div>
             </div>
           </div>
 
-          <footer className="card-footer">
-            <CardFooterItem
-              title="Time"
-              icon={<FcClock size="2em" />}
-              value={recipe.cookingTime}
-            />
-            <CardFooterItem
-              title="Difficulty"
-              icon={<IoIosFitness size="2em" />}
-              value={recipe.difficulty}
-            />
-          </footer>
+          <T className="line-clamp-5">{description}</T>
         </div>
-      </Link>
-    </div>
+
+        <footer className="flex pt-4 border-t border-opacity-25">
+          <div className="flex gap-2 justify-center items-center w-full">
+            <div>
+              <FcClock size="2em" />
+            </div>
+            <div className="font-semibold dark:text-neutral-200">
+              {cookingTime}
+            </div>
+          </div>
+          <div className="flex gap-2 justify-center items-center w-full">
+            {user && (
+              <div onClick={e => e.preventDefault()}>
+                <FavoriteButton
+                  recipeId={id}
+                  favoriteIds={favoriteIds}
+                  fetchFavorites={fetchFavoriteIds}
+                />
+              </div>
+            )}
+          </div>
+        </footer>
+      </Card>
+    </Link>
   );
 }
 

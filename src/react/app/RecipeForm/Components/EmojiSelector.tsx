@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Picker, { IEmojiData } from 'emoji-picker-react';
+import Button from '../../../components/Button';
 
 interface IProps {
   updateEmoji: (code: string) => void;
@@ -22,7 +23,6 @@ function EmojiSelector({ updateEmoji, data }: IProps) {
         onEmojiClick={onEmojiClick}
         disableAutoFocus
         disableSkinTonePicker
-        disableSearchBar
         pickerStyle={{
           width: '100%',
           boxShadow: 'none',
@@ -40,22 +40,17 @@ function EmojiSelector({ updateEmoji, data }: IProps) {
           flags: false,
         }}
       />
-      <button
-        className="button is-fullwidth"
-        type="button"
-        onClick={() => setIsEditing(false)}
-      >
+      <Button className="is-fullwidth" onClick={() => setIsEditing(false)}>
         Close
-      </button>
+      </Button>
     </div>
   ) : (
-    <button
-      className="button is-size-1"
-      type="button"
+    <Button
+      className="px-3 py-3 bg-neutral-100 dark:bg-neutral-800 text-5xl"
       onClick={() => setIsEditing(true)}
     >
       {data.value}
-    </button>
+    </Button>
   );
 }
 

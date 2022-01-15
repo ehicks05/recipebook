@@ -1,13 +1,19 @@
 import React, { useContext, useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import LoginForm from './components/LoginForm';
 import SignUpForm from './components/SignUpForm';
 import { UserContext } from '../../UserContext';
+import Container from '../../components/Container';
+import Card from '../../components/Card';
+import T from '../../components/T';
+
+export type AUTH_TAB = 'LOG_IN' | 'SIGN_UP';
 
 function UserAccess() {
-  const [tab, setTab] = useState<string>('Log In');
+  const [selectedTab, setSelectedTab] = useState<AUTH_TAB>('LOG_IN');
   const [accessMessage, setAccessMessage] = useState<string>('');
   const { user } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const TABS = {
     LOG_IN: {
@@ -19,43 +25,48 @@ function UserAccess() {
       name: 'Sign Up',
       title: 'Create an account',
       component: (
-        <SignUpForm setAccessMessage={setAccessMessage} setTab={setTab} />
+        <SignUpForm
+          setAccessMessage={setAccessMessage}
+          setSelectedTab={setSelectedTab}
+        />
       ),
     },
   };
 
-  if (user) return <Redirect to="/" />;
+  if (user) navigate('/');
 
   return (
-    <section className="section">
-      <div className="container" style={{ maxWidth: '20rem' }}>
-        <p className="title has-text-centered">
-          {tab === TABS.LOG_IN.name ? TABS.LOG_IN.title : TABS.SIGN_UP.title}
-        </p>
-        <div className="box">
+    <Container>
+      <div className="w-96 mx-auto">
+        <Card>
+          <div className="mb-4 text-xl font-semibold text-center">
+            <T>{TABS[selectedTab].title}</T>
+          </div>
           {!user && (
-            <div className="tabs">
-              <ul>
-                <li className={tab === TABS.LOG_IN.name ? 'is-active' : ''}>
-                  <a onClick={e => setTab(e.currentTarget.innerText)}>Log In</a>
-                </li>
-                <li className={tab === TABS.SIGN_UP.name ? 'is-active' : ''}>
-                  <a onClick={e => setTab(e.currentTarget.innerText)}>
-                    Sign Up
+            <div className="flex gap-4 mb-4">
+              {Object.entries(TABS).map(([id, tab]) => {
+                return (
+                  <a
+                    className={`cursor-pointer ${
+                      id === selectedTab
+                        ? 'font-semibold border-b-2 border-blue-500'
+                        : ''
+                    }`}
+                    onClick={() => setSelectedTab(id as AUTH_TAB)}
+                  >
+                    <T>{tab.name}</T>
                   </a>
-                </li>
-              </ul>
+                );
+              })}
             </div>
           )}
 
           {accessMessage}
 
-          {tab === TABS.LOG_IN.name
-            ? TABS.LOG_IN.component
-            : TABS.SIGN_UP.component}
-        </div>
+          {TABS[selectedTab].component}
+        </Card>
       </div>
-    </section>
+    </Container>
   );
 }
 

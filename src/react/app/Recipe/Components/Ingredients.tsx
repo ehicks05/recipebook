@@ -1,63 +1,50 @@
-import React from 'react';
-import { FaMinus, FaPlus } from 'react-icons/all';
+import React, { Dispatch, SetStateAction } from 'react';
+import { FaMinus, FaPlus } from 'react-icons/fa';
 import { Ingredient } from '.';
+import Button from '../../../components/Button';
+import T from '../../../components/T';
 import { IIngredient } from '../../../types/types';
 
 interface IProps {
   ingredients: IIngredient[];
   defaultServings: number;
-  desiredServings: number;
-  incrementServings: () => void;
-  decrementServings: () => void;
+  scaledServings: number;
+  setScaledServings: Dispatch<SetStateAction<number>>;
 }
 
 function Ingredients({
   ingredients,
   defaultServings,
-  desiredServings,
-  incrementServings,
-  decrementServings,
+  scaledServings,
+  setScaledServings,
 }: IProps) {
   return (
-    <div className="content">
-      <nav className="level is-mobile mb-2">
-        <div className="level-left">
-          <span className="level-item">
-            <span
-              className="mr-2"
-              title={`default servings: ${defaultServings}`}
-            >
-              Servings: {desiredServings}
-            </span>
-            <button
-              type="button"
-              className="button is-small"
-              onClick={decrementServings}
-              disabled={desiredServings === 1}
-            >
-              <span className="icon">
-                <FaMinus />
-              </span>
-            </button>
-            <button
-              type="button"
-              className="button is-small"
-              onClick={incrementServings}
-            >
-              <span className="icon">
-                <FaPlus />
-              </span>
-            </button>
-          </span>
+    <div>
+      <div className="flex items-center gap-2 mb-2">
+        <T>Servings: {scaledServings}</T>
+        <div>
+          <Button
+            className="is-small"
+            onClick={() => setScaledServings(scaledServings - 1)}
+            disabled={scaledServings === 1}
+          >
+            <FaMinus />
+          </Button>
+          <Button
+            className="is-small"
+            onClick={() => setScaledServings(scaledServings + 1)}
+          >
+            <FaPlus />
+          </Button>
         </div>
-      </nav>
+      </div>
 
       {ingredients.map(ingredient => (
         <Ingredient
           key={ingredient.name}
           ingredient={ingredient}
           recipeServings={defaultServings}
-          desiredServings={desiredServings}
+          scaledServings={scaledServings}
         />
       ))}
     </div>

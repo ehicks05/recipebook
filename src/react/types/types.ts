@@ -16,6 +16,7 @@ interface IRecipe {
 
 interface IIngredient {
   id?: number;
+  index: string;
   name: string;
   quantity: string;
   unit: string;

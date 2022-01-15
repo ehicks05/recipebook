@@ -1,4 +1,5 @@
 import React from 'react';
+import Container from '../../components/Container';
 import Hero from '../../components/Hero';
 import { IRecipe } from '../../types/types';
 import RecipePicker from './components/RecipePicker';
@@ -13,11 +14,9 @@ function Home({ recipes }: IProps) {
   return (
     <>
       <Hero title="Find a Recipe" />
-      <section className="section">
-        <div className="container">
-          <RecipePicker recipes={recipes} />
-        </div>
-      </section>
+      <Container>
+        <RecipePicker recipes={recipes} />
+      </Container>
     </>
   );
 }

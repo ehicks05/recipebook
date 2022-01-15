@@ -1,7 +1,6 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import { Route, Switch } from 'react-router-dom';
-import Recipe from './react/app/Recipe/Recipe';
-import Navbar from './react/components/Navbar/Navbar';
+import React, { useEffect, useState, useCallback, useMemo } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import RecipeLoader from './react/app/Recipe/RecipeLoader';
 import Footer from './react/components/Footer';
 import { IRecipe, IUser } from './react/types/types';
 import MyAccount from './react/app/MyAccount/MyAccount';
@@ -10,8 +9,11 @@ import RecipeForm from './react/app/RecipeForm/RecipeForm';
 import authFetch from './react/authFetch';
 import { UserContext } from './react/UserContext';
 import UserAccess from './react/app/Login/UserAccess';
-import { setDefaultDescription, sortDirections } from './utils';
+import { hydrateRecipes } from './utils';
+import Hero from './react/components/Hero';
 import Loading from './react/components/Loading';
+import Nav from './react/components/Navbar/Nav';
+import T from './react/components/T';
 
 const App = () => {
   const [recipes, setRecipes] = useState<IRecipe[]>([]);
@@ -22,68 +24,81 @@ const App = () => {
     authFetch('/me').then(json => {
       if (json) setUser(json);
     });
-  }, [setUser]);
+  }, []);
 
-  const fetchRecipes = () => {
+  const fetchRecipes = async () => {
     authFetch('/recipe').then(json => {
-      setRecipes(
-        json ? json.map(setDefaultDescription).map(sortDirections) : []
-      );
+      setRecipes(json ? hydrateRecipes(json) : []);
     });
   };
 
-  function fetchFavoriteIds() {
+  const fetchFavoriteIds = useCallback(() => {
     authFetch('/recipe/favoriteIds').then(json => setFavoriteIds(json));
-  }
+  }, []);
 
   useEffect(() => {
     fetchRecipes();
     fetchUser();
     fetchFavoriteIds();
-  }, [fetchUser]);
+  }, []);
 
   useEffect(() => {
     fetchFavoriteIds();
   }, [user]);
 
-  if (!recipes || (user && !favoriteIds)) {
-    return <Loading title="Loading..." subtitle="Please wait..." />;
-  }
+  const isLoading =
+    !recipes ||
+    recipes?.length === 0 ||
+    (user && (!favoriteIds || favoriteIds?.length === 0));
+
+  const context = useMemo(
+    () => ({
+      user,
+      setUser,
+      favoriteIds,
+      setFavoriteIds,
+      fetchFavoriteIds,
+    }),
+    [user, favoriteIds]
+  );
 
   return (
-    <UserContext.Provider
-      value={{
-        user,
-        setUser,
-        favoriteIds,
-        setFavoriteIds,
-        fetchFavoriteIds,
-      }}
-    >
-      <Navbar />
+    <UserContext.Provider value={context}>
+      <div className="h-screen flex flex-col">
+        <Nav />
 
-      <Switch>
-        <Route exact path="/">
-          <Home recipes={recipes} />
-        </Route>
-        <Route exact path="/recipe/:id">
-          <Recipe recipes={recipes} />
-        </Route>
-        <Route exact path="/edit-recipe/:id">
-          <RecipeForm fetchRecipes={fetchRecipes} recipes={recipes} />
-        </Route>
-        <Route exact path="/create-recipe">
-          <RecipeForm fetchRecipes={fetchRecipes} />
-        </Route>
-        <Route exact path="/myAccount">
-          <MyAccount />
-        </Route>
-        <Route exact path="/login">
-          <UserAccess />
-        </Route>
-      </Switch>
+        {isLoading ? (
+          <>
+            <Hero title="Loading" subtitle="Please wait..." />
+            <div className="flex-grow flex items-center justify-center">
+              <Loading />
+            </div>
+          </>
+        ) : (
+          <Routes>
+            <Route path="/" element={<Home recipes={recipes} />} />
+            <Route
+              path="recipe/:id"
+              element={<RecipeLoader recipes={recipes} />}
+            />
+            <Route
+              path="edit-recipe/:id"
+              element={
+                <RecipeForm fetchRecipes={fetchRecipes} recipes={recipes} />
+              }
+            />
+            <Route
+              path="create-recipe"
+              element={<RecipeForm fetchRecipes={fetchRecipes} />}
+            />
+            <Route path="my-account" element={<MyAccount />} />
+            <Route path="blog" element={<T>there is no blog, lol</T>} />
+            <Route path="login" element={<UserAccess />} />
+          </Routes>
+        )}
 
-      <Footer />
+        <Footer />
+      </div>
     </UserContext.Provider>
   );
 };

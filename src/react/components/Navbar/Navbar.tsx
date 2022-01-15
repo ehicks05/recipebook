@@ -1,36 +1,52 @@
 import React, { useContext, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../UserContext';
 import authFetch from '../../authFetch';
+import Container from '../Container';
+import T from '../T';
 
 function Navbar() {
   const { user, setUser } = useContext(UserContext);
   const [isActive, setIsActive] = useState(false);
-  const history = useHistory();
-
-  const handleClickNavbarItem = (e: React.MouseEvent<HTMLElement>) => {
-    setIsActive(!isActive);
-    (e.target as HTMLElement).blur();
-  };
+  const navigate = useNavigate();
 
   function logout() {
     authFetch('/logout', undefined, false).then(() => {
       setUser(undefined);
-      history.push('/');
+      navigate('/');
     });
   }
 
+  const links = [
+    {
+      label: 'My Account',
+      render: !!user,
+      to: '/my-account',
+    },
+    {
+      label: 'Create a Recipe',
+      render: !!user,
+      to: '/create-recipe',
+    },
+    {
+      label: 'Log in',
+      render: !user,
+      to: '/login',
+    },
+    {
+      label: 'Log out',
+      render: !!user,
+      onClick: logout,
+    },
+  ];
+
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
-      <div className="container">
-        <div className="navbar-brand">
-          <div className="navbar-item">
-            <span className="title">
-              <Link to="/">
-                <img className="image" src="/logo.png" alt="logo" />
-              </Link>
-            </span>
-          </div>
+      <Container>
+        <div className="flex items-center justify-between">
+          <Link to="/">
+            <img className="h-8" src="/logo.png" alt="logo" />
+          </Link>
 
           <div
             role="button"
@@ -44,59 +60,18 @@ function Navbar() {
             <span aria-hidden="true" />
             <span aria-hidden="true" />
           </div>
-        </div>
 
-        <div
-          className={`navbar-menu ${isActive ? 'is-active' : ''}`}
-          id="navbarBasicExample"
-        >
-          <div className="navbar-start" />
-
-          <div className="navbar-end">
-            {!user && (
-              <Link
-                className="navbar-item"
-                to="/login"
-                onClick={handleClickNavbarItem}
-              >
-                Log In
-              </Link>
-            )}
-            {user && (
-              <div className="navbar-item has-dropdown is-hoverable">
-                <div className="navbar-item">Menu</div>
-
-                <div className="navbar-dropdown is-right is-boxed">
-                  <Link
-                    className="navbar-item"
-                    to="/myAccount"
-                    onClick={handleClickNavbarItem}
-                  >
-                    My Account
-                  </Link>
-                  <Link
-                    className="navbar-item"
-                    to="/create-recipe"
-                    onClick={handleClickNavbarItem}
-                  >
-                    Create a Recipe
-                  </Link>
-                  <hr className="navbar-divider" />
-                  <a
-                    className="navbar-item"
-                    onClick={e => {
-                      logout();
-                      handleClickNavbarItem(e);
-                    }}
-                  >
-                    Logout
-                  </a>
-                </div>
-              </div>
-            )}
+          <div className="flex gap-4">
+            {links
+              .filter(link => link.render)
+              .map(link => (
+                <Link to={link.to || ''} onClick={link.onClick}>
+                  <T>{link.label}</T>
+                </Link>
+              ))}
           </div>
         </div>
-      </div>
+      </Container>
     </nav>
   );
 }

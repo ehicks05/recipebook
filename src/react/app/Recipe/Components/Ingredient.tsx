@@ -1,80 +1,69 @@
 import React, { useState } from 'react';
 import Fraction from 'fraction.js';
 import { IIngredient } from '../../../types/types';
+import T from '../../../components/T';
 
 interface IIngredientProps {
   ingredient: IIngredient;
   recipeServings: number;
-  desiredServings: number;
+  scaledServings: number;
 }
 
-const formatFraction = (numerator: number, denominator: number) =>
-  `${numerator}${String.fromCharCode(8260)}${denominator}`;
-
-// figures out the desired quantity and formats it as a nice fraction if necessary.
-function getDesiredQuantity(
+// determine desired quantity and provide fractional formatting
+const scaleQuantity = (
   ingredient: IIngredient,
   defaultServings: number,
   desiredServings: number
-): JSX.Element {
+) => {
   const ratio = desiredServings / defaultServings;
-  const desiredQuantity =
+  const scaledQuantity =
     new Fraction(ingredient.quantity || 0).valueOf() * ratio;
 
-  if (desiredQuantity === 0) return <span />;
+  if (scaledQuantity === 0) return '';
 
-  if (desiredQuantity === Math.round(desiredQuantity))
-    return <span>{desiredQuantity}</span>;
+  if (scaledQuantity === Math.round(scaledQuantity)) {
+    return String(scaledQuantity);
+  }
 
-  let fractional = desiredQuantity;
-  let wholeNumber = 0;
+  let fractional = scaledQuantity;
+  let integer = 0;
   while (fractional > 1) {
-    wholeNumber += 1;
+    integer += 1;
     fractional -= 1;
   }
 
   const fraction = new Fraction(fractional);
 
-  return (
-    <>
-      {wholeNumber ? `${wholeNumber} ` : ''}
-      {formatFraction(fraction.n, fraction.d)}
-    </>
-  );
-}
+  return `${integer || ''} ${fraction.n}${String.fromCharCode(8260)}${
+    fraction.d
+  }`;
+};
 
 function Ingredient({
   ingredient,
   recipeServings,
-  desiredServings,
+  scaledServings,
 }: IIngredientProps) {
   const [isChecked, setIsChecked] = useState(false);
 
-  const desiredQuantity = getDesiredQuantity(
+  const scaledQuantity = scaleQuantity(
     ingredient,
     recipeServings,
-    desiredServings
+    scaledServings
   );
 
   return (
     <div key={ingredient.name}>
-      <label className="checkbox">
+      <label className="flex gap-2">
         <input
+          className="mt-1.5"
           type="checkbox"
           checked={isChecked}
           onChange={e => setIsChecked(e.target.checked)}
         />
-        <span
-          style={{
-            opacity: isChecked ? '.5' : '',
-            display: 'block',
-            marginLeft: '1.2rem',
-            marginTop: '-1.2rem',
-          }}
-        >
-          {desiredQuantity}
-          {` ${ingredient.unit || ''} ${ingredient.name}`}
-        </span>
+        <T className={`${isChecked ? 'opacity-50' : ''}`}>
+          {`${scaledQuantity} ${ingredient.unit || ''} ${ingredient.name}`}
+        </T>
       </label>
     </div>
   );

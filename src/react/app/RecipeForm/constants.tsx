@@ -9,6 +9,7 @@ const UNIT_OPTIONS = ['', ...UNITS].map(unit => (
 ));
 
 const DEFAULT_INGREDIENT: IIngredient = {
+  index: '0',
   name: '',
   quantity: '',
   unit: '',
@@ -17,7 +18,7 @@ const DEFAULT_DIRECTION: IDirection = { index: '0', text: '' };
 const DEFAULT_RECIPE: IRecipe = {
   name: '',
   description: '',
-  emoji: ':)',
+  emoji: '\uD83E\uDD58',
   difficulty: 1,
   cookingTime: '',
   servings: 1,
