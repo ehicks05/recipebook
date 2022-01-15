@@ -1,4 +1,4 @@
-import { sortBy } from 'lodash';
+import _, { sortBy } from 'lodash';
 import { IRecipe } from './react/types/types';
 
 const DEFAULT_DESCRIPTION =
@@ -15,4 +15,11 @@ const sortDirections = (recipe: IRecipe) => ({
   directions: sortBy(recipe.directions, ['index']),
 });
 
-export { setDefaultDescription, sortDirections };
+const hydrateRecipes = (recipes: IRecipe[]) => {
+  return _.chain(recipes)
+    .map(setDefaultDescription)
+    .map(sortDirections)
+    .value();
+};
+
+export { hydrateRecipes };

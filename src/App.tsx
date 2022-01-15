@@ -9,10 +9,11 @@ import RecipeForm from './react/app/RecipeForm/RecipeForm';
 import authFetch from './react/authFetch';
 import { UserContext } from './react/UserContext';
 import UserAccess from './react/app/Login/UserAccess';
-import { setDefaultDescription, sortDirections } from './utils';
+import { hydrateRecipes } from './utils';
 import Hero from './react/components/Hero';
 import Loading from './react/components/Loading';
 import Nav from './react/components/Navbar/Nav';
+import T from './react/components/T';
 
 const App = () => {
   const [recipes, setRecipes] = useState<IRecipe[]>([]);
@@ -27,9 +28,7 @@ const App = () => {
 
   const fetchRecipes = async () => {
     authFetch('/recipe').then(json => {
-      setRecipes(
-        json ? json.map(setDefaultDescription).map(sortDirections) : []
-      );
+      setRecipes(json ? hydrateRecipes(json) : []);
     });
   };
 
@@ -93,7 +92,7 @@ const App = () => {
               element={<RecipeForm fetchRecipes={fetchRecipes} />}
             />
             <Route path="my-account" element={<MyAccount />} />
-            <Route path="blog" element={<div>there is no blog, lol</div>} />
+            <Route path="blog" element={<T>there is no blog, lol</T>} />
             <Route path="login" element={<UserAccess />} />
           </Routes>
         )}
