@@ -71,8 +71,8 @@ function RecipeForm({ fetchRecipes, recipes }: IProps) {
                   {`${recipe ? 'Save' : 'Create Recipe '}`}
                 </Button>
               </div>
-              <div className="grid md:grid-cols-7 gap-4">
-                <div className="col-span-2 flex flex-col gap-2">
+              <div className="grid md:grid-cols-2 lg:grid-cols-7 gap-8">
+                <div className="md:col-span-1 lg:col-span-2 flex flex-col gap-2">
                   <T className="text-lg font-semibold">Recipe Details</T>
 
                   <MyInput label="Name" name="name" placeholder="Name" />
@@ -82,7 +82,7 @@ function RecipeForm({ fetchRecipes, recipes }: IProps) {
                     placeholder="Description"
                   />
 
-                  <div className="flex">
+                  <div className="flex gap-2">
                     <MyInput
                       containerClassName=""
                       type="number"
@@ -92,7 +92,6 @@ function RecipeForm({ fetchRecipes, recipes }: IProps) {
                       min="1"
                     />
                     <MyInput
-                      className="w-20"
                       type="number"
                       name="servings"
                       label="Serves"
@@ -119,19 +118,21 @@ function RecipeForm({ fetchRecipes, recipes }: IProps) {
                     </div>
                   </div>
                 </div>
-                <div className="md:col-span-2">
+                <div className="md:col-span-1 lg:col-span-2">
                   <T className="text-lg font-semibold">Ingredients</T>
                   <FieldArray name="ingredients">
                     {({ remove, push }) => (
-                      <div className="flex flex-col gap-2">
+                      <div className="flex flex-col gap-6">
                         {values.ingredients.map((ingredient, index) => (
-                          <div key={ingredient.index} className="flex flex-col">
+                          <div
+                            key={ingredient.index}
+                            className="flex flex-col gap-2"
+                          >
                             <MyHiddenInput
                               name={`ingredients.${index}.index`}
                             />
-                            <div className="flex items-start">
+                            <div className="flex gap-2 items-start">
                               <MyInput
-                                className="w-20"
                                 name={`ingredients.${index}.quantity`}
                                 placeholder="Quantity"
                               />
@@ -169,13 +170,16 @@ function RecipeForm({ fetchRecipes, recipes }: IProps) {
                     )}
                   </FieldArray>
                 </div>
-                <div className="md:col-span-3">
+                <div className="md:col-span-2 lg:col-span-3">
                   <T className="text-lg font-semibold">Directions</T>
                   <FieldArray name="directions">
                     {({ remove, push }) => (
-                      <div className="flex flex-col gap-2">
+                      <div className="flex flex-col gap-6">
                         {values.directions.map((direction, index) => (
-                          <div key={direction.index} className="flex">
+                          <div
+                            key={direction.index}
+                            className="flex gap-2 items-start"
+                          >
                             <T className="pr-2">{index + 1}.</T>
                             <MyHiddenInput name={`directions.${index}.index`} />
                             <MyTextArea
