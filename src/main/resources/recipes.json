@@ -1295,5 +1295,61 @@
       }
     ],
     "emoji": "🐟"
+  },
+  {
+    "name": "Chicken Tetrazzini",
+    "difficulty": 3,
+    "cookingTime": "90",
+    "servings": 6,
+    "ingredients": [
+      { "quantity": "1", "unit": "", "name": "medium yellow onion, diced" },
+      { "quantity": "3", "unit": "", "name": "cloves garlic, minced" },
+      { "quantity": "1", "unit": "oz", "name": "parmesan, grated" },
+      { "quantity": "1", "unit": "tbsp", "name": "olive oil" },
+      { "quantity": "1/2", "unit": "cup", "name": "panko breadcrumbs" },
+      { "quantity": "5", "unit": "tbsp", "name": "unsalted butter, divided" },
+      { "quantity": "1", "unit": "lb", "name": "cremini mushrooms, sliced" },
+      { "quantity": "3", "unit": "tsp", "name": "salt, divided" },
+      { "quantity": "1/2", "unit": "tsp", "name": "pepper" },
+      { "quantity": "1/3", "unit": "cup", "name": "flour" },
+      { "quantity": "3", "unit": "cup", "name": "whole milk" },
+      { "quantity": "1", "unit": "cup", "name": "heavy cream" },
+      { "quantity": "1", "unit": "cup", "name": "low-sodium chicken broth" },
+      { "quantity": "1/8", "unit": "tsp", "name": "nutmeg" },
+      { "quantity": "12", "unit": "oz", "name": "cooked chicken, shredded" },
+      { "quantity": "1", "unit": "lb", "name": "linguine" },
+      { "quantity": "1", "unit": "cup", "name": "frozen peas" },
+      { "quantity": "1/2", "unit": "tsp", "name": "Italian seasoning" }
+    ],
+    "directions": [
+      {
+        "text": "Arrange a rack in the middle of the oven and heat the oven to 350ºF. Coat a 9x13-inch baking dish with cooking spray."
+      },
+      {
+        "text": "Dice 1 medium yellow onion and mince 3 garlic cloves. If needed, finely grate 1 ounce Parmesan cheese (about 1/2 lightly packed cup)."
+      },
+      {
+        "text": "Heat 1 tablespoon olive oil in a Dutch oven over medium heat until shimmering. Add 1/2 cup panko breadcrumbs and cook, stirring occasionally, until golden-brown, about 3 minutes. Transfer to a small bowl. Wipe out the pot if there are still breadcrumbs inside."
+      },
+      {
+        "text": "Melt 3 tablespoons of the unsalted butter in the same Dutch oven over medium heat. Add the onion and cook, stirring occasionally, until softened, about 5 minutes. Add the garlic, 1 pound sliced cremini mushrooms, and 1 teaspoon of the kosher salt. Cook, stirring occasionally, until the mushrooms and onions start to brown, 8 to 10 minutes. Meanwhile, bring a large pot of salted water to a boil."
+      },
+      {
+        "text": "Add the remaining 2 tablespoons unsalted butter to the Dutch oven. When melted, add 1/3 cup all-purpose flour, stir to coat the vegetables (it will be a little clumpy), and cook for 1 minute. Add 3 cups whole milk, 1 cup heavy cream, 1 cup low-sodium chicken broth, the remaining 2 teaspoons kosher salt, 1/4 teaspoon black pepper, and 1/8 teaspoon ground nutmeg, and stir until no lumps of flour remain. Bring to a boil over high heat."
+      },
+      {
+        "text": "Reduce the heat to maintain a simmer and cook, stirring occasionally, until the sauce is thickened, about 10 minutes. Meanwhile, chop or shred 12 ounces cooked chicken (about 3 cups)."
+      },
+      {
+        "text": "Add 1 pound dried linguine to the boiling water and cook for 2 minutes less than the package instructions, about 7 minutes. Drain. Add the pasta, chicken, and 1 cup frozen peas to the sauce. Stir to combine. Transfer the mixture to the prepared baking dish."
+      },
+      {
+        "text": "Add the Parmesan cheese and 1/2 teaspoon Italian seasoning to the cooled panko, and stir to combine. Scatter evenly over the casserole."
+      },
+      {
+        "text": "Bake uncovered until lightly browned and the sauce is bubbling, about 25 minutes. Let cool 10 minutes before serving."
+      }
+    ],
+    "emoji": "🍲"
   }
 ]
