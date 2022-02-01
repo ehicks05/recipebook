@@ -92,7 +92,7 @@ public class Seeder
 
         log.info("Seeding data");
 
-        installExtensions();
+        // installExtensions();
         log.info("installed db extensions");
 
         createDefaultRoles();  // use in production
