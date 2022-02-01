@@ -1326,28 +1326,61 @@
         "text": "Arrange a rack in the middle of the oven and heat the oven to 350ºF. Coat a 9x13-inch baking dish with cooking spray."
       },
       {
-        "text": "Dice 1 medium yellow onion and mince 3 garlic cloves. If needed, finely grate 1 ounce Parmesan cheese (about 1/2 lightly packed cup)."
+        "text": "Dice onion, mince garlic, and grate parmesan cheese."
       },
       {
-        "text": "Heat 1 tablespoon olive oil in a Dutch oven over medium heat until shimmering. Add 1/2 cup panko breadcrumbs and cook, stirring occasionally, until golden-brown, about 3 minutes. Transfer to a small bowl. Wipe out the pot if there are still breadcrumbs inside."
+        "text": "Heat olive oil in a Dutch oven over medium heat until shimmering. Add panko and cook, stirring occasionally, until golden-brown, about 3 minutes. Transfer to a small bowl. Wipe out the pot if there are still breadcrumbs inside."
       },
       {
-        "text": "Melt 3 tablespoons of the unsalted butter in the same Dutch oven over medium heat. Add the onion and cook, stirring occasionally, until softened, about 5 minutes. Add the garlic, 1 pound sliced cremini mushrooms, and 1 teaspoon of the kosher salt. Cook, stirring occasionally, until the mushrooms and onions start to brown, 8 to 10 minutes. Meanwhile, bring a large pot of salted water to a boil."
+        "text": "Melt half the butter in the same Dutch oven over medium heat. Add the onion and cook, stirring occasionally, until softened, about 5 minutes. Add the garlic, mushrooms, and 1/3 of the kosher salt. Cook, stirring occasionally, until the mushrooms and onions start to brown, 8 to 10 minutes. Meanwhile, bring a large pot of salted water to a boil."
       },
       {
-        "text": "Add the remaining 2 tablespoons unsalted butter to the Dutch oven. When melted, add 1/3 cup all-purpose flour, stir to coat the vegetables (it will be a little clumpy), and cook for 1 minute. Add 3 cups whole milk, 1 cup heavy cream, 1 cup low-sodium chicken broth, the remaining 2 teaspoons kosher salt, 1/4 teaspoon black pepper, and 1/8 teaspoon ground nutmeg, and stir until no lumps of flour remain. Bring to a boil over high heat."
+        "text": "Add the remaining butter to the Dutch oven. When melted, add the flour, stir to coat the vegetables (it will be a little clumpy), and cook for 1 minute. Add the milk, cream, chicken broth, the remaining 2/3 of the salt, half of the black pepper, and the nutmeg, and stir until no lumps of flour remain. Bring to a boil over high heat."
       },
       {
-        "text": "Reduce the heat to maintain a simmer and cook, stirring occasionally, until the sauce is thickened, about 10 minutes. Meanwhile, chop or shred 12 ounces cooked chicken (about 3 cups)."
+        "text": "Reduce the heat to maintain a simmer and cook, stirring occasionally, until the sauce is thickened, about 10 minutes. Meanwhile, chop or shred the cooked chicken."
       },
       {
-        "text": "Add 1 pound dried linguine to the boiling water and cook for 2 minutes less than the package instructions, about 7 minutes. Drain. Add the pasta, chicken, and 1 cup frozen peas to the sauce. Stir to combine. Transfer the mixture to the prepared baking dish."
+        "text": "Add dried linguine to the boiling water and cook for 2 minutes less than the package instructions, about 7 minutes. Drain. Add the pasta, chicken, and frozen peas to the sauce. Stir to combine. Transfer the mixture to the prepared baking dish."
       },
       {
-        "text": "Add the Parmesan cheese and 1/2 teaspoon Italian seasoning to the cooled panko, and stir to combine. Scatter evenly over the casserole."
+        "text": "Add the Parmesan cheese and Italian seasoning to the cooled panko, and stir to combine. Scatter evenly over the casserole."
       },
       {
         "text": "Bake uncovered until lightly browned and the sauce is bubbling, about 25 minutes. Let cool 10 minutes before serving."
+      }
+    ],
+    "emoji": "🍲"
+  },
+  {
+    "name": "Amish Creamed Chicken with Noodles",
+    "difficulty": 2,
+    "cookingTime": "20",
+    "servings": 4,
+    "ingredients": [
+      { "quantity": "1", "unit": "", "name": "stick butter, divided" },
+      { "quantity": "1/2", "unit": "cup", "name": "bell pepper, diced" },
+      { "quantity": "8", "unit": "oz", "name": "mushrooms, sliced" },
+      { "quantity": "1/2", "unit": "cup", "name": "flour" },
+      { "quantity": "1/2", "unit": "tsp", "name": "garlic powder" },
+      { "quantity": "1", "unit": "cup", "name": "milk or cream" },
+      { "quantity": "2 1/2", "unit": "cup", "name": "chicken broth" },
+      { "quantity": "3 1/2", "unit": "cup", "name": "cooked chicken, chopped" },
+      { "quantity": "1/2", "unit": "cup", "name": "frozen green peas" },
+      { "quantity": "1", "unit": "lb", "name": "pasta" }
+    ],
+    "directions": [
+      {
+        "text": "Melt half the butter in a skillet. Add the bell pepper and mushrooms. Cook until tender, about 5 minutes. Remove to a plate."
+      },
+      {
+        "text": "Melt the remaining butter in the same skillet. Add the flour and garlic powder. Whisk until smooth. "
+      },
+      {
+        "text": "Slowly whisk in the milk and chicken broth. Bring to a simmer, reduce heat to low and cook about 3 to 5 minutes. (You can add more chicken broth if it gets too thick.)"
+      },
+      {
+        "text": "Add the mushrooms and bell pepper back to the skillet along with the chicken and peas. Cook until warmed through, about 2 to 3 minutes. Season with salt and pepper. "
       }
     ],
     "emoji": "🍲"
