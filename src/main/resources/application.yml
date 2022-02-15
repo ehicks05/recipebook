@@ -14,10 +14,10 @@ management:
   endpoints:
     web:
       exposure:
-        include: "*"
+        include: '*'
 recipeBook:
-  seedDbIfEmpty: true
-  recipeFile: "src/main/resources/recipes.json"
+  seedDbIfEmpty: false
+  recipeFile: 'src/main/resources/recipes.json'
 server:
   compression:
     enabled: true
