@@ -2,8 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+/* body {
   font-family: 'Ubuntu', sans-serif;
+} */
+
+.sbui-btn-primary {
+  background-color: rgba(36, 180, 126, var(--tw-bg-opacity));
 }
 
 .emoji-picker-react .emoji-categories {

@@ -1,5 +1,5 @@
 import _, { sortBy } from 'lodash';
-import { IRecipe } from './react/types/types';
+import { IRecipe } from 'types/types';
 
 const DEFAULT_DESCRIPTION =
   'This is where a description would go...if we HAD one! ' +

@@ -1,3 +1,4 @@
+import T from 'components/T';
 import React, { useState } from 'react';
 import Button from '../../../components/Button';
 import { IRecipe } from '../../../types/types';
@@ -61,7 +62,7 @@ function RecipePicker({ recipes }: IProps) {
         {filteredRecipes.map(recipe => (
           <RecipeCard key={recipe.id} recipe={recipe} />
         ))}
-        {filteredRecipes.length === 0 && <div>No results...</div>}
+        {filteredRecipes.length === 0 && <T>No results...</T>}
       </div>
     </div>
   );
