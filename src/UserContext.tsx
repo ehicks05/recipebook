@@ -4,8 +4,8 @@ import { IUser } from './types/types';
 interface IUserContext {
   user: IUser | undefined;
   setUser: (user: IUser | undefined) => void;
-  favoriteIds: number[];
-  setFavoriteIds: Dispatch<SetStateAction<number[]>>;
+  favoriteIds: string[];
+  setFavoriteIds: Dispatch<SetStateAction<string[]>>;
   fetchFavoriteIds: () => void;
 }
 

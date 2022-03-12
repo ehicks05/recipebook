@@ -5,8 +5,8 @@ import { IconContext } from 'react-icons';
 import authFetch from '../authFetch';
 
 interface IProps {
-  recipeId: number | undefined;
-  favoriteIds: number[];
+  recipeId: string | undefined;
+  favoriteIds: string[];
   fetchFavorites: () => void;
 }
 

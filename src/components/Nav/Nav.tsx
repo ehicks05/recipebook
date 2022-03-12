@@ -14,9 +14,7 @@ export default function Example() {
   const { user } = useUser();
   const navigate = useNavigate();
   const location = useLocation();
-
   const [showAuthModal, setShowAuthModal] = useState(false);
-  console.log({ showAuthModal });
 
   const navigation = [
     {

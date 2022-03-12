@@ -1,5 +1,5 @@
 interface IRecipe {
-  id?: number;
+  id?: string;
   name: string;
   description: string;
   emoji: string;
@@ -15,7 +15,7 @@ interface IRecipe {
 }
 
 interface IIngredient {
-  id?: number;
+  id?: string;
   index: string;
   name: string;
   quantity: string;
@@ -23,13 +23,13 @@ interface IIngredient {
 }
 
 interface IDirection {
-  id?: number;
+  id?: string;
   index: string;
   text: string;
 }
 
 interface IUser {
-  id: number;
+  id: string;
   username: string;
   displayName: string;
 }
@@ -44,7 +44,7 @@ interface IEmoji {
 }
 
 interface IFavorite {
-  id: number;
+  id: string;
   user: IUser;
   recipe: IRecipe;
 }

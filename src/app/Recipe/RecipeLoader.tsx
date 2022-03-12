@@ -10,7 +10,7 @@ interface IProps {
 
 const RecipeLoader = ({ recipes }: IProps) => {
   const { id } = useParams<{ id: string }>();
-  const recipe = recipes.find(item => item?.id === Number(id));
+  const recipe = recipes.find(item => item?.id === id);
 
   if (!recipe) return <Hero title="Loading..." />;
 

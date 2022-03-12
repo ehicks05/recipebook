@@ -33,7 +33,7 @@ function RecipeForm({ fetchRecipes, recipes }: IProps) {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
 
-  const recipe = id ? recipes?.find(r => r.id === Number(id)) : undefined;
+  const recipe = id ? recipes?.find(r => r.id === id) : undefined;
 
   if (id && !recipe) return <div>Loading...</div>;
 

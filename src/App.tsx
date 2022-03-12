@@ -15,24 +15,24 @@ import RecipeLoader from 'app/Recipe/RecipeLoader';
 
 const App = () => {
   const [recipes, setRecipes] = useState<IRecipe[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchRecipes = async () => {
-    authFetch('/api/recipe').then(json => {
-      setRecipes(json ? hydrateRecipes(json) : []);
-    });
+    setLoading(true);
+    const json = await authFetch('/api/recipe');
+    setRecipes(json ? hydrateRecipes(json) : []);
+    setLoading(false);
   };
 
   useEffect(() => {
     fetchRecipes();
   }, []);
 
-  const isLoading = false;
-
   return (
     <div className="h-screen flex flex-col">
       <Nav />
 
-      {isLoading ? (
+      {loading ? (
         <>
           <Hero title="Loading" subtitle="Please wait..." />
           <div className="flex-grow flex items-center justify-center">
