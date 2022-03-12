@@ -37,7 +37,7 @@ function Direction({ direction }: IDirectionProps) {
       className={`cursor-pointer ${isDone ? 'line-through opacity-50' : ''}`}
     >
       <div onClick={() => setIsDone(!isDone)}>
-        <T>{direction.text}</T>
+        <T className={isDone ? 'line-clamp-1' : ''}>{direction.text}</T>
       </div>
       {!isDone && timer}
     </li>
