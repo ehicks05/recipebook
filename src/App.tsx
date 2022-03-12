@@ -17,7 +17,7 @@ const App = () => {
   const [recipes, setRecipes] = useState<IRecipe[]>([]);
 
   const fetchRecipes = async () => {
-    authFetch('/recipe').then(json => {
+    authFetch('/api/recipe').then(json => {
       setRecipes(json ? hydrateRecipes(json) : []);
     });
   };
