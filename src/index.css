@@ -6,6 +6,7 @@
   font-family: 'Ubuntu', sans-serif;
 } */
 
+/* todo: this fixes an issue with the supabase auth widget: */
 .sbui-btn-primary {
   background-color: rgba(36, 180, 126, var(--tw-bg-opacity));
 }

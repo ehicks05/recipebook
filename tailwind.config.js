@@ -8,6 +8,7 @@ module.exports = {
     extend: {},
   },
   plugins: [
+    // todo: this was affecting the supabase auth widget:
     // require('@tailwindcss/forms'),
     require('@tailwindcss/line-clamp'),
   ],
