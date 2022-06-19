@@ -1,27 +1,42 @@
-import apiUrl from './apiUrl';
+import API_URL from 'apiUrl';
 
-function authFetch(
-  input: Request | string,
-  init?: RequestInit | undefined,
-  json = true
-) {
-  function buildErrorMessage(response: Response) {
-    let message = '';
-    if (response.status === 401) message = 'authenticated';
-    if (response.status === 403) message = 'authorized';
-    return `${input} - not ${message}`;
+const LOCAL_STORAGE_KEY = 'token';
+
+/**
+ * https://kentcdodds.com/blog/replace-axios-with-a-simple-custom-fetch-wrapper
+ */
+const authFetch = async (
+  endpoint: string,
+  { body, ...customConfig }: any = {}
+) => {
+  const token = window.localStorage.getItem(LOCAL_STORAGE_KEY);
+  const headers: HeadersInit = { 'Content-Type': 'application/json' };
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+  const config = {
+    method: body ? 'POST' : 'GET',
+    ...customConfig,
+    headers: {
+      ...headers,
+      ...customConfig.headers,
+    },
+  };
+  if (body) {
+    config.body = JSON.stringify(body);
   }
 
-  console.log(`${input} ${init || ''}`);
+  try {
+    const response = await window.fetch(`${API_URL}${endpoint}`, config);
+    if (response.ok) {
+      return response.json();
+    }
 
-  return fetch(apiUrl + input, { ...init, credentials: 'include' })
-    .then(response => {
-      if (!response.ok) throw new Error(buildErrorMessage(response));
-      return json ? response.json() : response;
-    })
-    .catch(error => {
-      console.log(`${input} - ${error}`);
-    });
-}
+    const errorMessage = await response.text();
+    return Promise.reject(new Error(errorMessage));
+  } catch (e) {
+    return Promise.reject(e);
+  }
+};
 
 export default authFetch;

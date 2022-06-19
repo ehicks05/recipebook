@@ -18,7 +18,7 @@ function RecipeCard({
 
   return (
     <Link to={`/recipe/${id}`}>
-      <Card className="hover:shadow-2xl transform transition-all hover:scale-105">
+      <Card className="hover:shadow-lg transform transition-all">
         <div className="flex flex-col gap-4 h-56">
           <div className="flex gap-2">
             <figure className="w-16 h-16 text-5xl pt-2">{emoji}</figure>
@@ -33,7 +33,9 @@ function RecipeCard({
           <T className="line-clamp-5">{description}</T>
         </div>
 
-        <footer className="flex pt-4 border-t border-opacity-25">
+        <hr className="-mx-4" />
+
+        <footer className="flex pt-4">
           <div className="flex gap-2 justify-center items-center w-full">
             <div>
               <FcClock size="2em" />

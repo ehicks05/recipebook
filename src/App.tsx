@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Footer from 'components/Footer';
 import { IRecipe } from 'types/types';
@@ -7,55 +7,47 @@ import Hero from 'components/Hero';
 import Loading from 'components/Loading';
 import Nav from 'components/Nav/Nav';
 import T from 'components/T';
-import { hydrateRecipes } from 'utils';
 import RecipeForm from 'app/RecipeForm/RecipeForm';
 import Home from 'app/Home/Home';
 import MyAccount from 'app/MyAccount/MyAccount';
 import RecipeLoader from 'app/Recipe/RecipeLoader';
+import { useQuery } from 'react-query';
 
 const App = () => {
-  const [recipes, setRecipes] = useState<IRecipe[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  const fetchRecipes = async () => {
-    setLoading(true);
-    const json = await authFetch('/api/recipe');
-    setRecipes(json ? hydrateRecipes(json) : []);
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    fetchRecipes();
-  }, []);
+  const recipesQuery = useQuery<IRecipe[], Error>('/api/recipes', () =>
+    authFetch('/api/recipe')
+  );
 
   return (
     <div className="h-screen flex flex-col">
       <Nav />
 
-      {loading ? (
+      {recipesQuery.isLoading ? (
         <>
           <Hero title="Loading" subtitle="Please wait..." />
           <div className="flex-grow flex items-center justify-center">
             <Loading />
           </div>
         </>
+      ) : recipesQuery.isError || !recipesQuery.data ? (
+        <>
+          <Hero title="Loading" subtitle="Uh oh..." />
+          <div className="flex-grow flex items-center justify-center">
+            Something went wrong...
+          </div>
+        </>
       ) : (
         <Routes>
-          <Route path="/" element={<Home recipes={recipes} />} />
+          <Route path="/" element={<Home recipes={recipesQuery.data} />} />
           <Route
             path="recipe/:id"
-            element={<RecipeLoader recipes={recipes} />}
+            element={<RecipeLoader recipes={recipesQuery.data} />}
           />
           <Route
             path="edit-recipe/:id"
-            element={
-              <RecipeForm fetchRecipes={fetchRecipes} recipes={recipes} />
-            }
+            element={<RecipeForm recipes={recipesQuery.data} />}
           />
-          <Route
-            path="create-recipe"
-            element={<RecipeForm fetchRecipes={fetchRecipes} />}
-          />
+          <Route path="create-recipe" element={<RecipeForm />} />
           <Route path="my-account" element={<MyAccount />} />
           <Route path="blog" element={<T>there is no blog, lol</T>} />
         </Routes>

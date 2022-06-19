@@ -67,7 +67,7 @@ function Timer({ minutes: inputMinutes }: IProps) {
         className={`px-2 py-1 text-xs text-center bg-neutral-100 dark:bg-neutral-500 dark:text-neutral-200 ${
           expired ? 'bg-red-700' : ''
         }`}
-        size={Math.max(displayTime().length - 4, 1)}
+        size={displayTime().length}
         value={displayTime()}
         onChange={handleSetTime}
       />

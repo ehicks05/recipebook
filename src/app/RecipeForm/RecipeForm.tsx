@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { FaPlus, FaMinus } from 'react-icons/fa';
+import { useQueryClient } from 'react-query';
 
 import { FieldArray, Form, Formik } from 'formik';
 import Hero from '../../components/Hero';
@@ -25,11 +26,12 @@ import Button from '../../components/Button';
 import T from '../../components/T';
 
 interface IProps {
-  fetchRecipes: () => Promise<void>;
   recipes?: IRecipe[];
 }
 
-function RecipeForm({ fetchRecipes, recipes }: IProps) {
+function RecipeForm({ recipes }: IProps) {
+  const queryClient = useQueryClient();
+
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
 
@@ -54,7 +56,7 @@ function RecipeForm({ fetchRecipes, recipes }: IProps) {
                 'Content-Type': 'application/json',
               },
             });
-            await fetchRecipes();
+            await queryClient.invalidateQueries('/api/recipes');
             setSubmitting(false);
             if (!recipe) navigate(`/edit-recipe/${response.id}`);
           }}
