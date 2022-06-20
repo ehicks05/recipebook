@@ -1,105 +1,60 @@
-import React, { useEffect, useState, useCallback, useMemo } from 'react';
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import RecipeLoader from './react/app/Recipe/RecipeLoader';
-import Footer from './react/components/Footer';
-import { IRecipe, IUser } from './react/types/types';
-import MyAccount from './react/app/MyAccount/MyAccount';
-import Home from './react/app/Home/Home';
-import RecipeForm from './react/app/RecipeForm/RecipeForm';
-import authFetch from './react/authFetch';
-import { UserContext } from './react/UserContext';
-import UserAccess from './react/app/Login/UserAccess';
-import { hydrateRecipes } from './utils';
-import Hero from './react/components/Hero';
-import Loading from './react/components/Loading';
-import Nav from './react/components/Navbar/Nav';
-import T from './react/components/T';
+import Footer from 'components/Footer';
+import { IRecipe } from 'types/types';
+import authFetch from 'authFetch';
+import Hero from 'components/Hero';
+import Loading from 'components/Loading';
+import Nav from 'components/Nav/Nav';
+import T from 'components/T';
+import RecipeForm from 'app/RecipeForm/RecipeForm';
+import Home from 'app/Home/Home';
+import MyAccount from 'app/MyAccount/MyAccount';
+import RecipeLoader from 'app/Recipe/RecipeLoader';
+import { useQuery } from 'react-query';
 
 const App = () => {
-  const [recipes, setRecipes] = useState<IRecipe[]>([]);
-  const [favoriteIds, setFavoriteIds] = useState<number[]>([]);
-  const [user, setUser] = useState<IUser | undefined>(undefined);
-
-  const fetchUser = useCallback(() => {
-    authFetch('/me').then(json => {
-      if (json) setUser(json);
-    });
-  }, []);
-
-  const fetchRecipes = async () => {
-    authFetch('/recipe').then(json => {
-      setRecipes(json ? hydrateRecipes(json) : []);
-    });
-  };
-
-  const fetchFavoriteIds = useCallback(() => {
-    authFetch('/recipe/favoriteIds').then(json => setFavoriteIds(json));
-  }, []);
-
-  useEffect(() => {
-    fetchRecipes();
-    fetchUser();
-    fetchFavoriteIds();
-  }, []);
-
-  useEffect(() => {
-    fetchFavoriteIds();
-  }, [user]);
-
-  const isLoading =
-    !recipes ||
-    recipes?.length === 0 ||
-    (user && (!favoriteIds || favoriteIds?.length === 0));
-
-  const context = useMemo(
-    () => ({
-      user,
-      setUser,
-      favoriteIds,
-      setFavoriteIds,
-      fetchFavoriteIds,
-    }),
-    [user, favoriteIds]
+  const recipesQuery = useQuery<IRecipe[], Error>('/api/recipes', () =>
+    authFetch('/api/recipe')
   );
 
   return (
-    <UserContext.Provider value={context}>
-      <div className="h-screen flex flex-col">
-        <Nav />
+    <div className="h-screen flex flex-col">
+      <Nav />
 
-        {isLoading ? (
-          <>
-            <Hero title="Loading" subtitle="Please wait..." />
-            <div className="flex-grow flex items-center justify-center">
-              <Loading />
-            </div>
-          </>
-        ) : (
-          <Routes>
-            <Route path="/" element={<Home recipes={recipes} />} />
-            <Route
-              path="recipe/:id"
-              element={<RecipeLoader recipes={recipes} />}
-            />
-            <Route
-              path="edit-recipe/:id"
-              element={
-                <RecipeForm fetchRecipes={fetchRecipes} recipes={recipes} />
-              }
-            />
-            <Route
-              path="create-recipe"
-              element={<RecipeForm fetchRecipes={fetchRecipes} />}
-            />
-            <Route path="my-account" element={<MyAccount />} />
-            <Route path="blog" element={<T>there is no blog, lol</T>} />
-            <Route path="login" element={<UserAccess />} />
-          </Routes>
-        )}
+      {recipesQuery.isLoading ? (
+        <>
+          <Hero title="Loading" subtitle="Please wait..." />
+          <div className="flex-grow flex items-center justify-center">
+            <Loading />
+          </div>
+        </>
+      ) : recipesQuery.isError || !recipesQuery.data ? (
+        <>
+          <Hero title="Loading" subtitle="Uh oh..." />
+          <div className="flex-grow flex items-center justify-center">
+            Something went wrong...
+          </div>
+        </>
+      ) : (
+        <Routes>
+          <Route path="/" element={<Home recipes={recipesQuery.data} />} />
+          <Route
+            path="recipe/:id"
+            element={<RecipeLoader recipes={recipesQuery.data} />}
+          />
+          <Route
+            path="edit-recipe/:id"
+            element={<RecipeForm recipes={recipesQuery.data} />}
+          />
+          <Route path="create-recipe" element={<RecipeForm />} />
+          <Route path="my-account" element={<MyAccount />} />
+          <Route path="blog" element={<T>there is no blog, lol</T>} />
+        </Routes>
+      )}
 
-        <Footer />
-      </div>
-    </UserContext.Provider>
+      <Footer />
+    </div>
   );
 };
 
