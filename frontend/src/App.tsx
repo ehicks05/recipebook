@@ -15,7 +15,7 @@ import { useQuery } from 'react-query';
 
 const App = () => {
   const recipesQuery = useQuery<IRecipe[], Error>('/api/recipes', () =>
-    authFetch('/api/recipe')
+    authFetch('/api/recipes')
   );
 
   return (
