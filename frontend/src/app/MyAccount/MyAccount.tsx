@@ -1,12 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Carousel, { ResponsiveType } from 'react-multi-carousel';
+import T from 'components/T';
+import useUser from 'useUser';
 import Hero from '../../components/Hero';
 import { IFavorite, IRecipe } from '../../types/types';
 import 'react-multi-carousel/lib/styles.css';
 import useIsMobile from './useIsMobile';
 import MyAccountComponent from './components/MyAccountComponent';
 import authFetch from '../../authFetch';
-import { UserContext } from '../../UserContext';
 import Container from '../../components/Container';
 
 function getResponsive(): ResponsiveType {
@@ -33,16 +34,16 @@ function getResponsive(): ResponsiveType {
 function MyAccount() {
   const [myRecipes, setMyRecipes] = useState<IRecipe[] | undefined>([]);
   const [myFavorites, setMyFavorites] = useState<IRecipe[] | undefined>([]);
-  const { user } = useContext(UserContext);
+  const { user } = useUser();
   const isMobile = useIsMobile();
 
   useEffect(() => {
     function fetchMyRecipes() {
-      authFetch('/recipe/user').then(json => setMyRecipes(json));
+      authFetch('/api/recipes/user').then(json => setMyRecipes(json));
     }
 
     function fetchMyFavorites() {
-      authFetch('/recipe/favorites').then(json => {
+      authFetch('/api/recipes/favorites').then(json => {
         if (json.length > 0) {
           const favs: IFavorite[] = json;
           setMyFavorites(favs.map(it => it.recipe));
@@ -56,7 +57,11 @@ function MyAccount() {
 
   return (
     <>
-      <Hero title="Your Profile" subtitle={user?.displayName} />
+      <Hero title="Your Profile" subtitle={user?.email} />
+      <Container>
+        <T>User Info Dump: </T>
+        <T className="whitespace-pre">{JSON.stringify(user, null, 2)}</T>
+      </Container>
       <Container>
         {isMobile && (
           <Carousel
