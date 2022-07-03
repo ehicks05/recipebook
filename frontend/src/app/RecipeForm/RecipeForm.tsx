@@ -1,9 +1,9 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { FaPlus, FaMinus } from 'react-icons/fa';
 import { useQueryClient } from 'react-query';
 
 import { FieldArray, Form, Formik } from 'formik';
+import { HiPlus, HiMinus } from 'react-icons/hi';
 import Hero from '../../components/Hero';
 import EmojiSelector from './Components/EmojiSelector';
 import authFetch from '../../authFetch';
@@ -108,7 +108,7 @@ function RecipeForm({ recipes }: IProps) {
                       <option value="5">5</option>
                     </MySelect>
                   </div>
-                  <div>
+                  <div className="flex flex-col gap-1">
                     <label className="label">
                       <T>Emoji</T>
                     </label>
@@ -120,7 +120,7 @@ function RecipeForm({ recipes }: IProps) {
                     </div>
                   </div>
                 </div>
-                <div className="md:col-span-1 lg:col-span-2">
+                <div className="md:col-span-1 lg:col-span-2 flex flex-col gap-2">
                   <T className="text-lg font-semibold">Ingredients</T>
                   <FieldArray name="ingredients">
                     {({ remove, push }) => (
@@ -147,7 +147,7 @@ function RecipeForm({ recipes }: IProps) {
                                   remove(index);
                                 }}
                               >
-                                <FaMinus />
+                                <HiMinus />
                               </Button>
                             </div>
                             <MyInput
@@ -165,14 +165,14 @@ function RecipeForm({ recipes }: IProps) {
                               })
                             }
                           >
-                            <FaPlus />
+                            <HiPlus />
                           </Button>
                         </div>
                       </div>
                     )}
                   </FieldArray>
                 </div>
-                <div className="md:col-span-2 lg:col-span-3">
+                <div className="md:col-span-2 lg:col-span-3 flex flex-col gap-2">
                   <T className="text-lg font-semibold">Directions</T>
                   <FieldArray name="directions">
                     {({ remove, push }) => (
@@ -194,7 +194,7 @@ function RecipeForm({ recipes }: IProps) {
                                 remove(index);
                               }}
                             >
-                              <FaMinus />
+                              <HiMinus />
                             </Button>
                           </div>
                         ))}
@@ -207,7 +207,7 @@ function RecipeForm({ recipes }: IProps) {
                               })
                             }
                           >
-                            <FaPlus />
+                            <HiPlus />
                           </Button>
                         </div>
                       </div>

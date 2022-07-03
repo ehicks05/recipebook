@@ -20,7 +20,7 @@ const MyInput = ({
 }: IMyInputProps) => {
   const [field, meta] = useField({ ...props, name: props.name || '' });
   return (
-    <div className={`w-full ${containerClassName}`}>
+    <div className={`w-full flex flex-col gap-1 ${containerClassName}`}>
       {label && (
         <label className="" htmlFor={props.id || props.name}>
           <T>{label}</T>
@@ -29,8 +29,8 @@ const MyInput = ({
       <div>
         <input
           type={props.type || 'text'}
-          className={`w-full dark:bg-neutral-700 dark:text-neutral-100 ${className} ${
-            meta.touched && meta.error ? 'border-red-600' : ''
+          className={`px-2 py-1.5 w-full rounded dark:bg-neutral-700 dark:text-neutral-100 ${className} ${
+            meta.touched && meta.error ? 'border-l-8 border-red-600' : ''
           }`}
           {...field}
           {...props}
@@ -89,7 +89,7 @@ interface IMyTextAreaProps {
 const MyTextArea = ({ label, ...props }: IMyTextAreaProps) => {
   const [field, meta] = useField(props);
   return (
-    <div className="w-full">
+    <div className="w-full flex flex-col gap-1">
       {label && (
         <label className="" htmlFor={props.id || props.name}>
           <T>{label}</T>
@@ -97,8 +97,8 @@ const MyTextArea = ({ label, ...props }: IMyTextAreaProps) => {
       )}
       <div className="">
         <TextareaAutosize
-          className={`w-full dark:bg-neutral-700 dark:text-neutral-100 ${
-            meta.touched && meta.error ? 'border-red-600' : ''
+          className={`px-2 py-1.5 w-full rounded dark:bg-neutral-700 dark:text-neutral-100 ${
+            meta.touched && meta.error ? 'border-l-8 border-red-600' : ''
           }`}
           rows={1}
           {...field}
@@ -122,7 +122,7 @@ interface IMySelectProps {
 const MySelect = ({ label, ...props }: IMySelectProps) => {
   const [field, meta] = useField(props);
   return (
-    <div className="w-full">
+    <div className="w-full flex flex-col gap-1">
       {label && (
         <label className="" htmlFor={props.id || props.name}>
           <T>{label}</T>
@@ -131,7 +131,9 @@ const MySelect = ({ label, ...props }: IMySelectProps) => {
       <div className="">
         <div className="">
           <select
-            className="w-full dark:bg-neutral-700 dark:text-neutral-100"
+            className={`px-2 py-1.5 w-full rounded dark:bg-neutral-700 dark:text-neutral-100 ${
+              meta.touched && meta.error ? 'border-l-8 border-red-600' : ''
+            }`}
             {...field}
             {...props}
           >
