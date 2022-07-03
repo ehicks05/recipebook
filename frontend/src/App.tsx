@@ -49,7 +49,7 @@ const App = () => {
           />
           <Route path="create-recipe" element={<RecipeForm />} />
           <Route path="my-account" element={<MyAccount />} />
-          <Route path="blog" element={<T>there is no blog, lol</T>} />
+          <Route path="blog" element={<T>Work in progress...</T>} />
         </Routes>
       )}
 
