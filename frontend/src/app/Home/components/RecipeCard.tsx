@@ -57,7 +57,7 @@ function RecipeCard({
         </div>
 
         <footer className="flex gap-4 pt-4">
-          <div className="flex gap-2 justify-center items-center w-full py-2 rounded bg-neutral-100 dark:bg-neutral-700">
+          <div className="flex gap-2 justify-center items-center w-full px-3 py-1.5 rounded bg-neutral-100 dark:bg-neutral-700">
             <div>
               <HiOutlineClock size="2em" className="dark:text-neutral-200" />
             </div>
@@ -65,7 +65,7 @@ function RecipeCard({
               {cookingTime}
             </div>
           </div>
-          <div className="flex gap-2 justify-center items-center w-full rounded bg-neutral-100 dark:bg-neutral-700">
+          <div className="flex gap-2 justify-center items-center w-full px-3 py-1.5 rounded bg-neutral-100 dark:bg-neutral-700">
             <div>
               <DifficultyIcon difficulty={difficulty} />
             </div>
@@ -74,7 +74,7 @@ function RecipeCard({
                 'Fix this recipe'}
             </div>
           </div>
-          <div className="flex gap-2 justify-center items-center w-full rounded bg-neutral-100 dark:bg-neutral-700">
+          <div className="flex gap-2 justify-center items-center w-full px-3 py-1.5 rounded bg-neutral-100 dark:bg-neutral-700">
             {user && (
               <div onClick={e => e.preventDefault()}>
                 <FavoriteButton
