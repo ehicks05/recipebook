@@ -5,6 +5,7 @@ import { useQueryClient } from 'react-query';
 import { FieldArray, Form, Formik } from 'formik';
 import { HiPlus, HiMinus } from 'react-icons/hi';
 import { Container, Button, Hero, T } from 'core-components';
+import { useFetchRecipe } from 'hooks/recipes';
 import EmojiSelector from './Components/EmojiSelector';
 import authFetch from '../../helpers/authFetch';
 import {
@@ -20,21 +21,19 @@ import {
   MySelect,
   MyTextArea,
 } from '../../components/FormikInput';
-import { IRecipe } from '../../types/types';
 
-interface IProps {
-  recipes?: IRecipe[];
-}
-
-function RecipeForm({ recipes }: IProps) {
+function RecipeForm() {
   const queryClient = useQueryClient();
 
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
 
-  const recipe = id ? recipes?.find(r => r.id === id) : undefined;
+  const { isLoading, isError, error, data } = useFetchRecipe(id || '');
 
-  if (id && !recipe) return <div>Loading...</div>;
+  if (isLoading) return <Hero title="Loading..." />;
+  if (isError) return <Hero title="Error..." subtitle={error.message} />;
+  const recipe = id ? data : undefined;
+  if (id && !recipe) return <Hero title="Recipe not found" />;
 
   return (
     <>

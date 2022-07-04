@@ -1,14 +1,14 @@
 import React from 'react';
 import { Container, Hero } from 'core-components';
-import { IRecipe } from '../../types/types';
+import { useFetchRecipes } from 'hooks/recipes';
 import RecipePicker from './components/RecipePicker';
 
-interface IProps {
-  recipes: IRecipe[];
-}
+function Home() {
+  const { isLoading, isError, error, data: recipes } = useFetchRecipes();
 
-function Home({ recipes }: IProps) {
-  if (!recipes) return <Hero title="Loading..." />;
+  if (isLoading) return <Hero title="Loading..." />;
+  if (isError) return <Hero title="Error..." subtitle={error.message} />;
+  if (!recipes) return <Hero title="Recipes not found" />;
 
   return (
     <>
