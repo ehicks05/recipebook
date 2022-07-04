@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Carousel, { ResponsiveType } from 'react-multi-carousel';
-import useUser from 'useUser';
+import useUser from 'hooks/useUser';
 import { Container, Hero, T } from 'core-components';
 import { IFavorite, IRecipe } from '../../types/types';
 import 'react-multi-carousel/lib/styles.css';

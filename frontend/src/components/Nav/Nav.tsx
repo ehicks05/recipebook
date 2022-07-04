@@ -3,7 +3,7 @@ import React, { Fragment, useState } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { HiMenu, HiUserCircle, HiX } from 'react-icons/hi';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import useUser from 'useUser';
+import useUser from 'hooks/useUser';
 import AuthDialog from 'components/AuthDialog';
 
 function classNames(...classes: string[]) {
