@@ -1,4 +1,4 @@
-import API_URL from 'apiUrl';
+import API_URL from 'helpers/apiUrl';
 
 const LOCAL_STORAGE_KEY = 'token';
 

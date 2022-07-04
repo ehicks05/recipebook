@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 
 import { IconContext } from 'react-icons';
-import authFetch from '../authFetch';
+import authFetch from '../helpers/authFetch';
 
 interface IProps {
   recipeId: string | undefined;

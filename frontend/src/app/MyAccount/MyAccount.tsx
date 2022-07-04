@@ -6,7 +6,7 @@ import { IFavorite, IRecipe } from '../../types/types';
 import 'react-multi-carousel/lib/styles.css';
 import useIsMobile from './useIsMobile';
 import MyAccountComponent from './components/MyAccountComponent';
-import authFetch from '../../authFetch';
+import authFetch from '../../helpers/authFetch';
 
 function getResponsive(): ResponsiveType {
   return {

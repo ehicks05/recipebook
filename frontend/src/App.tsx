@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Footer from 'components/Footer';
 import { IRecipe } from 'types/types';
-import authFetch from 'authFetch';
+import authFetch from 'helpers/authFetch';
 import { Hero, Loading, T } from 'core-components';
 import Nav from 'components/Nav/Nav';
 import RecipeForm from 'app/RecipeForm/RecipeForm';

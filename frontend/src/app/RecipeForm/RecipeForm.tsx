@@ -6,7 +6,7 @@ import { FieldArray, Form, Formik } from 'formik';
 import { HiPlus, HiMinus } from 'react-icons/hi';
 import { Container, Button, Hero, T } from 'core-components';
 import EmojiSelector from './Components/EmojiSelector';
-import authFetch from '../../authFetch';
+import authFetch from '../../helpers/authFetch';
 import {
   DEFAULT_INGREDIENT,
   DEFAULT_DIRECTION,
