@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Carousel, { ResponsiveType } from 'react-multi-carousel';
-import T from 'components/T';
 import useUser from 'useUser';
-import Hero from '../../components/Hero';
+import { Container, Hero, T } from 'core-components';
 import { IFavorite, IRecipe } from '../../types/types';
 import 'react-multi-carousel/lib/styles.css';
 import useIsMobile from './useIsMobile';
 import MyAccountComponent from './components/MyAccountComponent';
 import authFetch from '../../authFetch';
-import Container from '../../components/Container';
 
 function getResponsive(): ResponsiveType {
   return {

@@ -1,7 +1,7 @@
 import React from 'react';
+import { T } from 'core-components';
 import SmallRecipeCard from './SmallRecipeCard';
 import { IRecipe } from '../../../types/types';
-import T from '../../../components/T';
 
 interface IMyAccountComponentType {
   title: string;

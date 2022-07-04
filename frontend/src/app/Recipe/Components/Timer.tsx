@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Button from '../../../components/Button';
+import { Button } from 'core-components';
 
 interface IProps {
   minutes: number;

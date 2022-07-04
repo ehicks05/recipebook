@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Picker, { IEmojiData } from 'emoji-picker-react';
-import Button from '../../../components/Button';
+import { Button } from 'core-components';
 
 interface IProps {
   updateEmoji: (code: string) => void;

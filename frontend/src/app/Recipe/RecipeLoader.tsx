@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import Hero from '../../components/Hero';
+import { Hero } from 'core-components';
 import { IRecipe } from '../../types/types';
 import Recipe from './Recipe';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { useField } from 'formik';
 import TextareaAutosize from 'react-textarea-autosize';
 import { IconType } from 'react-icons';
-import T from './T';
+import { T } from 'core-components';
 
 export interface IMyInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {

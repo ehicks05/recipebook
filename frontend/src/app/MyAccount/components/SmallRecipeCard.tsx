@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Card from '../../../components/Card';
-import T from '../../../components/T';
+import { Card, T } from 'core-components';
 import { IRecipe } from '../../../types/types';
 
 interface ISmallRecipeCardProps {

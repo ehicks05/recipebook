@@ -2,11 +2,10 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { HiOutlineClock } from 'react-icons/hi';
 import { clamp, range } from 'lodash';
+import { Card, T } from 'core-components';
 import { IRecipe } from '../../../types/types';
 import FavoriteButton from '../../../components/FavoriteButton';
 import { UserContext } from '../../../UserContext';
-import Card from '../../../components/Card';
-import T from '../../../components/T';
 
 const DIFFICULTIES: Record<number, { label: string; color: string }> = {
   1: { label: 'Easy', color: 'bg-green-500' },

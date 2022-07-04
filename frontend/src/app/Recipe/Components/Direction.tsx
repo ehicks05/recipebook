@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import { T } from 'core-components';
 import Timer from './Timer';
 import { IDirection } from '../../../types/types';
-import T from '../../../components/T';
 
 interface IDirectionProps {
   direction: IDirection;

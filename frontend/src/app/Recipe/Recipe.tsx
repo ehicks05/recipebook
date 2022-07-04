@@ -1,15 +1,13 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BiDownload, BiEdit } from 'react-icons/bi';
-import Hero from '../../components/Hero';
+import { Container, Hero, T } from 'core-components';
 import { IRecipe } from '../../types/types';
 import Directions from './Components/Directions';
 import Ingredients from './Components/Ingredients';
 import { UserContext } from '../../UserContext';
 import { stripRecipe, updateClipboard } from './utils';
-import Container from '../../components/Container';
-import T from '../../components/T';
-import Button from '../../components/Button';
+import Button from '../../core-components/Button';
 
 interface IProps {
   recipe: IRecipe;

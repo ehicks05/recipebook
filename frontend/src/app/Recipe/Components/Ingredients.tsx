@@ -1,8 +1,7 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { FaMinus, FaPlus } from 'react-icons/fa';
+import { Button, T } from 'core-components';
 import { Ingredient } from '.';
-import Button from '../../../components/Button';
-import T from '../../../components/T';
 import { IIngredient } from '../../../types/types';
 
 interface IProps {

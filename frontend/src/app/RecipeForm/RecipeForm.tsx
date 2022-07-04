@@ -4,7 +4,7 @@ import { useQueryClient } from 'react-query';
 
 import { FieldArray, Form, Formik } from 'formik';
 import { HiPlus, HiMinus } from 'react-icons/hi';
-import Hero from '../../components/Hero';
+import { Container, Button, Hero, T } from 'core-components';
 import EmojiSelector from './Components/EmojiSelector';
 import authFetch from '../../authFetch';
 import {
@@ -21,9 +21,6 @@ import {
   MyTextArea,
 } from '../../components/FormikInput';
 import { IRecipe } from '../../types/types';
-import Container from '../../components/Container';
-import Button from '../../components/Button';
-import T from '../../components/T';
 
 interface IProps {
   recipes?: IRecipe[];

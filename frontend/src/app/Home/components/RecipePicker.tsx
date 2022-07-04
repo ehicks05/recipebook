@@ -1,6 +1,5 @@
-import T from 'components/T';
 import React, { useState } from 'react';
-import Button from '../../../components/Button';
+import { Button, T } from 'core-components';
 import { IRecipe } from '../../../types/types';
 import RecipeCard from './RecipeCard';
 
