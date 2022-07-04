@@ -1,34 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { HiOutlineClock } from 'react-icons/hi';
-import { clamp, range } from 'lodash';
-import { Card, T } from 'core-components';
-import { IRecipe } from '../../../types/types';
-import FavoriteButton from '../../../components/FavoriteButton';
-import { UserContext } from '../../../UserContext';
-
-const DIFFICULTIES: Record<number, { label: string; color: string }> = {
-  1: { label: 'Easy', color: 'bg-green-500' },
-  2: { label: 'Medium', color: 'bg-yellow-500' },
-  3: { label: 'Hard', color: 'bg-red-500' },
-};
-
-const DifficultyIcon = ({ difficulty }: { difficulty: number }) => {
-  return (
-    <div className="flex flex-col-reverse gap-0.5">
-      {range(1, 4).map(i => (
-        <div
-          key={i}
-          className={`w-2 h-2 rounded-full ${
-            difficulty >= i
-              ? DIFFICULTIES[i]?.color
-              : 'bg-neutral-300 dark:bg-neutral-500'
-          }`}
-        />
-      ))}
-    </div>
-  );
-};
+import { Card, CookingTime, Difficulty, T } from 'core-components';
+import { IRecipe } from 'types/types';
+import FavoriteButton from 'components/FavoriteButton';
+import useUser from 'hooks/useUser';
+import RecipeStat from 'core-components/RecipeStat';
 
 interface IRecipeCardProps {
   recipe: IRecipe;
@@ -37,7 +13,7 @@ interface IRecipeCardProps {
 function RecipeCard({
   recipe: { id, emoji, name, author, description, cookingTime, difficulty },
 }: IRecipeCardProps) {
-  const { user, favoriteIds, fetchFavoriteIds } = useContext(UserContext);
+  const { user } = useUser();
 
   return (
     <Link to={`/recipe/${id}`}>
@@ -57,34 +33,15 @@ function RecipeCard({
         </div>
 
         <footer className="flex gap-4 pt-4">
-          <div className="flex gap-2 justify-center items-center w-full px-3 py-1.5 rounded bg-neutral-100 dark:bg-neutral-700">
-            <div>
-              <HiOutlineClock size="2em" className="dark:text-neutral-200" />
-            </div>
-            <div className="text-sm font-semibold dark:text-neutral-200">
-              {cookingTime}
-            </div>
-          </div>
-          <div className="flex gap-2 justify-center items-center w-full px-3 py-1.5 rounded bg-neutral-100 dark:bg-neutral-700">
-            <div>
-              <DifficultyIcon difficulty={difficulty} />
-            </div>
-            <div className="text-sm font-semibold dark:text-neutral-200">
-              {DIFFICULTIES[clamp(difficulty, 1, 3)]?.label ||
-                'Fix this recipe'}
-            </div>
-          </div>
-          <div className="flex gap-2 justify-center items-center w-full px-3 py-1.5 rounded bg-neutral-100 dark:bg-neutral-700">
+          <CookingTime cookingTime={cookingTime} />
+          <Difficulty difficulty={difficulty} />
+          <RecipeStat>
             {user && (
               <div onClick={e => e.preventDefault()}>
-                <FavoriteButton
-                  recipeId={id}
-                  favoriteIds={favoriteIds}
-                  fetchFavorites={fetchFavoriteIds}
-                />
+                <FavoriteButton recipeId={id} />
               </div>
             )}
-          </div>
+          </RecipeStat>
         </footer>
       </Card>
     </Link>

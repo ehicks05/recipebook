@@ -1,41 +1,33 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 
 import { IconContext } from 'react-icons';
-import authFetch from '../helpers/authFetch';
+import {
+  useAddFavorite,
+  useFetchFavorites,
+  useRemoveFavorite,
+} from 'hooks/favorites';
 
 interface IProps {
-  recipeId: string | undefined;
-  favoriteIds: string[];
-  fetchFavorites: () => void;
+  recipeId?: string;
 }
 
-function FavoriteButton({ recipeId, favoriteIds, fetchFavorites }: IProps) {
-  const saveFavorite = () => {
-    authFetch(`/recipe/favorite/${recipeId}`, {
-      method: 'POST',
-    }).then(() => {
-      fetchFavorites();
-    });
-  };
+const style = { size: '1.3em', color: '#E00' };
 
-  const removeFavorite = () => {
-    authFetch(`/recipe/favorite/${recipeId}`, {
-      method: 'DELETE',
-    }).then(() => {
-      fetchFavorites();
-    });
-  };
+function FavoriteButton({ recipeId }: IProps) {
+  const userFavorites = useFetchFavorites();
+  const addFavorite = useAddFavorite(recipeId || '');
+  const removeFavorite = useRemoveFavorite(recipeId || '');
 
-  const style = useMemo(() => ({ size: '1.3em', color: '#E00' }), []);
+  const favoriteIds = userFavorites.data?.map(f => f.id) || [];
 
   return (
     <div>
       <IconContext.Provider value={style}>
         {recipeId && favoriteIds.includes(recipeId) ? (
-          <FaHeart onClick={removeFavorite} />
+          <FaHeart onClick={() => removeFavorite.mutate} />
         ) : (
-          <FaRegHeart onClick={saveFavorite} />
+          <FaRegHeart onClick={() => addFavorite.mutate} />
         )}
       </IconContext.Provider>
     </div>

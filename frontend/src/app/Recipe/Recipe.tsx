@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { BiDownload, BiEdit } from 'react-icons/bi';
-import { Container, Hero, T } from 'core-components';
+import { Container, CookingTime, Difficulty, Hero, T } from 'core-components';
 import { useFetchRecipe } from 'hooks/recipes';
 import { IRecipe } from '../../types/types';
 import Directions from './Components/Directions';
@@ -27,10 +27,11 @@ function Recipe({ recipe }: IProps) {
       </Hero>
       <Container>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 justify-between gap-6">
-          <div className="order-1">
+          <div className="flex flex-col gap-4 order-1">
             <T className="text-lg font-semibold">Details</T>
-            <div>
-              <T className="font-semibold">Time:</T> <T>{recipe.cookingTime}</T>
+            <div className="flex gap-2">
+              <CookingTime cookingTime={recipe.cookingTime} />
+              <Difficulty difficulty={recipe.difficulty} />
             </div>
             <div>
               <T className="font-semibold">Description:</T>{' '}

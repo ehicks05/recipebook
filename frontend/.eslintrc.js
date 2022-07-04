@@ -5,9 +5,9 @@ module.exports = {
   },
   extends: [
     'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
     'airbnb',
     'airbnb-typescript',
-    'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
   ],
   parser: '@typescript-eslint/parser',
@@ -48,7 +48,9 @@ module.exports = {
     'no-console': 'off',
     'no-nested-ternary': 'off',
     'no-unused-vars': 'off',
-    '@typescript-eslint/no-unused-vars': ['error'],
+    'import/no-cycle': 'off',
+    'arrow-parens': 'off',
+    '@typescript-eslint/no-unused-vars': 'off',
   },
   settings: {
     'import/resolver': {
