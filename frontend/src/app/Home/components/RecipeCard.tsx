@@ -18,6 +18,7 @@ const DifficultyIcon = ({ difficulty }: { difficulty: number }) => {
     <div className="flex flex-col-reverse gap-0.5">
       {range(1, 4).map(i => (
         <div
+          key={i}
           className={`w-2 h-2 rounded-full ${
             difficulty >= i
               ? DIFFICULTIES[i]?.color
