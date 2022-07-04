@@ -1,18 +1,41 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { FcClock } from 'react-icons/fc';
+import { HiOutlineClock } from 'react-icons/hi';
+import { clamp, range } from 'lodash';
 import { IRecipe } from '../../../types/types';
 import FavoriteButton from '../../../components/FavoriteButton';
 import { UserContext } from '../../../UserContext';
 import Card from '../../../components/Card';
 import T from '../../../components/T';
 
+const DIFFICULTIES: Record<number, { label: string; color: string }> = {
+  1: { label: 'Easy', color: 'bg-green-500' },
+  2: { label: 'Medium', color: 'bg-yellow-500' },
+  3: { label: 'Hard', color: 'bg-red-500' },
+};
+
+const DifficultyIcon = ({ difficulty }: { difficulty: number }) => {
+  return (
+    <div className="flex flex-col-reverse gap-0.5">
+      {range(1, 4).map(i => (
+        <div
+          className={`w-2 h-2 rounded-full ${
+            difficulty >= i
+              ? DIFFICULTIES[i]?.color
+              : 'bg-neutral-300 dark:bg-neutral-500'
+          }`}
+        />
+      ))}
+    </div>
+  );
+};
+
 interface IRecipeCardProps {
   recipe: IRecipe;
 }
 
 function RecipeCard({
-  recipe: { id, emoji, name, author, description, cookingTime },
+  recipe: { id, emoji, name, author, description, cookingTime, difficulty },
 }: IRecipeCardProps) {
   const { user, favoriteIds, fetchFavoriteIds } = useContext(UserContext);
 
@@ -33,18 +56,25 @@ function RecipeCard({
           <T className="line-clamp-5">{description}</T>
         </div>
 
-        <hr className="-mx-4" />
-
-        <footer className="flex pt-4">
-          <div className="flex gap-2 justify-center items-center w-full">
+        <footer className="flex gap-4 pt-4">
+          <div className="flex gap-2 justify-center items-center w-full py-2 rounded bg-neutral-100 dark:bg-neutral-700">
             <div>
-              <FcClock size="2em" />
+              <HiOutlineClock size="2em" className="dark:text-neutral-200" />
             </div>
             <div className="font-semibold dark:text-neutral-200">
               {cookingTime}
             </div>
           </div>
-          <div className="flex gap-2 justify-center items-center w-full">
+          <div className="flex gap-2 justify-center items-center w-full rounded bg-neutral-100 dark:bg-neutral-700">
+            <div>
+              <DifficultyIcon difficulty={difficulty} />
+            </div>
+            <div className="font-semibold dark:text-neutral-200">
+              {DIFFICULTIES[clamp(difficulty, 1, 3)]?.label ||
+                'Fix this recipe'}
+            </div>
+          </div>
+          <div className="flex gap-2 justify-center items-center w-full rounded bg-neutral-100 dark:bg-neutral-700">
             {user && (
               <div onClick={e => e.preventDefault()}>
                 <FavoriteButton
