@@ -61,7 +61,7 @@ function RecipeCard({
             <div>
               <HiOutlineClock size="2em" className="dark:text-neutral-200" />
             </div>
-            <div className="font-semibold dark:text-neutral-200">
+            <div className="text-sm font-semibold dark:text-neutral-200">
               {cookingTime}
             </div>
           </div>
@@ -69,7 +69,7 @@ function RecipeCard({
             <div>
               <DifficultyIcon difficulty={difficulty} />
             </div>
-            <div className="font-semibold dark:text-neutral-200">
+            <div className="text-sm font-semibold dark:text-neutral-200">
               {DIFFICULTIES[clamp(difficulty, 1, 3)]?.label ||
                 'Fix this recipe'}
             </div>
