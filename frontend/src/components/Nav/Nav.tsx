@@ -10,7 +10,7 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function Example() {
+const Nav = () => {
   const { user } = useUser();
   const navigate = useNavigate();
   const location = useLocation();
@@ -51,7 +51,7 @@ export default function Example() {
     { to: '#', label: 'Log out', onClick: () => setShowAuthModal(true) },
   ];
   const loggedInMenuItems = accountItems.map(item => (
-    <Menu.Item>
+    <Menu.Item key={item.label}>
       {({ active }) => (
         <Link
           to={item.to}
@@ -180,4 +180,6 @@ export default function Example() {
       />
     </>
   );
-}
+};
+
+export default Nav;
