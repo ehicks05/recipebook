@@ -1384,5 +1384,69 @@
       }
     ],
     "emoji": "🍲"
+  },
+  {
+    "name": "Pressure Cooker Corned Beef And Cabbage",
+    "difficulty": 2,
+    "cookingTime": "130",
+    "servings": 6,
+    "ingredients": [
+      {
+        "quantity": "3",
+        "unit": "lb",
+        "name": "flat cut corned beef brisket with seasoning packet"
+      },
+      { "quantity": "4", "unit": "cup", "name": "beef broth" },
+      { "quantity": "1", "unit": "", "name": "large onion, quartered" },
+      { "quantity": "8", "unit": "", "name": "garlic cloves" },
+      {
+        "quantity": "6",
+        "unit": "",
+        "name": "medium red potatoes, quartered"
+      },
+      {
+        "quantity": "3",
+        "unit": "",
+        "name": "large carrots, cut into 2-inch pieces"
+      },
+      {
+        "quantity": "1",
+        "unit": "",
+        "name": "small cabbage, cut into 6 wedges"
+      }
+    ],
+    "directions": [
+      {
+        "text": "Rinse the corned beef under cold water to remove excess salt and gel."
+      },
+      {
+        "text": "Combine the seasoning packet, onion, and garlic in the pressure cooking pot. Put a metal rack in the bottom of the pressure cooking pot, place corned beef on the rack. and pour the beef stock on top."
+      },
+      {
+        "text": "Lock the lid in place. Select High Pressure and 90 minutes cook time. "
+      },
+      {
+        "text": "When the cook time ends, turn off the pressure cooker. Allow the pressure to release naturally for 10 minutes, then finish with a quick pressure release. When the valve drops, carefully remove the lid."
+      },
+      {
+        "text": "Remove the cooked corned beef from the pressure cooking pot to a platter or cutting board. Slice meat across the grain and cover with aluminum foil until ready to serve. Remove the rack from the cooking pot. "
+      },
+      {
+        "text": "Add the potatoes, carrots, and cabbage to the broth in the cooking pot. Lock the lid in place. Select High Pressure and 3 minutes cook time. "
+      },
+      {
+        "text": "When the cook time ends, turn off the pressure cooker and use a quick pressure release. When the valve drops, carefully remove the lid. "
+      },
+      {
+        "text": "Check the potatoes with a fork. If you would like them cooked more tender, select Sauté and simmer, stirring occasionally, until they reach your desired tenderness."
+      },
+      {
+        "text": "Remove the carrots, cabbage, and potatoes from the pressure cooking pot to the serving platter. "
+      },
+      {
+        "text": "If desired, strain the juices remaining in the pot, skim off the fat, and transfer to a gravy boat or bowl to ladle on top of the meat."
+      }
+    ],
+    "emoji": "🍲"
   }
 ]
