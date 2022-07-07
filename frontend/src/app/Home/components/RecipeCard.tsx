@@ -35,13 +35,13 @@ function RecipeCard({
         <footer className="flex gap-4 pt-4">
           <CookingTime cookingTime={cookingTime} />
           <Difficulty difficulty={difficulty} />
-          <RecipeStat>
-            {user && (
+          {user && (
+            <RecipeStat>
               <div onClick={e => e.preventDefault()}>
                 <FavoriteButton recipeId={id} />
               </div>
-            )}
-          </RecipeStat>
+            </RecipeStat>
+          )}
         </footer>
       </Card>
     </Link>

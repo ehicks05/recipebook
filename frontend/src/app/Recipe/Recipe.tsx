@@ -28,15 +28,11 @@ function Recipe({ recipe }: IProps) {
       <Container>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 justify-between gap-6">
           <div className="flex flex-col gap-4 order-1">
-            <T className="text-lg font-semibold">Details</T>
             <div className="flex gap-2">
               <CookingTime cookingTime={recipe.cookingTime} />
               <Difficulty difficulty={recipe.difficulty} />
             </div>
-            <div>
-              <T className="font-semibold">Description:</T>{' '}
-              <T>{recipe.description}</T>
-            </div>
+            <T>{recipe.description}</T>
           </div>
           <div className="order-2 md:order-3">
             <T className="text-lg font-semibold">Ingredients</T>

@@ -45,12 +45,13 @@ function EmojiSelector({ updateEmoji, data }: IProps) {
       </Button>
     </div>
   ) : (
-    <Button
-      className="px-3 py-3 bg-neutral-100 dark:bg-neutral-800 text-5xl"
+    <button
+      type="button"
+      className="p-4 rounded bg-neutral-100 dark:bg-neutral-800 text-4xl"
       onClick={() => setIsEditing(true)}
     >
       {data.value}
-    </Button>
+    </button>
   );
 }
 
