@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Button, T } from 'core-components';
+import { Button, Loading, T } from 'core-components';
+import { useFetchRecipes } from 'hooks/recipes';
 import { IRecipe } from '../../../types/types';
 import RecipeCard from './RecipeCard';
 
@@ -67,4 +68,14 @@ function RecipePicker({ recipes }: IProps) {
   );
 }
 
-export default RecipePicker;
+const RecipePickerWrapper = () => {
+  const { isLoading, error, data: recipes } = useFetchRecipes();
+
+  if (isLoading) return <Loading />;
+  if (error || !recipes)
+    return <div>{error?.message || 'Something went wrong'}</div>;
+
+  return <RecipePicker recipes={recipes} />;
+};
+
+export default RecipePickerWrapper;
