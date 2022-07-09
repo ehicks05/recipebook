@@ -4,7 +4,6 @@ import { Card, CookingTime, Difficulty, T } from 'core-components';
 import { IRecipe } from 'types/types';
 import FavoriteButton from 'components/FavoriteButton';
 import useUser from 'hooks/useUser';
-import RecipeStat from 'core-components/RecipeStat';
 
 interface IRecipeCardProps {
   recipe: IRecipe;
@@ -16,35 +15,29 @@ function RecipeCard({
   const { user } = useUser();
 
   return (
-    <Link to={`/recipe/${id}`}>
-      <Card className="hover:shadow-lg transform transition-all">
-        <div className="flex flex-col gap-4 h-56">
-          <div className="flex gap-2">
-            <figure className="w-16 h-16 text-5xl pt-2">{emoji}</figure>
-            <div className="w-full">
+    <Card className="hover:shadow-lg transform transition-all">
+      <div className="flex flex-col gap-4 h-56">
+        {/* title row */}
+        <div className="flex items-start gap-2">
+          <figure className="w-16 h-16 text-5xl pt-2">{emoji}</figure>
+          <div className="w-full">
+            <Link to={`/recipe/${id}`}>
               <div className="font-semibold dark:text-neutral-200">{name}</div>
               <div className="text-xs italic dark:text-neutral-200">
                 {author.displayName}
               </div>
-            </div>
+            </Link>
           </div>
-
-          <T className="line-clamp-5">{description}</T>
+          {user && <FavoriteButton recipeId={id} />}
         </div>
+        <T className="line-clamp-5">{description}</T>
+      </div>
 
-        <footer className="flex gap-4 pt-4">
-          <CookingTime cookingTime={cookingTime} />
-          <Difficulty difficulty={difficulty} />
-          <RecipeStat>
-            {user && (
-              <div onClick={e => e.preventDefault()}>
-                <FavoriteButton recipeId={id} />
-              </div>
-            )}
-          </RecipeStat>
-        </footer>
-      </Card>
-    </Link>
+      <footer className="flex gap-4 pt-4">
+        <CookingTime cookingTime={cookingTime} />
+        <Difficulty difficulty={difficulty} />
+      </footer>
+    </Card>
   );
 }
 
