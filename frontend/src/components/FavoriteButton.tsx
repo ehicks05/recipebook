@@ -10,9 +10,10 @@ import { Button } from 'core-components';
 
 interface IProps {
   recipeId: string;
+  className?: string;
 }
 
-function FavoriteButton({ recipeId }: IProps) {
+function FavoriteButton({ recipeId, className }: IProps) {
   const userFavorites = useFetchFavorites();
   const addFavorite = useAddFavorite(recipeId);
   const removeFavorite = useRemoveFavorite(recipeId);
@@ -25,7 +26,7 @@ function FavoriteButton({ recipeId }: IProps) {
     : addFavorite.mutate;
 
   return (
-    <Button onClick={() => handler()}>
+    <Button className={className} onClick={() => handler()}>
       <Icon className="text-2xl text-red-500" />
     </Button>
   );
