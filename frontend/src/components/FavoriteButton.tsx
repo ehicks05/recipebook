@@ -1,36 +1,34 @@
 import React from 'react';
-import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { HiHeart, HiOutlineHeart } from 'react-icons/hi';
 
-import { IconContext } from 'react-icons';
 import {
   useAddFavorite,
   useFetchFavorites,
   useRemoveFavorite,
 } from 'hooks/favorites';
+import { Button } from 'core-components';
 
 interface IProps {
-  recipeId?: string;
+  recipeId: string;
+  className?: string;
 }
 
-const style = { size: '1.3em', color: '#E00' };
-
-function FavoriteButton({ recipeId }: IProps) {
+function FavoriteButton({ recipeId, className }: IProps) {
   const userFavorites = useFetchFavorites();
-  const addFavorite = useAddFavorite(recipeId || '');
-  const removeFavorite = useRemoveFavorite(recipeId || '');
+  const addFavorite = useAddFavorite(recipeId);
+  const removeFavorite = useRemoveFavorite(recipeId);
 
   const favoriteIds = userFavorites.data?.map(f => f.id) || [];
 
+  const Icon = favoriteIds.includes(recipeId) ? HiHeart : HiOutlineHeart;
+  const handler = favoriteIds.includes(recipeId)
+    ? removeFavorite.mutate
+    : addFavorite.mutate;
+
   return (
-    <div>
-      <IconContext.Provider value={style}>
-        {recipeId && favoriteIds.includes(recipeId) ? (
-          <FaHeart onClick={() => removeFavorite.mutate} />
-        ) : (
-          <FaRegHeart onClick={() => addFavorite.mutate} />
-        )}
-      </IconContext.Provider>
-    </div>
+    <Button className={className} onClick={() => handler()}>
+      <Icon className="text-2xl text-red-500" />
+    </Button>
   );
 }
 
