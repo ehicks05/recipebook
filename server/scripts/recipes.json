@@ -1,0 +1,1523 @@
+[
+  {
+    "name": "Steve's Classic Wok",
+    "difficulty": "4",
+    "ingredients": [
+      { "quantity": "1", "unit": "lb", "name": "Steak (or chicken)" },
+      { "quantity": "1", "unit": "lb", "name": "Carrots" },
+      { "quantity": "1", "unit": "lb", "name": "Onions" },
+      { "quantity": "1", "unit": "lb", "name": "Mushrooms" },
+      { "quantity": "1", "unit": "lb", "name": "Udon Noodles" },
+      { "quantity": "1", "unit": "lb", "name": "Curry Powder" },
+      { "quantity": "1", "unit": "lb", "name": "Pepper" },
+      { "quantity": "1", "unit": "lb", "name": "Garlic Salt" },
+      { "quantity": "1", "unit": "lb", "name": "Hoison Sauce" }
+    ],
+    "cookingTime": "20",
+    "servings": "4",
+    "directions": [
+      { "text": "Add a bit of oil to your wok and let it heat up." },
+      {
+        "text": "Meanwhile, cut up the steak or chicken into small bite-sized pieces."
+      },
+      {
+        "text": "Add the meat to the wok, and sprinke on some pepper, garlic salt, and curry.  Wait a few minutes, and add carrots."
+      },
+      {
+        "text": "When the meat is starting to cook, add hoison sauce and cover for about 5-7 minutes.  Use this time to slice up the mushrooms.  Then, add the mushrooms and onions to the dish."
+      },
+      {
+        "text": "Now cook your udon noodles in the microwave.  Cover them in water, and put in for 2 minutes on high.  Then drain, unplug the wok, and add the noodles into the mix and stir.  This way the noodles will be able to mingle with the rest of the meal, but not overcook."
+      },
+      { "text": "Then serve and enjoy." }
+    ],
+    "emoji": "\uD83E\uDD58"
+  },
+  {
+    "name": "Chicken & Vegetable Udon Soup",
+    "difficulty": "2",
+    "ingredients": [
+      { "quantity": "7", "unit": "oz", "name": "udon noodles" },
+      { "quantity": "1", "unit": "tbsp", "name": "oil" },
+      { "quantity": "1", "unit": "tbsp", "name": "minced garlic" },
+      { "quantity": "1", "unit": "tbsp", "name": "minced ginger" },
+      {
+        "quantity": "1/2",
+        "unit": "lb",
+        "name": "boneless skinless chicken breast cut into strips"
+      },
+      { "quantity": "4", "unit": "cup", "name": "chicken stock" },
+      { "quantity": "1", "unit": "cup", "name": "diced carrots" },
+      { "quantity": "2", "unit": "tbsp", "name": "soy sauce" },
+      { "quantity": "1/2", "unit": "tsp", "name": "salt" },
+      {
+        "quantity": "1 1/2",
+        "unit": "cup",
+        "name": "snow peas, julienne sliced"
+      },
+      { "quantity": "1/2", "unit": "cup", "name": "sliced mushrooms" },
+      { "quantity": "2", "unit": "tbsp", "name": "green onions, thinly sliced" }
+    ],
+    "cookingTime": "40",
+    "servings": "6",
+    "directions": [
+      { "text": "Bring large pot of water to boil." },
+      {
+        "text": "Add noodles and cook for 8 minutes or until desired tenderness, stirring occasionally. Drain well."
+      },
+      {
+        "text": "Meanwhile, heat oil in large saucepan on medium-high heat. Add garlic and ginger and cook for 1 minute or until fragrant. "
+      },
+      {
+        "text": "Add chicken and cook 5 minutes or until chicken is no longer pink."
+      },
+      {
+        "text": "Add stock, carrots, soy sauce, and salt. Bring to boil. Reduce heat and simmer for 5 minutes or until carrots are tender crisp."
+      },
+      {
+        "text": "Stir in snow peas and mushrooms and cook for 2 minutes or until snow peas are tender crisp."
+      },
+      {
+        "text": "Divide noodles into 6 soup bowls. Ladle soup into each bowl and garnish with green onions."
+      }
+    ],
+    "emoji": "\uD83C\uDF5C"
+  },
+  {
+    "name": "Homemade Cookie Dough",
+    "difficulty": "3",
+    "ingredients": [
+      { "quantity": "1", "unit": "lb", "name": "Chocolate chips" },
+      { "quantity": "1", "unit": "lb", "name": "Brown sugar" },
+      { "quantity": "1", "unit": "lb", "name": "Flour" },
+      { "quantity": "1", "unit": "lb", "name": "Butter" },
+      { "quantity": "1", "unit": "lb", "name": "Vanilla extract" },
+      { "quantity": "1", "unit": "lb", "name": "Milk" }
+    ],
+    "cookingTime": "6",
+    "servings": "4",
+    "directions": [
+      {
+        "text": "Melt 2 tablespoon of butter  in a bowl.  Mix in 1/4 cup browned sugar.  Add 1 tablespoon of milk.  1/8 tablespoon of vanilla.  Slowly mix in 5 tablespoons of flour and add chocolate chips.  Refridgerate until cold."
+      }
+    ],
+    "emoji": "\ud83c\udf6a"
+  },
+  {
+    "name": "Peanut Butter Blossoms",
+    "difficulty": "6",
+    "ingredients": [
+      { "quantity": "1 3/4", "unit": "cup", "name": "flour" },
+      { "quantity": "1", "unit": "tsp", "name": "baking soda" },
+      { "quantity": "1/2", "unit": "tsp", "name": "salt" },
+      { "quantity": "4", "unit": "oz", "name": "softened butter" },
+      { "quantity": "1/2", "unit": "cup", "name": "smooth peanut butter" },
+      { "quantity": "1/2", "unit": "cup", "name": "sugar" },
+      { "quantity": "1/2", "unit": "cup", "name": "brown sugar" },
+      { "quantity": "1", "unit": "", "name": "large egg" },
+      { "quantity": "1", "unit": "tbsp", "name": "milk" },
+      { "quantity": "1", "unit": "tsp", "name": "vanilla" },
+      { "quantity": "60", "unit": "", "name": "Hersey Kisses" }
+    ],
+    "cookingTime": "35",
+    "servings": "4",
+    "directions": [
+      {
+        "text": "Sift together flour, baking soda and salt; set aside. Using an electric mixer, cream together butter, peanut butter, 1/2 cup granulated sugar and light brown sugar. Add egg, milk and vanilla; beat until well blended. Gradually add flour mixture, mixing thoroughly. If the dough is very soft, refrigerate for about 1 hour."
+      },
+      {
+        "text": "Preheat oven to 375 degrees. Spray, oil or line a cookie sheet with nonstick liner and set aside. Roll dough into 1-inch balls. (For a precise number of cookies, divide the dough into 5 pieces, and shape each piece into 12 balls.)"
+      },
+      {
+        "text": "Roll cookies in sugar and place 2 inches apart on cookie sheet. Bake until very light brown and puffed, 6 to 8 minutes. Remove sheet from oven and lightly press a candy kiss into center of each cookie, allowing it to crack slightly. Return to oven until light golden brown, 2 to 3 minutes. Remove from oven, cool completely and store in an airtight container."
+      }
+    ],
+    "emoji": "\ud83c\udf6a"
+  },
+  {
+    "name": "Thick Cut-Out Cookies",
+    "difficulty": "5",
+    "ingredients": [
+      { "quantity": "2 1/8", "unit": "cup", "name": "sugar" },
+      { "quantity": "2", "unit": "cup", "name": "softened butter" },
+      { "quantity": "4", "unit": "", "name": "eggs" },
+      { "quantity": "6", "unit": "", "name": "egg yolks" },
+      { "quantity": "1 1/2", "unit": "tsp", "name": "vanilla extract" },
+      { "quantity": "7", "unit": "cup", "name": "flour" },
+      { "quantity": "1", "unit": "tbsp", "name": "baking powder" },
+      { "quantity": "1/2", "unit": "tsp", "name": "salt" },
+      { "quantity": "4", "unit": "cup", "name": "sugar" },
+      { "quantity": "1/4", "unit": "", "name": "vegetable oil" },
+      { "quantity": "1", "unit": "tbsp", "name": "hot water" }
+    ],
+    "cookingTime": "8",
+    "servings": "4",
+    "directions": [
+      {
+        "text": "In a large bowl, cream together the sugar and butter until smooth. Beat in the eggs and egg yolks, one at a time, mixing well after each. Mix in vanilla extract. Combine flour, baking powder, and salt; stir into the sugar mixture. Cover dough and chill for at least 1 hour."
+      },
+      {
+        "text": "Preheat the oven to 375 degrees F (190 degrees C). Grease cookie sheets. On a floured surface, roll the dough out to 1/2 inch thickness and cut into desired shapes using cookie cutters. Place 2 inches apart on the prepared baking sheets."
+      },
+      {
+        "text": "Bake for 8 to 10 minutes in the preheated oven. Allow cookies to cool on baking sheet for 5 minutes before removing to a wire rack."
+      },
+      {
+        "text": "To make frosting, mix together the confectioners' sugar, oil and 1 tsp vanilla until smooth. gradually add enough hot water to achieve a spreadable consistency. Spread over warm cookies."
+      }
+    ],
+    "emoji": "\ud83c\udf6a"
+  },
+  {
+    "name": "Russian Tea Cakes",
+    "difficulty": "5",
+    "ingredients": [
+      { "quantity": "1", "unit": "cup", "name": "butter" },
+      { "quantity": "1", "unit": "tsp", "name": "vanilla extract" },
+      { "quantity": "6", "unit": "tbsp", "name": "sugar" },
+      { "quantity": "2", "unit": "cup", "name": "flour" },
+      { "quantity": "1", "unit": "cup", "name": "chopped walnuts" },
+      { "quantity": "1/3", "unit": "cup", "name": "sugar" }
+    ],
+    "cookingTime": "12",
+    "servings": "4",
+    "directions": [
+      { "text": "Preheat oven to 350 degrees F (175 degrees C)." },
+      {
+        "text": "In a medium bowl, cream butter and vanilla until smooth. Combine the 6 tablespoons confectioners' sugar and flour; stir into the butter mixture until just blended. Mix in the chopped walnuts. Roll dough into 1 inch balls, and place them 2 inches apart on an ungreased cookie sheet."
+      },
+      {
+        "text": "Bake for 12 minutes in the preheated oven. When cool, roll in remaining confectioners' sugar. I also like to roll mine in the sugar a second time."
+      }
+    ],
+    "emoji": "\ud83c\udf6a"
+  },
+  {
+    "name": "Halloween Peanut Butter 'Barking' Spider Cookies",
+    "difficulty": "5",
+    "ingredients": [
+      { "quantity": "1/2", "unit": "cup", "name": "shortening" },
+      { "quantity": "1/2", "unit": "cup", "name": "peanut butter" },
+      { "quantity": "1/2", "unit": "cup", "name": "brown sugar" },
+      { "quantity": "1/2", "unit": "cup", "name": "sugar" },
+      { "quantity": "1", "unit": "", "name": "egg" },
+      { "quantity": "2", "unit": "tbsp", "name": "milk" },
+      { "quantity": "1", "unit": "tsp", "name": "vanilla" },
+      { "quantity": "1 3/4", "unit": "cup", "name": "flour" },
+      { "quantity": "1", "unit": "tsp", "name": "baking soda" },
+      { "quantity": "1/2", "unit": "tsp", "name": "salt" },
+      { "quantity": "1/4", "unit": "cup", "name": "sugar for rolling" },
+      {
+        "quantity": "48",
+        "unit": "",
+        "name": "miniature Reese’s cups unwrapped and frozen"
+      },
+      { "quantity": "96", "unit": "", "name": "candy eyes" },
+      { "quantity": "1/2", "unit": "cup", "name": "chocolate chips" }
+    ],
+    "cookingTime": "12",
+    "servings": "4",
+    "directions": [
+      { "text": "Preheat oven to 375 degrees F." },
+      {
+        "text": "In a large bowl, beat together shortening, peanut butter, egg, sugar, brown sugar, vanilla, and milk. In a medium bowl, whisk together flour, baking soda, and salt. Gradually add dry mixture to wet mixture and beat until blended. Form into 1″ balls. Roll in sugar and place a couple of inches apart on ungreased cookie sheet."
+      },
+      {
+        "text": "Bake for 12 minutes or until golden brown. Immediately, gently press an upside down frozen peanut butter cup on top of each cookie and move to a wire rack to cool. After placing and moving all of the cookies on the wire rack, put in place the candy eyes while chocolate is still slightly soft. Put chocolate chips in the corner of a zippered sandwich bag. Microwave for 20 seconds, knead and repeat until chocolate has melted. Clip tiny piece off of the corner of bag to allow for piping and draw eight legs on each spider cookie. Place in refrigerator for 10 minutes to allow legs to set."
+      }
+    ],
+    "emoji": "\ud83c\udf6a"
+  },
+  {
+    "name": "Crispy Cauliflower Tacos",
+    "difficulty": "4",
+    "ingredients": [
+      { "quantity": "", "unit": "", "name": "Crispy Breaded Cauliflower" },
+      { "quantity": "15", "unit": "oz", "name": "vegetarian refried beans" },
+      { "quantity": "1/2", "unit": "tsp", "name": "cumin" },
+      { "quantity": "2", "unit": "cup", "name": "red cabbage, shredded" },
+      {
+        "quantity": "2",
+        "unit": "",
+        "name": "limes (1 for the cabbage & 1 to serve)"
+      },
+      { "quantity": "3", "unit": "tbsp", "name": "Yum Yum Sauce" },
+      { "quantity": "8", "unit": "", "name": "corn tortillas" },
+      { "quantity": "", "unit": "", "name": "Fresh cilantro, for garnish" }
+    ],
+    "cookingTime": "40",
+    "servings": "4",
+    "directions": [
+      {
+        "text": "Make the Crispy Breaded Cauliflower (about 40 minutes total; use the remaining time to complete the steps below.)"
+      },
+      {
+        "text": "If using purchased refried beans, taste and if needed, mix with 1/2 tsp cumin and/or a pinch or two kosher salt."
+      },
+      {
+        "text": "Thinly slice the cabbage, enough for 2 cups. Mix it with 2 tablespoons lime juice and a pinch or two of salt. Allow it to stand at room temperature until serving."
+      },
+      { "text": "Make the Yum Yum Sauce." },
+      {
+        "text": "Warm the tortillas, or char them by placing them on grates above an open gas flame on medium heat for a few seconds per side, flipping with tongs, until they are slightly blackened and warm."
+      },
+      { "text": "Chop the cilantro for a garnish." },
+      {
+        "text": "To serve, place refried beans in a tortilla, top with cabbage, breaded cauliflower, Yum Yum sauce, and cilantro. Serve with lime wedges to spritz prior to serving. (If you have leftover cauliflower, you can reheat them in a 350F oven for 10 minutes, flipping once.)"
+      }
+    ],
+    "emoji": "\uD83C\uDF2E"
+  },
+  {
+    "name": "Garlic Roasted Mhmm Potatoes",
+    "difficulty": "2",
+    "ingredients": [
+      { "quantity": "3", "unit": "lb", "name": "small red or white potatoes" },
+      { "quantity": "1/4", "unit": "cup", "name": "good olive oil" },
+      { "quantity": "1 1/2", "unit": "tsp", "name": "kosher salt" },
+      { "quantity": "1", "unit": "tsp", "name": "freshly ground black pepper" },
+      { "quantity": "2", "unit": "tbsp", "name": "minced garlic (6 cloves)" },
+      { "quantity": "2", "unit": "tbsp", "name": "minced fresh parsley" }
+    ],
+    "cookingTime": "60",
+    "servings": "4",
+    "directions": [
+      { "text": "Preheat oven to 400 degrees F." },
+      {
+        "text": "Cut the potatoes in half or quarters and place in a bowl with the olive oil, salt, pepper, and garlic; toss until the potatoes are well coated. Transfer the potatoes to a sheet pan and spread out into 1 layer. Roast in the oven for 45 minutes to 1 hour or until browned and crisp. Flip twice with a spatula during cooking in order to ensure even browning."
+      },
+      {
+        "text": "Remove the potatoes from the oven, toss with parsley, season to taste, and serve hot."
+      }
+    ],
+    "emoji": "\uD83E\uDD54"
+  },
+  {
+    "name": "Big Al's 'Dunkin' Dino Nuggets",
+    "difficulty": "0",
+    "ingredients": [
+      { "quantity": "1", "unit": "", "name": "Tyson Dino Chicken Nugget" },
+      { "quantity": "1", "unit": "", "name": "Microwave" },
+      { "quantity": "1", "unit": "", "name": "Napkin" },
+      { "quantity": "1", "unit": "oz", "name": "Sauce" },
+      { "quantity": "1", "unit": "oz", "name": "'Herbs' as necessary" }
+    ],
+    "cookingTime": "0",
+    "description": "Depends on how baked you are/like your food",
+    "servings": "4",
+    "directions": [
+      { "text": "Open the Tyson bag containing all the dino nuggets." },
+      {
+        "text": "On a napkin, place one dino nugget and begin moving it to the microwave"
+      },
+      {
+        "text": "Once the dino nugget has been placed in the microwave, add 45 seconds to the microwave and press start."
+      },
+      {
+        "text": "While you're waiting for the 45 seconds to expire, remind yourself how it's been 20 minutes since you last hit the bowl."
+      },
+      {
+        "text": "Go upstairs and take a huge rip. Forget about how you had any responsibilites for the past 10 years and oh yeah, you were cooking one dino nugget."
+      },
+      {
+        "text": "12 hours pass; Steve finds Dino nugget in the microwave. Enjoy!"
+      }
+    ],
+    "emoji": "\uD83C\uDF57"
+  },
+  {
+    "name": "White Chocolate Dipped Peppermint Sugar Cookies",
+    "difficulty": "2",
+    "ingredients": [
+      { "quantity": "2 3/4", "unit": "cup", "name": "all-purpose flour" },
+      { "quantity": "1", "unit": "tsp", "name": "baking soda" },
+      { "quantity": "1/2", "unit": "tsp", "name": "salt" },
+      { "quantity": "1/2", "unit": "tsp", "name": "cream of tartar" },
+      { "quantity": "1 1/2", "unit": "cup", "name": "granulated sugar" },
+      { "quantity": "1", "unit": "cup", "name": "unsalted butter, softened" },
+      { "quantity": "1", "unit": "", "name": "large egg" },
+      { "quantity": "1", "unit": "", "name": "large egg yolk" },
+      { "quantity": "1", "unit": "tsp", "name": "vanilla extract" },
+      { "quantity": "3/4", "unit": "tsp", "name": "peppermint extract" },
+      { "quantity": "2 1/2", "unit": "cup", "name": "white chocolate chips" },
+      { "quantity": "2 1/2", "unit": "tbsp", "name": "shortening" },
+      {
+        "quantity": "1/3",
+        "unit": "cup",
+        "name": "peppermint bits or finely crushed candy canes"
+      }
+    ],
+    "cookingTime": "30",
+    "servings": "4",
+    "directions": [
+      {
+        "text": "For the cookies: Preheat oven to 350 degrees. In a mixing bowl whisk together flour, baking soda, salt and cream of tartar, set aside."
+      },
+      {
+        "text": "In the bowl of an electric stand mixer fitted with the paddle attachment, cream together sugar and butter until combined. Mix in egg then mix in egg yolk, vanilla and peppermint extract."
+      },
+      {
+        "text": "With mixer set on low speed slowly add in dry ingredients and mix just until combined (dough with will thick, so stop mixer and mix by hand to get flour at bottom if needed)."
+      },
+      {
+        "text": "Scoop dough out 1 1/2 Tbsp (about 33g) at a time and shape into balls. Transfer to a baking sheet lined with parchment paper or a silicone liner, spacing cookies 2-inches apart (chill dough balls that aren't currently baking in refrigerator on plates)."
+      },
+      {
+        "text": "Bake in preheated oven 10 - 11 minutes (cookies should appear slightly under-baked). Remove from oven and allow to rest several minutes then transfer to a wire rack to cool completely."
+      },
+      {
+        "text": "For the white chocolate: Place chocolate chips and shortening in a medium microwave safe bowl and heat in microwave on 50% power in 20 second intervals, stirring well between intervals until melted and smooth."
+      },
+      {
+        "text": "Dip half of cooled cookies in white chocolate allowing excess to run off (or slide bottom slightly along edge of bowl) then transfer to wax paper and immediately sprinkle with peppermint bits."
+      },
+      {
+        "text": "Allow to set at room temperature or in refrigerator. Store in an airtight container at room temperature."
+      }
+    ],
+    "emoji": "\ud83c\udf6a"
+  },
+  {
+    "name": "Valerie's Artisan Bread",
+    "difficulty": "2",
+    "ingredients": [
+      { "quantity": "3", "unit": "cup", "name": "flour" },
+      { "quantity": "1/4", "unit": "tsp", "name": "yeast" },
+      { "quantity": "1", "unit": "tsp", "name": "salt" },
+      { "quantity": "1 1/2", "unit": "cup", "name": "warm water" }
+    ],
+    "cookingTime": "240",
+    "description": "10 minutes prep, 3 hour wait, 45 minute cook",
+    "servings": "12",
+    "directions": [
+      {
+        "text": "In a large bowl, mix dry ingredients, then add water and mix."
+      },
+      { "text": "Cover bowl with plastic, then a towel" },
+      { "text": "Let dough rise for 3 hours" },
+      {
+        "text": "Flour the counter, put dough on counter, and sprinkle dough lightly with flour."
+      },
+      { "text": "Shape into a loaf." },
+      {
+        "text": "Get a fresh bowl, line with extra large parchment, then add dough and cover with towel."
+      },
+      { "text": "Place dutch oven in oven and heat to 450f." },
+      {
+        "text": "Once the dutch oven is pre-heated, remove it from oven. Lift the parchment with the dough into the dutch oven."
+      },
+      { "text": "Cover the dutch oven and return to oven for 30 minutes." },
+      { "text": "Uncover the dutch oven and bake for another 5-15 minutes." }
+    ],
+    "emoji": "\uD83C\uDF5E"
+  },
+  {
+    "name": "BBQ Pork Spare Ribs",
+    "difficulty": "1",
+    "ingredients": [
+      { "quantity": "4", "unit": "lb", "name": "pork spare ribs" },
+      { "quantity": "24", "unit": "oz", "name": "BBQ Sauce" },
+      { "quantity": "1/8", "unit": "tsp", "name": "salt" }
+    ],
+    "cookingTime": "180",
+    "servings": "4",
+    "directions": [
+      { "text": "Sprinkle with salt." },
+      { "text": "Cut ribs apart. Cut off excess fat." },
+      { "text": "Place on a cookie sheet." },
+      { "text": "Use hands to cover every side of each rib with bbq sauce." },
+      { "text": "Cover cookie sheet with foil" },
+      { "text": "Preheat the oven to 300f." },
+      { "text": "Bake for 1 3/4 hours." },
+      {
+        "text": "Take out of oven, remove foil, brush each rib with another dollop of bbq sauce."
+      },
+      { "text": "Increase temp to 350f." },
+      { "text": "Bake for another 30 minutes." },
+      {
+        "text": "Take out of oven, remove foil, brush each rib with another dollop of bbq sauce."
+      },
+      { "text": "Bake for another 30 minutes." }
+    ],
+    "emoji": "\uD83C\uDF56"
+  },
+  {
+    "name": "Frozen BooNana Pops",
+    "difficulty": "1",
+    "course": "Dessert",
+    "ingredients": [
+      { "quantity": "1", "unit": "", "name": "medium banana" },
+      {
+        "quantity": "1",
+        "unit": "cup",
+        "name": "good quality white chocolate"
+      },
+      {
+        "quantity": "8",
+        "unit": "",
+        "name": "mini chocolate chips for the eyes"
+      },
+      { "quantity": "4", "unit": "", "name": "popsicle sticks" }
+    ],
+    "cookingTime": "20",
+    "servings": "4",
+    "directions": [
+      {
+        "text": "Cut banana in half lengthwise, then in half to make four quarters. Insert popsicle sticks into bananas, and freeze bananas on a wax paper lined cookie sheet."
+      },
+      {
+        "text": "When the bananas are frozen, fill a coffee mug with chocolate. Melt chocolate in the microwave 30 seconds at a time, stirring until the chocolate is melted and soft."
+      },
+      {
+        "text": "Dip the bananas one at a time into the chocolate, scraping off the excess chocolate from the back of the banana, and place it on a cookie sheet lined with wax paper."
+      },
+      {
+        "text": "Quickly add the chocolate chips for the eyes before the chocolate hardens (you have to work quickly here)."
+      },
+      {
+        "text": "Return to the freezer until frozen and ready to eat. Eat frozen."
+      }
+    ],
+    "emoji": "\uD83C\uDF4C"
+  },
+  {
+    "name": "Superbowl '5 Gallon' Chili",
+    "difficulty": "10",
+    "ingredients": [
+      { "quantity": "1", "unit": "tbsp", "name": "olive oil" },
+      { "quantity": "1", "unit": "", "name": "medium yellow diced onion" },
+      { "quantity": "1", "unit": "lb", "name": "90 percent ground beef" },
+      { "quantity": "2 1/2", "unit": "tbsp", "name": "chili powder" },
+      { "quantity": "2", "unit": "tbsp", "name": "ground cumin" },
+      { "quantity": "2", "unit": "tbsp", "name": "sugar" },
+      { "quantity": "2", "unit": "tbsp", "name": "tomato paste" },
+      { "quantity": "1", "unit": "tbsp", "name": "garlic powder" },
+      { "quantity": "1 1/2", "unit": "tsp", "name": "salt" },
+      { "quantity": "1/2", "unit": "tsp", "name": "black pepper" },
+      { "quantity": "1 1/2", "unit": "cup", "name": "beef broth" },
+      { "quantity": "15", "unit": "oz", "name": "petite diced tomatoes" },
+      { "quantity": "16", "unit": "oz", "name": "red kidney beans" },
+      { "quantity": "8", "unit": "oz", "name": "tomato sauce" }
+    ],
+    "cookingTime": "25",
+    "servings": "6",
+    "directions": [
+      {
+        "text": "Head on over to Walmart and pick up a nice big 5 gallon stainless steel kettle bucket. Find the most expensive bucket because you only need it once and then will throw it in a cabinet never to be seen again. Go on home and go upstairs to start the gurgling process. Come back downstairs after 20 minutes and begin the process. Fall asleep 5 minutes later from 'exhaustion'."
+      },
+      {
+        "text": "Add the olive oil to a large soup pot and place it over medium-high heat for two minutes. Add the onion. Cook for 5 minutes, stirring occasionally."
+      },
+      {
+        "text": "Add the ground beef to the pot. Break it apart with a wooden spoon. Cook for 6-7 minutes, until the beef is browned, stirring occasionally."
+      },
+      {
+        "text": "Add the chili powder, cumin, sugar, tomato paste, garlic powder, salt, pepper, and optional cayenne. Stir until well combined."
+      },
+      {
+        "text": "Add the broth, diced tomatoes (with their juice), drained beans, and tomato sauce. Stir well."
+      },
+      {
+        "text": "Bring the liquid to a low boil. Then, reduce the heat (low to medium-low) to gently simmer the chili, uncovered, for 20-25 minutes, stirring occasionally."
+      },
+      {
+        "text": "Remove the pot from the heat. Let the chili rest for 5-10 minutes before serving."
+      }
+    ],
+    "emoji": "\uD83E\uDD58"
+  },
+  {
+    "name": "Creamy Beef and Shells",
+    "difficulty": "4",
+    "ingredients": [
+      { "quantity": "8", "unit": "oz", "name": "medium pasta shells" },
+      { "quantity": "1", "unit": "tbsp", "name": "olive oil" },
+      { "quantity": "1", "unit": "lb", "name": "ground beef" },
+      { "quantity": "1/2", "unit": "", "name": "medium sweet onion, diced" },
+      { "quantity": "2", "unit": "", "name": "garlic cloves, minced" },
+      { "quantity": "1 1/2", "unit": "tsp", "name": "Italian seasoning" },
+      { "quantity": "2", "unit": "tbsp", "name": "flour" },
+      { "quantity": "2", "unit": "cup", "name": "beef stock" },
+      { "quantity": "15", "unit": "oz", "name": "tomato sauce" },
+      { "quantity": "3/4", "unit": "cup", "name": "heavy cream" },
+      {
+        "quantity": "1 1/2",
+        "unit": "cup",
+        "name": "extra sharp cheddar cheese"
+      }
+    ],
+    "cookingTime": "25",
+    "servings": "4",
+    "directions": [
+      {
+        "text": "In a large pot of boiling salted water, cook pasta according to package instructions; drain well."
+      },
+      {
+        "text": "Heat olive oil in a large skillet over medium high heat. Add ground beef and cook until browned, about 3-5 minutes, making sure to crumble the beef as it cooks; drain excess fat. Set aside."
+      },
+      {
+        "text": "Add onion to the skillet, and cook, stirring frequently, until translucent, about 2-3 minutes. Stir in garlic and Italian seasoning until fragrant, about 1 minute."
+      },
+      { "text": "Whisk in flour until lightly browned, about 1 minute." },
+      {
+        "text": "Gradually whisk in beef stock and tomato sauce. Bring to a boil; reduce heat and simmer, stirring occasionally, until reduced and slightly thickened, about 6-8 minutes."
+      },
+      {
+        "text": "Stir in pasta, beef and heavy cream until heated through, about 1-2 minutes; season with salt and pepper, to taste. Stir in cheese until melted, about 2 minutes."
+      }
+    ],
+    "emoji": "\uD83C\uDF2E"
+  },
+  {
+    "name": "No-Bake Chocolate Chip Cannoli Cheesecake",
+    "difficulty": "4",
+    "ingredients": [
+      { "quantity": "4", "unit": "oz", "name": "cannoli shells" },
+      { "quantity": "1/2", "unit": "cup", "name": "sugar" },
+      { "quantity": "1/2", "unit": "cup", "name": "graham cracker crumbs" },
+      { "quantity": "1/3", "unit": "cup", "name": "melted butter" },
+      { "quantity": "8", "unit": "oz", "name": "softened cream cheese" },
+      { "quantity": "1", "unit": "cup", "name": "confectioners sugar" },
+      { "quantity": "1/2", "unit": "tsp", "name": "grated orange zest" },
+      { "quantity": "1/4", "unit": "tsp", "name": "cinnamon" },
+      { "quantity": "3/4", "unit": "cup", "name": "part skim ricotta cheese" },
+      { "quantity": "1", "unit": "tsp", "name": "vanilla extract" },
+      { "quantity": "1/2", "unit": "tsp", "name": "rum extract" },
+      {
+        "quantity": "1/2",
+        "unit": "cup",
+        "name": "miniature semisweet chocolate chips"
+      }
+    ],
+    "cookingTime": "25",
+    "servings": "8",
+    "directions": [
+      {
+        "text": "Pulse cannoli shells in a food processor until coarse crumbs form. Add sugar, cracker crumbs and melted butter; pulse just until combined. Press onto bottom and sides of a greased 9-in. pie plate. Refrigerate until firm, about 1 hour."
+      },
+      {
+        "text": "Beat the first 4 filling ingredients until blended. Beat in ricotta cheese and extracts. Stir in chocolate chips. Spread into crust."
+      },
+      { "text": "Refrigerate, covered, until set, about 4 hours." }
+    ],
+    "emoji": "\ud83c\udf6a"
+  },
+  {
+    "name": "Blackened Chicken Penne",
+    "emoji": "🍝",
+    "description": "with Charred Poblano & Monterey Jack Cheese\n\nThis pasta may break the rules, but it does so deliciously: Instead of going the traditional Italian route, our chefs opted to mix things up with a jumble of Southwestern flavors. The pre-cut chicken breast strips are seasoned with blackening spices and tossed in the pan until they’re perfectly smoky and savory. Poblano pepper and diced tomato add texture and more unconventional flair, while the Monterey Jack cheese sauce brings supreme creaminess to the penne.",
+    "difficulty": 3,
+    "cookingTime": "25",
+    "servings": 4,
+    "course": "",
+    "ingredients": [
+      {
+        "name": "Poblano Pepper",
+        "quantity": "2",
+        "unit": ""
+      },
+      {
+        "name": "Scallion",
+        "quantity": "2",
+        "unit": ""
+      },
+      {
+        "name": "Garlic Clove",
+        "quantity": "2",
+        "unit": ""
+      },
+      {
+        "name": "Roma Tomato",
+        "quantity": "2",
+        "unit": ""
+      },
+      {
+        "name": "Chicken Breast Strips",
+        "quantity": "20",
+        "unit": "oz"
+      },
+      {
+        "name": "Blackening Spice",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Penne Pasta",
+        "quantity": "12",
+        "unit": "oz"
+      },
+      {
+        "name": "Cream Cheese",
+        "quantity": "8",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Monterey Jack Cheese",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Chicken Stock Concentrate",
+        "quantity": "2",
+        "unit": ""
+      },
+      {
+        "name": "Hot Sauce",
+        "quantity": "1",
+        "unit": "tsp"
+      }
+    ],
+    "directions": [
+      {
+        "index": 0,
+        "text": "Bring a large pot of salted water to a boil. Wash and dry all produce. Core, deseed, and dice poblano into ½-inch pieces. Trim and thinly slice scallions, separating whites from greens. Peel and thinly slice garlic. Finely chop tomato."
+      },
+      {
+        "index": 1,
+        "text": "Pat chicken dry with paper towels. Toss in a large bowl with a large drizzle of olive oil, Blackening Spice, and a few big pinches of salt."
+      },
+      {
+        "index": 2,
+        "text": "Once water is boiling, add penne to pot. Cook until al dente, 9-11 minutes. Reserve ½ cup pasta cooking water (1 cup for 4 servings), then drain and set aside."
+      },
+      {
+        "index": 3,
+        "text": "While pasta cooks, heat a drizzle of olive oil in a large pan over medium-high heat. Add poblano and a pinch of salt. Cook, without stirring, until lightly charred, 3-4 minutes. Add chicken and cook, stirring occasionally, until browned and cooked through, 4-6 minutes. Stir in scallion whites and garlic. Cook until fragrant, 1 minute. Stir in half the tomato and a pinch of salt. Reduce heat under pan to medium low."
+      },
+      {
+        "index": 4,
+        "text": "Stir in cream cheese and 1⁄3 cup reserved pasta cooking water (2⁄3 cup for 4 servings). Add penne and cook, stirring, until thoroughly combined, 1-2 minutes. Turn off heat. Add Monterey Jack, stock concentrate, 2 TBSP butter (3 TBSP for 4), and as much hot sauce as you like; stir until butter has melted. (TIP: If needed, stir in more reserved cooking water a splash at a time until pasta is coated in a creamy sauce.) Season with salt and pepper."
+      },
+      {
+        "index": 5,
+        "text": "Divide pasta between bowls or plates. Garnish with scallion greens and remaining tomato. Drizzle with any remaining hot sauce if desired and serve."
+      }
+    ]
+  },
+  {
+    "name": "Chuck Stew",
+    "emoji": "\uD83E\uDD58",
+    "description": "A savory stew",
+    "difficulty": 1,
+    "cookingTime": "75",
+    "servings": 4,
+    "course": "",
+    "ingredients": [
+      {
+        "name": "chuck",
+        "quantity": "2",
+        "unit": "lb"
+      },
+      {
+        "name": "large onion, diced",
+        "quantity": "1",
+        "unit": ""
+      },
+      {
+        "name": "garlic clove, diced",
+        "quantity": "3",
+        "unit": ""
+      },
+      {
+        "name": "tomato paste",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "chili paste (optional)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "paprika (optional)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "better than bullion (optional)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "medium potato, cut into 1/4 inch pieces",
+        "quantity": "4",
+        "unit": ""
+      },
+      {
+        "name": "carrots, sliced",
+        "quantity": "2",
+        "unit": "cup"
+      },
+      {
+        "name": "red wine",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "beef stock",
+        "quantity": "3",
+        "unit": "cup"
+      },
+      {
+        "name": "garlic powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "onion powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "herbes de provence",
+        "quantity": "1",
+        "unit": "tsp"
+      }
+    ],
+    "directions": [
+      {
+        "index": 0,
+        "text": "heat oil, saute onion until translucent, add garlic"
+      },
+      {
+        "index": 1,
+        "text": "salt and pepper meat generously, then brown it"
+      },
+      {
+        "index": 2,
+        "text": "add tomato paste, cook and stir occassionally for 2 minutes. Add any other pastes here."
+      },
+      {
+        "index": 3,
+        "text": "add potatoes and carrots and whatever other vegetables, cook and stir for 3 minutes"
+      },
+      {
+        "index": 4,
+        "text": "add the wine, stir, cook for 5 minutes"
+      },
+      {
+        "index": 5,
+        "text": "add the stock and seasonings, bring to boil, reduce heat, cover, cook for 20 minutes"
+      },
+      {
+        "index": 6,
+        "text": "remove lid, stir, cook for another 10 minutes, or until meat is tender and potatoes are cooked."
+      }
+    ]
+  },
+  {
+    "name": "Cinnamon Baked French Toast",
+    "difficulty": 1,
+    "ingredients": [
+      {
+        "quantity": "1",
+        "unit": "loaf",
+        "name": "crusty sourdough or French bread"
+      },
+      { "quantity": "1", "unit": "whole", "name": "eggs" },
+      { "quantity": "2", "unit": "cups", "name": "whole milk" },
+      { "quantity": "1/2", "unit": "cup", "name": "whipping cream" },
+      { "quantity": "1/2", "unit": "cup", "name": "granulated sugar" },
+      { "quantity": "1/2", "unit": "cup", "name": "brown sugar" },
+      { "quantity": "2", "unit": "tbsp", "name": "vanilla extract" },
+      { "quantity": "1/2", "unit": "cup", "name": "all purpose flour" },
+      { "quantity": "1/2", "unit": "cup", "name": "firmly packed brown sugar" },
+      { "quantity": "1", "unit": "tsp", "name": "ground cinnamon" },
+      { "quantity": "1/4", "unit": "tsp", "name": "salt" },
+      { "quantity": "", "unit": "", "name": "freshly grated nutmeg" },
+      { "quantity": "1", "unit": "stick", "name": "butter" },
+      { "quantity": "", "unit": "", "name": "wamt pancake syrup" },
+      { "quantity": "1", "unit": "cup", "name": "blueberries" }
+    ],
+    "cookingTime": "45",
+    "servings": 12,
+    "directions": [
+      {
+        "text": "For the French toast: Grease the baking pan with butter. Tear the bread into chunks, or cut into cubes, and evenly distribute in the pan. Crack the eggs in a big bowl. Whisk together the eggs, milk, cream, granulated sugar, brown sugar and vanilla. Pour evenly over the bread. Cover the pan tightly and store in the fridge until needed (overnight preferably)."
+      },
+      {
+        "text": "For the topping: Mix the flour, brown sugar, cinnamon, salt and some nutmeg in a separate bowl. Stir together using a fork. Add the butter and with a pastry cutter, and mix it all together until the mixture resembles fine pebbles. Store in a re-sealable plastic bag in the fridge."
+      },
+      {
+        "text": "When you're ready to bake the casserole, preheat the oven to 350 degrees F. Remove the casserole from the fridge and sprinkle the topping over the top. Bake for 45 minutes for a softer, more bread pudding texture or for 1 hour or more for a firmer, crisper texture."
+      },
+      {
+        "text": "Scoop out individual portions. Top with butter and drizzle with warm pancake syrup and sprinkle with blueberries."
+      },
+      {
+        "text": "Now cook your udon noodles in the microwave.  Cover them in water, and put in for 2 minutes on high.  Then drain, unplug the wok, and add the noodles into the mix and stir.  This way the noodles will be able to mingle with the rest of the meal, but not overcook."
+      },
+      { "text": "Then serve and enjoy." }
+    ],
+    "emoji": "🍞"
+  },
+  {
+    "name": "Broccoli Pesto Pasta",
+    "difficulty": 2,
+    "ingredients": [
+      { "quantity": "1", "unit": "lb", "name": "cooked pasta of your choice" },
+      { "quantity": "4", "unit": "cups", "name": "broccoli florets" },
+      { "quantity": "2", "unit": "cups", "name": "basil leaves" },
+      { "quantity": "2", "unit": "", "name": "garlic cloves" },
+      { "quantity": "1/4", "unit": "cup", "name": "pine nuts" },
+      { "quantity": "1", "unit": "cup", "name": "extra virgin olive oil" },
+      { "quantity": "1/2", "unit": "tsp", "name": "salt" },
+      { "quantity": "1", "unit": "cup", "name": "psrmigisno-reggiano, grated" }
+    ],
+    "cookingTime": "15",
+    "servings": 6,
+    "directions": [
+      { "text": "Bring large pot of water to boil." },
+      {
+        "text": "Add the broccoli, bring the water back up to a boil for two minutes. Do not drain the water! Immediately transfer broccoli (with a slotted spoon) to a colander place under cold running water to stop further cooking."
+      },
+      {
+        "text": "Bring the water back to a boil and add your favorite pasta and cook according to the package (reserve 1 cup of pasta cooking water before draining)."
+      },
+      {
+        "text": "In a large blender or food processor, blend together broccoli, basil, garlic, pine nuts, olive oil, salt and Parmigiano-Reggiano until smooth. Slowly pour in 1 cup of reserved pasta water until a nice sauce is formed. If sauce is too thick, add more pasta water one tablespoon at a time."
+      },
+      {
+        "text": "Toss hot pasta with sauce until completely coated. Top with extra Parmesan, pine nuts and chili flakes if desired. Enjoy!"
+      }
+    ],
+    "emoji": "\uD83C\uDF5C"
+  },
+  {
+    "name": "Jewel Osco Baked Apple Cider Donuts",
+    "difficulty": 10,
+    "ingredients": [
+      { "quantity": "1 3/4", "unit": "cup", "name": "all purpose flour" },
+      { "quantity": "1", "unit": "", "name": "nonstick cooking spray" },
+      { "quantity": "1 1/4", "unit": "tsp", "name": "baking powder" },
+      { "quantity": "3/4", "unit": "tsp", "name": "fine sea salt" },
+      { "quantity": "2", "unit": "tsp", "name": "ground cinnamon" },
+      { "quantity": "1/2", "unit": "tsp", "name": "freshly grated nutmeg" },
+      {
+        "quantity": "1",
+        "unit": "cup",
+        "name": "unsalted butter at room temperature"
+      },
+      { "quantity": "3/4", "unit": "cup", "name": "light brown sugar" },
+      { "quantity": "3/4", "unit": "cup", "name": "granulated sugar" },
+      { "quantity": "2", "unit": "large", "name": "Eggs" },
+      { "quantity": "1", "unit": "tsp", "name": "vanilla extract" },
+      { "quantity": "1/2", "unit": "cup", "name": "apple cider" }
+    ],
+    "cookingTime": "35",
+    "servings": 12,
+    "directions": [
+      {
+        "text": "Heat oven to 350 degrees. Lightly grease 2 doughnut pans (or a 12-cup muffin tin) with nonstick spray. In a medium bowl, add flour, baking powder, salt, 1 teaspoon cinnamon and nutmeg and whisk to combine. Set aside."
+      },
+      {
+        "text": "In the bowl of a stand mixer fitted with the paddle attachment, cream 10 tablespoons butter, brown sugar and 1/4 cup granulated sugar on medium speed until light and fluffy, 3 to 4 minutes. Add the eggs one at a time and mix until well incorporated after each addition, scraping the bowl as necessary. Beat in the vanilla extract."
+      },
+      {
+        "text": "Add the flour mixture and mix on low speed until incorporated. With the mixer running, add the apple cider in a slow, steady stream and mix to combine. Scrape the bowl well to make sure the batter is homogeneous."
+      },
+      {
+        "text": "Spoon the batter into prepared doughnut pans, filling them about 2/3 of the way. (You can also do this using a disposable piping bag or a resealable plastic bag with a 1/2-inch opening cut from one corner.) Bake until evenly golden brown and a toothpick inserted into the center of the thickest portion comes out clean, 12 to 15 minutes. Rotate the pans halfway through baking. (If you are making muffins, divide batter evenly between the prepared cups and bake for 15 to 20 minutes, rotating halfway through.)"
+      },
+      {
+        "text": "While the doughnuts bake, whisk the remaining 1/2 cup granulated sugar and 1 teaspoon cinnamon together in a small bowl to combine. In a separate small bowl, melt the remaining 6 tablespoons butter in the microwave. Let the doughnuts cool for 5 minutes after baking, then unmold them from the pans, brush with the melted butter and dredge them in the cinnamon sugar while they are still warm. Serve immediately, or let cool to room temperature."
+      }
+    ],
+    "emoji": "🍩"
+  },
+  {
+    "name": "Valentine's Day Red Velvet Truffles",
+    "difficulty": 1,
+    "ingredients": [
+      { "quantity": "1", "unit": "box", "name": "red velvet cake mix" },
+      { "quantity": "8", "unit": "oz", "name": "softened cream cheese" },
+      { "quantity": "16", "unit": "oz", "name": "white chocolate chips" }
+    ],
+    "cookingTime": "20",
+    "servings": 30,
+    "directions": [
+      { "text": "Prepare red velvet cake according to instructions on box." },
+      { "text": "In a bowl, crumble the red velvet cake." },
+      { "text": "Mix in cream cheese until smooth." },
+      { "text": "Roll into 1- to 2-Tbsp.-sized balls, and chill." },
+      { "text": "Melt the white chocolate." },
+      { "text": "Roll the balls in the chocolate to coat evenly. Set aside." },
+      { "text": "Decorate! Let the chocolate harden before serving." }
+    ],
+    "emoji": "🧁"
+  },
+  {
+    "name": "Smoked Mac and Cheese",
+    "difficulty": 2,
+    "ingredients": [
+      {
+        "quantity": "1",
+        "unit": "lb",
+        "name": "cavatappi pasta, cooked al dente"
+      },
+      { "quantity": "3", "unit": "tbsp", "name": "salted butter" },
+      { "quantity": "5", "unit": "", "name": "cloves garlic, finely diced" },
+      { "quantity": "1/4", "unit": "tsp", "name": "red pepper flakes" },
+      { "quantity": "2", "unit": "tbsp", "name": "flour" },
+      { "quantity": "1", "unit": "cup", "name": "milk" },
+      { "quantity": "2", "unit": "cup", "name": "heavy cream" },
+      { "quantity": "1 1/2", "unit": "cup", "name": "shredded smokey gouda" },
+      {
+        "quantity": "1 1/2",
+        "unit": "cup",
+        "name": "cheddar (can be smoked), divided"
+      },
+      { "quantity": "1/2", "unit": "tsp", "name": "hot sauce (like Frank's)" },
+      { "quantity": "1/4", "unit": "tsp", "name": "yellow mustard" },
+      { "quantity": "1", "unit": "", "name": "salt to taste" }
+    ],
+    "cookingTime": "40",
+    "servings": 6,
+    "directions": [
+      {
+        "text": "Melt butter in a heavy bottomed sauce pan over medium heat. Add garlic, red pepper flakes, and pinch of salt and cook for 2 minutes or until softened but not browned."
+      },
+      {
+        "text": "Whisk in flour and let the roux cook for a few minutes or until the flour taste has cooked out. Whisk in milk, then let simmer until thick. Slowly add in heavy cream then turn the heat to medium-low. Let simmer for about 10 minutes until sauce has thickened and has slightly reduced."
+      },
+      {
+        "text": "Now whisk gouda cheese, little by little. Once it’s melted, whisk in half the cheddar and continue to stir until the sauce is smooth and creamy. Be sure to reserve the other half of cheddar. Stir in the the hot sauce, mustard, 1/2 tsp salt and stir. Season with more salt if needed."
+      },
+      {
+        "text": "Mix in the pasta and pour into a greased baking dish. Top with the remaining smoked cheddar and place under the broiler for 7 to 10 minutes or until the top is golden brown. Remove from broiler and let rest for 5 minutes before serving."
+      }
+    ],
+    "emoji": "🥘"
+  },
+  {
+    "name": "Spaghetti with Baked Brie, Mushrooms & Spinach",
+    "difficulty": 2,
+    "ingredients": [
+      { "quantity": "8", "unit": "oz", "name": "thickly sliced mushroom" },
+      {
+        "quantity": "1",
+        "unit": "cup",
+        "name": "halved and thinly sliced onion"
+      },
+      { "quantity": "1/4", "unit": "cup", "name": "evoo" },
+      { "quantity": "4", "unit": "", "name": "cloves garlic, minced" },
+      { "quantity": "1 1/4", "unit": "tsp", "name": "italian seasoning" },
+      { "quantity": "1/2", "unit": "tsp", "name": "salt" },
+      { "quantity": "1/2", "unit": "tsp", "name": "pepper" },
+      { "quantity": "8", "unit": "oz", "name": "brie, rind removed" },
+      { "quantity": "8", "unit": "oz", "name": "spaghetti" },
+      { "quantity": "4", "unit": "cups", "name": "coursely ground spinach" },
+      { "quantity": "2", "unit": "tbsp", "name": "white balsamic vinegar" }
+    ],
+    "cookingTime": "45",
+    "servings": 4,
+    "directions": [
+      {
+        "text": "Preheat oven to 375°F."
+      },
+      {
+        "text": "Toss mushrooms, onion, oil, garlic, Italian seasoning, salt and pepper together on a large rimmed baking sheet. Move some vegetables aside and place Brie on the baking sheet. Bake until the vegetables are tender and the cheese is hot and melted, 25 to 30 minutes."
+      },
+      {
+        "text": "Meanwhile, bring a large saucepan of water to a boil. Add spaghetti and cook according to package directions. Place the spinach in a large colander and drain the pasta over the spinach. Return the pasta and spinach to the saucepan. When the veggies and Brie are done, add them to the saucepan. Add vinegar and stir well, making sure that everything gets coated with cheese."
+      }
+    ],
+    "emoji": "🍝"
+  },
+  {
+    "name": "Easy Creamy Chicken Marsala",
+    "difficulty": 1,
+    "ingredients": [
+      { "quantity": "1/2", "unit": "cup", "name": "all-purpose flour" },
+      { "quantity": "1", "unit": "tbsp", "name": "Emeril's essence" },
+      { "quantity": "1", "unit": "lb", "name": "chicken breast" },
+      { "quantity": "2", "unit": "tbsp", "name": "olive oil" },
+      { "quantity": "16", "unit": "oz", "name": "sliced mushroom" },
+      { "quantity": "3/4", "unit": "cup", "name": "dry marsala" },
+      { "quantity": "1", "unit": "cup", "name": "chicken broth" },
+      { "quantity": "1/4", "unit": "cup", "name": "sour cream" },
+      { "quantity": "1", "unit": "", "name": "salt and pepper to taste" },
+      { "quantity": "1", "unit": "", "name": "green onion or chives to taste" }
+    ],
+    "cookingTime": "35",
+    "servings": 6,
+    "directions": [
+      {
+        "text": "Combine flour and essence in a ziplock bag. Set aside."
+      },
+      {
+        "text": "Trim chicken breasts of all fat. Horizontally slice chicken breasts into two to three thin slices. Place in ziplock bag. Shake to thoroughly coat."
+      },
+      {
+        "text": "Heat the oil in a large skillet over medium-high heat until hot, but not smoking. Cook the chicken breasts until golden brown on both sides, about three minutes per side. Transfer to a plate and set aside."
+      },
+      {
+        "text": "Add the mushrooms to skillet; cook over high heat, stirring frequently, until the mushrooms are golden brown around the edges and have given off their liquid."
+      },
+      {
+        "text": "Add the Marsala wine and bring to a boil, scraping to remove any browned bits from the bottom of the pan. When the wine has reduced by half, add the chicken stock and cook for 3 minutes, or until the sauce has thickened slightly."
+      },
+      {
+        "text": "If desired, add sour cream and stir until well combined. Lower the heat to medium and return the chicken breasts to the pan. Continue to cook until the chicken breasts are cooked through and the sauce has thickened, about 5 to 6 minutes."
+      },
+      {
+        "text": "Season to taste with salt and pepper. Garnish with chopped chives or green onions and serve immediately. Yield: 6 servings."
+      }
+    ],
+    "emoji": "🥘"
+  },
+  {
+    "name": "Chicken Lombardy",
+    "difficulty": 2,
+    "ingredients": [
+      { "quantity": "1", "unit": "lb", "name": "chicken breast" },
+      { "quantity": "1/2", "unit": "tsp", "name": "garlic powder" },
+      { "quantity": "1/4", "unit": "cup", "name": "flour" },
+      { "quantity": "1", "unit": "tbsp", "name": "olive oil" },
+      { "quantity": "2", "unit": "tbsp", "name": "butter" },
+      { "quantity": "8", "unit": "oz", "name": "fresh sliced mushroom" },
+      { "quantity": "1/2", "unit": "cup", "name": "marsala" },
+      { "quantity": "1/4", "unit": "cup", "name": "chicken broth" },
+      { "quantity": "1", "unit": "cup", "name": "grated mozzarella" },
+      { "quantity": "1", "unit": "tbsp", "name": "minced fresh parsley" }
+    ],
+    "description": "Chicken Lombardy is kind of like chicken marsala, just baked and with mozzarella cheese. Yum! This easy chicken Lombardy recipe is ready in about 30 minutes.",
+    "cookingTime": "25",
+    "servings": 4,
+    "directions": [
+      {
+        "text": "Season the chicken with salt, pepper and the garlic powder. Dredge it in the flour."
+      },
+      {
+        "text": "Heat the oil in an ovenproof skillet. Add the chicken and cook until golden brown on both sides, about 5 to 6 minutes per side. Remove the chicken from the skillet to a plate."
+      },
+      {
+        "text": "Melt the butter in the skillet. Add the mushrooms and cook until soft, about 5 minutes. Add the marsala and chicken broth. Cook about 2 minutes."
+      },
+      {
+        "text": "Put the chicken back into the skillet and cook about 3 to 4 minutes. Top the chicken with the cheese and minced parsley."
+      },
+      {
+        "text": "Bake in a preheated 400-degree F oven for about 5 to 6 minutes or until cheese is melted."
+      }
+    ],
+    "emoji": "🥘"
+  },
+  {
+    "name": "Irish Guinness Beef Stew",
+    "difficulty": 3,
+    "ingredients": [
+      { "quantity": "4", "unit": "", "name": "slices thick cut bacon, diced" },
+      {
+        "quantity": "3",
+        "unit": "lb",
+        "name": "boneless beef chuck, cut into 2-inch cubes"
+      },
+      { "quantity": "1", "unit": "tsp", "name": "salt" },
+      { "quantity": "1", "unit": "tsp", "name": "pepper" },
+      { "quantity": "2", "unit": "", "name": "small yellow onions, chopped" },
+      { "quantity": "4", "unit": "", "name": "cloves garlic, minced" },
+      {
+        "quantity": "3",
+        "unit": "",
+        "name": "carrots, cut into 1-inch pieces"
+      },
+      {
+        "quantity": "3",
+        "unit": "",
+        "name": "stalks celery, cut into 1-inch pieces"
+      },
+      {
+        "quantity": "1",
+        "unit": "lb",
+        "name": "yukon gold potatoes, peeled and cut into cubes"
+      },
+      { "quantity": "1", "unit": "lb", "name": "button mushrooms, halved" },
+      {
+        "quantity": "3",
+        "unit": "tbsp",
+        "name": "all purpose flour (or cornstarch)"
+      },
+      { "quantity": "12", "unit": "oz", "name": "guinness beer" },
+      { "quantity": "1/4", "unit": "cup", "name": "tomato paste" },
+      { "quantity": "4", "unit": "cup", "name": "beef broth" },
+      { "quantity": "2", "unit": "", "name": "bay leaves" },
+      {
+        "quantity": "1",
+        "unit": "",
+        "name": "chopped fresh parsley for garnish"
+      }
+    ],
+    "description": "This hearty Guinness Beef Stew is filled to the brim with tender beef, potatoes, carrots, and mushrooms, all cooked in a thick and fragrant broth flavored with stout, tomato paste, and bacon.",
+    "cookingTime": "150",
+    "servings": 8,
+    "directions": [
+      {
+        "text": "Add the bacon to a 7-quart Dutch oven, or any other heavy-based pot, set over medium heat."
+      },
+      {
+        "text": "Cook the bacon to a crisp and remove bacon from the pot; do not pour out the bacon fat."
+      },
+      {
+        "text": "Increase heat to medium-high and to the bacon grease add the cubes of beef and season them with salt and pepper; sear the beef on all sides until browned."
+      },
+      { "text": "Remove browned beef from the pot and set it aside." },
+      {
+        "text": "Reduce heat to medium and stir in the onions. If the pot looks dry, add a bit of olive oil."
+      },
+      { "text": "Cook the onions for 2 minutes." },
+      { "text": "Stir in the garlic and cook for 15 seconds." },
+      { "text": "Add in the carrots, celery, potatoes, and mushrooms." },
+      { "text": "Cook for 4 minutes. Add oil, if needed." },
+      {
+        "text": "Sprinkle the flour over the vegetables; stir and cook for one minute."
+      },
+      {
+        "text": "Add the beer, tomato paste, and beef broth; stir until everything is well combined."
+      },
+      { "text": "Return the beef and bacon to the pot." },
+      {
+        "text": "Add in the bay leaves and bring mixture to a boil; then reduce heat to a low simmer."
+      },
+      { "text": "Cover and cook for 1 1/2 hours." },
+      {
+        "text": "Remove lid and continue cooking for 30 more minutes, or until the sauce is reduced and thickened, and the beef is tender."
+      },
+      {
+        "text": "Remove from heat; taste for salt and pepper, and adjust accordingly."
+      }
+    ],
+    "emoji": "🥘"
+  },
+  {
+    "name": "Snickerdoodle Cookies",
+    "difficulty": 2,
+    "ingredients": [
+      { "quantity": "1", "unit": "", "name": "stick soft butter" },
+      { "quantity": "3/4", "unit": "cup", "name": "sugar" },
+      { "quantity": "1", "unit": "", "name": "egg" },
+      { "quantity": "2", "unit": "cup", "name": "flour" },
+      { "quantity": "1 1/2", "unit": "tsp", "name": "baking powder" },
+      { "quantity": "1/2", "unit": "cup", "name": "milk" },
+      { "quantity": "1/2", "unit": "tsp", "name": "vanilla" },
+      { "quantity": "2", "unit": "tsbp", "name": "cinnamon" },
+      { "quantity": "2", "unit": "tsp", "name": "sugar (combine w/ cinnamon)" }
+    ],
+    "cookingTime": "25",
+    "servings": 6,
+    "directions": [
+      { "text": "Preheat oven to 325f." },
+      { "text": "Beat butter and sugar until creamy." },
+      { "text": "Add egg, vanilla, milk." },
+      { "text": "Mix flour, baking powder, and salt, then add to butter." },
+      { "text": "Drop onto cookie sheet." },
+      { "text": "Sprinkle with cinnamon-sugar." },
+      { "text": "Bake for 15 minutes." }
+    ],
+    "emoji": "🍪"
+  },
+  {
+    "name": "Pasta alla Norcina",
+    "difficulty": 2,
+    "ingredients": [
+      {
+        "quantity": "1",
+        "unit": "lb",
+        "name": "rigatoni or other tubular pasta"
+      },
+      { "quantity": "8", "unit": "oz", "name": "mushroom, diced" },
+      { "quantity": "1", "unit": "lb", "name": "bulk mild italian sausage" },
+      { "quantity": "1/4", "unit": "cup", "name": "olive oil" },
+      { "quantity": "1", "unit": "", "name": "small onion, diced" },
+      { "quantity": "3", "unit": "", "name": "cloves garlic" },
+      { "quantity": "1/2", "unit": "cup", "name": "dry white wine" },
+      { "quantity": "1 1/2", "unit": "cup", "name": "heavy cream" },
+      { "quantity": "2", "unit": "cup", "name": "reserved pasta water" },
+      { "quantity": "1", "unit": "", "name": "pinch nutmeg" },
+      { "quantity": "3/4", "unit": "cup", "name": "pecorino romano, grated" },
+      { "quantity": "1", "unit": "", "name": "salt and pepper to taste" }
+    ],
+    "cookingTime": "30",
+    "servings": 6,
+    "directions": [
+      {
+        "text": "Bring a large pot of salted (2 tablespoons kosher salt) water to boil."
+      },
+      {
+        "text": "Heat a large pan to medium heat then add in the olive oil and sausage. Brown the sausage (about 5-7 minutes) then make some room in the pan and add the mushrooms and continue to cook until they brown as well."
+      },
+      {
+        "text": "Once the sausage and mushrooms are brown add the onion and garlic. After 2 minutes remove the garlic from the pan and discard (or leave in). Continue cooking for a few more minutes until the onions are soft."
+      },
+      {
+        "text": "Turn heat to medium-high and add the wine. Cook for a minute to reduce the wine by about half. Scrape the bottom of the pan with a wooden spoon to remove all the brown bits. At this time begin cooking pasta to a bit less than al dente."
+      },
+      {
+        "text": "Add the cream and bring sauce to a simmer while stirring. Once simmering turn the heat down to low."
+      },
+      {
+        "text": "Once pasta is almost al dente add it to the sauce and mix to coat. Turn heat to medium. Add a bit of pasta water if needed to loosen things up. Continue to cook, stirring frequently, until the pasta is perfectly al dente."
+      },
+      {
+        "text": "Turn the heat off and remove the pan from the heat. Add the Pecorino, mix well, then taste test. Season with a good amount of black pepper, a pinch of nutmeg, and salt to taste. Serve with grated Pecorino. Enjoy!"
+      }
+    ],
+    "emoji": "🍝"
+  },
+  {
+    "name": "Honey Garlic Glazed Salmon",
+    "description": "This Honey Garlic Salmon is pan seared and topped with a sweet and savory sauce of garlic, ginger, honey and soy sauce.",
+    "difficulty": 2,
+    "cookingTime": "25",
+    "servings": 6,
+    "ingredients": [
+      { "quantity": "6", "unit": "", "name": "salmon filets 4-6oz" },
+      { "quantity": "3/4", "unit": "tsp", "name": "salt" },
+      { "quantity": "3/4", "unit": "tsp", "name": "pepper" },
+      { "quantity": "3/4", "unit": "tsp", "name": "paprika" },
+      { "quantity": "6", "unit": "tbsp", "name": "butter" },
+      { "quantity": "6", "unit": "", "name": "cloves garlic, minced" },
+      { "quantity": "9", "unit": "tbsp", "name": "honey (or less)" },
+      { "quantity": "3", "unit": "tbsp", "name": "soy sauce" },
+      { "quantity": "4 1/2", "unit": "tbsp", "name": "sriracha" },
+      { "quantity": "3", "unit": "tbsp", "name": "lemon juice" },
+      { "quantity": "3", "unit": "tbsp", "name": "chives, chopped" }
+    ],
+    "directions": [
+      {
+        "text": "Season the salmon fillets with salt, pepper, and paprika. Place them in a large pan over medium heat. Cook for 4 minutes per side, taking care when flipping not to break the fillet. Remove from pan and set aside."
+      },
+      {
+        "text": "Add the butter, garlic, honey, soy sauce, sriracha, and lemon juice in the pan. Whisk to combine. Heat over medium high heat until bubbly and slightly reduced, about 5 minutes."
+      },
+      {
+        "text": "Add the salmon back to the pan. Spoon the bubbling sauce over the top of the fillets. Cook for 2-3 mins, until heated through."
+      }
+    ],
+    "emoji": "🐟"
+  },
+  {
+    "name": "Chicken Tetrazzini",
+    "difficulty": 3,
+    "cookingTime": "90",
+    "servings": 6,
+    "ingredients": [
+      { "quantity": "1", "unit": "", "name": "medium yellow onion, diced" },
+      { "quantity": "3", "unit": "", "name": "cloves garlic, minced" },
+      { "quantity": "1", "unit": "oz", "name": "parmesan, grated" },
+      { "quantity": "1", "unit": "tbsp", "name": "olive oil" },
+      { "quantity": "1/2", "unit": "cup", "name": "panko breadcrumbs" },
+      { "quantity": "5", "unit": "tbsp", "name": "unsalted butter, divided" },
+      { "quantity": "1", "unit": "lb", "name": "cremini mushrooms, sliced" },
+      { "quantity": "3", "unit": "tsp", "name": "salt, divided" },
+      { "quantity": "1/2", "unit": "tsp", "name": "pepper" },
+      { "quantity": "1/3", "unit": "cup", "name": "flour" },
+      { "quantity": "3", "unit": "cup", "name": "whole milk" },
+      { "quantity": "1", "unit": "cup", "name": "heavy cream" },
+      { "quantity": "1", "unit": "cup", "name": "low-sodium chicken broth" },
+      { "quantity": "1/8", "unit": "tsp", "name": "nutmeg" },
+      { "quantity": "12", "unit": "oz", "name": "cooked chicken, shredded" },
+      { "quantity": "1", "unit": "lb", "name": "linguine" },
+      { "quantity": "1", "unit": "cup", "name": "frozen peas" },
+      { "quantity": "1/2", "unit": "tsp", "name": "Italian seasoning" }
+    ],
+    "directions": [
+      {
+        "text": "Arrange a rack in the middle of the oven and heat the oven to 350ºF. Coat a 9x13-inch baking dish with cooking spray."
+      },
+      {
+        "text": "Dice onion, mince garlic, and grate parmesan cheese."
+      },
+      {
+        "text": "Heat olive oil in a Dutch oven over medium heat until shimmering. Add panko and cook, stirring occasionally, until golden-brown, about 3 minutes. Transfer to a small bowl. Wipe out the pot if there are still breadcrumbs inside."
+      },
+      {
+        "text": "Melt half the butter in the same Dutch oven over medium heat. Add the onion and cook, stirring occasionally, until softened, about 5 minutes. Add the garlic, mushrooms, and 1/3 of the kosher salt. Cook, stirring occasionally, until the mushrooms and onions start to brown, 8 to 10 minutes. Meanwhile, bring a large pot of salted water to a boil."
+      },
+      {
+        "text": "Add the remaining butter to the Dutch oven. When melted, add the flour, stir to coat the vegetables (it will be a little clumpy), and cook for 1 minute. Add the milk, cream, chicken broth, the remaining 2/3 of the salt, half of the black pepper, and the nutmeg, and stir until no lumps of flour remain. Bring to a boil over high heat."
+      },
+      {
+        "text": "Reduce the heat to maintain a simmer and cook, stirring occasionally, until the sauce is thickened, about 10 minutes. Meanwhile, chop or shred the cooked chicken."
+      },
+      {
+        "text": "Add dried linguine to the boiling water and cook for 2 minutes less than the package instructions, about 7 minutes. Drain. Add the pasta, chicken, and frozen peas to the sauce. Stir to combine. Transfer the mixture to the prepared baking dish."
+      },
+      {
+        "text": "Add the Parmesan cheese and Italian seasoning to the cooled panko, and stir to combine. Scatter evenly over the casserole."
+      },
+      {
+        "text": "Bake uncovered until lightly browned and the sauce is bubbling, about 25 minutes. Let cool 10 minutes before serving."
+      }
+    ],
+    "emoji": "🍲"
+  },
+  {
+    "name": "Amish Creamed Chicken with Noodles",
+    "difficulty": 2,
+    "cookingTime": "20",
+    "servings": 4,
+    "ingredients": [
+      { "quantity": "1", "unit": "", "name": "stick butter, divided" },
+      { "quantity": "1/2", "unit": "cup", "name": "bell pepper, diced" },
+      { "quantity": "8", "unit": "oz", "name": "mushrooms, sliced" },
+      { "quantity": "1/2", "unit": "cup", "name": "flour" },
+      { "quantity": "1/2", "unit": "tsp", "name": "garlic powder" },
+      { "quantity": "1", "unit": "cup", "name": "milk or cream" },
+      { "quantity": "2 1/2", "unit": "cup", "name": "chicken broth" },
+      { "quantity": "3 1/2", "unit": "cup", "name": "cooked chicken, chopped" },
+      { "quantity": "1/2", "unit": "cup", "name": "frozen green peas" },
+      { "quantity": "1", "unit": "lb", "name": "pasta" }
+    ],
+    "directions": [
+      {
+        "text": "Melt half the butter in a skillet. Add the bell pepper and mushrooms. Cook until tender, about 5 minutes. Remove to a plate."
+      },
+      {
+        "text": "Melt the remaining butter in the same skillet. Add the flour and garlic powder. Whisk until smooth. "
+      },
+      {
+        "text": "Slowly whisk in the milk and chicken broth. Bring to a simmer, reduce heat to low and cook about 3 to 5 minutes. (You can add more chicken broth if it gets too thick.)"
+      },
+      {
+        "text": "Add the mushrooms and bell pepper back to the skillet along with the chicken and peas. Cook until warmed through, about 2 to 3 minutes. Season with salt and pepper. "
+      }
+    ],
+    "emoji": "🍲"
+  },
+  {
+    "name": "Pressure Cooker Corned Beef And Cabbage",
+    "difficulty": 2,
+    "cookingTime": "130",
+    "servings": 6,
+    "ingredients": [
+      {
+        "quantity": "3",
+        "unit": "lb",
+        "name": "flat cut corned beef brisket with seasoning packet"
+      },
+      { "quantity": "4", "unit": "cup", "name": "beef broth" },
+      { "quantity": "1", "unit": "", "name": "large onion, quartered" },
+      { "quantity": "8", "unit": "", "name": "garlic cloves" },
+      {
+        "quantity": "6",
+        "unit": "",
+        "name": "medium red potatoes, quartered"
+      },
+      {
+        "quantity": "3",
+        "unit": "",
+        "name": "large carrots, cut into 2-inch pieces"
+      },
+      {
+        "quantity": "1",
+        "unit": "",
+        "name": "small cabbage, cut into 6 wedges"
+      }
+    ],
+    "directions": [
+      {
+        "text": "Rinse the corned beef under cold water to remove excess salt and gel."
+      },
+      {
+        "text": "Combine the seasoning packet, onion, and garlic in the pressure cooking pot. Put a metal rack in the bottom of the pressure cooking pot, place corned beef on the rack. and pour the beef stock on top."
+      },
+      {
+        "text": "Lock the lid in place. Select High Pressure and 90 minutes cook time. "
+      },
+      {
+        "text": "When the cook time ends, turn off the pressure cooker. Allow the pressure to release naturally for 10 minutes, then finish with a quick pressure release. When the valve drops, carefully remove the lid."
+      },
+      {
+        "text": "Remove the cooked corned beef from the pressure cooking pot to a platter or cutting board. Slice meat across the grain and cover with aluminum foil until ready to serve. Remove the rack from the cooking pot. "
+      },
+      {
+        "text": "Add the potatoes, carrots, and cabbage to the broth in the cooking pot. Lock the lid in place. Select High Pressure and 3 minutes cook time. "
+      },
+      {
+        "text": "When the cook time ends, turn off the pressure cooker and use a quick pressure release. When the valve drops, carefully remove the lid. "
+      },
+      {
+        "text": "Check the potatoes with a fork. If you would like them cooked more tender, select Sauté and simmer, stirring occasionally, until they reach your desired tenderness."
+      },
+      {
+        "text": "Remove the carrots, cabbage, and potatoes from the pressure cooking pot to the serving platter. "
+      },
+      {
+        "text": "If desired, strain the juices remaining in the pot, skim off the fat, and transfer to a gravy boat or bowl to ladle on top of the meat."
+      }
+    ],
+    "emoji": "🍲"
+  },
+  {
+    "name": "Spinach Mushroom Chicken",
+    "difficulty": 2,
+    "cookingTime": "40",
+    "servings": 4,
+    "ingredients": [
+      {
+        "quantity": "2",
+        "unit": "lb",
+        "name": "chicken cutlets pounded flat"
+      },
+      { "quantity": "1/2", "unit": "cup", "name": "flour (for dredging)" },
+      { "quantity": "1/4", "unit": "cup", "name": "olive oil" },
+      { "quantity": "1", "unit": "lb", "name": "cremini mushrooms, sliced" },
+      { "quantity": "5", "unit": "", "name": "cloves garlic, sliced" },
+      {
+        "quantity": "12",
+        "unit": "oz",
+        "name": "baby spinach"
+      },
+      {
+        "quantity": "1",
+        "unit": "cup",
+        "name": "chicken stock"
+      },
+      {
+        "quantity": "3/4",
+        "unit": "cup",
+        "name": "dry white wine"
+      },
+      {
+        "quantity": "3",
+        "unit": "tbsp",
+        "name": "butter"
+      },
+      {
+        "quantity": "2",
+        "unit": "tbsp",
+        "name": "cornstarch"
+      },
+      {
+        "quantity": "2",
+        "unit": "oz",
+        "name": "water"
+      }
+    ],
+    "directions": [
+      {
+        "text": "Cut chicken into roughly 3-inch long pieces. Pat chicken dry and season well with salt and pepper on both sides. Dredge the chicken in flour on all sides and shake off excess."
+      },
+      {
+        "text": "Heat a large skillet over medium heat. Add 1-2 tablespoons of olive oil to the pan and once hot add the chicken pieces. Do not crowd the pan. Sear the chicken for 3 minutes per side (or until cooked through) then place on a plate lightly tented with foil. Work in batches and set all chicken aside."
+      },
+      {
+        "text": "Add the mushrooms to the pan and cook until browned (about 5-7 minutes). Once browned add the garlic to the pan and cook for 2 minutes more."
+      },
+      {
+        "text": "Season the mushrooms with salt and pepper then add the wine and chicken stock to the pan and turn the heat to high. With a wooden spoon, scrape all of the brown bits off the bottom of the pan. Cook until the liquid reduces by half (about 3-5 minutes) then turn the heat down to medium."
+      },
+      {
+        "text": "Add in the chicken and the spinach. Cover and cook for 2-3 minutes to wilt the spinach and warm the chicken through."
+      },
+      {
+        "text": "If the sauce is too loose add half of the optional cornstarch mixture to the pan and cook over medium-high until thickened (about 2 minutes). If still too loose add the remaining bit. Once satisfied with the sauce's consistency turn the heat off and remove the pan from the heat."
+      },
+      {
+        "text": "Taste test the sauce. Add more salt and pepper if required (it will probably need more salt). When satisfied with the taste, mix in the cubed butter and stir until melted. Serve with crusty bread to mop up the sauce. Enjoy!"
+      }
+    ],
+    "emoji": "🍲"
+  }
+]
