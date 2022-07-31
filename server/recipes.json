@@ -1448,5 +1448,76 @@
       }
     ],
     "emoji": "🍲"
+  },
+  {
+    "name": "Spinach Mushroom Chicken",
+    "difficulty": 2,
+    "cookingTime": "40",
+    "servings": 4,
+    "ingredients": [
+      {
+        "quantity": "2",
+        "unit": "lb",
+        "name": "chicken cutlets pounded flat"
+      },
+      { "quantity": "1/2", "unit": "cup", "name": "flour (for dredging)" },
+      { "quantity": "1/4", "unit": "cup", "name": "olive oil" },
+      { "quantity": "1", "unit": "lb", "name": "cremini mushrooms, sliced" },
+      { "quantity": "5", "unit": "", "name": "cloves garlic, sliced" },
+      {
+        "quantity": "12",
+        "unit": "oz",
+        "name": "baby spinach"
+      },
+      {
+        "quantity": "1",
+        "unit": "cup",
+        "name": "chicken stock"
+      },
+      {
+        "quantity": "3/4",
+        "unit": "cup",
+        "name": "dry white wine"
+      },
+      {
+        "quantity": "3",
+        "unit": "tbsp",
+        "name": "butter"
+      },
+      {
+        "quantity": "2",
+        "unit": "tbsp",
+        "name": "cornstarch"
+      },
+      {
+        "quantity": "2",
+        "unit": "oz",
+        "name": "water"
+      }
+    ],
+    "directions": [
+      {
+        "text": "Cut chicken into roughly 3-inch long pieces. Pat chicken dry and season well with salt and pepper on both sides. Dredge the chicken in flour on all sides and shake off excess."
+      },
+      {
+        "text": "Heat a large skillet over medium heat. Add 1-2 tablespoons of olive oil to the pan and once hot add the chicken pieces. Do not crowd the pan. Sear the chicken for 3 minutes per side (or until cooked through) then place on a plate lightly tented with foil. Work in batches and set all chicken aside."
+      },
+      {
+        "text": "Add the mushrooms to the pan and cook until browned (about 5-7 minutes). Once browned add the garlic to the pan and cook for 2 minutes more."
+      },
+      {
+        "text": "Season the mushrooms with salt and pepper then add the wine and chicken stock to the pan and turn the heat to high. With a wooden spoon, scrape all of the brown bits off the bottom of the pan. Cook until the liquid reduces by half (about 3-5 minutes) then turn the heat down to medium."
+      },
+      {
+        "text": "Add in the chicken and the spinach. Cover and cook for 2-3 minutes to wilt the spinach and warm the chicken through."
+      },
+      {
+        "text": "If the sauce is too loose add half of the optional cornstarch mixture to the pan and cook over medium-high until thickened (about 2 minutes). If still too loose add the remaining bit. Once satisfied with the sauce's consistency turn the heat off and remove the pan from the heat."
+      },
+      {
+        "text": "Taste test the sauce. Add more salt and pepper if required (it will probably need more salt). When satisfied with the taste, mix in the cubed butter and stir until melted. Serve with crusty bread to mop up the sauce. Enjoy!"
+      }
+    ],
+    "emoji": "🍲"
   }
 ]
