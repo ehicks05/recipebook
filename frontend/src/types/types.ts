@@ -24,7 +24,7 @@ interface IIngredient {
 
 interface IDirection {
   id?: string;
-  index: string;
+  index: number;
   text: string;
 }
 

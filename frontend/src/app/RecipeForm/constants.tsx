@@ -14,7 +14,7 @@ const DEFAULT_INGREDIENT: IIngredient = {
   quantity: '',
   unit: '',
 };
-const DEFAULT_DIRECTION: IDirection = { index: '0', text: '' };
+const DEFAULT_DIRECTION: IDirection = { index: 0, text: '' };
 const DEFAULT_RECIPE: IRecipe = {
   name: '',
   description: '',
@@ -33,7 +33,7 @@ const RECIPE_SCHEMA = Yup.object({
     .max(50, 'Must be 50 characters or less')
     .required('Required'),
   description: Yup.string().required('Required'),
-  cookingTime: Yup.number().min(1, 'Must be at least 1').required('Required'),
+  cookingTime: Yup.string().min(1, 'Must be at least 1').required('Required'),
   servings: Yup.number()
     .min(1, 'Must be 1 serving or more')
     .required('Required'),

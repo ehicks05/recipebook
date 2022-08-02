@@ -47,11 +47,11 @@ function RecipeForm({ recipes }: IProps) {
           initialValues={recipe || DEFAULT_RECIPE}
           validationSchema={RECIPE_SCHEMA}
           onSubmit={async (values, { setSubmitting }) => {
-            const path = recipe ? `/recipe/${recipe.id}` : '/recipe';
-            const method = recipe ? 'PUT' : 'POST';
+            const path = recipe ? `/api/recipe/${recipe.id}` : '/api/recipe';
+            const method = 'POST';
             const response = await authFetch(path, {
               method,
-              body: JSON.stringify(values),
+              body: values,
               headers: {
                 'Content-Type': 'application/json',
               },
@@ -87,7 +87,7 @@ function RecipeForm({ recipes }: IProps) {
                   <div className="flex gap-2">
                     <MyInput
                       containerClassName=""
-                      type="number"
+                      type="string"
                       name="cookingTime"
                       label="Time"
                       placeholder="Minutes"
@@ -161,7 +161,7 @@ function RecipeForm({ recipes }: IProps) {
                             onClick={() =>
                               push({
                                 ...DEFAULT_INGREDIENT,
-                                index: values.ingredients.length,
+                                // index: values.ingredients.length,
                               })
                             }
                           >

@@ -8,6 +8,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
     "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
   "dependencies": {
@@ -66,5 +68,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:8989"
+  "proxy": "http://localhost:8080"
 }
