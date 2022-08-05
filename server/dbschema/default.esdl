@@ -19,7 +19,9 @@ module default {
 
   type User {
     required property auth_id -> uuid;
-    required property displayName -> str;
+    required property displayName -> str {
+      constraint exclusive;
+    };
   }
 
   type Ingredient {
