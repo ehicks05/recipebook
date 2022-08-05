@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node ./index.ts"
+    "dev": "ts-node-dev ./index.ts",
+    "seed:addNew": "ts-node ./scripts/seed.ts addNew",
+    "seed:dropAndLoad": "ts-node ./scripts/seed.ts dropAndLoad"
   },
   "dependencies": {
     "@prisma/client": "^3.15.2",
