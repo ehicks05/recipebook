@@ -1,43 +1,66 @@
-/* eslint-disable prettier/prettier */
-// import { PrismaClient } from '@prisma/client';
 import express from "express";
-import prisma from "./prismaClient";
-import logger from "./config/logger";
 import cors from "cors";
+import client from "./edgeDbClient";
+import e from "./dbschema/edgeql-js";
 
 const app = express();
 
 app.use(cors());
 
 app.get("/api/recipes", async (req, res) => {
-  logger.info("Hell yea");
-  const allRecipes = await prisma.recipe.findMany({
-    include: {
-      author: true,
-      directions: true,
-      ingredients: true,
-      userFavorites: true,
+  const query = e.select(e.Recipe, (recipe) => ({
+    id: true,
+    name: true,
+    emoji: true,
+    description: true,
+    totalTime: true,
+    difficulty: true,
+    servings: true,
+    course: true,
+    createdAt: true,
+    updatedAt: true,
+    author: { auth_id: true, displayName: true },
+    ingredients: { id: true, name: true, quantity: true, unit: true },
+    test: e.count(recipe.ingredients),
+    steps: { i: true, text: true },
+    order_by: {
+      expression: recipe.createdAt,
+      direction: e.DESC,
+      empty: e.EMPTY_LAST,
     },
-    orderBy: { createdAt: "desc" },
-  });
-  res.json(allRecipes);
+  }));
+  const data = await query.run(client);
+
+  res.json(data);
 });
 
 app.get("/api/recipes/:recipeId", async (req, res) => {
   const { recipeId } = req.params;
-  logger.info(`Fetching recipe for ${recipeId}`);
-  const recipe = await prisma.recipe.findUnique({
-    where: {
-      id: recipeId,
+  const query = e.select(e.Recipe, (recipe) => ({
+    filter: e.op(recipe.id, "=", e.uuid(recipeId)),
+
+    id: true,
+    name: true,
+    emoji: true,
+    description: true,
+    totalTime: true,
+    difficulty: true,
+    servings: true,
+    course: true,
+    createdAt: true,
+    updatedAt: true,
+    author: { auth_id: true, displayName: true },
+    ingredients: { id: true, name: true, quantity: true, unit: true },
+    test: e.count(recipe.ingredients),
+    steps: { i: true, text: true },
+    order_by: {
+      expression: recipe.createdAt,
+      direction: e.DESC,
+      empty: e.EMPTY_LAST,
     },
-    include: {
-      author: true,
-      directions: true,
-      ingredients: true,
-      userFavorites: true,
-    },
-  });
-  res.json(recipe);
+  }));
+  const data = await query.run(client);
+  res.json(data);
 });
 
 app.put("/api/recipes/{recipeId}", (req, res) => {
@@ -56,6 +79,7 @@ app.get("/api/user/favorites", (req, res) => {
   res.json({ message: "test" });
 });
 
-app.listen(8989, () => {
-  console.log("Server started");
+const port = 8989;
+app.listen(port, () => {
+  console.log("Server started on port " + port);
 });
