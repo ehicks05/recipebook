@@ -4,6 +4,9 @@ import TextareaAutosize from 'react-textarea-autosize';
 import { IconType } from 'react-icons';
 import { T } from 'core-components';
 
+const common =
+  'px-2 py-1.5 w-full rounded bg-neutral-100 dark:bg-neutral-700 dark:text-neutral-100'
+
 export interface IMyInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -29,7 +32,7 @@ const MyInput = ({
       <div>
         <input
           type={props.type || 'text'}
-          className={`px-2 py-1.5 w-full rounded dark:bg-neutral-700 dark:text-neutral-100 ${className} ${
+          className={`${common} ${className} ${
             meta.touched && meta.error ? 'border-l-8 border-red-600' : ''
           }`}
           {...field}
@@ -97,7 +100,7 @@ const MyTextArea = ({ label, ...props }: IMyTextAreaProps) => {
       )}
       <div className="">
         <TextareaAutosize
-          className={`px-2 py-1.5 w-full rounded dark:bg-neutral-700 dark:text-neutral-100 ${
+          className={`${common} ${
             meta.touched && meta.error ? 'border-l-8 border-red-600' : ''
           }`}
           rows={1}
@@ -131,8 +134,8 @@ const MySelect = ({ label, ...props }: IMySelectProps) => {
       <div className="">
         <div className="">
           <select
-            className={`px-2 py-1.5 w-full rounded dark:bg-neutral-700 dark:text-neutral-100 ${
-              meta.touched && meta.error ? 'border-l-8 border-red-600' : ''
+            className={`${common} border-r-8 border-r-neutral-100 dark:border-r-neutral-700 ${
+              meta.touched && meta.error ? 'border-l-8 border-l-red-600' : ''
             }`}
             {...field}
             {...props}

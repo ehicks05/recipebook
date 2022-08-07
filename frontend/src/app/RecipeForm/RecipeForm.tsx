@@ -4,7 +4,7 @@ import { useQueryClient } from 'react-query';
 
 import { FieldArray, Form, Formik } from 'formik';
 import { HiPlus, HiMinus } from 'react-icons/hi';
-import { Container, Button, Hero, T } from 'core-components';
+import { Container, Button, Hero, T, Difficulty } from 'core-components';
 import { useFetchRecipe } from 'hooks/recipes';
 import EmojiSelector from './Components/EmojiSelector';
 import authFetch from '../../helpers/authFetch';
@@ -73,10 +73,10 @@ function RecipeForm() {
                 <div className="md:col-span-1 lg:col-span-2 flex flex-col gap-2">
                   <T className="text-lg font-semibold">Recipe Details</T>
 
-                  <MyInput label="Name" name="name" placeholder="Name" />
+                  <MyInput label="" name="name" placeholder="Name" />
                   <MyTextArea
                     name="description"
-                    label="Description"
+                    label=""
                     placeholder="Description"
                   />
 
@@ -96,13 +96,22 @@ function RecipeForm() {
                       placeholder="Servings"
                       min="1"
                     />
-                    <MySelect label="Difficulty" name="difficulty">
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                    </MySelect>
+
+                    <div className="flex flex-col gap-1">
+                      <label className="label">
+                        <T>Difficulty</T>
+                      </label>
+                      <Button
+                        onClick={() =>
+                          setFieldValue(
+                            'difficulty',
+                            (values.difficulty % 3) + 1
+                          )
+                        }
+                      >
+                        <Difficulty difficulty={values.difficulty} />
+                      </Button>
+                    </div>
                   </div>
                   <div className="flex flex-col gap-1">
                     <label className="label">

@@ -5,7 +5,7 @@ import T from 'core-components/T';
 
 const DIFFICULTIES: Record<number, { label: string; color: string }> = {
   1: { label: 'Easy', color: 'bg-green-500' },
-  2: { label: 'Medium', color: 'bg-yellow-500' },
+  2: { label: 'Med', color: 'bg-yellow-500' },
   3: { label: 'Hard', color: 'bg-red-500' },
 };
 

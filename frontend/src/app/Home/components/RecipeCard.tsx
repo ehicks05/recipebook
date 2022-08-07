@@ -39,7 +39,7 @@ function RecipeCard({
               </div> */}
             </Link>
           </div>
-          {user && <FavoriteButton className="-mt-9" recipeId={id} />}
+          {user && <FavoriteButton className="absolute top-2 right-2" recipeId={id} />}
         </div>
         <T className="line-clamp-2 text-sm">{description}</T>
       </div>
