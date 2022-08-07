@@ -9,19 +9,10 @@ app.use(cors());
 
 app.get("/api/recipes", async (req, res) => {
   const query = e.select(e.Recipe, (recipe) => ({
-    id: true,
-    name: true,
-    emoji: true,
-    description: true,
-    totalTime: true,
-    difficulty: true,
-    servings: true,
-    course: true,
-    createdAt: true,
-    updatedAt: true,
-    author: { auth_id: true, displayName: true },
-    ingredients: { id: true, name: true, quantity: true, unit: true },
+    ...e.Recipe["*"],
     test: e.count(recipe.ingredients),
+    author: { ...e.User["*"] },
+    ingredients: { ...e.Ingredient["*"] },
     steps: { i: true, text: true },
     order_by: {
       expression: recipe.createdAt,
@@ -39,20 +30,12 @@ app.get("/api/recipes/:recipeId", async (req, res) => {
   const query = e.select(e.Recipe, (recipe) => ({
     filter: e.op(recipe.id, "=", e.uuid(recipeId)),
 
-    id: true,
-    name: true,
-    emoji: true,
-    description: true,
-    totalTime: true,
-    difficulty: true,
-    servings: true,
-    course: true,
-    createdAt: true,
-    updatedAt: true,
-    author: { auth_id: true, displayName: true },
-    ingredients: { id: true, name: true, quantity: true, unit: true },
+    ...e.Recipe["*"],
     test: e.count(recipe.ingredients),
+    author: { ...e.User["*"] },
+    ingredients: { ...e.Ingredient["*"] },
     steps: { i: true, text: true },
+
     order_by: {
       expression: recipe.createdAt,
       direction: e.DESC,
