@@ -1200,7 +1200,7 @@
       { "quantity": "1 1/2", "unit": "tsp", "name": "baking powder" },
       { "quantity": "1/2", "unit": "cup", "name": "milk" },
       { "quantity": "1/2", "unit": "tsp", "name": "vanilla" },
-      { "quantity": "2", "unit": "tsbp", "name": "cinnamon" },
+      { "quantity": "2", "unit": "tsp", "name": "cinnamon" },
       { "quantity": "2", "unit": "tsp", "name": "sugar (combine w/ cinnamon)" }
     ],
     "cookingTime": "25",
@@ -1516,6 +1516,70 @@
       },
       {
         "text": "Taste test the sauce. Add more salt and pepper if required (it will probably need more salt). When satisfied with the taste, mix in the cubed butter and stir until melted. Serve with crusty bread to mop up the sauce. Enjoy!"
+      }
+    ],
+    "emoji": "🍲"
+  },
+  {
+    "name": "Sausage With Peppers and Onions",
+    "difficulty": 2,
+    "cookingTime": "30",
+    "servings": 4,
+    "ingredients": [
+      {
+        "quantity": "8",
+        "unit": "",
+        "name": "Italian pork fennel sausages, sweet or hot (about 2 pounds)"
+      },
+      {
+        "quantity": "4",
+        "unit": "",
+        "name": "medium bell peppers, sliced into 1/4 inch strips"
+      },
+      {
+        "quantity": "2",
+        "unit": "",
+        "name": "red onions, sliced into 1/4 inch half-moons"
+      },
+      { "quantity": "2", "unit": "", "name": "cloves garlic, minced" },
+      {
+        "quantity": "1",
+        "unit": "tbsp",
+        "name": "red wine vinegar"
+      },
+      {
+        "quantity": "1",
+        "unit": "",
+        "name": "pinch crushed red pepper"
+      },
+      {
+        "quantity": "1",
+        "unit": "",
+        "name": "pinch dried oregano"
+      },
+      {
+        "quantity": "1",
+        "unit": "",
+        "name": "pinch basil leaves for garnish"
+      },
+      {
+        "quantity": "4",
+        "unit": "",
+        "name": "large eggs (optional)"
+      }
+    ],
+    "directions": [
+      {
+        "text": "Prick each sausage in several places with a skewer or the tip of paring knife to prevent bursting. Put sausages in one layer in a skillet. Add water to cover and bring to a simmer. Cook for 5 minutes, then cover, turn off heat and let steep."
+      },
+      {
+        "text": "Place a wide skillet over high heat and add 2 tablespoons olive oil. When oil is hot, add sliced peppers and onions. Season generously with salt and pepper, and cook, stirring frequently, until softened and beginning to brown, about 10 minutes. Adjust heat as necessary if mixture seems to be cooking too quickly. Add garlic just at the end, stir to incorporate and cook 1 minute more. Stir in the vinegar."
+      },
+      {
+        "text": "Transfer pepper mixture to a platter. Over medium heat, coat pan with 1 tablespoon olive oil, add sausages and cook 2 to 3 minutes per side, to brown. Top pepper mixture with cooked sausages. Sprinkle with crushed red pepper and oregano and garnish with basil leaves."
+      },
+      {
+        "text": "If desired, in the same wide skillet, fry eggs sunny side up in a little olive oil to accompany. Season with salt and pepper."
       }
     ],
     "emoji": "🍲"
