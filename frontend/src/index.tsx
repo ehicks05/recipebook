@@ -2,8 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { Provider } from 'react-supabase';
-import { Auth } from '@supabase/ui';
+import { Auth } from '@supabase/auth-ui-react';
 import { supabase } from './helpers/supabase';
 import App from './App';
 import './index.css';
@@ -23,13 +22,11 @@ const queryClient = new QueryClient();
 
 ReactDOM.render(
   <Auth.UserContextProvider supabaseClient={supabase}>
-    <Provider value={supabase}>
-      <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </QueryClientProvider>
-    </Provider>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </QueryClientProvider>
   </Auth.UserContextProvider>,
   document.getElementById('root')
 );
