@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { AppError } from '..';
 import logger from '../config/logger';
 import recipeService from '../recipeService';
-import { acceptToken } from '../utils';
+import { acceptToken, isAdmin } from '../utils';
 
 const router = Router();
 
@@ -32,7 +32,7 @@ router.put('/recipes/:recipeId', async (req, res, next) => {
     const user = await acceptToken(req.headers);
 
     if (!user) {
-      throw new AppError(400, 'Only logged in users can create a recipe');
+      throw new AppError(401, 'Only logged in users can create a recipe');
     }
 
     const recipe = req.body;
@@ -51,7 +51,7 @@ router.post('/recipe', async (req, res, next) => {
 
     if (!user) {
       logger.error(`Unauthenticated user tried to create a recipe`);
-      throw new AppError(400, 'Only logged in users can create a recipe');
+      throw new AppError(401, 'Only logged in users can create a recipe');
     }
 
     const recipe = req.body;
@@ -67,9 +67,9 @@ router.delete('/recipes/:recipeId', async (req, res, next) => {
   try {
     const user = await acceptToken(req.headers);
 
-    if (!user) {
+    if (!user || !isAdmin(user.email)) {
       logger.error('Unauthenticated user tried to delete a recipe');
-      throw new AppError(400, 'Only logged in users can delete a recipe');
+      throw new AppError(401, 'Only logged in users can delete a recipe');
     }
 
     const recipeId = req.params.recipeId;
