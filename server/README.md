@@ -12,7 +12,7 @@
 | ENV | URL                                   |
 |-----|---------------------------------------|
 | dev | http://localhost:8080/rest-docs       |
- | fly | https://recipe-book.fly.dev/rest-docs |
+| fly | https://recipe-book.fly.dev/rest-docs |
 
 # Developer Setup
 
