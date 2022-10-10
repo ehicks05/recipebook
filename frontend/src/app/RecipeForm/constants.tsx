@@ -21,8 +21,8 @@ const DEFAULT_INGREDIENT: FormIngredient = {
   quantity: '',
   unit: '',
 };
-const DEFAULT_DIRECTION: FormDirection = { index: '0', text: '' };
-const DEFAULT_RECIPE: FormRecipe = {
+const DEFAULT_DIRECTION: IDirection = { index: 0, text: '' };
+const DEFAULT_RECIPE: IRecipe = {
   name: '',
   description: '',
   emoji: '\uD83E\uDD58',
@@ -40,7 +40,7 @@ const RECIPE_SCHEMA = Yup.object({
     .max(50, 'Must be 50 characters or less')
     .required('Required'),
   description: Yup.string().required('Required'),
-  cookingTime: Yup.number().min(1, 'Must be at least 1').required('Required'),
+  cookingTime: Yup.string().min(1, 'Must be at least 1').required('Required'),
   servings: Yup.number()
     .min(1, 'Must be 1 serving or more')
     .required('Required'),

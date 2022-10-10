@@ -23,8 +23,8 @@ interface IIngredient {
 }
 
 interface IDirection {
-  id: string;
-  index: string;
+  id?: string;
+  index: number;
   text: string;
 }
 

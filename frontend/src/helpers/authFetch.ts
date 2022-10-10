@@ -1,6 +1,6 @@
 import API_URL from 'helpers/apiUrl';
 
-const LOCAL_STORAGE_KEY = 'token';
+const LOCAL_STORAGE_KEY = 'supabase.auth.token';
 
 /**
  * https://kentcdodds.com/blog/replace-axios-with-a-simple-custom-fetch-wrapper
@@ -13,7 +13,9 @@ const authFetch = async (
   const token = window.localStorage.getItem(LOCAL_STORAGE_KEY);
   const headers: HeadersInit = { 'Content-Type': 'application/json' };
   if (token) {
-    headers.Authorization = `Bearer ${token}`;
+    headers.Authorization = `Bearer ${
+      JSON.parse(token).currentSession.access_token
+    }`;
   }
   const config = {
     method: body ? 'POST' : 'GET',

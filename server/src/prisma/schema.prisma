@@ -10,6 +10,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model user {
+  id            String          @id
+  email         String          
+  lastSignInAt  DateTime        @map("last_sign_in_ad") @db.Timestamp
+  createdAt     DateTime        @map("created_at") @db.Timestamp
+  updatedAt     DateTime        @map("updated_at") @db.Timestamp
+}
+
 model appUser {
   id            String          @id @default(uuid())
   createdAt     DateTime        @default(now()) @map("created_at") @db.Timestamp
@@ -28,7 +36,7 @@ model direction {
   updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamp
   index     Int
   text      String
-  recipe    recipe   @relation(fields: [recipeId], references: [id])
+  recipe    recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
 }
 
 model ingredient {
@@ -39,7 +47,7 @@ model ingredient {
   name      String
   quantity  String
   unit      String?
-  recipe    recipe   @relation(fields: [recipeId], references: [id])
+  recipe    recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
 }
 
 model recipe {
@@ -63,7 +71,7 @@ model recipe {
 model userFavorites {
   userId   String   @map("user_id")
   recipeId String   @map("recipe_id")
-  recipe   recipe   @relation(fields: [recipeId], references: [id])
+  recipe   recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
   author   appUser @relation(fields: [userId], references: [id])
 
   @@id([userId, recipeId])
