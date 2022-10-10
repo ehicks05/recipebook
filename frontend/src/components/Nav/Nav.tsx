@@ -3,14 +3,14 @@ import React, { Fragment, useState } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { HiMenu, HiUserCircle, HiX } from 'react-icons/hi';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import useUser from 'useUser';
+import useUser from 'hooks/useUser';
 import AuthDialog from 'components/AuthDialog';
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function Example() {
+const Nav = () => {
   const { user } = useUser();
   const navigate = useNavigate();
   const location = useLocation();
@@ -51,7 +51,7 @@ export default function Example() {
     { to: '#', label: 'Log out', onClick: () => setShowAuthModal(true) },
   ];
   const loggedInMenuItems = accountItems.map(item => (
-    <Menu.Item>
+    <Menu.Item key={item.label}>
       {({ active }) => (
         <Link
           to={item.to}
@@ -72,7 +72,7 @@ export default function Example() {
       <Disclosure as="nav" className="bg-neutral-900">
         {({ open }) => (
           <>
-            <div className="max-w-screen-xl mx-auto px-4">
+            <div className="max-w-screen-2xl mx-auto px-4">
               <div className="relative flex items-center justify-between h-16">
                 <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                   {/* Mobile menu button */}
@@ -180,4 +180,6 @@ export default function Example() {
       />
     </>
   );
-}
+};
+
+export default Nav;

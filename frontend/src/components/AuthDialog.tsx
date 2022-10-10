@@ -3,7 +3,7 @@ import React from 'react';
 import { Auth, Button, Typography } from '@supabase/ui';
 import { useClient, useAuthStateChange } from 'react-supabase';
 import { SupabaseClient } from '@supabase/supabase-js';
-import useUser from 'useUser';
+import useUser from 'hooks/useUser';
 
 const Container: React.FC<{
   supabaseClient: SupabaseClient;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Fraction from 'fraction.js';
+import { T } from 'core-components';
 import { IIngredient } from '../../../types/types';
-import T from '../../../components/T';
 
 interface IIngredientProps {
   ingredient: IIngredient;

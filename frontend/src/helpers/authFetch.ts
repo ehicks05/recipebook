@@ -1,4 +1,4 @@
-import API_URL from './apiUrl';
+import API_URL from 'helpers/apiUrl';
 
 const LOCAL_STORAGE_KEY = 'supabase.auth.token';
 
@@ -7,6 +7,7 @@ const LOCAL_STORAGE_KEY = 'supabase.auth.token';
  */
 const authFetch = async (
   endpoint: string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   { body, ...customConfig }: any = {}
 ) => {
   const token = window.localStorage.getItem(LOCAL_STORAGE_KEY);
@@ -31,11 +32,11 @@ const authFetch = async (
   try {
     const response = await window.fetch(`${API_URL}${endpoint}`, config);
     if (response.ok) {
-      return response.json();
+      return await response.json();
     }
 
     const errorMessage = await response.text();
-    return Promise.reject(new Error(errorMessage));
+    return await Promise.reject(new Error(errorMessage));
   } catch (e) {
     return Promise.reject(e);
   }

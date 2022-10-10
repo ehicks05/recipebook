@@ -1,44 +1,34 @@
-import React, { useMemo } from 'react';
-import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import React from 'react';
+import { HiHeart, HiOutlineHeart } from 'react-icons/hi';
 
-import { IconContext } from 'react-icons';
-import authFetch from '../authFetch';
+import {
+  useAddFavorite,
+  useFetchFavorites,
+  useRemoveFavorite,
+} from 'hooks/favorites';
+import { Button } from 'core-components';
 
 interface IProps {
-  recipeId: string | undefined;
-  favoriteIds: string[];
-  fetchFavorites: () => void;
+  recipeId: string;
+  className?: string;
 }
 
-function FavoriteButton({ recipeId, favoriteIds, fetchFavorites }: IProps) {
-  const saveFavorite = () => {
-    authFetch(`/recipe/favorite/${recipeId}`, {
-      method: 'POST',
-    }).then(() => {
-      fetchFavorites();
-    });
-  };
+function FavoriteButton({ recipeId, className }: IProps) {
+  const userFavorites = useFetchFavorites();
+  const addFavorite = useAddFavorite(recipeId);
+  const removeFavorite = useRemoveFavorite(recipeId);
 
-  const removeFavorite = () => {
-    authFetch(`/recipe/favorite/${recipeId}`, {
-      method: 'DELETE',
-    }).then(() => {
-      fetchFavorites();
-    });
-  };
+  const favoriteIds = userFavorites.data?.map(f => f.id) || [];
 
-  const style = useMemo(() => ({ size: '1.3em', color: '#E00' }), []);
+  const Icon = favoriteIds.includes(recipeId) ? HiHeart : HiOutlineHeart;
+  const handler = favoriteIds.includes(recipeId)
+    ? removeFavorite.mutate
+    : addFavorite.mutate;
 
   return (
-    <div>
-      <IconContext.Provider value={style}>
-        {recipeId && favoriteIds.includes(recipeId) ? (
-          <FaHeart onClick={removeFavorite} />
-        ) : (
-          <FaRegHeart onClick={saveFavorite} />
-        )}
-      </IconContext.Provider>
-    </div>
+    <Button className={className} onClick={() => handler()}>
+      <Icon className="text-2xl text-red-500" />
+    </Button>
   );
 }
 

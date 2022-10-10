@@ -1,12 +1,13 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { FaPlus, FaMinus } from 'react-icons/fa';
 import { useQueryClient } from 'react-query';
 
 import { FieldArray, Form, Formik } from 'formik';
-import Hero from '../../components/Hero';
+import { HiPlus, HiMinus } from 'react-icons/hi';
+import { Container, Button, Hero, T } from 'core-components';
+import { useFetchRecipe } from 'hooks/recipes';
 import EmojiSelector from './Components/EmojiSelector';
-import authFetch from '../../authFetch';
+import authFetch from '../../helpers/authFetch';
 import {
   DEFAULT_INGREDIENT,
   DEFAULT_DIRECTION,
@@ -20,24 +21,19 @@ import {
   MySelect,
   MyTextArea,
 } from '../../components/FormikInput';
-import { IRecipe } from '../../types/types';
-import Container from '../../components/Container';
-import Button from '../../components/Button';
-import T from '../../components/T';
 
-interface IProps {
-  recipes?: IRecipe[];
-}
-
-function RecipeForm({ recipes }: IProps) {
+function RecipeForm() {
   const queryClient = useQueryClient();
 
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
 
-  const recipe = id ? recipes?.find(r => r.id === id) : undefined;
+  const { isLoading, isError, error, data } = useFetchRecipe(id || '');
 
-  if (id && !recipe) return <div>Loading...</div>;
+  if (isLoading) return <Hero title="Loading..." />;
+  if (isError) return <Hero title="Error..." subtitle={error.message} />;
+  const recipe = id ? data : undefined;
+  if (id && !recipe) return <Hero title="Recipe not found" />;
 
   return (
     <>
@@ -108,7 +104,7 @@ function RecipeForm({ recipes }: IProps) {
                       <option value="5">5</option>
                     </MySelect>
                   </div>
-                  <div>
+                  <div className="flex flex-col gap-1">
                     <label className="label">
                       <T>Emoji</T>
                     </label>
@@ -120,7 +116,7 @@ function RecipeForm({ recipes }: IProps) {
                     </div>
                   </div>
                 </div>
-                <div className="md:col-span-1 lg:col-span-2">
+                <div className="md:col-span-1 lg:col-span-2 flex flex-col gap-2">
                   <T className="text-lg font-semibold">Ingredients</T>
                   <FieldArray name="ingredients">
                     {({ remove, push }) => (
@@ -147,7 +143,7 @@ function RecipeForm({ recipes }: IProps) {
                                   remove(index);
                                 }}
                               >
-                                <FaMinus />
+                                <HiMinus />
                               </Button>
                             </div>
                             <MyInput
@@ -165,14 +161,14 @@ function RecipeForm({ recipes }: IProps) {
                               })
                             }
                           >
-                            <FaPlus />
+                            <HiPlus />
                           </Button>
                         </div>
                       </div>
                     )}
                   </FieldArray>
                 </div>
-                <div className="md:col-span-2 lg:col-span-3">
+                <div className="md:col-span-2 lg:col-span-3 flex flex-col gap-2">
                   <T className="text-lg font-semibold">Directions</T>
                   <FieldArray name="directions">
                     {({ remove, push }) => (
@@ -194,7 +190,7 @@ function RecipeForm({ recipes }: IProps) {
                                 remove(index);
                               }}
                             >
-                              <FaMinus />
+                              <HiMinus />
                             </Button>
                           </div>
                         ))}
@@ -207,7 +203,7 @@ function RecipeForm({ recipes }: IProps) {
                               })
                             }
                           >
-                            <FaPlus />
+                            <HiPlus />
                           </Button>
                         </div>
                       </div>

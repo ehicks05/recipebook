@@ -1200,7 +1200,7 @@
       { "quantity": "1 1/2", "unit": "tsp", "name": "baking powder" },
       { "quantity": "1/2", "unit": "cup", "name": "milk" },
       { "quantity": "1/2", "unit": "tsp", "name": "vanilla" },
-      { "quantity": "2", "unit": "tsbp", "name": "cinnamon" },
+      { "quantity": "2", "unit": "tsp", "name": "cinnamon" },
       { "quantity": "2", "unit": "tsp", "name": "sugar (combine w/ cinnamon)" }
     ],
     "cookingTime": "25",
@@ -1381,6 +1381,205 @@
       },
       {
         "text": "Add the mushrooms and bell pepper back to the skillet along with the chicken and peas. Cook until warmed through, about 2 to 3 minutes. Season with salt and pepper. "
+      }
+    ],
+    "emoji": "🍲"
+  },
+  {
+    "name": "Pressure Cooker Corned Beef And Cabbage",
+    "difficulty": 2,
+    "cookingTime": "130",
+    "servings": 6,
+    "ingredients": [
+      {
+        "quantity": "3",
+        "unit": "lb",
+        "name": "flat cut corned beef brisket with seasoning packet"
+      },
+      { "quantity": "4", "unit": "cup", "name": "beef broth" },
+      { "quantity": "1", "unit": "", "name": "large onion, quartered" },
+      { "quantity": "8", "unit": "", "name": "garlic cloves" },
+      {
+        "quantity": "6",
+        "unit": "",
+        "name": "medium red potatoes, quartered"
+      },
+      {
+        "quantity": "3",
+        "unit": "",
+        "name": "large carrots, cut into 2-inch pieces"
+      },
+      {
+        "quantity": "1",
+        "unit": "",
+        "name": "small cabbage, cut into 6 wedges"
+      }
+    ],
+    "directions": [
+      {
+        "text": "Rinse the corned beef under cold water to remove excess salt and gel."
+      },
+      {
+        "text": "Combine the seasoning packet, onion, and garlic in the pressure cooking pot. Put a metal rack in the bottom of the pressure cooking pot, place corned beef on the rack. and pour the beef stock on top."
+      },
+      {
+        "text": "Lock the lid in place. Select High Pressure and 90 minutes cook time. "
+      },
+      {
+        "text": "When the cook time ends, turn off the pressure cooker. Allow the pressure to release naturally for 10 minutes, then finish with a quick pressure release. When the valve drops, carefully remove the lid."
+      },
+      {
+        "text": "Remove the cooked corned beef from the pressure cooking pot to a platter or cutting board. Slice meat across the grain and cover with aluminum foil until ready to serve. Remove the rack from the cooking pot. "
+      },
+      {
+        "text": "Add the potatoes, carrots, and cabbage to the broth in the cooking pot. Lock the lid in place. Select High Pressure and 3 minutes cook time. "
+      },
+      {
+        "text": "When the cook time ends, turn off the pressure cooker and use a quick pressure release. When the valve drops, carefully remove the lid. "
+      },
+      {
+        "text": "Check the potatoes with a fork. If you would like them cooked more tender, select Sauté and simmer, stirring occasionally, until they reach your desired tenderness."
+      },
+      {
+        "text": "Remove the carrots, cabbage, and potatoes from the pressure cooking pot to the serving platter. "
+      },
+      {
+        "text": "If desired, strain the juices remaining in the pot, skim off the fat, and transfer to a gravy boat or bowl to ladle on top of the meat."
+      }
+    ],
+    "emoji": "🍲"
+  },
+  {
+    "name": "Spinach Mushroom Chicken",
+    "difficulty": 2,
+    "cookingTime": "40",
+    "servings": 4,
+    "ingredients": [
+      {
+        "quantity": "2",
+        "unit": "lb",
+        "name": "chicken cutlets pounded flat"
+      },
+      { "quantity": "1/2", "unit": "cup", "name": "flour (for dredging)" },
+      { "quantity": "1/4", "unit": "cup", "name": "olive oil" },
+      { "quantity": "1", "unit": "lb", "name": "cremini mushrooms, sliced" },
+      { "quantity": "5", "unit": "", "name": "cloves garlic, sliced" },
+      {
+        "quantity": "12",
+        "unit": "oz",
+        "name": "baby spinach"
+      },
+      {
+        "quantity": "1",
+        "unit": "cup",
+        "name": "chicken stock"
+      },
+      {
+        "quantity": "3/4",
+        "unit": "cup",
+        "name": "dry white wine"
+      },
+      {
+        "quantity": "3",
+        "unit": "tbsp",
+        "name": "butter"
+      },
+      {
+        "quantity": "2",
+        "unit": "tbsp",
+        "name": "cornstarch"
+      },
+      {
+        "quantity": "2",
+        "unit": "oz",
+        "name": "water"
+      }
+    ],
+    "directions": [
+      {
+        "text": "Cut chicken into roughly 3-inch long pieces. Pat chicken dry and season well with salt and pepper on both sides. Dredge the chicken in flour on all sides and shake off excess."
+      },
+      {
+        "text": "Heat a large skillet over medium heat. Add 1-2 tablespoons of olive oil to the pan and once hot add the chicken pieces. Do not crowd the pan. Sear the chicken for 3 minutes per side (or until cooked through) then place on a plate lightly tented with foil. Work in batches and set all chicken aside."
+      },
+      {
+        "text": "Add the mushrooms to the pan and cook until browned (about 5-7 minutes). Once browned add the garlic to the pan and cook for 2 minutes more."
+      },
+      {
+        "text": "Season the mushrooms with salt and pepper then add the wine and chicken stock to the pan and turn the heat to high. With a wooden spoon, scrape all of the brown bits off the bottom of the pan. Cook until the liquid reduces by half (about 3-5 minutes) then turn the heat down to medium."
+      },
+      {
+        "text": "Add in the chicken and the spinach. Cover and cook for 2-3 minutes to wilt the spinach and warm the chicken through."
+      },
+      {
+        "text": "If the sauce is too loose add half of the optional cornstarch mixture to the pan and cook over medium-high until thickened (about 2 minutes). If still too loose add the remaining bit. Once satisfied with the sauce's consistency turn the heat off and remove the pan from the heat."
+      },
+      {
+        "text": "Taste test the sauce. Add more salt and pepper if required (it will probably need more salt). When satisfied with the taste, mix in the cubed butter and stir until melted. Serve with crusty bread to mop up the sauce. Enjoy!"
+      }
+    ],
+    "emoji": "🍲"
+  },
+  {
+    "name": "Sausage With Peppers and Onions",
+    "difficulty": 2,
+    "cookingTime": "30",
+    "servings": 4,
+    "ingredients": [
+      {
+        "quantity": "8",
+        "unit": "",
+        "name": "Italian pork fennel sausages, sweet or hot (about 2 pounds)"
+      },
+      {
+        "quantity": "4",
+        "unit": "",
+        "name": "medium bell peppers, sliced into 1/4 inch strips"
+      },
+      {
+        "quantity": "2",
+        "unit": "",
+        "name": "red onions, sliced into 1/4 inch half-moons"
+      },
+      { "quantity": "2", "unit": "", "name": "cloves garlic, minced" },
+      {
+        "quantity": "1",
+        "unit": "tbsp",
+        "name": "red wine vinegar"
+      },
+      {
+        "quantity": "1",
+        "unit": "",
+        "name": "pinch crushed red pepper"
+      },
+      {
+        "quantity": "1",
+        "unit": "",
+        "name": "pinch dried oregano"
+      },
+      {
+        "quantity": "1",
+        "unit": "",
+        "name": "pinch basil leaves for garnish"
+      },
+      {
+        "quantity": "4",
+        "unit": "",
+        "name": "large eggs (optional)"
+      }
+    ],
+    "directions": [
+      {
+        "text": "Prick each sausage in several places with a skewer or the tip of paring knife to prevent bursting. Put sausages in one layer in a skillet. Add water to cover and bring to a simmer. Cook for 5 minutes, then cover, turn off heat and let steep."
+      },
+      {
+        "text": "Place a wide skillet over high heat and add 2 tablespoons olive oil. When oil is hot, add sliced peppers and onions. Season generously with salt and pepper, and cook, stirring frequently, until softened and beginning to brown, about 10 minutes. Adjust heat as necessary if mixture seems to be cooking too quickly. Add garlic just at the end, stir to incorporate and cook 1 minute more. Stir in the vinegar."
+      },
+      {
+        "text": "Transfer pepper mixture to a platter. Over medium heat, coat pan with 1 tablespoon olive oil, add sausages and cook 2 to 3 minutes per side, to brown. Top pepper mixture with cooked sausages. Sprinkle with crushed red pepper and oregano and garnish with basil leaves."
+      },
+      {
+        "text": "If desired, in the same wide skillet, fry eggs sunny side up in a little olive oil to accompany. Season with salt and pepper."
       }
     ],
     "emoji": "🍲"

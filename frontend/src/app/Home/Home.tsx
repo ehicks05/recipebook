@@ -1,24 +1,16 @@
 import React from 'react';
-import Container from '../../components/Container';
-import Hero from '../../components/Hero';
-import { IRecipe } from '../../types/types';
+import { Container, Hero } from 'core-components';
 import RecipePicker from './components/RecipePicker';
 
-interface IProps {
-  recipes: IRecipe[];
-}
-
-function Home({ recipes }: IProps) {
-  if (!recipes) return <Hero title="Loading..." />;
-
+const Home = () => {
   return (
     <>
       <Hero title="Find a Recipe" />
       <Container>
-        <RecipePicker recipes={recipes} />
+        <RecipePicker />
       </Container>
     </>
   );
-}
+};
 
 export default Home;

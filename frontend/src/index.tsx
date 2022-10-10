@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Provider } from 'react-supabase';
 import { Auth } from '@supabase/ui';
-import { supabase } from './supabase';
+import { supabase } from './helpers/supabase';
 import App from './App';
 import './index.css';
 

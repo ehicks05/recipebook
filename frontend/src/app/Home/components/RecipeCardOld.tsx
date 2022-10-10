@@ -4,7 +4,6 @@ import { Card, CookingTime, Difficulty, T } from 'core-components';
 import { IRecipe } from 'types/types';
 import FavoriteButton from 'components/FavoriteButton';
 import useUser from 'hooks/useUser';
-import { emojiToImage } from '../constants';
 
 interface IRecipeCardProps {
   recipe: IRecipe;
@@ -17,31 +16,21 @@ function RecipeCard({
 
   return (
     <Card className="hover:shadow-lg transform transition-all">
-      <div className="flex flex-col gap-4 h-80">
-        <div className="h-48 -m-4 mb-0">
-          <Link to={`/recipe/${id}`}>
-            <img
-              className="h-48 w-full object-cover rounded-t"
-              src={emojiToImage[emoji]}
-              alt="recipe"
-            />
-          </Link>
-        </div>
+      <div className="flex flex-col gap-4 h-56">
         {/* title row */}
         <div className="flex items-start gap-2">
+          <figure className="w-16 h-16 text-5xl pt-2">{emoji}</figure>
           <div className="w-full">
             <Link to={`/recipe/${id}`}>
-              <div className="text-xl font-semibold text-amber-700 dark:text-amber-400">
-                {name}
-              </div>
-              {/* <div className="text-xs italic dark:text-neutral-200">
+              <div className="font-semibold dark:text-neutral-200">{name}</div>
+              <div className="text-xs italic dark:text-neutral-200">
                 {author.displayName}
-              </div> */}
+              </div>
             </Link>
           </div>
-          {user && <FavoriteButton className="-mt-9" recipeId={id} />}
+          {user && <FavoriteButton recipeId={id} />}
         </div>
-        <T className="line-clamp-2 text-sm">{description}</T>
+        <T className="line-clamp-5">{description}</T>
       </div>
 
       <footer className="flex gap-4 pt-4">

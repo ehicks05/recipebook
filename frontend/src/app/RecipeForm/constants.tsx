@@ -8,7 +8,14 @@ const UNIT_OPTIONS = ['', ...UNITS].map(unit => (
   <option value={unit}>{unit}</option>
 ));
 
-const DEFAULT_INGREDIENT: IIngredient = {
+type FormIngredient = Omit<IIngredient, 'id'>;
+type FormDirection = Omit<IDirection, 'id'>;
+type FormRecipe = Omit<IRecipe, 'id' | 'ingredients' | 'directions'> & {
+  ingredients: FormIngredient[];
+  directions: FormDirection[];
+};
+
+const DEFAULT_INGREDIENT: FormIngredient = {
   index: '0',
   name: '',
   quantity: '',

@@ -17,7 +17,7 @@ const Button: FC<IProps> = ({
     <button
       type={props.type || 'button'}
       disabled={props.disabled || loading}
-      className={`px-3 py-2 rounded-sm border border-neutral-500 hover:border-neutral-400 dark:bg-neutral-700 dark:text-neutral-200 ${
+      className={`px-3 py-2 rounded-sm shadow hover:shadow-lg border border-neutral-200 dark:border-neutral-500 hover:border-neutral-300 dark:hover:border-neutral-400 bg-neutral-100 dark:bg-neutral-700 dark:text-neutral-200 ${
         props.disabled || loading ? 'opacity-50' : ''
       } ${className}`}
       {...props}

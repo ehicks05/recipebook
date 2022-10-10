@@ -1,15 +1,14 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { BiDownload, BiEdit } from 'react-icons/bi';
-import Hero from '../../components/Hero';
+import { Container, CookingTime, Difficulty, Hero, T } from 'core-components';
+import { useFetchRecipe } from 'hooks/recipes';
 import { IRecipe } from '../../types/types';
 import Directions from './Components/Directions';
 import Ingredients from './Components/Ingredients';
 import { UserContext } from '../../UserContext';
 import { stripRecipe, updateClipboard } from './utils';
-import Container from '../../components/Container';
-import T from '../../components/T';
-import Button from '../../components/Button';
+import Button from '../../core-components/Button';
 
 interface IProps {
   recipe: IRecipe;
@@ -22,19 +21,18 @@ function Recipe({ recipe }: IProps) {
   return (
     <>
       <Hero title={`${recipe.name} ${recipe.emoji}`}>
-        <T className="font-semibold text-sm">{recipe.author.displayName}</T>
+        <T className="font-semibold text-sm">
+          {recipe.author.displayName || 'todo'}
+        </T>
       </Hero>
       <Container>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 justify-between gap-6">
-          <div className="order-1">
-            <T className="text-lg font-semibold">Details</T>
-            <div>
-              <T className="font-semibold">Time:</T> <T>{recipe.cookingTime}</T>
+          <div className="flex flex-col gap-4 order-1">
+            <div className="flex gap-2">
+              <CookingTime cookingTime={recipe.cookingTime} />
+              <Difficulty difficulty={recipe.difficulty} />
             </div>
-            <div>
-              <T className="font-semibold">Description:</T>{' '}
-              <T>{recipe.description}</T>
-            </div>
+            <T>{recipe.description}</T>
           </div>
           <div className="order-2 md:order-3">
             <T className="text-lg font-semibold">Ingredients</T>
@@ -74,4 +72,14 @@ function Recipe({ recipe }: IProps) {
   );
 }
 
-export default Recipe;
+const RecipeWrapper = () => {
+  const { id } = useParams<{ id: string }>();
+  const { isLoading, isError, error, data: recipe } = useFetchRecipe(id || '');
+
+  if (isLoading) return <Hero title="Loading..." />;
+  if (isError) return <Hero title="Error..." subtitle={error.message} />;
+  if (!recipe) return <Hero title="Recipe not found" />;
+  return <Recipe recipe={recipe} />;
+};
+
+export default RecipeWrapper;
