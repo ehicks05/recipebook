@@ -23,7 +23,7 @@ export class AppError extends Error {
 
 const errorHandler = (error: any, request: Request, response: Response, next: NextFunction) => {
   response.header('Content-Type', 'application/json');
-  response.status(400);
+  response.status(error.statusCode || 500);
   response.json({ error: error.message });
   response.send();
 };
@@ -58,12 +58,26 @@ console.log(path.join(process.cwd(), 'src/routes/*.{ts,js}'));
 
 const spec = swaggerJSDoc({
   definition: {
-    openapi: '3.0.0',
+    openapi: '3.0.1',
     info: {
       title: 'Recipe Book',
       version: '0.0.1',
       description: 'https://github.com/hicks-team/RecipeBook',
     },
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+      },
+    },
+    security: [
+      {
+        bearerAuth: [],
+      },
+    ],
     license: {
       name: 'Licensed Under MIT',
     },
