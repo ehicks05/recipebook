@@ -1,5 +1,5 @@
 import { appUser, PrismaClient } from "@prisma/client";
-import recipes from "./recipes.json";
+import recipes from "../recipes.json";
 
 const prisma = new PrismaClient();
 
