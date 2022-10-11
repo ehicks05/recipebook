@@ -1624,4 +1624,37 @@
     ],
     "emoji": "\ud83c\udf6a"
   },
+  {
+    "name": "Apple and Blueberry Crumble with Roasted Almond and Peanut Topping",
+    "difficulty": "1",
+    "ingredients": [
+      { "quantity": "4", "unit": "whole", "name": "peeled and cut granny smith apples" },
+      { "quantity": "500", "unit": "grams", "name": "thawed blueberries" },
+      { "quantity": "1/4", "unit": "cup", "name": "sugar" },
+      { "quantity": " 1", "unit": "tsp", "name": "vanilla extract" },
+      { "quantity": "1/2", "unit": "cup", "name": "wholemeal flour" },
+      { "quantity": "2", "unit": "tbsp", "name": "plain flour" },
+      { "quantity": "1/3", "unit": "cup", "name": "unsalted chopped butter" },
+      { "quantity": "2", "unit": "tbsp", "name": "brown sugar" },
+      { "quantity": "1/3", "unit": "cup", "name": "roasted whole almonds" },
+      { "quantity": "1/3", "unit": "cup", "name": "unsalted roasted peanuts" },
+      { "quantity": "2", "unit": "tbsp", "name": "chopped unsalted roasted peanuts" },
+      { "quantity": "1/4", "unit": "cup", "name": "flaked almonds" },
+    ],
+    "cookingTime": "70",
+    "servings": "6",
+    "directions": [
+      {
+        "text": "Preheat the oven to 350°F."
+      },
+      {
+        "text": "For the crumble topping, place the flours and butter in a food processor and whiz for 1 minute or until the mixture resembles fine breadcrumbs. Add brown sugar and pulse to combine – if the mixture looks moist or too clumpy, add an extra 1-2 tablespoons wholemeal flour. Add the whole almonds and 1/3 cup (50g) peanuts, then pulse until coarsely chopped. Set aside."
+      },
+      { "text": "Place apple, blueberries, caster sugar and vanilla in a bowl and stir well to coat. Tip into a 1.5L baking dish, then scatter over the crumble topping. Sprinkle the crumble with flaked almonds and extra 2 tablespoons chopped peanuts."
+      }, 
+      { "text": "Bake for 45-50 minutes until crumble is golden and bubbling. Dust with icing sugar and serve with cream." 
+      },
+    ],
+    "emoji": "\ud83c\udf6a"
+  },
 ]
