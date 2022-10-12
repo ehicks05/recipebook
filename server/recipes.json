@@ -1624,4 +1624,29 @@
     ],
     "emoji": "\ud83c\udf6a"
   },
+  {
+    "name": "Prosciutto Pasta Toss",
+    "difficulty": "2",
+    "ingredients": [
+      { "quantity": "16", "unit": "oz", "name": "linguine" },
+      { "quantity": "1/2", "unit": "cup", "name": "fresh or frozen peas" },
+      { "quantity": "2", "unit": "tbsp", "name": "minced garlic" },
+      { "quantity": "1", "unit": "tbsp", "name": "Italian seasoning" },
+      { "quantity": "1", "unit": "tsp", "name": "pepper" },
+      { "quantity": "1/4", "unit": "cup", "name": "olive oil" },
+      { "quantity": "1/2", "unit": "lb", "name": "thinly sliced prosciutto or deli chopped ham" },
+      { "quantity": "1", "unit": "cup", "name": "shredded Parmesan Cheese" },
+    ],
+    "cookingTime": "20",
+    "servings": "6",
+    "directions": [
+      {
+        "text": "Cook linguine according to package directions, adding peas during the last 3 minutes. Meanwhile, in a large cast-iron or other heavy skillet, saute garlic, Italian seasoning and pepper in oil until garlic is tender, about 1 minute. Stir in prosciutto."
+      },
+      {
+        "text": "Drain linguine and peas; add to skillet and toss to coat. Sprinkle with cheese."
+      },
+   ],
+    "emoji": "\ud83c\udf6a"
+  },
 ]
