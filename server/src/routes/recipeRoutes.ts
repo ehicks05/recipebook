@@ -8,6 +8,7 @@ const router = Router();
 
 router.get('/recipes', async (req, res, next) => {
   try {
+    logger.info('fetching all recipes');
     const allRecipes = await recipeService.getAll();
     res.json(allRecipes);
   } catch (e: any) {
