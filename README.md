@@ -14,7 +14,7 @@ This is a repository containing the frontend and backend to run the Recipe Book 
 
 ## [Application](urlToGoHere)
 
-[Frontend](https://github.com/hicks-team/recipeBook/frontend/readme.md)
+[Frontend](https://github.com/hicks-team/RecipeBook/tree/master/frontend)
 
-[Backend](https://github.com/hicks-team/recipeBook/server/readme.md)
+[Backend](https://github.com/hicks-team/RecipeBook/tree/master/backend)
 

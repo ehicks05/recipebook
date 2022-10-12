@@ -18,7 +18,7 @@
 # Developer Setup
 
 1. Clone project
-2. Create and update a .env file under server/
+2. Create and update a .env file under backend/
 3. Update the .env file with a DATABASE_URL variable in the format of
    postgresql://DB_USER:DB_PASSWORD@DB_URL:POST/DB_NAME
 
