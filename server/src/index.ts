@@ -51,11 +51,6 @@ if (process.env.NODE_ENV === 'production') {
   routeBase = './build/routes/*.{ts,js}';
 }
 
-console.log(process.env);
-console.log(routeBase);
-
-console.log(path.join(process.cwd(), 'src/routes/*.{ts,js}'));
-
 const spec = swaggerJSDoc({
   definition: {
     openapi: '3.0.1',
@@ -99,4 +94,7 @@ app.use(errorHandler);
 app.listen(8080, () => {
   logger.info('Starting server');
   console.log('Server started');
+  if (process.env.NODE_ENV !== 'production') {
+    console.log('Visit the docs at http://localhost:8080/rest-docs');
+  }
 });
