@@ -59,7 +59,7 @@ const recipeService = {
       throw new AppError(400, 'Unable to update recipe');
     }
 
-    const [ingredientDeletes, directionDeletes, updatedRecipe] = await prisma.$transaction([
+    const [, , updatedRecipe] = await prisma.$transaction([
       prisma.ingredient.deleteMany({
         where: {
           recipeId: existingRecipe.id,

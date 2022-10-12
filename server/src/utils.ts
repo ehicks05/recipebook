@@ -1,5 +1,6 @@
 import { IncomingHttpHeaders } from 'http';
 import jwt from 'jsonwebtoken';
+import logger from './config/logger';
 
 interface ILoggedInUser {
   aud: string;
@@ -24,6 +25,10 @@ export const acceptToken: (h: IncomingHttpHeaders) => Promise<ILoggedInUser | un
   jwt.verify(userJwt.split(' ')[1], `${JWT_KEY}`, (_err, user) => {
     if (user) {
       result = user;
+    }
+
+    if (_err) {
+      logger.error('Problem accepting token');
     }
   });
 
