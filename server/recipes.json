@@ -1625,6 +1625,30 @@
     "emoji": "\ud83c\udf6a"
   },
   {
+    "name": "Sloppy Joe Tater Tot Casserole",
+    "difficulty": "3",
+    "ingredients": [
+      { "quantity": "32", "unit": "oz", "name": "frozen tate tots" },
+      { "quantity": "2", "unit": "pounds", "name": "ground beef or turkey" },
+      { "quantity": "15", "unit": "oz", "name": "tomato sauce" },
+      { "quantity": "8", "unit": "oz", "name": "sweet chili sauce" },
+      { "quantity": "2", "unit": "tbsp", "name": "packed brown sugar" },
+      { "quantity": "1", "unit": "tbsp", "name": "Worcestershire sacue" },
+      { "quantity": "1", "unit": "tbsp", "name": "minced garlic" },
+      { "quantity": "1/2", "unit": "tsp", "name": "salt" },
+      { "quantity": "1/2", "unit": "tsp", "name": "pepper" },
+      { "quantity": "1 1/4", "unit": "cup", "name": "shredded Colby Monterey Jack cheese" },
+      { "quantity": "1/4", "unit": "tsp", "name": "paprika" },
+    ],
+    "cookingTime": "4 hours",
+    "servings": "10",
+    "directions": [
+      {
+        "text": "Place half the Tater Tots in bottom of 5-qt. slow cooker. In a large skillet, cook beef over medium-high heat until no longer pink, 5-6 minutes, breaking into crumbles. Drain. Stir in the next 8 ingredients; reduce heat and simmer 2-3 minutes. Place beef mixture in slow cooker; top with remaining Tater Tots. Cook, covered, on low 4 hours. Top with cheese. Sprinkle with paprika. Let stand, uncovered, 15 minutes before serving."
+      },
+    ],
+  },
+  {
     "name": "Prosciutto Pasta Toss",
     "difficulty": "2",
     "ingredients": [
