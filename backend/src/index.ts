@@ -7,6 +7,7 @@ import router from './routes/recipeRoutes';
 import path from 'path';
 import promBundle from 'express-prom-bundle';
 import bodyParser from 'body-parser';
+import * as dotenv from 'dotenv';
 
 export class AppError extends Error {
   statusCode: number;
@@ -28,6 +29,7 @@ const errorHandler = (error: any, request: Request, response: Response, next: Ne
   response.send();
 };
 
+dotenv.config();
 const app = express();
 
 app.use(
