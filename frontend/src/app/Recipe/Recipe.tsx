@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { BiDownload, BiEdit } from 'react-icons/bi';
 import { Container, CookingTime, Difficulty, Hero, T } from 'core-components';
-import { useFetchRecipe } from 'hooks/recipes';
+import { useFetchLdJsonRecipe, useFetchRecipe } from 'hooks/recipes';
 import { IRecipe } from '../../types/types';
 import Directions from './Components/Directions';
 import Ingredients from './Components/Ingredients';
@@ -75,10 +75,20 @@ function Recipe({ recipe }: IProps) {
 const RecipeWrapper = () => {
   const { id } = useParams<{ id: string }>();
   const { isLoading, isError, error, data: recipe } = useFetchRecipe(id || '');
+  // const { data: jsonLdRecipe } = useFetchLdJsonRecipe(id || '');
 
   if (isLoading) return <Hero title="Loading..." />;
   if (isError) return <Hero title="Error..." subtitle={error.message} />;
   if (!recipe) return <Hero title="Recipe not found" />;
+
+  // if (id?.startsWith('http')) {
+  //   return (
+  //     <pre className="text-sm p-4 text-white">
+  //       {JSON.stringify(recipe, null, 2)}
+  //     </pre>
+  //   );
+  // }
+
   return <Recipe recipe={recipe} />;
 };
 
