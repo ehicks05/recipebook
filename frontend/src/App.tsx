@@ -7,6 +7,7 @@ import RecipeForm from 'app/RecipeForm/RecipeForm';
 import Home from 'app/Home/Home';
 import MyAccount from 'app/MyAccount/MyAccount';
 import Recipe from 'app/Recipe/Recipe';
+import RecipeImport from 'app/RecipeImport';
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="create-recipe" element={<RecipeForm />} />
         <Route path="my-account" element={<MyAccount />} />
         <Route path="blog" element={<T>Work in progress...</T>} />
+        <Route path="recipe-import" element={<RecipeImport />} />
       </Routes>
 
       <Footer />

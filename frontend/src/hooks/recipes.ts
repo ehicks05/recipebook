@@ -18,12 +18,11 @@ const useFetchRecipe = (id: string) => {
   return useQuery<IRecipe, Error>(path, fetch);
 };
 
-const useFetchLdJsonRecipe = (id: string) => {
-  const path = `/api/recipes/${id}`;
-  // const fetch = async () => authFetch(path);
+const useFetchLdJsonRecipe = (url: string) => {
+  const path = `/recipe-import/${url}`;
 
   const fetch = async () => {
-    const result = await axios.get(id);
+    const result = await axios.get(url);
     const { data } = result;
     const $ = cheerio.load(data);
     const scriptTag = $('script')
@@ -36,7 +35,7 @@ const useFetchLdJsonRecipe = (id: string) => {
     return recipe as any;
   };
 
-  return useQuery<IRecipe, Error>(path, fetch);
+  return useQuery<IRecipe, Error>(path, fetch, { enabled: !!url });
 };
 
 export { useFetchRecipes, useFetchRecipe, useFetchLdJsonRecipe };
