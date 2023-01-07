@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { Router } from 'express';
 import { AppError } from '..';
 import logger from '../config/logger';
@@ -128,6 +129,17 @@ router.post('/user/favorites', async (req, res, next) => {
 
     const result = await recipeService.addUserFavorite(user.sub, thing);
     res.json(result);
+  } catch (e: any) {
+    next(e);
+  }
+});
+
+router.get('/recipe-import', async (req, res, next) => {
+  try {
+    const { url } = req.query as { url: string };
+    logger.info(`importing recipe from ${url}`);
+    const recipe = (await axios.get(url)).data;
+    res.json({ recipe });
   } catch (e: any) {
     next(e);
   }
