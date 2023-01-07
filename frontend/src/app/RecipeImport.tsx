@@ -1,34 +1,32 @@
 import React, { useState } from 'react';
-import { Button, Container, Hero, T } from 'core-components';
-import { useFetchLdJsonRecipe } from 'hooks/recipes';
+import { Container, Loading, T } from 'core-components';
+import { useFetchLdJsonRecipe } from 'hooks/recipe-import';
+import Recipe from './Recipe/Recipe';
 
 const RecipeImport = () => {
   const [url, setUrl] = useState('');
-  const {
-    isLoading,
-    isError,
-    error,
-    data: recipe,
-    refetch,
-  } = useFetchLdJsonRecipe(url);
+  const { isLoading, error, data: recipe } = useFetchLdJsonRecipe(url);
 
   return (
     <>
-      <Hero title="Recipe Import" />
       <Container>
-        <label>
-          <T>Recipe URL: </T>
-        </label>
         <input
-          className="w-full"
+          className="px-2 py-1.5 w-full rounded dark:bg-neutral-700 dark:text-neutral-100"
+          placeholder="enter a recipe url"
           value={url}
           onChange={e => setUrl(e.target.value)}
         />
-        <Button onClick={() => refetch()}>Import</Button>
-        <pre className="text-sm p-4 text-white">
-          {JSON.stringify(recipe, null, 2)}
-        </pre>
       </Container>
+      {error && (
+        <Container>
+          <T>{error.message}</T>
+        </Container>
+      )}
+      {isLoading && <Loading />}
+      {recipe && <Recipe recipe={recipe} />}
+      {/* <pre className="text-sm p-4 text-white">
+        {JSON.stringify(recipe, null, 2)}
+      </pre> */}
     </>
   );
 };
