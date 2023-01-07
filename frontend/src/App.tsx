@@ -6,7 +6,7 @@ import Nav from 'components/Nav/Nav';
 import RecipeForm from 'app/RecipeForm/RecipeForm';
 import Home from 'app/Home/Home';
 import MyAccount from 'app/MyAccount/MyAccount';
-import Recipe from 'app/Recipe/Recipe';
+import RecipePage from 'app/Recipe/RecipePage';
 import RecipeImport from 'app/RecipeImport';
 
 const App = () => {
@@ -16,7 +16,7 @@ const App = () => {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="recipe/:id" element={<Recipe />} />
+        <Route path="recipe/:id" element={<RecipePage />} />
         <Route path="edit-recipe/:id" element={<RecipeForm />} />
         <Route path="create-recipe" element={<RecipeForm />} />
         <Route path="my-account" element={<MyAccount />} />
