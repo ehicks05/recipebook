@@ -4,6 +4,7 @@ import { Recipe } from 'schema-dts';
 import authFetch from 'helpers/authFetch';
 import { IRecipe } from 'types/types';
 import { JSONPath } from 'jsonpath-plus';
+import { find } from 'lodash';
 
 const extractQuantity = (input: string) => {
   let endIndex = 0;
@@ -57,11 +58,22 @@ const schemaOrgRecipeToRecipeBookRecipe = (
   };
 };
 
-const deepFindByType = (json: any, type: string) => {
-  return JSONPath({
+const deepFind = (json: any, type: string): any => {
+  const result = find(
     json,
-    path: `$..[?(@["@type"] == "${type}" || @["@type"][0] == "${type}")]`,
-  });
+    o => o['@type'] === type || o['@type']?.includes(type)
+  );
+  if (result) return result;
+
+  if (Array.isArray(json)) {
+    return json.map(o => deepFind(o, type)).filter(i => i)?.[0];
+  }
+  if (typeof json === 'object') {
+    return Object.values(json)
+      .map(o => deepFind(o, type))
+      .filter(i => i)?.[0];
+  }
+  return undefined;
 };
 
 export const useFetchLdJsonRecipe = (url: string) => {
@@ -78,7 +90,7 @@ export const useFetchLdJsonRecipe = (url: string) => {
     const json = JSON.parse(jsonString);
     console.log({ json });
 
-    const recipe: Recipe = deepFindByType(json, 'Recipe')?.[0];
+    const recipe: Recipe = deepFind({ json }, 'Recipe');
     const authorName = JSONPath({ json, path: '$..author..name' })?.[0];
 
     console.log({ recipe, authorName });
@@ -86,5 +98,5 @@ export const useFetchLdJsonRecipe = (url: string) => {
     return schemaOrgRecipeToRecipeBookRecipe(recipe, authorName);
   };
 
-  return useQuery<IRecipe, Error>(key, fetch, { enabled: !!url });
+  return useQuery<IRecipe, Error>(key, fetch, { enabled: !!url, retry: false });
 };
