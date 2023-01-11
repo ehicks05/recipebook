@@ -6,6 +6,7 @@ COPY package*.json ./
 COPY tsconfig*.json ./
 COPY src ./src
 COPY prisma ./prisma
+COPY *.env ./
 RUN npm ci
 RUN npm run prisma:generate
 COPY node_modules ./node_modules
