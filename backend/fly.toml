@@ -1,6 +1,10 @@
 # fly.toml file generated for recipe-book on 2022-06-23T15:09:31-05:00
 
 app = "recipe-book"
+
+[build]
+  builder = "heroku/buildpacks:20"
+
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
