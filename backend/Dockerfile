@@ -17,7 +17,6 @@ WORKDIR /app
 ENV NODE_ENV=production
 
 COPY package*.json ./
-COPY ./src/prisma ./prisma
 RUN npm ci --only=production
 RUN npm run prisma:generate
 COPY --from=builder /home/node/app/build ./build
