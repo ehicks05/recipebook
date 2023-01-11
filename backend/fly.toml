@@ -2,9 +2,6 @@
 
 app = "recipe-book"
 
-[build]
-  builder = "heroku/buildpacks:20"
-
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []

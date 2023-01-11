@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "./build",
+    "outDir": "./dist",
     "target": "ESNext" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
     "module": "CommonJS" /* Specify what module code is generated. */,
     "moduleResolution": "node",

@@ -9,7 +9,8 @@
     "prisma:generate": "prisma generate",
     "lint": "eslint ./**",
     "lint:fix": "eslint ./** --fix",
-    "test": "jest"
+    "test": "jest",
+    "start": "node ./src/index.js"
   },
   "dependencies": {
     "@prisma/client": "^4.8.0",
