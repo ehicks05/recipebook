@@ -24,9 +24,9 @@ const Nav = () => {
       hidden: !user,
     },
     {
-      name: 'Blog',
-      href: '/blog',
-      current: location.pathname.includes('/blog'),
+      name: 'Import',
+      href: '/recipe-import',
+      current: location.pathname.includes('/recipe-import'),
     },
   ];
 

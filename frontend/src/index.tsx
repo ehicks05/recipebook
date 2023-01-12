@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Auth } from '@supabase/auth-ui-react';
+import { QueryParamProvider } from 'use-query-params';
+import { ReactRouter6Adapter } from 'use-query-params/adapters/react-router-6';
 import { supabase } from './helpers/supabase';
 import App from './App';
 import './index.css';
@@ -24,7 +26,12 @@ ReactDOM.render(
   <Auth.UserContextProvider supabaseClient={supabase}>
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <App />
+        <QueryParamProvider
+          adapter={ReactRouter6Adapter}
+          options={{ removeDefaultsFromUrl: true }}
+        >
+          <App />
+        </QueryParamProvider>
       </BrowserRouter>
     </QueryClientProvider>
   </Auth.UserContextProvider>,
