@@ -36,9 +36,9 @@ const schemaOrgRecipeToRecipeBookRecipe = (
       displayName: authorName || 'John Dough',
     },
     difficulty: 1,
-    emoji: '🍲',
+    emoji: '', // '🍲',
     servings: Number(recipe.recipeYield?.toString()) || 1,
-    cookingTime: recipe.totalTime?.toString() || 'missin',
+    cookingTime: recipe.totalTime?.toString().replace('PT', '') || 'missin',
     course: recipe.recipeCategory?.toString() || 'missin',
     ingredients: ((recipe.recipeIngredient || []) as string[])
       .map(parseIngredient)

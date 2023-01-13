@@ -16,6 +16,7 @@ interface IProps {
 function Recipe({ recipe }: IProps) {
   const { user } = useContext(UserContext);
   const [scaledServings, setScaledServings] = useState(recipe.servings);
+  const [isShowDescription, setIsShowDescription] = useState(true);
 
   return (
     <>
@@ -26,15 +27,18 @@ function Recipe({ recipe }: IProps) {
       </Hero>
       <Container>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 justify-between gap-6">
-          <div className="flex flex-col gap-4 order-1">
+          <div
+            className="flex flex-col gap-4 order-1 cursor-pointer"
+            onClick={() => setIsShowDescription(!isShowDescription)}
+          >
             <div className="flex gap-2">
               <CookingTime cookingTime={recipe.cookingTime} />
               <Difficulty difficulty={recipe.difficulty} />
             </div>
-            <T>{recipe.description}</T>
+            {isShowDescription && <T>{recipe.description}</T>}
           </div>
           <div className="order-2 md:order-3">
-            <T className="text-lg font-semibold">Ingredients</T>
+            {/* <T className="text-lg font-semibold">Ingredients</T> */}
             <Ingredients
               ingredients={recipe.ingredients}
               defaultServings={recipe.servings}
@@ -43,11 +47,11 @@ function Recipe({ recipe }: IProps) {
             />
           </div>
           <div className="sm:col-span-2 order-3 md:order-2">
-            <T className="text-lg font-semibold">Directions</T>
+            {/* <T className="text-lg font-semibold">Directions</T> */}
             <Directions directions={recipe.directions} />
           </div>
         </div>
-        <div className="flex gap-2 p-4">
+        <div className="flex gap-2 pt-4">
           {user?.id === recipe.author.id && (
             <Link to={`/edit-recipe/${recipe.id}`} title="Edit Recipe">
               <Button>
