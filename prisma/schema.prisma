@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-    provider = "sqlite"
+  provider = "postgresql"
     // NOTE: When using postgresql, mysql or sqlserver, uncomment the @db.Text annotations in model Account below
     // Further reading:
     // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
@@ -14,10 +14,64 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Example {
-    id        String   @id @default(cuid())
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+model appUser {
+  id            String          @id @default(uuid())
+  createdAt     DateTime        @default(now()) @map("created_at") @db.Timestamp
+  updatedAt     DateTime        @updatedAt @map("updated_at") @db.Timestamp
+  displayName   String?         @unique @map("display_name")
+  recipe        recipe[]
+  userFavorites userFavorites[]
+
+  @@map("app_user")
+}
+
+model direction {
+  id        String   @id @default(uuid())
+  recipeId  String   @map("recipe_id")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamp
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamp
+  index     Int
+  text      String
+  recipe    recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+}
+
+model ingredient {
+  id        String   @id @default(uuid())
+  recipeId  String   @map("recipe_id")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamp
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamp
+  name      String
+  quantity  String
+  unit      String?
+  recipe    recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+}
+
+model recipe {
+  id            String          @id @default(uuid())
+  createdAt     DateTime        @default(now()) @map("created_at") @db.Timestamp
+  updatedAt     DateTime        @updatedAt @map("updated_at") @db.Timestamp
+  cookingTime   String?         @map("cooking_time")
+  course        String?
+  description   String?
+  difficulty    Int
+  emoji         String?
+  name          String?
+  servings      Int
+  authorId      String         @map("author_id")
+  author        appUser        @relation(fields: [authorId], references: [id])
+  directions    direction[]
+  ingredients   ingredient[]
+  userFavorites userFavorites[]
+}
+
+model userFavorites {
+  userId   String   @map("user_id")
+  recipeId String   @map("recipe_id")
+  recipe   recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  author   appUser @relation(fields: [userId], references: [id])
+
+  @@id([userId, recipeId])
+  @@map("user_favorites")
 }
 
 // Necessary for Next auth
@@ -27,12 +81,12 @@ model Account {
     type              String
     provider          String
     providerAccountId String
-    refresh_token     String? // @db.Text
-    access_token      String? // @db.Text
+    refresh_token     String? @db.Text
+    access_token      String? @db.Text
     expires_at        Int?
     token_type        String?
     scope             String?
-    id_token          String? // @db.Text
+    id_token          String? @db.Text
     session_state     String?
     user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
