@@ -60,3 +60,5 @@
 // };
 
 // export default AuthDialog;
+const ok = { ok: true };
+export default ok;
