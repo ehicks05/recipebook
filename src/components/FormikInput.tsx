@@ -1,8 +1,8 @@
-import React from 'react';
-import { useField } from 'formik';
-import TextareaAutosize from 'react-textarea-autosize';
-import { IconType } from 'react-icons';
-import { T } from 'core-components';
+import React from "react";
+import { useField } from "formik";
+import TextareaAutosize from "react-textarea-autosize";
+import type { IconType } from "react-icons";
+import { T } from "components/core";
 
 export interface IMyInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -18,9 +18,9 @@ const MyInput = ({
   containerClassName,
   ...props
 }: IMyInputProps) => {
-  const [field, meta] = useField({ ...props, name: props.name || '' });
+  const [field, meta] = useField({ ...props, name: props.name || "" });
   return (
-    <div className={`w-full flex flex-col gap-1 ${containerClassName}`}>
+    <div className={`flex w-full flex-col gap-1 ${containerClassName}`}>
       {label && (
         <label className="" htmlFor={props.id || props.name}>
           <T>{label}</T>
@@ -28,9 +28,9 @@ const MyInput = ({
       )}
       <div>
         <input
-          type={props.type || 'text'}
-          className={`px-2 py-1.5 w-full rounded dark:bg-neutral-700 dark:text-neutral-100 ${className} ${
-            meta.touched && meta.error ? 'border-l-8 border-red-600' : ''
+          type={props.type || "text"}
+          className={`w-full rounded px-2 py-1.5 dark:bg-neutral-700 dark:text-neutral-100 ${className} ${
+            meta.touched && meta.error ? "border-l-8 border-red-600" : ""
           }`}
           {...field}
           {...props}
@@ -52,7 +52,7 @@ export interface IInputProps
 const Input = ({ className, LeftIcon, ...props }: IInputProps) => {
   return (
     <div
-      className={`flex items-center w-full dark:bg-neutral-700 dark:text-neutral-100 ${className}`}
+      className={`flex w-full items-center dark:bg-neutral-700 dark:text-neutral-100 ${className}`}
     >
       {LeftIcon && (
         <div className="p-2">
@@ -60,8 +60,8 @@ const Input = ({ className, LeftIcon, ...props }: IInputProps) => {
         </div>
       )}
       <input
-        type={props.type || 'text'}
-        className={`w-full dark:bg-neutral-700 dark:text-neutral-100 border-none ${className}`}
+        type={props.type || "text"}
+        className={`w-full border-none dark:bg-neutral-700 dark:text-neutral-100 ${className}`}
         {...props}
       />
     </div>
@@ -89,7 +89,7 @@ interface IMyTextAreaProps {
 const MyTextArea = ({ label, ...props }: IMyTextAreaProps) => {
   const [field, meta] = useField(props);
   return (
-    <div className="w-full flex flex-col gap-1">
+    <div className="flex w-full flex-col gap-1">
       {label && (
         <label className="" htmlFor={props.id || props.name}>
           <T>{label}</T>
@@ -97,8 +97,8 @@ const MyTextArea = ({ label, ...props }: IMyTextAreaProps) => {
       )}
       <div className="">
         <TextareaAutosize
-          className={`px-2 py-1.5 w-full rounded dark:bg-neutral-700 dark:text-neutral-100 ${
-            meta.touched && meta.error ? 'border-l-8 border-red-600' : ''
+          className={`w-full rounded px-2 py-1.5 dark:bg-neutral-700 dark:text-neutral-100 ${
+            meta.touched && meta.error ? "border-l-8 border-red-600" : ""
           }`}
           rows={1}
           {...field}
@@ -122,7 +122,7 @@ interface IMySelectProps {
 const MySelect = ({ label, ...props }: IMySelectProps) => {
   const [field, meta] = useField(props);
   return (
-    <div className="w-full flex flex-col gap-1">
+    <div className="flex w-full flex-col gap-1">
       {label && (
         <label className="" htmlFor={props.id || props.name}>
           <T>{label}</T>
@@ -131,8 +131,8 @@ const MySelect = ({ label, ...props }: IMySelectProps) => {
       <div className="">
         <div className="">
           <select
-            className={`px-2 py-1.5 w-full rounded dark:bg-neutral-700 dark:text-neutral-100 ${
-              meta.touched && meta.error ? 'border-l-8 border-red-600' : ''
+            className={`w-full rounded px-2 py-1.5 dark:bg-neutral-700 dark:text-neutral-100 ${
+              meta.touched && meta.error ? "border-l-8 border-red-600" : ""
             }`}
             {...field}
             {...props}
