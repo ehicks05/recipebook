@@ -33,9 +33,14 @@ const schemaOrgRecipeToRecipeBookRecipe = (
     id: "1337",
     name: recipe.name?.toString() || "missing",
     description: recipe.description?.toString() || "missing",
+    authorId: "1337",
+    createdAt: new Date(),
+    updatedAt: new Date(),
     author: {
       id: "",
       displayName: authorName || "John Dough",
+      createdAt: new Date(),
+      updatedAt: new Date(),
     },
     difficulty: 1,
     emoji: "", // '🍲',
@@ -46,17 +51,24 @@ const schemaOrgRecipeToRecipeBookRecipe = (
       .map(parseIngredient)
       .map((i, index) => ({
         id: "1337",
+        recipeId: "1337",
         index: String(index),
         name: i.rest,
         quantity: i.quantity,
         unit: "",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       })),
-    directions: ((recipe.recipeInstructions || []) as string[]).map(
-      (i, index) => ({
-        index,
-        text: i.text,
-      })
-    ),
+    directions: (
+      (recipe.recipeInstructions || []) as unknown as { text: string }[]
+    ).map((i, index) => ({
+      id: "1337",
+      recipeId: "1337",
+      index,
+      text: i.text,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    })),
   };
 };
 
@@ -87,7 +99,7 @@ export const parseLdJsonRecipe = (input: string) => {
       .find((o) => $(o).attr("type") === "application/ld+json");
     if (!ldJsonScriptTag?.children[0]) return undefined;
 
-    const jsonString = ldJsonScriptTag?.children[0].data;
+    const jsonString = (ldJsonScriptTag?.children[0] as { data: string }).data;
     const json = JSON.parse(jsonString);
     console.log({ json });
 
