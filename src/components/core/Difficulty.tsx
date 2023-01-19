@@ -8,18 +8,16 @@ const DIFFICULTIES: Record<number, { label: string; color: string }> = {
   3: { label: "Hard", color: "bg-red-500" },
 };
 
+const inactiveColor = "bg-neutral-300 dark:bg-neutral-500";
+
 const DifficultyIcon = ({ difficulty }: { difficulty: number }) => (
   <div className="flex flex-col-reverse gap-0.5">
-    {range(1, 4).map((i) => (
-      <div
-        key={i}
-        className={`h-2 w-2 rounded-full ${
-          difficulty >= i
-            ? DIFFICULTIES[i]?.color
-            : "bg-neutral-300 dark:bg-neutral-500"
-        }`}
-      />
-    ))}
+    {range(1, 4).map((i) => {
+      const activeColor = DIFFICULTIES[i]?.color || inactiveColor;
+      const color = difficulty >= i ? activeColor : inactiveColor;
+
+      return <div key={i} className={`h-2 w-2 rounded-full ${color}`} />;
+    })}
   </div>
 );
 
