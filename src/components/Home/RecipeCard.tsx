@@ -13,9 +13,9 @@ interface FooterProps {
 }
 
 const Footer = ({ cookingTime, difficulty }: FooterProps) => (
-  <footer className="flex gap-4 pt-4">
+  <footer className="flex w-fit gap-4 pt-4">
     <CookingTime cookingTime={cookingTime} />
-    <Difficulty difficulty={difficulty} />
+    {/* <Difficulty difficulty={difficulty} /> */}
   </footer>
 );
 
@@ -33,10 +33,19 @@ const RecipeCard = ({
       <div className="flex h-80 flex-col gap-4">
         <div className="-m-4 mb-0 h-48">
           <Link href={`/recipe/${id}`}>
-            <Image
+            {/* <Image
               className="h-48 w-full rounded-t object-cover"
               src={emojiToImage[emoji] || ""}
               alt="recipe"
+              height={123}
+              width={123}
+            /> */}
+            <img
+              className="h-48 w-full rounded-t object-cover"
+              src={emojiToImage[emoji] || ""}
+              alt="recipe"
+              height={123}
+              width={123}
             />
           </Link>
         </div>
@@ -71,10 +80,17 @@ function RecipeCardLandscape({
     <Card className="transform transition-all hover:shadow-lg">
       <div className="flex h-48 gap-4">
         <Link href={`/recipe/${id}`} className="relative -m-4 mr-0 h-56 w-full">
-          <Image
+          {/* <Image
             className="h-56 w-full rounded-l object-cover"
             src={emojiToImage[emoji] || ""}
             alt="recipe"
+          /> */}
+          <img
+            className="h-56 w-full rounded-t object-cover"
+            src={emojiToImage[emoji] || ""}
+            alt="recipe"
+            height={123}
+            width={123}
           />
           {/* {user && (
             <FavoriteButton className="absolute top-2 left-2" recipeId={id} />

@@ -56,7 +56,6 @@ function Ingredient({
     <div key={ingredient.name}>
       <label className="flex gap-2">
         <input
-          className="mt-1.5"
           type="checkbox"
           checked={isChecked}
           onChange={(e) => setIsChecked(e.target.checked)}
