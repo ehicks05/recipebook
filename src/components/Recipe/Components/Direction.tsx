@@ -4,7 +4,9 @@ import Timer from "./Timer";
 import type { direction } from "@prisma/client";
 
 const firstTimeUnitIndex = (input: string) =>
-  input.indexOf("minute") > -1 || input.indexOf("hour") > -1;
+  input.indexOf("second") > -1 ||
+  input.indexOf("minute") > -1 ||
+  input.indexOf("hour") > -1;
 
 interface Props {
   direction: direction;
@@ -20,6 +22,8 @@ function extractTiming(text: string) {
 
     const isHours = (words[timeIndex] || "").indexOf("hour") > -1;
     if (isHours) timeAmount *= 60;
+    const isSeconds = (words[timeIndex] || "").indexOf("second") > -1;
+    if (isSeconds) timeAmount /= 60;
   }
 
   return timeAmount;
