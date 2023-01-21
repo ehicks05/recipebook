@@ -10,7 +10,7 @@ const RecipePage: NextPage = () => {
   const { url } = router.query;
 
   const {
-    isLoading,
+    isFetching,
     error,
     data: recipeHtml,
   } = api.example.importRecipe.useQuery(
@@ -40,7 +40,7 @@ const RecipePage: NextPage = () => {
           <T>{error.message}</T>
         </Container>
       )}
-      {isLoading && <Loading />}
+      {isFetching && <Loading />}
       {recipe && <Recipe recipe={recipe} />}
       {/* <pre className="text-sm p-4 text-white">
         {JSON.stringify(recipe, null, 2)}
