@@ -5,33 +5,31 @@ import React, { Fragment, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { HiMenu, HiUserCircle, HiX } from "react-icons/hi";
 import Link from "next/link";
-// import useUser from 'hooks/useUser';
-// import AuthDialog from "components/AuthDialog";
+import AuthDialog from "components/AuthDialog";
+import { useUser } from "@supabase/auth-helpers-react";
+import { useRouter } from "next/router";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
 const Nav = () => {
-  // const { user } = useUser();
-  // const navigate = useNavigate();
-  // const location = useLocation();
+  const user = useUser();
+  const router = useRouter();
+
   const [showAuthModal, setShowAuthModal] = useState(false);
 
   const navigation = [
     {
       name: "Create Recipe",
       href: "/create-recipe",
-      // current: location.pathname.includes("/create-recipe"),
-      current: false,
-      // hidden: !user,
-      hidden: true,
+      current: router.pathname.includes("/create-recipe"),
+      hidden: !user,
     },
     {
       name: "Import",
       href: "/recipe-import",
-      // current: location.pathname.includes("/recipe-import"),
-      current: false,
+      current: router.pathname.includes("/recipe-import"),
     },
   ];
 
@@ -146,8 +144,8 @@ const Nav = () => {
                       leaveTo="transform opacity-0 scale-95"
                     >
                       <Menu.Items className="absolute right-0 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                        {/* {user && loggedInMenuItems} */}
-                        {/* {!user && loggedOutMenuItems} */}
+                        {user && loggedInMenuItems}
+                        {!user && loggedOutMenuItems}
                       </Menu.Items>
                     </Transition>
                   </Menu>
@@ -162,7 +160,7 @@ const Nav = () => {
                   .map((item) => (
                     <a
                       key={item.name}
-                      // onClick={() => navigate(item.href)}
+                      onClick={() => void router.push(item.href)}
                       className={classNames(
                         item.current
                           ? "bg-neutral-900 text-white"
@@ -179,10 +177,10 @@ const Nav = () => {
           </>
         )}
       </Disclosure>
-      {/* <AuthDialog
+      <AuthDialog
         isOpen={showAuthModal}
         hideModal={() => setShowAuthModal(false)}
-      /> */}
+      />
     </>
   );
 };

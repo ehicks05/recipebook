@@ -1,14 +1,16 @@
-import { type AppType } from "next/app";
-import { type Session } from "next-auth";
-import { SessionProvider } from "next-auth/react";
+import { useState } from "react";
+import type { AppType } from "next/app";
+import Head from "next/head";
 import { Ubuntu } from "@next/font/google";
+import { createBrowserSupabaseClient } from "@supabase/auth-helpers-nextjs";
+import type { Session } from "@supabase/auth-helpers-nextjs";
+import { SessionContextProvider } from "@supabase/auth-helpers-react";
 
 import { api } from "../utils/api";
 
 import Footer from "components/Footer";
 import Nav from "components/Nav";
 import "../styles/globals.css";
-import Head from "next/head";
 
 const ubuntu = Ubuntu({
   weight: "400",
@@ -17,12 +19,18 @@ const ubuntu = Ubuntu({
   display: "optional",
 });
 
-const MyApp: AppType<{ session: Session | null }> = ({
+const MyApp: AppType<{ initialSession: Session }> = ({
   Component,
-  pageProps: { session, ...pageProps },
+  pageProps,
 }) => {
+  // Create a new supabase browser client on every first render.
+  const [supabaseClient] = useState(() => createBrowserSupabaseClient());
+
   return (
-    <SessionProvider session={session}>
+    <SessionContextProvider
+      supabaseClient={supabaseClient}
+      initialSession={pageProps.initialSession}
+    >
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon/favicon.png" />
@@ -53,7 +61,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
         <div className="flex-grow"></div>
         <Footer />
       </div>
-    </SessionProvider>
+    </SessionContextProvider>
   );
 };
 
