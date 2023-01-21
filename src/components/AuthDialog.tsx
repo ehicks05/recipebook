@@ -55,6 +55,7 @@ const AuthDialog = ({ isOpen, hideModal }: AuthDialogProps) => {
                 appearance={{ theme: ThemeSupa }}
                 theme="dark"
                 providers={["discord"]}
+                socialLayout="horizontal"
               />
             </Container>
           </div>
