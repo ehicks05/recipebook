@@ -4,8 +4,8 @@ import Image from "next/image";
 import { Card, CookingTime, Difficulty, T } from "components/core";
 import { emojiToImage } from "./constants";
 import type { CompleteRecipe } from "server/api/routers/example";
-// import FavoriteButton from "components/Home/FavoriteButton";
-// import useUser from "hooks/useUser";
+import FavoriteButton from "components/Home/FavoriteButton";
+import { useUser } from "@supabase/auth-helpers-react";
 
 interface FooterProps {
   cookingTime: string;
@@ -24,28 +24,21 @@ interface Props {
 }
 
 const RecipeCard = ({
-  recipe: { id, emoji, name, description, cookingTime, difficulty },
+  recipe: { id, emoji, name, author, description, cookingTime, difficulty },
 }: Props) => {
-  // const { user } = useUser();
+  const user = useUser();
 
   return (
     <Card className="transform transition-all hover:shadow-lg">
       <div className="flex h-80 flex-col gap-4">
         <div className="-m-4 mb-0 h-48">
           <Link href={`/recipe/${id}`}>
-            {/* <Image
+            <Image
               className="h-48 w-full rounded-t object-cover"
               src={emojiToImage[emoji] || ""}
               alt="recipe"
-              height={123}
-              width={123}
-            /> */}
-            <img
-              className="h-48 w-full rounded-t object-cover"
-              src={emojiToImage[emoji] || ""}
-              alt="recipe"
-              height={123}
-              width={123}
+              height={240}
+              width={300}
             />
           </Link>
         </div>
@@ -56,12 +49,12 @@ const RecipeCard = ({
               <div className="text-xl font-semibold text-amber-700 dark:text-amber-400">
                 {name}
               </div>
-              {/* <div className="text-xs italic dark:text-neutral-200">
+              <div className="text-xs italic dark:text-neutral-200">
                 {author.displayName}
-              </div> */}
+              </div>
             </Link>
           </div>
-          {/* {user && <FavoriteButton className="-mt-9" recipeId={id} />} */}
+          {user && <FavoriteButton className="-mt-9" recipeId={id} />}
         </div>
         <T className="text-sm line-clamp-2">{description}</T>
       </div>
@@ -74,27 +67,22 @@ const RecipeCard = ({
 function RecipeCardLandscape({
   recipe: { id, emoji, name, description, cookingTime, difficulty },
 }: Props) {
-  // const { user } = useUser();
+  const user = useUser();
 
   return (
     <Card className="transform transition-all hover:shadow-lg">
       <div className="flex h-48 gap-4">
         <Link href={`/recipe/${id}`} className="relative -m-4 mr-0 h-56 w-full">
-          {/* <Image
-            className="h-56 w-full rounded-l object-cover"
+          <Image
+            className="h-48 w-full rounded-t object-cover"
             src={emojiToImage[emoji] || ""}
             alt="recipe"
-          /> */}
-          <img
-            className="h-56 w-full rounded-t object-cover"
-            src={emojiToImage[emoji] || ""}
-            alt="recipe"
-            height={123}
-            width={123}
+            height={240}
+            width={300}
           />
-          {/* {user && (
+          {user && (
             <FavoriteButton className="absolute top-2 left-2" recipeId={id} />
-          )} */}
+          )}
         </Link>
         {/* title row */}
         <div className="flex w-full flex-col gap-4">
@@ -117,7 +105,7 @@ function RecipeCardLandscape({
 function RecipeCardOld({
   recipe: { id, emoji, name, author, description, cookingTime, difficulty },
 }: Props) {
-  // const { user } = useUser();
+  const user = useUser();
 
   return (
     <Card className="transform transition-all hover:shadow-lg">
@@ -133,7 +121,7 @@ function RecipeCardOld({
               </div>
             </Link>
           </div>
-          {/* {user && <FavoriteButton recipeId={id} />} */}
+          {user && <FavoriteButton recipeId={id} />}
         </div>
         <T className="line-clamp-5">{description}</T>
       </div>

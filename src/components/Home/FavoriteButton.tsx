@@ -1,12 +1,9 @@
 import React from "react";
 import { HiHeart, HiOutlineHeart } from "react-icons/hi";
 
-// import {
-//   useAddFavorite,
-//   useFetchFavorites,
-//   useRemoveFavorite,
-// } from 'hooks/favorites';
-// import { Button } from 'components/core';
+import { Button } from "components/core";
+import { api } from "utils/api";
+import { useUser } from "@supabase/auth-helpers-react";
 
 interface IProps {
   recipeId: string;
@@ -14,24 +11,49 @@ interface IProps {
 }
 
 function FavoriteButton({ recipeId, className }: IProps) {
-  // const userFavorites = useFetchFavorites();
-  // const addFavorite = useAddFavorite(recipeId);
-  // const removeFavorite = useRemoveFavorite(recipeId);
+  const utils = api.useContext();
+  const user = useUser();
+  const userFavorites = api.example.findFavoriteRecipesByUserId.useQuery({
+    id: user?.id || "",
+  });
 
-  // const favoriteIds = userFavorites.data?.map(f => f.id) || [];
+  const createUserFavorite = api.example.createUserFavorite.useMutation();
+  const deleteUserFavorite = api.example.deleteUserFavorite.useMutation();
 
-  // const Icon = favoriteIds.includes(recipeId) ? HiHeart : HiOutlineHeart;
-  // const handler = favoriteIds.includes(recipeId)
-  //   ? removeFavorite.mutate
-  //   : addFavorite.mutate;
+  const favoriteIds = userFavorites.data?.map((o) => o.recipeId) || [];
+  const Icon = favoriteIds.includes(recipeId) ? HiHeart : HiOutlineHeart;
 
-  // return (
-  //   <Button className={className} onClick={() => handler()}>
-  //     <Icon className="text-2xl text-red-500" />
-  //   </Button>
-  // );
+  const handleClick = () => {
+    if (favoriteIds.includes(recipeId)) {
+      deleteUserFavorite.mutate(
+        {
+          userId: user?.id || "",
+          recipeId,
+        },
+        {
+          onSuccess: () =>
+            void utils.example.findFavoriteRecipesByUserId.invalidate(),
+        }
+      );
+    } else {
+      createUserFavorite.mutate(
+        {
+          userId: user?.id || "",
+          recipeId,
+        },
+        {
+          onSuccess: () =>
+            void utils.example.findFavoriteRecipesByUserId.invalidate(),
+        }
+      );
+    }
+  };
 
-  return <div>ok</div>;
+  return (
+    <Button className={className} onClick={handleClick}>
+      <Icon className="text-2xl text-red-500" />
+    </Button>
+  );
 }
 
 export default FavoriteButton;

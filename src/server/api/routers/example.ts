@@ -44,6 +44,30 @@ export const exampleRouter = createTRPCRouter({
       });
     }),
 
+  createUserFavorite: publicProcedure
+    .input(z.object({ userId: z.string(), recipeId: z.string() }))
+    .mutation(({ ctx, input: { userId, recipeId } }) => {
+      return ctx.prisma.userFavorites.create({
+        data: {
+          userId,
+          recipeId,
+        },
+      });
+    }),
+
+  deleteUserFavorite: publicProcedure
+    .input(z.object({ userId: z.string(), recipeId: z.string() }))
+    .mutation(({ ctx, input: { userId, recipeId } }) => {
+      return ctx.prisma.userFavorites.delete({
+        where: {
+          userId_recipeId: {
+            userId,
+            recipeId,
+          },
+        },
+      });
+    }),
+
   importRecipe: publicProcedure
     .input(z.object({ url: z.string() }))
     .query(async ({ input: { url } }) => {

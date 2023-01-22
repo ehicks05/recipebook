@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { BiDownload, BiEdit } from "react-icons/bi";
 import {
@@ -11,15 +11,15 @@ import {
 } from "components/core";
 import type { CompleteRecipe } from "server/api/routers/example";
 import { Directions, Ingredients } from "./Components";
-// import { UserContext } from "../../UserContext";
 import { stripRecipe, updateClipboard } from "./utils";
+import { useUser } from "@supabase/auth-helpers-react";
 
 interface IProps {
   recipe: CompleteRecipe;
 }
 
 function Recipe({ recipe }: IProps) {
-  // const { user } = useContext(UserContext);
+  const user = useUser();
   const [scaledServings, setScaledServings] = useState(recipe.servings);
   const [isShowDescription, setIsShowDescription] = useState(true);
 
@@ -55,13 +55,13 @@ function Recipe({ recipe }: IProps) {
           </div>
         </div>
         <div className="flex gap-2 pt-4">
-          {/* {user?.id === recipe.author.id && (
+          {user?.id === recipe.author.id && (
             <Link href={`/edit-recipe/${recipe.id}`} title="Edit Recipe">
               <Button>
                 <BiEdit className="text-2xl" />
               </Button>
             </Link>
-          )} */}
+          )}
           <Button
             onClick={() =>
               updateClipboard(JSON.stringify(stripRecipe(recipe), null, 2))
