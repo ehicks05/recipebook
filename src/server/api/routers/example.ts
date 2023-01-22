@@ -5,14 +5,6 @@ import axios from "axios";
 import { createTRPCRouter, publicProcedure, protectedProcedure } from "../trpc";
 
 export const exampleRouter = createTRPCRouter({
-  hello: publicProcedure
-    .input(z.object({ text: z.string() }))
-    .query(({ input }) => {
-      return {
-        greeting: `Hello ${input.text}`,
-      };
-    }),
-
   findRecipes: publicProcedure.query(({ ctx }) => {
     return ctx.prisma.recipe.findMany({
       ...completeRecipeInclude,
@@ -20,12 +12,35 @@ export const exampleRouter = createTRPCRouter({
     });
   }),
 
+  findRecipesByAuthorId: publicProcedure
+    .input(z.object({ id: z.string() }))
+    .query(({ ctx, input: { id } }) => {
+      return ctx.prisma.recipe.findMany({
+        where: { authorId: { equals: id } },
+        ...completeRecipeInclude,
+        orderBy: { createdAt: "desc" },
+      });
+    }),
+
   findRecipe: publicProcedure
     .input(z.object({ id: z.string() }))
     .query(({ ctx, input: { id } }) => {
       return ctx.prisma.recipe.findUnique({
         where: { id },
         ...completeRecipeInclude,
+      });
+    }),
+
+  findFavoriteRecipesByUserId: publicProcedure
+    .input(z.object({ id: z.string() }))
+    .query(({ ctx, input: { id } }) => {
+      return ctx.prisma.userFavorites.findMany({
+        where: { userId: { equals: id } },
+        include: {
+          recipe: {
+            ...completeRecipeInclude,
+          },
+        },
       });
     }),
 
