@@ -1,25 +1,14 @@
 import React from "react";
 import { useRouter } from "next/router";
-
-import { HiPlus, HiMinus } from "react-icons/hi";
-import { Container, Button, Hero, T } from "components/core";
-import EmojiSelector from "./components/EmojiSelector";
-import {
-  DEFAULT_RECIPE,
-  DEFAULT_INGREDIENT,
-  DEFAULT_DIRECTION,
-  UNIT_OPTIONS,
-  RECIPE_SCHEMA,
-} from "./constants";
-import {
-  MyHiddenInput,
-  MyInput,
-  MySelect,
-  MyTextArea,
-} from "./components/StyledInputs";
-import { api } from "utils/api";
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+
+import { api } from "utils/api";
+import { Container, Button, Hero, T } from "components/core";
+import EmojiSelector from "./components/EmojiSelector";
+import { DEFAULT_RECIPE, RECIPE_SCHEMA } from "./constants";
+import { MyInput, MySelect, MyTextArea } from "./components/StyledInputs";
+import { IngredientsForm, DirectionsForm } from "./components";
 
 function RecipeForm() {
   // const { id } = useParams<{ id: string }>();
@@ -145,88 +134,14 @@ function RecipeForm() {
                 </div> */}
               </div>
             </div>
-            <div className="flex flex-col gap-2 md:col-span-1 lg:col-span-2">
-              <T className="text-lg font-semibold">Ingredients</T>
-              {ingredientsFieldArray.fields.map((field, index) => (
-                <div key={index} className="flex flex-col gap-2">
-                  <MyHiddenInput name={`ingredients.${index}.index`} />
-                  <div className="flex items-start gap-2">
-                    <MyInput
-                      name={`ingredients.${index}.quantity`}
-                      placeholder="Quantity"
-                      register={register}
-                    />
-                    <MySelect
-                      name={`ingredients.${index}.unit`}
-                      register={register}
-                    >
-                      {UNIT_OPTIONS}
-                    </MySelect>
-                    <Button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        ingredientsFieldArray.remove(index);
-                      }}
-                    >
-                      <HiMinus />
-                    </Button>
-                  </div>
-                  <MyInput
-                    name={`ingredients.${index}.name`}
-                    placeholder="Name"
-                    register={register}
-                  />
-                </div>
-              ))}
-              <div>
-                <Button
-                  onClick={() =>
-                    ingredientsFieldArray.append({
-                      ...DEFAULT_INGREDIENT,
-                      // index: values.ingredients.length,
-                    })
-                  }
-                >
-                  <HiPlus />
-                </Button>
-              </div>
-            </div>
-            <div className="flex flex-col gap-2 md:col-span-2 lg:col-span-3">
-              <T className="text-lg font-semibold">Directions</T>
-              <div className="flex flex-col gap-6">
-                {directionsFieldArray.fields.map((direction, index) => (
-                  <div key={direction.index} className="flex items-start gap-2">
-                    <T className="pr-2">{index + 1}.</T>
-                    <MyHiddenInput name={`directions.${index}.index`} />
-                    <MyTextArea
-                      name={`directions.${index}.text`}
-                      placeholder="Description"
-                      register={register}
-                    />
-                    <Button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        directionsFieldArray.remove(index);
-                      }}
-                    >
-                      <HiMinus />
-                    </Button>
-                  </div>
-                ))}
-                <div>
-                  <Button
-                    onClick={() =>
-                      directionsFieldArray.append({
-                        ...DEFAULT_DIRECTION,
-                        // index: values.directions.length,
-                      })
-                    }
-                  >
-                    <HiPlus />
-                  </Button>
-                </div>
-              </div>
-            </div>
+            <IngredientsForm
+              ingredientsFieldArray={ingredientsFieldArray}
+              register={register}
+            />
+            <DirectionsForm
+              directionsFieldArray={directionsFieldArray}
+              register={register}
+            />
           </div>
         </form>
       </Container>
