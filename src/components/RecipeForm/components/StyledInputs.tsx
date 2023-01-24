@@ -9,25 +9,28 @@ export interface IMyInputProps
   label?: string;
   leftIcon?: JSX.Element;
   containerClassName?: string;
-  register: UseFormRegister;
   name: string;
+  register: UseFormRegister<any>;
   error?: FieldError;
 }
 
+/**
+ * Use with react-hook-form. Includes the label and error ui.
+ */
 const MyInput = ({
+  name,
   className = "",
   label,
   leftIcon,
   containerClassName = "",
   register,
-  name,
   error,
   ...props
 }: IMyInputProps) => {
   return (
     <div className={`flex w-full flex-col gap-1 ${containerClassName}`}>
       {label && (
-        <label className="" htmlFor={props.id || props.name}>
+        <label className="" htmlFor={props.id || name}>
           <T>{label}</T>
         </label>
       )}
@@ -37,8 +40,8 @@ const MyInput = ({
           className={`w-full rounded px-2 py-1.5 dark:bg-neutral-700 dark:text-neutral-100 ${className} ${
             error ? "border-l-8 border-red-600" : ""
           }`}
-          {...register(name)}
-          // {...props}
+          {...register(name, { valueAsNumber: props.type === "number" })}
+          {...props}
         />
         {leftIcon && <span className="">{leftIcon}</span>}
         {error ? (
@@ -84,15 +87,15 @@ const MyHiddenInput = ({ ...props }: IMyHiddenInputProps) => {
 };
 
 interface IMyTextAreaProps {
-  // extends React.TextareaHTMLAttributes<HTMLTextAreaElement>
   id?: string;
   name: string;
   label?: string;
   placeholder: string;
-  error?: any;
+  register: UseFormRegister<any>;
+  error?: FieldError;
 }
 
-const MyTextArea = ({ label, error, ...props }: IMyTextAreaProps) => {
+const MyTextArea = ({ label, register, error, ...props }: IMyTextAreaProps) => {
   return (
     <div className="flex w-full flex-col gap-1">
       {label && (
@@ -106,9 +109,10 @@ const MyTextArea = ({ label, error, ...props }: IMyTextAreaProps) => {
             error ? "border-l-8 border-red-600" : ""
           }`}
           rows={1}
+          {...register(props.name)}
         />
         {error ? (
-          <div className="-mt-1 text-sm text-red-600">{error}</div>
+          <div className="-mt-1 text-sm text-red-600">{error.message}</div>
         ) : null}
       </div>
     </div>
@@ -120,10 +124,11 @@ interface IMySelectProps {
   name: string;
   label?: string;
   children: JSX.Element | JSX.Element[];
-  error?: any;
+  register: UseFormRegister<any>;
+  error?: FieldError;
 }
 
-const MySelect = ({ label, error, ...props }: IMySelectProps) => {
+const MySelect = ({ label, register, error, ...props }: IMySelectProps) => {
   return (
     <div className="flex w-full flex-col gap-1">
       {label && (
@@ -131,17 +136,20 @@ const MySelect = ({ label, error, ...props }: IMySelectProps) => {
           <T>{label}</T>
         </label>
       )}
-      <div className="">
-        <div className="">
+      <div>
+        <div>
           <select
-            className={`w-full rounded px-2 py-1.5 dark:bg-neutral-700 dark:text-neutral-100 ${
+            {...register(props.name)}
+            className={`w-full rounded px-2 py-2 dark:bg-neutral-700 dark:text-neutral-100 ${
               error ? "border-l-8 border-red-600" : ""
             }`}
           >
             {props.children}
           </select>
         </div>
-        {error ? <div className="text-sm text-red-600">{error}</div> : null}
+        {error ? (
+          <div className="text-sm text-red-600">{error.message}</div>
+        ) : null}
       </div>
     </div>
   );

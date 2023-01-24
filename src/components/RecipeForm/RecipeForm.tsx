@@ -25,22 +25,16 @@ function RecipeForm() {
   // const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const {
+    control,
     register,
     handleSubmit,
+    formState,
     formState: { errors, isSubmitting, isValid, touchedFields },
     getValues,
   } = useForm({
     defaultValues: DEFAULT_RECIPE,
+    mode: "all",
     resolver: zodResolver(RECIPE_SCHEMA),
-    // resolver: async (data, context, options) => {
-    //   // you can debug your validation schema here
-    //   console.log("formData", data);
-    //   console.log(
-    //     "validation result",
-    //     await zodResolver(RECIPE_SCHEMA)(data, context, options)
-    //   );
-    //   return zodResolver(RECIPE_SCHEMA)(data, context, options);
-    // },
   });
   console.log({ a: getValues(), errors });
   // const { fields } = useFieldArray({ name: "todo" });
@@ -61,6 +55,7 @@ function RecipeForm() {
     // navigate to recipe if relavent
     return;
   };
+  console.log({ formState });
 
   return (
     <>
@@ -82,26 +77,30 @@ function RecipeForm() {
               <T className="text-lg font-semibold">Recipe Details</T>
 
               <MyInput
+                name="name"
                 label="Name"
                 placeholder="Name"
                 register={register}
-                name="name"
                 error={errors.name}
               />
               <MyTextArea
                 name="description"
                 label="Description"
                 placeholder="Description"
+                register={register}
+                error={errors.description}
               />
 
               <div className="flex gap-2">
-                {/* <MyInput
+                <MyInput
                   containerClassName=""
                   type="string"
                   name="cookingTime"
                   label="Time"
                   placeholder="Minutes"
                   min="1"
+                  register={register}
+                  error={errors.cookingTime}
                 />
                 <MyInput
                   type="number"
@@ -109,17 +108,24 @@ function RecipeForm() {
                   label="Serves"
                   placeholder="Servings"
                   min="1"
+                  register={register}
+                  error={errors.servings}
                 />
-                <MySelect label="Difficulty" name="difficulty">
+                <MySelect
+                  label="Difficulty"
+                  name="difficulty"
+                  register={register}
+                  error={errors.difficulty}
+                >
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
                   <option value="4">4</option>
                   <option value="5">5</option>
-                </MySelect> */}
+                </MySelect>
               </div>
-              {/* <div className="flex flex-col gap-1">
-                <label className="label">
+              <div className="flex flex-col gap-1">
+                {/* <label className="label">
                   <T>Emoji</T>
                 </label>
                 <div className="control">
@@ -127,8 +133,8 @@ function RecipeForm() {
                     data={{ value: values.emoji }}
                     updateEmoji={(code) => setFieldValue("emoji", code)}
                   />
-                </div>
-              </div> */}
+                </div> */}
+              </div>
             </div>
             {/* <div className="flex flex-col gap-2 md:col-span-1 lg:col-span-2">
               <T className="text-lg font-semibold">Ingredients</T>
