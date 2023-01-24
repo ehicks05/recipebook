@@ -36,6 +36,8 @@ function RecipeForm() {
     mode: "all",
     resolver: zodResolver(RECIPE_SCHEMA),
   });
+  const ingredientsFieldArray = useFieldArray({ control, name: "ingredients" });
+  const directionsFieldArray = useFieldArray({ control, name: "directions" });
   console.log({ a: getValues(), errors });
   // const { fields } = useFieldArray({ name: "todo" });
 
@@ -125,6 +127,13 @@ function RecipeForm() {
                 </MySelect>
               </div>
               <div className="flex flex-col gap-1">
+                <MyInput
+                  name="emoji"
+                  label="Emoji"
+                  placeholder="Emoji"
+                  register={register}
+                  error={errors.emoji}
+                />
                 {/* <label className="label">
                   <T>Emoji</T>
                 </label>
@@ -136,98 +145,88 @@ function RecipeForm() {
                 </div> */}
               </div>
             </div>
-            {/* <div className="flex flex-col gap-2 md:col-span-1 lg:col-span-2">
+            <div className="flex flex-col gap-2 md:col-span-1 lg:col-span-2">
               <T className="text-lg font-semibold">Ingredients</T>
-              <FieldArray name="ingredients">
-                {({ remove, push }) => (
-                  <div className="flex flex-col gap-6">
-                    {values.ingredients.map((ingredient, index) => (
-                      <div
-                        key={ingredient.index}
-                        className="flex flex-col gap-2"
-                      >
-                        <MyHiddenInput name={`ingredients.${index}.index`} />
-                        <div className="flex items-start gap-2">
-                          <MyInput
-                            name={`ingredients.${index}.quantity`}
-                            placeholder="Quantity"
-                          />
-                          <MySelect name={`ingredients.${index}.unit`}>
-                            {UNIT_OPTIONS}
-                          </MySelect>
-                          <Button
-                            onClick={(e) => {
-                              e.preventDefault();
-                              remove(index);
-                            }}
-                          >
-                            <HiMinus />
-                          </Button>
-                        </div>
-                        <MyInput
-                          name={`ingredients.${index}.name`}
-                          placeholder="Name"
-                        />
-                      </div>
-                    ))}
-                    <div>
-                      <Button
-                        onClick={() =>
-                          push({
-                            ...DEFAULT_INGREDIENT,
-                            // index: values.ingredients.length,
-                          })
-                        }
-                      >
-                        <HiPlus />
-                      </Button>
-                    </div>
+              {ingredientsFieldArray.fields.map((field, index) => (
+                <div key={index} className="flex flex-col gap-2">
+                  <MyHiddenInput name={`ingredients.${index}.index`} />
+                  <div className="flex items-start gap-2">
+                    <MyInput
+                      name={`ingredients.${index}.quantity`}
+                      placeholder="Quantity"
+                      register={register}
+                    />
+                    <MySelect
+                      name={`ingredients.${index}.unit`}
+                      register={register}
+                    >
+                      {UNIT_OPTIONS}
+                    </MySelect>
+                    <Button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        ingredientsFieldArray.remove(index);
+                      }}
+                    >
+                      <HiMinus />
+                    </Button>
                   </div>
-                )}
-              </FieldArray>
+                  <MyInput
+                    name={`ingredients.${index}.name`}
+                    placeholder="Name"
+                    register={register}
+                  />
+                </div>
+              ))}
+              <div>
+                <Button
+                  onClick={() =>
+                    ingredientsFieldArray.append({
+                      ...DEFAULT_INGREDIENT,
+                      // index: values.ingredients.length,
+                    })
+                  }
+                >
+                  <HiPlus />
+                </Button>
+              </div>
             </div>
             <div className="flex flex-col gap-2 md:col-span-2 lg:col-span-3">
               <T className="text-lg font-semibold">Directions</T>
-              <FieldArray name="directions">
-                {({ remove, push }) => (
-                  <div className="flex flex-col gap-6">
-                    {values.directions.map((direction, index) => (
-                      <div
-                        key={direction.index}
-                        className="flex items-start gap-2"
-                      >
-                        <T className="pr-2">{index + 1}.</T>
-                        <MyHiddenInput name={`directions.${index}.index`} />
-                        <MyTextArea
-                          name={`directions.${index}.text`}
-                          placeholder="Description"
-                        />
-                        <Button
-                          onClick={(e) => {
-                            e.preventDefault();
-                            remove(index);
-                          }}
-                        >
-                          <HiMinus />
-                        </Button>
-                      </div>
-                    ))}
-                    <div>
-                      <Button
-                        onClick={() =>
-                          push({
-                            ...DEFAULT_DIRECTION,
-                            index: values.directions.length,
-                          })
-                        }
-                      >
-                        <HiPlus />
-                      </Button>
-                    </div>
+              <div className="flex flex-col gap-6">
+                {directionsFieldArray.fields.map((direction, index) => (
+                  <div key={direction.index} className="flex items-start gap-2">
+                    <T className="pr-2">{index + 1}.</T>
+                    <MyHiddenInput name={`directions.${index}.index`} />
+                    <MyTextArea
+                      name={`directions.${index}.text`}
+                      placeholder="Description"
+                      register={register}
+                    />
+                    <Button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        directionsFieldArray.remove(index);
+                      }}
+                    >
+                      <HiMinus />
+                    </Button>
                   </div>
-                )}
-              </FieldArray>
-            </div> */}
+                ))}
+                <div>
+                  <Button
+                    onClick={() =>
+                      directionsFieldArray.append({
+                        ...DEFAULT_DIRECTION,
+                        // index: values.directions.length,
+                      })
+                    }
+                  >
+                    <HiPlus />
+                  </Button>
+                </div>
+              </div>
+            </div>
           </div>
         </form>
       </Container>

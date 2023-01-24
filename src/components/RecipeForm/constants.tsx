@@ -3,6 +3,7 @@ import React from "react";
 import type { IDirection, IIngredient, IRecipe } from "types/types";
 import { validateQuantity } from "./utils";
 import { z } from "zod";
+import { min } from "lodash";
 
 const UNITS = ["tsp", "tbsp", "cup", "oz", "lb", "ml", "L", "g"];
 const UNIT_OPTIONS = ["", ...UNITS].map((unit) => (
@@ -40,14 +41,14 @@ const DEFAULT_RECIPE: FormRecipe = {
 
 const RECIPE_SCHEMA = z.object({
   name: z.string().max(40),
-  description: z.string(),
+  description: z.string().min(1),
   cookingTime: z.string().min(1),
   servings: z.number().min(1),
-  emoji: z.string(),
+  emoji: z.string().length(2),
   difficulty: z.coerce.number(),
   ingredients: z
     .object({
-      name: z.string(),
+      name: z.string().min(1),
       quantity: z.custom(validateQuantity),
       unit: z.string(),
     })
@@ -55,7 +56,7 @@ const RECIPE_SCHEMA = z.object({
   directions: z
     .object({
       index: z.number(),
-      text: z.string(),
+      text: z.string().min(1),
     })
     .array(),
 });

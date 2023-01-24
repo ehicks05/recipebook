@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import Picker, { IEmojiData } from 'emoji-picker-react';
-import { Button } from 'core-components';
+import React, { useState } from "react";
+import Picker, { IEmojiData } from "emoji-picker-react";
+import { Button } from "components/core";
 
 interface IProps {
   updateEmoji: (code: string) => void;
@@ -24,10 +24,10 @@ function EmojiSelector({ updateEmoji, data }: IProps) {
         disableAutoFocus
         disableSkinTonePicker
         pickerStyle={{
-          width: '100%',
-          boxShadow: 'none',
-          background: '#222',
-          borderColor: '#444',
+          width: "100%",
+          boxShadow: "none",
+          background: "#222",
+          borderColor: "#444",
         }}
         native
         groupVisibility={{
@@ -47,7 +47,7 @@ function EmojiSelector({ updateEmoji, data }: IProps) {
   ) : (
     <button
       type="button"
-      className="p-4 rounded bg-neutral-100 dark:bg-neutral-800 text-4xl"
+      className="rounded bg-neutral-100 p-4 text-4xl dark:bg-neutral-800"
       onClick={() => setIsEditing(true)}
     >
       {data.value}

@@ -140,7 +140,7 @@ const MySelect = ({ label, register, error, ...props }: IMySelectProps) => {
         <div>
           <select
             {...register(props.name)}
-            className={`w-full rounded px-2 py-2 dark:bg-neutral-700 dark:text-neutral-100 ${
+            className={`w-full rounded border-r-8 px-2 py-2 dark:border-neutral-700 dark:bg-neutral-700 dark:text-neutral-100 ${
               error ? "border-l-8 border-red-600" : ""
             }`}
           >

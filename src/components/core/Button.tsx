@@ -12,7 +12,7 @@ const Button = ({ loading, className = "", children, ...props }: Props) => {
     <button
       type={props.type || "button"}
       disabled={props.disabled || loading}
-      className={`rounded-sm border border-neutral-200 bg-neutral-100 px-3 py-2 shadow hover:border-neutral-300 hover:shadow-lg dark:border-neutral-500 dark:bg-neutral-700 dark:text-neutral-200 dark:hover:border-neutral-400 ${
+      className={`rounded-sm border border-neutral-200 bg-neutral-100 px-3 py-2 shadow hover:border-neutral-300 hover:shadow-lg dark:border-neutral-600 dark:bg-neutral-700 dark:text-neutral-200 dark:hover:border-neutral-500 ${
         props.disabled || loading ? "opacity-50" : ""
       } ${className}`}
       {...props}
