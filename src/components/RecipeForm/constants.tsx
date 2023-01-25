@@ -1,9 +1,8 @@
 "use client";
 import React from "react";
-import type { IDirection, IIngredient, IRecipe } from "types/types";
 import { validateQuantity } from "./utils";
 import { z } from "zod";
-import { min } from "lodash";
+import type { direction, ingredient, recipe } from "@prisma/client";
 
 const UNITS = ["tsp", "tbsp", "cup", "oz", "lb", "ml", "L", "g"];
 const UNIT_OPTIONS = ["", ...UNITS].map((unit) => (
@@ -12,20 +11,29 @@ const UNIT_OPTIONS = ["", ...UNITS].map((unit) => (
   </option>
 ));
 
-type FormIngredient = Omit<IIngredient, "id">;
-type FormDirection = Omit<IDirection, "id">;
-type FormRecipe = Omit<IRecipe, "id" | "ingredients" | "directions"> & {
+type FormIngredient = Omit<
+  ingredient,
+  "id" | "recipeId" | "createdAt" | "updatedAt"
+>;
+type FormDirection = Omit<
+  direction,
+  "id" | "recipeId" | "createdAt" | "updatedAt"
+>;
+type FormRecipe = Omit<
+  recipe,
+  "id" | "authorId" | "createdAt" | "updatedAt"
+> & {
   ingredients: FormIngredient[];
   directions: FormDirection[];
+  author: any;
 };
 
 const DEFAULT_INGREDIENT: FormIngredient = {
-  index: "0",
   name: "",
   quantity: "",
   unit: "",
 };
-const DEFAULT_DIRECTION: IDirection = { index: 0, text: "" };
+const DEFAULT_DIRECTION: FormDirection = { index: 0, text: "" };
 const DEFAULT_RECIPE: FormRecipe = {
   name: "",
   description: "",
@@ -40,7 +48,7 @@ const DEFAULT_RECIPE: FormRecipe = {
 };
 
 const RECIPE_SCHEMA = z.object({
-  name: z.string().max(40),
+  name: z.string().min(1).max(40),
   description: z.string().min(1),
   cookingTime: z.string().min(1),
   servings: z.number().min(1),

@@ -5,7 +5,7 @@ import Recipe from "components/Recipe/Recipe";
 import { useRouter } from "next/router";
 import { parseLdJsonRecipe } from "utils/recipe-import";
 
-const RecipePage: NextPage = () => {
+const RecipeImportPage: NextPage = () => {
   const router = useRouter();
   const { url } = router.query;
 
@@ -49,4 +49,4 @@ const RecipePage: NextPage = () => {
   );
 };
 
-export default RecipePage;
+export default RecipeImportPage;
