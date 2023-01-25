@@ -47,6 +47,17 @@ const DEFAULT_RECIPE: FormRecipe = {
   directions: [DEFAULT_DIRECTION],
 };
 
+const INGREDIENT_SCHEMA = z.object({
+  name: z.string().min(1),
+  quantity: z.custom(validateQuantity),
+  unit: z.string(),
+});
+
+const DIRECTION_SCHEMA = z.object({
+  index: z.number(),
+  text: z.string().min(1),
+});
+
 const RECIPE_SCHEMA = z.object({
   name: z.string().min(1).max(40),
   description: z.string().min(1),
@@ -54,26 +65,18 @@ const RECIPE_SCHEMA = z.object({
   servings: z.number().min(1),
   emoji: z.string().length(2),
   difficulty: z.coerce.number(),
-  ingredients: z
-    .object({
-      name: z.string().min(1),
-      quantity: z.custom(validateQuantity),
-      unit: z.string(),
-    })
-    .array(),
-  directions: z
-    .object({
-      index: z.number(),
-      text: z.string().min(1),
-    })
-    .array(),
+  ingredients: INGREDIENT_SCHEMA.array(),
+  directions: DIRECTION_SCHEMA.array(),
 });
 
+export type { FormRecipe };
 export {
   UNITS,
   UNIT_OPTIONS,
   DEFAULT_INGREDIENT,
   DEFAULT_DIRECTION,
   DEFAULT_RECIPE,
+  INGREDIENT_SCHEMA,
+  DIRECTION_SCHEMA,
   RECIPE_SCHEMA,
 };

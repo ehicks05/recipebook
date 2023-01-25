@@ -4,7 +4,7 @@ import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { api } from "utils/api";
-import { Container, Button, Hero, T } from "components/core";
+import { Container, Button, Hero } from "components/core";
 import { DEFAULT_RECIPE, RECIPE_SCHEMA } from "./constants";
 import { IngredientsForm, DirectionsForm } from "./components";
 import RecipeDetailsForm from "./components/RecipeDetailsForm";

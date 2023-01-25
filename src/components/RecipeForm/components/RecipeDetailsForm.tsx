@@ -1,10 +1,11 @@
 import { T } from "components/core";
-import type { UseFormRegister } from "react-hook-form";
+import type { FieldErrorsImpl, UseFormRegister } from "react-hook-form";
+import type { FormRecipe } from "../constants";
 import { MyInput, MySelect, MyTextArea } from "./StyledInputs";
 
 interface Props {
-  errors: any;
-  register: UseFormRegister<any>;
+  errors: Partial<FieldErrorsImpl<FormRecipe>>;
+  register: UseFormRegister<FormRecipe>;
 }
 
 const RecipeDetailsForm = ({ errors, register }: Props) => {

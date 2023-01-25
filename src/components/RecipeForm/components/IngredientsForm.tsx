@@ -1,12 +1,13 @@
 import { T, Button } from "components/core";
-import type { FieldArray, UseFormRegister } from "react-hook-form";
+import type { UseFieldArrayReturn, UseFormRegister } from "react-hook-form";
 import { HiMinus, HiPlus } from "react-icons/hi";
+import type { FormRecipe } from "../constants";
 import { UNIT_OPTIONS, DEFAULT_INGREDIENT } from "../constants";
 import { MyHiddenInput, MyInput, MySelect } from "./StyledInputs";
 
 interface Props {
-  ingredientsFieldArray: FieldArray;
-  register: UseFormRegister<any>;
+  ingredientsFieldArray: UseFieldArrayReturn<FormRecipe, "ingredients", "id">;
+  register: UseFormRegister<FormRecipe>;
 }
 
 const IngredientsForm = ({ ingredientsFieldArray, register }: Props) => {
