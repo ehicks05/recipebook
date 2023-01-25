@@ -1,6 +1,8 @@
 import { T } from "components/core";
+import { values } from "lodash";
 import type { FieldErrorsImpl, UseFormRegister } from "react-hook-form";
 import type { FormRecipe } from "../constants";
+import EmojiSelector from "./EmojiSelector";
 import { MyInput, MySelect, MyTextArea } from "./StyledInputs";
 
 interface Props {
@@ -70,14 +72,14 @@ const RecipeDetailsForm = ({ errors, register }: Props) => {
           error={errors.emoji}
         />
         {/* <label className="label">
-                  <T>Emoji</T>
-                </label>
-                <div className="control">
-                  <EmojiSelector
-                    data={{ value: values.emoji }}
-                    updateEmoji={(code) => setFieldValue("emoji", code)}
-                  />
-                </div> */}
+          <T>Emoji</T>
+        </label>
+        <div className="control">
+          <EmojiSelector
+            data={{ value: values.emoji }}
+            updateEmoji={(code) => setFieldValue("emoji", code)}
+          />
+        </div> */}
       </div>
     </div>
   );
