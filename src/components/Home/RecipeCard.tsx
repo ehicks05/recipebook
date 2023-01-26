@@ -74,17 +74,16 @@ function RecipeCardLandscape({
       <div className="flex h-48 gap-4">
         <Link href={`/recipe/${id}`} className="relative -m-4 mr-0 h-56 w-full">
           <Image
-            className="h-48 w-full rounded-t object-cover"
+            className="h-56 w-full rounded-l object-cover"
             src={emojiToImage[emoji] || ""}
             alt="recipe"
             height={240}
             width={300}
           />
           {user && (
-            <FavoriteButton className="absolute top-2 left-2" recipeId={id} />
+            <FavoriteButton className="absolute top-2 right-2" recipeId={id} />
           )}
         </Link>
-        {/* title row */}
         <div className="flex w-full flex-col gap-4">
           <div className="flex items-start gap-2">
             <Link href={`/recipe/${id}`} className="w-full">
@@ -94,7 +93,6 @@ function RecipeCardLandscape({
             </Link>
           </div>
           <T className="text-sm line-clamp-3">{description}</T>
-          <div className="flex-grow" />
           <Footer cookingTime={cookingTime} difficulty={difficulty} />
         </div>
       </div>
