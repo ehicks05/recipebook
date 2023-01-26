@@ -24,14 +24,14 @@ function Ingredients({
         <T>Servings: {scaledServings}</T>
         <div>
           <Button
-            className="is-small"
+            className="is-small rounded-r-none"
             onClick={() => setScaledServings(scaledServings - 1)}
             disabled={scaledServings === 1}
           >
             <FaMinus />
           </Button>
           <Button
-            className="is-small"
+            className="is-small rounded-l-none"
             onClick={() => setScaledServings(scaledServings + 1)}
           >
             <FaPlus />

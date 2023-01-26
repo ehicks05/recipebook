@@ -60,11 +60,14 @@ function Timer({ minutes: inputMinutes }: IProps) {
     setSeconds(Math.min(m * 60 + s, 999 * 60 + 59));
   }
 
+  const hasTimeElapsed = seconds !== inputMinutes * 60;
+  const isShowResetButton = paused && hasTimeElapsed;
+
   return (
     <div className="flex">
       <input
         type="text"
-        className={`rounded-l-sm border border-r-0 border-neutral-500 bg-neutral-100 px-2 py-1 text-center text-xs dark:bg-neutral-700 dark:text-neutral-200 ${
+        className={`rounded-l-sm border border-neutral-500 bg-neutral-100 px-2 py-1 text-center text-xs dark:border-neutral-600 dark:bg-neutral-700 dark:text-neutral-200 ${
           expired ? "bg-red-700" : ""
         }`}
         size={displayTime().length}
@@ -73,15 +76,17 @@ function Timer({ minutes: inputMinutes }: IProps) {
       />
       {!expired && (
         <Button
-          className="rounded-l-none text-xs"
+          className={`rounded-l-none text-xs ${
+            isShowResetButton ? "rounded-r-none" : ""
+          }`}
           onClick={() => setPaused(!paused)}
         >
           {paused ? "Start" : "Pause"}
         </Button>
       )}
 
-      {paused && seconds !== inputMinutes * 60 && (
-        <Button className="text-xs" onClick={() => reset()}>
+      {isShowResetButton && (
+        <Button className="rounded-l-none text-xs" onClick={() => reset()}>
           Reset
         </Button>
       )}
