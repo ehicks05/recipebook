@@ -5,12 +5,14 @@ import { Button, Loading, T, Toggle } from "components/core";
 import RecipeCard, { RecipeCardLandscape, RecipeCardOld } from "./RecipeCard";
 import { api } from "utils/api";
 import type { CompleteRecipe } from "server/api/routers/example";
+import { useUser } from "@supabase/auth-helpers-react";
 
 interface Props {
   recipes: CompleteRecipe[];
 }
 
 function RecipePicker({ recipes }: Props) {
+  const user = useUser();
   const [filterInput, setFilterInput] = useState("");
   const [ingredients, setIngredients] = useState<string[]>([]);
   const [newCard, setNewCard] = useState(false);
@@ -62,24 +64,26 @@ function RecipePicker({ recipes }: Props) {
         ))}
       </div>
 
-      <div className="my-4 flex flex-col gap-2 rounded bg-slate-200 p-4 dark:bg-slate-800">
-        <T className="">Experiments:</T>
-        <Toggle
-          id="newCard"
-          checked={newCard}
-          onChange={() => setNewCard(!newCard)}
-          label="New Card UI"
-        />
-        <Toggle
-          id="layoutMode"
-          disabled={!newCard}
-          checked={layout === "landscape"}
-          onChange={() =>
-            setLayout(layout === "landscape" ? "portrait" : "landscape")
-          }
-          label="Landscape Layout"
-        />
-      </div>
+      {user && (
+        <div className="my-4 flex flex-col gap-2 rounded bg-slate-200 p-4 dark:bg-slate-800">
+          <T className="">Experiments:</T>
+          <Toggle
+            id="newCard"
+            checked={newCard}
+            onChange={() => setNewCard(!newCard)}
+            label="New Card UI"
+          />
+          <Toggle
+            id="layoutMode"
+            disabled={!newCard}
+            checked={layout === "landscape"}
+            onChange={() =>
+              setLayout(layout === "landscape" ? "portrait" : "landscape")
+            }
+            label="Landscape Layout"
+          />
+        </div>
+      )}
       {!newCard && (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {filteredRecipes.map((recipe) => (
