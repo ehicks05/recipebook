@@ -81,7 +81,7 @@ function Timer({ minutes: inputMinutes }: IProps) {
           }`}
           onClick={() => setPaused(!paused)}
         >
-          {paused ? "Start" : "Pause"}
+          {isShowResetButton ? "Resume" : paused ? "Start" : "Pause"}
         </Button>
       )}
 
