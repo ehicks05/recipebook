@@ -4,7 +4,7 @@
 
 /* custom scrollbar */
 ::-webkit-scrollbar {
-  width: 20px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -12,12 +12,11 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #d6dee1;
+  background-color: #bdc4c6;
   border-radius: 20px;
-  border: 6px solid transparent;
   background-clip: content-box;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #a8bbbf;
+  background-color: #92a2a5;
 }
