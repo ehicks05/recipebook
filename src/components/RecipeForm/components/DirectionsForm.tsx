@@ -1,5 +1,9 @@
 import { T, Button } from "components/core";
-import type { UseFieldArrayReturn, UseFormRegister } from "react-hook-form";
+import type {
+  FieldErrors,
+  UseFieldArrayReturn,
+  UseFormRegister,
+} from "react-hook-form";
 import { HiMinus, HiPlus } from "react-icons/hi";
 import type { FormRecipe } from "../constants";
 import { DEFAULT_DIRECTION } from "../constants";
@@ -8,7 +12,7 @@ import { MyHiddenInput, MyTextArea } from "./StyledInputs";
 interface Props {
   directionsFieldArray: UseFieldArrayReturn<FormRecipe, "directions", "id">;
   register: UseFormRegister<FormRecipe>;
-  errors: any;
+  errors: FieldErrors<FormRecipe>;
 }
 
 const DirectionsForm = ({ directionsFieldArray, register, errors }: Props) => {

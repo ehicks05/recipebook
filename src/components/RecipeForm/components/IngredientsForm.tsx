@@ -1,5 +1,9 @@
 import { T, Button } from "components/core";
-import type { UseFieldArrayReturn, UseFormRegister } from "react-hook-form";
+import type {
+  UseFieldArrayReturn,
+  UseFormRegister,
+  FieldErrors,
+} from "react-hook-form";
 import { HiMinus, HiPlus } from "react-icons/hi";
 import type { FormRecipe } from "../constants";
 import { UNIT_OPTIONS, DEFAULT_INGREDIENT } from "../constants";
@@ -8,7 +12,7 @@ import { MyHiddenInput, MyInput, MySelect } from "./StyledInputs";
 interface Props {
   ingredientsFieldArray: UseFieldArrayReturn<FormRecipe, "ingredients", "id">;
   register: UseFormRegister<FormRecipe>;
-  errors: any;
+  errors: FieldErrors<FormRecipe>;
 }
 
 const IngredientsForm = ({

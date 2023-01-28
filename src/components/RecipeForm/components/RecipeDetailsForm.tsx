@@ -1,12 +1,11 @@
 import { T } from "components/core";
-import { values } from "lodash";
-import type { FieldErrorsImpl, UseFormRegister } from "react-hook-form";
+import type { FieldErrors, UseFormRegister } from "react-hook-form";
 import type { FormRecipe } from "../constants";
 import EmojiSelector from "./EmojiSelector";
 import { MyInput, MySelect, MyTextArea } from "./StyledInputs";
 
 interface Props {
-  errors: Partial<FieldErrorsImpl<FormRecipe>>;
+  errors: FieldErrors<FormRecipe>;
   register: UseFormRegister<FormRecipe>;
 }
 
