@@ -44,9 +44,7 @@ const MyInput = ({
           {...props}
         />
         {leftIcon && <span className="">{leftIcon}</span>}
-        {error ? (
-          <div className="text-sm text-red-600">{error.message}</div>
-        ) : null}
+        {error && <div className="text-sm text-red-600">{error.message}</div>}
       </div>
     </div>
   );
@@ -111,9 +109,9 @@ const MyTextArea = ({ label, register, error, ...props }: IMyTextAreaProps) => {
           rows={1}
           {...register(props.name)}
         />
-        {error ? (
+        {error && (
           <div className="-mt-1 text-sm text-red-600">{error.message}</div>
-        ) : null}
+        )}
       </div>
     </div>
   );
@@ -147,9 +145,7 @@ const MySelect = ({ label, register, error, ...props }: IMySelectProps) => {
             {props.children}
           </select>
         </div>
-        {error ? (
-          <div className="text-sm text-red-600">{error.message}</div>
-        ) : null}
+        {error && <div className="text-sm text-red-600">{error.message}</div>}
       </div>
     </div>
   );
