@@ -8,23 +8,33 @@ import { MyHiddenInput, MyInput, MySelect } from "./StyledInputs";
 interface Props {
   ingredientsFieldArray: UseFieldArrayReturn<FormRecipe, "ingredients", "id">;
   register: UseFormRegister<FormRecipe>;
+  errors: any;
 }
 
-const IngredientsForm = ({ ingredientsFieldArray, register }: Props) => {
+const IngredientsForm = ({
+  ingredientsFieldArray,
+  register,
+  errors,
+}: Props) => {
   return (
     <div className="flex flex-col gap-2 md:col-span-1 lg:col-span-2">
       <T className="text-lg font-semibold">Ingredients</T>
       <div className="flex flex-col gap-6">
         {ingredientsFieldArray.fields.map((field, index) => (
-          <div key={index} className="flex flex-col gap-2">
+          <div key={field.id} className="flex flex-col gap-2">
             <MyHiddenInput name={`ingredients.${index}.index`} />
             <div className="flex items-start gap-2">
               <MyInput
                 name={`ingredients.${index}.quantity`}
                 placeholder="Quantity"
                 register={register}
+                error={errors.ingredients?.[index]?.quantity}
               />
-              <MySelect name={`ingredients.${index}.unit`} register={register}>
+              <MySelect
+                name={`ingredients.${index}.unit`}
+                register={register}
+                error={errors.ingredients?.[index]?.unit}
+              >
                 {UNIT_OPTIONS}
               </MySelect>
               <Button
@@ -40,6 +50,7 @@ const IngredientsForm = ({ ingredientsFieldArray, register }: Props) => {
               name={`ingredients.${index}.name`}
               placeholder="Name"
               register={register}
+              error={errors.ingredients?.[index]?.name}
             />
           </div>
         ))}
