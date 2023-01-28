@@ -3,6 +3,7 @@ import { z } from "zod";
 import axios from "axios";
 
 import { createTRPCRouter, publicProcedure, protectedProcedure } from "../trpc";
+import { RECIPE_SCHEMA } from "components/RecipeForm/constants";
 
 export const exampleRouter = createTRPCRouter({
   findRecipes: publicProcedure.query(({ ctx }) => {
@@ -39,6 +40,27 @@ export const exampleRouter = createTRPCRouter({
         include: {
           recipe: {
             ...completeRecipeInclude,
+          },
+        },
+      });
+    }),
+
+  createRecipe: publicProcedure
+    .input(RECIPE_SCHEMA)
+    .mutation(({ ctx, input }) => {
+      return ctx.prisma.recipe.create({
+        data: {
+          ...input,
+          authorId: "TODO",
+          directions: {
+            createMany: {
+              data: input.directions,
+            },
+          },
+          ingredients: {
+            createMany: {
+              data: input.ingredients,
+            },
           },
         },
       });
