@@ -29,18 +29,21 @@ const RecipeForm = ({ recipe }: Props) => {
   const ingredientsFieldArray = useFieldArray({ control, name: "ingredients" });
   const directionsFieldArray = useFieldArray({ control, name: "directions" });
 
-  const submit = () => {
-    // useMutation
-    // invalidate existing query
-    // navigate to recipe if relavent
-    return;
+  const createRecipeMutation = api.example.createRecipe.useMutation({
+    onSuccess: async (data) => {
+      await router.push(`/recipe/${data.id}`);
+    },
+  });
+
+  const onSubmit = (data: any) => {
+    createRecipeMutation.mutate(data);
   };
 
   return (
     <>
       <Hero title={`${recipe ? "Edit" : "Create"} Recipe`} />
       <Container>
-        <form onSubmit={() => handleSubmit(submit)}>
+        <form onSubmit={void handleSubmit(onSubmit)}>
           <div className="text-right">
             <Button
               type="submit"
@@ -56,10 +59,12 @@ const RecipeForm = ({ recipe }: Props) => {
             <IngredientsForm
               ingredientsFieldArray={ingredientsFieldArray}
               register={register}
+              errors={errors}
             />
             <DirectionsForm
               directionsFieldArray={directionsFieldArray}
               register={register}
+              errors={errors}
             />
           </div>
         </form>
