@@ -42,6 +42,7 @@ const IngredientsForm = ({
                 {UNIT_OPTIONS}
               </MySelect>
               <Button
+                disabled={ingredientsFieldArray.fields.length <= 1}
                 onClick={(e) => {
                   e.preventDefault();
                   ingredientsFieldArray.remove(index);
@@ -60,12 +61,12 @@ const IngredientsForm = ({
         ))}
         <div>
           <Button
-            onClick={() =>
+            onClick={() => {
               ingredientsFieldArray.append({
                 ...DEFAULT_INGREDIENT,
                 // index: values.ingredients.length,
-              })
-            }
+              });
+            }}
           >
             <HiPlus />
           </Button>

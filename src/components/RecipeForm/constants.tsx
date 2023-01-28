@@ -49,12 +49,10 @@ const DEFAULT_RECIPE: FormRecipe = {
 
 const INGREDIENT_SCHEMA = z.object({
   name: z.string().min(1),
-  quantity: z
-    .string()
-    .refine(validateQuantity, {
-      message: "String must be a valid quantity like 1 3/4",
-    }),
-  unit: z.string(),
+  quantity: z.string().refine(validateQuantity, {
+    message: "String must be a valid quantity like 1 3/4",
+  }),
+  unit: z.string().nullable(),
 });
 
 const DIRECTION_SCHEMA = z.object({
@@ -69,8 +67,8 @@ const RECIPE_SCHEMA = z.object({
   servings: z.number().min(1),
   emoji: z.string().length(2),
   difficulty: z.coerce.number(),
-  ingredients: INGREDIENT_SCHEMA.array(),
-  directions: DIRECTION_SCHEMA.array(),
+  ingredients: INGREDIENT_SCHEMA.array().min(1),
+  directions: DIRECTION_SCHEMA.array().min(1),
 });
 
 export type { FormRecipe };

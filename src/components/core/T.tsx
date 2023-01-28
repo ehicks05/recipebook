@@ -3,7 +3,7 @@ import React from "react";
 
 interface IProps {
   className?: string;
-  children: ReactNode;
+  children?: ReactNode | ReactNode[];
 }
 
 const T = ({ children, className = "" }: IProps) => {

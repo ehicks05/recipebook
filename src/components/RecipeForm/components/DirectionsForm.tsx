@@ -31,6 +31,7 @@ const DirectionsForm = ({ directionsFieldArray, register, errors }: Props) => {
               error={errors.directions?.[index]?.text}
             />
             <Button
+              disabled={directionsFieldArray.fields.length <= 1}
               onClick={(e) => {
                 e.preventDefault();
                 directionsFieldArray.remove(index);
@@ -42,12 +43,12 @@ const DirectionsForm = ({ directionsFieldArray, register, errors }: Props) => {
         ))}
         <div>
           <Button
-            onClick={() =>
+            onClick={() => {
               directionsFieldArray.append({
                 ...DEFAULT_DIRECTION,
                 // index: values.directions.length,
-              })
-            }
+              });
+            }}
           >
             <HiPlus />
           </Button>

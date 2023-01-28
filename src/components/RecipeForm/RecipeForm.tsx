@@ -1,10 +1,12 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { useForm, useFieldArray } from "react-hook-form";
+import type { SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { api } from "utils/api";
-import { Container, Button, Hero } from "components/core";
+import { Container, Button, Hero, T } from "components/core";
+import type { FormRecipe } from "./constants";
 import { DEFAULT_RECIPE, RECIPE_SCHEMA } from "./constants";
 import { IngredientsForm, DirectionsForm } from "./components";
 import RecipeDetailsForm from "./components/RecipeDetailsForm";
@@ -35,7 +37,7 @@ const RecipeForm = ({ recipe }: Props) => {
     },
   });
 
-  const onSubmit = (data: any) => {
+  const onSubmit: SubmitHandler<FormRecipe> = (data: FormRecipe) => {
     createRecipeMutation.mutate(data);
   };
 
