@@ -28,8 +28,7 @@ const Alert = ({
   description,
   variant = "error",
 }: Props) => {
-  const classes = VARIANTS[variant];
-  const { Icon } = classes;
+  const { Icon, ...classes } = VARIANTS[variant];
   return (
     <div className={`m-3 rounded p-3 ${classes.background}`}>
       <div className="flex items-center gap-2 text-lg font-semibold">

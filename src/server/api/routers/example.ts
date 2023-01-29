@@ -45,18 +45,14 @@ export const exampleRouter = createTRPCRouter({
       });
     }),
 
-  createRecipe: publicProcedure
+  createRecipe: protectedProcedure
     .input(RECIPE_SCHEMA)
     .mutation(async ({ ctx, input }) => {
-      // TODO: Auth
-      const appUser = await ctx.prisma.appUser.findUnique({
-        where: { displayName: "John Cooks" },
-      });
-      if (!appUser) throw new Error("appUser not found");
+      const userId = ctx.session.user.id;
       return ctx.prisma.recipe.create({
         data: {
           ...input,
-          authorId: appUser.id,
+          authorId: userId,
           directions: {
             createMany: {
               data: input.directions,
@@ -72,9 +68,11 @@ export const exampleRouter = createTRPCRouter({
       });
     }),
 
-  createUserFavorite: publicProcedure
-    .input(z.object({ userId: z.string(), recipeId: z.string() }))
-    .mutation(({ ctx, input: { userId, recipeId } }) => {
+  createUserFavorite: protectedProcedure
+    .input(z.object({ recipeId: z.string() }))
+    .mutation(({ ctx, input: { recipeId } }) => {
+      const userId = ctx.session.user.id;
+
       return ctx.prisma.userFavorites.create({
         data: {
           userId,
@@ -83,9 +81,11 @@ export const exampleRouter = createTRPCRouter({
       });
     }),
 
-  deleteUserFavorite: publicProcedure
-    .input(z.object({ userId: z.string(), recipeId: z.string() }))
-    .mutation(({ ctx, input: { userId, recipeId } }) => {
+  deleteUserFavorite: protectedProcedure
+    .input(z.object({ recipeId: z.string() }))
+    .mutation(({ ctx, input: { recipeId } }) => {
+      const userId = ctx.session.user.id;
+
       return ctx.prisma.userFavorites.delete({
         where: {
           userId_recipeId: {
@@ -101,10 +101,6 @@ export const exampleRouter = createTRPCRouter({
     .query(async ({ input: { url } }) => {
       return (await axios.get<string>(url)).data;
     }),
-
-  getSecretMessage: protectedProcedure.query(() => {
-    return "you can now see this secret message!";
-  }),
 });
 
 // Get type of recipe with includes added

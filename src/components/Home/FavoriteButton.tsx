@@ -26,10 +26,7 @@ function FavoriteButton({ recipeId, className }: IProps) {
   const handleClick = () => {
     if (favoriteIds.includes(recipeId)) {
       deleteUserFavorite.mutate(
-        {
-          userId: user?.id || "",
-          recipeId,
-        },
+        { recipeId },
         {
           onSuccess: () =>
             void utils.example.findFavoriteRecipesByUserId.invalidate(),
@@ -37,10 +34,7 @@ function FavoriteButton({ recipeId, className }: IProps) {
       );
     } else {
       createUserFavorite.mutate(
-        {
-          userId: user?.id || "",
-          recipeId,
-        },
+        { recipeId },
         {
           onSuccess: () =>
             void utils.example.findFavoriteRecipesByUserId.invalidate(),
