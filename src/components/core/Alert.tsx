@@ -2,17 +2,17 @@ import { HiCheckCircle, HiXCircle } from "react-icons/hi";
 
 const VARIANTS = {
   error: {
-    background: "bg-red-100",
-    title: "text-red-800",
-    description: "text-red-700",
-    icon: "text-red-600",
+    background: "bg-red-100 dark:bg-red-900",
+    title: "text-red-800 dark:text-red-100",
+    description: "text-red-700 dark:text-red-200",
+    icon: "text-red-600 dark:text-red-300",
     Icon: HiXCircle,
   },
   success: {
-    background: "bg-green-100",
-    title: "text-green-800",
-    description: "text-green-700",
-    icon: "text-green-600",
+    background: "bg-green-100 dark:bg-green-900",
+    title: "text-green-800 dark:text-green-100",
+    description: "text-green-700 dark:text-green-200",
+    icon: "text-green-600 dark:text-green-300",
     Icon: HiCheckCircle,
   },
 } as const;
