@@ -65,6 +65,8 @@ const RecipeForm = ({ recipe }: Props) => {
         />
       )}
       <Container>
+        {/* https://github.com/react-hook-form/react-hook-form/discussions/8020 */}
+        {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
         <form onSubmit={handleSubmit(onSubmit, onError)}>
           <div className="text-right">
             <Button
