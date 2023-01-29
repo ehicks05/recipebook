@@ -1,3 +1,4 @@
+import Alert from "./Alert";
 import Button from "./Button";
 import Card from "./Card";
 import Container from "./Container";
@@ -10,6 +11,7 @@ import Toggle from "./Toggle";
 import RecipeStat from "./RecipeStat";
 
 export {
+  Alert,
   Button,
   Card,
   Container,
