@@ -17,9 +17,9 @@
  *
  */
 import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
-import { type Session } from "next-auth";
 
-import { getServerAuthSession } from "../auth";
+import type { Session } from "@supabase/auth-helpers-nextjs";
+import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import { prisma } from "../db";
 
 type CreateContextOptions = {
@@ -50,8 +50,12 @@ const createInnerTRPCContext = (opts: CreateContextOptions) => {
 export const createTRPCContext = async (opts: CreateNextContextOptions) => {
   const { req, res } = opts;
 
-  // Get the session from the server using the unstable_getServerSession wrapper function
-  const session = await getServerAuthSession({ req, res });
+  // Create authenticated Supabase Client
+  const supabase = createServerSupabaseClient({ req, res });
+  // Check if we have a session
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
 
   return createInnerTRPCContext({
     session,
