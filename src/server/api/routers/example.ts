@@ -63,6 +63,7 @@ export const exampleRouter = createTRPCRouter({
             },
           },
         },
+        ...completeRecipeInclude,
       });
     }),
 

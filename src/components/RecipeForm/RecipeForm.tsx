@@ -1,11 +1,12 @@
+"use client";
 import React from "react";
 import { useRouter } from "next/router";
 import { useForm, useFieldArray } from "react-hook-form";
-import type { SubmitHandler } from "react-hook-form";
+import type { SubmitHandler, SubmitErrorHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { api } from "utils/api";
-import { Container, Button, Hero, T } from "components/core";
+import { Container, Button, Hero, Alert } from "components/core";
 import type { FormRecipe } from "./constants";
 import { DEFAULT_RECIPE, RECIPE_SCHEMA } from "./constants";
 import { IngredientsForm, DirectionsForm } from "./components";
@@ -31,27 +32,45 @@ const RecipeForm = ({ recipe }: Props) => {
   const ingredientsFieldArray = useFieldArray({ control, name: "ingredients" });
   const directionsFieldArray = useFieldArray({ control, name: "directions" });
 
-  const createRecipeMutation = api.example.createRecipe.useMutation({
+  const {
+    mutate: createRecipe,
+    isLoading,
+    error,
+  } = api.example.createRecipe.useMutation({
     onSuccess: async (data) => {
+      console.log({ data });
       await router.push(`/recipe/${data.id}`);
     },
   });
 
-  const onSubmit: SubmitHandler<FormRecipe> = (data: FormRecipe) => {
-    createRecipeMutation.mutate(data);
+  const onSubmit: SubmitHandler<FormRecipe> = (data, e) => {
+    e?.preventDefault();
+    console.log({ data });
+    createRecipe(data);
+  };
+
+  const onError: SubmitErrorHandler<FormRecipe> = (errors, e) => {
+    e?.preventDefault();
+    console.log({ errors });
   };
 
   return (
     <>
       <Hero title={`${recipe ? "Edit" : "Create"} Recipe`} />
+      {error && (
+        <Alert
+          variant="error"
+          title="Unable to create recipe"
+          description={error.message}
+        />
+      )}
       <Container>
-        <form onSubmit={void handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit, onError)}>
           <div className="text-right">
             <Button
               type="submit"
-              loading={isSubmitting}
-              disabled={!isValid || isSubmitting}
-              className={`${isSubmitting ? "is-loading" : ""}`}
+              loading={isSubmitting || isLoading}
+              disabled={!isValid || isSubmitting || isLoading}
             >
               {`${recipe ? "Save" : "Create Recipe "}`}
             </Button>
