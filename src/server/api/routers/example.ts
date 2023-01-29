@@ -47,11 +47,16 @@ export const exampleRouter = createTRPCRouter({
 
   createRecipe: publicProcedure
     .input(RECIPE_SCHEMA)
-    .mutation(({ ctx, input }) => {
+    .mutation(async ({ ctx, input }) => {
+      // TODO: Auth
+      const appUser = await ctx.prisma.appUser.findUnique({
+        where: { displayName: "John Cooks" },
+      });
+      if (!appUser) throw new Error("appUser not found");
       return ctx.prisma.recipe.create({
         data: {
           ...input,
-          authorId: "TODO",
+          authorId: appUser.id,
           directions: {
             createMany: {
               data: input.directions,
