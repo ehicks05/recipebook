@@ -29,17 +29,17 @@ type FormRecipe = Omit<
 };
 
 const DEFAULT_INGREDIENT: FormIngredient = {
-  name: "",
-  quantity: "",
-  unit: "",
+  name: "salt",
+  quantity: "1",
+  unit: "tsp",
 };
-const DEFAULT_DIRECTION: FormDirection = { index: 0, text: "" };
+const DEFAULT_DIRECTION: FormDirection = { index: 0, text: "hey" };
 const DEFAULT_RECIPE: FormRecipe = {
-  name: "",
-  description: "",
+  name: "eric test",
+  description: "test",
   emoji: "\uD83E\uDD58",
   difficulty: 1,
-  cookingTime: "",
+  cookingTime: "4",
   servings: 1,
   course: "",
   author: { id: "", username: "unknown", displayName: "Unknown" },

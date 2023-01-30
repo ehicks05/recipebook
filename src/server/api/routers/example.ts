@@ -49,6 +49,9 @@ export const exampleRouter = createTRPCRouter({
     .input(RECIPE_SCHEMA)
     .mutation(async ({ ctx, input }) => {
       const userId = ctx.session.user.id;
+
+      throw new Error("The robots are taking over!");
+
       return ctx.prisma.recipe.create({
         data: {
           ...input,
