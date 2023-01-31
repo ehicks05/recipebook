@@ -4,6 +4,7 @@ import { Alert, Container, Loading, T } from "components/core";
 import Recipe from "components/Recipe/Recipe";
 import { useRouter } from "next/router";
 import { parseLdJsonRecipe } from "utils/recipe-import";
+import { MyInput } from "components/RecipeForm/components/StyledInputs";
 
 const RecipeImportPage: NextPage = () => {
   const router = useRouter();
@@ -31,8 +32,14 @@ const RecipeImportPage: NextPage = () => {
 
   return (
     <>
+      <Alert variant="info" title="What is this?">
+        <div className="max-w-prose">
+          On this page, you can enter a recipe from the web, and if it includes
+          web-friendly metadata, you will be able to see it here.
+        </div>
+      </Alert>
       <Container>
-        <input
+        <MyInput
           className="w-64 rounded px-2 py-1.5 dark:bg-neutral-700 dark:text-neutral-100 sm:w-96"
           placeholder="enter a recipe url"
           value={url}
@@ -46,7 +53,7 @@ const RecipeImportPage: NextPage = () => {
       )}
       {isFetching && <Loading />}
       {recipe && <Recipe recipe={recipe} />}
-      {(error || !recipeHtml) && (
+      {(error || (url && !recipeHtml)) && (
         <div className="m-3">
           <Alert
             variant="error"
