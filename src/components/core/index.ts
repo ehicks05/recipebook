@@ -3,6 +3,7 @@ import Button from "./Button";
 import Card from "./Card";
 import Container from "./Container";
 import CookingTime from "./CookingTime";
+import Dialog from "./Dialog";
 import Difficulty from "./Difficulty";
 import Hero from "./Hero";
 import Loading from "./Loading";
@@ -16,6 +17,7 @@ export {
   Card,
   Container,
   CookingTime,
+  Dialog,
   Difficulty,
   Hero,
   Loading,
