@@ -1,6 +1,6 @@
 import { type NextPage } from "next";
 import { api } from "utils/api";
-import { Container, Loading, T } from "components/core";
+import { Alert, Container, Loading, T } from "components/core";
 import Recipe from "components/Recipe/Recipe";
 import { useRouter } from "next/router";
 import { parseLdJsonRecipe } from "utils/recipe-import";
@@ -15,7 +15,11 @@ const RecipeImportPage: NextPage = () => {
     data: recipeHtml,
   } = api.example.importRecipe.useQuery(
     { url: url as string },
-    { enabled: url && url.length > 4 ? true : false }
+    {
+      enabled: url && url.length > 4 ? true : false,
+      staleTime: 10 * (60 * 1000), // 10 mins
+      cacheTime: 15 * (60 * 1000), // 15 mins
+    }
   );
 
   const handleChange = (url: string) => {
@@ -42,6 +46,24 @@ const RecipeImportPage: NextPage = () => {
       )}
       {isFetching && <Loading />}
       {recipe && <Recipe recipe={recipe} />}
+      {(error || !recipeHtml) && (
+        <div className="m-3">
+          <Alert
+            variant="error"
+            title={`Unable to fetch recipe`}
+            description={""}
+          />
+        </div>
+      )}
+      {recipeHtml && !recipe && (
+        <div className="m-3">
+          <Alert
+            variant="error"
+            title={`Unable to parse recipe`}
+            description={""}
+          />
+        </div>
+      )}
       {/* <pre className="text-sm p-4 text-white">
         {JSON.stringify(recipe, null, 2)}
       </pre> */}
