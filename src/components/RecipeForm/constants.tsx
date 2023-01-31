@@ -25,7 +25,7 @@ type FormRecipe = Omit<
 > & {
   ingredients: FormIngredient[];
   directions: FormDirection[];
-  author: any;
+  author: Record<string, string>;
 };
 
 const DEFAULT_INGREDIENT: FormIngredient = {

@@ -8,6 +8,7 @@ import Link from "next/link";
 import AuthDialog from "components/AuthDialog";
 import { useUser } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -91,15 +92,19 @@ const Nav = () => {
                 <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                   <div className="flex flex-shrink-0 items-center">
                     <Link href="/">
-                      <img
+                      <Image
                         className="block h-8 w-auto lg:hidden"
                         src="/favicon/favicon.png"
                         alt="logo"
+                        width={32}
+                        height={32}
                       />
-                      <img
+                      <Image
                         className="hidden h-8 w-auto lg:block"
                         src="/logo.png"
                         alt="logo"
+                        width={228}
+                        height={32}
                       />
                     </Link>
                   </div>

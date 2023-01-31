@@ -3,6 +3,7 @@ import TextareaAutosize from "react-textarea-autosize";
 import type { IconType } from "react-icons";
 import { T } from "components/core";
 import type { FieldError, UseFormRegister } from "react-hook-form";
+import type { FormRecipe } from "../constants";
 
 export interface IMyInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -10,7 +11,7 @@ export interface IMyInputProps
   leftIcon?: JSX.Element;
   containerClassName?: string;
   name: string;
-  register: UseFormRegister<any>;
+  register: UseFormRegister<FormRecipe>;
   error?: FieldError;
 }
 
@@ -89,7 +90,7 @@ interface IMyTextAreaProps {
   name: string;
   label?: string;
   placeholder: string;
-  register: UseFormRegister<any>;
+  register: UseFormRegister<FormRecipe>;
   error?: FieldError;
 }
 
@@ -122,7 +123,7 @@ interface IMySelectProps {
   name: string;
   label?: string;
   children: JSX.Element | JSX.Element[];
-  register: UseFormRegister<any>;
+  register: UseFormRegister<FormRecipe>;
   error?: FieldError;
 }
 

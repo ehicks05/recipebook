@@ -10,7 +10,7 @@ interface IProps {
 
 function EmojiSelector({ updateEmoji, data }: IProps) {
   const [isEditing, setIsEditing] = useState(false);
-  const onEmojiClick = (emoji: EmojiClickData, event: MouseEvent) => {
+  const onEmojiClick = (emoji: EmojiClickData) => {
     updateEmoji(emoji.emoji);
     setIsEditing(false);
   };

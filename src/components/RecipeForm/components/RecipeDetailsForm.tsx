@@ -1,7 +1,6 @@
 import { T } from "components/core";
 import type { FieldErrors, UseFormRegister } from "react-hook-form";
 import type { FormRecipe } from "../constants";
-import EmojiSelector from "./EmojiSelector";
 import { MyInput, MySelect, MyTextArea } from "./StyledInputs";
 
 interface Props {

@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Card, CookingTime, Difficulty, T } from "components/core";
+import { Card, CookingTime, T } from "components/core";
 import { emojiToImage } from "./constants";
 import type { CompleteRecipe } from "server/api/routers/example";
 import FavoriteButton from "components/Home/FavoriteButton";
@@ -12,7 +12,7 @@ interface FooterProps {
   difficulty: number;
 }
 
-const Footer = ({ cookingTime, difficulty }: FooterProps) => (
+const Footer = ({ cookingTime }: FooterProps) => (
   <footer className="flex w-fit gap-4 pt-4">
     <CookingTime cookingTime={cookingTime} />
     {/* <Difficulty difficulty={difficulty} /> */}
