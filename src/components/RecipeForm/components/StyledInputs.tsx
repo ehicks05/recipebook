@@ -3,7 +3,6 @@ import TextareaAutosize from "react-textarea-autosize";
 import type { IconType } from "react-icons";
 import { T } from "components/core";
 import type { FieldError, UseFormRegister } from "react-hook-form";
-import type { FormRecipe } from "../constants";
 
 export interface IMyInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
