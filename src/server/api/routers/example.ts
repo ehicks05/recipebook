@@ -69,6 +69,50 @@ export const exampleRouter = createTRPCRouter({
       });
     }),
 
+  updateRecipe: protectedProcedure
+    .input(RECIPE_SCHEMA.extend({ id: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      const { id } = input;
+      const userId = ctx.session.user.id;
+      const recipe = await ctx.prisma.recipe.findUnique({ where: { id } });
+      if (userId !== recipe?.authorId) {
+        throw new Error("Unauthorized");
+      }
+
+      const [, , updatedRecipe] = await ctx.prisma.$transaction([
+        ctx.prisma.ingredient.deleteMany({
+          where: {
+            recipeId: id,
+          },
+        }),
+        ctx.prisma.direction.deleteMany({
+          where: {
+            recipeId: id,
+          },
+        }),
+        ctx.prisma.recipe.update({
+          where: { id },
+          data: {
+            ...input,
+            authorId: userId,
+            directions: {
+              createMany: {
+                data: input.directions,
+              },
+            },
+            ingredients: {
+              createMany: {
+                data: input.ingredients,
+              },
+            },
+          },
+          ...completeRecipeInclude,
+        }),
+      ]);
+
+      return updatedRecipe;
+    }),
+
   deleteRecipe: protectedProcedure
     .input(z.object({ id: z.string() }))
     .mutation(async ({ ctx, input: { id } }) => {

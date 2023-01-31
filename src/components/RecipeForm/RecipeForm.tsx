@@ -36,23 +36,36 @@ const RecipeForm = ({ recipe }: Props) => {
   const {
     mutate: createRecipe,
     isLoading: isCreateRecipeLoading,
-    error: isCreateRecipeError,
+    error: createRecipeError,
   } = api.example.createRecipe.useMutation({
     onSuccess: async (data) => {
       console.log({ data });
-      void utils.example.findRecipes.invalidate();
+      await utils.example.findRecipes.invalidate();
       await router.push(`/recipe/${data.id}`);
+    },
+  });
+
+  const {
+    mutate: updateRecipe,
+    isLoading: isUpdateRecipeLoading,
+    error: updateRecipeError,
+    isSuccess: isUpdateRecipeSuccess,
+  } = api.example.updateRecipe.useMutation({
+    onSuccess: async (data) => {
+      console.log({ data });
+      await utils.example.findRecipes.invalidate();
+      // await router.push(`/recipe/${data.id}`);
     },
   });
 
   const {
     mutate: deleteRecipe,
     isLoading: isDeleteRecipeLoading,
-    error: isDeleteRecipeError,
+    error: deleteRecipeError,
   } = api.example.deleteRecipe.useMutation({
     onSuccess: async (data) => {
       console.log({ data });
-      void utils.example.findRecipes.invalidate();
+      await utils.example.findRecipes.invalidate();
       await router.push(`/create-recipe`);
     },
   });
@@ -62,7 +75,7 @@ const RecipeForm = ({ recipe }: Props) => {
   const onSubmit: SubmitHandler<FormRecipe> = (data, e) => {
     e?.preventDefault();
     console.log({ data });
-    createRecipe(data);
+    recipe ? updateRecipe({ ...data, id: recipe.id }) : createRecipe(data);
   };
 
   const onError: SubmitErrorHandler<FormRecipe> = (errors, e) => {
@@ -71,17 +84,31 @@ const RecipeForm = ({ recipe }: Props) => {
   };
 
   const isLoading =
-    isSubmitting || isCreateRecipeLoading || isDeleteRecipeLoading;
+    isSubmitting ||
+    isCreateRecipeLoading ||
+    isUpdateRecipeLoading ||
+    isDeleteRecipeLoading;
+
+  const error = createRecipeError || updateRecipeError;
 
   return (
     <>
       <Hero title={`${recipe ? "Edit" : "Create"} Recipe`} />
-      {isCreateRecipeError && (
+      {error && (
         <div className="m-3">
           <Alert
             variant="error"
-            title="Unable to create recipe"
-            description={isCreateRecipeError.message}
+            title={`Unable to ${recipe ? "update" : "create"} recipe`}
+            description={error.message}
+          />
+        </div>
+      )}
+      {isUpdateRecipeSuccess && (
+        <div className="m-3">
+          <Alert
+            variant="success"
+            title={`Successfully updated recipe`}
+            description={"Nice!"}
           />
         </div>
       )}
@@ -137,11 +164,11 @@ const RecipeForm = ({ recipe }: Props) => {
         onClose={() => setIsOpen(false)}
         body={
           <>
-            {isDeleteRecipeError && (
+            {deleteRecipeError && (
               <Alert
                 variant="error"
                 title="Unable to delete recipe"
-                description={isDeleteRecipeError.message}
+                description={deleteRecipeError.message}
               />
             )}
             <T>
