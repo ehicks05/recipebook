@@ -11,7 +11,7 @@ export interface IMyInputProps
   leftIcon?: JSX.Element;
   containerClassName?: string;
   name: string;
-  register: UseFormRegister<FormRecipe>;
+  register: UseFormRegister<any>;
   error?: FieldError;
 }
 
@@ -90,7 +90,7 @@ interface IMyTextAreaProps {
   name: string;
   label?: string;
   placeholder: string;
-  register: UseFormRegister<FormRecipe>;
+  register: UseFormRegister<any>;
   error?: FieldError;
 }
 
@@ -123,7 +123,7 @@ interface IMySelectProps {
   name: string;
   label?: string;
   children: JSX.Element | JSX.Element[];
-  register: UseFormRegister<FormRecipe>;
+  register: UseFormRegister<any>;
   error?: FieldError;
 }
 
