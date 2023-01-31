@@ -32,6 +32,7 @@ const RecipeForm = ({ recipe }: Props) => {
   const ingredientsFieldArray = useFieldArray({ control, name: "ingredients" });
   const directionsFieldArray = useFieldArray({ control, name: "directions" });
 
+  const utils = api.useContext();
   const {
     mutate: createRecipe,
     isLoading: isCreateRecipeLoading,
@@ -39,6 +40,7 @@ const RecipeForm = ({ recipe }: Props) => {
   } = api.example.createRecipe.useMutation({
     onSuccess: async (data) => {
       console.log({ data });
+      void utils.example.findRecipes.invalidate();
       await router.push(`/recipe/${data.id}`);
     },
   });
@@ -50,6 +52,7 @@ const RecipeForm = ({ recipe }: Props) => {
   } = api.example.deleteRecipe.useMutation({
     onSuccess: async (data) => {
       console.log({ data });
+      void utils.example.findRecipes.invalidate();
       await router.push(`/create-recipe`);
     },
   });
@@ -110,7 +113,14 @@ const RecipeForm = ({ recipe }: Props) => {
           </div>
         </form>
         {recipe && (
-          <div className="text-right">
+          <div className="space-x-4 text-right">
+            <Button
+              onClick={() => void router.push(`/recipe/${recipe.id}`)}
+              loading={isLoading}
+              disabled={isLoading}
+            >
+              View
+            </Button>
             <Button
               onClick={() => setIsOpen(true)}
               className="bg-red-600 dark:bg-red-600"
