@@ -11,14 +11,8 @@ const UNIT_OPTIONS = ["", ...UNITS].map((unit) => (
   </option>
 ));
 
-type FormIngredient = Omit<
-  ingredient,
-  "id" | "recipeId" | "createdAt" | "updatedAt"
->;
-type FormDirection = Omit<
-  direction,
-  "id" | "recipeId" | "createdAt" | "updatedAt"
->;
+type FormIngredient = Omit<ingredient, "id" | "recipeId">;
+type FormDirection = Omit<direction, "id" | "recipeId">;
 type FormRecipe = Omit<
   recipe,
   "id" | "authorId" | "createdAt" | "updatedAt"
