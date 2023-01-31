@@ -26,24 +26,20 @@ model appUser {
 }
 
 model direction {
-  id        String   @id @default(uuid())
-  recipeId  String   @map("recipe_id")
-  createdAt DateTime @default(now()) @map("created_at") @db.Timestamp
-  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamp
-  index     Int
-  text      String
-  recipe    recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  id       String @id @default(uuid())
+  recipeId String @map("recipe_id")
+  index    Int
+  text     String
+  recipe   recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
 }
 
 model ingredient {
-  id        String   @id @default(uuid())
-  recipeId  String   @map("recipe_id")
-  createdAt DateTime @default(now()) @map("created_at") @db.Timestamp
-  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamp
-  name      String
-  quantity  String
-  unit      String?
-  recipe    recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  id       String  @id @default(uuid())
+  recipeId String  @map("recipe_id")
+  name     String
+  quantity String
+  unit     String?
+  recipe   recipe  @relation(fields: [recipeId], references: [id], onDelete: Cascade)
 }
 
 model recipe {
