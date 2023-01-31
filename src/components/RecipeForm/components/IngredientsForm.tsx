@@ -59,7 +59,7 @@ const IngredientsForm = ({
             />
           </div>
         ))}
-        <div>
+        <div className="text-right">
           <Button
             onClick={() => {
               ingredientsFieldArray.append({

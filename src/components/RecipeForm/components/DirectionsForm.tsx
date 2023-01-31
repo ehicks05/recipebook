@@ -41,7 +41,7 @@ const DirectionsForm = ({ directionsFieldArray, register, errors }: Props) => {
             </Button>
           </div>
         ))}
-        <div>
+        <div className="text-right">
           <Button
             onClick={() => {
               directionsFieldArray.append({

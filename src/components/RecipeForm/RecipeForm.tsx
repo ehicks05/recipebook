@@ -12,6 +12,7 @@ import { DEFAULT_RECIPE, RECIPE_SCHEMA } from "./constants";
 import { IngredientsForm, DirectionsForm } from "./components";
 import RecipeDetailsForm from "./components/RecipeDetailsForm";
 import type { CompleteRecipe } from "server/api/routers/example";
+import { HiEye, HiFolder, HiTrash } from "react-icons/hi";
 
 interface Props {
   recipe?: CompleteRecipe;
@@ -53,7 +54,7 @@ const RecipeForm = ({ recipe }: Props) => {
   } = api.example.updateRecipe.useMutation({
     onSuccess: async (data) => {
       console.log({ data });
-      await utils.example.findRecipes.invalidate();
+      await utils.example.findRecipe.invalidate();
       // await router.push(`/recipe/${data.id}`);
     },
   });
@@ -116,15 +117,6 @@ const RecipeForm = ({ recipe }: Props) => {
         {/* https://github.com/react-hook-form/react-hook-form/discussions/8020 */}
         {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
         <form onSubmit={handleSubmit(onSubmit, onError)}>
-          <div className="text-right">
-            <Button
-              type="submit"
-              loading={isLoading}
-              disabled={!isValid || isLoading}
-            >
-              {`${recipe ? "Save" : "Create Recipe "}`}
-            </Button>
-          </div>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-7">
             <RecipeDetailsForm register={register} errors={errors} />
             <IngredientsForm
@@ -138,26 +130,38 @@ const RecipeForm = ({ recipe }: Props) => {
               errors={errors}
             />
           </div>
-        </form>
-        {recipe && (
           <div className="space-x-4 text-right">
             <Button
-              onClick={() => void router.push(`/recipe/${recipe.id}`)}
+              type="submit"
               loading={isLoading}
-              disabled={isLoading}
+              disabled={!isValid || isLoading}
             >
-              View
+              {`${recipe ? "Save" : "Create Recipe "}`}
+              <HiFolder />
             </Button>
-            <Button
-              onClick={() => setIsOpen(true)}
-              className="bg-red-600 dark:bg-red-600"
-              loading={isLoading}
-              disabled={isLoading}
-            >
-              Delete
-            </Button>
+            {recipe && (
+              <>
+                <Button
+                  onClick={() => void router.push(`/recipe/${recipe.id}`)}
+                  loading={isLoading}
+                  disabled={isLoading}
+                >
+                  View
+                  <HiEye />
+                </Button>
+                <Button
+                  onClick={() => setIsOpen(true)}
+                  className="bg-red-600 dark:bg-red-800"
+                  loading={isLoading}
+                  disabled={isLoading}
+                >
+                  Delete
+                  <HiTrash />
+                </Button>
+              </>
+            )}
           </div>
-        )}
+        </form>
       </Container>
       <Dialog
         open={isOpen}
@@ -180,7 +184,7 @@ const RecipeForm = ({ recipe }: Props) => {
         footer={
           <Button
             onClick={() => deleteRecipe({ id: recipe?.id || "" })}
-            className="bg-red-600 dark:bg-red-600"
+            className="bg-red-600 dark:bg-red-800"
             loading={isLoading}
             disabled={isLoading}
           >

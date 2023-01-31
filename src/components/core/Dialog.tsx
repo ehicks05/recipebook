@@ -20,7 +20,7 @@ const Dialog = ({
       className="fixed inset-0 z-50 overflow-y-auto"
     >
       <div className="flex min-h-screen items-center justify-center">
-        <HLDialog.Overlay className="fixed inset-0 bg-black opacity-20" />
+        <HLDialog.Overlay className="fixed inset-0 bg-black opacity-30" />
 
         <div className="z-20 mx-auto w-full rounded bg-stone-900 sm:w-96">
           <div className="mx-auto max-w-sm py-8 px-4 sm:px-6 lg:px-8">
