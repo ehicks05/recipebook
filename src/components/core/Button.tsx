@@ -14,11 +14,11 @@ const Button = ({ loading, className = "", children, ...props }: Props) => {
       type={props.type || "button"}
       disabled={props.disabled || loading}
       className={clsx(
-        `rounded-sm border border-neutral-200 bg-neutral-100 py-2 px-3 shadow`,
-        "dark:border-neutral-600 dark:bg-neutral-700 dark:text-neutral-200",
+        `rounded-sm border border-transparent bg-neutral-100 py-2 px-3 shadow`,
+        "dark:bg-neutral-700 dark:text-neutral-200",
         {
           "opacity-50": props.disabled || loading,
-          "hover:border-neutral-300 hover:shadow-lg dark:hover:border-neutral-500":
+          "hover:border-neutral-300 dark:hover:border-neutral-500":
             !props.disabled,
         },
         className

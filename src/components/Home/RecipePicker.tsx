@@ -6,6 +6,7 @@ import RecipeCard, { RecipeCardLandscape, RecipeCardOld } from "./RecipeCard";
 import { api } from "utils/api";
 import type { CompleteRecipe } from "server/api/routers/example";
 import { useUser } from "@supabase/auth-helpers-react";
+import { MyInput } from "components/RecipeForm/components/StyledInputs";
 
 interface Props {
   recipes: CompleteRecipe[];
@@ -35,13 +36,13 @@ function RecipePicker({ recipes }: Props) {
   };
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-4">
       <div className="flex items-center gap-1">
-        <input
+        <MyInput
           className="bg-neutral-100 px-2 py-1.5 dark:bg-neutral-800 dark:text-neutral-200"
           value={filterInput}
           onChange={(e) => setFilterInput(e.target.value.toLowerCase())}
-          onKeyPress={(e) => e.key === "Enter" && handleAddFilter()}
+          onKeyUp={(e) => e.key === "Enter" && handleAddFilter()}
           placeholder="Search by Ingredient"
         />
         {ingredients.length > 0 && (
@@ -50,22 +51,24 @@ function RecipePicker({ recipes }: Props) {
           </Button>
         )}
       </div>
-      <div className="flex gap-2">
-        {ingredients.map((ingredient) => (
-          <Button
-            key={ingredient}
-            className="text-xs"
-            onClick={() =>
-              setIngredients(ingredients.filter((i) => i !== ingredient))
-            }
-          >
-            {ingredient}
-          </Button>
-        ))}
-      </div>
+      {ingredients.length > 0 && (
+        <div className="flex gap-2">
+          {ingredients.map((ingredient) => (
+            <Button
+              key={ingredient}
+              className="text-xs"
+              onClick={() =>
+                setIngredients(ingredients.filter((i) => i !== ingredient))
+              }
+            >
+              {ingredient}
+            </Button>
+          ))}
+        </div>
+      )}
 
       {user && (
-        <div className="my-4 flex flex-col gap-2 rounded bg-slate-200 p-4 dark:bg-slate-800">
+        <div className="flex flex-col gap-2 rounded bg-slate-200 p-4 dark:bg-slate-800">
           <T className="">Experiments:</T>
           <Toggle
             id="newCard"

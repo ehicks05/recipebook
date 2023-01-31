@@ -29,7 +29,7 @@ const RecipeCard = ({
   const user = useUser();
 
   return (
-    <Card className="transform transition-all hover:shadow-lg">
+    <Card className="transform border border-neutral-100 transition-all hover:shadow-md dark:border-neutral-700">
       <div className="flex h-80 flex-col gap-4">
         <div className="-m-4 mb-0 h-48">
           <Link href={`/recipe/${id}`}>
@@ -70,7 +70,7 @@ function RecipeCardLandscape({
   const user = useUser();
 
   return (
-    <Card className="transform transition-all hover:shadow-lg">
+    <Card className="transform border border-neutral-100 transition-all hover:shadow-md dark:border-neutral-700">
       <div className="flex h-48 gap-4">
         <Link href={`/recipe/${id}`} className="relative -m-4 mr-0 h-56 w-full">
           <Image
@@ -106,7 +106,7 @@ function RecipeCardOld({
   const user = useUser();
 
   return (
-    <Card className="transform transition-all hover:shadow-lg">
+    <Card className="transform border border-neutral-100 transition-all hover:shadow-md dark:border-neutral-700">
       <div className="flex h-56 flex-col gap-4">
         {/* title row */}
         <div className="flex items-start gap-2">

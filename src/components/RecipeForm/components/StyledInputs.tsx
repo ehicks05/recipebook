@@ -10,8 +10,8 @@ export interface IMyInputProps
   label?: string;
   leftIcon?: JSX.Element;
   containerClassName?: string;
-  name: string;
-  register: UseFormRegister<any>;
+  name?: string;
+  register?: UseFormRegister<any>;
   error?: FieldError;
 }
 
@@ -19,7 +19,7 @@ export interface IMyInputProps
  * Use with react-hook-form. Includes the label and error ui.
  */
 const MyInput = ({
-  name,
+  name = "",
   className = "",
   label,
   leftIcon,
@@ -38,10 +38,11 @@ const MyInput = ({
       <div>
         <input
           type={props.type || "text"}
-          className={`w-full rounded px-2 py-1.5 dark:bg-neutral-700 dark:text-neutral-100 ${className} ${
+          className={`w-full rounded bg-neutral-100 px-2 py-1.5 dark:bg-neutral-700 dark:text-neutral-100 ${className} ${
             error ? "border-l-8 border-red-600" : ""
           }`}
-          {...register(name, { valueAsNumber: props.type === "number" })}
+          {...(register &&
+            register(name, { valueAsNumber: props.type === "number" }))}
           {...props}
         />
         {leftIcon && <span className="">{leftIcon}</span>}
@@ -59,7 +60,7 @@ export interface IInputProps
 const Input = ({ className = "", LeftIcon, ...props }: IInputProps) => {
   return (
     <div
-      className={`flex w-full items-center dark:bg-neutral-700 dark:text-neutral-100 ${className}`}
+      className={`flex w-full items-center bg-neutral-100 dark:bg-neutral-700 dark:text-neutral-100 ${className}`}
     >
       {LeftIcon && (
         <div className="p-2">
@@ -87,28 +88,34 @@ const MyHiddenInput = ({ ...props }: IMyHiddenInputProps) => {
 
 interface IMyTextAreaProps {
   id?: string;
-  name: string;
+  name?: string;
   label?: string;
   placeholder: string;
-  register: UseFormRegister<any>;
+  register?: UseFormRegister<any>;
   error?: FieldError;
 }
 
-const MyTextArea = ({ label, register, error, ...props }: IMyTextAreaProps) => {
+const MyTextArea = ({
+  label,
+  register,
+  error,
+  name = "",
+  ...props
+}: IMyTextAreaProps) => {
   return (
     <div className="flex w-full flex-col gap-1">
       {label && (
-        <label className="" htmlFor={props.id || props.name}>
+        <label className="" htmlFor={props.id || name}>
           <T>{label}</T>
         </label>
       )}
       <div className="">
         <TextareaAutosize
-          className={`w-full rounded px-2 py-1.5 dark:bg-neutral-700 dark:text-neutral-100 ${
+          className={`w-full rounded bg-neutral-100 px-2 py-1.5 dark:bg-neutral-700 dark:text-neutral-100 ${
             error ? "border-l-8 border-red-600" : ""
           }`}
           rows={1}
-          {...register(props.name)}
+          {...(register && register(name))}
         />
         {error && (
           <div className="-mt-1 text-sm text-red-600">{error.message}</div>
@@ -120,26 +127,32 @@ const MyTextArea = ({ label, register, error, ...props }: IMyTextAreaProps) => {
 
 interface IMySelectProps {
   id?: string;
-  name: string;
+  name?: string;
   label?: string;
   children: JSX.Element | JSX.Element[];
-  register: UseFormRegister<any>;
+  register?: UseFormRegister<any>;
   error?: FieldError;
 }
 
-const MySelect = ({ label, register, error, ...props }: IMySelectProps) => {
+const MySelect = ({
+  label,
+  register,
+  error,
+  name = "",
+  ...props
+}: IMySelectProps) => {
   return (
     <div className="flex w-full flex-col gap-1">
       {label && (
-        <label className="" htmlFor={props.id || props.name}>
+        <label className="" htmlFor={props.id || name}>
           <T>{label}</T>
         </label>
       )}
       <div>
         <div>
           <select
-            {...register(props.name)}
-            className={`w-full rounded border-r-8 px-2 py-2 dark:border-neutral-700 dark:bg-neutral-700 dark:text-neutral-100 ${
+            {...(register && register(name))}
+            className={`w-full rounded border-r-8 border-neutral-100 bg-neutral-100 px-2 py-2  dark:border-neutral-700 dark:bg-neutral-700 dark:text-neutral-100 ${
               error ? "border-l-8 border-red-600" : ""
             }`}
           >
