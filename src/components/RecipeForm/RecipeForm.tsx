@@ -130,7 +130,7 @@ const RecipeForm = ({ recipe }: Props) => {
               errors={errors}
             />
           </div>
-          <div className="space-x-4 text-right">
+          <div className="mt-4 space-x-4 text-right">
             <Button
               type="submit"
               loading={isLoading}
@@ -151,7 +151,7 @@ const RecipeForm = ({ recipe }: Props) => {
                 </Button>
                 <Button
                   onClick={() => setIsOpen(true)}
-                  className="bg-red-600 dark:bg-red-800"
+                  className="bg-red-600 text-white dark:bg-red-800"
                   loading={isLoading}
                   disabled={isLoading}
                 >
@@ -184,7 +184,7 @@ const RecipeForm = ({ recipe }: Props) => {
         footer={
           <Button
             onClick={() => deleteRecipe({ id: recipe?.id || "" })}
-            className="bg-red-600 dark:bg-red-800"
+            className="bg-red-600 text-white dark:bg-red-800"
             loading={isLoading}
             disabled={isLoading}
           >

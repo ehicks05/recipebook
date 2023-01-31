@@ -2,6 +2,7 @@ import React from "react";
 import { Auth, ThemeSupa } from "@supabase/auth-ui-react";
 import { Button, Dialog, T } from "components/core";
 import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
+import { useDarkMode } from "usehooks-ts";
 
 interface Props {
   children: JSX.Element;
@@ -36,6 +37,7 @@ interface AuthDialogProps {
 
 const AuthDialog = ({ isOpen, hideModal }: AuthDialogProps) => {
   const supabase = useSupabaseClient();
+  const { isDarkMode } = useDarkMode();
 
   return (
     <Dialog
@@ -46,7 +48,7 @@ const AuthDialog = ({ isOpen, hideModal }: AuthDialogProps) => {
           <Auth
             supabaseClient={supabase}
             appearance={{ theme: ThemeSupa }}
-            theme="dark"
+            theme={isDarkMode ? "dark" : undefined}
             providers={["discord"]}
             socialLayout="horizontal"
           />
