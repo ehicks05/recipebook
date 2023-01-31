@@ -1,4 +1,5 @@
-import { HiCheckCircle, HiXCircle } from "react-icons/hi";
+import type { ReactNode } from "react";
+import { HiCheckCircle, HiInformationCircle, HiXCircle } from "react-icons/hi";
 
 const VARIANTS = {
   error: {
@@ -7,6 +8,13 @@ const VARIANTS = {
     description: "text-red-700 dark:text-red-200",
     icon: "text-red-600 dark:text-red-300",
     Icon: HiXCircle,
+  },
+  info: {
+    background: "bg-sky-100 dark:bg-sky-900",
+    title: "text-sky-800 dark:text-sky-100",
+    description: "text-sky-700 dark:text-sky-200",
+    icon: "text-sky-600 dark:text-sky-300",
+    Icon: HiInformationCircle,
   },
   success: {
     background: "bg-green-100 dark:bg-green-900",
@@ -21,12 +29,14 @@ interface Props {
   variant: keyof typeof VARIANTS;
   title: string;
   description?: string;
+  children?: ReactNode;
 }
 
 const Alert = ({
   title = "Something went wrong...",
   description,
   variant = "error",
+  children,
 }: Props) => {
   const { Icon, ...classes } = VARIANTS[variant];
   return (
@@ -35,7 +45,12 @@ const Alert = ({
         <Icon className={classes.icon} />
         <div className={classes.title}>{title}</div>
       </div>
-      <div className={`pl-7 ${classes.description}`}>{description}</div>
+      {description && (
+        <div className={`pl-7 ${classes.description}`}>{description}</div>
+      )}
+      {children && (
+        <div className={`pl-7 ${classes.description}`}>{children}</div>
+      )}
     </div>
   );
 };
