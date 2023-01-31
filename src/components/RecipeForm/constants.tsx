@@ -19,7 +19,7 @@ type FormRecipe = Omit<
 > & {
   ingredients: FormIngredient[];
   directions: FormDirection[];
-  author: Record<string, string>;
+  // author: Record<string, string>;
 };
 
 const DEFAULT_INGREDIENT: FormIngredient = {
@@ -36,7 +36,7 @@ const DEFAULT_RECIPE: FormRecipe = {
   cookingTime: "4",
   servings: 1,
   course: "",
-  author: { id: "", username: "unknown", displayName: "Unknown" },
+  // author: { id: "", username: "unknown", displayName: "Unknown" },
   ingredients: [DEFAULT_INGREDIENT],
   directions: [DEFAULT_DIRECTION],
 };
