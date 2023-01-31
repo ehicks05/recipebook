@@ -1,12 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
-import { Button, Loading, T, Toggle } from "components/core";
+import { Button, Loading, MyInput, T, Toggle } from "components/core";
 import RecipeCard, { RecipeCardLandscape, RecipeCardOld } from "./RecipeCard";
 import { api } from "utils/api";
 import type { CompleteRecipe } from "server/api/routers/example";
 import { useUser } from "@supabase/auth-helpers-react";
-import { MyInput } from "components/RecipeForm/components/StyledInputs";
 
 interface Props {
   recipes: CompleteRecipe[];

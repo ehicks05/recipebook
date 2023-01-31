@@ -1,6 +1,5 @@
 import React from "react";
 import TextareaAutosize from "react-textarea-autosize";
-import type { IconType } from "react-icons";
 import { T } from "components/core";
 import type { FieldError, UseFormRegister } from "react-hook-form";
 
@@ -47,30 +46,6 @@ const MyInput = ({
         {leftIcon && <span className="">{leftIcon}</span>}
         {error && <div className="text-sm text-red-600">{error.message}</div>}
       </div>
-    </div>
-  );
-};
-
-export interface IInputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
-  LeftIcon?: IconType;
-}
-
-const Input = ({ className = "", LeftIcon, ...props }: IInputProps) => {
-  return (
-    <div
-      className={`flex w-full items-center bg-neutral-100 dark:bg-neutral-700 dark:text-neutral-100 ${className}`}
-    >
-      {LeftIcon && (
-        <div className="p-2">
-          <LeftIcon className="text-lg text-neutral-400" />
-        </div>
-      )}
-      <input
-        type={props.type || "text"}
-        className={`w-full border-none dark:bg-neutral-700 dark:text-neutral-100 ${className}`}
-        {...props}
-      />
     </div>
   );
 };
@@ -164,4 +139,4 @@ const MySelect = ({
   );
 };
 
-export { Input, MyInput, MyHiddenInput, MyTextArea, MySelect };
+export { MyInput, MyHiddenInput, MyTextArea, MySelect };

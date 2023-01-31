@@ -1,7 +1,6 @@
-import { T } from "components/core";
+import { T, MyInput, MySelect, MyTextArea } from "components/core";
 import type { FieldErrors, UseFormRegister } from "react-hook-form";
 import type { FormRecipe } from "../constants";
-import { MyInput, MySelect, MyTextArea } from "./StyledInputs";
 
 interface Props {
   errors: FieldErrors<FormRecipe>;

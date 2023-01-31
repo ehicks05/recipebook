@@ -1,4 +1,4 @@
-import { T, Button } from "components/core";
+import { T, Button, MyHiddenInput, MyInput, MySelect } from "components/core";
 import type {
   UseFieldArrayReturn,
   UseFormRegister,
@@ -7,7 +7,6 @@ import type {
 import { HiMinus, HiPlus } from "react-icons/hi";
 import type { FormRecipe } from "../constants";
 import { UNIT_OPTIONS, DEFAULT_INGREDIENT } from "../constants";
-import { MyHiddenInput, MyInput, MySelect } from "./StyledInputs";
 
 interface Props {
   ingredientsFieldArray: UseFieldArrayReturn<FormRecipe, "ingredients", "id">;

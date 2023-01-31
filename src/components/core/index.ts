@@ -10,6 +10,7 @@ import Loading from "./Loading";
 import T from "./T";
 import Toggle from "./Toggle";
 import RecipeStat from "./RecipeStat";
+import { MyHiddenInput, MyInput, MySelect, MyTextArea } from "./StyledInputs";
 
 export {
   Alert,
@@ -21,6 +22,10 @@ export {
   Difficulty,
   Hero,
   Loading,
+  MyHiddenInput,
+  MyInput,
+  MySelect,
+  MyTextArea,
   T,
   Toggle,
   RecipeStat,

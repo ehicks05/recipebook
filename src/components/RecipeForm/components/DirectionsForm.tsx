@@ -1,4 +1,4 @@
-import { T, Button } from "components/core";
+import { T, MyHiddenInput, MyTextArea, Button } from "components/core";
 import type {
   FieldErrors,
   UseFieldArrayReturn,
@@ -7,7 +7,6 @@ import type {
 import { HiMinus, HiPlus } from "react-icons/hi";
 import type { FormRecipe } from "../constants";
 import { DEFAULT_DIRECTION } from "../constants";
-import { MyHiddenInput, MyTextArea } from "./StyledInputs";
 
 interface Props {
   directionsFieldArray: UseFieldArrayReturn<FormRecipe, "directions", "id">;

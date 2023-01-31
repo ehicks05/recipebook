@@ -1,10 +1,9 @@
 import { type NextPage } from "next";
 import { api } from "utils/api";
-import { Alert, Container, Loading, T } from "components/core";
+import { Alert, Container, Loading, T, MyInput } from "components/core";
 import Recipe from "components/Recipe/Recipe";
 import { useRouter } from "next/router";
 import { parseLdJsonRecipe } from "utils/recipe-import";
-import { MyInput } from "components/RecipeForm/components/StyledInputs";
 
 const RecipeImportPage: NextPage = () => {
   const router = useRouter();
