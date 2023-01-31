@@ -1,12 +1,12 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { useForm, useFieldArray } from "react-hook-form";
 import type { SubmitHandler, SubmitErrorHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { api } from "utils/api";
-import { Container, Button, Hero, Alert } from "components/core";
+import { Container, Button, Hero, Alert, T, Dialog } from "components/core";
 import type { FormRecipe } from "./constants";
 import { DEFAULT_RECIPE, RECIPE_SCHEMA } from "./constants";
 import { IngredientsForm, DirectionsForm } from "./components";
@@ -34,14 +34,27 @@ const RecipeForm = ({ recipe }: Props) => {
 
   const {
     mutate: createRecipe,
-    isLoading,
-    error,
+    isLoading: isCreateRecipeLoading,
+    error: isCreateRecipeError,
   } = api.example.createRecipe.useMutation({
     onSuccess: async (data) => {
       console.log({ data });
       await router.push(`/recipe/${data.id}`);
     },
   });
+
+  const {
+    mutate: deleteRecipe,
+    isLoading: isDeleteRecipeLoading,
+    error: isDeleteRecipeError,
+  } = api.example.deleteRecipe.useMutation({
+    onSuccess: async (data) => {
+      console.log({ data });
+      await router.push(`/create-recipe`);
+    },
+  });
+
+  const [isOpen, setIsOpen] = useState(false);
 
   const onSubmit: SubmitHandler<FormRecipe> = (data, e) => {
     e?.preventDefault();
@@ -54,15 +67,20 @@ const RecipeForm = ({ recipe }: Props) => {
     console.log({ errors });
   };
 
+  const isLoading =
+    isSubmitting || isCreateRecipeLoading || isDeleteRecipeLoading;
+
   return (
     <>
       <Hero title={`${recipe ? "Edit" : "Create"} Recipe`} />
-      {error && (
-        <Alert
-          variant="error"
-          title="Unable to create recipe"
-          description={error.message}
-        />
+      {isCreateRecipeError && (
+        <div className="m-3">
+          <Alert
+            variant="error"
+            title="Unable to create recipe"
+            description={isCreateRecipeError.message}
+          />
+        </div>
       )}
       <Container>
         {/* https://github.com/react-hook-form/react-hook-form/discussions/8020 */}
@@ -71,8 +89,8 @@ const RecipeForm = ({ recipe }: Props) => {
           <div className="text-right">
             <Button
               type="submit"
-              loading={isSubmitting || isLoading}
-              disabled={!isValid || isSubmitting || isLoading}
+              loading={isLoading}
+              disabled={!isValid || isLoading}
             >
               {`${recipe ? "Save" : "Create Recipe "}`}
             </Button>
@@ -91,7 +109,48 @@ const RecipeForm = ({ recipe }: Props) => {
             />
           </div>
         </form>
+        {recipe && (
+          <div className="text-right">
+            <Button
+              onClick={() => setIsOpen(true)}
+              className="bg-red-600 dark:bg-red-600"
+              loading={isLoading}
+              disabled={isLoading}
+            >
+              Delete
+            </Button>
+          </div>
+        )}
       </Container>
+      <Dialog
+        open={isOpen}
+        onClose={() => setIsOpen(false)}
+        body={
+          <>
+            {isDeleteRecipeError && (
+              <Alert
+                variant="error"
+                title="Unable to delete recipe"
+                description={isDeleteRecipeError.message}
+              />
+            )}
+            <T>
+              Are you sure you want to delete{" "}
+              <span className="font-bold">{recipe?.name}</span>?
+            </T>
+          </>
+        }
+        footer={
+          <Button
+            onClick={() => deleteRecipe({ id: recipe?.id || "" })}
+            className="bg-red-600 dark:bg-red-600"
+            loading={isLoading}
+            disabled={isLoading}
+          >
+            Delete
+          </Button>
+        }
+      />
     </>
   );
 };
