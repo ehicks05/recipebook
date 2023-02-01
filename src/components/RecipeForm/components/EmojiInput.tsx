@@ -6,7 +6,7 @@ import { Controller } from "react-hook-form";
 import type { FormRecipe } from "../constants";
 import emojiData from "@emoji-mart/data";
 
-const EmojiInput = ({ control }: { control: Control<FormRecipe, any> }) => {
+const EmojiInput = ({ control }: { control: Control<FormRecipe> }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (

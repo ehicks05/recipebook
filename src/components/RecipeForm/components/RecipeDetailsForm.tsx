@@ -6,7 +6,7 @@ import EmojiInput from "./EmojiInput";
 interface Props {
   errors: FieldErrors<FormRecipe>;
   register: UseFormRegister<FormRecipe>;
-  control: Control<FormRecipe, any>;
+  control: Control<FormRecipe>;
 }
 
 const RecipeDetailsForm = ({ errors, register, control }: Props) => {

@@ -136,7 +136,7 @@ const RecipeForm = ({ recipe }: Props) => {
       toast.dismiss(id);
     }
 
-    return () => toast.dismiss(id || "");
+    return () => toast.dismiss(id);
   }, [isDirty]);
 
   const onSubmit: SubmitHandler<FormRecipe> = (data, e) => {
