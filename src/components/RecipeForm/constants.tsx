@@ -48,7 +48,7 @@ const DEFAULT_RECIPE: FormRecipe = {
       unit: "tsp",
     },
     {
-      name: "sample ingredient",
+      name: "sample ingredient 2",
       quantity: "1",
       unit: "tsp",
     },

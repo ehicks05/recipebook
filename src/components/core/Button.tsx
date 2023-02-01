@@ -3,24 +3,42 @@ import clsx from "clsx";
 import React from "react";
 import { FaSpinner } from "react-icons/fa";
 
+const VARIANTS = {
+  default: clsx(`bg-neutral-100 dark:bg-neutral-700 dark:text-neutral-200`),
+  error: clsx(`text-white bg-red-600 dark:bg-red-800`),
+} as const;
+
 export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: keyof typeof VARIANTS;
   loading?: boolean;
   children?: React.ReactNode;
 }
 
-const Button = ({ loading, className = "", children, ...props }: Props) => {
+const baseClasses = `rounded-sm border border-transparent py-2 px-3 shadow`;
+
+const Button = ({
+  variant = "default",
+  loading,
+  className = "",
+  children,
+  type = "button",
+  disabled,
+  ...props
+}: Props) => {
+  const variantClasses = VARIANTS[variant];
+  const conditionalClasses = {
+    "opacity-50": disabled || loading,
+    "hover:border-neutral-300 dark:hover:border-neutral-500": !disabled,
+  };
+
   return (
     <button
-      type={props.type || "button"}
-      disabled={props.disabled || loading}
+      type={type}
+      disabled={disabled || loading}
       className={clsx(
-        `rounded-sm border border-transparent bg-neutral-100 py-2 px-3 shadow`,
-        "dark:bg-neutral-700 dark:text-neutral-200",
-        {
-          "opacity-50": props.disabled || loading,
-          "hover:border-neutral-300 dark:hover:border-neutral-500":
-            !props.disabled,
-        },
+        baseClasses,
+        conditionalClasses,
+        variantClasses,
         className
       )}
       {...props}
