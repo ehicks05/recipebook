@@ -11,6 +11,7 @@ import { api } from "../utils/api";
 import Footer from "components/Footer";
 import Nav from "components/Nav";
 import "../styles/globals.css";
+import { Toaster } from "react-hot-toast";
 
 const ubuntu = Ubuntu({
   weight: "400",
@@ -59,6 +60,7 @@ const MyApp: AppType<{ initialSession: Session }> = ({
         <Nav />
         <Component {...pageProps} />
         <div className="flex-grow"></div>
+        <Toaster position="bottom-right" reverseOrder={false} />
         <Footer />
       </div>
     </SessionContextProvider>
