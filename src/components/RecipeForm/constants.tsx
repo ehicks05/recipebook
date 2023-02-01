@@ -33,12 +33,13 @@ const DEFAULT_DIRECTION: FormDirection = {
 };
 const DEFAULT_RECIPE: FormRecipe = {
   name: "Your new recipe!",
-  description: "Add a description here.",
+  description: "",
   emoji: "\uD83E\uDD58",
   difficulty: 1,
   cookingTime: "15",
   servings: 4,
   course: "",
+  isPublished: false,
   // author: { id: "", username: "unknown", displayName: "Unknown" },
   ingredients: [
     {

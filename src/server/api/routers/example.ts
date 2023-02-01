@@ -113,6 +113,23 @@ export const exampleRouter = createTRPCRouter({
       return updatedRecipe;
     }),
 
+  updatePublished: protectedProcedure
+    .input(z.object({ id: z.string(), isPublished: z.boolean() }))
+    .mutation(async ({ ctx, input }) => {
+      const { id, isPublished } = input;
+      const userId = ctx.session.user.id;
+      const recipe = await ctx.prisma.recipe.findUnique({ where: { id } });
+      if (userId !== recipe?.authorId) {
+        throw new Error("Unauthorized");
+      }
+
+      return ctx.prisma.recipe.update({
+        where: { id },
+        data: { isPublished },
+        ...completeRecipeInclude,
+      });
+    }),
+
   deleteRecipe: protectedProcedure
     .input(z.object({ id: z.string() }))
     .mutation(async ({ ctx, input: { id } }) => {
