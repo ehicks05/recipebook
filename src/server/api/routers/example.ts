@@ -8,8 +8,9 @@ import { RECIPE_SCHEMA } from "components/RecipeForm/constants";
 export const exampleRouter = createTRPCRouter({
   findRecipes: publicProcedure.query(({ ctx }) => {
     return ctx.prisma.recipe.findMany({
-      ...completeRecipeInclude,
+      where: { isPublished: true },
       orderBy: { createdAt: "desc" },
+      ...completeRecipeInclude,
     });
   }),
 
