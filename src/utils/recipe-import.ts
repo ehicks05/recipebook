@@ -47,6 +47,7 @@ const schemaOrgRecipeToRecipeBookRecipe = (
     servings: Number(recipe.recipeYield?.toString()) || 1,
     cookingTime: recipe.totalTime?.toString().replace("PT", "") || "missin",
     course: recipe.recipeCategory?.toString() || "missin",
+    isPublished: false,
     ingredients: ((recipe.recipeIngredient || []) as string[])
       .map(parseIngredient)
       .map((i, index) => ({
