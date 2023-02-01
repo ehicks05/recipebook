@@ -19,4 +19,6 @@ const emojiToImage: Record<string, string> = {
   "🍲": `https://images.unsplash.com/photo-1591386767153-987783380885?${params}`,
 };
 
-export { emojiToImage };
+const defaultImage = `https://images.unsplash.com/photo-1591386767153-987783380885?${params}`;
+
+export { emojiToImage, defaultImage };

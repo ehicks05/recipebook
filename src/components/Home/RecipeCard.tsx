@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Card, CookingTime, T } from "components/core";
-import { emojiToImage } from "./constants";
+import { defaultImage, emojiToImage } from "./constants";
 import type { CompleteRecipe } from "server/api/routers/example";
 import FavoriteButton from "components/Home/FavoriteButton";
 import { useUser } from "@supabase/auth-helpers-react";
@@ -35,7 +35,7 @@ const RecipeCard = ({
           <Link href={`/recipe/${id}`}>
             <Image
               className="h-48 w-full rounded-t object-cover"
-              src={emojiToImage[emoji] || ""}
+              src={emojiToImage[emoji] || defaultImage}
               alt="recipe"
               height={240}
               width={300}
@@ -75,7 +75,7 @@ function RecipeCardLandscape({
         <Link href={`/recipe/${id}`} className="relative -m-4 mr-0 h-56 w-full">
           <Image
             className="h-56 w-full rounded-l object-cover"
-            src={emojiToImage[emoji] || ""}
+            src={emojiToImage[emoji] || defaultImage}
             alt="recipe"
             height={240}
             width={300}
