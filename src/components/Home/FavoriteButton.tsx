@@ -1,9 +1,10 @@
 import React from "react";
 import { HiHeart, HiOutlineHeart } from "react-icons/hi";
 
-import { Button } from "components/core";
+import { Alert, Button } from "components/core";
 import { api } from "utils/api";
 import { useUser } from "@supabase/auth-helpers-react";
+import toast from "react-hot-toast";
 
 interface IProps {
   recipeId: string;
@@ -21,23 +22,40 @@ function FavoriteButton({ recipeId, className }: IProps) {
   const deleteUserFavorite = api.example.deleteUserFavorite.useMutation();
 
   const favoriteIds = userFavorites.data?.map((o) => o.recipeId) || [];
-  const Icon = favoriteIds.includes(recipeId) ? HiHeart : HiOutlineHeart;
+  const isFavorite = favoriteIds.includes(recipeId);
+  const Icon = isFavorite ? HiHeart : HiOutlineHeart;
 
   const handleClick = () => {
-    if (favoriteIds.includes(recipeId)) {
+    if (isFavorite) {
       deleteUserFavorite.mutate(
         { recipeId },
         {
-          onSuccess: () =>
-            void utils.example.findFavoriteRecipesByUserId.invalidate(),
+          onSuccess: () => {
+            void utils.example.findFavoriteRecipesByUserId.invalidate();
+            toast.custom((t) => (
+              <Alert
+                variant="success"
+                title={`Recipe removed from favorites!`}
+                className={t.visible ? "animate-enter" : "animate-leave"}
+              />
+            ));
+          },
         }
       );
     } else {
       createUserFavorite.mutate(
         { recipeId },
         {
-          onSuccess: () =>
-            void utils.example.findFavoriteRecipesByUserId.invalidate(),
+          onSuccess: () => {
+            void utils.example.findFavoriteRecipesByUserId.invalidate();
+            toast.custom((t) => (
+              <Alert
+                variant="success"
+                title={`Recipe added to favorites!`}
+                className={t.visible ? "animate-enter" : "animate-leave"}
+              />
+            ));
+          },
         }
       );
     }
