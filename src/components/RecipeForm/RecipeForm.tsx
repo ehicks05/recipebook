@@ -140,7 +140,7 @@ const RecipeForm = ({ recipe }: Props) => {
               errors={errors}
             />
           </div>
-          <div className="mt-4 space-x-4 text-right">
+          <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
             <Button
               type="submit"
               loading={isLoading}
