@@ -73,6 +73,7 @@ const schemaOrgRecipeToRecipeBookRecipe = (
   };
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const deepFind = (json: any, type: string): any => {
   const result = find(
     json,

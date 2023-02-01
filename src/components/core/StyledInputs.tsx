@@ -1,22 +1,28 @@
 import React from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import { T } from "components/core";
-import type { FieldError, UseFormRegister } from "react-hook-form";
+import type {
+  FieldError,
+  FieldValues,
+  Path,
+  UseFormRegister,
+} from "react-hook-form";
 
-export interface IMyInputProps
+// https://github.com/react-hook-form/react-hook-form/discussions/4426#discussioncomment-623148
+export interface IMyInputProps<T extends FieldValues>
   extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   leftIcon?: JSX.Element;
   containerClassName?: string;
   name?: string;
-  register?: UseFormRegister<any>;
+  register?: UseFormRegister<T>;
   error?: FieldError;
 }
 
 /**
- * Use with react-hook-form. Includes the label and error ui.
+ * Includes the label and error ui. Works with react-hook-form.
  */
-const MyInput = ({
+const MyInput = <T extends FieldValues>({
   name = "",
   className = "",
   label,
@@ -25,7 +31,7 @@ const MyInput = ({
   register,
   error,
   ...props
-}: IMyInputProps) => {
+}: IMyInputProps<T>) => {
   return (
     <div className={`flex w-full flex-col gap-1 ${containerClassName}`}>
       {label && (
@@ -40,7 +46,10 @@ const MyInput = ({
             error ? "border-l-8 border-red-600" : ""
           }`}
           {...(register &&
-            register(name, { valueAsNumber: props.type === "number" }))}
+            // as Path<T>: https://github.com/react-hook-form/documentation/issues/670
+            register(name as Path<T>, {
+              valueAsNumber: props.type === "number",
+            }))}
           {...props}
         />
         {leftIcon && <span className="">{leftIcon}</span>}
@@ -60,22 +69,22 @@ const MyHiddenInput = ({ ...props }: IMyHiddenInputProps) => {
   return <input type="hidden" {...field} {...props} />;
 };
 
-interface IMyTextAreaProps {
+interface IMyTextAreaProps<T extends FieldValues> {
   id?: string;
   name?: string;
   label?: string;
   placeholder: string;
-  register?: UseFormRegister<any>;
+  register?: UseFormRegister<T>;
   error?: FieldError;
 }
 
-const MyTextArea = ({
+const MyTextArea = <T extends FieldValues>({
   label,
   register,
   error,
   name = "",
   ...props
-}: IMyTextAreaProps) => {
+}: IMyTextAreaProps<T>) => {
   return (
     <div className="flex w-full flex-col gap-1">
       {label && (
@@ -90,7 +99,7 @@ const MyTextArea = ({
             error ? "border-l-8 border-red-600" : ""
           }`}
           rows={1}
-          {...(register && register(name))}
+          {...(register && register(name as Path<T>))}
         />
         {error && (
           <div className="-mt-1 text-sm text-red-600">{error.message}</div>
@@ -100,22 +109,22 @@ const MyTextArea = ({
   );
 };
 
-interface IMySelectProps {
+interface IMySelectProps<T extends FieldValues> {
   id?: string;
   name?: string;
   label?: string;
   children: JSX.Element | JSX.Element[];
-  register?: UseFormRegister<any>;
+  register?: UseFormRegister<T>;
   error?: FieldError;
 }
 
-const MySelect = ({
+const MySelect = <T extends FieldValues>({
   label,
   register,
   error,
   name = "",
   ...props
-}: IMySelectProps) => {
+}: IMySelectProps<T>) => {
   return (
     <div className={`flex min-w-fit flex-col gap-1`}>
       {label && (
@@ -124,7 +133,7 @@ const MySelect = ({
         </label>
       )}
       <select
-        {...(register && register(name))}
+        {...(register && register(name as Path<T>))}
         className={`w-full rounded border-r-8 border-neutral-100 bg-neutral-100 px-2 py-2  dark:border-neutral-700 dark:bg-neutral-700 dark:text-neutral-100 ${
           error ? "border-l-8 border-red-600" : ""
         }`}
