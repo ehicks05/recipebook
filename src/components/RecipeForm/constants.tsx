@@ -23,26 +23,37 @@ type FormRecipe = Omit<
 };
 
 const DEFAULT_INGREDIENT: FormIngredient = {
-  name: "sample ingredient",
-  quantity: "1",
-  unit: "tsp",
+  name: "",
+  quantity: "",
+  unit: "",
 };
 const DEFAULT_DIRECTION: FormDirection = {
   index: 0,
-  text: "Add a step here...",
+  text: "",
 };
 const DEFAULT_RECIPE: FormRecipe = {
   name: "Your new recipe!",
-  description: "Add a description here",
+  description: "Add a description here.",
   emoji: "\uD83E\uDD58",
   difficulty: 1,
   cookingTime: "15",
   servings: 4,
   course: "",
   // author: { id: "", username: "unknown", displayName: "Unknown" },
-  ingredients: [DEFAULT_INGREDIENT, DEFAULT_INGREDIENT],
+  ingredients: [
+    {
+      name: "sample ingredient",
+      quantity: "1",
+      unit: "tsp",
+    },
+    {
+      name: "sample ingredient",
+      quantity: "1",
+      unit: "tsp",
+    },
+  ],
   directions: [
-    DEFAULT_DIRECTION,
+    { index: 0, text: "Add a step here..." },
     { index: 1, text: "And another step here..." },
   ],
 };
