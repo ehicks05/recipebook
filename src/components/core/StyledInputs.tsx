@@ -116,25 +116,21 @@ const MySelect = ({
   ...props
 }: IMySelectProps) => {
   return (
-    <div className="flex w-full flex-col gap-1">
+    <div className={`flex min-w-fit flex-col gap-1`}>
       {label && (
         <label className="" htmlFor={props.id || name}>
           <T>{label}</T>
         </label>
       )}
-      <div>
-        <div>
-          <select
-            {...(register && register(name))}
-            className={`w-full rounded border-r-8 border-neutral-100 bg-neutral-100 px-2 py-2  dark:border-neutral-700 dark:bg-neutral-700 dark:text-neutral-100 ${
-              error ? "border-l-8 border-red-600" : ""
-            }`}
-          >
-            {props.children}
-          </select>
-        </div>
-        {error && <div className="text-sm text-red-600">{error.message}</div>}
-      </div>
+      <select
+        {...(register && register(name))}
+        className={`w-full rounded border-r-8 border-neutral-100 bg-neutral-100 px-2 py-2  dark:border-neutral-700 dark:bg-neutral-700 dark:text-neutral-100 ${
+          error ? "border-l-8 border-red-600" : ""
+        }`}
+      >
+        {props.children}
+      </select>
+      {error && <div className="text-sm text-red-600">{error.message}</div>}
     </div>
   );
 };
