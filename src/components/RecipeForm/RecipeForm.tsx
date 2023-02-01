@@ -12,7 +12,7 @@ import { DEFAULT_RECIPE, RECIPE_SCHEMA } from "./constants";
 import { IngredientsForm, DirectionsForm } from "./components";
 import RecipeDetailsForm from "./components/RecipeDetailsForm";
 import type { CompleteRecipe } from "server/api/routers/example";
-import { HiEye, HiFolder, HiTrash } from "react-icons/hi";
+import { HiTrash } from "react-icons/hi";
 
 interface Props {
   recipe?: CompleteRecipe;
@@ -25,7 +25,7 @@ const RecipeForm = ({ recipe }: Props) => {
     register,
     handleSubmit,
     watch,
-    formState: { errors, isSubmitting, isValid },
+    formState: { errors, isSubmitting, isValid, isDirty },
   } = useForm({
     defaultValues: recipe || DEFAULT_RECIPE,
     mode: "all",
@@ -68,7 +68,7 @@ const RecipeForm = ({ recipe }: Props) => {
     onSuccess: async (data) => {
       console.log({ data });
       await utils.example.findRecipes.invalidate();
-      await router.push(`/create-recipe`);
+      await router.push(`/`);
     },
   });
 
@@ -114,6 +114,11 @@ const RecipeForm = ({ recipe }: Props) => {
           />
         </div>
       )}
+      {recipe && isDirty && (
+        <div className="m-3">
+          <Alert variant="info" title={`Form has unsaved changes`} />
+        </div>
+      )}
       <Container>
         {/* https://github.com/react-hook-form/react-hook-form/discussions/8020 */}
         {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
@@ -139,10 +144,9 @@ const RecipeForm = ({ recipe }: Props) => {
             <Button
               type="submit"
               loading={isLoading}
-              disabled={!isValid || isLoading}
+              disabled={!isValid || isLoading || (recipe && !isDirty)}
             >
               {`${recipe ? "Save" : "Create Recipe "}`}
-              <HiFolder />
             </Button>
             {recipe && (
               <>
@@ -152,7 +156,13 @@ const RecipeForm = ({ recipe }: Props) => {
                   disabled={isLoading}
                 >
                   View
-                  <HiEye />
+                </Button>
+                <Button
+                  onClick={() => alert("coming soon!")}
+                  loading={isLoading}
+                  disabled={isLoading}
+                >
+                  Publish / Unpublish
                 </Button>
                 <Button
                   onClick={() => setIsOpen(true)}
