@@ -23,22 +23,28 @@ type FormRecipe = Omit<
 };
 
 const DEFAULT_INGREDIENT: FormIngredient = {
-  name: "salt",
+  name: "sample ingredient",
   quantity: "1",
   unit: "tsp",
 };
-const DEFAULT_DIRECTION: FormDirection = { index: 0, text: "hey" };
+const DEFAULT_DIRECTION: FormDirection = {
+  index: 0,
+  text: "Add a step here...",
+};
 const DEFAULT_RECIPE: FormRecipe = {
-  name: "eric test",
-  description: "test",
+  name: "Your new recipe!",
+  description: "Add a description here",
   emoji: "\uD83E\uDD58",
   difficulty: 1,
-  cookingTime: "4",
-  servings: 1,
+  cookingTime: "15",
+  servings: 4,
   course: "",
   // author: { id: "", username: "unknown", displayName: "Unknown" },
-  ingredients: [DEFAULT_INGREDIENT],
-  directions: [DEFAULT_DIRECTION],
+  ingredients: [DEFAULT_INGREDIENT, DEFAULT_INGREDIENT],
+  directions: [
+    DEFAULT_DIRECTION,
+    { index: 1, text: "And another step here..." },
+  ],
 };
 
 const INGREDIENT_SCHEMA = z.object({
