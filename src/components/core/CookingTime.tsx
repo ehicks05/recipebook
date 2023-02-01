@@ -4,7 +4,7 @@ import { RecipeStat, T } from "./";
 
 const CookingTIme = ({ cookingTime }: { cookingTime: string }) => (
   <RecipeStat>
-    <HiOutlineClock size={28} className="dark:text-neutral-200" />
+    <HiOutlineClock size={24} className="dark:text-neutral-200" />
     <T className="text-sm font-semibold">{cookingTime}</T>
   </RecipeStat>
 );

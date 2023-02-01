@@ -30,6 +30,7 @@ interface Props {
   title: string;
   description?: string;
   children?: ReactNode;
+  className?: string;
 }
 
 const Alert = ({
@@ -37,10 +38,11 @@ const Alert = ({
   description,
   variant = "error",
   children,
+  className = "",
 }: Props) => {
   const { Icon, ...classes } = VARIANTS[variant];
   return (
-    <div className={`rounded p-3 ${classes.background}`}>
+    <div className={`rounded p-3 ${classes.background} ${className}`}>
       <div className="flex items-center gap-2 text-lg font-semibold">
         <Icon className={classes.icon} />
         <div className={classes.title}>{title}</div>

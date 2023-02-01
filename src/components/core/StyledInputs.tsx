@@ -85,6 +85,7 @@ const MyTextArea = ({
       )}
       <div className="">
         <TextareaAutosize
+          placeholder={props.placeholder}
           className={`w-full rounded bg-neutral-100 px-2 py-1.5 dark:bg-neutral-700 dark:text-neutral-100 ${
             error ? "border-l-8 border-red-600" : ""
           }`}

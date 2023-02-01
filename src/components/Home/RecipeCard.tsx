@@ -30,14 +30,14 @@ const RecipeCard = ({
 
   return (
     <Card className="transform border border-neutral-100 transition-all hover:shadow-md dark:border-neutral-700">
-      <div className="flex h-80 flex-col gap-4">
-        <div className="-m-4 mb-0 h-48">
+      <div className="flex h-96 flex-col gap-4">
+        <div className="-m-4 mb-0 h-60">
           <Link href={`/recipe/${id}`}>
             <Image
-              className="h-48 w-full rounded-t object-cover"
+              className="h-60 w-full rounded-t object-cover"
               src={emojiToImage[emoji] || defaultImage}
               alt="recipe"
-              height={240}
+              height={250}
               width={300}
             />
           </Link>
@@ -54,7 +54,7 @@ const RecipeCard = ({
               </div>
             </Link>
           </div>
-          {user && <FavoriteButton className="-mt-9" recipeId={id} />}
+          {user && <FavoriteButton className="-mt-9 -mr-2" recipeId={id} />}
         </div>
         <T className="text-sm line-clamp-2">{description}</T>
       </div>

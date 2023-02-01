@@ -24,7 +24,7 @@ const RecipeDetailsForm = ({ errors, register, control }: Props) => {
       <MyTextArea
         name="description"
         label="Description"
-        placeholder="Description"
+        placeholder="Add a description here"
         register={register}
         error={errors.description}
       />
@@ -43,7 +43,7 @@ const RecipeDetailsForm = ({ errors, register, control }: Props) => {
         <MyInput
           type="number"
           name="servings"
-          label="Serves"
+          label="Servings"
           placeholder="Servings"
           min="1"
           register={register}
@@ -58,8 +58,6 @@ const RecipeDetailsForm = ({ errors, register, control }: Props) => {
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
         </MySelect>
       </div>
       <EmojiInput control={control} />
