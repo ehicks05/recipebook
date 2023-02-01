@@ -31,12 +31,14 @@ const RecipeImportPage: NextPage = () => {
 
   return (
     <>
-      <Alert variant="info" title="What is this?">
-        <div className="max-w-prose">
-          On this page, you can enter a recipe from the web, and if it includes
-          web-friendly metadata, you will be able to see it here.
-        </div>
-      </Alert>
+      {!url && (
+        <Alert variant="info" title="What is this page?">
+          <div className="max-w-prose">
+            Here you can paste the url of a recipe from the web. If it includes
+            web-friendly metadata, you will be able to see it here.
+          </div>
+        </Alert>
+      )}
       <Container>
         <MyInput
           className="w-64 rounded px-2 py-1.5 dark:bg-neutral-700 dark:text-neutral-100 sm:w-96"
@@ -52,7 +54,7 @@ const RecipeImportPage: NextPage = () => {
       )}
       {isFetching && <Loading />}
       {recipe && <Recipe recipe={recipe} />}
-      {(error || (url && !recipeHtml)) && (
+      {(error || (url && !recipeHtml && !isFetching)) && (
         <div className="m-3">
           <Alert
             variant="error"
