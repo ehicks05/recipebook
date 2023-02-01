@@ -24,6 +24,7 @@ const RecipeForm = ({ recipe }: Props) => {
     control,
     register,
     handleSubmit,
+    watch,
     formState: { errors, isSubmitting, isValid },
   } = useForm({
     defaultValues: recipe || DEFAULT_RECIPE,
@@ -94,7 +95,7 @@ const RecipeForm = ({ recipe }: Props) => {
 
   return (
     <>
-      <Hero title={`${recipe ? "Edit" : "Create"} Recipe`} />
+      <Hero title={`${recipe ? "Edit" : "Create"} Recipe ${watch("emoji")}`} />
       {error && (
         <div className="m-3">
           <Alert
@@ -118,7 +119,11 @@ const RecipeForm = ({ recipe }: Props) => {
         {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
         <form onSubmit={handleSubmit(onSubmit, onError)}>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-7">
-            <RecipeDetailsForm register={register} errors={errors} />
+            <RecipeDetailsForm
+              control={control}
+              register={register}
+              errors={errors}
+            />
             <IngredientsForm
               ingredientsFieldArray={ingredientsFieldArray}
               register={register}

@@ -10,6 +10,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "@emoji-mart/data": "^1.1.2",
+    "@emoji-mart/react": "^1.1.1",
     "@headlessui/react": "^1.7.7",
     "@hookform/resolvers": "^2.9.10",
     "@next-auth/prisma-adapter": "^1.0.5",
@@ -28,6 +30,7 @@
     "axios": "^1.2.3",
     "cheerio": "^1.0.0-rc.12",
     "clsx": "^1.2.1",
+    "emoji-mart": "^5.5.2",
     "emoji-picker-react": "^4.4.7",
     "jsonpath-plus": "^7.2.0",
     "lodash": "^4.17.21",

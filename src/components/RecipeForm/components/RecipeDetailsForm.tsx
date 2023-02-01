@@ -1,13 +1,15 @@
 import { T, MyInput, MySelect, MyTextArea } from "components/core";
-import type { FieldErrors, UseFormRegister } from "react-hook-form";
+import type { Control, FieldErrors, UseFormRegister } from "react-hook-form";
 import type { FormRecipe } from "../constants";
+import EmojiInput from "./EmojiInput";
 
 interface Props {
   errors: FieldErrors<FormRecipe>;
   register: UseFormRegister<FormRecipe>;
+  control: Control<FormRecipe, any>;
 }
 
-const RecipeDetailsForm = ({ errors, register }: Props) => {
+const RecipeDetailsForm = ({ errors, register, control }: Props) => {
   return (
     <div className="flex flex-col gap-2 md:col-span-1 lg:col-span-2">
       <T className="text-lg font-semibold">Recipe Details</T>
@@ -60,24 +62,7 @@ const RecipeDetailsForm = ({ errors, register }: Props) => {
           <option value="5">5</option>
         </MySelect>
       </div>
-      <div className="flex flex-col gap-1">
-        <MyInput
-          name="emoji"
-          label="Emoji"
-          placeholder="Emoji"
-          register={register}
-          error={errors.emoji}
-        />
-        {/* <label className="label">
-          <T>Emoji</T>
-        </label>
-        <div className="control">
-          <EmojiSelector
-            data={{ value: values.emoji }}
-            updateEmoji={(code) => setFieldValue("emoji", code)}
-          />
-        </div> */}
-      </div>
+      <EmojiInput control={control} />
     </div>
   );
 };
