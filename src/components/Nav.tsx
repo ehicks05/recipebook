@@ -9,10 +9,7 @@ import AuthDialog from "components/AuthDialog";
 import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/router";
 import Image from "next/image";
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
-}
+import clsx from "clsx";
 
 const Nav = () => {
   const user = useUser();
@@ -40,10 +37,9 @@ const Nav = () => {
       {({ active }) => (
         <div
           onClick={() => setShowAuthModal(true)}
-          className={classNames(
-            active ? "bg-neutral-100" : "",
-            "block px-4 py-2 text-sm text-neutral-700"
-          )}
+          className={clsx("block px-4 py-2 text-sm text-neutral-700", {
+            "bg-neutral-100": active,
+          })}
         >
           Log In
         </div>
@@ -60,10 +56,10 @@ const Nav = () => {
       {({ active }) => (
         <Link
           href={item.to}
-          className={classNames(
-            active ? "bg-neutral-100" : "",
-            "block px-4 py-2 text-sm text-neutral-700"
-          )}
+          className={clsx("block px-4 py-2 text-sm", {
+            "bg-neutral-100 dark:bg-neutral-700 hover:dark:bg-neutral-600":
+              active,
+          })}
           onClick={item.onClick}
         >
           {item.label}
@@ -117,11 +113,11 @@ const Nav = () => {
                           <Link
                             key={item.name}
                             href={item.href}
-                            className={classNames(
+                            className={clsx(
+                              "rounded-md px-3 py-2 text-sm font-medium",
                               item.current
                                 ? "bg-neutral-900 text-white"
-                                : "text-neutral-300 hover:bg-neutral-700 hover:text-white",
-                              "rounded-md px-3 py-2 text-sm font-medium"
+                                : "text-neutral-300 hover:bg-neutral-700 hover:text-white"
                             )}
                             aria-current={item.current ? "page" : undefined}
                           >
@@ -149,7 +145,7 @@ const Nav = () => {
                       leaveFrom="transform opacity-100 scale-100"
                       leaveTo="transform opacity-0 scale-95"
                     >
-                      <Menu.Items className="absolute right-0 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                      <Menu.Items className="absolute right-0 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-neutral-700 dark:text-neutral-200">
                         {user && loggedInMenuItems}
                         {!user && loggedOutMenuItems}
                       </Menu.Items>
@@ -167,11 +163,11 @@ const Nav = () => {
                     <a
                       key={item.name}
                       onClick={() => void router.push(item.href)}
-                      className={classNames(
+                      className={clsx(
+                        "block rounded-md px-3 py-2 text-base font-medium",
                         item.current
                           ? "bg-neutral-900 text-white"
-                          : "text-neutral-300 hover:bg-neutral-700 hover:text-white",
-                        "block rounded-md px-3 py-2 text-base font-medium"
+                          : "text-neutral-300 hover:bg-neutral-700 hover:text-white"
                       )}
                       aria-current={item.current ? "page" : undefined}
                     >
