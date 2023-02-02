@@ -98,13 +98,15 @@ const Nav = () => {
                         alt="logo"
                         width={32}
                         height={32}
+                        priority
                       />
                       <Image
                         className="hidden h-8 w-auto lg:block"
                         src="/logo.png"
                         alt="logo"
-                        width={228}
-                        height={32}
+                        width={482}
+                        height={66}
+                        priority
                       />
                     </Link>
                   </div>
