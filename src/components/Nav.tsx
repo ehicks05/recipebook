@@ -6,7 +6,7 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { HiMenu, HiUserCircle, HiX } from "react-icons/hi";
 import Link from "next/link";
 import AuthDialog from "components/AuthDialog";
-import { useUser } from "@supabase/auth-helpers-react";
+import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 
@@ -17,6 +17,7 @@ function classNames(...classes: string[]) {
 const Nav = () => {
   const user = useUser();
   const router = useRouter();
+  const supabase = useSupabaseClient();
 
   const [showAuthModal, setShowAuthModal] = useState(false);
 
@@ -52,7 +53,7 @@ const Nav = () => {
 
   const accountItems = [
     { to: "/my-account", label: "My Account" },
-    { to: "#", label: "Log out", onClick: () => setShowAuthModal(true) },
+    { to: "#", label: "Log out", onClick: () => supabase.auth.signOut() },
   ];
   const loggedInMenuItems = accountItems.map((item) => (
     <Menu.Item key={item.label}>
