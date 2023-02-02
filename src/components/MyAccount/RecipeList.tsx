@@ -1,8 +1,7 @@
 import React from "react";
 import { T } from "components/core";
 import type { CompleteRecipe } from "server/api/routers/example";
-// import { RecipeCardOld } from "components/Home/RecipeCard";
-import SmallRecipeCard from "./SmallRecipeCard";
+import { RecipeCardLandscape } from "components/Home/RecipeCard";
 
 interface Props {
   title: string;
@@ -15,7 +14,7 @@ const RecipeList = ({ title, recipes }: Props) => {
       <T className="text-center text-lg font-semibold">{title}</T>
       <div className="flex flex-col gap-4">
         {recipes?.map((recipe) => (
-          <SmallRecipeCard key={recipe.id} recipe={recipe} />
+          <RecipeCardLandscape key={recipe.id} recipe={recipe} />
         ))}
       </div>
     </div>

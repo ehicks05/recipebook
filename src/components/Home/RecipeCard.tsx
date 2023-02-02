@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Card, CookingTime, T } from "components/core";
+import { Card, CookingTime, Difficulty, T } from "components/core";
 import { defaultImage, emojiToImage } from "./constants";
 import type { CompleteRecipe } from "server/api/routers/example";
 import FavoriteButton from "components/Home/FavoriteButton";
@@ -12,10 +12,10 @@ interface FooterProps {
   difficulty: number;
 }
 
-const Footer = ({ cookingTime }: FooterProps) => (
+const Footer = ({ cookingTime, difficulty }: FooterProps) => (
   <footer className="flex w-fit gap-4 pt-4">
     <CookingTime cookingTime={cookingTime} />
-    {/* <Difficulty difficulty={difficulty} /> */}
+    <Difficulty difficulty={difficulty} />
   </footer>
 );
 
@@ -37,8 +37,8 @@ const RecipeCard = ({
               className="h-60 w-full rounded-t object-cover"
               src={emojiToImage[emoji] || defaultImage}
               alt="recipe"
-              height={250}
-              width={300}
+              height={480}
+              width={600}
             />
           </Link>
         </div>
@@ -65,7 +65,7 @@ const RecipeCard = ({
 };
 
 function RecipeCardLandscape({
-  recipe: { id, emoji, name, description, cookingTime, difficulty },
+  recipe: { id, emoji, name, description },
 }: Props) {
   const user = useUser();
 
@@ -92,8 +92,7 @@ function RecipeCardLandscape({
               </span>
             </Link>
           </div>
-          <T className="text-sm line-clamp-3">{description}</T>
-          <Footer cookingTime={cookingTime} difficulty={difficulty} />
+          <T className="text-sm line-clamp-5">{description}</T>
         </div>
       </div>
     </Card>
@@ -121,7 +120,7 @@ function RecipeCardOld({
           </div>
           {user && <FavoriteButton recipeId={id} />}
         </div>
-        <T className="line-clamp-5">{description}</T>
+        <T className="text-sm line-clamp-5">{description}</T>
       </div>
 
       <Footer cookingTime={cookingTime} difficulty={difficulty} />

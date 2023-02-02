@@ -23,12 +23,14 @@ const MyAccount = () => {
     <>
       <Hero title="Your Profile" subtitle={user?.email} />
       <Container>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          <div className="flex flex-col gap-4">
-            <T className="text-xl">User Details</T>
-            <MyInput disabled label="email" value={user.email} />
-            {/* <T className="whitespace-pre">{JSON.stringify(user, null, 2)}</T> */}
-          </div>
+        <div className="flex flex-col gap-4">
+          <T className="text-xl">User Details</T>
+          <MyInput disabled label="email" value={user.email} />
+          {/* <T className="whitespace-pre">{JSON.stringify(user, null, 2)}</T> */}
+        </div>
+      </Container>
+      <Container>
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 2xl:grid-cols-3">
           <RecipeList recipes={authoredRecipes} title="My Recipes" />
           <RecipeList recipes={favoriteRecipes} title="My Favorites" />
         </div>

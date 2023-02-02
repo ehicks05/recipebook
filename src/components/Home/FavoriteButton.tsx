@@ -6,22 +6,22 @@ import { api } from "utils/api";
 import { useUser } from "@supabase/auth-helpers-react";
 import toast from "react-hot-toast";
 
-interface IProps {
+interface Props {
   recipeId: string;
   className?: string;
 }
 
-function FavoriteButton({ recipeId, className }: IProps) {
-  const utils = api.useContext();
+const FavoriteButton = ({ recipeId, className }: Props) => {
   const user = useUser();
-  const userFavorites = api.example.findFavoriteRecipesByUserId.useQuery({
-    id: user?.id || "",
-  });
+  const id = user?.id || "";
+
+  const { data: userFavorites, refetch: refetchUserFavorites } =
+    api.example.findFavoriteRecipesByUserId.useQuery({ id });
 
   const createUserFavorite = api.example.createUserFavorite.useMutation();
   const deleteUserFavorite = api.example.deleteUserFavorite.useMutation();
 
-  const favoriteIds = userFavorites.data?.map((o) => o.recipeId) || [];
+  const favoriteIds = userFavorites?.map((o) => o.recipeId) || [];
   const isFavorite = favoriteIds.includes(recipeId);
   const Icon = isFavorite ? HiHeart : HiOutlineHeart;
 
@@ -31,7 +31,7 @@ function FavoriteButton({ recipeId, className }: IProps) {
         { recipeId },
         {
           onSuccess: () => {
-            void utils.example.findFavoriteRecipesByUserId.invalidate();
+            void refetchUserFavorites();
             toast.custom((t) => (
               <Alert
                 variant="success"
@@ -47,7 +47,7 @@ function FavoriteButton({ recipeId, className }: IProps) {
         { recipeId },
         {
           onSuccess: () => {
-            void utils.example.findFavoriteRecipesByUserId.invalidate();
+            void refetchUserFavorites();
             toast.custom((t) => (
               <Alert
                 variant="success"
@@ -66,6 +66,6 @@ function FavoriteButton({ recipeId, className }: IProps) {
       <Icon className="text-2xl text-red-500" />
     </Button>
   );
-}
+};
 
 export default FavoriteButton;
