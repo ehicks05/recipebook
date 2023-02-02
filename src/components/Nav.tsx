@@ -37,9 +37,12 @@ const Nav = () => {
       {({ active }) => (
         <div
           onClick={() => setShowAuthModal(true)}
-          className={clsx("block px-4 py-2 text-sm text-neutral-700", {
-            "bg-neutral-100": active,
-          })}
+          className={clsx(
+            "block bg-neutral-100 px-4 py-2 text-sm text-neutral-700 dark:bg-neutral-700 dark:text-neutral-200",
+            {
+              " hover:dark:bg-neutral-600": active,
+            }
+          )}
         >
           Log In
         </div>

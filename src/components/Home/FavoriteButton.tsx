@@ -17,48 +17,37 @@ const FavoriteButton = ({ recipeId, className }: Props) => {
 
   const { data: userFavorites, refetch: refetchUserFavorites } =
     api.example.findFavoriteRecipesByUserId.useQuery({ id });
+  const favoriteIds = userFavorites?.map((o) => o.recipeId) || [];
+  const isFavorite = favoriteIds.includes(recipeId);
 
   const createUserFavorite = api.example.createUserFavorite.useMutation();
   const deleteUserFavorite = api.example.deleteUserFavorite.useMutation();
+  const toggle = isFavorite ? deleteUserFavorite : createUserFavorite;
 
-  const favoriteIds = userFavorites?.map((o) => o.recipeId) || [];
-  const isFavorite = favoriteIds.includes(recipeId);
   const Icon = isFavorite ? HiHeart : HiOutlineHeart;
 
   const handleClick = () => {
-    if (isFavorite) {
-      deleteUserFavorite.mutate(
-        { recipeId },
-        {
-          onSuccess: () => {
-            void refetchUserFavorites();
-            toast.custom((t) => (
-              <Alert
-                variant="success"
-                title={`Recipe removed from favorites!`}
-                className={t.visible ? "animate-enter" : "animate-leave"}
-              />
-            ));
-          },
-        }
-      );
-    } else {
-      createUserFavorite.mutate(
-        { recipeId },
-        {
-          onSuccess: () => {
-            void refetchUserFavorites();
-            toast.custom((t) => (
-              <Alert
-                variant="success"
-                title={`Recipe added to favorites!`}
-                className={t.visible ? "animate-enter" : "animate-leave"}
-              />
-            ));
-          },
-        }
-      );
-    }
+    toggle.mutate(
+      { recipeId },
+      {
+        onSettled: (_, err) => {
+          void refetchUserFavorites();
+          const title = err
+            ? `Unable to ${
+                isFavorite ? "remove recipe from" : "add recipe to"
+              } favorites`
+            : `Recipe ${isFavorite ? "removed from" : "added to"} favorites!`;
+          toast.custom((t) => (
+            <Alert
+              variant={err ? "error" : "success"}
+              title={title}
+              description={err?.message}
+              className={t.visible ? "animate-enter" : "animate-leave"}
+            />
+          ));
+        },
+      }
+    );
   };
 
   return (
