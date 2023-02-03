@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import { BiDownload, BiEdit } from "react-icons/bi";
+import { BiEdit } from "react-icons/bi";
 import {
   Button,
   Container,
@@ -11,7 +11,6 @@ import {
 } from "components/core";
 import type { CompleteRecipe } from "server/api/routers/example";
 import { Directions, Ingredients } from "./Components";
-import { stripRecipe, updateClipboard } from "./utils";
 import { useUser } from "@supabase/auth-helpers-react";
 
 interface IProps {
@@ -64,16 +63,6 @@ function Recipe({ recipe }: IProps) {
               </Button>
             </Link>
           )}
-          <Button
-            onClick={() =>
-              updateClipboard(JSON.stringify(stripRecipe(recipe), null, 2))
-            }
-          >
-            <BiDownload
-              title="Copy to Clipboard"
-              className="cursor-pointer text-2xl"
-            />
-          </Button>
         </div>
       </Container>
     </>

@@ -12,8 +12,10 @@ import { DEFAULT_RECIPE, RECIPE_SCHEMA } from "./constants";
 import { IngredientsForm, DirectionsForm } from "./components";
 import RecipeDetailsForm from "./components/RecipeDetailsForm";
 import type { CompleteRecipe } from "server/api/routers/example";
-import { HiTrash } from "react-icons/hi";
+import { HiClipboardCopy, HiTrash } from "react-icons/hi";
 import { toast } from "react-hot-toast";
+import { updateClipboard, stripRecipe } from "components/Recipe/utils";
+import { BiDownload } from "react-icons/bi";
 
 interface Props {
   recipe?: CompleteRecipe;
@@ -229,6 +231,20 @@ const RecipeForm = ({ recipe }: Props) => {
                 >
                   Delete
                   <HiTrash />
+                </Button>
+                <Button
+                  onClick={() => {
+                    updateClipboard(
+                      JSON.stringify(stripRecipe(recipe), null, 2)
+                    );
+                    toast("Copied!");
+                  }}
+                >
+                  Export JSON
+                  <HiClipboardCopy
+                    title="Copy to Clipboard"
+                    className="cursor-pointer text-2xl"
+                  />
                 </Button>
               </>
             )}
