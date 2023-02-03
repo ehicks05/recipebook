@@ -80,10 +80,10 @@ function RecipeCardLandscape({
             height={240}
             width={300}
           />
-          {user && (
-            <FavoriteButton className="absolute top-2 right-2" recipeId={id} />
-          )}
         </Link>
+        {user && (
+          <FavoriteButton className="absolute top-2 left-2" recipeId={id} />
+        )}
         <div className="flex w-full flex-col gap-4">
           <div className="flex items-start gap-2">
             <Link href={`/recipe/${id}`} className="w-full">
