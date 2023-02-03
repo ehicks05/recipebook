@@ -96,8 +96,8 @@ const Nav = () => {
                         className="block h-8 w-auto lg:hidden"
                         src="/favicon/favicon.png"
                         alt="logo"
-                        width={32}
-                        height={32}
+                        width={64}
+                        height={64}
                         priority
                       />
                       <Image

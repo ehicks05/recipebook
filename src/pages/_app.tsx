@@ -15,7 +15,7 @@ import { Toaster } from "react-hot-toast";
 import AuthListener from "components/AuthListener";
 
 const ubuntu = Ubuntu({
-  weight: "400",
+  weight: ["300", "400", "500", "700"],
   subsets: ["latin"],
   // default, can also use "swap" to ensure custom font always shows
   display: "optional",
