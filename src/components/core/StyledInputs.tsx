@@ -113,6 +113,7 @@ interface IMySelectProps<T extends FieldValues> {
   id?: string;
   name?: string;
   label?: string;
+  type?: "number";
   children: JSX.Element | JSX.Element[];
   register?: UseFormRegister<T>;
   error?: FieldError;
@@ -120,6 +121,7 @@ interface IMySelectProps<T extends FieldValues> {
 
 const MySelect = <T extends FieldValues>({
   label,
+  type,
   register,
   error,
   name = "",
@@ -133,7 +135,8 @@ const MySelect = <T extends FieldValues>({
         </label>
       )}
       <select
-        {...(register && register(name as Path<T>))}
+        {...(register &&
+          register(name as Path<T>, { valueAsNumber: type === "number" }))}
         className={`w-full rounded border-r-8 border-neutral-100 bg-neutral-100 px-2 py-2  dark:border-neutral-700 dark:bg-neutral-700 dark:text-neutral-100 ${
           error ? "border-l-8 border-red-600" : ""
         }`}

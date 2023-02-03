@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import { BiEdit } from "react-icons/bi";
+import { HiPencilAlt } from "react-icons/hi";
 import {
   Button,
   Container,
@@ -32,9 +32,17 @@ function Recipe({ recipe }: IProps) {
       <Container>
         <div className="grid grid-cols-1 justify-between gap-6 sm:grid-cols-2 md:grid-cols-4">
           <div className="order-1 flex flex-col gap-4">
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2">
               <CookingTime cookingTime={recipe.cookingTime} />
-              <Difficulty difficulty={recipe.difficulty} />
+              <Difficulty difficulty={recipe.difficulty} />{" "}
+              {user?.id === recipe.author.id && (
+                <Link href={`/edit-recipe/${recipe.id}`} title="Edit Recipe">
+                  <Button className="text-sm font-semibold">
+                    <HiPencilAlt className="text-2xl" />
+                    Edit
+                  </Button>
+                </Link>
+              )}
             </div>
             <div
               className="cursor-pointer"
@@ -54,15 +62,6 @@ function Recipe({ recipe }: IProps) {
           <div className="order-3 sm:col-span-2 md:order-2">
             <Directions directions={recipe.directions} />
           </div>
-        </div>
-        <div className="flex gap-2 pt-4">
-          {user?.id === recipe.author.id && (
-            <Link href={`/edit-recipe/${recipe.id}`} title="Edit Recipe">
-              <Button>
-                <BiEdit className="text-2xl" />
-              </Button>
-            </Link>
-          )}
         </div>
       </Container>
     </>

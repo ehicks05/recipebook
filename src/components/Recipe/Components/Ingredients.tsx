@@ -21,17 +21,19 @@ function Ingredients({
   return (
     <div>
       <div className="mb-2 flex items-center gap-2">
-        <T>Servings: {scaledServings}</T>
+        <Button isStatic>
+          <T>Servings: {scaledServings}</T>
+        </Button>
         <div>
           <Button
-            className="is-small rounded-r-none"
+            className="rounded-r-none"
             onClick={() => setScaledServings(scaledServings - 1)}
             disabled={scaledServings === 1}
           >
             <FaMinus />
           </Button>
           <Button
-            className="is-small rounded-l-none"
+            className="rounded-l-none"
             onClick={() => setScaledServings(scaledServings + 1)}
           >
             <FaPlus />

@@ -9,7 +9,6 @@ import Hero from "./Hero";
 import Loading from "./Loading";
 import T from "./T";
 import Toggle from "./Toggle";
-import RecipeStat from "./RecipeStat";
 import { MyHiddenInput, MyInput, MySelect, MyTextArea } from "./StyledInputs";
 
 export {
@@ -28,5 +27,4 @@ export {
   MyTextArea,
   T,
   Toggle,
-  RecipeStat,
 };

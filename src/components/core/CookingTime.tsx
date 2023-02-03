@@ -1,12 +1,12 @@
 import React from "react";
 import { HiOutlineClock } from "react-icons/hi";
-import { RecipeStat, T } from "./";
+import { Button, T } from "./";
 
 const CookingTIme = ({ cookingTime }: { cookingTime: string }) => (
-  <RecipeStat>
+  <Button isStatic className="dark:bg-neutral-900">
     <HiOutlineClock size={24} className="dark:text-neutral-200" />
     <T className="text-sm font-semibold">{cookingTime}</T>
-  </RecipeStat>
+  </Button>
 );
 
 export default CookingTIme;

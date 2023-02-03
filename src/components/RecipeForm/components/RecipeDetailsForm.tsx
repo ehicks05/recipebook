@@ -54,6 +54,7 @@ const RecipeDetailsForm = ({ errors, register, control }: Props) => {
           name="difficulty"
           register={register}
           error={errors.difficulty}
+          type="number"
         >
           <option value="1">1</option>
           <option value="2">2</option>

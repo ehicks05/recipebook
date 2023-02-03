@@ -23,6 +23,13 @@ const VARIANTS = {
     icon: "text-green-600 dark:text-green-300",
     Icon: HiCheckCircle,
   },
+  neutral: {
+    background: "bg-neutral-100 dark:bg-neutral-700",
+    title: "text-neutral-800 dark:text-neutral-100",
+    description: "text-neutral-700 dark:text-neutral-200",
+    icon: "text-neutral-600 dark:text-neutral-300",
+    Icon: HiInformationCircle,
+  },
 } as const;
 
 interface Props {

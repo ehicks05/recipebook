@@ -42,7 +42,9 @@ function Direction({ direction }: Props) {
       <div onClick={() => setIsDone(!isDone)}>
         <T className={isDone ? "line-clamp-1" : ""}>{direction.text}</T>
       </div>
-      {!isDone && timer}
+      {timeAmount > 0 && (
+        <div className={`mt-1 ${isDone ? "hidden" : ""}`}>{timer}</div>
+      )}
     </li>
   );
 }

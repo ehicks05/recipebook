@@ -12,10 +12,10 @@ import { DEFAULT_RECIPE, RECIPE_SCHEMA } from "./constants";
 import { IngredientsForm, DirectionsForm } from "./components";
 import RecipeDetailsForm from "./components/RecipeDetailsForm";
 import type { CompleteRecipe } from "server/api/routers/example";
-import { HiClipboardCopy, HiTrash } from "react-icons/hi";
+import { HiClipboardCopy, HiRewind, HiTrash } from "react-icons/hi";
+import { FaBug } from "react-icons/fa";
 import { toast } from "react-hot-toast";
 import { updateClipboard, stripRecipe } from "components/Recipe/utils";
-import { BiDownload } from "react-icons/bi";
 
 interface Props {
   recipe?: CompleteRecipe;
@@ -29,10 +29,11 @@ const RecipeForm = ({ recipe }: Props) => {
     handleSubmit,
     watch,
     reset,
+    getValues,
     formState: { errors, isSubmitting, isValid, isDirty },
   } = useForm({
     defaultValues: recipe || DEFAULT_RECIPE,
-    mode: "all",
+    mode: "onBlur",
     resolver: zodResolver(RECIPE_SCHEMA),
   });
   const ingredientsFieldArray = useFieldArray({ control, name: "ingredients" });
@@ -117,6 +118,7 @@ const RecipeForm = ({ recipe }: Props) => {
   });
 
   const [isOpen, setIsOpen] = useState(false);
+  const [isShowDebug, setIsShowDebug] = useState(false);
 
   useEffect(() => {
     let id = "";
@@ -202,6 +204,22 @@ const RecipeForm = ({ recipe }: Props) => {
             >
               {`${recipe ? "Save" : "Create Recipe "}`}
             </Button>
+            <Button
+              disabled={!isDirty}
+              onClick={() => {
+                reset();
+                toast.custom((t) => (
+                  <Alert
+                    variant="neutral"
+                    title={`Reset!`}
+                    className={t.visible ? "animate-enter" : "animate-leave"}
+                  />
+                ));
+              }}
+            >
+              Reset
+              <HiRewind className="text-2xl" />
+            </Button>
             {recipe && (
               <>
                 <Button
@@ -223,6 +241,33 @@ const RecipeForm = ({ recipe }: Props) => {
                 >
                   {recipe.isPublished ? "Unpublish" : "Publish"}
                 </Button>
+
+                <Button
+                  onClick={() => {
+                    updateClipboard(
+                      JSON.stringify(stripRecipe(recipe), null, 2)
+                    );
+                    toast.custom((t) => (
+                      <Alert
+                        variant="neutral"
+                        title={`Copied!`}
+                        className={
+                          t.visible ? "animate-enter" : "animate-leave"
+                        }
+                      />
+                    ));
+                  }}
+                >
+                  Export JSON
+                  <HiClipboardCopy
+                    title="Copy to Clipboard"
+                    className="text-2xl"
+                  />
+                </Button>
+                <Button onClick={() => setIsShowDebug(!isShowDebug)}>
+                  Debug
+                  <FaBug />
+                </Button>
                 <Button
                   onClick={() => setIsOpen(true)}
                   variant="error"
@@ -231,20 +276,6 @@ const RecipeForm = ({ recipe }: Props) => {
                 >
                   Delete
                   <HiTrash />
-                </Button>
-                <Button
-                  onClick={() => {
-                    updateClipboard(
-                      JSON.stringify(stripRecipe(recipe), null, 2)
-                    );
-                    toast("Copied!");
-                  }}
-                >
-                  Export JSON
-                  <HiClipboardCopy
-                    title="Copy to Clipboard"
-                    className="cursor-pointer text-2xl"
-                  />
                 </Button>
               </>
             )}
@@ -288,6 +319,11 @@ const RecipeForm = ({ recipe }: Props) => {
           </Button>
         }
       />
+      {isShowDebug && (
+        <pre className="whitespace-pre-wrap">
+          <T className="text-xs">{JSON.stringify(getValues(), null, 2)}</T>
+        </pre>
+      )}
     </>
   );
 };

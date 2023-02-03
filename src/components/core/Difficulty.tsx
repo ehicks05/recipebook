@@ -1,6 +1,6 @@
 import React from "react";
 import { clamp, range } from "lodash";
-import { RecipeStat, T } from "./";
+import { Button, T } from "./";
 
 const DIFFICULTIES: Record<number, { label: string; color: string }> = {
   1: { label: "Easy", color: "bg-green-500" },
@@ -11,7 +11,7 @@ const DIFFICULTIES: Record<number, { label: string; color: string }> = {
 const inactiveColor = "bg-neutral-300 dark:bg-neutral-500";
 
 const DifficultyIcon = ({ difficulty }: { difficulty: number }) => (
-  <div className="flex flex-col-reverse gap-0.5">
+  <div className="-my-1 flex flex-col-reverse gap-0.5">
     {range(1, 4).map((i) => {
       const activeColor = DIFFICULTIES[i]?.color || inactiveColor;
       const color = difficulty >= i ? activeColor : inactiveColor;
@@ -22,12 +22,12 @@ const DifficultyIcon = ({ difficulty }: { difficulty: number }) => (
 );
 
 const Difficulty = ({ difficulty }: { difficulty: number }) => (
-  <RecipeStat>
+  <Button isStatic>
     <DifficultyIcon difficulty={difficulty} />
     <T className="text-sm font-semibold">
       {DIFFICULTIES[clamp(difficulty, 1, 3)]?.label || "Fix this recipe"}
     </T>
-  </RecipeStat>
+  </Button>
 );
 
 export default Difficulty;

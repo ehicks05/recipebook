@@ -12,9 +12,10 @@ export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: keyof typeof VARIANTS;
   loading?: boolean;
   children?: React.ReactNode;
+  isStatic?: boolean;
 }
 
-const baseClasses = `rounded-sm border border-transparent py-2 px-3 shadow`;
+const baseClasses = `rounded-sm border border-transparent py-2 px-3`;
 
 const Button = ({
   variant = "default",
@@ -23,18 +24,20 @@ const Button = ({
   children,
   type = "button",
   disabled,
+  isStatic,
   ...props
 }: Props) => {
   const variantClasses = VARIANTS[variant];
   const conditionalClasses = {
     "opacity-50": disabled || loading,
-    "hover:border-neutral-300 dark:hover:border-neutral-500": !disabled,
+    "hover:border-neutral-300 dark:hover:border-neutral-500 shadow":
+      !disabled && !isStatic,
   };
 
   return (
     <button
       type={type}
-      disabled={disabled || loading}
+      disabled={disabled || isStatic || loading}
       className={clsx(
         baseClasses,
         conditionalClasses,
