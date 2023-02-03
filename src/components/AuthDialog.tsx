@@ -45,7 +45,8 @@ const AuthDialog = ({ isOpen, hideModal }: AuthDialogProps) => {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event) => {
-      if (event !== prevState.current) {
+      // ignore initial 'signed in' toast on page load by checking prevState.current
+      if (prevState.current && event !== prevState.current) {
         toast.custom((t) => (
           <Alert
             variant="success"
