@@ -118,7 +118,7 @@ const RecipeForm = ({ recipe }: Props) => {
 
   useEffect(() => {
     let id = "";
-    if (isDirty) {
+    if (recipe && isDirty) {
       id = toast.custom(
         (t) => (
           <Alert
@@ -132,12 +132,12 @@ const RecipeForm = ({ recipe }: Props) => {
         { duration: Infinity }
       );
     }
-    if (!isDirty && id) {
+    if ((!recipe || !isDirty) && id) {
       toast.dismiss(id);
     }
 
     return () => toast.dismiss(id);
-  }, [isDirty]);
+  }, [recipe, isDirty]);
 
   const onSubmit: SubmitHandler<FormRecipe> = (data, e) => {
     e?.preventDefault();
