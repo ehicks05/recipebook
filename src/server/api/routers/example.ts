@@ -5,10 +5,16 @@ import axios from "axios";
 import { createTRPCRouter, publicProcedure, protectedProcedure } from "../trpc";
 import { RECIPE_SCHEMA } from "components/RecipeForm/constants";
 
+const isPublishedClause = (userId: string | undefined) => ({
+  OR: [{ isPublished: true }, ...(userId ? [{ authorId: userId }] : [])],
+});
+
 export const exampleRouter = createTRPCRouter({
   findRecipes: publicProcedure.query(({ ctx }) => {
+    const userId = ctx.session?.user.id;
+
     return ctx.prisma.recipe.findMany({
-      where: { isPublished: true },
+      where: isPublishedClause(userId),
       orderBy: { createdAt: "desc" },
       ...completeRecipeInclude,
     });
@@ -18,7 +24,7 @@ export const exampleRouter = createTRPCRouter({
     .input(z.object({ id: z.string() }))
     .query(({ ctx, input: { id } }) => {
       return ctx.prisma.recipe.findMany({
-        where: { authorId: { equals: id } },
+        where: { authorId: id },
         ...completeRecipeInclude,
         orderBy: { createdAt: "desc" },
       });
@@ -37,7 +43,7 @@ export const exampleRouter = createTRPCRouter({
     .input(z.object({ id: z.string() }))
     .query(({ ctx, input: { id } }) => {
       return ctx.prisma.userFavorites.findMany({
-        where: { userId: { equals: id } },
+        where: { userId: id },
         include: {
           recipe: {
             ...completeRecipeInclude,
@@ -73,26 +79,24 @@ export const exampleRouter = createTRPCRouter({
   updateRecipe: protectedProcedure
     .input(RECIPE_SCHEMA.extend({ id: z.string() }))
     .mutation(async ({ ctx, input }) => {
-      const { id } = input;
+      const { id: recipeId } = input;
       const userId = ctx.session.user.id;
-      const recipe = await ctx.prisma.recipe.findUnique({ where: { id } });
+      const recipe = await ctx.prisma.recipe.findUnique({
+        where: { id: recipeId },
+      });
       if (userId !== recipe?.authorId) {
         throw new Error("Unauthorized");
       }
 
       const [, , updatedRecipe] = await ctx.prisma.$transaction([
         ctx.prisma.ingredient.deleteMany({
-          where: {
-            recipeId: id,
-          },
+          where: { recipeId },
         }),
         ctx.prisma.direction.deleteMany({
-          where: {
-            recipeId: id,
-          },
+          where: { recipeId },
         }),
         ctx.prisma.recipe.update({
-          where: { id },
+          where: { id: recipeId },
           data: {
             ...input,
             authorId: userId,
