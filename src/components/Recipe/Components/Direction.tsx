@@ -12,7 +12,7 @@ interface Props {
   direction: direction;
 }
 
-function extractTiming(text: string) {
+function extractTiming(text = "") {
   const words = text.split(" ");
   const timeIndex = words.findIndex(firstTimeUnitIndex);
   let timeAmount = 0;
