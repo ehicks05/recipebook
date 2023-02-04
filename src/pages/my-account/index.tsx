@@ -11,6 +11,7 @@ const MyAccount = () => {
   }
   const id = user.id;
 
+  const appUser = api.example.findAppUser.useQuery().data;
   const authoredRecipes = api.example.findRecipesByAuthorId.useQuery({
     id,
   }).data;
@@ -28,6 +29,27 @@ const MyAccount = () => {
           <MyInput disabled label="email" value={user.email} />
           {/* <T className="whitespace-pre">{JSON.stringify(user, null, 2)}</T> */}
         </div>
+        {appUser && (
+          <div className="mt-8 flex w-full flex-col gap-4">
+            <T className="text-xl">AppUser Details</T>
+            <MyInput disabled label="id" value={appUser?.id || ""} />
+            <MyInput
+              disabled
+              label="displayName"
+              value={appUser?.displayName || ""}
+            />
+            <MyInput
+              disabled
+              label="createdAt"
+              value={appUser?.createdAt.toLocaleString() || ""}
+            />
+            <MyInput
+              disabled
+              label="updatedAt"
+              value={appUser?.updatedAt.toLocaleString() || ""}
+            />
+          </div>
+        )}
       </Container>
       <Container>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 2xl:grid-cols-3">

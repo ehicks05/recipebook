@@ -184,6 +184,22 @@ export const exampleRouter = createTRPCRouter({
     .query(async ({ input: { url } }) => {
       return (await axios.get<string>(url)).data;
     }),
+
+  findAppUser: protectedProcedure.query(({ ctx }) => {
+    const { id } = ctx.session.user;
+    return ctx.prisma.appUser.findUnique({ where: { id } });
+  }),
+
+  updateAppUser: protectedProcedure
+    .input(z.object({ displayName: z.string() }))
+    .mutation(({ ctx, input }) => {
+      const { id } = ctx.session.user;
+      const { displayName } = input;
+      return ctx.prisma.appUser.update({
+        where: { id },
+        data: { displayName },
+      });
+    }),
 });
 
 // Get type of recipe with includes added
