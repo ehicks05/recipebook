@@ -62,7 +62,7 @@ const DEFAULT_RECIPE: FormRecipe = {
 const INGREDIENT_SCHEMA = z.object({
   name: z.string().min(1),
   quantity: z.string().refine(validateQuantity, {
-    message: "String must be a valid quantity like 1 3/4",
+    message: "Must be a valid quantity like 1 3/4",
   }),
   unit: z.string().nullable(),
 });

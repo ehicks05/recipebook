@@ -133,7 +133,7 @@ const RecipeForm = ({ recipe }: Props) => {
             }`}
           />
         ),
-        { duration: Infinity }
+        { duration: Infinity, id: "unsaved_changes" }
       );
     }
     if ((!recipe || !isDirty) && id) {
