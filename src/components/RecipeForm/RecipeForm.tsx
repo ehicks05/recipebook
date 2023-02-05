@@ -19,9 +19,10 @@ import { updateClipboard, stripRecipe } from "components/Recipe/utils";
 
 interface Props {
   recipe?: CompleteRecipe;
+  importedRecipe?: CompleteRecipe;
 }
 
-const RecipeForm = ({ recipe }: Props) => {
+const RecipeForm = ({ recipe, importedRecipe }: Props) => {
   const router = useRouter();
   const {
     control,
@@ -32,7 +33,7 @@ const RecipeForm = ({ recipe }: Props) => {
     getValues,
     formState: { errors, isSubmitting, isValid, isDirty },
   } = useForm({
-    defaultValues: recipe || DEFAULT_RECIPE,
+    defaultValues: recipe || importedRecipe || DEFAULT_RECIPE,
     mode: "onBlur",
     resolver: zodResolver(RECIPE_SCHEMA),
   });
@@ -200,7 +201,7 @@ const RecipeForm = ({ recipe }: Props) => {
             <Button
               type="submit"
               loading={isLoading}
-              disabled={!isValid || isLoading || (recipe && !isDirty)}
+              disabled={isLoading || (recipe && !isDirty)}
             >
               {`${recipe ? "Save" : "Create Recipe "}`}
             </Button>

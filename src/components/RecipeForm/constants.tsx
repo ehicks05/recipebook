@@ -77,7 +77,7 @@ const RECIPE_SCHEMA = z.object({
   description: z.string().min(1),
   cookingTime: z.string().min(1),
   servings: z.number().min(1),
-  emoji: z.string().min(1).max(3),
+  emoji: z.string().min(1, "Pick an emoji").max(3),
   difficulty: z.coerce.number(),
   ingredients: INGREDIENT_SCHEMA.array().min(1),
   directions: DIRECTION_SCHEMA.array().min(1),

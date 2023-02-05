@@ -5,6 +5,7 @@ import type { Control } from "react-hook-form";
 import { Controller } from "react-hook-form";
 import type { FormRecipe } from "../constants";
 import emojiData from "@emoji-mart/data";
+import { HiQuestionMarkCircle } from "react-icons/hi";
 
 const EmojiInput = ({ control }: { control: Control<FormRecipe> }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,7 +24,7 @@ const EmojiInput = ({ control }: { control: Control<FormRecipe> }) => {
             className="max-w-fit py-4 text-6xl"
             onClick={() => setIsOpen(true)}
           >
-            {field.value}
+            {field.value || <HiQuestionMarkCircle />}
           </Button>
           <Dialog
             open={isOpen}

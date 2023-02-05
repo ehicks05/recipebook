@@ -1,13 +1,16 @@
 import { type NextPage } from "next";
 import { api } from "utils/api";
-import { Alert, Container, Loading, T, MyInput } from "components/core";
+import { Alert, Container, Loading, T, MyInput, Button } from "components/core";
 import Recipe from "components/Recipe/Recipe";
 import { useRouter } from "next/router";
 import { parseLdJsonRecipe } from "utils/recipe-import";
+import { RecipeForm } from "components/RecipeForm";
+import { useState } from "react";
 
 const RecipeImportPage: NextPage = () => {
   const router = useRouter();
   const { url } = router.query;
+  const [mode, setMode] = useState<"view" | "edit">("view");
 
   const {
     isFetching,
@@ -40,12 +43,17 @@ const RecipeImportPage: NextPage = () => {
         </Alert>
       )}
       <Container>
-        <MyInput
-          className="w-64 rounded px-2 py-1.5 dark:bg-neutral-700 dark:text-neutral-100 sm:w-96"
-          placeholder="enter a recipe url"
-          value={url}
-          onChange={(e) => handleChange(e.target.value)}
-        />
+        <div className="flex items-start">
+          <MyInput
+            className=""
+            placeholder="enter a recipe url"
+            value={url}
+            onChange={(e) => handleChange(e.target.value)}
+          />
+          <Button onClick={() => setMode(mode === "edit" ? "view" : "edit")}>
+            {mode === "edit" ? "View" : "Edit"}
+          </Button>
+        </div>
       </Container>
       {error && (
         <Container>
@@ -53,7 +61,8 @@ const RecipeImportPage: NextPage = () => {
         </Container>
       )}
       {isFetching && <Loading />}
-      {recipe && <Recipe recipe={recipe} />}
+      {recipe && mode === "view" && <Recipe recipe={recipe} />}
+      {recipe && mode === "edit" && <RecipeForm importedRecipe={recipe} />}
       {(error || (url && !recipeHtml && !isFetching)) && (
         <div className="m-3">
           <Alert
