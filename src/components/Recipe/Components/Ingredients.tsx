@@ -24,16 +24,16 @@ function Ingredients({
         <Button isStatic>
           <T>Servings: {scaledServings}</T>
         </Button>
-        <div>
+        <div className="h-11">
           <Button
-            className="rounded-r-none"
+            className="h-full rounded-r-none"
             onClick={() => setScaledServings(scaledServings - 1)}
             disabled={scaledServings === 1}
           >
             <FaMinus />
           </Button>
           <Button
-            className="rounded-l-none"
+            className="h-full rounded-l-none"
             onClick={() => setScaledServings(scaledServings + 1)}
           >
             <FaPlus />
