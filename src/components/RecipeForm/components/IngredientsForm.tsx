@@ -41,6 +41,7 @@ const IngredientsForm = ({
                 {UNIT_OPTIONS}
               </MySelect>
               <Button
+                className="h-full"
                 disabled={ingredientsFieldArray.fields.length <= 1}
                 onClick={(e) => {
                   e.preventDefault();
@@ -60,6 +61,7 @@ const IngredientsForm = ({
         ))}
         <div className="text-right">
           <Button
+            className="h-10"
             onClick={() => {
               ingredientsFieldArray.append({
                 ...DEFAULT_INGREDIENT,

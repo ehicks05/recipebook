@@ -15,7 +15,7 @@ export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   isStatic?: boolean;
 }
 
-const baseClasses = `rounded-sm border border-transparent py-2 px-3`;
+const baseClasses = `rounded border border-transparent py-2 px-3`;
 
 const Button = ({
   variant = "default",

@@ -31,8 +31,6 @@ const RecipeDetailsForm = ({ errors, register, control }: Props) => {
 
       <div className="flex gap-2">
         <MyInput
-          containerClassName=""
-          type="string"
           name="cookingTime"
           label="Time"
           placeholder="Minutes"

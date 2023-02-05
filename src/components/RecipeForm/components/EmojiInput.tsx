@@ -20,7 +20,7 @@ const EmojiInput = ({ control }: { control: Control<FormRecipe> }) => {
           </label>
           <Button
             type="button"
-            className="text-4xl"
+            className="max-w-fit py-4 text-6xl"
             onClick={() => setIsOpen(true)}
           >
             {field.value}

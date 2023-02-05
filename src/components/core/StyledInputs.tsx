@@ -42,7 +42,7 @@ const MyInput = <T extends FieldValues>({
       <div>
         <input
           type={props.type || "text"}
-          className={`w-full rounded bg-neutral-100 px-2 py-1.5 dark:bg-neutral-700 dark:text-neutral-100 ${className} ${
+          className={`w-full rounded border-neutral-100 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-700 dark:text-neutral-100 ${className} ${
             error ? "border-l-8 border-red-600" : ""
           }`}
           {...(register &&
@@ -95,7 +95,7 @@ const MyTextArea = <T extends FieldValues>({
       <div className="">
         <TextareaAutosize
           placeholder={props.placeholder}
-          className={`w-full rounded bg-neutral-100 px-2 py-1.5 dark:bg-neutral-700 dark:text-neutral-100 ${
+          className={`w-full rounded border-neutral-100 bg-neutral-100 px-2 py-1.5 dark:border-neutral-700 dark:bg-neutral-700 dark:text-neutral-100 ${
             error ? "border-l-8 border-red-600" : ""
           }`}
           rows={1}
@@ -137,7 +137,7 @@ const MySelect = <T extends FieldValues>({
       <select
         {...(register &&
           register(name as Path<T>, { valueAsNumber: type === "number" }))}
-        className={`w-full rounded border-r-8 border-neutral-100 bg-neutral-100 px-2 py-2  dark:border-neutral-700 dark:bg-neutral-700 dark:text-neutral-100 ${
+        className={`w-full rounded border-neutral-100 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-700 dark:text-neutral-100 ${
           error ? "border-l-8 border-red-600" : ""
         }`}
       >
