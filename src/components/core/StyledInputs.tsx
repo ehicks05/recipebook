@@ -43,7 +43,7 @@ const MyInput = <T extends FieldValues>({
         <input
           type={props.type || "text"}
           className={`w-full rounded border-neutral-100 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-700 dark:text-neutral-100 ${className} ${
-            error ? "border-l-8 border-red-600" : ""
+            error ? "outline outline-red-600" : ""
           }`}
           {...(register &&
             // as Path<T>: https://github.com/react-hook-form/documentation/issues/670
@@ -96,7 +96,7 @@ const MyTextArea = <T extends FieldValues>({
         <TextareaAutosize
           placeholder={props.placeholder}
           className={`w-full rounded border-neutral-100 bg-neutral-100 px-2 py-1.5 dark:border-neutral-700 dark:bg-neutral-700 dark:text-neutral-100 ${
-            error ? "border-l-8 border-red-600" : ""
+            error ? "outline outline-red-600" : ""
           }`}
           rows={1}
           {...(register && register(name as Path<T>))}
@@ -138,7 +138,7 @@ const MySelect = <T extends FieldValues>({
         {...(register &&
           register(name as Path<T>, { valueAsNumber: type === "number" }))}
         className={`w-full rounded border-neutral-100 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-700 dark:text-neutral-100 ${
-          error ? "border-l-8 border-red-600" : ""
+          error ? "outline outline-red-600" : ""
         }`}
       >
         {props.children}
