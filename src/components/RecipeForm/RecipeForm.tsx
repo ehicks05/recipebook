@@ -241,7 +241,22 @@ const RecipeForm = ({ recipe }: Props) => {
                 >
                   {recipe.isPublished ? "Unpublish" : "Publish"}
                 </Button>
-
+                <Button
+                  onClick={() => setIsOpen(true)}
+                  variant="error"
+                  loading={isLoading}
+                  disabled={isLoading}
+                >
+                  Delete
+                  <HiTrash />
+                </Button>
+              </>
+            )}
+          </div>
+          {recipe && (
+            <div className="mt-8 flex flex-col items-center justify-center gap-4">
+              <T className="text-lg font-semibold">Advanced</T>
+              <div className="flex gap-2">
                 <Button
                   onClick={() => {
                     updateClipboard(
@@ -268,26 +283,9 @@ const RecipeForm = ({ recipe }: Props) => {
                   Debug
                   <FaBug />
                 </Button>
-                <Button
-                  onClick={() => setIsOpen(true)}
-                  variant="error"
-                  loading={isLoading}
-                  disabled={isLoading}
-                >
-                  Delete
-                  <HiTrash />
-                </Button>
-              </>
-            )}
-          </div>
-          {/* TODO: consider removing */}
-          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            {recipe && isDirty && (
-              <div className="flex w-fit justify-center opacity-75">
-                <Alert variant="info" title={`Unsaved changes`} />
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </form>
       </Container>
       <Dialog
