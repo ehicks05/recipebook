@@ -7,6 +7,10 @@ import type {
   Path,
   UseFormRegister,
 } from "react-hook-form";
+import clsx from "clsx";
+
+const BASE =
+  "w-full rounded border-neutral-100 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-700 dark:text-neutral-100";
 
 // https://github.com/react-hook-form/react-hook-form/discussions/4426#discussioncomment-623148
 export interface IMyInputProps<T extends FieldValues>
@@ -28,6 +32,7 @@ const MyInput = <T extends FieldValues>({
   label,
   leftIcon,
   containerClassName = "",
+  disabled,
   register,
   error,
   ...props
@@ -35,16 +40,18 @@ const MyInput = <T extends FieldValues>({
   return (
     <div className={`flex w-full flex-col gap-1 ${containerClassName}`}>
       {label && (
-        <label className="" htmlFor={props.id || name}>
+        <label htmlFor={props.id || name}>
           <T>{label}</T>
         </label>
       )}
       <div>
         <input
+          disabled={disabled}
           type={props.type || "text"}
-          className={`w-full rounded border-neutral-100 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-700 dark:text-neutral-100 ${className} ${
-            error ? "outline outline-red-600" : ""
-          }`}
+          className={clsx(BASE, className, {
+            "outline outline-red-600": error,
+            "cursor-not-allowed": disabled,
+          })}
           {...(register &&
             // as Path<T>: https://github.com/react-hook-form/documentation/issues/670
             register(name as Path<T>, {
@@ -73,6 +80,7 @@ interface IMyTextAreaProps<T extends FieldValues> {
   id?: string;
   name?: string;
   label?: string;
+  disabled?: boolean;
   placeholder: string;
   register?: UseFormRegister<T>;
   error?: FieldError;
@@ -80,6 +88,7 @@ interface IMyTextAreaProps<T extends FieldValues> {
 
 const MyTextArea = <T extends FieldValues>({
   label,
+  disabled,
   register,
   error,
   name = "",
@@ -88,16 +97,18 @@ const MyTextArea = <T extends FieldValues>({
   return (
     <div className="flex w-full flex-col gap-1">
       {label && (
-        <label className="" htmlFor={props.id || name}>
+        <label htmlFor={props.id || name}>
           <T>{label}</T>
         </label>
       )}
-      <div className="">
+      <div>
         <TextareaAutosize
+          disabled={disabled}
           placeholder={props.placeholder}
-          className={`w-full rounded border-neutral-100 bg-neutral-100 px-2 py-1.5 dark:border-neutral-700 dark:bg-neutral-700 dark:text-neutral-100 ${
-            error ? "outline outline-red-600" : ""
-          }`}
+          className={clsx(BASE, {
+            "outline outline-red-600": error,
+            "cursor-not-allowed": disabled,
+          })}
           rows={1}
           {...(register && register(name as Path<T>))}
         />
@@ -114,6 +125,7 @@ interface IMySelectProps<T extends FieldValues> {
   name?: string;
   label?: string;
   type?: "number";
+  disabled?: boolean;
   children: JSX.Element | JSX.Element[];
   register?: UseFormRegister<T>;
   error?: FieldError;
@@ -122,6 +134,7 @@ interface IMySelectProps<T extends FieldValues> {
 const MySelect = <T extends FieldValues>({
   label,
   type,
+  disabled,
   register,
   error,
   name = "",
@@ -130,16 +143,15 @@ const MySelect = <T extends FieldValues>({
   return (
     <div className={`flex min-w-fit flex-col gap-1`}>
       {label && (
-        <label className="" htmlFor={props.id || name}>
+        <label htmlFor={props.id || name}>
           <T>{label}</T>
         </label>
       )}
       <select
+        disabled={disabled}
         {...(register &&
           register(name as Path<T>, { valueAsNumber: type === "number" }))}
-        className={`w-full rounded border-neutral-100 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-700 dark:text-neutral-100 ${
-          error ? "outline outline-red-600" : ""
-        }`}
+        className={clsx(BASE, { "outline outline-red-600": error })}
       >
         {props.children}
       </select>
