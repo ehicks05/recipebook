@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Button } from "components/core";
+import clsx from "clsx";
 
 interface IProps {
   minutes: number;
@@ -45,8 +46,7 @@ const useTimer = (props: Props) => {
       interval.current = window.setInterval(decrement, 100);
     }
 
-    if (paused) clearInterval(interval.current);
-    else startTimer();
+    paused ? clearInterval(interval.current) : startTimer();
   }, [paused]);
 
   function reset() {
@@ -62,14 +62,16 @@ const useTimer = (props: Props) => {
   }
 
   function handleSetTime(e: React.ChangeEvent<HTMLInputElement>) {
-    if (expired) {
+    if (!paused || expired) {
       return;
     }
     const { value } = e.target;
     if (value.indexOf(":") === -1) return;
     const [m, s] = value.split(":").map((it) => Number(it)) as [number, number];
     if (Number.isNaN(m) || Number.isNaN(s)) return;
-    setMs(Math.min(m * 60 + s, 999 * 60 + 59) * 1000);
+    const desiredMs = 1000 * s + 1000 * 60 * m;
+    const maxMs = 1000 * 60 * 999 + 1000 * 59; // 999 minutes + 59 seconds
+    setMs(Math.min(desiredMs, maxMs));
   }
 
   const hasTimeElapsed = ms !== initialMs;
@@ -99,13 +101,13 @@ function Timer({ minutes }: IProps) {
   } = useTimer({ minutes });
   const isShowResetButton = paused && hasTimeElapsed;
 
+  const base =
+    "rounded-l border border-neutral-200 bg-neutral-100 text-center text-xs dark:border-neutral-600 dark:bg-neutral-700 dark:text-neutral-200";
   return (
     <div className="flex">
       <input
         type="text"
-        className={`rounded-l border border-neutral-200 bg-neutral-100 text-center text-xs dark:border-neutral-600 dark:bg-neutral-700 dark:text-neutral-200 ${
-          expired ? "bg-red-700 dark:bg-red-900" : ""
-        }`}
+        className={clsx(base, { "bg-red-700 dark:bg-red-900": expired })}
         size={displayTime().length}
         value={displayTime()}
         onChange={handleSetTime}
