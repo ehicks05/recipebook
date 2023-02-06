@@ -5,32 +5,44 @@ interface IProps {
   minutes: number;
 }
 
-const useTimer = ({ minutes }: { minutes: number }) => {
-  const [seconds, setSeconds] = useState(minutes * 60);
+interface Props {
+  hours?: number;
+  minutes?: number;
+  seconds?: number;
+}
+const useTimer = (props: Props) => {
+  const initialMs =
+    (props?.seconds || 0) * 1000 +
+    (props?.minutes || 0) * 1000 * 60 +
+    (props?.hours || 0) * 1000 * 60 * 60;
+
+  const [ms, setMs] = useState(initialMs);
   const [paused, setPaused] = useState(true);
   const [expired, setExpired] = useState(false);
 
-  const secondsRef = useRef(seconds);
+  const msRef = useRef(ms);
   const interval = useRef(0);
+  const seconds = Math.floor(ms / 1000);
 
   useEffect(() => () => clearInterval(interval.current), []);
 
   useEffect(() => {
-    secondsRef.current = seconds;
+    msRef.current = ms;
 
-    if (seconds <= 0) {
+    if (ms <= 0) {
       setPaused(true);
       setExpired(true);
+      setMs(0);
     }
-  }, [seconds]);
+  }, [ms]);
 
   useEffect(() => {
     function startTimer() {
       function decrement() {
-        setSeconds(secondsRef.current - 1);
+        setMs(msRef.current - 1 * 100);
       }
 
-      interval.current = window.setInterval(decrement, 1000);
+      interval.current = window.setInterval(decrement, 100);
     }
 
     if (paused) clearInterval(interval.current);
@@ -38,13 +50,13 @@ const useTimer = ({ minutes }: { minutes: number }) => {
   }, [paused]);
 
   function reset() {
-    setSeconds(60 * minutes);
+    setMs(initialMs);
     setExpired(false);
     setPaused(true);
   }
 
   function displayTime() {
-    const min = Math.floor(seconds / 60);
+    const min = Math.floor(ms / (1000 * 60));
     const sec = seconds % 60;
     return `${min}:${sec < 10 ? `0${sec}` : sec}`;
   }
@@ -57,13 +69,14 @@ const useTimer = ({ minutes }: { minutes: number }) => {
     if (value.indexOf(":") === -1) return;
     const [m, s] = value.split(":").map((it) => Number(it)) as [number, number];
     if (Number.isNaN(m) || Number.isNaN(s)) return;
-    setSeconds(Math.min(m * 60 + s, 999 * 60 + 59));
+    setMs(Math.min(m * 60 + s, 999 * 60 + 59) * 1000);
   }
 
-  const hasTimeElapsed = seconds !== minutes * 60;
+  const hasTimeElapsed = ms !== initialMs;
 
   return {
-    seconds,
+    ms,
+    seconds: Math.floor(ms / 1000),
     paused,
     expired,
     setPaused,
@@ -74,9 +87,8 @@ const useTimer = ({ minutes }: { minutes: number }) => {
   };
 };
 
-function Timer({ minutes: inputMinutes }: IProps) {
+function Timer({ minutes }: IProps) {
   const {
-    seconds,
     paused,
     expired,
     setPaused,
@@ -84,7 +96,7 @@ function Timer({ minutes: inputMinutes }: IProps) {
     reset,
     displayTime,
     handleSetTime,
-  } = useTimer({ minutes: inputMinutes });
+  } = useTimer({ minutes });
   const isShowResetButton = paused && hasTimeElapsed;
 
   return (
