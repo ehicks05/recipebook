@@ -5,8 +5,8 @@ interface IProps {
   minutes: number;
 }
 
-function Timer({ minutes: inputMinutes }: IProps) {
-  const [seconds, setSeconds] = useState(inputMinutes * 60);
+const useTimer = ({ minutes }: { minutes: number }) => {
+  const [seconds, setSeconds] = useState(minutes * 60);
   const [paused, setPaused] = useState(true);
   const [expired, setExpired] = useState(false);
 
@@ -38,7 +38,7 @@ function Timer({ minutes: inputMinutes }: IProps) {
   }, [paused]);
 
   function reset() {
-    setSeconds(60 * inputMinutes);
+    setSeconds(60 * minutes);
     setExpired(false);
     setPaused(true);
   }
@@ -60,15 +60,39 @@ function Timer({ minutes: inputMinutes }: IProps) {
     setSeconds(Math.min(m * 60 + s, 999 * 60 + 59));
   }
 
-  const hasTimeElapsed = seconds !== inputMinutes * 60;
+  const hasTimeElapsed = seconds !== minutes * 60;
+
+  return {
+    seconds,
+    paused,
+    expired,
+    setPaused,
+    hasTimeElapsed,
+    reset,
+    displayTime,
+    handleSetTime,
+  };
+};
+
+function Timer({ minutes: inputMinutes }: IProps) {
+  const {
+    seconds,
+    paused,
+    expired,
+    setPaused,
+    hasTimeElapsed,
+    reset,
+    displayTime,
+    handleSetTime,
+  } = useTimer({ minutes: inputMinutes });
   const isShowResetButton = paused && hasTimeElapsed;
 
   return (
     <div className="flex">
       <input
         type="text"
-        className={`rounded-l-sm border border-neutral-200 bg-neutral-100 px-2 py-1 text-center text-xs dark:border-neutral-600 dark:bg-neutral-700 dark:text-neutral-200 ${
-          expired ? "bg-red-700" : ""
+        className={`rounded-l border border-neutral-200 bg-neutral-100 text-center text-xs dark:border-neutral-600 dark:bg-neutral-700 dark:text-neutral-200 ${
+          expired ? "bg-red-700 dark:bg-red-900" : ""
         }`}
         size={displayTime().length}
         value={displayTime()}
