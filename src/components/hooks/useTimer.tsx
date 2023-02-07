@@ -20,8 +20,6 @@ export const useTimer = (props: Props) => {
   const interval = useRef(0);
   const seconds = Math.floor(ms / 1000);
 
-  useEffect(() => () => clearInterval(interval.current), []);
-
   useEffect(() => {
     msRef.current = ms;
 
@@ -35,13 +33,15 @@ export const useTimer = (props: Props) => {
   useEffect(() => {
     function startTimer() {
       function decrement() {
-        setMs(msRef.current - 1 * 100);
+        setMs(msRef.current - 100);
       }
 
       interval.current = window.setInterval(decrement, 100);
     }
 
     paused ? clearInterval(interval.current) : startTimer();
+
+    return () => clearInterval(interval.current);
   }, [paused]);
 
   function reset() {
