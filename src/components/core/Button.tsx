@@ -15,7 +15,7 @@ export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   isStatic?: boolean;
 }
 
-const baseClasses = `rounded border border-transparent py-2 px-3`;
+const baseClasses = `rounded border border-transparent`;
 
 const Button = ({
   variant = "default",
@@ -29,7 +29,6 @@ const Button = ({
 }: Props) => {
   const variantClasses = VARIANTS[variant];
   const conditionalClasses = {
-    "opacity-50": disabled || loading,
     "hover:border-neutral-300 dark:hover:border-neutral-500 shadow":
       !disabled && !isStatic,
   };
@@ -46,9 +45,22 @@ const Button = ({
       )}
       {...props}
     >
-      <div className="flex items-center justify-center gap-2">
-        {children}
-        {loading && <FaSpinner className="animate-spin" />}
+      <div className="relative">
+        {loading && (
+          <div className="absolute inset-0 rounded bg-black opacity-30"></div>
+        )}
+        <div
+          className={clsx("flex items-center justify-center gap-2 px-3 py-2", {
+            "opacity-50": disabled || loading,
+          })}
+        >
+          {children}
+        </div>
+        {loading && (
+          <div className="absolute inset-0 flex h-full w-full items-center justify-center">
+            <FaSpinner size={20} className="animate-spin" />
+          </div>
+        )}
       </div>
     </button>
   );
