@@ -19,9 +19,9 @@ function Timer({ minutes }: Props) {
   } = useTimer({ minutes });
   const isShowResetButton = paused && hasTimeElapsed;
 
-  const base = "rounded-r-none text-center text-xs";
+  const base = "h-full rounded-r-none text-center text-xs";
   return (
-    <div className="flex">
+    <div className="flex h-9">
       <MyInput
         type="text"
         containerClassName="w-fit"

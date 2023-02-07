@@ -15,8 +15,6 @@ export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   isStatic?: boolean;
 }
 
-const baseClasses = `rounded border border-transparent`;
-
 const Button = ({
   variant = "default",
   loading,
@@ -38,7 +36,7 @@ const Button = ({
       type={type}
       disabled={disabled || isStatic || loading}
       className={clsx(
-        baseClasses,
+        "rounded border border-transparent",
         conditionalClasses,
         variantClasses,
         className
@@ -47,18 +45,21 @@ const Button = ({
     >
       <div className="relative">
         {loading && (
-          <div className="absolute inset-0 rounded bg-black opacity-30"></div>
+          <div className="absolute inset-0 rounded bg-neutral-300 opacity-30 dark:bg-black"></div>
         )}
         <div
-          className={clsx("flex items-center justify-center gap-2 px-3 py-2", {
-            "opacity-50": disabled || loading,
-          })}
+          className={clsx(
+            "flex items-center justify-center gap-2 px-3 py-3 leading-none",
+            {
+              "opacity-50": disabled || loading,
+            }
+          )}
         >
           {children}
         </div>
         {loading && (
           <div className="absolute inset-0 flex h-full w-full items-center justify-center">
-            <FaSpinner size={20} className="animate-spin" />
+            <FaSpinner size={20} className="animate-spin text-neutral-500" />
           </div>
         )}
       </div>

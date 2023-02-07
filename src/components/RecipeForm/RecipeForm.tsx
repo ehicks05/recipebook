@@ -219,7 +219,7 @@ const RecipeForm = ({ recipe, importedRecipe }: Props) => {
               }}
             >
               Reset
-              <HiRewind className="text-2xl" />
+              <HiRewind />
             </Button>
             {recipe && (
               <>
@@ -275,10 +275,7 @@ const RecipeForm = ({ recipe, importedRecipe }: Props) => {
                   }}
                 >
                   Export JSON
-                  <HiClipboardCopy
-                    title="Copy to Clipboard"
-                    className="text-2xl"
-                  />
+                  <HiClipboardCopy title="Copy to Clipboard" />
                 </Button>
                 <Button onClick={() => setIsShowDebug(!isShowDebug)}>
                   Debug

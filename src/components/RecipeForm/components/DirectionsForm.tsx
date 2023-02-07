@@ -30,7 +30,6 @@ const DirectionsForm = ({ directionsFieldArray, register, errors }: Props) => {
               error={errors.directions?.[index]?.text}
             />
             <Button
-              className="h-10"
               disabled={directionsFieldArray.fields.length <= 1}
               onClick={(e) => {
                 e.preventDefault();
@@ -43,7 +42,6 @@ const DirectionsForm = ({ directionsFieldArray, register, errors }: Props) => {
         ))}
         <div className="text-right">
           <Button
-            className="h-10"
             onClick={() => {
               directionsFieldArray.append({
                 ...DEFAULT_DIRECTION,

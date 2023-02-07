@@ -44,24 +44,22 @@ const MyInput = <T extends FieldValues>({
           <T>{label}</T>
         </label>
       )}
-      <div>
-        <input
-          disabled={disabled}
-          type={props.type || "text"}
-          className={clsx(BASE, className, {
-            "outline outline-red-600": error,
-            "cursor-not-allowed": disabled,
-          })}
-          {...(register &&
-            // as Path<T>: https://github.com/react-hook-form/documentation/issues/670
-            register(name as Path<T>, {
-              valueAsNumber: props.type === "number",
-            }))}
-          {...props}
-        />
-        {leftIcon && <span className="">{leftIcon}</span>}
-        {error && <div className="text-sm text-red-600">{error.message}</div>}
-      </div>
+      <input
+        disabled={disabled}
+        type={props.type || "text"}
+        className={clsx(BASE, className, {
+          "outline outline-red-600": error,
+          "cursor-not-allowed": disabled,
+        })}
+        {...(register &&
+          // as Path<T>: https://github.com/react-hook-form/documentation/issues/670
+          register(name as Path<T>, {
+            valueAsNumber: props.type === "number",
+          }))}
+        {...props}
+      />
+      {leftIcon && <span className="">{leftIcon}</span>}
+      {error && <div className="text-sm text-red-600">{error.message}</div>}
     </div>
   );
 };
