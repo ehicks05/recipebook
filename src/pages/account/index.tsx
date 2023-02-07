@@ -4,7 +4,7 @@ import RecipeList from "components/MyAccount/RecipeList";
 import { useUser } from "@supabase/auth-helpers-react";
 import { api } from "utils/api";
 
-const MyLists = () => {
+const YourLists = () => {
   const user = useUser();
   if (!user) {
     return null;
@@ -22,10 +22,10 @@ const MyLists = () => {
 
   return (
     <Container>
-      <T className="text-xl">My Lists</T>
+      <T className="text-xl">Your Lists</T>
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 2xl:grid-cols-3">
-        <RecipeList recipes={authoredRecipes} title="My Recipes" />
-        <RecipeList recipes={favoriteRecipes} title="My Favorites" />
+        <RecipeList recipes={authoredRecipes} title="Your Recipes" />
+        <RecipeList recipes={favoriteRecipes} title="Your Favorites" />
       </div>
     </Container>
   );
@@ -48,24 +48,21 @@ const UserForm = () => {
     updateAppUser.mutate({ displayName });
   };
 
+  if (!user || !appUser) return <Loading />;
+
   return (
     <Container>
-      {user && (
-        <div className="flex flex-col gap-4">
-          <T className="text-xl">User Details</T>
-          <MyInput disabled label="email" value={user.email} />
-        </div>
-      )}
-      {appUser && (
-        <div className="mt-8 flex w-full flex-col items-start gap-4">
-          <T className="text-xl">AppUser Details</T>
-          <MyInput disabled label="id" value={appUser.id} />
+      <div className="mt-8 flex w-full flex-col items-start gap-4">
+        <T className="text-xl">User Details</T>
+        {/* <MyInput disabled label="id" value={appUser.id} /> */}
+        <div className="grid w-full grid-cols-4 gap-4">
           <MyInput
             label="displayName"
             onChange={(e) => setDisplayName(e.target.value)}
             value={displayName}
           />
-          <MyInput
+          <MyInput disabled label="email" value={user.email} />
+          {/* <MyInput
             disabled
             label="createdAt"
             value={appUser.createdAt.toLocaleString()}
@@ -74,16 +71,17 @@ const UserForm = () => {
             disabled
             label="updatedAt"
             value={appUser.updatedAt.toLocaleString()}
-          />
-          <Button
-            disabled={updateAppUser.isLoading}
-            loading={updateAppUser.isLoading}
-            onClick={handleSubmit}
-          >
-            Save
-          </Button>
+          /> */}
         </div>
-      )}
+
+        <Button
+          disabled={updateAppUser.isLoading}
+          loading={updateAppUser.isLoading}
+          onClick={handleSubmit}
+        >
+          Save
+        </Button>
+      </div>
     </Container>
   );
 };
@@ -99,9 +97,12 @@ const MyAccount = () => {
 
   return (
     <>
-      <Hero title="Profile" subtitle={appUser.displayName || ""} />
+      <Hero
+        title={`${appUser?.displayName || "New User"}'s Account`}
+        subtitle={`Joined ${appUser.createdAt.toLocaleDateString()}`}
+      />
       <UserForm />
-      <MyLists />
+      <YourLists />
     </>
   );
 };

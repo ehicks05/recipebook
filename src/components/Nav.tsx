@@ -40,7 +40,7 @@ const Nav = () => {
           className={clsx(
             "block bg-neutral-100 px-4 py-2 text-sm text-neutral-700 dark:bg-neutral-700 dark:text-neutral-200",
             {
-              " hover:dark:bg-neutral-600": active,
+              "hover:dark:bg-neutral-600": active,
             }
           )}
         >
@@ -51,7 +51,7 @@ const Nav = () => {
   );
 
   const accountItems = [
-    { to: "/my-account", label: "My Account" },
+    { to: "/account", label: "Your Account" },
     { to: "#", label: "Log out", onClick: () => supabase.auth.signOut() },
   ];
   const loggedInMenuItems = accountItems.map((item) => (
