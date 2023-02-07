@@ -39,7 +39,9 @@ const EmojiInput = ({ control }: { control: Control<FormRecipe> }) => {
                   categories={["foods"]}
                   previewPosition="none"
                   searchPosition="none"
-                  perLine={7}
+                  perLine={6}
+                  emojiSize={36}
+                  emojiButtonSize={48}
                 />
               </div>
             }
