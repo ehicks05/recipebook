@@ -11,7 +11,7 @@ const DIFFICULTIES: Record<number, { label: string; color: string }> = {
 const inactiveColor = "bg-neutral-300 dark:bg-neutral-500";
 
 const DifficultyIcon = ({ difficulty }: { difficulty: number }) => (
-  <div className="-my-1 flex flex-col-reverse gap-0.5">
+  <div className="-my-1 flex flex-col-reverse gap-[1px]">
     {range(1, 4).map((i) => {
       const activeColor = DIFFICULTIES[i]?.color || inactiveColor;
       const color = difficulty >= i ? activeColor : inactiveColor;

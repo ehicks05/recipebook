@@ -52,7 +52,7 @@ const FavoriteButton = ({ recipeId, className }: Props) => {
 
   return (
     <Button className={className} onClick={handleClick}>
-      <Icon className="text-2xl text-red-500" />
+      <Icon className="text-xl text-red-500" />
     </Button>
   );
 };
