@@ -6,6 +6,9 @@ import { useEventListener } from "usehooks-ts";
  *
  * For cross-tab auth syncing. After logging in, logging out, or session expiration,
  * should detect on window focus. Delete if not useful.
+ *
+ * TODO: see if we can remove this after this lands:
+ * https://github.com/supabase/gotrue-js/releases/tag/v2.11.0
  */
 const AuthListener = () => {
   const supabase = useSupabaseClient();
