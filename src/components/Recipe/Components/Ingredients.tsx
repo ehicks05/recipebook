@@ -22,9 +22,9 @@ function Ingredients({
     <div>
       <div className="mb-2 flex items-center gap-2">
         <Button isStatic>
-          <T>Servings: {scaledServings}</T>
+          <T>Serves {scaledServings}</T>
         </Button>
-        <div className="h-11">
+        <div className="h-10 whitespace-nowrap">
           <Button
             className="h-full rounded-r-none"
             onClick={() => setScaledServings(scaledServings - 1)}
