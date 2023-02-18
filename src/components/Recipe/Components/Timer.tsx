@@ -25,6 +25,7 @@ function Timer({ minutes }: Props) {
       <MyInput
         type="text"
         containerClassName="w-fit"
+        fullWidth={false}
         className={clsx(base, { "bg-red-700 dark:bg-red-900": expired })}
         size={displayTime().length}
         value={displayTime()}
