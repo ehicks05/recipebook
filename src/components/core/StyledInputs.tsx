@@ -18,6 +18,7 @@ export interface IMyInputProps<T extends FieldValues>
   label?: string;
   leftIcon?: JSX.Element;
   containerClassName?: string;
+  fullWidth?: boolean;
   name?: string;
   register?: UseFormRegister<T>;
   error?: FieldError;
@@ -32,13 +33,18 @@ const MyInput = <T extends FieldValues>({
   label,
   leftIcon,
   containerClassName = "",
+  fullWidth = true,
   disabled,
   register,
   error,
   ...props
 }: IMyInputProps<T>) => {
   return (
-    <div className={`flex w-full flex-col gap-1 ${containerClassName}`}>
+    <div
+      className={clsx("flex w-full flex-col gap-1", containerClassName, {
+        "w-full": fullWidth,
+      })}
+    >
       {label && (
         <label htmlFor={props.id || name}>
           <T>{label}</T>
