@@ -9,7 +9,7 @@ import Hero from "./Hero";
 import Loading from "./Loading";
 import T from "./T";
 import Toggle from "./Toggle";
-import { MyHiddenInput, MyInput, MySelect, MyTextArea } from "./StyledInputs";
+import { MyInput, MySelect, MyTextArea } from "./StyledInputs";
 
 export {
   Alert,
@@ -21,7 +21,6 @@ export {
   Difficulty,
   Hero,
   Loading,
-  MyHiddenInput,
   MyInput,
   MySelect,
   MyTextArea,
