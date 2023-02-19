@@ -1,4 +1,4 @@
-import { T, MyHiddenInput, MyTextArea, Button } from "components/core";
+import { T, MyTextArea, Button, MyInput } from "components/core";
 import type {
   FieldErrors,
   UseFieldArrayReturn,
@@ -22,7 +22,7 @@ const DirectionsForm = ({ directionsFieldArray, register, errors }: Props) => {
         {directionsFieldArray.fields.map((field, index) => (
           <div key={field.id} className="flex items-start gap-2">
             <T className="pr-2">{index + 1}.</T>
-            <MyHiddenInput name={`directions.${index}.index`} />
+            <MyInput type="hidden" name={`directions.${index}.index`} />
             <MyTextArea
               name={`directions.${index}.text`}
               placeholder="Description"

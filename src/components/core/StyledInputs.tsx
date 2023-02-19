@@ -43,6 +43,7 @@ const MyInput = <T extends FieldValues>({
     <div
       className={clsx("flex w-full flex-col gap-1", containerClassName, {
         "w-full": fullWidth,
+        hidden: props.type === "hidden",
       })}
     >
       {label && (
@@ -68,16 +69,6 @@ const MyInput = <T extends FieldValues>({
       {error && <div className="text-sm text-red-600">{error.message}</div>}
     </div>
   );
-};
-
-interface IMyHiddenInputProps {
-  id?: string;
-  name: string;
-}
-
-const MyHiddenInput = ({ ...props }: IMyHiddenInputProps) => {
-  const field = {};
-  return <input type="hidden" {...field} {...props} />;
 };
 
 interface IMyTextAreaProps<T extends FieldValues> {
@@ -164,4 +155,4 @@ const MySelect = <T extends FieldValues>({
   );
 };
 
-export { MyInput, MyHiddenInput, MyTextArea, MySelect };
+export { MyInput, MyTextArea, MySelect };

@@ -1,4 +1,4 @@
-import { T, Button, MyHiddenInput, MyInput, MySelect } from "components/core";
+import { T, Button, MyInput, MySelect } from "components/core";
 import type {
   UseFieldArrayReturn,
   UseFormRegister,
@@ -25,7 +25,7 @@ const IngredientsForm = ({
       <div className="flex flex-col gap-6">
         {ingredientsFieldArray.fields.map((field, index) => (
           <div key={field.id} className="flex flex-col gap-2">
-            <MyHiddenInput name={`ingredients.${index}.index`} />
+            <MyInput type="hidden" name={`ingredients.${index}.index`} />
             <div className="flex items-start gap-2">
               <MyInput
                 name={`ingredients.${index}.quantity`}
