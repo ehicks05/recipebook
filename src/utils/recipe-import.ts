@@ -17,9 +17,12 @@ import type { CompleteRecipe } from "server/api/routers/example";
 const normalizeUnicode = (input: string) =>
   input.normalize("NFKD").replace("⁄", "/");
 
-const extractQuantity = (input: string) => {
+const extractLeadingQuantity = (input: string) => {
   let endIndex = 0;
-  while ("0123456789.,/ ".includes(input.charAt(endIndex))) {
+  while (
+    "0123456789.,/ ".includes(input.charAt(endIndex)) &&
+    endIndex <= input.length - 1
+  ) {
     endIndex += 1;
   }
   return {
@@ -30,7 +33,7 @@ const extractQuantity = (input: string) => {
 
 const parseIngredient = (input: string) => {
   const normalized = normalizeUnicode(input);
-  const { quantity, rest } = extractQuantity(normalized);
+  const { quantity, rest } = extractLeadingQuantity(normalized);
   return { quantity, rest };
 };
 
@@ -47,6 +50,11 @@ const parseDirections = (input: string | any[]) => {
       return item;
     })
     .flat();
+};
+
+const parseServings = (input: string) => {
+  const { quantity } = extractLeadingQuantity(input);
+  return Number(quantity) || 1;
 };
 
 const schemaOrgRecipeToRecipeBookRecipe = (
@@ -68,7 +76,7 @@ const schemaOrgRecipeToRecipeBookRecipe = (
     },
     difficulty: 1,
     emoji: "", // '🍲',
-    servings: Number(recipe.recipeYield?.toString()) || 1,
+    servings: parseServings(recipe.recipeYield?.toString() || ""),
     cookingTime: recipe.totalTime?.toString().replace("PT", "") || "missing",
     course: recipe.recipeCategory?.toString() || "missing",
     isPublished: false,
