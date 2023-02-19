@@ -94,7 +94,7 @@ const schemaOrgRecipeToRecipeBookRecipe = (
         createdAt: new Date(),
         updatedAt: new Date(),
       })),
-    directions: parseDirections(recipe.recipeInstructions || []).map(
+    directions: parseDirections(recipe.recipeInstructions || ([] as any)).map(
       (i, index) => ({
         id: "1337",
         recipeId: "1337",
