@@ -19,7 +19,6 @@ interface IProps {
 
 function Recipe({ recipe }: IProps) {
   const user = useUser();
-  const [scaledServings, setScaledServings] = useState(recipe.servings);
   const [isShowDescription, setIsShowDescription] = useState(true);
 
   return (
@@ -55,8 +54,6 @@ function Recipe({ recipe }: IProps) {
             <Ingredients
               ingredients={recipe.ingredients}
               defaultServings={recipe.servings}
-              scaledServings={scaledServings}
-              setScaledServings={setScaledServings}
             />
           </div>
           <div className="order-3 sm:col-span-2 md:order-2">
