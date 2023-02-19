@@ -7,6 +7,7 @@ import * as cheerio from "cheerio";
 import type { Recipe } from "schema-dts";
 import { JSONPath } from "jsonpath-plus";
 import { find } from "lodash";
+import * as entities from "entities";
 import type { CompleteRecipe } from "server/api/routers/example";
 
 const extractQuantity = (input: string) => {
@@ -102,7 +103,8 @@ export const parseLdJsonRecipe = (input: string) => {
     if (!ldJsonScriptTag?.children[0]) return undefined;
 
     const jsonString = (ldJsonScriptTag?.children[0] as { data: string }).data;
-    const json = JSON.parse(jsonString);
+    const htmlDecoded = entities.decodeHTML(jsonString);
+    const json = JSON.parse(htmlDecoded);
     console.log({ json });
 
     const recipe: Recipe = deepFind({ json }, "Recipe");
