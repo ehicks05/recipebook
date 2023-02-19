@@ -4,6 +4,7 @@ import { Alert, Button, Dialog, T } from "components/core";
 import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import { useDarkMode } from "usehooks-ts";
 import { toast } from "react-hot-toast";
+import { api } from "utils/api";
 
 interface Props {
   children: JSX.Element;
@@ -40,6 +41,7 @@ const AuthDialog = ({ isOpen, hideModal }: AuthDialogProps) => {
   const supabase = useSupabaseClient();
   const { isDarkMode } = useDarkMode();
   const prevState = useRef("");
+  const utils = api.useContext();
 
   useEffect(() => {
     const {
@@ -57,13 +59,15 @@ const AuthDialog = ({ isOpen, hideModal }: AuthDialogProps) => {
             className={t.visible ? "animate-enter" : "animate-leave"}
           />
         ));
+
+        void utils.invalidate();
       }
       prevState.current = event;
       hideModal();
     });
 
     return () => subscription.unsubscribe();
-  }, [hideModal, supabase]);
+  }, [hideModal, supabase, utils]);
 
   return (
     <Dialog
