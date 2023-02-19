@@ -201,6 +201,7 @@ const RecipeForm = ({ recipe, importedRecipe }: Props) => {
             <Button
               type="submit"
               loading={isLoading}
+              // don't disable when invalid (clicking this will trigger error messages to show)
               disabled={isLoading || (recipe && !isDirty)}
             >
               {`${recipe ? "Save" : "Create Recipe "}`}

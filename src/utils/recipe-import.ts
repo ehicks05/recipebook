@@ -59,7 +59,8 @@ const parseServings = (input: string) => {
 
 const schemaOrgRecipeToRecipeBookRecipe = (
   recipe: Recipe,
-  authorName: string
+  authorName: string,
+  url: string
 ): CompleteRecipe => {
   return {
     id: "1337",
@@ -75,11 +76,12 @@ const schemaOrgRecipeToRecipeBookRecipe = (
       updatedAt: new Date(),
     },
     difficulty: 1,
-    emoji: "", // '🍲',
+    emoji: "🍲", // '🍲',
     servings: parseServings(recipe.recipeYield?.toString() || ""),
     cookingTime: recipe.totalTime?.toString().replace("PT", "") || "missing",
     course: recipe.recipeCategory?.toString() || "missing",
-    isPublished: false,
+    isPublished: true,
+    source: url,
     ingredients: ((recipe.recipeIngredient || []) as string[])
       .map(parseIngredient)
       .map((i, index) => ({
@@ -124,7 +126,7 @@ const deepFind = (json: any, type: string): any => {
   return undefined;
 };
 
-export const parseLdJsonRecipe = (input: string) => {
+export const parseLdJsonRecipe = (input: string, url: string) => {
   if (!input) return undefined;
   try {
     const $ = cheerio.load(input);
@@ -143,7 +145,7 @@ export const parseLdJsonRecipe = (input: string) => {
 
     console.log({ recipe, authorName });
 
-    return schemaOrgRecipeToRecipeBookRecipe(recipe, authorName);
+    return schemaOrgRecipeToRecipeBookRecipe(recipe, authorName, url);
   } catch (err) {
     console.log(err);
   }

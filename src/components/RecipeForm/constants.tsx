@@ -39,7 +39,8 @@ const DEFAULT_RECIPE: FormRecipe = {
   cookingTime: "15",
   servings: 4,
   course: "",
-  isPublished: false,
+  isPublished: true,
+  source: null,
   // author: { id: "", username: "unknown", displayName: "Unknown" },
   ingredients: [
     {
@@ -79,6 +80,8 @@ const RECIPE_SCHEMA = z.object({
   servings: z.number().min(1),
   emoji: z.string().min(1, "Pick an emoji").max(3),
   difficulty: z.coerce.number(),
+  isPublished: z.boolean(),
+  source: z.string().nullable(),
   ingredients: INGREDIENT_SCHEMA.array().min(1),
   directions: DIRECTION_SCHEMA.array().min(1),
 });

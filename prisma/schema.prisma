@@ -51,6 +51,7 @@ model recipe {
   servings      Int
   authorId      String          @map("author_id")
   isPublished   Boolean         @default(false)
+  source        String?
   author        appUser         @relation(fields: [authorId], references: [id])
   directions    direction[]
   ingredients   ingredient[]

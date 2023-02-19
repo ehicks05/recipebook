@@ -30,7 +30,7 @@ const RecipeImportPage: NextPage = () => {
     return null;
   };
 
-  const recipe = parseLdJsonRecipe(recipeHtml || "");
+  const recipe = parseLdJsonRecipe(recipeHtml || "", (url as string) || "");
 
   return (
     <>
