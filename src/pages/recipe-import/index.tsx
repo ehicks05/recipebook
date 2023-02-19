@@ -52,7 +52,7 @@ const RecipeImportPage: NextPage = () => {
           <MyInput
             className=""
             placeholder="enter a recipe url"
-            value={url}
+            value={url || ""}
             onChange={(e) => handleChange(e.target.value)}
           />
           <Button onClick={() => setMode(mode === "edit" ? "view" : "edit")}>

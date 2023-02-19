@@ -12,7 +12,7 @@ const RecipePage: NextPage = () => {
     isLoading,
     error,
     data: recipe,
-  } = api.example.findRecipe.useQuery({ id: id as string });
+  } = api.example.findRecipe.useQuery({ id: id as string }, { enabled: !!id });
 
   if (recipe) return <Recipe recipe={recipe} />;
   if (isLoading) return <Hero title="Loading..." />;
