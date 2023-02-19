@@ -26,6 +26,21 @@ const parseIngredient = (input: string) => {
   return { quantity, rest };
 };
 
+const parseDirections = (input: string | any[]) => {
+  if (typeof input === "string") return [input];
+
+  return input
+    .map((item) => {
+      if (item["@type"] === "HowToSection" || "itemListElement" in item) {
+        // consider making the HowToSection's name a special 'subheader' direction
+        // return [{ text: item.name }, ...item.itemListElement];
+        return item.itemListElement;
+      }
+      return item;
+    })
+    .flat();
+};
+
 const schemaOrgRecipeToRecipeBookRecipe = (
   recipe: Recipe,
   authorName: string
@@ -46,8 +61,8 @@ const schemaOrgRecipeToRecipeBookRecipe = (
     difficulty: 1,
     emoji: "", // '🍲',
     servings: Number(recipe.recipeYield?.toString()) || 1,
-    cookingTime: recipe.totalTime?.toString().replace("PT", "") || "missin",
-    course: recipe.recipeCategory?.toString() || "missin",
+    cookingTime: recipe.totalTime?.toString().replace("PT", "") || "missing",
+    course: recipe.recipeCategory?.toString() || "missing",
     isPublished: false,
     ingredients: ((recipe.recipeIngredient || []) as string[])
       .map(parseIngredient)
@@ -61,16 +76,16 @@ const schemaOrgRecipeToRecipeBookRecipe = (
         createdAt: new Date(),
         updatedAt: new Date(),
       })),
-    directions: (
-      (recipe.recipeInstructions || []) as unknown as { text: string }[]
-    ).map((i, index) => ({
-      id: "1337",
-      recipeId: "1337",
-      index,
-      text: i.text,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    })),
+    directions: parseDirections(recipe.recipeInstructions || []).map(
+      (i, index) => ({
+        id: "1337",
+        recipeId: "1337",
+        index,
+        text: i.text,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      })
+    ),
   };
 };
 
