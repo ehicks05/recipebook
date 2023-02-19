@@ -27,7 +27,7 @@ const Dialog = ({
             <Container>{body}</Container>
           </div>
 
-          <div className="flex justify-between rounded-b bg-stone-200 px-4 py-3 dark:bg-stone-800 sm:px-6">
+          <div className="flex justify-end gap-4 rounded-b bg-stone-200 px-4 py-3 dark:bg-stone-800 sm:px-6">
             <Button onClick={() => onClose()}>Close</Button>
             {footer}
           </div>
