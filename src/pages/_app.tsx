@@ -13,6 +13,7 @@ import Nav from "components/Nav";
 import "../styles/globals.css";
 import { Toaster } from "react-hot-toast";
 import AuthListener from "components/AuthListener";
+import { useRouter } from "next/router";
 
 const ubuntu = Ubuntu({
   weight: ["300", "400", "500", "700"],
@@ -27,6 +28,7 @@ const MyApp: AppType<{ initialSession: Session }> = ({
 }) => {
   // Create a new supabase browser client on every first render.
   const [supabaseClient] = useState(() => createBrowserSupabaseClient());
+  const router = useRouter();
 
   return (
     <SessionContextProvider
@@ -59,7 +61,7 @@ const MyApp: AppType<{ initialSession: Session }> = ({
 
       <div className={`flex h-screen flex-col ${ubuntu.className}`}>
         <Nav />
-        <Component {...pageProps} />
+        <Component {...pageProps} key={router.asPath} />
         <div className="flex-grow"></div>
         <Toaster position="bottom-right" reverseOrder={false} />
         <Footer />
