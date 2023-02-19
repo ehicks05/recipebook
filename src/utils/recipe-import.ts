@@ -10,6 +10,13 @@ import { find } from "lodash";
 import * as entities from "entities";
 import type { CompleteRecipe } from "server/api/routers/example";
 
+/**
+ * Reference: https://unicode.org/reports/tr15/#Norm_Forms
+ * Example: ¼ -> 1/4
+ */
+const normalizeUnicode = (input: string) =>
+  input.normalize("NFKD").replace("⁄", "/");
+
 const extractQuantity = (input: string) => {
   let endIndex = 0;
   while ("0123456789.,/ ".includes(input.charAt(endIndex))) {
@@ -22,7 +29,8 @@ const extractQuantity = (input: string) => {
 };
 
 const parseIngredient = (input: string) => {
-  const { quantity, rest } = extractQuantity(input);
+  const normalized = normalizeUnicode(input);
+  const { quantity, rest } = extractQuantity(normalized);
   return { quantity, rest };
 };
 
