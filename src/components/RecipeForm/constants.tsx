@@ -4,7 +4,7 @@ import { validateQuantity } from "./utils";
 import { z } from "zod";
 import type { direction, ingredient, recipe } from "@prisma/client";
 
-const UNITS = ["tsp", "tbsp", "cup", "oz", "lb", "ml", "L", "g"];
+const UNITS = ["tsp", "tbsp", "oz", "cup", "lb", "ml", "L", "g"];
 const UNIT_OPTIONS = ["", ...UNITS].map((unit) => (
   <option key={unit} value={unit}>
     {unit}
