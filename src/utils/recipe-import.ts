@@ -9,33 +9,7 @@ import { JSONPath } from "jsonpath-plus";
 import { find } from "lodash";
 import * as entities from "entities";
 import type { CompleteRecipe } from "server/api/routers/example";
-
-/**
- * Reference: https://unicode.org/reports/tr15/#Norm_Forms
- * Example: ¼ -> 1/4
- */
-const normalizeUnicode = (input: string) =>
-  input.normalize("NFKD").replace("⁄", "/");
-
-const extractLeadingQuantity = (input: string) => {
-  let endIndex = 0;
-  while (
-    "0123456789.,/ ".includes(input.charAt(endIndex)) &&
-    endIndex <= input.length - 1
-  ) {
-    endIndex += 1;
-  }
-  return {
-    quantity: input.slice(0, endIndex).trim(),
-    rest: input.slice(endIndex).trim(),
-  };
-};
-
-const parseIngredient = (input: string) => {
-  const normalized = normalizeUnicode(input);
-  const { quantity, rest } = extractLeadingQuantity(normalized);
-  return { quantity, rest };
-};
+import { extractLeadingQuantity, parseIngredient } from "./ingredient_parser";
 
 const parseDirections = (input: string | any[]) => {
   if (typeof input === "string") return [input];
@@ -88,9 +62,9 @@ const schemaOrgRecipeToRecipeBookRecipe = (
         id: "1337",
         recipeId: "1337",
         index: String(index),
-        name: i.rest,
+        name: i.name,
         quantity: i.quantity,
-        unit: "",
+        unit: i.unit,
         createdAt: new Date(),
         updatedAt: new Date(),
       })),
