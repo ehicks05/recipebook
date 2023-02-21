@@ -29,11 +29,6 @@ function Recipe({ recipe }: IProps) {
           {recipe.author?.displayName || "todo"}
         </T>
       </Hero>
-      {recipe.source && (
-        <Alert variant="info" title="Source">
-          {recipe.source}
-        </Alert>
-      )}
       <Container>
         <div className="grid grid-cols-1 justify-between gap-4 sm:grid-cols-2 md:grid-cols-4">
           <div className="order-1 flex flex-col gap-4">
@@ -67,6 +62,11 @@ function Recipe({ recipe }: IProps) {
           </div>
         </div>
       </Container>
+      {recipe.source && (
+        <Alert variant="neutral" title="Source">
+          {recipe.source}
+        </Alert>
+      )}
     </>
   );
 }
