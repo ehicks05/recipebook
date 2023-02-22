@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { HiPencilAlt } from "react-icons/hi";
 import {
-  Alert,
   Button,
   Container,
   CookingTime,
@@ -50,6 +49,14 @@ function Recipe({ recipe }: IProps) {
             >
               <T>{isShowDescription ? recipe.description : "Click to show"}</T>
             </div>
+            {recipe.source && (
+              <T className="block text-sm font-semibold">
+                <span className="font-normal">from</span>{" "}
+                <a href={recipe.source} target="_blank" rel="noreferrer">
+                  {new URL(recipe.source).host}
+                </a>
+              </T>
+            )}
           </div>
           <div className="order-2 md:order-3">
             <Ingredients
@@ -62,11 +69,6 @@ function Recipe({ recipe }: IProps) {
           </div>
         </div>
       </Container>
-      {recipe.source && (
-        <Alert variant="neutral" title="Source">
-          {recipe.source}
-        </Alert>
-      )}
     </>
   );
 }
