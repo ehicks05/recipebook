@@ -8,7 +8,7 @@ interface IProps {
 const Loading = ({ className = "" }: IProps) => (
   <div>
     <CgSpinner
-      className={`mx-auto animate-spin text-9xl text-red-600 ${className}`}
+      className={`mx-auto animate-spin text-8xl text-stone-700 ${className}`}
     />
   </div>
 );
