@@ -36,7 +36,7 @@ const FavoriteButton = ({ recipeId, className }: Props) => {
             ? `Unable to ${
                 isFavorite ? "remove recipe from" : "add recipe to"
               } favorites`
-            : `Recipe ${isFavorite ? "removed from" : "added to"} favorites!`;
+            : `Recipe ${isFavorite ? "removed from" : "added to"} favorites`;
           toast.custom((t) => (
             <Alert
               variant={err ? "error" : "success"}
