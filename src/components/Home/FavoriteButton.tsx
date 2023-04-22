@@ -6,22 +6,6 @@ import { api } from "utils/api";
 import { useUser } from "@supabase/auth-helpers-react";
 import toast from "react-hot-toast";
 
-const doToast = (isFavorite: boolean, errorMessage = "") => {
-  const title = errorMessage
-    ? `Unable to ${
-        isFavorite ? "remove recipe from" : "add recipe to"
-      } favorites`
-    : `Recipe ${isFavorite ? "removed from" : "added to"} favorites`;
-  toast.custom((t) => (
-    <Alert
-      variant={errorMessage ? "error" : "success"}
-      title={title}
-      description={errorMessage}
-      className={t.visible ? "animate-enter" : "animate-leave"}
-    />
-  ));
-};
-
 interface Props {
   recipeId: string;
   className?: string;
@@ -29,17 +13,17 @@ interface Props {
 
 const FavoriteButton = ({ recipeId, className }: Props) => {
   const user = useUser();
-  const userId = user?.id || "";
-  const utils = api.useContext();
+  const id = user?.id || "";
 
-  const { data: userFavorites } =
-    api.example.findFavoriteRecipesByUserId.useQuery({ id: userId });
-  const isFavorite =
-    (userFavorites?.map((o) => o.recipeId) || []).includes(recipeId) || false;
+  const { data: userFavorites, refetch: refetchUserFavorites } =
+    api.example.findFavoriteRecipesByUserId.useQuery({ id });
+  const favoriteIds = userFavorites?.map((o) => o.recipeId) || [];
+  const isFavorite = favoriteIds.includes(recipeId);
 
   const createUserFavorite = api.example.createUserFavorite.useMutation();
   const deleteUserFavorite = api.example.deleteUserFavorite.useMutation();
   const toggle = isFavorite ? deleteUserFavorite : createUserFavorite;
+
   const Icon = isFavorite ? HiHeart : HiOutlineHeart;
 
   const handleClick = () => {
@@ -47,27 +31,27 @@ const FavoriteButton = ({ recipeId, className }: Props) => {
       { recipeId },
       {
         onSettled: (_, err) => {
-          if (!err) {
-            const updated = isFavorite
-              ? userFavorites?.filter((f) => f.recipeId !== recipeId)
-              : [...(userFavorites || []), { userId, recipeId, recipe: }];
-            utils.example.findFavoriteRecipesByUserId.setData(
-              { id: userId },
-              updated
-            );
-          }
-          doToast(isFavorite, err?.message);
+          void refetchUserFavorites();
+          const title = err
+            ? `Unable to ${
+                isFavorite ? "remove recipe from" : "add recipe to"
+              } favorites`
+            : `Recipe ${isFavorite ? "removed from" : "added to"} favorites`;
+          toast.custom((t) => (
+            <Alert
+              variant={err ? "error" : "success"}
+              title={title}
+              description={err?.message}
+              className={t.visible ? "animate-enter" : "animate-leave"}
+            />
+          ));
         },
       }
     );
   };
 
   return (
-    <Button
-      className={className}
-      disabled={toggle.isLoading}
-      onClick={handleClick}
-    >
+    <Button className={className} onClick={handleClick}>
       <Icon className="text-xl text-red-500" />
     </Button>
   );
