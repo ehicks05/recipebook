@@ -1,0 +1,69 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model appUser {
+  id            String          @id @default(uuid())
+  createdAt     DateTime        @default(now()) @map("created_at") @db.Timestamp
+  updatedAt     DateTime        @updatedAt @map("updated_at") @db.Timestamp
+  displayName   String?         @unique @map("display_name")
+  recipe        recipe[]
+  userFavorites userFavorites[]
+
+  @@map("app_user")
+}
+
+model direction {
+  id       String @id @default(uuid())
+  recipeId String @map("recipe_id")
+  index    Int
+  text     String
+  recipe   recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+}
+
+model ingredient {
+  id       String  @id @default(uuid())
+  recipeId String  @map("recipe_id")
+  name     String
+  quantity String
+  unit     String?
+  recipe   recipe  @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+}
+
+model recipe {
+  id            String          @id @default(uuid())
+  createdAt     DateTime        @default(now()) @map("created_at") @db.Timestamp
+  updatedAt     DateTime        @updatedAt @map("updated_at") @db.Timestamp
+  cookingTime   String          @map("cooking_time")
+  course        String?
+  description   String
+  difficulty    Int
+  emoji         String
+  name          String
+  servings      Int
+  authorId      String          @map("author_id")
+  isPublished   Boolean         @default(false)
+  source        String?
+  author        appUser         @relation(fields: [authorId], references: [id])
+  directions    direction[]
+  ingredients   ingredient[]
+  userFavorites userFavorites[]
+}
+
+model userFavorites {
+  userId   String  @map("user_id")
+  recipeId String  @map("recipe_id")
+  recipe   recipe  @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  author   appUser @relation(fields: [userId], references: [id])
+
+  @@id([userId, recipeId])
+  @@map("user_favorites")
+}
