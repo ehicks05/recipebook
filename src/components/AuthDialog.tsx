@@ -47,6 +47,10 @@ const AuthDialog = ({ isOpen, hideModal }: AuthDialogProps) => {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event) => {
+      if (event === 'INITIAL_SESSION') {
+        return;
+      }
+
       // ignore initial 'signed in' toast on page load by checking prevState.current
       if (prevState.current && event !== prevState.current) {
         toast.custom((t) => (
@@ -63,7 +67,6 @@ const AuthDialog = ({ isOpen, hideModal }: AuthDialogProps) => {
         void utils.invalidate();
       }
       prevState.current = event;
-      hideModal();
     });
 
     return () => subscription.unsubscribe();
