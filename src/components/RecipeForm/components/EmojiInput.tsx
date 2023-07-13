@@ -1,11 +1,11 @@
 import { T, Button, Dialog } from "components/core";
-import Picker from "@emoji-mart/react";
 import { useState } from "react";
 import type { Control } from "react-hook-form";
 import { Controller } from "react-hook-form";
 import type { FormRecipe } from "../constants";
-import emojiData from "@emoji-mart/data";
 import { HiQuestionMarkCircle } from "react-icons/hi";
+import EmojiPicker from "./EmojiPicker";
+import type { EmojiClickEvent } from "emoji-picker-element/shared";
 
 const EmojiInput = ({ control }: { control: Control<FormRecipe> }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,17 +31,17 @@ const EmojiInput = ({ control }: { control: Control<FormRecipe> }) => {
             onClose={() => setIsOpen(false)}
             body={
               <div className="mx-auto w-min">
-                <Picker
-                  data={emojiData}
-                  onEmojiSelect={(data: { native: string }) =>
-                    field.onChange(data.native)
-                  }
-                  categories={["foods"]}
-                  previewPosition="none"
-                  searchPosition="none"
-                  perLine={6}
-                  emojiSize={36}
-                  emojiButtonSize={48}
+                <EmojiPicker
+                  onEmojiClick={(e: EmojiClickEvent) => {
+                    console.log(e.detail);
+                    field.onChange(e.detail.unicode);
+                  }}
+                  // categories={["foods"]}
+                  // previewPosition="none"
+                  // searchPosition="none"
+                  // perLine={6}
+                  // emojiSize={36}
+                  // emojiButtonSize={48}
                 />
               </div>
             }
