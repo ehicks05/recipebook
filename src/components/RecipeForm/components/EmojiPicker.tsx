@@ -1,7 +1,6 @@
 import type { ReactNode} from "react";
 import React, { useEffect, useRef } from "react";
 
-import "emoji-picker-element";
 import type Picker from "emoji-picker-element/picker";
 import type { EmojiClickEvent } from "emoji-picker-element/shared";
 
@@ -18,6 +17,9 @@ const EmojiPicker = ({ onEmojiClick, children }: EmojiPickerProps) => {
     if (!current) {
       return;
     }
+    const load = async () => (await import("emoji-picker-element")).default;
+    void load();
+
     current.addEventListener("emoji-click", onEmojiClick);
     return () => {
       current.removeEventListener("emoji-click", onEmojiClick);
