@@ -1,4 +1,4 @@
-import { omit } from "lodash";
+import omit from "lodash/omit";
 import type { CompleteRecipe } from "server/api/routers/example";
 
 function updateClipboard(newClip: string) {

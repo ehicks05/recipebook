@@ -6,7 +6,7 @@
 import * as cheerio from "cheerio";
 import type { Recipe } from "schema-dts";
 import { JSONPath } from "jsonpath-plus";
-import { find } from "lodash";
+import find from "lodash/find";
 import * as entities from "entities";
 import type { CompleteRecipe } from "server/api/routers/example";
 import { extractLeadingQuantity, parseIngredient } from "./ingredient_parser";
