@@ -1,4 +1,4 @@
-import _ from "lodash";
+import omit from "lodash/omit";
 import type { CompleteRecipe } from "server/api/routers/example";
 
 function updateClipboard(newClip: string) {
@@ -18,10 +18,10 @@ function stripRecipe(recipe: CompleteRecipe) {
   const removedFields = ["id", "createdAt", "updatedAt"];
 
   return {
-    ..._.omit(recipe, [...removedFields, "author"]),
-    ingredients: recipe.ingredients.map((i) => _.omit(i, [...removedFields])),
+    ...omit(recipe, [...removedFields, "author"]),
+    ingredients: recipe.ingredients.map((i) => omit(i, [...removedFields])),
     directions: recipe.directions.map((d) =>
-      _.omit(d, [...removedFields, "index"])
+      omit(d, [...removedFields, "index"])
     ),
   };
 }

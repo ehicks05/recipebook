@@ -10,7 +10,7 @@ import type {
 import clsx from "clsx";
 
 const BASE =
-  "w-full rounded border-neutral-100 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-700 dark:text-neutral-100";
+  "text-sm sm:text-base w-full rounded border-neutral-100 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-700 dark:text-neutral-100";
 
 // https://github.com/react-hook-form/react-hook-form/discussions/4426#discussioncomment-623148
 export interface IMyInputProps<T extends FieldValues>

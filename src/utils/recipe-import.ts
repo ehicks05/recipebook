@@ -3,10 +3,11 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import * as cheerio from "cheerio";
+// @ts-expect-error no types
+import htmlparser from 'htmlparser';
 import type { Recipe } from "schema-dts";
 import { JSONPath } from "jsonpath-plus";
-import { find } from "lodash";
+import find from "lodash/find";
 import * as entities from "entities";
 import type { CompleteRecipe } from "server/api/routers/example";
 import { extractLeadingQuantity, parseIngredient } from "./ingredient_parser";
@@ -103,21 +104,29 @@ const deepFind = (json: any, type: string): any => {
 export const parseLdJsonRecipe = (input: string, url: string) => {
   if (!input) return undefined;
   try {
-    const $ = cheerio.load(input);
-    const ldJsonScriptTag = $("script")
-      .get()
-      .find((o) => $(o).attr("type") === "application/ld+json");
-    if (!ldJsonScriptTag?.children[0]) return undefined;
+    const handler: { dom: { raw: string; data: string; type: string; name?: string; attribs?: any; children: any[] }[] } = new htmlparser.DefaultHandler(function (error: Error, dom: { name: string }[]) {
+      if (error) {
+        console.log(error);
+      } else {
+        // console.log(dom);
+      }
+    });
 
-    const jsonString = (ldJsonScriptTag?.children[0] as { data: string }).data;
-    const htmlDecoded = entities.decodeHTML(jsonString);
+    const parser = new htmlparser.Parser(handler);
+    parser.parseComplete(input);
+    const ldScriptJsonString = handler.dom
+      .find(o => o.name === 'html')?.children
+      .find(o => o.name === 'head').children
+      .find((o: any) => o.attribs?.type === 'application/ld+json')?.children?.[0]?.data;
+
+    const htmlDecoded = entities.decodeHTML(ldScriptJsonString);
     const json = JSON.parse(htmlDecoded);
-    console.log({ json });
+    // console.log({ json });
 
     const recipe: Recipe = deepFind({ json }, "Recipe");
     const authorName = JSONPath({ json, path: "$..author..name" })?.[0];
 
-    console.log({ recipe, authorName });
+    // console.log({ recipe, authorName });
 
     return schemaOrgRecipeToRecipeBookRecipe(recipe, authorName, url);
   } catch (err) {
