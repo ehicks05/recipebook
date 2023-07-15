@@ -15,6 +15,7 @@ import "../styles/globals.css";
 import { Toaster } from "react-hot-toast";
 import AuthListener from "components/AuthListener";
 import { useRouter } from "next/router";
+import { Analytics } from "@vercel/analytics/react";
 
 const ubuntu = Ubuntu({
   weight: ["300", "400", "500", "700"],
@@ -69,6 +70,7 @@ const MyApp: AppType<{ initialSession: Session }> = ({
       </div>
       <AuthListener />
       <ReactQueryDevtools initialIsOpen={false} />
+      <Analytics />
     </SessionContextProvider>
   );
 };
