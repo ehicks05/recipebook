@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
-import { Auth, ThemeSupa } from "@supabase/auth-ui-react";
+import { Auth } from "@supabase/auth-ui-react";
+import { ThemeSupa } from '@supabase/auth-ui-shared'
 import { Alert, Button, Dialog, T } from "components/core";
 import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import { useDarkMode } from "usehooks-ts";
