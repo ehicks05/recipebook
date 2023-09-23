@@ -19,7 +19,7 @@
 import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
 
 import type { Session } from "@supabase/auth-helpers-nextjs";
-import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
+import { createPagesServerClient } from "@supabase/auth-helpers-nextjs";
 import { prisma } from "../db";
 
 type CreateContextOptions = {
@@ -51,7 +51,7 @@ export const createTRPCContext = async (opts: CreateNextContextOptions) => {
   const { req, res } = opts;
 
   // Create authenticated Supabase Client
-  const supabase = createServerSupabaseClient({ req, res });
+  const supabase = createPagesServerClient({ req, res });
   // Check if we have a session
   const {
     data: { session },
