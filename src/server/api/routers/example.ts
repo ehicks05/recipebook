@@ -1,6 +1,5 @@
 import { Prisma } from "@prisma/client";
 import { z } from "zod";
-import axios from "axios";
 
 import { createTRPCRouter, publicProcedure, protectedProcedure } from "../trpc";
 import { RECIPE_SCHEMA } from "components/RecipeForm/constants";
@@ -182,7 +181,7 @@ export const exampleRouter = createTRPCRouter({
   importRecipe: publicProcedure
     .input(z.object({ url: z.string() }))
     .query(async ({ input: { url } }) => {
-      return (await axios.get<string>(url)).data;
+      return (await fetch(url)).text();
     }),
 
   findAppUser: protectedProcedure.query(({ ctx }) => {
