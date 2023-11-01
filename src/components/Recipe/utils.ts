@@ -1,4 +1,4 @@
-import omit from "lodash/omit";
+import type { direction, ingredient } from "@prisma/client";
 import type { CompleteRecipe } from "server/api/routers/example";
 
 function updateClipboard(newClip: string) {
@@ -14,15 +14,16 @@ function updateClipboard(newClip: string) {
 // 3. author is added on recipe
 // 4. emoji is a literal emoji
 // 5. direction indexes are added
+
+const omitIngredient = (i: ingredient) => ({ ...i, id: undefined, createdAt: undefined, updatedAt: undefined })
+const omitDirection = (i: direction) => ({ ...i, id: undefined, createdAt: undefined, updatedAt: undefined, index: undefined })
+
 function stripRecipe(recipe: CompleteRecipe) {
-  const removedFields = ["id", "createdAt", "updatedAt"];
 
   return {
-    ...omit(recipe, [...removedFields, "author"]),
-    ingredients: recipe.ingredients.map((i) => omit(i, [...removedFields])),
-    directions: recipe.directions.map((d) =>
-      omit(d, [...removedFields, "index"])
-    ),
+    ...recipe, id: undefined, createdAt: undefined, updatedAt: undefined, author: undefined,
+    ingredients: recipe.ingredients.map(omitIngredient),
+    directions: recipe.directions.map(omitDirection),
   };
 }
 
