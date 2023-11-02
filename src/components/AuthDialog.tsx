@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from '@supabase/auth-ui-shared'
-import { Button, Dialog, T } from "components/core";
+import { Dialog, T } from "components/core";
 import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import { useDarkMode } from "usehooks-ts";
 import { api } from "utils/api";
@@ -13,11 +13,6 @@ interface Props {
 
 const Container = ({ children }: Props) => {
   const user = useUser();
-  const supabase = useSupabaseClient();
-
-  const handleSignOut = () => {
-    void supabase.auth.signOut();
-  };
 
   if (user) {
     return (
@@ -25,8 +20,6 @@ const Container = ({ children }: Props) => {
         <div>
           <T>Welcome {user.email}!</T>
         </div>
-
-        <Button onClick={handleSignOut}>Sign out</Button>
       </div>
     );
   }
