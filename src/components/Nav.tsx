@@ -10,6 +10,7 @@ import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import clsx from "clsx";
+import { toGravatarUrl } from "./gravatar";
 
 const Nav = () => {
   const user = useUser();
@@ -41,7 +42,7 @@ const Nav = () => {
             "block bg-neutral-100 px-4 py-2 text-sm text-neutral-700 dark:bg-neutral-700 dark:text-neutral-200",
             {
               "hover:dark:bg-neutral-600": active,
-            }
+            },
           )}
         >
           Log In
@@ -122,7 +123,7 @@ const Nav = () => {
                               "rounded-md px-3 py-2 text-sm font-medium",
                               item.current
                                 ? "bg-neutral-900 text-white"
-                                : "text-neutral-300 hover:bg-neutral-700 hover:text-white"
+                                : "text-neutral-300 hover:bg-neutral-700 hover:text-white",
                             )}
                             aria-current={item.current ? "page" : undefined}
                           >
@@ -138,7 +139,19 @@ const Nav = () => {
                     <div>
                       <Menu.Button className="flex rounded-full bg-neutral-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-neutral-800">
                         <span className="sr-only">Open user menu</span>
-                        <HiUserCircle className="h-8 w-8 text-white" />
+
+                        {!user?.email && (
+                          <div className="rounded-full p-1 text-neutral-400 hover:text-black focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 dark:bg-neutral-800 dark:hover:text-white">
+                            <HiUserCircle className="h-8 w-8 text-white" />
+                          </div>
+                        )}
+                        {user?.email && (
+                          <img
+                            className="h-8 w-8 rounded-full"
+                            src={toGravatarUrl(user?.email)}
+                            alt="avatar"
+                          />
+                        )}
                       </Menu.Button>
                     </div>
                     <Transition
@@ -161,7 +174,7 @@ const Nav = () => {
             </div>
 
             <Disclosure.Panel className="sm:hidden">
-              <div className="space-y-1 px-2 pt-2 pb-3">
+              <div className="space-y-1 px-2 pb-3 pt-2">
                 {navigation
                   .filter((item) => !item.hidden)
                   .map((item) => (
@@ -172,7 +185,7 @@ const Nav = () => {
                         "block rounded-md px-3 py-2 text-base font-medium",
                         item.current
                           ? "bg-neutral-900 text-white"
-                          : "text-neutral-300 hover:bg-neutral-700 hover:text-white"
+                          : "text-neutral-300 hover:bg-neutral-700 hover:text-white",
                       )}
                       aria-current={item.current ? "page" : undefined}
                     >
