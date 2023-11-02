@@ -36,23 +36,24 @@ model ingredient {
 }
 
 model recipe {
-  id            String          @id @default(uuid())
-  createdAt     DateTime        @default(now()) @map("created_at") @db.Timestamp
-  updatedAt     DateTime        @updatedAt @map("updated_at") @db.Timestamp
-  cookingTime   String          @map("cooking_time")
-  course        String?
-  description   String
-  difficulty    Int
-  emoji         String
-  name          String
-  servings      Int
-  authorId      String          @map("author_id")
-  isPublished   Boolean         @default(false)
-  source        String?
-  author        appUser         @relation(fields: [authorId], references: [id])
-  directions    direction[]
-  ingredients   ingredient[]
-  userFavorites userFavorites[]
+  id             String          @id @default(uuid())
+  createdAt      DateTime        @default(now()) @map("created_at") @db.Timestamp
+  updatedAt      DateTime        @updatedAt @map("updated_at") @db.Timestamp
+  cookingTime    String          @map("cooking_time")
+  course         String?
+  description    String
+  difficulty     Int
+  emoji          String
+  name           String
+  servings       Int
+  authorId       String          @map("author_id")
+  isPublished    Boolean         @default(false) @map("is_published")
+  source         String?
+  author         appUser         @relation(fields: [authorId], references: [id])
+  directions     direction[]
+  ingredients    ingredient[]
+  userFavorites  userFavorites[]
+  featuredRecipe featuredRecipe?
 }
 
 model userFavorites {
@@ -63,4 +64,11 @@ model userFavorites {
 
   @@id([userId, recipeId])
   @@map("user_favorites")
+}
+
+model featuredRecipe {
+  id     String @id @default(uuid())
+  recipe recipe @relation(fields: [id], references: [id], onDelete: Cascade)
+
+  @@map("featured_recipe")
 }

@@ -51,6 +51,16 @@ export const exampleRouter = createTRPCRouter({
       });
     }),
 
+  getRecipeOfTheDay: publicProcedure.query(async ({ ctx }) => {
+    const featuredRecipeIds =
+      (await ctx.prisma.featuredRecipe.findMany()).map(fr => fr.id);
+
+    return ctx.prisma.recipe.findFirst({
+      where: { id: { in: featuredRecipeIds } },
+      ...completeRecipeInclude,
+    });
+  }),
+
   createRecipe: protectedProcedure
     .input(RECIPE_SCHEMA)
     .mutation(async ({ ctx, input }) => {
