@@ -5,6 +5,7 @@ import { Button, Dialog, T } from "components/core";
 import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import { useDarkMode } from "usehooks-ts";
 import { api } from "utils/api";
+import { useRouter } from "next/navigation";
 
 interface Props {
   children: JSX.Element;
@@ -41,6 +42,7 @@ const AuthDialog = ({ isOpen, hideModal }: AuthDialogProps) => {
   const supabase = useSupabaseClient();
   const { isDarkMode } = useDarkMode();
   const utils = api.useContext();
+  const router = useRouter();
 
   useEffect(() => {
     const {
@@ -52,10 +54,13 @@ const AuthDialog = ({ isOpen, hideModal }: AuthDialogProps) => {
       }
       console.log({ event });
       void utils.invalidate();
+      if (event === "SIGNED_OUT") {
+        router.push('/');
+      }
     });
 
     return () => subscription.unsubscribe();
-  }, [supabase, utils]);
+  }, [supabase, utils, router]);
 
   return (
     <Dialog
