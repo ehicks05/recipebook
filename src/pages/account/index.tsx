@@ -88,12 +88,12 @@ const UserForm = () => {
 
 const MyAccount = () => {
   const user = useUser();
-  if (!user) {
-    return null;
-  }
   const appUser = api.example.findAppUser.useQuery().data;
 
-  if (!user || !appUser) return <Loading />;
+  if (!user) {
+    return <Container><T>Log in to view account info</T></Container>
+  }
+  if (!appUser) return <Loading />;
 
   return (
     <>

@@ -5,26 +5,6 @@ import { Dialog, T } from "components/core";
 import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import { useDarkMode } from "usehooks-ts";
 import { api } from "utils/api";
-import { useRouter } from "next/navigation";
-
-interface Props {
-  children: JSX.Element;
-}
-
-const Container = ({ children }: Props) => {
-  const user = useUser();
-
-  if (user) {
-    return (
-      <div className="flex flex-col gap-4">
-        <div>
-          <T>Welcome {user.email}!</T>
-        </div>
-      </div>
-    );
-  }
-  return children;
-};
 
 interface AuthDialogProps {
   isOpen: boolean;
@@ -35,32 +15,33 @@ const AuthDialog = ({ isOpen, hideModal }: AuthDialogProps) => {
   const supabase = useSupabaseClient();
   const { isDarkMode } = useDarkMode();
   const utils = api.useContext();
-  const router = useRouter();
+  const user = useUser();
 
   useEffect(() => {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event) => {
-      // only interested in sign in or out
       if (!["SIGNED_IN", "SIGNED_OUT"].includes(event)) {
         return;
       }
-      console.log({ event });
       void utils.invalidate();
-      if (event === "SIGNED_OUT") {
-        router.push('/');
-      }
     });
 
     return () => subscription.unsubscribe();
-  }, [supabase, utils, router]);
+  }, [supabase, utils]);
+
+  useEffect(() => {
+    if (user) {
+      hideModal();
+    }
+  }, [user, hideModal]);
 
   return (
     <Dialog
       open={isOpen}
       onClose={hideModal}
       body={
-        <Container>
+        user ? <T>Welcome!</T> :
           <Auth
             supabaseClient={supabase}
             appearance={{ theme: ThemeSupa }}
@@ -68,7 +49,6 @@ const AuthDialog = ({ isOpen, hideModal }: AuthDialogProps) => {
             providers={["discord"]}
             socialLayout="horizontal"
           />
-        </Container>
       }
     />
   );
