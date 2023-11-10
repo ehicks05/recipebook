@@ -6,6 +6,7 @@ import { defaultImage, emojiToImage } from "./constants";
 import type { CompleteRecipe } from "server/api/routers/example";
 import FavoriteButton from "components/Home/FavoriteButton";
 import { useUser } from "@supabase/auth-helpers-react";
+import supabaseLoader from "utils/supabase-image-loader";
 
 interface FooterProps {
   cookingTime: string;
@@ -24,7 +25,7 @@ interface Props {
 }
 
 const RecipeCard = ({
-  recipe: { id, emoji, name, author, description, cookingTime, difficulty },
+  recipe: { id, emoji, name, author, description, cookingTime, difficulty, imageUrl },
 }: Props) => {
   const user = useUser();
 
@@ -35,10 +36,11 @@ const RecipeCard = ({
           <Link href={`/recipe/${id}`}>
             <Image
               className="h-60 w-full rounded-t object-cover"
-              src={emojiToImage[emoji] || defaultImage}
+              src={imageUrl || emojiToImage[emoji] || defaultImage}
               alt="recipe"
               height={480}
               width={600}
+              loader={supabaseLoader}
             />
           </Link>
         </div>
@@ -54,9 +56,9 @@ const RecipeCard = ({
               </div>
             </Link>
           </div>
-          {user && <FavoriteButton className="-mt-9 -mr-2" recipeId={id} />}
+          {user && <FavoriteButton className="-mr-2 -mt-9" recipeId={id} />}
         </div>
-        <T className="text-sm line-clamp-2">{description}</T>
+        <T className="line-clamp-2 text-sm">{description}</T>
       </div>
 
       <Footer cookingTime={cookingTime} difficulty={difficulty} />

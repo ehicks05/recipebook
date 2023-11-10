@@ -45,7 +45,6 @@ const EmojiInput = ({ control }: { control: Control<FormRecipe> }) => {
                 />
               </div>
             }
-            footer={<div></div>}
           />
           {control.getFieldState("emoji").error && (
             <div className="text-sm text-red-600">

@@ -12,9 +12,9 @@ const Home: NextPage = () => {
         <RecipeOfTheDay />
       </Container>
       <Hero title="Find a Recipe" />
-      <Container>
+      {/* <Container>
         <RecipePickerWrapper />
-      </Container>
+      </Container> */}
     </>
   );
 };

@@ -143,6 +143,51 @@ export const exampleRouter = createTRPCRouter({
         ...completeRecipeInclude,
       });
     }),
+  
+  /**
+   * Context: Browser succeeded in uploading image to Supabase,
+   * now we're just letting the db know.
+   */
+  updateImage: protectedProcedure
+    .input(z.object({ id: z.string(), imageUrl: z.string().nullable() }))
+    .mutation(async ({ ctx, input }) => {
+      const { id, imageUrl } = input;
+      const userId = ctx.session.user.id;
+      const recipe = await ctx.prisma.recipe.findUnique({ where: { id } });
+      if (userId !== recipe?.authorId) {
+        throw new Error("Unauthorized");
+      }
+
+      return ctx.prisma.recipe.update({
+        where: { id },
+        data: { imageUrl },
+        ...completeRecipeInclude,
+      });
+    }),
+  
+  /**
+   * Context: Browser succeeded in removing image from Supabase,
+   * now we're just letting the db know.
+   */
+  removeImage: protectedProcedure
+    .input(z.object({ id: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      const { id } = input;
+      const userId = ctx.session.user.id;
+      const recipe = await ctx.prisma.recipe.findUnique({ where: { id } });
+      if (userId !== recipe?.authorId) {
+        throw new Error("Unauthorized");
+      }
+      if (!recipe.imageUrl) {
+        throw new Error("Nothing to delete");
+      }
+
+      return ctx.prisma.recipe.update({
+        where: { id },
+        data: { imageUrl: null },
+        ...completeRecipeInclude,
+      });
+    }),
 
   deleteRecipe: protectedProcedure
     .input(z.object({ id: z.string() }))

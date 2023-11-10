@@ -20,7 +20,8 @@ const DirectionsForm = ({ directionsFieldArray, register, errors }: Props) => {
       <T className="text-lg font-semibold">Directions</T>
       <div className="flex flex-col gap-6">
         {directionsFieldArray.fields.map((field, index) => (
-          <div key={field.id} className="flex items-start gap-2">
+          <div key={field.id} className="flex flex-col items-end gap-2">
+          <div key={field.id} className="flex w-full items-start gap-2">
             <T className="pr-2">{index + 1}.</T>
             <MyInput type="hidden" name={`directions.${index}.index`} />
             <MyTextArea
@@ -37,6 +38,18 @@ const DirectionsForm = ({ directionsFieldArray, register, errors }: Props) => {
               }}
             >
               <HiMinus />
+            </Button>
+            <br />
+          </div>
+            <Button
+              className="mr-2"
+              disabled={directionsFieldArray.fields.length <= 1}
+              onClick={(e) => {
+                e.preventDefault();
+                alert("add a picture!");
+              }}
+            >
+              <HiPlus />
             </Button>
           </div>
         ))}

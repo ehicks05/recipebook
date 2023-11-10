@@ -30,6 +30,6 @@
     "**/*.mjs",
     ".next/types/**/*.ts",
     "src/pages/_document.tsx"
-  ],
+, "src/utils/supabase-image-loader.js"  ],
   "exclude": ["node_modules"]
 }
