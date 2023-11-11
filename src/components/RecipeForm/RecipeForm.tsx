@@ -28,7 +28,6 @@ const RecipeForm = ({ recipe, importedRecipe }: Props) => {
     control,
     register,
     handleSubmit,
-    watch,
     reset,
     getValues,
     formState: { errors, isSubmitting, isValid, isDirty },
@@ -166,7 +165,7 @@ const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 
   return (
     <>
-      <Hero title={`${recipe ? "Edit" : "Create"} Recipe ${watch("emoji")}`} />
+      <Hero title={`${recipe ? "Edit" : "Create"} Recipe`} />
       {error && (
         <div className="m-3">
           <Alert
