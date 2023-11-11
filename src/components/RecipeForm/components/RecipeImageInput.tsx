@@ -83,6 +83,7 @@ const RecipeImageInput = () => {
         "x-upsert": "true",
       },
       onAfterResponse: (req: any, res: any) => {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
         if (res.getStatus() < 400) {
           updateImage({id: recipeId, imageSrc});
         }

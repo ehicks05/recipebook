@@ -57,6 +57,7 @@ const schemaOrgRecipeToRecipeBookRecipe = (
     course: recipe.recipeCategory?.toString() || "missing",
     isPublished: true,
     source: url,
+    imageSrc: '',
     ingredients: ((recipe.recipeIngredient || []) as string[])
       .map(parseIngredient)
       .map((i, index) => ({
