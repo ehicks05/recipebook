@@ -154,7 +154,7 @@ const Nav = () => {
                             alt="avatar"
                             width={32}
                             height={32}
-                            loader={() => toGravatarUrl(user?.email)}
+                            loader={() => toGravatarUrl(user?.email || '')}
                           />
                         )}
                       </Menu.Button>
