@@ -24,7 +24,7 @@ interface Props {
 }
 
 const RecipeCard = ({
-  recipe: { id, emoji, name, author, description, cookingTime, difficulty },
+  recipe: { id, emoji, name, author, description, cookingTime, difficulty, imageSrc },
 }: Props) => {
   const user = useUser();
 
@@ -33,13 +33,20 @@ const RecipeCard = ({
       <div className="flex h-96 flex-col gap-4">
         <div className="-m-4 mb-0 h-60">
           <Link href={`/recipe/${id}`}>
-            <Image
+            {imageSrc && <Image
+              className="h-60 w-full rounded-t object-cover"
+              src={imageSrc}
+              alt="recipe"
+              height={480}
+              width={600}
+            />}
+            {!imageSrc && <img
               className="h-60 w-full rounded-t object-cover"
               src={emojiToImage[emoji] || defaultImage}
               alt="recipe"
               height={480}
               width={600}
-            />
+            />}
           </Link>
         </div>
         {/* title row */}
@@ -54,9 +61,9 @@ const RecipeCard = ({
               </div>
             </Link>
           </div>
-          {user && <FavoriteButton className="-mt-9 -mr-2" recipeId={id} />}
+          {user && <FavoriteButton className="-mr-2 -mt-9" recipeId={id} />}
         </div>
-        <T className="text-sm line-clamp-2">{description}</T>
+        <T className="line-clamp-2 text-sm">{description}</T>
       </div>
 
       <Footer cookingTime={cookingTime} difficulty={difficulty} />
@@ -65,7 +72,7 @@ const RecipeCard = ({
 };
 
 function RecipeCardLandscape({
-  recipe: { id, emoji, name, description },
+  recipe: { id, emoji, name, description, imageSrc },
 }: Props) {
   const user = useUser();
 
@@ -73,26 +80,37 @@ function RecipeCardLandscape({
     <Card className="transform border border-neutral-100 transition-all hover:shadow-md dark:border-neutral-700">
       <div className="flex h-48 gap-4">
         <Link href={`/recipe/${id}`} className="relative -m-4 mr-0 h-56 w-full">
-          <Image
-            className="h-56 w-full rounded-l object-cover"
-            src={emojiToImage[emoji] || defaultImage}
-            alt="recipe"
-            height={240}
-            width={300}
-          />
+          {imageSrc && (
+            <Image
+              className="h-56 w-full rounded-l object-cover"
+              src={imageSrc}
+              alt="recipe"
+              height={240}
+              width={300}
+            />
+          )}
+          {!imageSrc && (
+            <img
+              className="h-56 w-full rounded-l object-cover"
+              src={emojiToImage[emoji] || defaultImage}
+              alt="recipe"
+              height={240}
+              width={300}
+            />
+          )}
         </Link>
         {user && (
-          <FavoriteButton className="absolute top-2 left-2" recipeId={id} />
+          <FavoriteButton className="absolute left-2 top-2" recipeId={id} />
         )}
         <div className="flex w-full flex-col gap-4">
           <div className="flex items-start gap-2">
             <Link href={`/recipe/${id}`} className="w-full">
-              <span className="text-lg font-semibold text-amber-700 line-clamp-3 dark:text-amber-400 sm:text-xl">
+              <span className="line-clamp-3 text-lg font-semibold text-amber-700 dark:text-amber-400 sm:text-xl">
                 {name}
               </span>
             </Link>
           </div>
-          <T className="text-sm line-clamp-5">{description}</T>
+          <T className="line-clamp-5 text-sm">{description}</T>
         </div>
       </div>
     </Card>

@@ -143,6 +143,27 @@ export const exampleRouter = createTRPCRouter({
         ...completeRecipeInclude,
       });
     }),
+  
+  /**
+   * Context: Browser succeeded in uploading image to Supabase,
+   * now we're just letting the db know.
+   */
+  updateImage: protectedProcedure
+    .input(z.object({ id: z.string(), imageSrc: z.string().nullable() }))
+    .mutation(async ({ ctx, input }) => {
+      const { id, imageSrc } = input;
+      const userId = ctx.session.user.id;
+      const recipe = await ctx.prisma.recipe.findUnique({ where: { id } });
+      if (userId !== recipe?.authorId) {
+        throw new Error("Unauthorized");
+      }
+
+      return ctx.prisma.recipe.update({
+        where: { id },
+        data: { imageSrc },
+        ...completeRecipeInclude,
+      });
+    }),
 
   deleteRecipe: protectedProcedure
     .input(z.object({ id: z.string() }))

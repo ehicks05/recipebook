@@ -2,6 +2,7 @@ import { T, MyInput, MySelect, MyTextArea } from "components/core";
 import type { Control, FieldErrors, UseFormRegister } from "react-hook-form";
 import type { FormRecipe } from "../constants";
 import EmojiInput from "./EmojiInput";
+import RecipeImageInput from "./RecipeImageInput";
 
 interface Props {
   errors: FieldErrors<FormRecipe>;
@@ -62,6 +63,7 @@ const RecipeDetailsForm = ({ errors, register, control }: Props) => {
         </MySelect>
       </div>
       <EmojiInput control={control} />
+      <RecipeImageInput />
     </div>
   );
 };

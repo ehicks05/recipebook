@@ -21,13 +21,8 @@ const config = {
     defaultLocale: "en",
   },
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-        port: "",
-      },
-    ],
+    loader: 'custom',
+    loaderFile: './src/utils/supabase-image-loader.ts',
   },
 };
 

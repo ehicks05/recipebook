@@ -100,6 +100,7 @@ const Nav = () => {
                         width={64}
                         height={64}
                         priority
+                        loader={() => "/favicon/favicon.png"}
                       />
                       <Image
                         className="hidden h-8 w-auto lg:block"
@@ -108,6 +109,7 @@ const Nav = () => {
                         width={482}
                         height={66}
                         priority
+                        loader={() => "/logo.png"}
                       />
                     </Link>
                   </div>
@@ -146,10 +148,13 @@ const Nav = () => {
                           </div>
                         )}
                         {user?.email && (
-                          <img
+                          <Image
                             className="h-8 w-8 rounded-full"
                             src={toGravatarUrl(user?.email)}
                             alt="avatar"
+                            width={32}
+                            height={32}
+                            loader={() => toGravatarUrl(user?.email)}
                           />
                         )}
                       </Menu.Button>
