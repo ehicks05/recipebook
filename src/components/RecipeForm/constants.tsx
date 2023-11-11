@@ -15,7 +15,7 @@ type FormIngredient = Omit<ingredient, "id" | "recipeId">;
 type FormDirection = Omit<direction, "id" | "recipeId">;
 type FormRecipe = Omit<
   recipe,
-  "id" | "authorId" | "createdAt" | "updatedAt"
+  "id" | "authorId" | "createdAt" | "updatedAt" | "imageSrc"
 > & {
   ingredients: FormIngredient[];
   directions: FormDirection[];
