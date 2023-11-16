@@ -19,7 +19,7 @@ import { HiQuestionMarkCircle } from "react-icons/hi";
 const projectId = env.NEXT_PUBLIC_SUPABASE_PROJECT_ID;
 const supabaseUploadURL = `https://${projectId}.supabase.co/storage/v1/upload/resumable`;
 const bucketName = "recipe-images";
-const maxFileSize = 6 * 1024 * 1024;
+const maxFileSize = 8 * 1024 * 1024;
 
 const uppy = new Uppy({
   restrictions: {
