@@ -95,7 +95,7 @@ function RecipePicker({ recipes }: Props) {
         </div>
       )}
       {newCard && layout === "landscape" && (
-        <div className="grid gap-4 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3">
           {filteredRecipes.map((recipe) => (
             <RecipeCardLandscape key={recipe.id} recipe={recipe} />
           ))}

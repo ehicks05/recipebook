@@ -69,7 +69,7 @@ const MyApp: AppType<{ initialSession: Session }> = ({
         <Footer />
       </div>
       <AuthListener />
-      <ReactQueryDevtools initialIsOpen={false} />
+      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
       <Analytics />
     </SessionContextProvider>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, T } from "./";
 
-const DIFFICULTIES: Record<number, { label: string; color: string }> = {
+export const DIFFICULTIES: Record<number, { label: string; color: string }> = {
   1: { label: "Easy", color: "bg-green-500" },
   2: { label: "Medium", color: "bg-yellow-500" },
   3: { label: "Hard", color: "bg-red-500" },
