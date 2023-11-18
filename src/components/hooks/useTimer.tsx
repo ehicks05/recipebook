@@ -18,7 +18,6 @@ export const useTimer = (props: Props) => {
 
   const msRef = useRef(ms);
   const interval = useRef(0);
-  const seconds = Math.floor(ms / 1000);
 
   useEffect(() => {
     msRef.current = ms;
@@ -50,36 +49,28 @@ export const useTimer = (props: Props) => {
     setPaused(true);
   }
 
-  function displayTime() {
-    const min = Math.floor(ms / (1000 * 60));
-    const sec = seconds % 60;
-    return `${min}:${sec < 10 ? `0${sec}` : sec}`;
-  }
+  const displayTime = [
+    Math.floor(ms / (1000 * 60 * 60)),
+    Math.floor(ms / (1000 * 60)) % 60,
+    Math.floor(ms / 1000) % 60,
+  ]
+    .map((x) => String(x).padStart(2, "0"))
+    .join(":");
 
-  function handleSetTime(e: React.ChangeEvent<HTMLInputElement>) {
-    if (!paused || expired) {
-      return;
-    }
-    const { value } = e.target;
-    if (value.indexOf(":") === -1) return;
-    const [m, s] = value.split(":").map((it) => Number(it)) as [number, number];
-    if (Number.isNaN(m) || Number.isNaN(s)) return;
-    const desiredMs = 1000 * s + 1000 * 60 * m;
-    const maxMs = 1000 * 60 * 999 + 1000 * 59; // 999 minutes + 59 seconds
-    setMs(Math.min(desiredMs, maxMs));
+  function updateMinutes(amount: number) {
+    setMs(ms + amount * 60 * 1000);
   }
 
   const hasTimeElapsed = ms !== initialMs;
 
   return {
     ms,
-    seconds: Math.floor(ms / 1000),
     paused,
     expired,
     setPaused,
     hasTimeElapsed,
     reset,
     displayTime,
-    handleSetTime,
+    updateMinutes,
   };
 };
