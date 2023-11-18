@@ -7,9 +7,10 @@ import Dialog from "./Dialog";
 import Difficulty from "./Difficulty";
 import Hero from "./Hero";
 import Loading from "./Loading";
+import { MyInput, MySelect, MyTextArea } from "./StyledInputs";
+import RecipeImage from "./RecipeImage";
 import T from "./T";
 import Toggle from "./Toggle";
-import { MyInput, MySelect, MyTextArea } from "./StyledInputs";
 
 export {
   Alert,
@@ -24,6 +25,7 @@ export {
   MyInput,
   MySelect,
   MyTextArea,
+  RecipeImage,
   T,
   Toggle,
 };
