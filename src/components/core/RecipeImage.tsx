@@ -24,7 +24,7 @@ const RecipeImage = ({ imageSrc, emoji, height = 300, width = 400, className }: 
       {!imageSrc && (
         <img
           className={className}
-          src={emojiToImage[emoji] || defaultImage}
+          src={emojiToImage[emoji || ''] || defaultImage}
           alt="recipe"
           height={height}
           width={width}
