@@ -3,6 +3,8 @@ import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure, protectedProcedure } from "../trpc";
 import { RECIPE_SCHEMA } from "components/RecipeForm/constants";
+import { supabase } from "utils/supabase";
+import { BUCKETS } from "./constants";
 
 const isPublishedClause = (userId: string | undefined) => ({
   OR: [{ isPublished: true }, ...(userId ? [{ authorId: userId }] : [])],
@@ -52,8 +54,9 @@ export const exampleRouter = createTRPCRouter({
     }),
 
   getRecipeOfTheDay: publicProcedure.query(async ({ ctx }) => {
-    const featuredRecipeIds =
-      (await ctx.prisma.featuredRecipe.findMany()).map(fr => fr.id);
+    const featuredRecipeIds = (await ctx.prisma.featuredRecipe.findMany()).map(
+      (fr) => fr.id,
+    );
 
     return ctx.prisma.recipe.findFirst({
       where: { id: { in: featuredRecipeIds } },
@@ -143,7 +146,7 @@ export const exampleRouter = createTRPCRouter({
         ...completeRecipeInclude,
       });
     }),
-  
+
   /**
    * Context: Browser succeeded in uploading image to Supabase,
    * now we're just letting the db know.
@@ -172,6 +175,13 @@ export const exampleRouter = createTRPCRouter({
       const recipe = await ctx.prisma.recipe.findUnique({ where: { id } });
       if (userId !== recipe?.authorId) {
         throw new Error("Unauthorized");
+      }
+
+      const { error } = await supabase.storage
+        .from(BUCKETS.RECIPE_IMAGES)
+        .remove([`${userId}/${id}/recipe-image`]);
+      if (error) {
+        throw error;
       }
 
       return ctx.prisma.recipe.delete({
@@ -243,6 +253,6 @@ const completeRecipeInclude = {
 };
 
 const completeRecipe = Prisma.validator<Prisma.recipeArgs>()(
-  completeRecipeInclude
+  completeRecipeInclude,
 );
 export type CompleteRecipe = Prisma.recipeGetPayload<typeof completeRecipe>;
