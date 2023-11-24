@@ -35,7 +35,7 @@ function Timer({ minutes }: Props) {
       {!expired && (
         <>
           <Button
-            className={`rounded-l-none text-xs`}
+            className={`rounded-none text-xs`}
             onClick={() => updateMinutes(1)}
           >
             <HiPlus />
