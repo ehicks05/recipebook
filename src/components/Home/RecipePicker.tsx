@@ -1,22 +1,18 @@
 "use client";
 
 import React, { useState } from "react";
-import { Button, Loading, MyInput, T, Toggle } from "components/core";
-import RecipeCard, { RecipeCardLandscape, RecipeCardOld } from "./RecipeCard";
+import { Button, Loading, MyInput, T } from "components/core";
+import RecipeCard from "./RecipeCard";
 import { api } from "utils/api";
 import type { CompleteRecipe } from "server/api/routers/example";
-import { useUser } from "@supabase/auth-helpers-react";
 
 interface Props {
   recipes: CompleteRecipe[];
 }
 
 function RecipePicker({ recipes }: Props) {
-  const user = useUser();
   const [filterInput, setFilterInput] = useState("");
   const [ingredients, setIngredients] = useState<string[]>([]);
-  const [newCard, setNewCard] = useState(false);
-  const [layout, setLayout] = useState("portrait");
 
   const filteredRecipes = recipes.filter((recipe) => {
     const recipeIngredients = recipe.ingredients
@@ -66,50 +62,12 @@ function RecipePicker({ recipes }: Props) {
         </div>
       )}
 
-      {user && (
-        <div className="flex flex-col gap-2 rounded bg-slate-200 p-4 dark:bg-slate-800">
-          <T className="">Experiments:</T>
-          <Toggle
-            id="newCard"
-            checked={newCard}
-            onChange={() => setNewCard(!newCard)}
-            label="New Card UI"
-          />
-          <Toggle
-            id="layoutMode"
-            disabled={!newCard}
-            checked={layout === "landscape"}
-            onChange={() =>
-              setLayout(layout === "landscape" ? "portrait" : "landscape")
-            }
-            label="Landscape Layout"
-          />
-        </div>
-      )}
-      {!newCard && (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {filteredRecipes.map((recipe) => (
-            <RecipeCardOld key={recipe.id} recipe={recipe} />
-          ))}
-          {filteredRecipes.length === 0 && <T>No results...</T>}
-        </div>
-      )}
-      {newCard && layout === "landscape" && (
-        <div className="grid gap-4 sm:grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3">
-          {filteredRecipes.map((recipe) => (
-            <RecipeCardLandscape key={recipe.id} recipe={recipe} />
-          ))}
-          {filteredRecipes.length === 0 && <T>No results...</T>}
-        </div>
-      )}
-      {newCard && layout === "portrait" && (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {filteredRecipes.map((recipe) => (
-            <RecipeCard key={recipe.id} recipe={recipe} />
-          ))}
-          {filteredRecipes.length === 0 && <T>No results...</T>}
-        </div>
-      )}
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {filteredRecipes.map((recipe) => (
+          <RecipeCard key={recipe.id} recipe={recipe} />
+        ))}
+        {filteredRecipes.length === 0 && <T>No results...</T>}
+      </div>
     </div>
   );
 }
