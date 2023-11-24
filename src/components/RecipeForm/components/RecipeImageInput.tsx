@@ -15,10 +15,11 @@ import "@uppy/core/dist/style.min.css";
 import "@uppy/dashboard/dist/style.min.css";
 import "@uppy/webcam/dist/style.min.css";
 import { HiQuestionMarkCircle } from "react-icons/hi";
+import { BUCKETS } from "server/api/routers/constants";
 
 const projectId = env.NEXT_PUBLIC_SUPABASE_PROJECT_ID;
 const supabaseUploadURL = `https://${projectId}.supabase.co/storage/v1/upload/resumable`;
-const bucketName = "recipe-images";
+const bucketName = BUCKETS.RECIPE_IMAGES;
 const maxFileSize = 8 * 1024 * 1024;
 
 const uppy = new Uppy({
