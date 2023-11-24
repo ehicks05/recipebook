@@ -12,22 +12,33 @@ interface Props {
 }
 
 const RecipeCard = ({
-  recipe: { id, emoji, name, author, description, cookingTime, difficulty, imageSrc },
+  recipe: {
+    id,
+    emoji,
+    name,
+    author,
+    description,
+    cookingTime,
+    difficulty,
+    imageSrc,
+  },
 }: Props) => {
   const user = useUser();
 
   return (
-    <Card className="transform border border-neutral-100 transition-all hover:shadow-md dark:border-neutral-700">
-      <div className="flex h-80 flex-col gap-4">
-        <div className="-m-4 mb-0 h-48">
-          <Link href={`/recipe/${id}`}>
-            <RecipeImage imageSrc={imageSrc} emoji={emoji} className="h-48 w-full rounded-t object-cover" />
-          </Link>
-        </div>
-        {/* title row */}
-        <div className="flex items-start gap-2">
-          <div className="w-full">
-            <Link href={`/recipe/${id}`}>
+    <Link href={`/recipe/${id}`}>
+      <Card className="transform border border-neutral-100 transition-all hover:shadow-md dark:border-neutral-700">
+        <div className="flex h-80 flex-col gap-4">
+          <div className="-m-4 mb-0 h-48">
+            <RecipeImage
+              imageSrc={imageSrc}
+              emoji={emoji}
+              className="h-48 w-full rounded-t object-cover"
+            />
+          </div>
+          {/* title row */}
+          <div className="flex items-start gap-2">
+            <div className="w-full">
               <div className="text-xl font-semibold text-amber-700 dark:text-amber-400">
                 {name}
               </div>
@@ -40,13 +51,13 @@ const RecipeCard = ({
                 />{" "}
                 {cookingTime}
               </div>
-            </Link>
+            </div>
+            {user && <FavoriteButton className="-mr-2 -mt-9" recipeId={id} />}
           </div>
-          {user && <FavoriteButton className="-mr-2 -mt-9" recipeId={id} />}
+          <T className="line-clamp-2 text-sm">{description}</T>
         </div>
-        <T className="line-clamp-2 text-sm">{description}</T>
-      </div>
-    </Card>
+      </Card>
+    </Link>
   );
 };
 
@@ -56,30 +67,28 @@ function RecipeCardLandscape({
   const user = useUser();
 
   return (
-    <Card className="transform border border-neutral-100 transition-all hover:shadow-md dark:border-neutral-700">
-      <div className="flex h-48 gap-4">
-        <Link href={`/recipe/${id}`} className="relative -m-4 mr-0 h-56 w-full">
-          <RecipeImage
-            imageSrc={imageSrc}
-            emoji={emoji}
-            className="h-56 w-full rounded-l object-cover"
-          />
-        </Link>
-        {user && (
-          <FavoriteButton className="absolute left-2 top-2" recipeId={id} />
-        )}
-        <div className="flex w-full flex-col gap-4">
-          <div className="flex items-start gap-2">
-            <Link href={`/recipe/${id}`} className="w-full">
-              <span className="line-clamp-3 text-lg font-semibold text-amber-700 dark:text-amber-400 sm:text-xl">
-                {name}
-              </span>
-            </Link>
+    <Link href={`/recipe/${id}`}>
+      <Card className="transform border border-neutral-100 transition-all hover:shadow-md dark:border-neutral-700">
+        <div className="flex h-48 gap-4">
+          <div className="-m-4 mr-0 h-56 w-full">
+            <RecipeImage
+              imageSrc={imageSrc}
+              emoji={emoji}
+              className="h-56 w-full rounded-l object-cover"
+            />
           </div>
-          <T className="line-clamp-5 text-sm">{description}</T>
+          {user && (
+            <FavoriteButton className="absolute left-2 top-2" recipeId={id} />
+          )}
+          <div className="flex w-full flex-col gap-4">
+            <span className="line-clamp-3 text-lg font-semibold text-amber-700 dark:text-amber-400 sm:text-xl">
+              {name}
+            </span>
+            <T className="line-clamp-5 text-sm">{description}</T>
+          </div>
         </div>
-      </div>
-    </Card>
+      </Card>
+    </Link>
   );
 }
 

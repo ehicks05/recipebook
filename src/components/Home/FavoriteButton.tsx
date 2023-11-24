@@ -1,3 +1,4 @@
+import type { MouseEvent } from "react";
 import React from "react";
 import { HiHeart, HiOutlineHeart } from "react-icons/hi";
 
@@ -26,7 +27,8 @@ const FavoriteButton = ({ recipeId, className }: Props) => {
 
   const Icon = isFavorite ? HiHeart : HiOutlineHeart;
 
-  const handleClick = () => {
+  const handleClick = (e: MouseEvent) => {
+    e.preventDefault();
     toggle.mutate(
       { recipeId },
       {
@@ -46,12 +48,12 @@ const FavoriteButton = ({ recipeId, className }: Props) => {
             />
           ));
         },
-      }
+      },
     );
   };
 
   return (
-    <Button className={className} onClick={handleClick}>
+    <Button className={className} onClick={(e) => handleClick(e)}>
       <Icon className="text-xl text-red-500" />
     </Button>
   );
