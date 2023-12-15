@@ -12,12 +12,18 @@ function Direction({ direction }: Props) {
   return (
     <li
       key={direction.text}
-      className={`cursor-pointer ${isDone ? "line-through opacity-50" : ""}`}
+      className={`cursor-pointer ${isDone ? "line-through opacity-50" : ""}` }
     >
       <div onClick={() => setIsDone(!isDone)}>
-        <T className={isDone ? "line-clamp-1" : ""}>{direction.text}</T>
+        <T className={`flex flex-col gap-2`}>
+          {direction.text.split("\n\n").map((paragraph) => (
+            <span className={`${isDone ? "line-clamp-1" : ""}`} key={paragraph}>
+              {paragraph}
+            </span>
+          ))}
+        </T>
       </div>
-    </li>
+    </li>     
   );
 }
 
