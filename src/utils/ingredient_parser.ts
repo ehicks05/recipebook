@@ -5,10 +5,11 @@
 const normalizeUnicode = (input: string) =>
   input.normalize("NFKD").replace("⁄", "/");
 
-export const extractLeadingQuantity = (input: string) => {
+export const extractLeadingQuantity = (_input: string) => {
+  const input = _input.trim();
   let endIndex = 0;
   while (
-    "0123456789.,/ ".includes(input.charAt(endIndex)) &&
+    '0123456789.,/'.includes(input.charAt(endIndex)) &&
     endIndex <= input.length - 1
   ) {
     endIndex += 1;
