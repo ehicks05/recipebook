@@ -7,10 +7,10 @@ import RecipeOfTheDay from "components/Home/RecipeOfTheDay";
 const Home: NextPage = () => {
   return (
     <>
-      <Hero title="Recipe of the Day" />
+      {/* <Hero title="Recipe of the Day" />
       <Container>
         <RecipeOfTheDay />
-      </Container>
+      </Container> */}
       <Hero title="Find a Recipe" />
       <Container>
         <RecipePickerWrapper />

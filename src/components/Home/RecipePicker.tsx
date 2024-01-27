@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { Button, Loading, MyInput, T } from "components/core";
 import RecipeCard from "./RecipeCard";
 import { api } from "utils/api";
@@ -11,6 +12,7 @@ interface Props {
 }
 
 function RecipePicker({ recipes }: Props) {
+  const [parent] = useAutoAnimate();
   const [filterInput, setFilterInput] = useState("");
   const [ingredients, setIngredients] = useState<string[]>([]);
 
@@ -47,7 +49,7 @@ function RecipePicker({ recipes }: Props) {
         )}
       </div>
       {ingredients.length > 0 && (
-        <div className="flex gap-2">
+        <div className="flex gap-2" ref={parent}>
           {ingredients.map((ingredient) => (
             <Button
               key={ingredient}
@@ -79,11 +81,15 @@ const RecipePickerWrapper = () => {
     data: recipes,
   } = api.example.findRecipes.useQuery();
 
+    const {
+    data: recipeOfTheDay,
+  } = api.example.getRecipeOfTheDay.useQuery();
+
   if (isLoading) return <Loading />;
   if (error || !recipes)
     return <div>{error?.message || "Something went wrong"}</div>;
 
-  return <RecipePicker recipes={recipes} />;
+  return <RecipePicker recipes={recipes.sort((o1, o2) => o1.id === recipeOfTheDay?.id ? -1 : o2.id === recipeOfTheDay?.id ? 1 : 0)} />;
 };
 
 export default RecipePickerWrapper;

@@ -4,8 +4,9 @@ import { Card, RecipeImage, T } from "components/core";
 import type { CompleteRecipe } from "server/api/routers/example";
 import FavoriteButton from "components/Home/FavoriteButton";
 import { useUser } from "@supabase/auth-helpers-react";
-import { HiOutlineClock } from "react-icons/hi";
+import { HiOutlineClock, HiStar } from "react-icons/hi";
 import { DIFFICULTIES } from "components/core/Difficulty";
+import { api } from "utils/api";
 
 interface Props {
   recipe: CompleteRecipe;
@@ -25,6 +26,10 @@ const RecipeCard = ({
 }: Props) => {
   const user = useUser();
 
+  const {
+    data: recipeOfTheDay,
+  } = api.example.getRecipeOfTheDay.useQuery();
+
   return (
     <Link href={`/recipe/${id}`}>
       <Card className="transform border border-neutral-100 transition-all hover:shadow-md dark:border-neutral-700">
@@ -35,6 +40,13 @@ const RecipeCard = ({
               emoji={emoji}
               className="h-48 w-full rounded-t object-cover"
             />
+            {recipeOfTheDay?.id === id &&
+              <div className="flex gap-2 items-center p-2 rounded bg-neutral-700 text-white absolute top-2 right-2 shadow-xl">
+                <HiStar className="text-yellow-400" />
+                Recipe of the day
+                <HiStar className="text-yellow-400" />
+              </div>
+            }
           </div>
           {/* title row */}
           <div className="flex items-start gap-2">
