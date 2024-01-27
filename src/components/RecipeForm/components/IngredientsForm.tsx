@@ -4,7 +4,7 @@ import type {
   UseFormRegister,
   FieldErrors,
 } from "react-hook-form";
-import { HiMinus, HiPlus } from "react-icons/hi";
+import { HiArrowDown, HiArrowUp, HiMinus, HiPlus, HiTrash } from "react-icons/hi";
 import type { FormRecipe } from "../constants";
 import { UNIT_OPTIONS, DEFAULT_INGREDIENT } from "../constants";
 
@@ -40,15 +40,35 @@ const IngredientsForm = ({
               >
                 {UNIT_OPTIONS}
               </MySelect>
-              <Button
-                disabled={ingredientsFieldArray.fields.length <= 1}
-                onClick={(e) => {
-                  e.preventDefault();
-                  ingredientsFieldArray.remove(index);
-                }}
-              >
-                <HiMinus />
-              </Button>
+              <div className="flex gap-2">
+                <Button
+                  disabled={index === 0}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    ingredientsFieldArray.swap(index, index - 1);
+                  }}
+                >
+                  <HiArrowUp />
+                </Button>
+                <Button
+                  disabled={index === ingredientsFieldArray.fields.length - 1}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    ingredientsFieldArray.swap(index, index + 1);
+                  }}
+                >
+                  <HiArrowDown />
+                </Button>
+                <Button
+                  disabled={ingredientsFieldArray.fields.length <= 1}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    ingredientsFieldArray.remove(index);
+                  }}
+                >
+                  <HiTrash />
+                </Button>
+              </div>
             </div>
             <MyInput
               name={`ingredients.${index}.name`}

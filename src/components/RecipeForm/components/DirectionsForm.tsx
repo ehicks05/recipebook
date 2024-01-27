@@ -4,7 +4,7 @@ import type {
   UseFieldArrayReturn,
   UseFormRegister,
 } from "react-hook-form";
-import { HiMinus, HiPlus } from "react-icons/hi";
+import { HiArrowDown, HiArrowUp, HiMinus, HiPlus, HiTrash } from "react-icons/hi";
 import type { FormRecipe } from "../constants";
 import { DEFAULT_DIRECTION } from "../constants";
 
@@ -29,15 +29,35 @@ const DirectionsForm = ({ directionsFieldArray, register, errors }: Props) => {
               register={register}
               error={errors.directions?.[index]?.text}
             />
-            <Button
-              disabled={directionsFieldArray.fields.length <= 1}
-              onClick={(e) => {
-                e.preventDefault();
-                directionsFieldArray.remove(index);
-              }}
-            >
-              <HiMinus />
-            </Button>
+            <div className="flex flex-col gap-2">
+              <Button
+                disabled={directionsFieldArray.fields.length <= 1}
+                onClick={(e) => {
+                  e.preventDefault();
+                  directionsFieldArray.remove(index);
+                }}
+              >
+                <HiTrash />
+              </Button>
+              <Button
+                disabled={index === 0}
+                onClick={(e) => {
+                  e.preventDefault();
+                  directionsFieldArray.swap(index, index - 1);
+                }}
+              >
+                <HiArrowUp />
+              </Button>
+              <Button
+                disabled={index === directionsFieldArray.fields.length - 1}
+                onClick={(e) => {
+                  e.preventDefault();
+                  directionsFieldArray.swap(index, index + 1);
+                }}
+              >
+                <HiArrowDown />
+              </Button>
+            </div>
           </div>
         ))}
         <div className="text-right">
