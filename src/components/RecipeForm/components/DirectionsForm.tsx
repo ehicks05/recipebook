@@ -4,7 +4,8 @@ import type {
   UseFieldArrayReturn,
   UseFormRegister,
 } from "react-hook-form";
-import { HiArrowDown, HiArrowUp, HiMinus, HiPlus, HiTrash } from "react-icons/hi";
+import { HiArrowDown, HiArrowUp, HiPlus, HiTrash } from "react-icons/hi";
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 import type { FormRecipe } from "../constants";
 import { DEFAULT_DIRECTION } from "../constants";
 
@@ -15,10 +16,12 @@ interface Props {
 }
 
 const DirectionsForm = ({ directionsFieldArray, register, errors }: Props) => {
+  const [parent] = useAutoAnimate();
+
   return (
     <div className="flex flex-col gap-2 md:col-span-2 lg:col-span-3">
       <T className="text-lg font-semibold">Directions</T>
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-6" ref={parent}>
         {directionsFieldArray.fields.map((field, index) => (
           <div key={field.id} className="flex items-start gap-2">
             <T className="pr-2">{index + 1}.</T>

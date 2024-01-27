@@ -4,7 +4,8 @@ import type {
   UseFormRegister,
   FieldErrors,
 } from "react-hook-form";
-import { HiArrowDown, HiArrowUp, HiMinus, HiPlus, HiTrash } from "react-icons/hi";
+import { HiArrowDown, HiArrowUp, HiPlus, HiTrash } from "react-icons/hi";
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 import type { FormRecipe } from "../constants";
 import { UNIT_OPTIONS, DEFAULT_INGREDIENT } from "../constants";
 
@@ -19,10 +20,12 @@ const IngredientsForm = ({
   register,
   errors,
 }: Props) => {
+  const [parent] = useAutoAnimate();
+
   return (
     <div className="flex flex-col gap-2 md:col-span-1 lg:col-span-2">
       <T className="text-lg font-semibold">Ingredients</T>
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-6" ref={parent}>
         {ingredientsFieldArray.fields.map((field, index) => (
           <div key={field.id} className="flex flex-col gap-2">
             <MyInput type="hidden" name={`ingredients.${index}.index`} />
