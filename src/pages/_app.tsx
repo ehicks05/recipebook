@@ -5,7 +5,6 @@ import { Ubuntu } from "next/font/google";
 import { createPagesBrowserClient } from "@supabase/auth-helpers-nextjs";
 import type { Session } from "@supabase/auth-helpers-nextjs";
 import { SessionContextProvider } from "@supabase/auth-helpers-react";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import { api } from "../utils/api";
 
@@ -69,7 +68,6 @@ const MyApp: AppType<{ initialSession: Session }> = ({
         <Footer />
       </div>
       <AuthListener />
-      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
       <Analytics />
     </SessionContextProvider>
   );
