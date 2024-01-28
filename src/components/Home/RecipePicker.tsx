@@ -7,16 +7,8 @@ import RecipeCard from "./RecipeCard";
 import { api } from "utils/api";
 import type { CompleteRecipe } from "server/api/routers/example";
 
-interface Props {
-  recipes: CompleteRecipe[];
-}
-
-function RecipePicker({ recipes }: Props) {
-  const [parent] = useAutoAnimate();
-  const [filterInput, setFilterInput] = useState("");
-  const [ingredients, setIngredients] = useState<string[]>([]);
-
-  const filteredRecipes = recipes.filter((recipe) => {
+const applyIngredientFilter = (recipes: CompleteRecipe[], ingredients: string[]) => {
+  return recipes.filter((recipe) => {
     const recipeIngredients = recipe.ingredients
       .map((x) => x.name.toLowerCase())
       .join();
@@ -25,10 +17,38 @@ function RecipePicker({ recipes }: Props) {
     );
   });
 
+}
+
+const applySearch = (recipes: CompleteRecipe[], search: string) => {
+  return recipes.filter((recipe) => {
+    
+    return recipe.name.toLowerCase().includes(search) ||
+      recipe.description.toLowerCase().includes(search) ||
+      recipe.ingredients.map(i => i.name.toLowerCase()).some(i => i.includes(search)) ||
+      recipe.directions.map(d => d.text.toLowerCase()).some(d => d.includes(search)) ||
+      recipe.author.displayName?.toLowerCase().includes(search)
+      ;
+
+  });
+
+}
+
+interface Props {
+  recipes: CompleteRecipe[];
+}
+
+function RecipePicker({ recipes }: Props) {
+  const [parent] = useAutoAnimate();
+  const [searchInput, setSearchInput] = useState("");
+  const [ingredientInput, setIngredientInput] = useState("");
+  const [ingredients, setIngredients] = useState<string[]>([]);
+
+  const filteredRecipes = applyIngredientFilter(applySearch(recipes, searchInput), ingredients);
+
   const handleAddFilter = () => {
-    if (!ingredients.includes(filterInput)) {
-      setIngredients([...ingredients, filterInput.toLowerCase()]);
-      setFilterInput("");
+    if (!ingredients.includes(ingredientInput)) {
+      setIngredients([...ingredients, ingredientInput.toLowerCase()]);
+      setIngredientInput("");
     }
   };
 
@@ -37,8 +57,14 @@ function RecipePicker({ recipes }: Props) {
       <div className="flex items-center gap-1">
         <MyInput
           className="bg-neutral-100 px-2 py-1.5 dark:bg-neutral-800 dark:text-neutral-200"
-          value={filterInput}
-          onChange={(e) => setFilterInput(e.target.value.toLowerCase())}
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value.toLowerCase())}
+          placeholder="Search"
+        />
+        <MyInput
+          className="bg-neutral-100 px-2 py-1.5 dark:bg-neutral-800 dark:text-neutral-200"
+          value={ingredientInput}
+          onChange={(e) => setIngredientInput(e.target.value.toLowerCase())}
           onKeyUp={(e) => e.key === "Enter" && handleAddFilter()}
           placeholder="Search by Ingredient"
         />
@@ -48,21 +74,19 @@ function RecipePicker({ recipes }: Props) {
           </Button>
         )}
       </div>
-      {ingredients.length > 0 && (
-        <div className="flex gap-2" ref={parent}>
-          {ingredients.map((ingredient) => (
-            <Button
-              key={ingredient}
-              className="text-xs"
-              onClick={() =>
-                setIngredients(ingredients.filter((i) => i !== ingredient))
-              }
-            >
-              {ingredient}
-            </Button>
-          ))}
-        </div>
-      )}
+      <div className={`${ingredients.length === 0 ? 'hidden' : 'flex'} gap-2`} ref={parent}>
+        {ingredients.map((ingredient) => (
+          <Button
+            key={ingredient}
+            className="text-xs"
+            onClick={() =>
+              setIngredients(ingredients.filter((i) => i !== ingredient))
+            }
+          >
+            {ingredient}
+          </Button>
+        ))}
+      </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {filteredRecipes.map((recipe) => (
