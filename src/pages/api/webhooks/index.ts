@@ -2,7 +2,7 @@ import { Webhook } from 'svix'
 import { WebhookEvent } from '@clerk/nextjs/server'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { buffer } from 'micro'
-import {env} from '../../../env/server.mjs'
+import { env } from '../../../env/server.mjs'
 
 export const config = {
   api: {
@@ -57,7 +57,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const { id } = evt.data;
   const eventType = evt.type;
 
-  console.log(`Webhook with and ID of ${id} and type of ${eventType}`)
+  console.log(`Webhook with and ID of ${id || ''} and type of ${eventType}`)
   console.log('Webhook body:', body)
 
   // create app user
