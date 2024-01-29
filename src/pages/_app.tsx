@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { AppType } from "next/app";
 import Head from "next/head";
 import { Ubuntu } from "next/font/google";
@@ -15,6 +15,8 @@ import { Toaster } from "react-hot-toast";
 import AuthListener from "components/AuthListener";
 import { useRouter } from "next/router";
 import { Analytics } from "@vercel/analytics/react";
+import { ClerkProvider } from "@clerk/nextjs";
+import { dark,neobrutalism } from '@clerk/themes';
 
 const ubuntu = Ubuntu({
   weight: ["300", "400", "500", "700"],
@@ -31,8 +33,22 @@ const MyApp: AppType<{ initialSession: Session }> = ({
   const [supabaseClient] = useState(() => createPagesBrowserClient());
   const router = useRouter();
 
+  useEffect(() => {
+    const {
+      data: { subscription },
+    } = supabaseClient.auth.onAuthStateChange((event) => {
+      console.log(event);
+      if (event === 'PASSWORD_RECOVERY') {
+        router.push('/update-password');
+        return;
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, [supabaseClient]);
+
   return (
-    <SessionContextProvider
+    <ClerkProvider {...pageProps} appearance={{ baseTheme: dark, variables: {colorInputText: '#222'} }}><SessionContextProvider
       supabaseClient={supabaseClient}
       initialSession={pageProps.initialSession}
     >
@@ -69,7 +85,7 @@ const MyApp: AppType<{ initialSession: Session }> = ({
       </div>
       <AuthListener />
       <Analytics />
-    </SessionContextProvider>
+    </SessionContextProvider></ClerkProvider>
   );
 };
 
