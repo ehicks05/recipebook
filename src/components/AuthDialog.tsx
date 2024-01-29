@@ -1,10 +1,25 @@
 import React, { useEffect } from "react";
 import { Auth } from "@supabase/auth-ui-react";
-import { ThemeSupa } from '@supabase/auth-ui-shared'
+import { ThemeSupa, ViewType } from '@supabase/auth-ui-shared'
 import { Dialog, T } from "components/core";
 import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import { useDarkMode } from "usehooks-ts";
 import { api } from "utils/api";
+
+export const AuthWrapper = ({view}: {view?: ViewType}) => {
+  const { isDarkMode } = useDarkMode();
+  const supabase = useSupabaseClient();
+
+  return <Auth
+    supabaseClient={supabase}
+    appearance={{ theme: ThemeSupa }}
+    theme={isDarkMode ? "dark" : undefined}
+    providers={["discord"]}
+    socialLayout="horizontal"
+    magicLink
+    view={view}
+  />
+}
 
 interface AuthDialogProps {
   isOpen: boolean;
@@ -13,7 +28,6 @@ interface AuthDialogProps {
 
 const AuthDialog = ({ isOpen, hideModal }: AuthDialogProps) => {
   const supabase = useSupabaseClient();
-  const { isDarkMode } = useDarkMode();
   const utils = api.useContext();
   const user = useUser();
 
@@ -40,16 +54,7 @@ const AuthDialog = ({ isOpen, hideModal }: AuthDialogProps) => {
     <Dialog
       open={isOpen}
       onClose={hideModal}
-      body={
-        user ? <T>Welcome!</T> :
-          <Auth
-            supabaseClient={supabase}
-            appearance={{ theme: ThemeSupa }}
-            theme={isDarkMode ? "dark" : undefined}
-            providers={["discord"]}
-            socialLayout="horizontal"
-          />
-      }
+      body={user ? <T>Welcome!</T> : <AuthWrapper />}
     />
   );
 };

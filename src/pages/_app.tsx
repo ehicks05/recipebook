@@ -15,6 +15,8 @@ import { Toaster } from "react-hot-toast";
 import AuthListener from "components/AuthListener";
 import { useRouter } from "next/router";
 import { Analytics } from "@vercel/analytics/react";
+import { ClerkProvider } from "@clerk/nextjs";
+import { dark } from '@clerk/themes';
 
 const ubuntu = Ubuntu({
   weight: ["300", "400", "500", "700"],
@@ -32,7 +34,7 @@ const MyApp: AppType<{ initialSession: Session }> = ({
   const router = useRouter();
 
   return (
-    <SessionContextProvider
+    <ClerkProvider {...pageProps} appearance={{ baseTheme: dark, variables: {colorInputText: '#222'} }}><SessionContextProvider
       supabaseClient={supabaseClient}
       initialSession={pageProps.initialSession}
     >
@@ -69,7 +71,7 @@ const MyApp: AppType<{ initialSession: Session }> = ({
       </div>
       <AuthListener />
       <Analytics />
-    </SessionContextProvider>
+    </SessionContextProvider></ClerkProvider>
   );
 };
 

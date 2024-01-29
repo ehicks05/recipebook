@@ -10,6 +10,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "@clerk/nextjs": "^4.29.5",
+    "@clerk/themes": "^1.7.9",
     "@formkit/auto-animate": "^0.8.1",
     "@headlessui/react": "^1.7.18",
     "@hookform/resolvers": "^3.3.4",
@@ -42,6 +44,7 @@
     "jsonpath-plus": "^8.0.0",
     "lodash": "^4.17.21",
     "md5": "^2.3.0",
+    "micro": "^10.0.1",
     "next": "^14.1.0",
     "next-auth": "^4.24.5",
     "react": "^18.2.0",
@@ -54,6 +57,7 @@
     "react-textarea-autosize": "^8.5.3",
     "schema-dts": "^1.1.2",
     "superjson": "^2.2.1",
+    "svix": "^1.16.0",
     "usehooks-ts": "^2.10.0",
     "zod": "^3.22.4"
   },
