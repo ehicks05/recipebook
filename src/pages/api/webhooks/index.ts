@@ -3,6 +3,7 @@ import { WebhookEvent } from '@clerk/nextjs/server'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { buffer } from 'micro'
 import { env } from '../../../env/server.mjs'
+import { prisma } from '../../../server/db'
 
 export const config = {
   api: {
@@ -62,11 +63,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   // create app user
   if (eventType === 'user.created') {
-    await prisma?.appUser.create({ data: { id, displayName: evt.data.username } });
+    await prisma.appUser.create({ data: { id, displayName: evt.data.username } });
   }
   // update app user
   if (eventType === 'user.updated') {
-    await prisma?.appUser.upsert({
+    await prisma.appUser.upsert({
       where: { id },
       create: { id, displayName: evt.data.username },
       update: { id, displayName: evt.data.username },
