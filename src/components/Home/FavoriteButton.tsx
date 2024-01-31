@@ -4,7 +4,7 @@ import { HiHeart, HiOutlineHeart } from "react-icons/hi";
 
 import { Alert, Button } from "components/core";
 import { api } from "utils/api";
-import { useUser } from "@supabase/auth-helpers-react";
+import { useUser } from "@clerk/nextjs";
 import toast from "react-hot-toast";
 
 interface Props {
@@ -13,7 +13,7 @@ interface Props {
 }
 
 const FavoriteButton = ({ recipeId, className }: Props) => {
-  const user = useUser();
+  const { user } = useUser();
   const id = user?.id || "";
 
   const { data: userFavorites, refetch: refetchUserFavorites } =

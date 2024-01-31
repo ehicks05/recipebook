@@ -1,10 +1,6 @@
-import { useState } from "react";
 import type { AppType } from "next/app";
 import Head from "next/head";
 import { Ubuntu } from "next/font/google";
-import { createPagesBrowserClient } from "@supabase/auth-helpers-nextjs";
-import type { Session } from "@supabase/auth-helpers-nextjs";
-import { SessionContextProvider } from "@supabase/auth-helpers-react";
 
 import { api } from "../utils/api";
 
@@ -12,7 +8,6 @@ import Footer from "components/Footer";
 import Nav from "components/Nav";
 import "../styles/globals.css";
 import { Toaster } from "react-hot-toast";
-import AuthListener from "components/AuthListener";
 import { useRouter } from "next/router";
 import { Analytics } from "@vercel/analytics/react";
 import { ClerkProvider } from "@clerk/nextjs";
@@ -25,19 +20,11 @@ const ubuntu = Ubuntu({
   display: "optional",
 });
 
-const MyApp: AppType<{ initialSession: Session }> = ({
-  Component,
-  pageProps,
-}) => {
-  // Create a new supabase browser client on every first render.
-  const [supabaseClient] = useState(() => createPagesBrowserClient());
+const MyApp: AppType = ({ Component, pageProps }) => {
   const router = useRouter();
 
   return (
-    <ClerkProvider {...pageProps} appearance={{ baseTheme: dark, variables: {colorInputText: '#222'} }}><SessionContextProvider
-      supabaseClient={supabaseClient}
-      initialSession={pageProps.initialSession}
-    >
+    <ClerkProvider {...pageProps} appearance={{ baseTheme: dark, variables: { colorInputText: '#222' } }}>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon/favicon.png" />
@@ -69,9 +56,8 @@ const MyApp: AppType<{ initialSession: Session }> = ({
         <Toaster position="bottom-right" reverseOrder={false} />
         <Footer />
       </div>
-      <AuthListener />
       <Analytics />
-    </SessionContextProvider></ClerkProvider>
+    </ClerkProvider>
   );
 };
 

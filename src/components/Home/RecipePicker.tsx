@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useAutoAnimate } from '@formkit/auto-animate/react'
-import { Button, Loading, MyInput, T } from "components/core";
+import { Button, Card, Loading, MyInput, T } from "components/core";
 import RecipeCard from "./RecipeCard";
 import { api } from "utils/api";
 import type { CompleteRecipe } from "server/api/routers/example";
@@ -111,7 +111,7 @@ const RecipePickerWrapper = () => {
 
   if (isLoading) return <Loading />;
   if (error || !recipes)
-    return <div>{error?.message || "Something went wrong"}</div>;
+    return <Card><T>{error?.message || "Something went wrong"}</T></Card>;
 
   return <RecipePicker recipes={recipes.sort((o1, o2) => o1.id === recipeOfTheDay?.id ? -1 : o2.id === recipeOfTheDay?.id ? 1 : 0)} />;
 };

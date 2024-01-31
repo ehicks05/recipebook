@@ -6,13 +6,13 @@ import { RECIPE_SCHEMA } from "components/RecipeForm/constants";
 import { supabase } from "utils/supabase";
 import { BUCKETS } from "./constants";
 
-const isPublishedClause = (userId: string | undefined) => ({
+const isPublishedClause = (userId: string | null | undefined) => ({
   OR: [{ isPublished: true }, ...(userId ? [{ authorId: userId }] : [])],
 });
 
 export const exampleRouter = createTRPCRouter({
   findRecipes: publicProcedure.query(({ ctx }) => {
-    const userId = ctx.session?.user.id;
+    const { userId } = ctx.auth;
 
     return ctx.prisma.recipe.findMany({
       where: isPublishedClause(userId),
@@ -67,7 +67,7 @@ export const exampleRouter = createTRPCRouter({
   createRecipe: protectedProcedure
     .input(RECIPE_SCHEMA)
     .mutation(async ({ ctx, input }) => {
-      const userId = ctx.session.user.id;
+      const { userId } = ctx.auth;
 
       return ctx.prisma.recipe.create({
         data: {
@@ -92,7 +92,7 @@ export const exampleRouter = createTRPCRouter({
     .input(RECIPE_SCHEMA.extend({ id: z.string() }))
     .mutation(async ({ ctx, input }) => {
       const { id: recipeId } = input;
-      const userId = ctx.session.user.id;
+      const { userId } = ctx.auth;
       const recipe = await ctx.prisma.recipe.findUnique({
         where: { id: recipeId },
       });
@@ -134,7 +134,7 @@ export const exampleRouter = createTRPCRouter({
     .input(z.object({ id: z.string(), isPublished: z.boolean() }))
     .mutation(async ({ ctx, input }) => {
       const { id, isPublished } = input;
-      const userId = ctx.session.user.id;
+      const { userId } = ctx.auth;
       const recipe = await ctx.prisma.recipe.findUnique({ where: { id } });
       if (userId !== recipe?.authorId) {
         throw new Error("Unauthorized");
@@ -155,7 +155,7 @@ export const exampleRouter = createTRPCRouter({
     .input(z.object({ id: z.string(), imageSrc: z.string().nullable() }))
     .mutation(async ({ ctx, input }) => {
       const { id, imageSrc } = input;
-      const userId = ctx.session.user.id;
+      const { userId } = ctx.auth;
       const recipe = await ctx.prisma.recipe.findUnique({ where: { id } });
       if (userId !== recipe?.authorId) {
         throw new Error("Unauthorized");
@@ -171,7 +171,7 @@ export const exampleRouter = createTRPCRouter({
   deleteRecipe: protectedProcedure
     .input(z.object({ id: z.string() }))
     .mutation(async ({ ctx, input: { id } }) => {
-      const userId = ctx.session.user.id;
+      const { userId } = ctx.auth;
       const recipe = await ctx.prisma.recipe.findUnique({ where: { id } });
       if (userId !== recipe?.authorId) {
         throw new Error("Unauthorized");
@@ -194,7 +194,7 @@ export const exampleRouter = createTRPCRouter({
   createUserFavorite: protectedProcedure
     .input(z.object({ recipeId: z.string() }))
     .mutation(({ ctx, input: { recipeId } }) => {
-      const userId = ctx.session.user.id;
+      const { userId } = ctx.auth;
 
       return ctx.prisma.userFavorites.create({
         data: {
@@ -207,7 +207,7 @@ export const exampleRouter = createTRPCRouter({
   deleteUserFavorite: protectedProcedure
     .input(z.object({ recipeId: z.string() }))
     .mutation(({ ctx, input: { recipeId } }) => {
-      const userId = ctx.session.user.id;
+      const { userId } = ctx.auth;
 
       return ctx.prisma.userFavorites.delete({
         where: {
@@ -226,17 +226,17 @@ export const exampleRouter = createTRPCRouter({
     }),
 
   findAppUser: protectedProcedure.query(({ ctx }) => {
-    const { id } = ctx.session.user;
-    return ctx.prisma.appUser.findUnique({ where: { id } });
+    const { userId } = ctx.auth;
+    return ctx.prisma.appUser.findUnique({ where: { id: userId } });
   }),
 
   updateAppUser: protectedProcedure
     .input(z.object({ displayName: z.string() }))
     .mutation(({ ctx, input }) => {
-      const { id } = ctx.session.user;
+      const { userId } = ctx.auth;
       const { displayName } = input;
       return ctx.prisma.appUser.update({
-        where: { id },
+        where: { id: userId },
         data: { displayName },
       });
     }),

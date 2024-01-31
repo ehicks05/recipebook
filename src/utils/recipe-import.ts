@@ -122,12 +122,9 @@ export const parseLdJsonRecipe = (input: string, url: string) => {
 
     const htmlDecoded = entities.decodeHTML(ldScriptJsonString);
     const json = JSON.parse(htmlDecoded);
-    // console.log({ json });
 
     const recipe: Recipe = deepFind({ json }, "Recipe");
     const authorName = JSONPath({ json, path: "$..author..name" })?.[0];
-
-    // console.log({ recipe, authorName });
 
     return schemaOrgRecipeToRecipeBookRecipe(recipe, authorName, url);
   } catch (err) {

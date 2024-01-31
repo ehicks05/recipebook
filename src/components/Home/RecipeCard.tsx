@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Card, RecipeImage, T } from "components/core";
 import type { CompleteRecipe } from "server/api/routers/example";
 import FavoriteButton from "components/Home/FavoriteButton";
-import { useUser } from "@supabase/auth-helpers-react";
+import { useUser } from "@clerk/nextjs";
 import { HiOutlineClock, HiStar } from "react-icons/hi";
 import { DIFFICULTIES } from "components/core/Difficulty";
 import { api } from "utils/api";
@@ -24,7 +24,7 @@ const RecipeCard = ({
     imageSrc,
   },
 }: Props) => {
-  const user = useUser();
+  const { user } = useUser();
 
   const {
     data: recipeOfTheDay,

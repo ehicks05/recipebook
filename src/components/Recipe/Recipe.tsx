@@ -10,7 +10,7 @@ import {
 } from "components/core";
 import type { CompleteRecipe } from "server/api/routers/example";
 import { Directions, Ingredients } from "./Components";
-import { useUser } from "@supabase/auth-helpers-react";
+import { useUser } from "@clerk/nextjs";
 import { DIFFICULTIES } from "components/core/Difficulty";
 
 interface IProps {
@@ -18,7 +18,7 @@ interface IProps {
 }
 
 function Recipe({ recipe }: IProps) {
-  const user = useUser();
+  const { user } = useUser();
   const [isShowDescription, setIsShowDescription] = useState(true);
 
   return (
