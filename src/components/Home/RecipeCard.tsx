@@ -76,27 +76,23 @@ const RecipeCard = ({
 function RecipeCardLandscape({
   recipe: { id, emoji, name, description, imageSrc },
 }: Props) {
-  const user = useUser();
 
   return (
     <Link href={`/recipe/${id}`}>
       <Card className="transform border border-neutral-100 transition-all hover:shadow-md dark:border-neutral-700">
-        <div className="flex h-48 gap-4">
-          <div className="-m-4 mr-0 h-56 w-full">
+        <div className="flex h-20 gap-4">
+          <div className="-m-4 mr-0 h-28 w-48">
             <RecipeImage
               imageSrc={imageSrc}
               emoji={emoji}
-              className="h-56 w-full rounded-l object-cover"
+              className="h-28 w-48 rounded-l object-cover"
             />
           </div>
-          {user && (
-            <FavoriteButton className="absolute left-2 top-2" recipeId={id} />
-          )}
-          <div className="flex w-full flex-col gap-4">
-            <span className="line-clamp-3 text-lg font-semibold text-amber-700 dark:text-amber-400 sm:text-xl">
+          <div className="flex w-full flex-col gap-2">
+            <span className="line-clamp-1 text-lg font-semibold text-amber-700 dark:text-amber-400 sm:text-xl">
               {name}
             </span>
-            <T className="line-clamp-5 text-sm">{description}</T>
+            <T className="line-clamp-2 text-sm">{description}</T>
           </div>
         </div>
       </Card>
