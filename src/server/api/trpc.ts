@@ -16,7 +16,7 @@ const createContextInner = ({ auth }: AuthContext) => {
   };
 };
 
-export const createContext = async (opts: trpcNext.CreateNextContextOptions) => {
+export const createContext = (opts: trpcNext.CreateNextContextOptions) => {
   const innerContext = createContextInner({ auth: getAuth(opts.req) });
   return innerContext;
 };
