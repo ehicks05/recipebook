@@ -1,9 +1,9 @@
-import React from "react";
-import type { NextPage } from "next";
-import { RecipeForm } from "components/RecipeForm";
+import { RecipeForm } from 'components/RecipeForm';
+import type { NextPage } from 'next';
+import React from 'react';
 
 const CreateRecipePage: NextPage = () => {
-  return <RecipeForm />;
+	return <RecipeForm />;
 };
 
 export default CreateRecipePage;

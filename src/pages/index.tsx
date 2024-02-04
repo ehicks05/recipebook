@@ -1,17 +1,17 @@
-import { type NextPage } from "next";
+import { type NextPage } from 'next';
 
-import { Container, Hero } from "components/core";
-import RecipePickerWrapper from "components/Home/RecipePicker";
+import RecipePickerWrapper from 'components/Home/RecipePicker';
+import { Container, Hero } from 'components/core';
 
 const Home: NextPage = () => {
-  return (
-    <>
-      <Hero title="Find a Recipe" />
-      <Container>
-        <RecipePickerWrapper />
-      </Container>
-    </>
-  );
+	return (
+		<>
+			<Hero title="Find a Recipe" />
+			<Container>
+				<RecipePickerWrapper />
+			</Container>
+		</>
+	);
 };
 
 export default Home;

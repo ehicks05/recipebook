@@ -1,4 +1,4 @@
-import DirectionsForm from "./DirectionsForm";
-import IngredientsForm from "./IngredientsForm";
+import DirectionsForm from './DirectionsForm';
+import IngredientsForm from './IngredientsForm';
 
 export { DirectionsForm, IngredientsForm };

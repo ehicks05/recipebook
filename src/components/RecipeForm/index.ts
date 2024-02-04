@@ -1,3 +1,3 @@
-import RecipeForm from "./RecipeForm";
+import RecipeForm from './RecipeForm';
 
 export { RecipeForm };
