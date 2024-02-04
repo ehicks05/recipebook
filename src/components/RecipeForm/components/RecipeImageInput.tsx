@@ -7,12 +7,10 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { api } from 'utils/api';
-
+import { HiQuestionMarkCircle } from 'react-icons/hi';
 import { useClerk } from '@clerk/nextjs';
 import '@uppy/core/dist/style.min.css';
 import '@uppy/dashboard/dist/style.min.css';
-import '@uppy/webcam/dist/style.min.css';
-import { HiQuestionMarkCircle } from 'react-icons/hi';
 
 const maxFileSize = 8 * 1024 * 1024;
 
@@ -54,15 +52,7 @@ const MyUppy = ({ recipeId, token }: MyUppyProps) => {
 			.on('upload-success', () => refetchRecipe()),
 	);
 
-	return (
-		<Dashboard
-			uppy={uppy}
-			showProgressDetails
-			plugins={['Webcam']}
-			theme="dark"
-			height={330}
-		/>
-	);
+	return <Dashboard uppy={uppy} showProgressDetails theme="dark" height={330} />;
 };
 
 const RecipeImageInput = () => {
