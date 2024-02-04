@@ -4,12 +4,6 @@ import { BUCKETS } from 'server/api/routers/constants';
 import { supabase } from 'utils/supabase';
 import { prisma } from '../../../server/db';
 
-export const config = {
-	api: {
-		bodyParser: false,
-	},
-};
-
 export const POST = async function handler(req: NextRequest, res: NextResponse) {
 	try {
 		const { userId } = getAuth(req);
