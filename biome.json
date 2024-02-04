@@ -8,11 +8,16 @@
 		"rules": {
 			"recommended": true
 		}
-	},"formatter":{
+	},
+	"formatter": {
 		"lineWidth": 85
-	},"javascript": {
+	},
+	"javascript": {
 		"formatter": {
 			"quoteStyle": "single"
 		}
+	},
+	"files": {
+		"ignore": ["./src/utils/recipe-import.ts"]
 	}
 }
