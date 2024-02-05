@@ -5,6 +5,9 @@ import { FaSpinner } from 'react-icons/fa';
 
 const VARIANTS = {
 	default: clsx('bg-neutral-100 dark:bg-neutral-700 dark:text-neutral-200'),
+	primary: clsx(
+		'bg-green-500 dark:bg-green-700 text-neutral-100 dark:text-neutral-200',
+	),
 	error: clsx('text-white bg-red-600 dark:bg-red-800'),
 } as const;
 

@@ -197,30 +197,31 @@ const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 					<div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
 						<Button
 							type="submit"
+							variant="primary"
 							loading={isLoading}
 							// don't disable when invalid (clicking this will trigger error messages to show)
 							disabled={isLoading || (recipe && !isDirty)}
 						>
 							{`${recipe ? 'Save' : 'Create Recipe '}`}
 						</Button>
-						<Button
-							disabled={!isDirty}
-							onClick={() => {
-								reset();
-								toast.custom((t) => (
-									<Alert
-										variant="neutral"
-										title={'Reset!'}
-										className={t.visible ? 'animate-enter' : 'animate-leave'}
-									/>
-								));
-							}}
-						>
-							Reset
-							<HiRewind />
-						</Button>
 						{recipe && (
 							<>
+								<Button
+									disabled={!isDirty}
+									onClick={() => {
+										reset();
+										toast.custom((t) => (
+											<Alert
+												variant="neutral"
+												title={'Reset!'}
+												className={t.visible ? 'animate-enter' : 'animate-leave'}
+											/>
+										));
+									}}
+								>
+									Reset
+									<HiRewind />
+								</Button>
 								<Button
 									onClick={() => void router.push(`/recipe/${recipe.id}`)}
 									loading={isLoading}
