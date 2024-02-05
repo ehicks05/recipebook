@@ -71,7 +71,7 @@ const IngredientsForm = ({ ingredientsFieldArray, register, errors }: Props) => 
 						</div>
 						<MyInput
 							name={`ingredients.${index}.name`}
-							placeholder="Name"
+							placeholder="Ingredient"
 							register={register}
 							error={errors.ingredients?.[index]?.name}
 						/>

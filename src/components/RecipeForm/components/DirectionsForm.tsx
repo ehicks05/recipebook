@@ -28,7 +28,7 @@ const DirectionsForm = ({ directionsFieldArray, register, errors }: Props) => {
 						<MyInput type="hidden" name={`directions.${index}.index`} />
 						<MyTextArea
 							name={`directions.${index}.text`}
-							placeholder="Description"
+							placeholder="Direction"
 							register={register}
 							error={errors.directions?.[index]?.text}
 						/>

@@ -32,32 +32,24 @@ const DEFAULT_DIRECTION: FormDirection = {
 	text: '',
 };
 const DEFAULT_RECIPE: FormRecipe = {
-	name: 'Your new recipe!',
+	name: '',
 	description: '',
 	emoji: '\uD83E\uDD58',
 	difficulty: 1,
-	cookingTime: '15',
-	servings: 4,
+	cookingTime: '',
+	servings: 0,
 	course: '',
 	isPublished: true,
 	source: null,
 	// author: { id: "", username: "unknown", displayName: "Unknown" },
 	ingredients: [
 		{
-			name: 'sample ingredient',
-			quantity: '1',
-			unit: 'tsp',
-		},
-		{
-			name: 'sample ingredient 2',
-			quantity: '1',
+			name: '',
+			quantity: '',
 			unit: 'tsp',
 		},
 	],
-	directions: [
-		{ index: 0, text: 'Add a step here...' },
-		{ index: 1, text: 'And another step here...' },
-	],
+	directions: [{ index: 0, text: '' }],
 };
 
 const INGREDIENT_SCHEMA = z.object({
