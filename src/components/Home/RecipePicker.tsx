@@ -58,7 +58,7 @@ function RecipePicker({ recipes }: Props) {
 
 	return (
 		<div className="flex flex-col gap-4">
-			<div className="flex items-center gap-1">
+			<div className="flex items-center gap-4">
 				<MyInput
 					className="bg-neutral-100 px-2 py-1.5 dark:bg-neutral-800 dark:text-neutral-200"
 					value={searchInput}
