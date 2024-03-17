@@ -12,7 +12,7 @@ const RecipeList = ({ title, recipes }: Props) => {
 	return (
 		<div className="flex flex-col gap-4">
 			<T className="text-center text-lg font-semibold">{title}</T>
-			<div className="flex flex-col gap-4">
+			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
 				{recipes?.map((recipe) => (
 					<RecipeCardLandscape key={recipe.id} recipe={recipe} />
 				))}

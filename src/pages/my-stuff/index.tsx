@@ -23,16 +23,17 @@ const YourLists = () => {
 	return (
 		<Container>
 			<T className="text-xl">Your Lists</T>
-			<div className="grid grid-cols-1 gap-6 md:grid-cols-2 2xl:grid-cols-3">
-				<RecipeList recipes={authoredRecipes} title="Your Recipes" />
-				<RecipeList recipes={favoriteRecipes} title="Your Favorites" />
+			<div className="">
+				<RecipeList recipes={authoredRecipes} title="My Recipes" />
+			</div>
+			<div className="">
+				<RecipeList recipes={favoriteRecipes} title="My Favorites" />
 			</div>
 		</Container>
 	);
 };
 
-const MyAccount = () => {
-	const user = useUser();
+const MyStuff = () => {
 	const { data: appUser, isLoading, isError } = api.example.findAppUser.useQuery();
 	if (isLoading) {
 		return <Loading />;
@@ -56,4 +57,4 @@ const MyAccount = () => {
 	);
 };
 
-export default MyAccount;
+export default MyStuff;

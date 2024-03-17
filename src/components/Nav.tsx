@@ -31,6 +31,15 @@ const Nav = () => {
 			href: '/recipe-import',
 			current: router.pathname.includes('/recipe-import'),
 		},
+		...(user
+			? [
+					{
+						name: 'My Stuff',
+						href: '/my-stuff',
+						current: router.pathname.includes('/my-stuff'),
+					},
+			  ]
+			: []),
 	];
 
 	return (
