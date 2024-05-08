@@ -2,9 +2,8 @@ import { Prisma } from '@prisma/client';
 import { z } from 'zod';
 
 import { RECIPE_SCHEMA } from 'components/RecipeForm/constants';
-import { supabase } from 'utils/supabase';
+import { removeImage } from 'utils/images';
 import { createTRPCRouter, protectedProcedure, publicProcedure } from '../trpc';
-import { BUCKETS } from './constants';
 
 const isPublishedClause = (userId: string | null | undefined) => ({
 	OR: [{ isPublished: true }, ...(userId ? [{ authorId: userId }] : [])],
@@ -148,8 +147,8 @@ export const exampleRouter = createTRPCRouter({
 		}),
 
 	/**
-	 * Context: Browser succeeded in uploading image to Supabase,
-	 * now we're just letting the db know.
+	 * 1. Remove image from object storage
+	 * 2. update recipe
 	 */
 	removeImage: protectedProcedure
 		.input(z.object({ id: z.string() }))
@@ -161,10 +160,7 @@ export const exampleRouter = createTRPCRouter({
 				throw new Error('Unauthorized');
 			}
 
-			const objectName = `${userId}/${id}/recipe-image`;
-			const { error } = await supabase.storage
-				.from(BUCKETS.RECIPE_IMAGES)
-				.remove([objectName]);
+			const { error } = await removeImage({ userId, recipeId: id });
 			if (error) {
 				throw error;
 			}
@@ -176,6 +172,10 @@ export const exampleRouter = createTRPCRouter({
 			});
 		}),
 
+	/**
+	 * 1. Remove image from object storage
+	 * 2. remove recipe
+	 */
 	deleteRecipe: protectedProcedure
 		.input(z.object({ id: z.string() }))
 		.mutation(async ({ ctx, input: { id } }) => {
@@ -185,9 +185,7 @@ export const exampleRouter = createTRPCRouter({
 				throw new Error('Unauthorized');
 			}
 
-			const { error } = await supabase.storage
-				.from(BUCKETS.RECIPE_IMAGES)
-				.remove([`${userId}/${id}/recipe-image`]);
+			const { error } = await removeImage({ userId, recipeId: id });
 			if (error) {
 				throw error;
 			}

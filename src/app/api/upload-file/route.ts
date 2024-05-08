@@ -1,12 +1,17 @@
 import { getAuth } from '@clerk/nextjs/server';
 import type { NextRequest, NextResponse } from 'next/server';
-import { BUCKETS } from 'server/api/routers/constants';
-import { supabase } from 'utils/supabase';
+import { getImageSrc, uploadImage } from 'utils/images';
 import { prisma } from '../../../server/db';
 
+/**
+ * 1. upload image to object store
+ * 2. update recipe
+ */
 export const POST = async function handler(req: NextRequest, res: NextResponse) {
 	try {
+		console.log('HELLO FROM upload-file POST ROUTE');
 		const { userId } = getAuth(req);
+		console.log({ userId });
 		if (!userId) {
 			return new Response('Unauthorized', { status: 401 });
 		}
@@ -21,17 +26,19 @@ export const POST = async function handler(req: NextRequest, res: NextResponse) 
 			return new Response('Missing required fields', { status: 400 });
 		}
 
-		const objectName = `${userId}/${recipeId}/recipe-image`;
-		const { error } = await supabase.storage
-			.from(BUCKETS.RECIPE_IMAGES)
-			.upload(objectName, file, { upsert: true, contentType });
+		const { error } = await uploadImage({
+			userId,
+			recipeId,
+			file,
+			contentType,
+		});
 
 		if (error) {
 			console.error(error);
 			return new Response(error.message, { status: 500 });
 		}
 
-		const imageSrc = `/${BUCKETS.RECIPE_IMAGES}/${objectName}`;
+		const imageSrc = getImageSrc({ userId, recipeId });
 		await prisma.recipe.update({
 			where: { id: recipeId },
 			data: { imageSrc },
