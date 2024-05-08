@@ -38,7 +38,7 @@ const Nav = () => {
 						href: '/my-stuff',
 						current: router.pathname.includes('/my-stuff'),
 					},
-			  ]
+				]
 			: []),
 	];
 

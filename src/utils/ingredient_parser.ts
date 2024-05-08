@@ -56,8 +56,8 @@ const extractLeadingUnit = (input: string) => {
 		const pluralCharacters = input.startsWith(`${rawUnit}es`)
 			? 2
 			: input.startsWith(`${rawUnit}s`)
-			  ? 1
-			  : 0;
+				? 1
+				: 0;
 		const name = input.substring(matchedUnit[0].length + pluralCharacters).trim();
 		return { unit: supportedUnit, name };
 	}

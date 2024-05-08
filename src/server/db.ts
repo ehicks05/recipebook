@@ -8,6 +8,6 @@ export const prisma = new PrismaClient({
 					// "query",
 					'error',
 					'warn',
-			  ]
+				]
 			: ['error'],
 });
