@@ -18,6 +18,7 @@
 		}
 	},
 	"files": {
+		"include": ["./src/**.*"],
 		"ignore": ["./src/utils/recipe-import.ts"]
 	}
 }
