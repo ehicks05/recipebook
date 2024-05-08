@@ -1,4 +1,3 @@
-import type { SignedInAuthObject, SignedOutAuthObject } from '@clerk/nextjs/server';
 import { getAuth } from '@clerk/nextjs/server';
 import type * as trpc from '@trpc/server';
 import { TRPCError, initTRPC } from '@trpc/server';
@@ -6,20 +5,8 @@ import type * as trpcNext from '@trpc/server/adapters/next';
 import superjson from 'superjson';
 import { prisma } from '../db';
 
-interface AuthContext {
-	auth: SignedInAuthObject | SignedOutAuthObject;
-}
-
-const createContextInner = ({ auth }: AuthContext) => {
-	return {
-		auth,
-		prisma,
-	};
-};
-
 export const createContext = (opts: trpcNext.CreateNextContextOptions) => {
-	const innerContext = createContextInner({ auth: getAuth(opts.req) });
-	return innerContext;
+	return { auth: getAuth(opts.req), prisma };
 };
 
 export type Context = trpc.inferAsyncReturnType<typeof createContext>;

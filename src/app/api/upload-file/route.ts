@@ -9,9 +9,7 @@ import { prisma } from '../../../server/db';
  */
 export const POST = async function handler(req: NextRequest, res: NextResponse) {
 	try {
-		console.log('HELLO FROM upload-file POST ROUTE');
 		const { userId } = getAuth(req);
-		console.log({ userId });
 		if (!userId) {
 			return new Response('Unauthorized', { status: 401 });
 		}
