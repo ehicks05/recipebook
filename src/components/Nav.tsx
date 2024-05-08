@@ -9,11 +9,11 @@ import {
 } from '@clerk/nextjs';
 import { Disclosure } from '@headlessui/react';
 import clsx from 'clsx';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { HiMenu, HiX } from 'react-icons/hi';
+import { SiteLogo } from './SiteLogo';
 
 const Nav = () => {
 	const { user } = useUser();
@@ -60,28 +60,7 @@ const Nav = () => {
 								</Disclosure.Button>
 							</div>
 							<div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-								<div className="flex flex-shrink-0 items-center">
-									<Link href="/">
-										<Image
-											className="block h-8 w-auto lg:hidden"
-											src="/favicon/favicon.png"
-											alt="logo"
-											width={64}
-											height={64}
-											priority
-											loader={() => '/favicon/favicon.png'}
-										/>
-										<Image
-											className="hidden h-8 w-auto lg:block"
-											src="/logo.png"
-											alt="logo"
-											width={482}
-											height={66}
-											priority
-											loader={() => '/logo.png'}
-										/>
-									</Link>
-								</div>
+								<SiteLogo />
 								<div className="hidden sm:ml-6 sm:block">
 									<div className="flex space-x-4">
 										{navigation
