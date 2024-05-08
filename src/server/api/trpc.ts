@@ -1,11 +1,8 @@
-import {
-	SignedInAuthObject,
-	SignedOutAuthObject,
-	getAuth,
-} from '@clerk/nextjs/server';
-import * as trpc from '@trpc/server';
+import type { SignedInAuthObject, SignedOutAuthObject } from '@clerk/nextjs/server';
+import { getAuth } from '@clerk/nextjs/server';
+import type * as trpc from '@trpc/server';
 import { TRPCError, initTRPC } from '@trpc/server';
-import * as trpcNext from '@trpc/server/adapters/next';
+import type * as trpcNext from '@trpc/server/adapters/next';
 import superjson from 'superjson';
 import { prisma } from '../db';
 

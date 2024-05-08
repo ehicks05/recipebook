@@ -1,3 +1,4 @@
+import { useClerk } from '@clerk/nextjs';
 import Compressor from '@uppy/compressor';
 import Uppy from '@uppy/core';
 import { Dashboard } from '@uppy/react';
@@ -6,9 +7,8 @@ import { Button, Dialog, T } from 'components/core';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { api } from 'utils/api';
 import { HiQuestionMarkCircle } from 'react-icons/hi';
-import { useClerk } from '@clerk/nextjs';
+import { api } from 'utils/api';
 import '@uppy/core/dist/style.min.css';
 import '@uppy/dashboard/dist/style.min.css';
 

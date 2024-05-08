@@ -131,7 +131,7 @@ const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 						className={`opacity-75 ${t.visible ? 'animate-enter' : 'animate-leave'}`}
 					/>
 				),
-				{ duration: Infinity, id: 'unsaved_changes' },
+				{ duration: Number.POSITIVE_INFINITY, id: 'unsaved_changes' },
 			);
 		}
 		if ((!recipe || !isDirty) && id) {

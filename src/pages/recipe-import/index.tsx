@@ -1,7 +1,7 @@
 import Recipe from 'components/Recipe/Recipe';
 import { RecipeForm } from 'components/RecipeForm';
 import { Alert, Button, Container, Loading, MyInput, T } from 'components/core';
-import { type NextPage } from 'next';
+import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { api } from 'utils/api';
@@ -19,7 +19,7 @@ const RecipeImportPage: NextPage = () => {
 	} = api.example.importRecipe.useQuery(
 		{ url: url as string },
 		{
-			enabled: url && url.length > 4 ? true : false,
+			enabled: !!(url && url.length > 4),
 			staleTime: 10 * (60 * 1000), // 10 mins
 			cacheTime: 15 * (60 * 1000), // 15 mins
 		},

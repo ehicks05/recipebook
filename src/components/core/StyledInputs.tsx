@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { T } from 'components/core';
-import React from 'react';
+import type React from 'react';
 import type {
 	FieldError,
 	FieldValues,

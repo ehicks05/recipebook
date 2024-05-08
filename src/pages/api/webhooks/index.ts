@@ -1,6 +1,6 @@
-import { WebhookEvent } from '@clerk/nextjs/server';
+import type { WebhookEvent } from '@clerk/nextjs/server';
 import { buffer } from 'micro';
-import { NextApiRequest, NextApiResponse } from 'next';
+import type { NextApiRequest, NextApiResponse } from 'next';
 import { Webhook } from 'svix';
 import { env } from '../../../env/server.mjs';
 import { prisma } from '../../../server/db';

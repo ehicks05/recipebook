@@ -1,5 +1,5 @@
 import { getAuth } from '@clerk/nextjs/server';
-import { NextRequest, NextResponse } from 'next/server';
+import type { NextRequest, NextResponse } from 'next/server';
 import { BUCKETS } from 'server/api/routers/constants';
 import { supabase } from 'utils/supabase';
 import { prisma } from '../../../server/db';

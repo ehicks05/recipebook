@@ -1,4 +1,4 @@
-import { type NextPage } from 'next';
+import type { NextPage } from 'next';
 
 import RecipePickerWrapper from 'components/Home/RecipePicker';
 import { Container, Hero } from 'components/core';

@@ -1,6 +1,6 @@
 import Recipe from 'components/Recipe/Recipe';
 import { Hero } from 'components/core';
-import { type NextPage } from 'next';
+import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { api } from 'utils/api';
 
