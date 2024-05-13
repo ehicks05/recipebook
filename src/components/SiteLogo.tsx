@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import ShortLogo from '../../public/favicon/favicon.png';
 import Logo from '../../public/logo.png';
+import ShortLogo from '../app/favicon/favicon.png';
 
 export const SiteLogo = () => {
 	return (

@@ -1,10 +1,9 @@
 'use client';
 
 import { useAutoAnimate } from '@formkit/auto-animate/react';
-import { Button, Card, Loading, MyInput, T } from 'components/core';
+import { Button, MyInput, T } from 'components/core';
 import React, { useState } from 'react';
 import type { CompleteRecipe } from 'server/api/routers/example';
-import { api } from 'utils/api';
 import RecipeCard from './RecipeCard';
 
 const applyIngredientFilter = (recipes: CompleteRecipe[], ingredients: string[]) => {
@@ -36,9 +35,10 @@ const applySearch = (recipes: CompleteRecipe[], search: string) => {
 
 interface Props {
 	recipes: CompleteRecipe[];
+	recipeOfTheDayId: string;
 }
 
-function RecipePicker({ recipes }: Props) {
+function RecipePicker({ recipes, recipeOfTheDayId }: Props) {
 	const [parent] = useAutoAnimate();
 	const [searchInput, setSearchInput] = useState('');
 	const [ingredientInput, setIngredientInput] = useState('');
@@ -97,7 +97,7 @@ function RecipePicker({ recipes }: Props) {
 
 			<div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 				{filteredRecipes.map((recipe) => (
-					<RecipeCard key={recipe.id} recipe={recipe} />
+					<RecipeCard key={recipe.id} recipe={recipe} isRecipeOfTheDay={recipe.id === recipeOfTheDayId} />
 				))}
 				{filteredRecipes.length === 0 && <T>No results...</T>}
 			</div>
@@ -105,26 +105,4 @@ function RecipePicker({ recipes }: Props) {
 	);
 }
 
-const RecipePickerWrapper = () => {
-	const { isLoading, error, data: recipes } = api.example.findRecipes.useQuery();
-
-	const { data: recipeOfTheDay } = api.example.getRecipeOfTheDay.useQuery();
-
-	if (isLoading) return <Loading />;
-	if (error || !recipes)
-		return (
-			<Card>
-				<T>{error?.message || 'Something went wrong'}</T>
-			</Card>
-		);
-
-	return (
-		<RecipePicker
-			recipes={recipes.sort((o1, o2) =>
-				o1.id === recipeOfTheDay?.id ? -1 : o2.id === recipeOfTheDay?.id ? 1 : 0,
-			)}
-		/>
-	);
-};
-
-export default RecipePickerWrapper;
+export default RecipePicker;

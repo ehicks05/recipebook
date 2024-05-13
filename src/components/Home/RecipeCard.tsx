@@ -6,10 +6,10 @@ import Link from 'next/link';
 import React from 'react';
 import { HiOutlineClock, HiStar } from 'react-icons/hi';
 import type { CompleteRecipe } from 'server/api/routers/example';
-import { api } from 'utils/api';
 
 interface Props {
 	recipe: CompleteRecipe;
+	isRecipeOfTheDay: boolean;
 }
 
 const RecipeCard = ({
@@ -23,10 +23,9 @@ const RecipeCard = ({
 		difficulty,
 		imageSrc,
 	},
+	isRecipeOfTheDay,
 }: Props) => {
 	const { user } = useUser();
-
-	const { data: recipeOfTheDay } = api.example.getRecipeOfTheDay.useQuery();
 
 	return (
 		<Link href={`/recipe/${id}`}>
@@ -38,7 +37,7 @@ const RecipeCard = ({
 							emoji={emoji}
 							className="h-48 w-full rounded-t object-cover"
 						/>
-						{recipeOfTheDay?.id === id && (
+						{isRecipeOfTheDay && (
 							<div className="flex gap-2 items-center p-2 rounded bg-neutral-700 text-white absolute top-2 right-2 shadow-xl">
 								<HiStar className="text-yellow-400" />
 								Recipe of the day

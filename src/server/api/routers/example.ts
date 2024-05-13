@@ -250,7 +250,7 @@ export const exampleRouter = createTRPCRouter({
 
 // Get type of recipe with includes added
 // https://www.prisma.io/docs/concepts/components/prisma-client/advanced-type-safety/operating-against-partial-structures-of-model-types
-const completeRecipeInclude = {
+export const completeRecipeInclude = {
 	include: {
 		author: true,
 		directions: true,
