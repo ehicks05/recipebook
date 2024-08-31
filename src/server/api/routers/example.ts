@@ -255,6 +255,7 @@ export const completeRecipeInclude = {
 		author: true,
 		directions: true,
 		ingredients: true,
+		featuredRecipe: true,
 	},
 };
 

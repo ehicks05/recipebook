@@ -1,4 +1,6 @@
-import { useUser } from '@clerk/nextjs';
+'use client'
+
+import { useAuth } from '@clerk/nextjs';
 import FavoriteButton from 'components/Home/FavoriteButton';
 import { Card, RecipeImage, T } from 'components/core';
 import { DIFFICULTIES } from 'components/core/Difficulty';
@@ -8,7 +10,7 @@ import { HiOutlineClock, HiStar } from 'react-icons/hi';
 import type { CompleteRecipe } from 'server/api/routers/example';
 
 interface Props {
-	recipe: CompleteRecipe;
+	recipe: (CompleteRecipe & { isUserFavorite: boolean });
 	isRecipeOfTheDay: boolean;
 }
 
@@ -22,10 +24,12 @@ const RecipeCard = ({
 		cookingTime,
 		difficulty,
 		imageSrc,
+		featuredRecipe,
+		isUserFavorite
 	},
 	isRecipeOfTheDay,
 }: Props) => {
-	const { user } = useUser();
+	const { userId } = useAuth();
 
 	return (
 		<Link href={`/recipe/${id}`}>
@@ -57,7 +61,7 @@ const RecipeCard = ({
 								{cookingTime}
 							</div>
 						</div>
-						{user && <FavoriteButton className="-mr-2 -mt-9" recipeId={id} />}
+						{userId && <FavoriteButton className="-mr-2 -mt-9" recipeId={id} isUserFavorite={isUserFavorite} />}
 					</div>
 					<T className="line-clamp-2 text-sm">{description}</T>
 				</div>

@@ -1,59 +1,41 @@
-import type { MouseEvent } from 'react';
-import React from 'react';
-import { HiHeart, HiOutlineHeart } from 'react-icons/hi';
-
-import { useUser } from '@clerk/nextjs';
+import { useAuth } from '@clerk/nextjs';
 import { Alert, Button } from 'components/core';
+import { revalidatePath } from 'next/cache';
+import React from 'react';
 import toast from 'react-hot-toast';
-import { api } from 'utils/api';
+import { HiHeart, HiOutlineHeart } from 'react-icons/hi';
+import { toggleFavorite } from './actions';
 
 interface Props {
 	recipeId: string;
 	className?: string;
+	isUserFavorite: boolean;
 }
 
-const FavoriteButton = ({ recipeId, className }: Props) => {
-	const { user } = useUser();
-	const id = user?.id || '';
+const FavoriteButton = ({ recipeId, className, isUserFavorite }: Props) => {
+	const { userId } = useAuth();
+	if (!userId) return null;
 
-	const { data: userFavorites, refetch: refetchUserFavorites } =
-		api.example.findFavoriteRecipesByUserId.useQuery({ id });
-	const favoriteIds = userFavorites?.map((o) => o.recipeId) || [];
-	const isFavorite = favoriteIds.includes(recipeId);
+	const Icon = isUserFavorite ? HiHeart : HiOutlineHeart;
 
-	const createUserFavorite = api.example.createUserFavorite.useMutation();
-	const deleteUserFavorite = api.example.deleteUserFavorite.useMutation();
-	const toggle = isFavorite ? deleteUserFavorite : createUserFavorite;
+	const handleClick = async () => {
+		const { title, err } = await toggleFavorite({ userId, recipeId });
 
-	const Icon = isFavorite ? HiHeart : HiOutlineHeart;
-
-	const handleClick = (e: MouseEvent) => {
-		e.preventDefault();
-		toggle.mutate(
-			{ recipeId },
-			{
-				onSettled: (_, err) => {
-					void refetchUserFavorites();
-					const title = err
-						? `Unable to ${
-								isFavorite ? 'remove recipe from' : 'add recipe to'
-							} favorites`
-						: `Recipe ${isFavorite ? 'removed from' : 'added to'} favorites`;
-					toast.custom((t) => (
-						<Alert
-							variant={err ? 'error' : 'success'}
-							title={title}
-							description={err?.message}
-							className={t.visible ? 'animate-enter' : 'animate-leave'}
-						/>
-					));
-				},
-			},
-		);
+		toast.custom((t) => (
+			<Alert
+				variant={err ? 'error' : 'success'}
+				title={title}
+				description={err?.message}
+				className={t.visible ? 'animate-enter' : 'animate-leave'}
+			/>
+		));
 	};
 
 	return (
-		<Button className={className} onClick={(e) => handleClick(e)}>
+		<Button className={className} onClick={async (e) => {
+			e.preventDefault();
+			await handleClick();
+		}}>
 			<Icon className="text-xl text-red-500" />
 		</Button>
 	);

@@ -3,8 +3,10 @@
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { Button, MyInput, T } from 'components/core';
 import React, { useState } from 'react';
-import type { CompleteRecipe } from 'server/api/routers/example';
+import type { CompleteRecipe as _CompleteRecipe } from 'server/api/routers/example';
 import RecipeCard from './RecipeCard';
+
+type CompleteRecipe = _CompleteRecipe & { isUserFavorite: boolean };
 
 const applyIngredientFilter = (recipes: CompleteRecipe[], ingredients: string[]) => {
 	return recipes.filter((recipe) => {
@@ -19,17 +21,15 @@ const applyIngredientFilter = (recipes: CompleteRecipe[], ingredients: string[])
 
 const applySearch = (recipes: CompleteRecipe[], search: string) => {
 	return recipes.filter((recipe) => {
-		return (
-			recipe.name.toLowerCase().includes(search) ||
-			recipe.description.toLowerCase().includes(search) ||
-			recipe.ingredients
-				.map((i) => i.name.toLowerCase())
-				.some((i) => i.includes(search)) ||
-			recipe.directions
-				.map((d) => d.text.toLowerCase())
-				.some((d) => d.includes(search)) ||
-			recipe.author.displayName?.toLowerCase().includes(search)
-		);
+
+		const corpus = [recipe.name,
+		recipe.description,
+		recipe.author.displayName,
+		...recipe.ingredients.map(i => i.name),
+		...recipe.directions.map(d => d.text),
+		].map(o => o?.toLocaleLowerCase());
+
+		return corpus.some(o => o?.includes(search))
 	});
 };
 

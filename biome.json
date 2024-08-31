@@ -14,7 +14,9 @@
 	},
 	"javascript": {
 		"formatter": {
-			"quoteStyle": "single"
+			"quoteStyle": "single",
+			"semicolons": "always",
+			"trailingComma": "all"
 		}
 	},
 	"files": {

@@ -5,7 +5,7 @@ import type { CompleteRecipe } from 'server/api/routers/example';
 
 interface Props {
 	title: string;
-	recipes: CompleteRecipe[] | undefined;
+	recipes?: CompleteRecipe[];
 }
 
 const RecipeList = ({ title, recipes }: Props) => {

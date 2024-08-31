@@ -1,3 +1,5 @@
+'use client'
+
 import { useUser } from '@clerk/nextjs';
 import { Button, Container, Hero, RecipeImage, T } from 'components/core';
 import { DIFFICULTIES } from 'components/core/Difficulty';
