@@ -10,7 +10,7 @@ import type {
 import TextareaAutosize from 'react-textarea-autosize';
 
 const BASE =
-	'text-sm sm:text-base w-full rounded border-neutral-100 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-700 dark:text-neutral-100';
+	'px-3 py-2 text-sm sm:text-base w-full rounded border-neutral-100 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-700 dark:text-neutral-100';
 
 // https://github.com/react-hook-form/react-hook-form/discussions/4426#discussioncomment-623148
 export interface IMyInputProps<T extends FieldValues>
@@ -141,7 +141,9 @@ const MySelect = <T extends FieldValues>({
 			<select
 				disabled={disabled}
 				{...register?.(name as Path<T>, { valueAsNumber: type === 'number' })}
-				className={clsx(BASE, { 'outline outline-red-600': error })}
+				className={clsx(BASE, 'h-10 border-r-8', {
+					'outline outline-red-600': error,
+				})}
 			>
 				{props.children}
 			</select>
