@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
 import { useUser } from '@clerk/nextjs';
-import { Button, Container, Hero, RecipeImage, T } from 'components/core';
+import { Button, Container, Hero, T } from 'components/core';
 import { DIFFICULTIES } from 'components/core/Difficulty';
 import Link from 'next/link';
 import React, { useState } from 'react';
@@ -54,12 +54,6 @@ function Recipe({ recipe }: IProps) {
 								</a>
 							</T>
 						)}
-
-						<RecipeImage
-							imageSrc={recipe.imageSrc}
-							emoji={recipe.emoji}
-							className="rounded"
-						/>
 					</div>
 					<div className="order-2 md:order-3">
 						<Ingredients

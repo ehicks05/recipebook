@@ -2,7 +2,7 @@ import { Prisma } from '@prisma/client';
 import { z } from 'zod';
 
 import { RECIPE_SCHEMA } from 'components/RecipeForm/constants';
-import { removeImage } from 'utils/images';
+import { utapi } from 'utils/uploadthingApi';
 import { createTRPCRouter, protectedProcedure, publicProcedure } from '../trpc';
 
 const isPublishedClause = (userId: string | null | undefined) => ({
@@ -160,9 +160,14 @@ export const exampleRouter = createTRPCRouter({
 				throw new Error('Unauthorized');
 			}
 
-			const { error } = await removeImage({ userId, recipeId: id });
-			if (error) {
-				throw error;
+			const { imageSrc } = recipe;
+			if (!imageSrc) {
+				throw new Error('No image found');
+			}
+
+			const { success } = await utapi.deleteFiles(imageSrc);
+			if (!success) {
+				throw new Error('Deletion failed on uploadthing');
 			}
 
 			return ctx.prisma.recipe.update({
@@ -185,16 +190,12 @@ export const exampleRouter = createTRPCRouter({
 				throw new Error('Unauthorized');
 			}
 
-			const { error } = await removeImage({ userId, recipeId: id });
-			if (error) {
-				throw error;
+			const { imageSrc } = recipe;
+			if (imageSrc) {
+				await utapi.deleteFiles(imageSrc);
 			}
 
-			return ctx.prisma.recipe.delete({
-				where: {
-					id,
-				},
-			});
+			return ctx.prisma.recipe.delete({ where: { id } });
 		}),
 
 	createUserFavorite: protectedProcedure

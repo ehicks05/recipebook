@@ -10,7 +10,7 @@ const ubuntu = Ubuntu({
 	weight: ['300', '400', '500', '700'],
 	subsets: ['latin'],
 	// default, can also use "swap" to ensure custom font always shows
-	display: 'optional',
+	display: 'swap',
 });
 
 export default function RootLayout({

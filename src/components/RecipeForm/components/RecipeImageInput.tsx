@@ -1,9 +1,7 @@
 'use client';
 
 import { useClerk } from '@clerk/nextjs';
-import { Button, Dialog, T } from 'components/core';
-import { UPLOADTHING_BASE_URL } from 'constants/uploadthing';
-import Image from 'next/image';
+import { Button, Dialog, RecipeImage, T } from 'components/core';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { HiQuestionMarkCircle } from 'react-icons/hi';
@@ -73,9 +71,8 @@ const RecipeImageInput = () => {
 				<T>Image</T>
 			</span>
 			{recipe?.imageSrc ? (
-				<Image
-					src={`${UPLOADTHING_BASE_URL}/${recipe.imageSrc}`}
-					alt="recipe"
+				<RecipeImage
+					imageSrc={recipe.imageSrc}
 					onClick={() => setIsOpen(true)}
 					className="rounded-lg cursor-pointer hover:animate-pulse"
 					width={300}

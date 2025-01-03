@@ -21,8 +21,6 @@ const config = {
 		defaultLocale: 'en',
 	},
 	images: {
-		// loader: 'custom',
-		// loaderFile: './src/utils/supabase-image-loader.ts',
 		remotePatterns: [
 			{
 				protocol: 'https',
@@ -30,12 +28,6 @@ const config = {
 				port: '',
 				pathname: '/a/48ri51yc2x/**',
 			},
-			// {
-			// 	protocol: 'https',
-			// 	hostname: 'sgermtzfqlzegifqvold.supabase.co',
-			// 	port: '',
-			// 	pathname: '/storage/v1/object/public/**',
-			// },
 		],
 	},
 };

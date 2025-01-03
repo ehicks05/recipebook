@@ -8,6 +8,7 @@ interface Props {
 	height?: number;
 	width?: number;
 	className?: string;
+	onClick?: () => void;
 }
 
 const RecipeImage = ({
@@ -16,6 +17,7 @@ const RecipeImage = ({
 	height = 300,
 	width = 400,
 	className,
+	onClick,
 }: Props) => {
 	return (
 		<>
@@ -26,6 +28,7 @@ const RecipeImage = ({
 					alt="recipe"
 					height={height}
 					width={width}
+					onClick={onClick}
 				/>
 			)}
 			{!imageSrc && (
