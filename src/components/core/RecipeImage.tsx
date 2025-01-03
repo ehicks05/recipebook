@@ -1,4 +1,5 @@
 import { defaultImage, emojiToImage } from 'components/Home/constants';
+import { UPLOADTHING_BASE_URL } from 'constants/uploadthing';
 import Image from 'next/image';
 
 interface Props {
@@ -21,7 +22,7 @@ const RecipeImage = ({
 			{imageSrc && (
 				<Image
 					className={className}
-					src={imageSrc}
+					src={`${UPLOADTHING_BASE_URL}/${imageSrc}`}
 					alt="recipe"
 					height={height}
 					width={width}

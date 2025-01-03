@@ -13,6 +13,7 @@ export const serverSchema = z.object({
 	SUPABASE_ADMIN_KEY: z.string(),
 	CLERK_SECRET_KEY: z.string(),
 	WEBHOOK_SECRET: z.string(),
+	UPLOADTHING_TOKEN: z.string(),
 });
 
 /**
@@ -28,6 +29,7 @@ export const serverEnv = {
 	SUPABASE_ADMIN_KEY: process.env.SUPABASE_ADMIN_KEY,
 	CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY,
 	WEBHOOK_SECRET: process.env.WEBHOOK_SECRET,
+	UPLOADTHING_TOKEN: process.env.UPLOADTHING_TOKEN,
 };
 
 /**
@@ -38,6 +40,7 @@ export const serverEnv = {
 export const clientSchema = z.object({
 	NEXT_PUBLIC_SUPABASE_PROJECT_ID: z.string(),
 	NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: z.string(),
+	NEXT_PUBLIC_UPLOADTHING_APP_ID: z.string(),
 });
 
 /**
@@ -49,4 +52,5 @@ export const clientSchema = z.object({
 export const clientEnv = {
 	NEXT_PUBLIC_SUPABASE_PROJECT_ID: process.env.NEXT_PUBLIC_SUPABASE_PROJECT_ID,
 	NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
+	NEXT_PUBLIC_UPLOADTHING_APP_ID: process.env.NEXT_PUBLIC_UPLOADTHING_APP_ID,
 };
