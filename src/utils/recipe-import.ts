@@ -125,6 +125,7 @@ export const parseLdJsonRecipe = (input: string, url: string) => {
 		const ldScriptJsonString = handler.dom
 			.find((o) => o.name === 'html')
 			?.children.find((o) => o.name === 'head')
+			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 			.children.find((o: any) => o.attribs?.type === 'application/ld+json')
 			?.children?.[0]?.data;
 
