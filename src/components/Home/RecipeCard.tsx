@@ -10,8 +10,7 @@ import { HiOutlineClock, HiStar } from 'react-icons/hi';
 import type { CompleteRecipe } from 'server/api/routers/example';
 
 interface Props {
-	recipe: CompleteRecipe & { isUserFavorite: boolean };
-	isRecipeOfTheDay: boolean;
+	recipe: CompleteRecipe;
 }
 
 const RecipeCard = ({
@@ -25,11 +24,11 @@ const RecipeCard = ({
 		difficulty,
 		imageSrc,
 		featuredRecipe,
-		isUserFavorite,
+		userFavorites,
 	},
-	isRecipeOfTheDay,
 }: Props) => {
 	const { userId } = useAuth();
+	const isRecipeOfTheDay = !!featuredRecipe;
 
 	return (
 		<Link href={`/recipe/${id}`}>
@@ -65,7 +64,7 @@ const RecipeCard = ({
 							<FavoriteButton
 								className="-mr-2 -mt-9"
 								recipeId={id}
-								isUserFavorite={isUserFavorite}
+								isUserFavorite={userFavorites.length !== 0}
 							/>
 						)}
 					</div>

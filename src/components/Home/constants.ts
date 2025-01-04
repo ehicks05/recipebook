@@ -1,7 +1,12 @@
 const baseUrl = 'https://images.unsplash.com';
-const width = 1200;
-const q = 80;
-const params = `ixlib=rb-1.2.1&auto=format&fit=crop&w=${width}&q=${q}`;
+
+const params = new URLSearchParams({
+	q: '80',
+	width: '1200',
+	fit: 'crop',
+	auto: 'format',
+	ixlib: 'rb-1.2.1',
+});
 
 const emojiToImage: Record<string, string> = {
 	'🍞': `${baseUrl}/photo-1549931319-a545dcf3bc73?${params}`,

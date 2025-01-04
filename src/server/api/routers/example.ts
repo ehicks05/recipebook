@@ -16,7 +16,7 @@ export const exampleRouter = createTRPCRouter({
 		return ctx.prisma.recipe.findMany({
 			where: isPublishedClause(userId),
 			orderBy: { createdAt: 'desc' },
-			...completeRecipeInclude,
+			...getCompleteRecipeInclude(userId),
 		});
 	}),
 
@@ -25,7 +25,7 @@ export const exampleRouter = createTRPCRouter({
 		.query(({ ctx, input: { id } }) => {
 			return ctx.prisma.recipe.findMany({
 				where: { authorId: id },
-				...completeRecipeInclude,
+				...getCompleteRecipeInclude(ctx.auth.userId),
 				orderBy: { createdAt: 'desc' },
 			});
 		}),
@@ -35,7 +35,7 @@ export const exampleRouter = createTRPCRouter({
 		.query(({ ctx, input: { id } }) => {
 			return ctx.prisma.recipe.findUnique({
 				where: { id },
-				...completeRecipeInclude,
+				...getCompleteRecipeInclude(ctx.auth.userId),
 			});
 		}),
 
@@ -46,7 +46,7 @@ export const exampleRouter = createTRPCRouter({
 				where: { userId: id },
 				include: {
 					recipe: {
-						...completeRecipeInclude,
+						...getCompleteRecipeInclude(ctx.auth.userId),
 					},
 				},
 			});
@@ -59,7 +59,7 @@ export const exampleRouter = createTRPCRouter({
 
 		return ctx.prisma.recipe.findFirst({
 			where: { id: { in: featuredRecipeIds } },
-			...completeRecipeInclude,
+			...getCompleteRecipeInclude(ctx.auth.userId),
 		});
 	}),
 
@@ -83,7 +83,7 @@ export const exampleRouter = createTRPCRouter({
 						},
 					},
 				},
-				...completeRecipeInclude,
+				...getCompleteRecipeInclude(userId),
 			});
 		}),
 
@@ -122,7 +122,7 @@ export const exampleRouter = createTRPCRouter({
 							},
 						},
 					},
-					...completeRecipeInclude,
+					...getCompleteRecipeInclude(userId),
 				}),
 			]);
 
@@ -142,7 +142,7 @@ export const exampleRouter = createTRPCRouter({
 			return ctx.prisma.recipe.update({
 				where: { id },
 				data: { isPublished },
-				...completeRecipeInclude,
+				...getCompleteRecipeInclude(userId),
 			});
 		}),
 
@@ -173,7 +173,7 @@ export const exampleRouter = createTRPCRouter({
 			return ctx.prisma.recipe.update({
 				where: { id },
 				data: { imageSrc: null },
-				...completeRecipeInclude,
+				...getCompleteRecipeInclude(userId),
 			});
 		}),
 
@@ -251,15 +251,34 @@ export const exampleRouter = createTRPCRouter({
 
 // Get type of recipe with includes added
 // https://www.prisma.io/docs/concepts/components/prisma-client/advanced-type-safety/operating-against-partial-structures-of-model-types
-export const completeRecipeInclude = {
+export const getCompleteRecipeInclude = (userId: string | null) => {
+	return {
+		include: {
+			author: true,
+			directions: true,
+			ingredients: true,
+			featuredRecipe: true,
+			userFavorites: {
+				where: { userId: userId || undefined },
+				select: { userId: true },
+			},
+		},
+	};
+};
+
+export const completeRecipeIncludeForType = {
 	include: {
 		author: true,
 		directions: true,
 		ingredients: true,
 		featuredRecipe: true,
+		userFavorites: {
+			select: { userId: true },
+		},
 	},
 };
 
-const completeRecipe =
-	Prisma.validator<Prisma.recipeDefaultArgs>()(completeRecipeInclude);
+const completeRecipe = Prisma.validator<Prisma.recipeDefaultArgs>()(
+	completeRecipeIncludeForType,
+);
 export type CompleteRecipe = Prisma.recipeGetPayload<typeof completeRecipe>;

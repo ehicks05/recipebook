@@ -3,10 +3,8 @@
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { Button, MyInput, T } from 'components/core';
 import React, { useState } from 'react';
-import type { CompleteRecipe as _CompleteRecipe } from 'server/api/routers/example';
+import type { CompleteRecipe } from 'server/api/routers/example';
 import RecipeCard from './RecipeCard';
-
-type CompleteRecipe = _CompleteRecipe & { isUserFavorite: boolean };
 
 const applyIngredientFilter = (recipes: CompleteRecipe[], ingredients: string[]) => {
 	return recipes.filter((recipe) => {
@@ -21,24 +19,23 @@ const applyIngredientFilter = (recipes: CompleteRecipe[], ingredients: string[])
 
 const applySearch = (recipes: CompleteRecipe[], search: string) => {
 	return recipes.filter((recipe) => {
+		const corpus = [
+			recipe.name,
+			recipe.description,
+			recipe.author.displayName,
+			...recipe.ingredients.map((i) => i.name),
+			...recipe.directions.map((d) => d.text),
+		].map((o) => o?.toLocaleLowerCase());
 
-		const corpus = [recipe.name,
-		recipe.description,
-		recipe.author.displayName,
-		...recipe.ingredients.map(i => i.name),
-		...recipe.directions.map(d => d.text),
-		].map(o => o?.toLocaleLowerCase());
-
-		return corpus.some(o => o?.includes(search))
+		return corpus.some((o) => o?.includes(search));
 	});
 };
 
 interface Props {
 	recipes: CompleteRecipe[];
-	recipeOfTheDayId: string;
 }
 
-function RecipePicker({ recipes, recipeOfTheDayId }: Props) {
+function RecipePicker({ recipes }: Props) {
 	const [parent] = useAutoAnimate();
 	const [searchInput, setSearchInput] = useState('');
 	const [ingredientInput, setIngredientInput] = useState('');
@@ -97,7 +94,7 @@ function RecipePicker({ recipes, recipeOfTheDayId }: Props) {
 
 			<div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 				{filteredRecipes.map((recipe) => (
-					<RecipeCard key={recipe.id} recipe={recipe} isRecipeOfTheDay={recipe.id === recipeOfTheDayId} />
+					<RecipeCard key={recipe.id} recipe={recipe} />
 				))}
 				{filteredRecipes.length === 0 && <T>No results...</T>}
 			</div>
