@@ -17,7 +17,7 @@ const EmojiPicker = ({ onEmojiClick, children }: EmojiPickerProps) => {
 		if (!current) {
 			return;
 		}
-		const load = async () => (await import('emoji-picker-element')).default;
+		const load = async () => await import('emoji-picker-element');
 		void load();
 
 		current.addEventListener('emoji-click', onEmojiClick);
