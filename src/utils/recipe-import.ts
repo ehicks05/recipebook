@@ -7,6 +7,7 @@ import type { Recipe } from 'schema-dts';
 import type { CompleteRecipe } from 'server/api/routers/example';
 import { extractLeadingQuantity, parseIngredient } from './ingredient_parser';
 
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 const parseDirections = (input: string | any[]) => {
 	if (typeof input === 'string') return [input];
 
@@ -30,6 +31,7 @@ const schemaOrgRecipeToRecipeBookRecipe = (
 	authorName: string,
 	url: string,
 ): CompleteRecipe => {
+	// @ts-ignore
 	return {
 		id: '1337',
 		name: recipe.name?.toString() || 'missing',
@@ -63,6 +65,7 @@ const schemaOrgRecipeToRecipeBookRecipe = (
 				createdAt: new Date(),
 				updatedAt: new Date(),
 			})),
+		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 		directions: parseDirections(recipe.recipeInstructions || ([] as any)).map(
 			(i, index) => ({
 				id: '1337',
@@ -76,6 +79,7 @@ const schemaOrgRecipeToRecipeBookRecipe = (
 	};
 };
 
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 const deepFind = (json: any, type: string): any => {
 	const result = find(
 		json,
@@ -103,7 +107,9 @@ export const parseLdJsonRecipe = (input: string, url: string) => {
 				data: string;
 				type: string;
 				name?: string;
+				// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 				attribs?: any;
+				// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 				children: any[];
 			}[];
 		} = new htmlparser.DefaultHandler((error: Error, dom: { name: string }[]) => {
