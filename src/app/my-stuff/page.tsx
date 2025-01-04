@@ -1,5 +1,5 @@
 import { auth } from '@clerk/nextjs/server';
-import { completeRecipeInclude } from 'app/recipe/[id]/page';
+import { getCompleteRecipeInclude } from 'app/temp';
 import RecipeList from 'components/MyAccount/RecipeList';
 import { Card, Container, Hero, T } from 'components/core';
 import React from 'react';
@@ -11,7 +11,7 @@ const YourLists = async ({ userId }: { userId: string }) => {
 			where: { userId },
 			include: {
 				recipe: {
-					...completeRecipeInclude,
+					...getCompleteRecipeInclude(userId),
 				},
 			},
 		})
@@ -19,7 +19,7 @@ const YourLists = async ({ userId }: { userId: string }) => {
 
 	const authoredRecipes = await prisma.recipe.findMany({
 		where: { authorId: userId },
-		...completeRecipeInclude,
+		...getCompleteRecipeInclude(userId),
 		orderBy: { createdAt: 'desc' },
 	});
 
