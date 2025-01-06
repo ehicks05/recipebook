@@ -14,17 +14,21 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-	const { userId } = await auth();
+	const start = new Date().getTime();
 
-	const _recipes = await prisma.recipe.findMany({
+	console.log(`start auth ${new Date().getTime() - start}`);
+	const { userId } = await auth();
+	console.log(`  end auth ${new Date().getTime() - start}`);
+
+	console.log(`start recipeQuery ${new Date().getTime() - start}`);
+	const recipes = await prisma.recipe.findMany({
 		where: isPublishedClause(userId),
-		orderBy: { createdAt: 'desc' },
+		orderBy: [{ isFeatured: 'desc' }, { createdAt: 'desc' }],
 		...getCompleteRecipeInclude(userId),
 	});
-	const recipeOfTheDayId = (await prisma.featuredRecipe.findFirst())?.id || '';
-	const recipes = _recipes.sort((o1, o2) =>
-		o1.id === recipeOfTheDayId ? -1 : o2.id === recipeOfTheDayId ? 1 : 0,
-	);
+	console.log(`  end recipeQuery ${new Date().getTime() - start}`);
+
+	console.log(`end ${new Date().getTime() - start}`);
 
 	return (
 		<>

@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = env("DIRECT_DATABASE_URL")
 }
 
 model appUser {
@@ -36,25 +36,25 @@ model ingredient {
 }
 
 model recipe {
-  id             String          @id @default(uuid())
-  createdAt      DateTime        @default(now()) @map("created_at") @db.Timestamp
-  updatedAt      DateTime        @updatedAt @map("updated_at") @db.Timestamp
-  cookingTime    String          @map("cooking_time")
-  course         String?
-  description    String
-  difficulty     Int
-  emoji          String
-  name           String
-  servings       Int
-  authorId       String          @map("author_id")
-  isPublished    Boolean         @default(false) @map("is_published")
-  source         String?
-  imageSrc       String?         @map("image_src")
-  author         appUser         @relation(fields: [authorId], references: [id])
-  directions     direction[]
-  ingredients    ingredient[]
-  userFavorites  userFavorites[]
-  featuredRecipe featuredRecipe?
+  id            String          @id @default(uuid())
+  createdAt     DateTime        @default(now()) @map("created_at") @db.Timestamp
+  updatedAt     DateTime        @updatedAt @map("updated_at") @db.Timestamp
+  cookingTime   String          @map("cooking_time")
+  course        String?
+  description   String
+  difficulty    Int
+  emoji         String
+  name          String
+  servings      Int
+  authorId      String          @map("author_id")
+  isPublished   Boolean         @default(false) @map("is_published")
+  source        String?
+  imageSrc      String?         @map("image_src")
+  isFeatured    Boolean         @default(false) @map("is_featured")
+  author        appUser         @relation(fields: [authorId], references: [id])
+  directions    direction[]
+  ingredients   ingredient[]
+  userFavorites userFavorites[]
 }
 
 model userFavorites {
@@ -65,11 +65,4 @@ model userFavorites {
 
   @@id([userId, recipeId])
   @@map("user_favorites")
-}
-
-model featuredRecipe {
-  id     String @id @default(uuid())
-  recipe recipe @relation(fields: [id], references: [id], onDelete: Cascade)
-
-  @@map("featured_recipe")
 }

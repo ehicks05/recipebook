@@ -30,9 +30,8 @@ CREATE OR REPLACE PROCEDURE pickFeaturedRecipes() AS $$
 	DECLARE
 		recipeId text = select recipebook.getRandomRecipeId();
 	BEGIN
-		truncate recipebook.featured_recipe;
-		insert into recipebook.featured_recipe (id) values (recipeId);
-
+    update recipebook.recipe set is_featured = false where is_featured = true;
+    update recipebook.recipe set is_featured = true where id = recipeId;
 	END;
 $$ LANGUAGE plpgsql;
 

@@ -15,7 +15,7 @@ export const exampleRouter = createTRPCRouter({
 
 		return ctx.prisma.recipe.findMany({
 			where: isPublishedClause(userId),
-			orderBy: { createdAt: 'desc' },
+			orderBy: [{ isFeatured: 'desc' }, { createdAt: 'desc' }],
 			...getCompleteRecipeInclude(userId),
 		});
 	}),
@@ -53,12 +53,8 @@ export const exampleRouter = createTRPCRouter({
 		}),
 
 	getRecipeOfTheDay: publicProcedure.query(async ({ ctx }) => {
-		const featuredRecipeIds = (await ctx.prisma.featuredRecipe.findMany()).map(
-			(fr) => fr.id,
-		);
-
 		return ctx.prisma.recipe.findFirst({
-			where: { id: { in: featuredRecipeIds } },
+			where: { isFeatured: true },
 			...getCompleteRecipeInclude(ctx.auth.userId),
 		});
 	}),
@@ -257,7 +253,6 @@ export const getCompleteRecipeInclude = (userId: string | null) => {
 			author: true,
 			directions: true,
 			ingredients: true,
-			featuredRecipe: true,
 			userFavorites: {
 				where: { userId: userId || undefined },
 				select: { userId: true },
@@ -271,7 +266,6 @@ export const completeRecipeIncludeForType = {
 		author: true,
 		directions: true,
 		ingredients: true,
-		featuredRecipe: true,
 		userFavorites: {
 			select: { userId: true },
 		},

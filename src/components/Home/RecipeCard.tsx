@@ -23,12 +23,11 @@ const RecipeCard = ({
 		cookingTime,
 		difficulty,
 		imageSrc,
-		featuredRecipe,
+		isFeatured,
 		userFavorites,
 	},
 }: Props) => {
 	const { userId } = useAuth();
-	const isRecipeOfTheDay = !!featuredRecipe;
 
 	return (
 		<Link href={`/recipe/${id}`}>
@@ -40,7 +39,7 @@ const RecipeCard = ({
 							emoji={emoji}
 							className="h-48 w-full rounded-t object-cover"
 						/>
-						{isRecipeOfTheDay && (
+						{isFeatured && (
 							<div className="flex gap-2 items-center p-2 rounded bg-neutral-700 text-white absolute top-2 right-2 shadow-xl">
 								<HiStar className="text-yellow-400" />
 								Recipe of the day
