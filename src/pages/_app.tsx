@@ -6,6 +6,7 @@ import { api } from '../utils/api';
 import { ClerkProvider } from '@clerk/nextjs';
 import { dark } from '@clerk/themes';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import Footer from 'components/Footer';
 import Nav from 'components/PagesNav';
 import { useRouter } from 'next/router';
@@ -35,6 +36,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
 				<Footer />
 			</div>
 			<Analytics />
+			<SpeedInsights />
 		</ClerkProvider>
 	);
 };
