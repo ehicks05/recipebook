@@ -11,7 +11,7 @@ export const SiteLogo = () => {
 					className="block h-8 w-auto lg:hidden"
 					src={ShortLogo}
 					alt="logo"
-					loader={() => '/favicon/favicon.png'}
+					loader={() => '/favicon.png'}
 				/>
 				<Image
 					className="hidden h-8 w-auto lg:block"
