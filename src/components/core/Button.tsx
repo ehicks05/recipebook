@@ -1,4 +1,3 @@
-/* eslint-disable react/button-has-type */
 import clsx from 'clsx';
 import type React from 'react';
 import { FaSpinner } from 'react-icons/fa';

@@ -176,7 +176,6 @@ const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 			)}
 			<Container>
 				{/* https://github.com/react-hook-form/react-hook-form/discussions/8020 */}
-				{/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
 				<form onSubmit={handleSubmit(onSubmit, onError)}>
 					<div className="grid gap-8 md:grid-cols-2 lg:grid-cols-7">
 						<RecipeDetailsForm
