@@ -6,8 +6,8 @@ import type {
 	UseFormRegister,
 } from 'react-hook-form';
 import { HiArrowDown, HiArrowUp, HiPlus, HiTrash } from 'react-icons/hi';
-import type { FormRecipe } from '../constants';
 import { DEFAULT_DIRECTION } from '../constants';
+import type { FormRecipe } from '../types';
 
 interface Props {
 	directionsFieldArray: UseFieldArrayReturn<FormRecipe, 'directions', 'id'>;

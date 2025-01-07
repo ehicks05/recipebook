@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
-import { RECIPE_SCHEMA } from 'components/RecipeForm/constants';
 import { api } from 'server/db-api';
+import { RecipeSchema } from 'server/schema';
 import { utapi } from 'utils/uploadthingApi';
 import { createTRPCRouter, protectedProcedure, publicProcedure } from '../trpc';
 
@@ -34,7 +34,7 @@ export const exampleRouter = createTRPCRouter({
 	}),
 
 	createRecipe: protectedProcedure
-		.input(RECIPE_SCHEMA)
+		.input(RecipeSchema)
 		.mutation(async ({ ctx, input }) => {
 			const { userId } = ctx.auth;
 			const { directions, ingredients, ...recipeFields } = input;
@@ -48,7 +48,7 @@ export const exampleRouter = createTRPCRouter({
 		}),
 
 	updateRecipe: protectedProcedure
-		.input(RECIPE_SCHEMA.extend({ id: z.string() }))
+		.input(RecipeSchema.extend({ id: z.string() }))
 		.mutation(async ({ ctx, input }) => {
 			const { userId } = ctx.auth;
 			const { id: recipeId, directions, ingredients, ...recipeFields } = input;

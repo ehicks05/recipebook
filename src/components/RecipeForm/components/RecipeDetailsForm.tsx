@@ -1,6 +1,6 @@
 import { MyInput, MySelect, MyTextArea, T } from 'components/core';
 import type { Control, FieldErrors, UseFormRegister } from 'react-hook-form';
-import type { FormRecipe } from '../constants';
+import type { FormRecipe } from '../types';
 import EmojiInput from './EmojiInput';
 import RecipeImageInput from './RecipeImageInput';
 

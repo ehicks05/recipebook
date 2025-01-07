@@ -11,12 +11,12 @@ import { toast } from 'react-hot-toast';
 import { FaBug } from 'react-icons/fa';
 import { HiClipboardCopy, HiRewind, HiTrash } from 'react-icons/hi';
 import type { CompleteRecipe } from 'server/db-api';
-
+import { RecipeSchema } from 'server/schema';
 import { api } from 'utils/api';
 import { DirectionsForm, IngredientsForm } from './components';
 import RecipeDetailsForm from './components/RecipeDetailsForm';
-import type { FormRecipe } from './constants';
-import { DEFAULT_RECIPE, RECIPE_SCHEMA } from './constants';
+import { DEFAULT_RECIPE } from './constants';
+import type { FormRecipe } from './types';
 
 interface Props {
 	recipe?: CompleteRecipe;
@@ -35,12 +35,12 @@ const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 	} = useForm({
 		defaultValues: recipe || importedRecipe || DEFAULT_RECIPE,
 		mode: 'onBlur',
-		resolver: zodResolver(RECIPE_SCHEMA),
+		resolver: zodResolver(RecipeSchema),
 	});
 	const ingredientsFieldArray = useFieldArray({ control, name: 'ingredients' });
 	const directionsFieldArray = useFieldArray({ control, name: 'directions' });
 
-	const utils = api.useContext();
+	const utils = api.useUtils();
 	const {
 		mutate: createRecipe,
 		isLoading: isCreateRecipeLoading,

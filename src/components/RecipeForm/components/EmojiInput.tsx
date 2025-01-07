@@ -4,7 +4,7 @@ import { useState } from 'react';
 import type { Control } from 'react-hook-form';
 import { Controller } from 'react-hook-form';
 import { HiQuestionMarkCircle } from 'react-icons/hi';
-import type { FormRecipe } from '../constants';
+import type { FormRecipe } from '../types';
 import EmojiPicker from './EmojiPicker';
 
 const EmojiInput = ({ control }: { control: Control<FormRecipe> }) => {
@@ -16,9 +16,9 @@ const EmojiInput = ({ control }: { control: Control<FormRecipe> }) => {
 			control={control}
 			render={({ field }) => (
 				<div className="flex flex-col gap-1">
-					<label>
+					<span>
 						<T>Emoji</T>
-					</label>
+					</span>
 					<Button
 						type="button"
 						className="max-w-fit py-4 text-6xl"

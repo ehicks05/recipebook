@@ -6,8 +6,15 @@ import type {
 	UseFormRegister,
 } from 'react-hook-form';
 import { HiArrowDown, HiArrowUp, HiPlus, HiTrash } from 'react-icons/hi';
-import type { FormRecipe } from '../constants';
-import { DEFAULT_INGREDIENT, UNIT_OPTIONS } from '../constants';
+import { DEFAULT_INGREDIENT, UNITS } from '../constants';
+import type { FormRecipe } from '../types';
+
+const UnitOptions = () =>
+	['', ...UNITS].map((unit) => (
+		<option key={unit} value={unit}>
+			{unit}
+		</option>
+	));
 
 interface Props {
 	ingredientsFieldArray: UseFieldArrayReturn<FormRecipe, 'ingredients', 'id'>;
@@ -37,7 +44,7 @@ const IngredientsForm = ({ ingredientsFieldArray, register, errors }: Props) => 
 								register={register}
 								error={errors.ingredients?.[index]?.unit}
 							>
-								{UNIT_OPTIONS}
+								<UnitOptions />
 							</MySelect>
 							<div className="flex gap-2">
 								<Button
