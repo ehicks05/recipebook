@@ -1,7 +1,7 @@
 import { Card, T } from 'components/core';
 import Link from 'next/link';
 import React from 'react';
-import type { CompleteRecipe } from 'server/api/routers/example';
+import type { CompleteRecipe } from 'server/db-api';
 
 interface ISmallRecipeCardProps {
 	recipe: CompleteRecipe;

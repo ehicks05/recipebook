@@ -10,7 +10,8 @@ import { Alert, Button, Container, Dialog, Hero, T } from 'components/core';
 import { toast } from 'react-hot-toast';
 import { FaBug } from 'react-icons/fa';
 import { HiClipboardCopy, HiRewind, HiTrash } from 'react-icons/hi';
-import type { CompleteRecipe } from 'server/api/routers/example';
+import type { CompleteRecipe } from 'server/db-api';
+
 import { api } from 'utils/api';
 import { DirectionsForm, IngredientsForm } from './components';
 import RecipeDetailsForm from './components/RecipeDetailsForm';

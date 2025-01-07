@@ -1,24 +1,21 @@
-'use server'
+'use server';
 
-import { revalidatePath } from "next/cache";
-import { prisma } from "server/db";
+import { revalidatePath } from 'next/cache';
+import { api } from 'server/db-api';
 
-export const toggleFavorite = async ({ userId, recipeId }: { userId: string; recipeId: string }) => {
-	const favorite = await prisma.userFavorites.findUnique({
-		where: { userId_recipeId: { userId, recipeId } },
-	});
+export const toggleFavorite = async ({
+	userId,
+	recipeId,
+}: { userId: string; recipeId: string }) => {
 	try {
-		favorite ? await prisma.userFavorites.delete({
-			where: { userId_recipeId: { userId, recipeId } },
-		}) : await prisma.userFavorites.create({
-			data: { userId, recipeId },
-		});
+		await api.toggleUserFavorite(userId, recipeId);
 		revalidatePath('/');
 	} catch (e) {
 		const err = e instanceof Error ? e : undefined;
 		return {
-			err, title: `Unable to ${favorite ? 'remove recipe from' : 'add recipe to'} favorites`
+			err,
+			title: 'Unable to update favorites',
 		};
 	}
-	return { title: `Recipe ${favorite ? 'removed from' : 'added to'} favorites` };
-}
+	return { title: 'Favorites updated' };
+};

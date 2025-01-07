@@ -1,5 +1,5 @@
 import { getAuth } from '@clerk/nextjs/server';
-import { prisma } from 'server/db';
+import { api } from 'server/db-api';
 import { type FileRouter, createUploadthing } from 'uploadthing/next';
 import { UploadThingError } from 'uploadthing/server';
 
@@ -40,14 +40,12 @@ export const ourFileRouter = {
 			console.log(e);
 		})
 		.onUploadComplete(async ({ metadata, file }) => {
+			const { userId, recipeId } = metadata;
 			// This code RUNS ON YOUR SERVER after upload
-			console.log('Upload complete for userId:', metadata.userId);
+			console.log('Upload complete for userId:', userId);
 
 			// save the url
-			await prisma.recipe.update({
-				where: { id: metadata.recipeId },
-				data: { imageSrc: file.key },
-			});
+			await api.updateRecipe(recipeId, userId, { imageSrc: file.key });
 
 			// !!! Whatever is returned here is sent to the clientside `onClientUploadComplete` callback
 			return { uploadedBy: metadata.userId };

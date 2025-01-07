@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
 import Recipe from 'components/Recipe/Recipe';
-import type { CompleteRecipe } from 'server/api/routers/example';
+import type { CompleteRecipe } from 'server/db-api';
 
 const RecipePage = ({ recipe }: { recipe: CompleteRecipe }) => {
 	return <Recipe recipe={recipe} />;

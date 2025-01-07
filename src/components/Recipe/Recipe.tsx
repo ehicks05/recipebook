@@ -6,7 +6,8 @@ import { DIFFICULTIES } from 'components/core/Difficulty';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { HiOutlineClock, HiPencilAlt } from 'react-icons/hi';
-import type { CompleteRecipe } from 'server/api/routers/example';
+import type { CompleteRecipe } from 'server/db-api';
+
 import { Directions, Ingredients } from './Components';
 
 interface IProps {

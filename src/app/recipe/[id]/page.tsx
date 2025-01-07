@@ -1,16 +1,12 @@
 import { Hero } from 'components/core';
-import { prisma } from 'server/db';
-import { getCompleteRecipeInclude } from '../../temp';
+import { api } from 'server/db-api';
 import RecipePage from './recipe-page';
 
 type Params = Promise<{ id: string }>;
 
 export default async function Page({ params }: { params: Params }) {
 	const { id } = await params;
-	const recipe = await prisma.recipe.findUnique({
-		where: { id },
-		...getCompleteRecipeInclude(null),
-	});
+	const recipe = await api.recipeById(id);
 
 	if (recipe) return <RecipePage recipe={recipe} />;
 	return <Hero title="Recipe not found" />;

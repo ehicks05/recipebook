@@ -7,7 +7,7 @@ import { DIFFICULTIES } from 'components/core/Difficulty';
 import Link from 'next/link';
 import React from 'react';
 import { HiOutlineClock, HiStar } from 'react-icons/hi';
-import type { CompleteRecipe } from 'server/api/routers/example';
+import type { CompleteRecipe } from 'server/db-api';
 
 interface Props {
 	recipe: CompleteRecipe;

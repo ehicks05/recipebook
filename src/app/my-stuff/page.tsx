@@ -1,27 +1,14 @@
 import { auth } from '@clerk/nextjs/server';
-import { getCompleteRecipeInclude } from 'app/temp';
 import RecipeList from 'components/MyAccount/RecipeList';
 import { Card, Container, Hero, T } from 'components/core';
 import React from 'react';
-import { prisma } from 'server/db';
+import { api } from 'server/db-api';
 
 const YourLists = async ({ userId }: { userId: string }) => {
-	const favoriteRecipes = (
-		await prisma.userFavorites.findMany({
-			where: { userId },
-			include: {
-				recipe: {
-					...getCompleteRecipeInclude(userId),
-				},
-			},
-		})
-	).map((o) => o.recipe);
-
-	const authoredRecipes = await prisma.recipe.findMany({
-		where: { authorId: userId },
-		...getCompleteRecipeInclude(userId),
-		orderBy: { createdAt: 'desc' },
-	});
+	const [favoriteRecipes, authoredRecipes] = await Promise.all([
+		api.userFavoriteRecipes(userId),
+		api.recipesByAuthor(userId),
+	]);
 
 	return (
 		<Container>
@@ -47,8 +34,7 @@ const MyStuff = async () => {
 	if (!userId) {
 		return <NotLoggedIn />;
 	}
-	const appUser =
-		userId && (await prisma.appUser.findUnique({ where: { id: userId } }));
+	const appUser = userId && (await api.user(userId));
 	if (!appUser) {
 		return <NotLoggedIn />;
 	}

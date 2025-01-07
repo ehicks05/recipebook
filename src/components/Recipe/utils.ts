@@ -1,5 +1,5 @@
 import type { direction, ingredient } from '@prisma/client';
-import type { CompleteRecipe } from 'server/api/routers/example';
+import type { CompleteRecipe } from 'server/db-api';
 
 function updateClipboard(newClip: string) {
 	navigator.clipboard.writeText(newClip).then(

@@ -1,7 +1,7 @@
 import { RecipeCardLandscape } from 'components/Home/RecipeCard';
 import { T } from 'components/core';
 import React from 'react';
-import type { CompleteRecipe } from 'server/api/routers/example';
+import type { CompleteRecipe } from 'server/db-api';
 
 interface Props {
 	title: string;

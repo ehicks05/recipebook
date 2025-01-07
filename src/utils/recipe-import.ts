@@ -4,7 +4,8 @@ import htmlparser from 'htmlparser';
 import { JSONPath } from 'jsonpath-plus';
 import find from 'lodash/find';
 import type { Recipe } from 'schema-dts';
-import type { CompleteRecipe } from 'server/api/routers/example';
+import type { CompleteRecipe } from 'server/db-api';
+
 import { extractLeadingQuantity, parseIngredient } from './ingredient_parser';
 
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
