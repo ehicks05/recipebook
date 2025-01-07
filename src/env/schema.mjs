@@ -14,6 +14,9 @@ export const serverSchema = z.object({
 	CLERK_SECRET_KEY: z.string(),
 	WEBHOOK_SECRET: z.string(),
 	UPLOADTHING_TOKEN: z.string(),
+	OTEL_SERVICE_NAME: z.string(),
+	OTEL_EXPORTER_OTLP_ENDPOINT: z.string(),
+	OTEL_EXPORTER_OTLP_HEADERS: z.string(),
 });
 
 /**
@@ -30,6 +33,9 @@ export const serverEnv = {
 	CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY,
 	WEBHOOK_SECRET: process.env.WEBHOOK_SECRET,
 	UPLOADTHING_TOKEN: process.env.UPLOADTHING_TOKEN,
+	OTEL_SERVICE_NAME: process.env.OTEL_SERVICE_NAME,
+	OTEL_EXPORTER_OTLP_ENDPOINT: process.env.OTEL_EXPORTER_OTLP_ENDPOINT,
+	OTEL_EXPORTER_OTLP_HEADERS: process.env.OTEL_EXPORTER_OTLP_HEADERS,
 };
 
 /**
