@@ -28,7 +28,7 @@ $$ LANGUAGE plpgsql;
 -- CreateProcedure
 CREATE OR REPLACE PROCEDURE pickFeaturedRecipes() AS $$
 	DECLARE
-		recipeId text = select recipebook.getRandomRecipeId();
+		recipeId text = (select recipebook.getRandomRecipeId());
 	BEGIN
     update recipebook.recipe set is_featured = false where is_featured = true;
     update recipebook.recipe set is_featured = true where id = recipeId;
