@@ -1,4 +1,9 @@
-import { Prisma } from '@prisma/client';
+import {
+	Prisma,
+	type direction,
+	type ingredient,
+	type recipe,
+} from '@prisma/client';
 import { prisma } from 'server/db';
 
 // Get type of recipe with includes added
@@ -14,6 +19,9 @@ const recipeWithIncludes = Prisma.validator<Prisma.recipeDefaultArgs>()({
 	},
 });
 export type CompleteRecipe = Prisma.recipeGetPayload<typeof recipeWithIncludes>;
+export type Direction = direction;
+export type Ingredient = ingredient;
+export type Recipe = recipe;
 
 // This is the recipeWithIncludes shape, with a where clause that filters the
 // favorites so users only see their own.

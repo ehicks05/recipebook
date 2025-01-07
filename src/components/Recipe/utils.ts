@@ -1,5 +1,4 @@
-import type { direction, ingredient } from '@prisma/client';
-import type { CompleteRecipe } from 'server/db-api';
+import type { CompleteRecipe, Direction, Ingredient } from 'server/db-api';
 
 function updateClipboard(newClip: string) {
 	navigator.clipboard.writeText(newClip).then(
@@ -15,13 +14,13 @@ function updateClipboard(newClip: string) {
 // 4. emoji is a literal emoji
 // 5. direction indexes are added
 
-const omitIngredient = (i: ingredient) => ({
+const omitIngredient = (i: Ingredient) => ({
 	...i,
 	id: undefined,
 	createdAt: undefined,
 	updatedAt: undefined,
 });
-const omitDirection = (i: direction) => ({
+const omitDirection = (i: Direction) => ({
 	...i,
 	id: undefined,
 	createdAt: undefined,

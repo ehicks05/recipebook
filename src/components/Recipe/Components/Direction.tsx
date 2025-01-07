@@ -1,12 +1,12 @@
-import type { direction } from '@prisma/client';
 import { T } from 'components/core';
 import React, { useState } from 'react';
+import type { Direction } from 'server/db-api';
 
 interface Props {
-	direction: direction;
+	direction: Direction;
 }
 
-function Direction({ direction }: Props) {
+export function DirectionLine({ direction }: Props) {
 	const [isDone, setIsDone] = useState(false);
 	const toggle = () => setIsDone(!isDone);
 
@@ -27,5 +27,3 @@ function Direction({ direction }: Props) {
 		</li>
 	);
 }
-
-export default Direction;

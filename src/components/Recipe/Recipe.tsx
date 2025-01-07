@@ -10,11 +10,11 @@ import type { CompleteRecipe } from 'server/db-api';
 
 import { Directions, Ingredients } from './Components';
 
-interface IProps {
+interface Props {
 	recipe: CompleteRecipe;
 }
 
-function Recipe({ recipe }: IProps) {
+function Recipe({ recipe }: Props) {
 	const { user } = useUser();
 	const [isShowDescription, setIsShowDescription] = useState(true);
 	const toggle = () => setIsShowDescription(!isShowDescription);

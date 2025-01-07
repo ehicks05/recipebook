@@ -1,17 +1,17 @@
-import type { ingredient } from '@prisma/client';
 import { T } from 'components/core';
 import Fraction from 'fraction.js';
 import React, { useState } from 'react';
+import type { Ingredient } from 'server/db-api';
 
-interface IIngredientProps {
-	ingredient: ingredient;
+interface IngredientProps {
+	ingredient: Ingredient;
 	recipeServings: number;
 	scaledServings: number;
 }
 
 // determine desired quantity and provide fractional formatting
 const scaleQuantity = (
-	ingredient: ingredient,
+	ingredient: Ingredient,
 	defaultServings: number,
 	desiredServings: number,
 ) => {
@@ -36,11 +36,11 @@ const scaleQuantity = (
 	return `${integer || ''} ${fraction.n}${String.fromCharCode(8260)}${fraction.d}`;
 };
 
-function Ingredient({
+export function IngredientLine({
 	ingredient,
 	recipeServings,
 	scaledServings,
-}: IIngredientProps) {
+}: IngredientProps) {
 	const [isChecked, setIsChecked] = useState(false);
 
 	const scaledQuantity = scaleQuantity(ingredient, recipeServings, scaledServings);
@@ -61,5 +61,3 @@ function Ingredient({
 		</div>
 	);
 }
-
-export default Ingredient;

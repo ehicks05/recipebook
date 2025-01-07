@@ -1,15 +1,15 @@
-import type { ingredient } from '@prisma/client';
 import { Button, T } from 'components/core';
 import React, { useState } from 'react';
 import { FaMinus, FaPlus } from 'react-icons/fa';
-import { Ingredient } from '.';
+import type { Ingredient } from 'server/db-api';
+import { IngredientLine } from './Ingredient';
 
 interface Props {
-	ingredients: ingredient[];
+	ingredients: Ingredient[];
 	defaultServings: number;
 }
 
-function Ingredients({ ingredients, defaultServings }: Props) {
+export function Ingredients({ ingredients, defaultServings }: Props) {
 	const [scaledServings, setScaledServings] = useState(defaultServings);
 
 	return (
@@ -36,7 +36,7 @@ function Ingredients({ ingredients, defaultServings }: Props) {
 			</div>
 
 			{ingredients.map((ingredient) => (
-				<Ingredient
+				<IngredientLine
 					key={ingredient.name}
 					ingredient={ingredient}
 					recipeServings={defaultServings}
@@ -46,5 +46,3 @@ function Ingredients({ ingredients, defaultServings }: Props) {
 		</div>
 	);
 }
-
-export default Ingredients;

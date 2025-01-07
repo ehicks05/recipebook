@@ -1,6 +1,6 @@
 'use client';
-import type { direction, ingredient, recipe } from '@prisma/client';
 import React from 'react';
+import type { Direction, Ingredient, Recipe } from 'server/db-api';
 import { z } from 'zod';
 import { validateQuantity } from './utils';
 
@@ -11,10 +11,10 @@ const UNIT_OPTIONS = ['', ...UNITS].map((unit) => (
 	</option>
 ));
 
-type FormIngredient = Omit<ingredient, 'id' | 'recipeId'>;
-type FormDirection = Omit<direction, 'id' | 'recipeId'>;
+type FormIngredient = Omit<Ingredient, 'id' | 'recipeId'>;
+type FormDirection = Omit<Direction, 'id' | 'recipeId'>;
 type FormRecipe = Omit<
-	recipe,
+	Recipe,
 	'id' | 'authorId' | 'createdAt' | 'updatedAt' | 'imageSrc' | 'isFeatured'
 > & {
 	ingredients: FormIngredient[];
