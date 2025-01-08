@@ -82,7 +82,7 @@ const RecipeImportPage: NextPage = () => {
 					<Alert variant="error" title={'Unable to parse recipe'} description={''} />
 				</div>
 			)}
-			<pre className="text-sm p-4 text-white">{JSON.stringify(recipe, null, 2)}</pre>
+			{/* <pre className="text-sm p-4 text-white">{JSON.stringify(recipe, null, 2)}</pre> */}
 		</>
 	);
 };
