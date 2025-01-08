@@ -4,6 +4,8 @@ import Footer from 'components/Footer';
 import { Toaster } from 'react-hot-toast';
 import '../styles/globals.css';
 import { dark } from '@clerk/themes';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
 import { Ubuntu } from 'next/font/google';
 
@@ -17,20 +19,15 @@ const ubuntu = Ubuntu({
 	display: 'swap',
 });
 
-export default function RootLayout({
-	children,
-}: {
+interface Props {
 	children: React.ReactNode;
-}) {
+}
+
+export default function RootLayout({ children }: Props) {
 	return (
 		<html lang="en">
 			<body className={`h-screen dark:bg-neutral-900 ${ubuntu.className}`}>
-				<ClerkProvider
-					dynamic
-					appearance={{
-						baseTheme: dark,
-					}}
-				>
+				<ClerkProvider dynamic appearance={{ baseTheme: dark }}>
 					<Nav />
 					{children}
 					<div className="flex-grow" />
@@ -38,6 +35,8 @@ export default function RootLayout({
 					<Footer />
 				</ClerkProvider>
 			</body>
+			<Analytics />
+			<SpeedInsights />
 		</html>
 	);
 }
