@@ -63,8 +63,6 @@ const schemaOrgRecipeToRecipeBookRecipe = (
 				name: i.name,
 				quantity: i.quantity,
 				unit: i.unit,
-				createdAt: new Date(),
-				updatedAt: new Date(),
 			})),
 		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 		directions: parseDirections(recipe.recipeInstructions || ([] as any)).map(
@@ -73,8 +71,6 @@ const schemaOrgRecipeToRecipeBookRecipe = (
 				recipeId: '1337',
 				index,
 				text: i.text,
-				createdAt: new Date(),
-				updatedAt: new Date(),
 			}),
 		),
 	};
