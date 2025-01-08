@@ -33,10 +33,10 @@ export default function RootLayout({ children }: Props) {
 					<div className="flex-grow" />
 					<Toaster position="bottom-right" reverseOrder={false} />
 					<Footer />
+					<Analytics />
+					<SpeedInsights />
 				</ClerkProvider>
 			</body>
-			<Analytics />
-			<SpeedInsights />
 		</html>
 	);
 }
