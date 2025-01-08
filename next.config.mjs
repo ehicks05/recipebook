@@ -12,6 +12,9 @@ const bundleAnalyzer = withBundleAnalyzer({
 
 /** @type {import("next").NextConfig} */
 const config = {
+	experimental: {
+		turbo: {},
+	},
 	reactStrictMode: true,
 	i18n: {
 		locales: ['en'],

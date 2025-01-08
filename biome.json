@@ -6,7 +6,7 @@
 		"useIgnoreFile": false
 	},
 	"files": {
-		"ignore": []
+		"ignore": ["node_modules/**"]
 	},
 	"formatter": {
 		"enabled": true

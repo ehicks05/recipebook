@@ -8,6 +8,7 @@ import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
 import { Ubuntu } from 'next/font/google';
+import { TRPCReactProvider } from 'trpc/react';
 
 export const metadata: Metadata = {
 	title: 'RecipeBook',
@@ -28,13 +29,15 @@ export default function RootLayout({ children }: Props) {
 		<html lang="en">
 			<body className={`h-screen dark:bg-neutral-900 ${ubuntu.className}`}>
 				<ClerkProvider dynamic appearance={{ baseTheme: dark }}>
-					<Nav />
-					{children}
-					<div className="flex-grow" />
-					<Toaster position="bottom-right" reverseOrder={false} />
-					<Footer />
-					<Analytics />
-					<SpeedInsights />
+					<TRPCReactProvider>
+						<Nav />
+						{children}
+						<div className="flex-grow" />
+						<Toaster position="bottom-right" reverseOrder={false} />
+						<Footer />
+						<Analytics />
+						<SpeedInsights />
+					</TRPCReactProvider>
 				</ClerkProvider>
 			</body>
 		</html>

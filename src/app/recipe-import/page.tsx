@@ -1,10 +1,11 @@
+'use client';
 import Recipe from 'components/Recipe/Recipe';
 import { RecipeForm } from 'components/RecipeForm';
 import { Alert, Button, Container, Loading, MyInput, T } from 'components/core';
 import type { NextPage } from 'next';
-import { useRouter } from 'next/router';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
-import { api } from 'utils/api';
+import { api } from 'trpc/react';
 import { parseLdJsonRecipe } from 'utils/recipe-import';
 
 const Instructions = () => (
@@ -24,7 +25,8 @@ const Instructions = () => (
 
 const RecipeImportPage: NextPage = () => {
 	const router = useRouter();
-	const { url } = router.query;
+	const searchParams = useSearchParams();
+	const url = searchParams.get('url');
 	const [mode, setMode] = useState<'view' | 'edit'>('view');
 
 	const {
@@ -35,8 +37,7 @@ const RecipeImportPage: NextPage = () => {
 		{ url: url as string },
 		{
 			enabled: !!(url && url.length > 4),
-			staleTime: 10 * (60 * 1000), // 10 mins
-			cacheTime: 15 * (60 * 1000), // 15 mins
+			staleTime: 1000 * 60 * 10, // 10 mins
 		},
 	);
 
@@ -81,9 +82,7 @@ const RecipeImportPage: NextPage = () => {
 					<Alert variant="error" title={'Unable to parse recipe'} description={''} />
 				</div>
 			)}
-			{/* <pre className="text-sm p-4 text-white">
-        {JSON.stringify(recipe, null, 2)}
-      </pre> */}
+			<pre className="text-sm p-4 text-white">{JSON.stringify(recipe, null, 2)}</pre>
 		</>
 	);
 };

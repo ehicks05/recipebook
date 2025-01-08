@@ -2,10 +2,9 @@
 
 import { useClerk } from '@clerk/nextjs';
 import { Button, Dialog, RecipeImage, T } from 'components/core';
-import { useRouter } from 'next/router';
+import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { HiQuestionMarkCircle } from 'react-icons/hi';
-import { api } from 'utils/api';
+import { api } from 'trpc/react';
 import { UploadButton } from '../../../utils/uploadthing';
 
 interface MyUppyProps {
@@ -40,8 +39,8 @@ const MyUppy = ({ recipeId, token }: MyUppyProps) => {
 };
 
 const RecipeImageInput = () => {
-	const { query } = useRouter();
-	const { id } = query;
+	const params = useParams<{ id: string }>();
+	const id = params?.id;
 	const recipeId = id && typeof id === 'string' ? id : '';
 
 	const [isOpen, setIsOpen] = useState(false);
@@ -61,14 +60,14 @@ const RecipeImageInput = () => {
 	});
 	const {
 		mutate: removeImage,
-		isLoading: isRemoveImageLoading,
+		isPending: isRemoveImageLoading,
 		error: removeImageError,
 	} = api.example.removeImage.useMutation({ onSuccess: () => refetchRecipe() });
 
 	return (
 		<div className="flex flex-col gap-1">
 			<span>
-				<T>Image</T>
+				<T>Image ({id})</T>
 			</span>
 			{recipe?.imageSrc ? (
 				<RecipeImage

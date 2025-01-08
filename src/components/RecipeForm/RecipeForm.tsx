@@ -1,6 +1,6 @@
 'use client';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
 import type { SubmitErrorHandler, SubmitHandler } from 'react-hook-form';
@@ -12,7 +12,7 @@ import { FaBug } from 'react-icons/fa';
 import { HiClipboardCopy, HiRewind, HiTrash } from 'react-icons/hi';
 import type { CompleteRecipe } from 'server/db-api';
 import { RecipeSchema } from 'server/schema';
-import { api } from 'utils/api';
+import { api } from 'trpc/react';
 import { DirectionsForm, IngredientsForm } from './components';
 import RecipeDetailsForm from './components/RecipeDetailsForm';
 import { DEFAULT_RECIPE } from './constants';
@@ -43,13 +43,16 @@ const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 	const utils = api.useUtils();
 	const {
 		mutate: createRecipe,
-		isLoading: isCreateRecipeLoading,
+		isPending: isCreateRecipeLoading,
 		error: createRecipeError,
 	} = api.example.createRecipe.useMutation({
 		onSuccess: async (data) => {
 			console.log({ data });
+
 			await utils.example.findRecipes.invalidate();
-			await router.push(`/recipe/${data.id}`);
+
+			router.push(`/recipe/${data.id}`);
+
 			toast.custom((t) => (
 				<Alert
 					variant="success"
@@ -62,7 +65,7 @@ const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 
 	const {
 		mutate: updateRecipe,
-		isLoading: isUpdateRecipeLoading,
+		isPending: isUpdateRecipeLoading,
 		error: updateRecipeError,
 	} = api.example.updateRecipe.useMutation({
 		onSuccess: async (data) => {
@@ -82,7 +85,7 @@ const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 
 	const {
 		mutate: updatePublished,
-		isLoading: isUpdatePublishedLoading,
+		isPending: isUpdatePublishedLoading,
 		error: updatePublishedError,
 	} = api.example.updatePublished.useMutation({
 		onSuccess: async (data) => {
@@ -101,13 +104,16 @@ const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 
 	const {
 		mutate: deleteRecipe,
-		isLoading: isDeleteRecipeLoading,
+		isPending: isDeleteRecipeLoading,
 		error: deleteRecipeError,
 	} = api.example.deleteRecipe.useMutation({
 		onSuccess: async (data) => {
 			console.log({ data });
+
 			await utils.example.findRecipes.invalidate();
-			await router.push('/');
+
+			router.push('/');
+
 			toast.custom((t) => (
 				<Alert
 					variant="success"
@@ -223,7 +229,7 @@ const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 									<HiRewind />
 								</Button>
 								<Button
-									onClick={() => void router.push(`/recipe/${recipe.id}`)}
+									onClick={() => router.push(`/recipe/${recipe.id}`)}
 									loading={isLoading}
 									disabled={isLoading}
 								>
