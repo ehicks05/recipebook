@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
-import { env } from 'env/server.mjs';
+import { env } from 'env';
 
 const { SUPABASE_URL, SUPABASE_ADMIN_KEY } = env;
 

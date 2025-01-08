@@ -3,7 +3,7 @@ import { buffer } from 'micro';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { api } from 'server/db-api';
 import { Webhook } from 'svix';
-import { env } from '../../../env/server.mjs';
+import { env } from '../../../env';
 
 export const config = {
 	api: {
