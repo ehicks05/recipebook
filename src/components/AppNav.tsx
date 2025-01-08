@@ -34,12 +34,12 @@ const Nav = () => {
 		},
 		...(user
 			? [
-				{
-					name: 'My Stuff',
-					href: '/my-stuff',
-					current: pathname.includes('/my-stuff'),
-				},
-			]
+					{
+						name: 'My Stuff',
+						href: '/my-stuff',
+						current: pathname.includes('/my-stuff'),
+					},
+				]
 			: []),
 	];
 
