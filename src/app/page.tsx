@@ -1,12 +1,7 @@
 import { auth } from '@clerk/nextjs/server';
 import RecipePicker from 'components/Home/RecipePicker';
 import { Container, Hero } from 'components/core';
-import type { Metadata } from 'next';
 import { api } from 'server/db-api';
-
-export const metadata: Metadata = {
-	title: 'RecipeBook',
-};
 
 export default async function Page() {
 	const start = new Date().getTime();

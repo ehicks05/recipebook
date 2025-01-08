@@ -4,12 +4,16 @@ import Footer from 'components/Footer';
 import { Toaster } from 'react-hot-toast';
 import '../styles/globals.css';
 import { dark } from '@clerk/themes';
+import type { Metadata } from 'next';
 import { Ubuntu } from 'next/font/google';
+
+export const metadata: Metadata = {
+	title: 'RecipeBook',
+};
 
 const ubuntu = Ubuntu({
 	weight: ['300', '400', '500', '700'],
 	subsets: ['latin'],
-	// default, can also use "swap" to ensure custom font always shows
 	display: 'swap',
 });
 
