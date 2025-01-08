@@ -31,16 +31,18 @@ const RecipeCard = ({
 
 	return (
 		<Link href={`/recipe/${id}`}>
-			<Card className="transform border border-neutral-100 transition-all hover:shadow-md dark:border-neutral-700">
+			<Card className="transform transition-all hover:shadow-md border border-neutral-100 dark:border-neutral-800">
 				<div className="flex h-80 flex-col gap-4">
 					<div className="-m-4 mb-0 h-48">
-						<RecipeImage
-							imageSrc={imageSrc}
-							emoji={emoji}
-							className="h-48 w-full rounded-t object-cover"
-						/>
+						<div className="h-48 w-full rounded-t bg-neutral-50 dark:bg-[#1C1C1C] text-neutral-400 dark:text-neutral-700">
+							<RecipeImage
+								imageSrc={imageSrc}
+								emoji={emoji}
+								className="h-48 rounded-t"
+							/>
+						</div>
 						{isFeatured && (
-							<div className="flex gap-2 items-center p-2 rounded bg-neutral-700 text-white absolute top-2 right-2 shadow-xl">
+							<div className="flex gap-2 items-center p-2 text-sm rounded bg-neutral-200 dark:bg-neutral-700 dark:text-white absolute top-2 right-2 shadow-xl">
 								<HiStar className="text-yellow-400" />
 								Recipe of the day
 								<HiStar className="text-yellow-400" />
@@ -50,7 +52,7 @@ const RecipeCard = ({
 					{/* title row */}
 					<div className="flex items-start gap-2">
 						<div className="w-full">
-							<div className="text-xl font-semibold text-amber-700 dark:text-amber-400">
+							<div className="text-xl font-semibold text-orange-700 dark:text-orange-400">
 								{name}
 							</div>
 							<div className="text-xs dark:text-neutral-200">
@@ -79,17 +81,17 @@ function RecipeCardLandscape({
 }: Props) {
 	return (
 		<Link href={`/recipe/${id}`}>
-			<Card className="transform border border-neutral-100 transition-all hover:shadow-md dark:border-neutral-700">
+			<Card className="transform border border-neutral-100 dark:border-neutral-800 transition-all hover:shadow-md">
 				<div className="flex h-20 gap-4">
-					<div className="-m-4 mr-0 h-28 w-48">
+					<div className="-m-4 mr-0 h-28 w-48 rounded-l bg-neutral-50 dark:bg-[#1C1C1C] text-neutral-400 dark:text-neutral-700">
 						<RecipeImage
 							imageSrc={imageSrc}
 							emoji={emoji}
-							className="h-28 w-48 rounded-l object-cover"
+							className="h-28 w-48 rounded-l"
 						/>
 					</div>
 					<div className="flex w-full flex-col gap-2">
-						<span className="line-clamp-1 text-lg font-semibold text-amber-700 dark:text-amber-400 sm:text-xl">
+						<span className="line-clamp-1 text-lg font-semibold text-orange-700 dark:text-orange-400 sm:text-xl">
 							{name}
 						</span>
 						<T className="line-clamp-2 text-sm">{description}</T>

@@ -80,7 +80,11 @@ const RecipeImageInput = () => {
 				/>
 			) : (
 				<Button type="button" onClick={() => setIsOpen(true)}>
-					<HiQuestionMarkCircle size={32} />
+					<RecipeImage
+						imageSrc={undefined}
+						onClick={() => setIsOpen(true)}
+						className=""
+					/>
 				</Button>
 			)}
 			<Dialog

@@ -1,6 +1,7 @@
 import { defaultImage, emojiToImage } from 'components/Home/constants';
 import { UPLOADTHING_BASE_URL } from 'constants/uploadthing';
 import Image from 'next/image';
+import { FaPizzaSlice } from 'react-icons/fa';
 
 interface Props {
 	imageSrc?: string | null;
@@ -23,7 +24,7 @@ const RecipeImage = ({
 		<>
 			{imageSrc && (
 				<Image
-					className={className}
+					className={`object-cover w-full ${className}`}
 					src={`${UPLOADTHING_BASE_URL}/${imageSrc}`}
 					alt="recipe"
 					height={height}
@@ -32,13 +33,9 @@ const RecipeImage = ({
 				/>
 			)}
 			{!imageSrc && (
-				<img
-					className={className}
-					src={emojiToImage[emoji || ''] || defaultImage}
-					alt="recipe"
-					height={height}
-					width={width}
-				/>
+				<div className="flex w-full h-full items-center justify-center">
+					<FaPizzaSlice className="w-1/2 h-1/2 opacity-25" />
+				</div>
 			)}
 		</>
 	);

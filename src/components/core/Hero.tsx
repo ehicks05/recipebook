@@ -18,7 +18,9 @@ const Hero = ({ title, subtitle, children }: IProps) => (
 				{subtitle && (
 					<div className="text-neutral-600 dark:text-neutral-300">{subtitle}</div>
 				)}
-				{children}
+				{children && (
+					<div className="text-neutral-600 dark:text-neutral-300">{children}</div>
+				)}
 			</div>
 		</div>
 	</section>
