@@ -88,7 +88,8 @@ function RecipeCardLandscape({
 						<RecipeImage
 							imageSrc={imageSrc}
 							emoji={emoji}
-							className="h-28 w-48 rounded-l"
+							emojiSize="text-7xl"
+							className="h-28 w-32 rounded-l"
 						/>
 					</div>
 					<div className="flex w-full flex-col gap-2">

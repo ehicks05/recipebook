@@ -67,23 +67,25 @@ const RecipeImageInput = () => {
 	return (
 		<div className="flex flex-col gap-1">
 			<span>
-				<T>Image ({id})</T>
+				<T>Image</T>
 			</span>
 			{recipe?.imageSrc ? (
 				<RecipeImage
 					imageSrc={recipe.imageSrc}
 					onClick={() => setIsOpen(true)}
-					className="rounded-lg cursor-pointer hover:animate-pulse"
+					className="rounded-lg cursor-pointer"
 					width={300}
 					height={300}
 				/>
 			) : (
 				<Button type="button" onClick={() => setIsOpen(true)}>
-					<RecipeImage
-						imageSrc={undefined}
-						onClick={() => setIsOpen(true)}
-						className=""
-					/>
+					<div className="h-48">
+						<RecipeImage
+							imageSrc={undefined}
+							onClick={() => setIsOpen(true)}
+							className="w-full h-full"
+						/>
+					</div>
 				</Button>
 			)}
 			<Dialog

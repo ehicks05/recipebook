@@ -6,6 +6,7 @@ import { FaPizzaSlice } from 'react-icons/fa';
 interface Props {
 	imageSrc?: string | null;
 	emoji?: string;
+	emojiSize?: string;
 	height?: number;
 	width?: number;
 	className?: string;
@@ -15,13 +16,18 @@ interface Props {
 const RecipeImage = ({
 	imageSrc,
 	emoji,
+	emojiSize = 'text-8xl',
 	height = 300,
 	width = 400,
 	className,
 	onClick,
 }: Props) => {
 	return (
-		<>
+		<div
+			className={`flex items-center justify-center ${className}`}
+			onClick={onClick}
+			onKeyUp={onClick}
+		>
 			{imageSrc && (
 				<Image
 					className={`object-cover w-full ${className}`}
@@ -29,24 +35,11 @@ const RecipeImage = ({
 					alt="recipe"
 					height={height}
 					width={width}
-					onClick={onClick}
 				/>
 			)}
-			{!imageSrc && emoji && (
-				<div
-					className={`flex items-center justify-center ${className}`}
-					onClick={onClick}
-					onKeyUp={onClick}
-				>
-					<span className="text-8xl">{emoji}</span>
-				</div>
-			)}
-			{!imageSrc && !emoji && (
-				<div className="flex items-center justify-center">
-					<FaPizzaSlice className="w-1/2 h-1/2 opacity-25" />
-				</div>
-			)}
-		</>
+			{!imageSrc && emoji && <span className={emojiSize}>{emoji}</span>}
+			{!imageSrc && !emoji && <FaPizzaSlice className="w-3/4 h-3/4 opacity-25" />}
+		</div>
 	);
 };
 
