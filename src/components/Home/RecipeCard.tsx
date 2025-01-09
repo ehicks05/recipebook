@@ -42,9 +42,10 @@ const RecipeCard = ({
 							/>
 						</div>
 						{isFeatured && (
-							<div className="flex gap-2 items-center p-2 text-sm rounded bg-neutral-200 dark:bg-neutral-700 dark:text-white absolute top-2 right-2 shadow-xl">
-								<HiStar className="text-yellow-400" />
-								Recipe of the day
+							<div
+								title="Recipe of the day"
+								className="flex gap-2 items-center p-2 rounded bg-neutral-200 dark:bg-neutral-700 dark:text-white absolute top-2 right-2 shadow-xl"
+							>
 								<HiStar className="text-yellow-400" />
 							</div>
 						)}
