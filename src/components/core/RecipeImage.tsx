@@ -32,8 +32,17 @@ const RecipeImage = ({
 					onClick={onClick}
 				/>
 			)}
-			{!imageSrc && (
-				<div className="flex w-full h-full items-center justify-center">
+			{!imageSrc && emoji && (
+				<div
+					className={`flex items-center justify-center ${className}`}
+					onClick={onClick}
+					onKeyUp={onClick}
+				>
+					<span className="text-8xl">{emoji}</span>
+				</div>
+			)}
+			{!imageSrc && !emoji && (
+				<div className="flex items-center justify-center">
 					<FaPizzaSlice className="w-1/2 h-1/2 opacity-25" />
 				</div>
 			)}
