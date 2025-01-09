@@ -9,7 +9,7 @@ function updateClipboard(newClip: string) {
 
 // How /recipe data differs from the json file:
 // 1. id is added on recipe and nested objects
-// 2. audit dates are added on recipe and all nested objects
+// 2. audit dates are added on recipe
 // 3. author is added on recipe
 // 4. emoji is a literal emoji
 // 5. direction indexes are added
@@ -17,14 +17,10 @@ function updateClipboard(newClip: string) {
 const omitIngredient = (i: Ingredient) => ({
 	...i,
 	id: undefined,
-	createdAt: undefined,
-	updatedAt: undefined,
 });
 const omitDirection = (i: Direction) => ({
 	...i,
 	id: undefined,
-	createdAt: undefined,
-	updatedAt: undefined,
 	index: undefined,
 });
 
