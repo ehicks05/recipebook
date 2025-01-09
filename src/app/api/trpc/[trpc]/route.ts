@@ -14,7 +14,7 @@ const createContext = async (req: NextRequest) => {
 		headers: req.headers,
 	});
 
-	return { ...temp, auth: auth() };
+	return { ...temp, auth: await auth() };
 };
 
 const handler = (req: NextRequest) =>

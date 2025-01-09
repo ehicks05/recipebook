@@ -1,4 +1,3 @@
-import type { AuthObject } from '@clerk/backend';
 import { auth as _auth } from '@clerk/nextjs/server';
 /**
  * YOU PROBABLY DON'T NEED TO EDIT THIS FILE, UNLESS:
@@ -118,6 +117,7 @@ export const publicProcedure = t.procedure.use(timingMiddleware);
 export const protectedProcedure = t.procedure
 	.use(timingMiddleware)
 	.use(({ ctx, next }) => {
+		console.log({ auth: ctx.auth });
 		if (!ctx.auth || !ctx.auth.userId) {
 			throw new TRPCError({ code: 'UNAUTHORIZED' });
 		}

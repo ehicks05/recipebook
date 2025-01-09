@@ -47,8 +47,6 @@ const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 		error: createRecipeError,
 	} = api.example.createRecipe.useMutation({
 		onSuccess: async (data) => {
-			console.log({ data });
-
 			await utils.example.findRecipes.invalidate();
 
 			router.push(`/recipe/${data.id}`);
@@ -69,7 +67,6 @@ const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 		error: updateRecipeError,
 	} = api.example.updateRecipe.useMutation({
 		onSuccess: async (data) => {
-			console.log({ data });
 			await utils.example.findRecipe.invalidate();
 			reset(data, {});
 
@@ -89,7 +86,6 @@ const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 		error: updatePublishedError,
 	} = api.example.updatePublished.useMutation({
 		onSuccess: async (data) => {
-			console.log({ data });
 			await utils.example.findRecipe.invalidate();
 
 			toast.custom((t) => (
