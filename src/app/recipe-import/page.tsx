@@ -1,4 +1,5 @@
 'use client';
+import { useAuth } from '@clerk/nextjs';
 import Recipe from 'components/Recipe/Recipe';
 import { RecipeForm } from 'components/RecipeForm';
 import { Alert, Button, Container, Loading, MyInput, T } from 'components/core';
@@ -24,6 +25,7 @@ const Instructions = () => (
 );
 
 const RecipeImportPage: NextPage = () => {
+	const { userId } = useAuth();
 	const router = useRouter();
 	const searchParams = useSearchParams();
 	const url = searchParams.get('url');
@@ -52,16 +54,19 @@ const RecipeImportPage: NextPage = () => {
 		<>
 			{!url && <Instructions />}
 			<Container>
-				<div className="flex items-start">
+				<div className="flex items-start gap-1">
 					<MyInput
 						className=""
 						placeholder="enter a recipe url"
 						value={url || ''}
 						onChange={(e) => handleChange(e.target.value)}
 					/>
-					<Button onClick={() => setMode(mode === 'edit' ? 'view' : 'edit')}>
-						{mode === 'edit' ? 'View' : 'Edit'}
-					</Button>
+					{userId && (
+						<Button onClick={() => setMode(mode === 'edit' ? 'view' : 'edit')}>
+							{mode === 'edit' ? 'View' : 'Edit'}
+						</Button>
+					)}
+					{!userId && <Button disabled>Sign in to edit and save</Button>}
 				</div>
 			</Container>
 			{error && (
