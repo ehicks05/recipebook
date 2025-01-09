@@ -1,3 +1,5 @@
+import { extractLeadingNumber } from './extract-leading-number';
+
 /**
  * Reference: https://unicode.org/reports/tr15/#Norm_Forms
  * Example: ¼ -> 1/4
@@ -5,22 +7,7 @@
 const normalizeUnicode = (input: string) =>
 	input.normalize('NFKD').replace('⁄', '/');
 
-export const extractLeadingQuantity = (_input: string) => {
-	const input = _input.trim();
-	let endIndex = 0;
-	while (
-		'0123456789.,/'.includes(input.charAt(endIndex)) &&
-		endIndex <= input.length - 1
-	) {
-		endIndex += 1;
-	}
-	return {
-		quantity: input.slice(0, endIndex).trim(),
-		rest: input.slice(endIndex).trim(),
-	};
-};
-
-const rawUnitsToSupportedUnits = {
+const RAW_TO_SUPPORTED_UNITS = {
 	tsp: 'tsp',
 	teaspoon: 'tsp',
 	tbsp: 'tbsp',
@@ -45,7 +32,7 @@ const rawUnitsToSupportedUnits = {
 } as const;
 
 const extractLeadingUnit = (input: string) => {
-	const matchedUnit = Object.entries(rawUnitsToSupportedUnits).find(
+	const matchedUnit = Object.entries(RAW_TO_SUPPORTED_UNITS).find(
 		([rawUnit]) =>
 			input.startsWith(`${rawUnit}`) ||
 			input.startsWith(`${rawUnit}s`) ||
@@ -69,7 +56,7 @@ const extractLeadingUnit = (input: string) => {
 
 export const parseIngredient = (input: string) => {
 	const normalized = normalizeUnicode(input);
-	const { quantity, rest: postQuantity } = extractLeadingQuantity(normalized);
+	const { number: quantity, rest: postQuantity } = extractLeadingNumber(normalized);
 	const { unit, name } = extractLeadingUnit(postQuantity.toLocaleLowerCase());
 	return { quantity, unit, name };
 };
