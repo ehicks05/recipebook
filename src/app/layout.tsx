@@ -1,5 +1,5 @@
 import { ClerkProvider } from '@clerk/nextjs';
-import Nav from 'components/AppNav';
+import Nav from 'components/Nav';
 import Footer from 'components/Footer';
 import { Toaster } from 'react-hot-toast';
 import '../styles/globals.css';

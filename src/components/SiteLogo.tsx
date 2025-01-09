@@ -12,12 +12,14 @@ export const SiteLogo = () => {
 					src={ShortLogo}
 					alt="logo"
 					loader={() => '/favicon.png'}
+					priority
 				/>
 				<Image
 					className="hidden h-8 w-auto lg:block"
 					src={Logo}
 					alt="logo"
 					loader={() => '/logo.png'}
+					priority
 				/>
 			</Link>
 		</div>
