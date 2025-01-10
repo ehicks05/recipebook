@@ -41,7 +41,7 @@ const recipesByAuthor = (userId: string) =>
 	prisma.recipe.findMany({
 		where: { authorId: userId },
 		orderBy: { createdAt: 'desc' },
-		...recipeIncludes(userId),
+		...recipeIncludesLite(userId),
 	});
 
 const createRecipe = async (userId: string, input: RecipeCreate) => {
