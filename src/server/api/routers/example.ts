@@ -15,15 +15,15 @@ export const exampleRouter = createTRPCRouter({
 			return db.recipes.findRecipes(ctx.auth.userId, input.terms);
 		}),
 
-	myRecipes: publicProcedure.query(async ({ ctx }) => {
-		return ctx.auth.userId ? db.recipes.recipesByAuthor(ctx.auth.userId) : [];
-	}),
-
 	findRecipe: publicProcedure
 		.input(z.object({ id: z.string() }))
 		.query(({ ctx, input: { id } }) => {
 			return db.recipes.recipeById(id);
 		}),
+
+	myRecipes: protectedProcedure.query(async ({ ctx }) => {
+		return db.recipes.recipesByAuthor(ctx.auth.userId);
+	}),
 
 	createRecipe: protectedProcedure
 		.input(RecipeSchema)
