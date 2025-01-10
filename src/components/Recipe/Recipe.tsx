@@ -34,7 +34,7 @@ function Recipe({ recipe }: Props) {
 			<Container>
 				<div className="grid grid-cols-1 justify-between gap-4 sm:grid-cols-2 md:grid-cols-4">
 					<div className="order-1 flex flex-col gap-4">
-						{user?.id === recipe.author.id && (
+						{user?.id === recipe.authorId && (
 							<div className="flex flex-wrap gap-2">
 								<Link href={`/edit-recipe/${recipe.id}`} title="Edit Recipe">
 									<Button className="text-sm font-semibold">
