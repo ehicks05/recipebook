@@ -8,13 +8,15 @@ const IngredientSchema = z.object({
 	}),
 	unit: z.string().nullable(),
 });
+const Ingredients = z.object({ ingredients: IngredientSchema.array().min(1) });
 
 const DirectionSchema = z.object({
 	index: z.number(),
 	text: z.string().min(1),
 });
+const Directions = z.object({ directions: DirectionSchema.array().min(1) });
 
-export const RecipeSchema = z.object({
+const BaseRecipeSchema = z.object({
 	name: z.string().min(1).max(40),
 	description: z.string().min(1),
 	cookingTime: z.string().min(1),
@@ -23,6 +25,10 @@ export const RecipeSchema = z.object({
 	difficulty: z.coerce.number(),
 	isPublished: z.boolean(),
 	source: z.string().nullable(),
-	ingredients: IngredientSchema.array().min(1),
-	directions: DirectionSchema.array().min(1),
 });
+
+export const RecipeSchema = BaseRecipeSchema.merge(Ingredients).merge(Directions);
+export const RecipeUpdateSchema = RecipeSchema.extend({ id: z.string() });
+
+export type RecipeCreate = z.infer<typeof RecipeSchema>;
+export type RecipeUpdate = z.infer<typeof RecipeUpdateSchema>;
