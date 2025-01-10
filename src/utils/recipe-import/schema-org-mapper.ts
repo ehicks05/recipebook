@@ -19,12 +19,7 @@ export const schemaOrgRecipeToRecipeBookRecipe = (
 		authorId: FAKE_ID,
 		createdAt: new Date(),
 		updatedAt: new Date(),
-		author: {
-			id: '',
-			displayName: authorName || 'John Dough',
-			createdAt: new Date(),
-			updatedAt: new Date(),
-		},
+		author: { displayName: authorName || 'John Dough' },
 		difficulty: 1,
 		emoji: '🍲',
 		servings: parseServings(recipe.recipeYield?.toString() || ''),
