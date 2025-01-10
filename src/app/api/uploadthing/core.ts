@@ -36,6 +36,7 @@ export const ourFileRouter = {
 			console.log('Upload complete for userId:', userId);
 
 			// save the url
+			// using dbApi instead of trpc due to ctx issues
 			await db.recipes.updateRecipe(recipeId, userId, { imageSrc: file.key });
 
 			// !!! Whatever is returned here is sent to the clientside `onClientUploadComplete` callback
