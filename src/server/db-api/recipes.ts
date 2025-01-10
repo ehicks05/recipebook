@@ -12,23 +12,20 @@ const _recipes = async (userId: string | null) =>
 	prisma.recipe.findMany({
 		where: isPublishedClause(userId),
 		orderBy: [{ isFeatured: 'desc' }, { createdAt: 'desc' }],
-		...recipeIncludes(userId),
+		...recipeIncludesLite(userId),
 	});
 
 const findRecipes = async (userId: string | null, terms: string[]) => {
+	const mode = 'insensitive';
 	return prisma.recipe.findMany({
 		where: {
 			AND: terms.map((term) => ({
 				OR: [
-					{ name: { contains: term, mode: 'insensitive' } },
-					{ description: { contains: term, mode: 'insensitive' } },
-					{ author: { displayName: { contains: term, mode: 'insensitive' } } },
-					{
-						ingredients: { some: { name: { contains: term, mode: 'insensitive' } } },
-					},
-					{
-						directions: { some: { text: { contains: term, mode: 'insensitive' } } },
-					},
+					{ name: { contains: term, mode } },
+					{ description: { contains: term } },
+					{ author: { displayName: { contains: term } } },
+					{ ingredients: { some: { name: { contains: term } } } },
+					{ directions: { some: { text: { contains: term, mode } } } },
 				],
 			})),
 		},
@@ -44,12 +41,6 @@ const recipesByAuthor = (userId: string) =>
 	prisma.recipe.findMany({
 		where: { authorId: userId },
 		orderBy: { createdAt: 'desc' },
-		...recipeIncludes(userId),
-	});
-
-const featuredRecipe = async (userId: string | null) =>
-	prisma.recipe.findFirst({
-		where: { isFeatured: true },
 		...recipeIncludes(userId),
 	});
 
@@ -145,7 +136,6 @@ export const recipes = {
 	findRecipes,
 	recipeById,
 	recipesByAuthor,
-	featuredRecipe,
 	deleteRecipe,
 	createRecipe,
 	updateRecipe,
