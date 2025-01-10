@@ -1,4 +1,4 @@
-import { auth as _auth } from '@clerk/nextjs/server';
+import { auth } from '@clerk/nextjs/server';
 /**
  * YOU PROBABLY DON'T NEED TO EDIT THIS FILE, UNLESS:
  * 1. You want to modify request context (see Part 1).
@@ -24,12 +24,12 @@ import { ZodError } from 'zod';
  * @see https://trpc.io/docs/server/context
  */
 export const createTRPCContext = async (opts: { headers: Headers }) => {
-	const auth = await _auth();
+	const _auth = await auth();
 
 	return {
 		...opts,
 		prisma,
-		auth,
+		auth: _auth,
 	};
 };
 
