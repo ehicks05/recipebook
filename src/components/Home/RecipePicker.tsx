@@ -4,9 +4,10 @@ import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { Button, MyInput, T } from 'components/core';
 import React, { useState } from 'react';
 import { api } from 'trpc/react';
+import type { Recipe } from 'trpc/types';
 import RecipeCard from './RecipeCard';
 
-function RecipePicker() {
+function RecipePicker({ initialRecipes }: { initialRecipes: Recipe[] }) {
 	const [parent] = useAutoAnimate();
 	const [termInput, setTermInput] = useState('');
 	const [terms, setTerms] = useState<string[]>([]);
@@ -18,7 +19,12 @@ function RecipePicker() {
 		}
 	};
 
-	const { data: recipes } = api.example.findRecipes.useQuery({ terms });
+	const { data: searchResultRecipes } = api.example.findRecipes.useQuery(
+		{ terms },
+		{ enabled: terms.length !== 0 },
+	);
+
+	const recipes = searchResultRecipes || initialRecipes;
 
 	return (
 		<div className="flex flex-col gap-4">

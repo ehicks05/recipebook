@@ -2,9 +2,7 @@ import type { Prisma } from '@prisma/client';
 
 // This is the recipeWithIncludes shape, with a where clause that filters so
 // users only see their own favorites.
-export const recipeIncludes = (
-	userId: string | null,
-): { include: Prisma.recipeInclude } => {
+export const recipeIncludes = (userId: string | null) => {
 	return {
 		include: {
 			author: { select: { displayName: true } },
@@ -18,9 +16,7 @@ export const recipeIncludes = (
 	};
 };
 
-export const recipeIncludesLite = (
-	userId: string | null,
-): { include: Prisma.recipeInclude } => {
+export const recipeIncludesLite = (userId: string | null) => {
 	return {
 		include: {
 			author: { select: { displayName: true } },
