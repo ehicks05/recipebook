@@ -6,12 +6,12 @@ import { DIFFICULTIES } from 'components/core/Difficulty';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { HiOutlineClock, HiPencilAlt } from 'react-icons/hi';
-import type { CompleteRecipe } from 'server/db-api';
+import type { RecipeFull } from 'trpc/types';
 
 import { Directions, Ingredients } from './Components';
 
 interface Props {
-	recipe: CompleteRecipe;
+	recipe: RecipeFull;
 }
 
 function Recipe({ recipe }: Props) {

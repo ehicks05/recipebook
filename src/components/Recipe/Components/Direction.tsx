@@ -1,6 +1,6 @@
 import { T } from 'components/core';
 import React, { useState } from 'react';
-import type { Direction } from 'server/db-api';
+import type { Direction } from 'trpc/types';
 
 interface Props {
 	direction: Direction;

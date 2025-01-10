@@ -1,7 +1,7 @@
 import { T } from 'components/core';
 import Fraction from 'fraction.js';
 import React, { useState } from 'react';
-import type { Ingredient } from 'server/db-api';
+import type { Ingredient } from 'trpc/types';
 
 interface IngredientProps {
 	ingredient: Ingredient;

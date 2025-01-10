@@ -15,6 +15,28 @@ const _recipes = async (userId: string | null) =>
 		...recipeIncludes(userId),
 	});
 
+const findRecipes = async (userId: string | null, terms: string[]) => {
+	return prisma.recipe.findMany({
+		where: {
+			AND: terms.map((term) => ({
+				OR: [
+					{ name: { contains: term, mode: 'insensitive' } },
+					{ description: { contains: term, mode: 'insensitive' } },
+					{ author: { displayName: { contains: term, mode: 'insensitive' } } },
+					{
+						ingredients: { some: { name: { contains: term, mode: 'insensitive' } } },
+					},
+					{
+						directions: { some: { text: { contains: term, mode: 'insensitive' } } },
+					},
+				],
+			})),
+		},
+		orderBy: [{ isFeatured: 'desc' }, { createdAt: 'desc' }],
+		...recipeIncludesLite(userId),
+	});
+};
+
 const recipeById = async (id: string) =>
 	prisma.recipe.findUnique({ where: { id }, ...recipeIncludes(null) });
 
@@ -120,6 +142,7 @@ const deleteRecipe = async (userId: string, id: string) => {
 
 export const recipes = {
 	recipes: _recipes,
+	findRecipes,
 	recipeById,
 	recipesByAuthor,
 	featuredRecipe,

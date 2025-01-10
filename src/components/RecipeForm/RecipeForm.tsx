@@ -10,17 +10,17 @@ import { Alert, Button, Container, Dialog, Hero, T } from 'components/core';
 import { toast } from 'react-hot-toast';
 import { FaBug } from 'react-icons/fa';
 import { HiClipboardCopy, HiRewind, HiTrash } from 'react-icons/hi';
-import type { CompleteRecipe } from 'server/db-api';
 import { RecipeSchema } from 'server/schema';
 import { api } from 'trpc/react';
+import type { RecipeFull } from 'trpc/types';
 import { DirectionsForm, IngredientsForm } from './components';
 import RecipeDetailsForm from './components/RecipeDetailsForm';
 import { DEFAULT_RECIPE } from './constants';
 import type { FormRecipe } from './types';
 
 interface Props {
-	recipe?: CompleteRecipe;
-	importedRecipe?: CompleteRecipe;
+	recipe?: RecipeFull;
+	importedRecipe?: RecipeFull;
 }
 
 const RecipeForm = ({ recipe, importedRecipe }: Props) => {
@@ -47,7 +47,7 @@ const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 		error: createRecipeError,
 	} = api.example.createRecipe.useMutation({
 		onSuccess: async (data) => {
-			await utils.example.findRecipes.invalidate();
+			await utils.example.allRecipes.invalidate();
 
 			router.push(`/recipe/${data.id}`);
 
@@ -106,7 +106,7 @@ const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 		onSuccess: async (data) => {
 			console.log({ data });
 
-			await utils.example.findRecipes.invalidate();
+			await utils.example.allRecipes.invalidate();
 
 			router.push('/');
 

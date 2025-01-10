@@ -7,10 +7,10 @@ import { DIFFICULTIES } from 'components/core/Difficulty';
 import Link from 'next/link';
 import React from 'react';
 import { HiOutlineClock, HiStar } from 'react-icons/hi';
-import type { CompleteRecipe } from 'server/db-api';
+import type { Recipe } from 'trpc/types';
 
 interface Props {
-	recipe: CompleteRecipe;
+	recipe: Recipe;
 }
 
 const RecipeCard = ({

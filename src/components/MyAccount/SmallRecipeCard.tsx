@@ -1,15 +1,13 @@
 import { Card, T } from 'components/core';
 import Link from 'next/link';
 import React from 'react';
-import type { CompleteRecipe } from 'server/db-api';
+import type { Recipe } from 'trpc/types';
 
-interface ISmallRecipeCardProps {
-	recipe: CompleteRecipe;
+interface Props {
+	recipe: Recipe;
 }
 
-function SmallRecipeCard({
-	recipe: { id, emoji, name, author },
-}: ISmallRecipeCardProps) {
+function SmallRecipeCard({ recipe: { id, emoji, name, author } }: Props) {
 	return (
 		<div className="">
 			<Link href={`/recipe/${id}`}>

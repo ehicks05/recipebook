@@ -1,4 +1,4 @@
-import type { CompleteRecipe, Direction, Ingredient } from 'server/db-api';
+import type { RecipeFull, Direction, Ingredient } from 'trpc/types';
 
 function updateClipboard(newClip: string) {
 	navigator.clipboard.writeText(newClip).then(
@@ -24,7 +24,7 @@ const omitDirection = (i: Direction) => ({
 	index: undefined,
 });
 
-function stripRecipe(recipe: CompleteRecipe) {
+function stripRecipe(recipe: RecipeFull) {
 	return {
 		...recipe,
 		id: undefined,

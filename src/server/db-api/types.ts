@@ -1,13 +1,8 @@
-import {
-	Prisma,
-	type direction,
-	type ingredient,
-	type recipe,
-} from '@prisma/client';
+import { Prisma } from '@prisma/client';
 
 // Get type of recipe with includes added
 // https://www.prisma.io/docs/concepts/components/prisma-client/advanced-type-safety/operating-against-partial-structures-of-model-types
-const recipeWithIncludes = Prisma.validator<Prisma.recipeDefaultArgs>()({
+const completeRecipe = Prisma.validator<Prisma.recipeDefaultArgs>()({
 	include: {
 		author: true,
 		directions: true,
@@ -17,7 +12,4 @@ const recipeWithIncludes = Prisma.validator<Prisma.recipeDefaultArgs>()({
 		},
 	},
 });
-export type CompleteRecipe = Prisma.recipeGetPayload<typeof recipeWithIncludes>;
-export type Direction = direction;
-export type Ingredient = ingredient;
-export type Recipe = recipe;
+export type CompleteRecipe = Prisma.recipeGetPayload<typeof completeRecipe>;

@@ -1,5 +1,5 @@
 import type { Recipe } from 'schema-dts';
-import type { CompleteRecipe } from 'server/db-api';
+import type { RecipeFull } from 'trpc/types';
 import { parseIngredient } from 'utils/recipe-import/parse-ingredient';
 import { parseDirections } from './parse-directions';
 import { parseServings } from './parse-servings';
@@ -10,7 +10,7 @@ export const schemaOrgRecipeToRecipeBookRecipe = (
 	recipe: Recipe,
 	authorName: string,
 	url: string,
-): CompleteRecipe => {
+): RecipeFull => {
 	// @ts-ignore
 	return {
 		id: FAKE_ID,

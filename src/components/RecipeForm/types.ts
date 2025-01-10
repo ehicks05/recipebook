@@ -1,4 +1,4 @@
-import type { Direction, Ingredient, Recipe } from 'server/db-api';
+import type { Direction, Ingredient, Recipe } from 'trpc/types';
 
 export type FormIngredient = Omit<Ingredient, 'id' | 'recipeId'>;
 export type FormDirection = Omit<Direction, 'id' | 'recipeId'>;

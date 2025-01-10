@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Direction } from 'server/db-api';
+import type { Direction } from 'trpc/types';
 import { DirectionLine } from './Direction';
 
 interface Props {

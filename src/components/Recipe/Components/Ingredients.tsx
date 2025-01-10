@@ -1,7 +1,7 @@
 import { Button, T } from 'components/core';
 import React, { useState } from 'react';
 import { FaMinus, FaPlus } from 'react-icons/fa';
-import type { Ingredient } from 'server/db-api';
+import type { Ingredient } from 'trpc/types';
 import { IngredientLine } from './Ingredient';
 
 interface Props {

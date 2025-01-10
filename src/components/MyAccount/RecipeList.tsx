@@ -1,11 +1,11 @@
 import { RecipeCardLandscape } from 'components/Home/RecipeCard';
 import { T } from 'components/core';
 import React from 'react';
-import type { CompleteRecipe } from 'server/db-api';
+import type { Recipe } from 'trpc/types';
 
 interface Props {
 	title: string;
-	recipes?: CompleteRecipe[];
+	recipes?: Recipe[];
 }
 
 const RecipeList = ({ title, recipes }: Props) => {

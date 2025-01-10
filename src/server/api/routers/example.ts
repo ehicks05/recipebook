@@ -5,9 +5,15 @@ import { RecipeSchema, RecipeUpdateSchema } from 'server/schema';
 import { createTRPCRouter, protectedProcedure, publicProcedure } from '../trpc';
 
 export const exampleRouter = createTRPCRouter({
-	findRecipes: publicProcedure.query(({ ctx }) => {
+	allRecipes: publicProcedure.query(({ ctx }) => {
 		return db.recipes.recipes(ctx.auth.userId);
 	}),
+
+	findRecipes: publicProcedure
+		.input(z.object({ terms: z.array(z.string()) }))
+		.query(({ ctx, input }) => {
+			return db.recipes.findRecipes(ctx.auth.userId, input.terms);
+		}),
 
 	myRecipes: publicProcedure.query(async ({ ctx }) => {
 		return ctx.auth.userId ? db.recipes.recipesByAuthor(ctx.auth.userId) : [];

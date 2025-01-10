@@ -3,101 +3,59 @@
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { Button, MyInput, T } from 'components/core';
 import React, { useState } from 'react';
-import type { CompleteRecipe, Recipe } from 'server/db-api/types';
-
+import { api } from 'trpc/react';
 import RecipeCard from './RecipeCard';
 
-const applyIngredientFilter = (recipes: CompleteRecipe[], ingredients: string[]) => {
-	return recipes.filter((recipe) => {
-		const recipeIngredients = recipe.ingredients
-			.map((x) => x.name.toLowerCase())
-			.join();
-		return ingredients.every((recipeFilter) =>
-			recipeIngredients.includes(recipeFilter),
-		);
-	});
-};
-
-const applySearch = (recipes: CompleteRecipe[], search: string) => {
-	return recipes.filter((recipe) => {
-		const corpus = [
-			recipe.name,
-			recipe.description,
-			recipe.author.displayName,
-			...recipe.ingredients.map((i) => i.name),
-			...recipe.directions.map((d) => d.text),
-		].map((o) => o?.toLocaleLowerCase());
-
-		return corpus.some((o) => o?.includes(search));
-	});
-};
-
-interface Props {
-	recipes: CompleteRecipe[];
-}
-
-function RecipePicker({ recipes }: Props) {
+function RecipePicker() {
 	const [parent] = useAutoAnimate();
-	const [searchInput, setSearchInput] = useState('');
-	const [ingredientInput, setIngredientInput] = useState('');
-	const [ingredients, setIngredients] = useState<string[]>([]);
+	const [termInput, setTermInput] = useState('');
+	const [terms, setTerms] = useState<string[]>([]);
 
-	const filteredRecipes = applyIngredientFilter(
-		applySearch(recipes, searchInput),
-		ingredients,
-	);
-
-	const handleAddFilter = () => {
-		if (!ingredients.includes(ingredientInput)) {
-			setIngredients([...ingredients, ingredientInput.toLowerCase()]);
-			setIngredientInput('');
+	const handleAddTerm = () => {
+		if (!terms.includes(termInput)) {
+			setTerms([...terms, termInput.toLowerCase()]);
+			setTermInput('');
 		}
 	};
+
+	const { data: recipes } = api.example.findRecipes.useQuery({ terms });
 
 	return (
 		<div className="flex flex-col gap-4">
 			<div className="flex items-center gap-4">
 				<MyInput
 					className="bg-neutral-100 px-2 py-1.5 dark:bg-neutral-800 dark:text-neutral-200"
-					value={searchInput}
-					onChange={(e) => setSearchInput(e.target.value.toLowerCase())}
+					value={termInput}
+					onChange={(e) => setTermInput(e.target.value.toLowerCase())}
+					onKeyUp={(e) => e.key === 'Enter' && handleAddTerm()}
 					placeholder="Search"
 				/>
-				<MyInput
-					className="bg-neutral-100 px-2 py-1.5 dark:bg-neutral-800 dark:text-neutral-200"
-					value={ingredientInput}
-					onChange={(e) => setIngredientInput(e.target.value.toLowerCase())}
-					onKeyUp={(e) => e.key === 'Enter' && handleAddFilter()}
-					placeholder="Search by Ingredient"
-				/>
-				{ingredients.length > 0 && (
-					<Button className="ml-2" onClick={() => setIngredients([])}>
+				{terms.length > 0 && (
+					<Button className="ml-2" onClick={() => setTerms([])}>
 						Clear
 					</Button>
 				)}
 			</div>
 			<div
-				className={`${ingredients.length === 0 ? 'hidden' : 'flex'} gap-2`}
+				className={`${terms.length === 0 ? 'hidden' : 'flex'} gap-2`}
 				ref={parent}
 			>
-				{ingredients.map((ingredient) => (
+				{terms.map((term) => (
 					<Button
-						key={ingredient}
-						className="text-xs"
-						onClick={() =>
-							setIngredients(ingredients.filter((i) => i !== ingredient))
-						}
+						key={term}
+						className="text-sm"
+						onClick={() => setTerms(terms.filter((i) => i !== term))}
 					>
-						{ingredient}
+						{term}
 					</Button>
 				))}
 			</div>
 
 			<div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-				{filteredRecipes.map((recipe) => (
+				{recipes?.map((recipe) => (
 					<RecipeCard key={recipe.id} recipe={recipe} />
 				))}
-				{filteredRecipes.length === 0 && <T>No results...</T>}
+				{recipes?.length === 0 && <T>No results...</T>}
 			</div>
 		</div>
 	);
