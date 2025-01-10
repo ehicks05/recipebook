@@ -59,10 +59,10 @@ const RecipeImageInput = () => {
 		id: recipeId,
 	});
 	const {
-		mutate: removeImage,
-		isPending: isRemoveImageLoading,
+		mutate: updateImage,
+		isPending: isUpdateImageLoading,
 		error: removeImageError,
-	} = api.example.removeImage.useMutation({ onSuccess: () => refetchRecipe() });
+	} = api.example.updateImage.useMutation({ onSuccess: () => refetchRecipe() });
 
 	return (
 		<div className="flex flex-col gap-1">
@@ -103,8 +103,8 @@ const RecipeImageInput = () => {
 							<Button
 								type="button"
 								variant="error"
-								loading={isRemoveImageLoading}
-								onClick={() => removeImage({ id: recipeId })}
+								loading={isUpdateImageLoading}
+								onClick={() => updateImage({ id: recipeId, imageSrc: null })}
 							>
 								Remove Image
 							</Button>

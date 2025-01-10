@@ -18,7 +18,7 @@ const FavoriteButton = ({ recipeId, className, isUserFavorite }: Props) => {
 	const Icon = isUserFavorite ? HiHeart : HiOutlineHeart;
 
 	const handleClick = async () => {
-		const { title, err } = await toggleFavorite({ userId, recipeId });
+		const { title, err } = await toggleFavorite({ recipeId });
 
 		toast.custom((t) => (
 			<Alert

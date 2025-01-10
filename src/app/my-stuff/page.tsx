@@ -2,12 +2,12 @@ import { auth } from '@clerk/nextjs/server';
 import RecipeList from 'components/MyAccount/RecipeList';
 import { Card, Container, Hero, T } from 'components/core';
 import React from 'react';
-import { api } from 'server/db-api';
+import { api } from 'trpc/server';
 
 const YourLists = async ({ userId }: { userId: string }) => {
 	const [favoriteRecipes, authoredRecipes] = await Promise.all([
-		api.userFavoriteRecipes(userId),
-		api.recipesByAuthor(userId),
+		api.example.myFavorites(),
+		api.example.myRecipes(),
 	]);
 
 	return (
@@ -34,7 +34,7 @@ const MyStuff = async () => {
 	if (!userId) {
 		return <NotLoggedIn />;
 	}
-	const appUser = userId && (await api.user(userId));
+	const appUser = userId && (await api.example.findAppUser());
 	if (!appUser) {
 		return <NotLoggedIn />;
 	}

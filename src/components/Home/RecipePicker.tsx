@@ -3,7 +3,7 @@
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { Button, MyInput, T } from 'components/core';
 import React, { useState } from 'react';
-import type { CompleteRecipe } from 'server/db-api';
+import type { CompleteRecipe, Recipe } from 'server/db-api/types';
 
 import RecipeCard from './RecipeCard';
 

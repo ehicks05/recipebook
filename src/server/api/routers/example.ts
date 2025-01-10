@@ -1,69 +1,46 @@
 import { z } from 'zod';
 
-import { api } from 'server/db-api';
-import { RecipeSchema } from 'server/schema';
-import { utapi } from 'utils/uploadthingApi';
+import { db } from 'server/db-api';
+import { RecipeSchema, RecipeUpdateSchema } from 'server/schema';
 import { createTRPCRouter, protectedProcedure, publicProcedure } from '../trpc';
 
 export const exampleRouter = createTRPCRouter({
 	findRecipes: publicProcedure.query(({ ctx }) => {
-		const { userId } = ctx.auth;
-		return api.recipes(userId);
+		return db.recipes.recipes(ctx.auth.userId);
 	}),
 
-	findRecipesByAuthorId: publicProcedure
-		.input(z.object({ id: z.string() }))
-		.query(async ({ ctx, input: { id } }) => {
-			return api.recipesByAuthor(id);
-		}),
+	myRecipes: publicProcedure.query(async ({ ctx }) => {
+		return ctx.auth.userId ? db.recipes.recipesByAuthor(ctx.auth.userId) : [];
+	}),
 
 	findRecipe: publicProcedure
 		.input(z.object({ id: z.string() }))
 		.query(({ ctx, input: { id } }) => {
-			return api.recipeById(id);
+			return db.recipes.recipeById(id);
 		}),
-
-	findFavoriteRecipesByUserId: publicProcedure
-		.input(z.object({ id: z.string() }))
-		.query(async ({ ctx, input: { id } }) => {
-			return api.userFavoriteRecipes(id);
-		}),
-
-	getRecipeOfTheDay: publicProcedure.query(async ({ ctx }) => {
-		return api.featuredRecipe(ctx.auth.userId);
-	}),
 
 	createRecipe: protectedProcedure
 		.input(RecipeSchema)
 		.mutation(async ({ ctx, input }) => {
-			const { userId } = ctx.auth;
-			const { directions, ingredients, ...recipeFields } = input;
-
-			return api.createRecipe(userId, {
-				...recipeFields,
-				author: { connect: { id: userId } },
-				directions: { createMany: { data: directions } },
-				ingredients: { createMany: { data: ingredients } },
-			});
+			return db.recipes.createRecipe(ctx.auth.userId, input);
 		}),
 
 	updateRecipe: protectedProcedure
-		.input(RecipeSchema.extend({ id: z.string() }))
+		.input(RecipeUpdateSchema)
 		.mutation(async ({ ctx, input }) => {
 			const { userId } = ctx.auth;
-			const { id: recipeId, directions, ingredients, ...recipeFields } = input;
+			const { id } = input;
 
-			const recipe = await api.recipeById(recipeId);
+			const recipe = await db.recipes.recipeById(id);
 			if (userId !== recipe?.authorId) {
 				throw new Error('Unauthorized');
 			}
 
-			const [, , updatedRecipe] = await api.updateRecipeNested(recipeId, userId, {
-				...recipeFields,
-				author: { connect: { id: userId } },
-				directions: { createMany: { data: directions } },
-				ingredients: { createMany: { data: ingredients } },
-			});
+			const [, , updatedRecipe] = await db.recipes.updateRecipeNested(
+				id,
+				userId,
+				input,
+			);
 
 			return updatedRecipe;
 		}),
@@ -74,78 +51,49 @@ export const exampleRouter = createTRPCRouter({
 			const { userId } = ctx.auth;
 			const { id, isPublished } = input;
 
-			const recipe = await api.recipeById(id);
+			const recipe = await db.recipes.recipeById(id);
 			if (userId !== recipe?.authorId) {
 				throw new Error('Unauthorized');
 			}
 
-			return api.updateRecipe(id, userId, { isPublished });
+			return db.recipes.updateRecipe(id, userId, { isPublished });
 		}),
 
-	/**
-	 * 1. Remove image from object storage
-	 * 2. update recipe
-	 */
-	removeImage: protectedProcedure
-		.input(z.object({ id: z.string() }))
+	updateImage: protectedProcedure
+		.input(z.object({ id: z.string(), imageSrc: z.string().nullable() }))
 		.mutation(async ({ ctx, input }) => {
 			const { userId } = ctx.auth;
-			const { id } = input;
+			const { id, imageSrc } = input;
 
-			const recipe = await api.recipeById(id);
+			const recipe = await db.recipes.recipeById(id);
 			if (userId !== recipe?.authorId) {
 				throw new Error('Unauthorized');
 			}
 
-			const { imageSrc } = recipe;
-			if (!imageSrc) {
-				throw new Error('No image found');
-			}
-
-			const { success } = await utapi.deleteFiles(imageSrc);
-			if (!success) {
-				throw new Error('Deletion failed on uploadthing');
-			}
-
-			return api.updateRecipe(id, userId, { imageSrc: null });
+			return db.recipes.updateImage(userId, id, imageSrc);
 		}),
 
-	/**
-	 * 1. Remove image from object storage
-	 * 2. remove recipe
-	 */
 	deleteRecipe: protectedProcedure
 		.input(z.object({ id: z.string() }))
 		.mutation(async ({ ctx, input: { id } }) => {
 			const { userId } = ctx.auth;
 
-			const recipe = await api.recipeById(id);
+			const recipe = await db.recipes.recipeById(id);
 			if (userId !== recipe?.authorId) {
 				throw new Error('Unauthorized');
 			}
 
-			const { imageSrc } = recipe;
-			if (imageSrc) {
-				await utapi.deleteFiles(imageSrc);
-			}
-
-			return api.deleteRecipe(id);
+			return db.recipes.deleteRecipe(userId, id);
 		}),
 
-	createUserFavorite: protectedProcedure
+	myFavorites: protectedProcedure.mutation(({ ctx }) => {
+		return db.userFavorites.userFavorites(ctx.auth.userId);
+	}),
+
+	toggleUserFavorite: protectedProcedure
 		.input(z.object({ recipeId: z.string() }))
 		.mutation(({ ctx, input: { recipeId } }) => {
-			const { userId } = ctx.auth;
-
-			return api.createFavorite(userId, recipeId);
-		}),
-
-	deleteUserFavorite: protectedProcedure
-		.input(z.object({ recipeId: z.string() }))
-		.mutation(({ ctx, input: { recipeId } }) => {
-			const { userId } = ctx.auth;
-
-			return api.deleteFavorite(userId, recipeId);
+			return db.userFavorites.toggleUserFavorite(ctx.auth.userId, recipeId);
 		}),
 
 	importRecipe: publicProcedure
@@ -155,17 +103,6 @@ export const exampleRouter = createTRPCRouter({
 		}),
 
 	findAppUser: protectedProcedure.query(({ ctx }) => {
-		const { userId } = ctx.auth;
-
-		return api.user(userId);
+		return db.users.user(ctx.auth.userId);
 	}),
-
-	updateAppUser: protectedProcedure
-		.input(z.object({ displayName: z.string() }))
-		.mutation(({ ctx, input }) => {
-			const { userId } = ctx.auth;
-			const { displayName } = input;
-
-			return api.updateUser({ id: userId, displayName });
-		}),
 });

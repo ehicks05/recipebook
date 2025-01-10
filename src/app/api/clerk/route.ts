@@ -1,6 +1,6 @@
 import type { WebhookEvent } from '@clerk/nextjs/server';
 import { headers } from 'next/headers';
-import { api } from 'server/db-api';
+import { db } from 'server/db-api';
 import { Webhook } from 'svix';
 import { env } from '../../../env';
 
@@ -30,11 +30,11 @@ export async function POST(req: Request) {
 
 	// create app user
 	if (type === 'user.created') {
-		await api.createUser({ id, displayName: payload.data.username });
+		await db.users.createUser({ id, displayName: payload.data.username });
 	}
 	// update app user
 	if (type === 'user.updated') {
-		await api.updateUser({ id, displayName: payload.data.username });
+		await db.users.updateUser({ id, displayName: payload.data.username });
 	}
 
 	return Response.json({ message: 'Received' });
