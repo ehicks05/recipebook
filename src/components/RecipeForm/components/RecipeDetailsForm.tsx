@@ -1,4 +1,4 @@
-import { MyInput, MySelect, MyTextArea, T } from 'components/core';
+import { MyInput, MyTextArea, T } from 'components/core';
 import type { Control, FieldErrors, UseFormRegister } from 'react-hook-form';
 import type { FormRecipe } from '../types';
 import EmojiInput from './EmojiInput';
@@ -50,17 +50,6 @@ const RecipeDetailsForm = ({ errors, register, control }: Props) => {
 					register={register}
 					error={errors.servings}
 				/>
-				<MySelect
-					label="Difficulty"
-					name="difficulty"
-					register={register}
-					error={errors.difficulty}
-					type="number"
-				>
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-				</MySelect>
 			</div>
 			<EmojiInput control={control} />
 			<RecipeImageInput />

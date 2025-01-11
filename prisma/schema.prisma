@@ -42,9 +42,9 @@ model recipe {
   createdAt     DateTime        @default(now()) @map("created_at") @db.Timestamp
   updatedAt     DateTime        @updatedAt @map("updated_at") @db.Timestamp
   cookingTime   String          @map("cooking_time")
-  course        String?
+  course        String?         @ignore
   description   String
-  difficulty    Int
+  difficulty    Int             @ignore
   emoji         String
   name          String
   servings      Int

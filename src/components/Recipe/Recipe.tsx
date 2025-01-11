@@ -2,7 +2,6 @@
 
 import { useUser } from '@clerk/nextjs';
 import { Button, Container, Hero, T } from 'components/core';
-import { DIFFICULTIES } from 'components/core/Difficulty';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { HiOutlineClock, HiPencilAlt } from 'react-icons/hi';
@@ -25,7 +24,6 @@ function Recipe({ recipe }: Props) {
 				<T className="text-sm font-semibold">
 					<div className="">
 						{recipe.author.displayName} |{' '}
-						{DIFFICULTIES[recipe.difficulty]?.label || 'easy'} |{' '}
 						<HiOutlineClock size={16} className="inline dark:text-neutral-200" />{' '}
 						{recipe.cookingTime}
 					</div>

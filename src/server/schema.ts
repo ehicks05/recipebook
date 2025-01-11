@@ -22,7 +22,6 @@ const BaseRecipeSchema = z.object({
 	cookingTime: z.string().min(1),
 	servings: z.number().min(1),
 	emoji: z.string().min(1, 'Pick an emoji').max(3),
-	difficulty: z.coerce.number(),
 	isPublished: z.boolean(),
 	source: z.string().nullable(),
 });

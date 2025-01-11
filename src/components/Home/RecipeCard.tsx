@@ -3,10 +3,9 @@
 import { useAuth } from '@clerk/nextjs';
 import FavoriteButton from 'components/Home/FavoriteButton';
 import { Card, RecipeImage, T } from 'components/core';
-import { DIFFICULTIES } from 'components/core/Difficulty';
 import Link from 'next/link';
 import React from 'react';
-import { HiOutlineClock, HiStar } from 'react-icons/hi';
+import { HiStar } from 'react-icons/hi';
 import type { Recipe } from 'trpc/types';
 
 interface Props {
@@ -20,8 +19,6 @@ const RecipeCard = ({
 		name,
 		author,
 		description,
-		cookingTime,
-		difficulty,
 		imageSrc,
 		isFeatured,
 		userFavorites,
@@ -56,10 +53,8 @@ const RecipeCard = ({
 							<div className="text-xl font-semibold text-orange-700 dark:text-orange-400">
 								{name}
 							</div>
-							<div className="text-xs dark:text-neutral-200">
-								{author.displayName} | {DIFFICULTIES[difficulty]?.label || 'easy'} |{' '}
-								<HiOutlineClock size={16} className="inline dark:text-neutral-200" />{' '}
-								{cookingTime}
+							<div className="text-sm dark:text-neutral-200">
+								{author.displayName}
 							</div>
 						</div>
 						{userId && (
@@ -84,12 +79,12 @@ function RecipeCardLandscape({
 		<Link href={`/recipe/${id}`}>
 			<Card className="transform border border-neutral-100 dark:border-neutral-800 transition-all hover:shadow-md">
 				<div className="flex h-20 gap-4">
-					<div className="-m-4 mr-0 h-28 w-48 rounded-l bg-neutral-50 dark:bg-[#1C1C1C] text-neutral-400 dark:text-neutral-700">
+					<div className="-m-4 mr-0 h-28 w-36 rounded-l bg-neutral-50 dark:bg-[#1C1C1C] text-neutral-400 dark:text-neutral-700">
 						<RecipeImage
 							imageSrc={imageSrc}
 							emoji={emoji}
 							emojiSize="text-7xl"
-							className="h-28 w-32 rounded-l"
+							className="h-28 w-36 rounded-l"
 						/>
 					</div>
 					<div className="flex w-full flex-col gap-2">
