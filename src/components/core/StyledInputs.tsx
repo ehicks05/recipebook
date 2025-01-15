@@ -16,7 +16,7 @@ const BASE =
 export interface IMyInputProps<T extends FieldValues>
 	extends React.InputHTMLAttributes<HTMLInputElement> {
 	label?: string;
-	leftIcon?: JSX.Element;
+	leftIcon?: React.JSX.Element;
 	containerClassName?: string;
 	fullWidth?: boolean;
 	name?: string;
@@ -117,7 +117,7 @@ interface IMySelectProps<T extends FieldValues> {
 	label?: string;
 	type?: 'number';
 	disabled?: boolean;
-	children: JSX.Element | JSX.Element[];
+	children: React.JSX.Element | React.JSX.Element[];
 	register?: UseFormRegister<T>;
 	error?: FieldError;
 }
