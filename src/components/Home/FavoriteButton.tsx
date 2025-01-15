@@ -1,8 +1,8 @@
 import { useAuth } from '@clerk/nextjs';
-import { Alert, Button } from 'components/core';
+import { Button } from 'components/core';
 import React from 'react';
-import toast from 'react-hot-toast';
 import { HiHeart, HiOutlineHeart } from 'react-icons/hi';
+import { toast } from 'utils/toast';
 import { toggleFavorite } from './actions';
 
 interface Props {
@@ -20,14 +20,7 @@ const FavoriteButton = ({ recipeId, className, isUserFavorite }: Props) => {
 	const handleClick = async () => {
 		const { title, err } = await toggleFavorite({ recipeId });
 
-		toast.custom((t) => (
-			<Alert
-				variant={err ? 'error' : 'success'}
-				title={title}
-				description={err?.message}
-				className={t.visible ? 'animate-enter' : 'animate-leave'}
-			/>
-		));
+		toast({ variant: err ? 'error' : 'success', title, description: err?.message });
 	};
 
 	return (

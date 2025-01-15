@@ -7,12 +7,12 @@ import type { SubmitErrorHandler, SubmitHandler } from 'react-hook-form';
 
 import { stripRecipe, updateClipboard } from 'components/Recipe/utils';
 import { Alert, Button, Container, Dialog, Hero, T } from 'components/core';
-import { toast } from 'react-hot-toast';
 import { FaBug } from 'react-icons/fa';
 import { HiClipboardCopy, HiRewind, HiTrash } from 'react-icons/hi';
 import { RecipeSchema } from 'server/schema';
 import { api } from 'trpc/react';
 import type { RecipeFull } from 'trpc/types';
+import { dismissToast, toast } from 'utils/toast';
 import { DirectionsForm, IngredientsForm } from './components';
 import RecipeDetailsForm from './components/RecipeDetailsForm';
 import { DEFAULT_RECIPE } from './constants';
@@ -48,16 +48,8 @@ const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 	} = api.example.createRecipe.useMutation({
 		onSuccess: async (data) => {
 			await utils.example.allRecipes.invalidate();
-
 			router.push(`/recipe/${data.id}`);
-
-			toast.custom((t) => (
-				<Alert
-					variant="success"
-					title={'Recipe created!'}
-					className={t.visible ? 'animate-enter' : 'animate-leave'}
-				/>
-			));
+			toast({ variant: 'success', title: 'Recipe created!' });
 		},
 	});
 
@@ -69,14 +61,7 @@ const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 		onSuccess: async (data) => {
 			await utils.example.findRecipe.invalidate();
 			reset(data, {});
-
-			toast.custom((t) => (
-				<Alert
-					variant="success"
-					title={'Recipe updated!'}
-					className={t.visible ? 'animate-enter' : 'animate-leave'}
-				/>
-			));
+			toast({ variant: 'success', title: 'Recipe updated' });
 		},
 	});
 
@@ -87,14 +72,8 @@ const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 	} = api.example.updatePublished.useMutation({
 		onSuccess: async (data) => {
 			await utils.example.findRecipe.invalidate();
-
-			toast.custom((t) => (
-				<Alert
-					variant="success"
-					title={`Recipe ${data.isPublished ? 'published' : 'unpublished'}!`}
-					className={t.visible ? 'animate-enter' : 'animate-leave'}
-				/>
-			));
+			const title = `Recipe ${data.isPublished ? 'published' : 'unpublished'}`;
+			toast({ variant: 'success', title });
 		},
 	});
 
@@ -105,18 +84,9 @@ const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 	} = api.example.deleteRecipe.useMutation({
 		onSuccess: async (data) => {
 			console.log({ data });
-
 			await utils.example.allRecipes.invalidate();
-
 			router.push('/');
-
-			toast.custom((t) => (
-				<Alert
-					variant="success"
-					title={'Recipe deleted!'}
-					className={t.visible ? 'animate-enter' : 'animate-leave'}
-				/>
-			));
+			toast({ variant: 'success', title: 'Recipe deleted' });
 		},
 	});
 
@@ -126,22 +96,18 @@ const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 	useEffect(() => {
 		let id = '';
 		if (recipe && isDirty) {
-			id = toast.custom(
-				(t) => (
-					<Alert
-						variant="info"
-						title={'Unsaved changes'}
-						className={`opacity-75 ${t.visible ? 'animate-enter' : 'animate-leave'}`}
-					/>
-				),
-				{ duration: Number.POSITIVE_INFINITY, id: 'unsaved_changes' },
-			);
+			id = toast({
+				variant: 'info',
+				title: 'Unsaved changes',
+				className: 'opacity-75',
+				options: { duration: Number.POSITIVE_INFINITY, id: 'unsaved_changes' },
+			});
 		}
 		if ((!recipe || !isDirty) && id) {
-			toast.dismiss(id);
+			dismissToast(id);
 		}
 
-		return () => toast.dismiss(id);
+		return () => dismissToast(id);
 	}, [recipe, isDirty]);
 
 	const onSubmit: SubmitHandler<FormRecipe> = (data, e) => {
@@ -212,13 +178,7 @@ const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 									disabled={!isDirty}
 									onClick={() => {
 										reset();
-										toast.custom((t) => (
-											<Alert
-												variant="neutral"
-												title={'Reset!'}
-												className={t.visible ? 'animate-enter' : 'animate-leave'}
-											/>
-										));
+										toast({ variant: 'neutral', title: 'Changes reset' });
 									}}
 								>
 									Reset
@@ -262,13 +222,7 @@ const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 								<Button
 									onClick={() => {
 										updateClipboard(JSON.stringify(stripRecipe(recipe), null, 2));
-										toast.custom((t) => (
-											<Alert
-												variant="neutral"
-												title={'Copied!'}
-												className={t.visible ? 'animate-enter' : 'animate-leave'}
-											/>
-										));
+										toast({ variant: 'neutral', title: 'Copied to clipboard' });
 									}}
 								>
 									Export JSON
