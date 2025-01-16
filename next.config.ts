@@ -1,17 +1,12 @@
-// @ts-check
-import { fileURLToPath } from 'node:url';
 import withBundleAnalyzer from '@next/bundle-analyzer';
-import { createJiti } from 'jiti';
-
-const jiti = createJiti(fileURLToPath(import.meta.url));
-jiti.import('./src/env');
+import type { NextConfig } from 'next';
+import './src/env'; // validate env during build
 
 const bundleAnalyzer = withBundleAnalyzer({
 	enabled: process.env.ANALYZE === 'true',
 });
 
-/** @type {import("next").NextConfig} */
-const config = {
+const nextConfig: NextConfig = {
 	experimental: {
 		turbo: {},
 	},
@@ -32,4 +27,4 @@ const config = {
 	},
 };
 
-export default bundleAnalyzer(config);
+export default bundleAnalyzer(nextConfig);
