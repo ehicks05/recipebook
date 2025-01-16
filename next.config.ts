@@ -2,10 +2,6 @@ import withBundleAnalyzer from '@next/bundle-analyzer';
 import type { NextConfig } from 'next';
 import './src/env'; // validate env during build
 
-const bundleAnalyzer = withBundleAnalyzer({
-	enabled: process.env.ANALYZE === 'true',
-});
-
 const nextConfig: NextConfig = {
 	experimental: {
 		turbo: {},
@@ -27,4 +23,8 @@ const nextConfig: NextConfig = {
 	},
 };
 
-export default bundleAnalyzer(nextConfig);
+const bundleAnalyzer = withBundleAnalyzer();
+
+export default process.env.ANALYZE === 'true'
+	? bundleAnalyzer(nextConfig)
+	: nextConfig;
