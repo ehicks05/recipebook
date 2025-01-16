@@ -1,3 +1,5 @@
+'use client';
+
 import { Button, T } from 'components/core';
 import React, { useState } from 'react';
 import { FaMinus, FaPlus } from 'react-icons/fa';

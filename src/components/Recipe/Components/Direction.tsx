@@ -1,3 +1,5 @@
+'use client';
+
 import { T } from 'components/core';
 import React, { useState } from 'react';
 import type { Direction } from 'trpc/types';
