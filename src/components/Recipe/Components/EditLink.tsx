@@ -17,7 +17,7 @@ export const EditLink = ({ recipeId, recipeAuthorId }: Props) => {
 
 	return (
 		<div className="flex flex-wrap gap-2">
-			<Link href={`/edit-recipe/${recipeId}`} title="Edit Recipe">
+			<Link href={`/edit-recipe/${recipeId}`} title="Edit Recipe" prefetch={false}>
 				<Button className="text-sm font-semibold">
 					<HiPencilAlt className="text-2xl" />
 					Edit
