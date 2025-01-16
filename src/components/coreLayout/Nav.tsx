@@ -70,6 +70,7 @@ const Nav = () => {
 												<Link
 													key={item.name}
 													href={item.href}
+													prefetch={false}
 													className={clsx(
 														'rounded-md px-3 py-2 text-sm font-medium',
 														item.current
