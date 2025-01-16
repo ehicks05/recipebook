@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { db } from 'server/db-api';
 import { api } from 'trpc/server';
 
-export const revalidate = 2592000; // 30 days
+export const revalidate = 86400; // 1 day
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
