@@ -17,9 +17,7 @@ export function Ingredients({ ingredients, defaultServings }: Props) {
 	return (
 		<div>
 			<div className="mb-2 flex items-center gap-2">
-				<Button isStatic>
-					<T>Serves {scaledServings}</T>
-				</Button>
+				<T>Serves {scaledServings}</T>
 				<div className="h-10 whitespace-nowrap">
 					<Button
 						className="h-full rounded-r-none"
