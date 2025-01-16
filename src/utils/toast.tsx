@@ -2,19 +2,15 @@ import clsx from 'clsx';
 import { Alert } from 'components/core';
 import rht, { type ToastOptions } from 'react-hot-toast';
 
-export const toast = ({
-	variant,
-	title,
-	description,
-	className,
-	options,
-}: {
+interface Params {
 	variant: 'error' | 'info' | 'success' | 'neutral';
 	title: string;
 	description?: string;
 	className?: string;
 	options?: ToastOptions;
-}) =>
+}
+
+export const toast = ({ variant, title, description, className, options }: Params) =>
 	rht.custom(
 		(t: { visible: boolean }) => (
 			<Alert
