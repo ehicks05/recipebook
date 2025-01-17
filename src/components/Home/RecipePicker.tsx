@@ -9,19 +9,23 @@ import RecipeCard from './RecipeCard';
 
 function RecipePicker({ initialRecipes }: { initialRecipes: Recipe[] }) {
 	const [parent] = useAutoAnimate();
+	const [searchEnabled, setSearchEnabled] = useState(false);
 	const [termInput, setTermInput] = useState('');
 	const [terms, setTerms] = useState<string[]>([]);
 
 	const handleAddTerm = () => {
+		if (!searchEnabled) {
+			setSearchEnabled(true);
+		}
 		if (!terms.includes(termInput)) {
 			setTerms([...terms, termInput.toLowerCase()]);
 			setTermInput('');
 		}
 	};
 
-	const { data: searchResultRecipes } = api.example.findRecipes.useQuery(
+	const { data: searchResultRecipes, isFetching } = api.example.findRecipes.useQuery(
 		{ terms },
-		{ enabled: terms.length !== 0 },
+		{ enabled: searchEnabled },
 	);
 
 	const recipes = searchResultRecipes || initialRecipes;
@@ -57,7 +61,9 @@ function RecipePicker({ initialRecipes }: { initialRecipes: Recipe[] }) {
 				))}
 			</div>
 
-			<div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+			<div
+				className={`grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ${isFetching ? 'opacity-50' : ''}`}
+			>
 				{recipes?.map((recipe) => (
 					<RecipeCard key={recipe.id} recipe={recipe} />
 				))}
