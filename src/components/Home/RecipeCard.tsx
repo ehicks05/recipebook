@@ -27,7 +27,7 @@ const RecipeCard = ({
 	const { userId } = useAuth();
 
 	return (
-		<Link href={`/recipe/${id}`}>
+		<Link href={`/recipe/${id}`} prefetch={false}>
 			<Card className="transform transition-all hover:shadow-md border border-neutral-100 dark:border-neutral-800">
 				<div className="flex h-80 flex-col gap-4">
 					<div className="-m-4 mb-0 h-48">
