@@ -21,26 +21,9 @@ const Nav = () => {
 	const pathname = usePathname() || '';
 
 	const navigation = [
-		{
-			name: 'Create Recipe',
-			href: '/create-recipe',
-			current: pathname.includes('/create-recipe'),
-			hidden: !user,
-		},
-		{
-			name: 'Import',
-			href: '/recipe-import',
-			current: pathname.includes('/recipe-import'),
-		},
-		...(user
-			? [
-					{
-						name: 'My Stuff',
-						href: '/my-stuff',
-						current: pathname.includes('/my-stuff'),
-					},
-				]
-			: []),
+		{ name: 'Import', href: '/recipe-import' },
+		{ name: 'Create Recipe', href: '/create-recipe', hidden: !user },
+		{ name: 'My Stuff', href: '/my-stuff', hidden: !user },
 	];
 
 	return (
@@ -73,11 +56,10 @@ const Nav = () => {
 													prefetch={false}
 													className={clsx(
 														'rounded-md px-3 py-2 text-sm font-medium',
-														item.current
+														pathname.includes(item.href)
 															? 'bg-neutral-900 text-white'
 															: 'text-neutral-300 hover:bg-neutral-700 hover:text-white',
 													)}
-													aria-current={item.current ? 'page' : undefined}
 												>
 													{item.name}
 												</Link>
@@ -109,11 +91,10 @@ const Nav = () => {
 										onClick={() => void router.push(item.href)}
 										className={clsx(
 											'block rounded-md px-3 py-2 text-base font-medium',
-											item.current
+											pathname.includes(item.href)
 												? 'bg-neutral-900 text-white'
 												: 'text-neutral-300 hover:bg-neutral-700 hover:text-white',
 										)}
-										aria-current={item.current ? 'page' : undefined}
 									>
 										{item.name}
 									</button>
