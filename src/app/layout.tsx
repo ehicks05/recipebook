@@ -1,6 +1,6 @@
 import { ClerkProvider } from '@clerk/nextjs';
-import Nav from 'components/coreLayout/Nav';
 import Footer from 'components/coreLayout/Footer';
+import Nav from 'components/coreLayout/Nav';
 import { Toaster } from 'react-hot-toast';
 import '../styles/globals.css';
 import { dark } from '@clerk/themes';
