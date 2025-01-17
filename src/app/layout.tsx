@@ -32,13 +32,13 @@ export default function RootLayout({ children }: Props) {
 					<TRPCReactProvider>
 						<Nav />
 						{children}
-						<div className="flex-grow" />
-						<Toaster position="bottom-right" reverseOrder={false} />
-						<Footer />
-						<Analytics />
-						<SpeedInsights />
 					</TRPCReactProvider>
 				</ClerkProvider>
+				<div className="flex-grow" />
+				<Toaster position="bottom-right" reverseOrder={false} />
+				<Footer />
+				<Analytics />
+				<SpeedInsights />
 			</body>
 		</html>
 	);
