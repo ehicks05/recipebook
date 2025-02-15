@@ -44,7 +44,7 @@ model recipe {
   cookingTime   String          @map("cooking_time")
   course        String?         @ignore
   description   String
-  difficulty    Int             @ignore
+  difficulty    Int             @default(1) @ignore
   emoji         String
   name          String
   servings      Int
