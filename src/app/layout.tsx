@@ -27,7 +27,9 @@ interface Props {
 export default function RootLayout({ children }: Props) {
 	return (
 		<html lang="en">
-			<body className={`h-screen dark:bg-neutral-900 ${ubuntu.className}`}>
+			<body
+				className={`h-screen flex flex-col dark:bg-neutral-900 ${ubuntu.className}`}
+			>
 				<ClerkProvider dynamic appearance={{ baseTheme: dark }}>
 					<TRPCReactProvider>
 						<Nav />
