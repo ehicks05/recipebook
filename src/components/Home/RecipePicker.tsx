@@ -81,6 +81,7 @@ export function RecipePicker() {
 			$: { where: whereClause },
 			ingredients: {},
 			author: {},
+			favoritedBy: {},
 		},
 	});
 
@@ -130,12 +131,6 @@ export function RecipePicker() {
 				))}
 				{recipes?.length === 0 && <T>No results...</T>}
 			</div>
-
-			{/*{recipes?.map((recipe) => (
-				<pre className="text-xs" key={recipe.id}>
-					{JSON.stringify(recipe, null, 2)}
-				</pre>
-			))}*/}
 		</div>
 	);
 }
