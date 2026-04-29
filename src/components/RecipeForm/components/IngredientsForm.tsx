@@ -1,11 +1,11 @@
 import { useAutoAnimate } from '@formkit/auto-animate/react';
-import { Button, MyInput, MySelect, T } from '@/components/core';
 import type {
 	FieldErrors,
 	UseFieldArrayReturn,
 	UseFormRegister,
 } from 'react-hook-form';
 import { HiArrowDown, HiArrowUp, HiPlus, HiTrash } from 'react-icons/hi';
+import { Button, MyInput, MySelect, T } from '@/components/core';
 import { DEFAULT_INGREDIENT, UNITS } from '../constants';
 import type { FormRecipe } from '../types';
 
@@ -22,7 +22,11 @@ interface Props {
 	errors: FieldErrors<FormRecipe>;
 }
 
-const IngredientsForm = ({ ingredientsFieldArray, register, errors }: Props) => {
+export const IngredientsForm = ({
+	ingredientsFieldArray,
+	register,
+	errors,
+}: Props) => {
 	const [parent] = useAutoAnimate();
 
 	return (
@@ -100,5 +104,3 @@ const IngredientsForm = ({ ingredientsFieldArray, register, errors }: Props) => 
 		</div>
 	);
 };
-
-export default IngredientsForm;

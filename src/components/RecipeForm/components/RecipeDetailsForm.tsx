@@ -1,8 +1,8 @@
-import { MyInput, MyTextArea, T } from '@/components/core';
 import type { Control, FieldErrors, UseFormRegister } from 'react-hook-form';
+import { MyInput, MyTextArea, T } from '@/components/core';
 import type { FormRecipe } from '../types';
-import EmojiInput from './EmojiInput';
-import RecipeImageInput from './RecipeImageInput';
+import { EmojiInput } from './EmojiInput';
+// import RecipeImageInput from './RecipeImageInput';
 
 interface Props {
 	errors: FieldErrors<FormRecipe>;
@@ -10,7 +10,7 @@ interface Props {
 	control: Control<FormRecipe>;
 }
 
-const RecipeDetailsForm = ({ errors, register, control }: Props) => {
+export const RecipeDetailsForm = ({ errors, register, control }: Props) => {
 	return (
 		<div className="flex flex-col gap-2 md:col-span-1 lg:col-span-2">
 			<T className="text-lg font-semibold">Recipe Details</T>
@@ -52,9 +52,7 @@ const RecipeDetailsForm = ({ errors, register, control }: Props) => {
 				/>
 			</div>
 			<EmojiInput control={control} />
-			<RecipeImageInput />
+			{/*<RecipeImageInput />*/}
 		</div>
 	);
 };
-
-export default RecipeDetailsForm;

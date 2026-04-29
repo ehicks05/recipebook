@@ -11,7 +11,7 @@ export const Hero = ({ title, subtitle, children }: IProps) => (
 		<div className="mx-auto max-w-screen-2xl px-4 py-6">
 			<div>
 				{title && (
-					<div className="text-3xl font-semibold text-accent-foreground">
+					<div className="text-3xl font-extrabold text-accent-foreground">
 						{title}
 					</div>
 				)}

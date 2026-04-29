@@ -1,21 +1,22 @@
 'use client';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
-import { useFieldArray, useForm } from 'react-hook-form';
+import { id } from '@instantdb/react';
+import { useNavigate } from '@tanstack/react-router';
+import { useEffect, useState } from 'react';
 import type { SubmitErrorHandler, SubmitHandler } from 'react-hook-form';
-
-import { stripRecipe, updateClipboard } from '@/components/Recipe/utils';
-import { Alert, Button, Container, Dialog, Hero, T } from '@/components/core';
+import { useFieldArray, useForm } from 'react-hook-form';
 import { FaBug } from 'react-icons/fa';
-import { HiClipboardCopy, HiRewind, HiTrash } from 'react-icons/hi';
-import { RecipeSchema } from 'server/schema';
-import { api } from 'trpc/react';
+import { HiClipboardCopy, HiRewind } from 'react-icons/hi';
 import type { RecipeFull } from 'trpc/types';
-import { dismissToast, toast } from 'utils/toast';
+import { Alert, Button, Container, Hero, T } from '@/components/core';
+import { stripRecipe, updateClipboard } from '@/components/Recipe/utils';
+import { clientDb } from '@/lib/db';
+import { dismissToast, toast } from '@/lib/toast';
 import { DirectionsForm, IngredientsForm } from './components';
-import RecipeDetailsForm from './components/RecipeDetailsForm';
+import { RecipeDetailsForm } from './components/RecipeDetailsForm';
 import { DEFAULT_RECIPE } from './constants';
+import { DeleteRecipeDialog } from './DeleteRecipeDialog';
+import { RecipeSchema } from './schema';
 import type { FormRecipe } from './types';
 
 interface Props {
@@ -23,8 +24,8 @@ interface Props {
 	importedRecipe?: RecipeFull;
 }
 
-const RecipeForm = ({ recipe, importedRecipe }: Props) => {
-	const router = useRouter();
+export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
+	const navigate = useNavigate();
 	const {
 		control,
 		register,
@@ -40,57 +41,30 @@ const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 	const ingredientsFieldArray = useFieldArray({ control, name: 'ingredients' });
 	const directionsFieldArray = useFieldArray({ control, name: 'directions' });
 
-	const utils = api.useUtils();
-	const {
-		mutate: createRecipe,
-		isPending: isCreateRecipeLoading,
-		error: createRecipeError,
-	} = api.example.createRecipe.useMutation({
-		onSuccess: async (data) => {
-			await utils.example.allRecipes.invalidate();
-			router.push(`/recipe/${data.id}`);
-			toast({ variant: 'success', title: 'Recipe created!' });
-		},
-	});
+	const createRecipe = async (data: FormRecipe) => {
+		await clientDb.transact(clientDb.tx.recipes[id()].create({ ...data }));
+		navigate({ to: `/recipes/${data.id}` });
+		toast({ variant: 'success', title: 'Recipe created!' });
+	};
 
-	const {
-		mutate: updateRecipe,
-		isPending: isUpdateRecipeLoading,
-		error: updateRecipeError,
-	} = api.example.updateRecipe.useMutation({
-		onSuccess: async (data) => {
-			await utils.example.findRecipe.invalidate();
-			reset(data, {});
-			toast({ variant: 'success', title: 'Recipe updated' });
-		},
-	});
+	const updateRecipe = async (data: FormRecipe) => {
+		await clientDb.transact(clientDb.tx.recipes[data.id].merge({ ...data }));
+		reset(data, {});
+		toast({ variant: 'success', title: 'Recipe updated!' });
+	};
 
-	const {
-		mutate: updatePublished,
-		isPending: isUpdatePublishedLoading,
-		error: updatePublishedError,
-	} = api.example.updatePublished.useMutation({
-		onSuccess: async (data) => {
-			await utils.example.findRecipe.invalidate();
-			const title = `Recipe ${data.isPublished ? 'published' : 'unpublished'}`;
-			toast({ variant: 'success', title });
-		},
-	});
+	const updatePublished = async ({
+		id,
+		isPublished,
+	}: {
+		id: string;
+		isPublished: boolean;
+	}) => {
+		await clientDb.transact(clientDb.tx.recipes[id].update({ isPublished }));
+		const title = `Recipe ${isPublished ? 'published' : 'unpublished'}`;
+		toast({ variant: 'success', title });
+	};
 
-	const {
-		mutate: deleteRecipe,
-		isPending: isDeleteRecipeLoading,
-		error: deleteRecipeError,
-	} = api.example.deleteRecipe.useMutation({
-		onSuccess: async (data) => {
-			console.log({ data });
-			await utils.example.allRecipes.invalidate();
-			router.push('/');
-			toast({ variant: 'success', title: 'Recipe deleted' });
-		},
-	});
-
-	const [isOpen, setIsOpen] = useState(false);
 	const [isShowDebug, setIsShowDebug] = useState(false);
 
 	useEffect(() => {
@@ -121,14 +95,8 @@ const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 		console.log({ errors });
 	};
 
-	const isLoading =
-		isSubmitting ||
-		isCreateRecipeLoading ||
-		isUpdateRecipeLoading ||
-		isUpdatePublishedLoading ||
-		isDeleteRecipeLoading;
-
-	const error = createRecipeError || updateRecipeError || updatePublishedError;
+	const isLoading = isSubmitting;
+	const error = undefined;
 
 	return (
 		<>
@@ -185,7 +153,7 @@ const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 									<HiRewind />
 								</Button>
 								<Button
-									onClick={() => router.push(`/recipe/${recipe.id}`)}
+									onClick={() => navigate({ to: `/recipe/${recipe.id}` })}
 									loading={isLoading}
 									disabled={isLoading}
 								>
@@ -203,15 +171,7 @@ const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 								>
 									{recipe.isPublished ? 'Unpublish' : 'Publish'}
 								</Button>
-								<Button
-									onClick={() => setIsOpen(true)}
-									variant="error"
-									loading={isLoading}
-									disabled={isLoading}
-								>
-									Delete
-									<HiTrash />
-								</Button>
+								<DeleteRecipeDialog id={recipe.id} name={recipe.name} />
 							</>
 						)}
 					</div>
@@ -237,35 +197,6 @@ const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 					)}
 				</form>
 			</Container>
-			<Dialog
-				open={isOpen}
-				onClose={() => setIsOpen(false)}
-				body={
-					<>
-						{deleteRecipeError && (
-							<Alert
-								variant="error"
-								title="Unable to delete recipe"
-								description={deleteRecipeError.message}
-							/>
-						)}
-						<T>
-							Are you sure you want to delete{' '}
-							<span className="font-bold">{recipe?.name}</span>?
-						</T>
-					</>
-				}
-				footer={
-					<Button
-						onClick={() => deleteRecipe({ id: recipe?.id || '' })}
-						variant="error"
-						loading={isLoading}
-						disabled={isLoading}
-					>
-						Delete
-					</Button>
-				}
-			/>
 			{isShowDebug && (
 				<pre className="whitespace-pre-wrap">
 					<T className="text-xs">{JSON.stringify(getValues(), null, 2)}</T>
@@ -274,5 +205,3 @@ const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 		</>
 	);
 };
-
-export default RecipeForm;

@@ -1,10 +1,10 @@
 'use client';
 
 import { useClerk } from '@clerk/nextjs';
-import { Button, Dialog, RecipeImage, T } from '@/components/core';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { api } from 'trpc/react';
+import { Button, Dialog, RecipeImage, T } from '@/components/core';
 import { UploadButton } from '../../../uploadthing/uploadthing';
 
 interface MyUppyProps {
@@ -38,7 +38,7 @@ const MyUppy = ({ recipeId, token }: MyUppyProps) => {
 	);
 };
 
-const RecipeImageInput = () => {
+export const RecipeImageInput = () => {
 	const params = useParams<{ id: string }>();
 	const id = params?.id;
 	const recipeId = id && typeof id === 'string' ? id : '';
@@ -115,5 +115,3 @@ const RecipeImageInput = () => {
 		</div>
 	);
 };
-
-export default RecipeImageInput;
