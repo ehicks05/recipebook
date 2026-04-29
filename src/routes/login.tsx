@@ -1,7 +1,6 @@
 import { createFileRoute, redirect, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { clientDb } from "@/lib/db";
-import { Welcome } from ".";
 
 export const Route = createFileRoute("/login")({
 	component: RouteComponent,
@@ -112,7 +111,7 @@ function RouteComponent() {
 								<button
 									type="submit"
 									disabled={!codeInput}
-									className="h-full px-2 cursor-pointer border-l border-neutral-300 text-neutral-600 hover:text-neutral-500 disabled:hover:text-neutral-300"
+									className="h-full px-2 cursor-pointer border-l border-neutral-300"
 								>
 									Submit
 								</button>
@@ -121,7 +120,7 @@ function RouteComponent() {
 								<button
 									type="button"
 									onClick={goBack}
-									className="text-neutral-600 hover:text-neutral-500"
+									className="text-muted-foreground"
 								>
 									Use a different email
 								</button>
@@ -137,6 +136,14 @@ function RouteComponent() {
 					</button>
 				</div>
 			</div>
+		</div>
+	);
+}
+
+function Welcome() {
+	return (
+		<div className="border p-2 shadow flex py-8 flex-col gap-2 items-center justify-center font-semibold border-neutral-200 rounded">
+			Welcome to Recipebook!
 		</div>
 	);
 }

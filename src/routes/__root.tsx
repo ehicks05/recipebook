@@ -6,6 +6,8 @@ import {
 	Scripts,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
+import { Toaster } from "react-hot-toast";
+import { Container } from "@/components/core";
 import Footer from "@/components/coreLayout/Footer";
 import Header from "../components/Header";
 import appCss from "../styles.css?url";
@@ -28,7 +30,7 @@ export const Route = createRootRoute({
 				content: "width=device-width, initial-scale=1",
 			},
 			{
-				title: "Instant DB TanStack Start Starter",
+				title: "RecipeBook",
 			},
 		],
 		links: [
@@ -36,6 +38,7 @@ export const Route = createRootRoute({
 				rel: "stylesheet",
 				href: appCss,
 			},
+			{ rel: "icon", href: "/favicon.png" },
 		],
 	}),
 	errorComponent: (err) => <ErrorComponent error={err.error} />,
@@ -50,7 +53,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			</head>
 			<body className="flex flex-col dark">
 				<Header />
-				{children}
+				<Container>{children}</Container>
 				<TanStackDevtools
 					config={{
 						position: "bottom-right",
@@ -65,6 +68,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 				<Scripts />
 
 				<div className="grow" />
+				<Toaster position="bottom-right" reverseOrder={false} />
 				<Footer />
 			</body>
 		</html>

@@ -55,7 +55,7 @@ const Importer = () => {
 	return <Button onClick={() => writeRecipes(userId)}>import recipes</Button>;
 };
 
-function RecipePicker() {
+export function RecipePicker() {
 	const [parent] = useAutoAnimate();
 	const [termInput, setTermInput] = useState("");
 	const [terms, setTerms] = useState<string[]>([]);
@@ -139,5 +139,3 @@ function RecipePicker() {
 		</div>
 	);
 }
-
-export default RecipePicker;

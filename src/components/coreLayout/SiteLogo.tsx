@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import ShortLogo from "@/app/favicon/favicon.png";
-import Logo from "../../../public/logo.png";
+import Logo from "./logo.png";
+import ShortLogo from "./shortLogo.png";
 
 export const SiteLogo = () => {
 	return (
