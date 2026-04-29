@@ -1,6 +1,6 @@
 // Docs: https://www.instantdb.com/docs/modeling-data
 
-import { i } from "@instantdb/react";
+import { i } from '@instantdb/react';
 
 const _schema = i.schema({
 	entities: {
@@ -14,14 +14,9 @@ const _schema = i.schema({
 			type: i.string().optional(),
 			displayName: i.string().optional(),
 		}),
-		todos: i.entity({
-			text: i.string(),
-			done: i.boolean(),
-			createdAt: i.number(),
-		}),
 
 		recipes: i.entity({
-			createdAt: i.date(),
+			createdAt: i.date().indexed(),
 			updatedAt: i.date(),
 			cookingTime: i.string(),
 			description: i.string(),
@@ -29,9 +24,9 @@ const _schema = i.schema({
 			name: i.string(),
 			servings: i.number(),
 			isPublished: i.boolean(),
-			source: i.string().optional(),
+			source: i.string(),
 			imageSrc: i.string().optional(),
-			isFeatured: i.boolean(),
+			isFeatured: i.boolean().optional(),
 
 			steps: i.json<{ text: string }[]>(),
 		}),
@@ -45,37 +40,37 @@ const _schema = i.schema({
 	links: {
 		$usersLinkedPrimaryUser: {
 			forward: {
-				on: "$users",
-				has: "one",
-				label: "linkedPrimaryUser",
-				onDelete: "cascade",
+				on: '$users',
+				has: 'one',
+				label: 'linkedPrimaryUser',
+				onDelete: 'cascade',
 			},
 			reverse: {
-				on: "$users",
-				has: "many",
-				label: "linkedGuestUsers",
+				on: '$users',
+				has: 'many',
+				label: 'linkedGuestUsers',
 			},
 		},
 
 		// recipe <-> author (appUser)
 		recipeAuthor: {
-			forward: { on: "recipes", has: "one", label: "author", required: true },
-			reverse: { on: "$users", has: "many", label: "recipes" },
+			forward: { on: 'recipes', has: 'one', label: 'author', required: true },
+			reverse: { on: '$users', has: 'many', label: 'recipes' },
 		},
 		// recipe <-> ingredients
 		recipeIngredients: {
-			forward: { on: "recipes", has: "many", label: "ingredients" },
+			forward: { on: 'recipes', has: 'many', label: 'ingredients' },
 			reverse: {
-				on: "ingredients",
-				has: "one",
-				label: "recipe",
-				onDelete: "cascade",
+				on: 'ingredients',
+				has: 'one',
+				label: 'recipe',
+				onDelete: 'cascade',
 			},
 		},
 		// recipe <-> userFavorites (represented as a many-to-many link)
 		userFavorites: {
-			forward: { on: "$users", has: "many", label: "favoriteRecipes" },
-			reverse: { on: "recipes", has: "many", label: "favoritedBy" },
+			forward: { on: '$users', has: 'many', label: 'favoriteRecipes' },
+			reverse: { on: 'recipes', has: 'many', label: 'favoritedBy' },
 		},
 	},
 	rooms: {

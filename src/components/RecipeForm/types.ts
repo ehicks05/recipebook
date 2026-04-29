@@ -1,21 +1,19 @@
-import type { Direction, Ingredient, RecipeFull } from 'trpc/types';
+import type { Ingredient, Recipe, Step } from '@/instant.types';
 
 export type FormIngredient = Omit<Ingredient, 'id' | 'recipeId'>;
-export type FormDirection = Omit<Direction, 'id' | 'recipeId'>;
+export type FormStep = Step;
 export type FormRecipe = Omit<
-	RecipeFull,
+	Recipe,
 	| 'id'
-	| 'authorId'
 	| 'createdAt'
 	| 'updatedAt'
 	| 'imageSrc'
 	| 'isFeatured'
 	| 'ingredients'
-	| 'directions'
+	| 'steps'
 	| 'author'
-	| 'userFavorites'
-	| '_count'
+	| 'favoritedBy'
 > & {
 	ingredients: FormIngredient[];
-	directions: FormDirection[];
+	steps: FormStep[];
 };

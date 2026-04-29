@@ -6,15 +6,12 @@ const IngredientSchema = z.object({
 	quantity: z.string().refine(validateQuantity, {
 		message: 'Must be a valid quantity like 1 3/4',
 	}),
-	unit: z.string().nullable(),
+	unit: z.string().optional(),
 });
 const Ingredients = z.object({ ingredients: IngredientSchema.array().min(1) });
 
-const DirectionSchema = z.object({
-	index: z.number(),
-	text: z.string().min(1),
-});
-const Directions = z.object({ directions: DirectionSchema.array().min(1) });
+const StepSchema = z.object({ text: z.string().min(1) });
+const Steps = z.object({ steps: StepSchema.array().min(1) });
 
 const BaseRecipeSchema = z.object({
 	name: z.string().min(1).max(40),
@@ -23,10 +20,10 @@ const BaseRecipeSchema = z.object({
 	servings: z.number().min(1),
 	emoji: z.string().min(1, 'Pick an emoji').max(3),
 	isPublished: z.boolean(),
-	source: z.string().nullable(),
+	source: z.string(),
 });
 
-export const RecipeSchema = BaseRecipeSchema.merge(Ingredients).merge(Directions);
+export const RecipeSchema = BaseRecipeSchema.merge(Ingredients).merge(Steps);
 export const RecipeUpdateSchema = RecipeSchema.extend({ id: z.string() });
 
 export type RecipeCreate = z.infer<typeof RecipeSchema>;

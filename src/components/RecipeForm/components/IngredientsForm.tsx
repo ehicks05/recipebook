@@ -91,10 +91,7 @@ export const IngredientsForm = ({
 				<div className="text-right">
 					<Button
 						onClick={() => {
-							ingredientsFieldArray.append({
-								...DEFAULT_INGREDIENT,
-								// index: values.ingredients.length,
-							});
+							ingredientsFieldArray.append(DEFAULT_INGREDIENT);
 						}}
 					>
 						<HiPlus />

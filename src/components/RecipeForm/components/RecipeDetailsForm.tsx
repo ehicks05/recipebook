@@ -2,6 +2,7 @@ import type { Control, FieldErrors, UseFormRegister } from 'react-hook-form';
 import { MyInput, MyTextArea, T } from '@/components/core';
 import type { FormRecipe } from '../types';
 import { EmojiInput } from './EmojiInput';
+
 // import RecipeImageInput from './RecipeImageInput';
 
 interface Props {
@@ -14,7 +15,6 @@ export const RecipeDetailsForm = ({ errors, register, control }: Props) => {
 	return (
 		<div className="flex flex-col gap-2 md:col-span-1 lg:col-span-2">
 			<T className="text-lg font-semibold">Recipe Details</T>
-			<MyInput type="hidden" readOnly name="source" register={register} />
 			<MyInput type="hidden" readOnly name="isPublished" register={register} />
 
 			<MyInput
@@ -30,6 +30,12 @@ export const RecipeDetailsForm = ({ errors, register, control }: Props) => {
 				placeholder="Add a description here"
 				register={register}
 				error={errors.description}
+			/>
+			<MyInput
+				name="source"
+				label="Source (optional)"
+				placeholder="Add the source url"
+				register={register}
 			/>
 
 			<div className="flex gap-2">

@@ -4,6 +4,6 @@ import schema from "../instant.schema";
 export const clientDb = init({
   appId: import.meta.env.VITE_INSTANT_APP_ID!,
   schema,
-  useDateObjects: true,
+  useDateObjects: false,
   firstPartyPath: "/api/instant",
 });

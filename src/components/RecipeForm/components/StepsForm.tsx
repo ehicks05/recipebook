@@ -6,42 +6,38 @@ import type {
 } from 'react-hook-form';
 import { HiArrowDown, HiArrowUp, HiPlus, HiTrash } from 'react-icons/hi';
 import { Button, MyInput, MyTextArea, T } from '@/components/core';
-import { DEFAULT_DIRECTION } from '../constants';
+import { DEFAULT_STEP } from '../constants';
 import type { FormRecipe } from '../types';
 
 interface Props {
-	directionsFieldArray: UseFieldArrayReturn<FormRecipe, 'directions', 'id'>;
+	stepsFieldArray: UseFieldArrayReturn<FormRecipe, 'steps', 'id'>;
 	register: UseFormRegister<FormRecipe>;
 	errors: FieldErrors<FormRecipe>;
 }
 
-export const DirectionsForm = ({
-	directionsFieldArray,
-	register,
-	errors,
-}: Props) => {
+export const StepsForm = ({ stepsFieldArray, register, errors }: Props) => {
 	const [parent] = useAutoAnimate();
 
 	return (
 		<div className="flex flex-col gap-2 md:col-span-2 lg:col-span-3">
-			<T className="text-lg font-semibold">Directions</T>
+			<T className="text-lg font-semibold">Steps</T>
 			<div className="flex flex-col gap-6" ref={parent}>
-				{directionsFieldArray.fields.map((field, index) => (
+				{stepsFieldArray.fields.map((field, index) => (
 					<div key={field.id} className="flex items-start gap-2">
 						<T className="pr-2">{index + 1}.</T>
-						<MyInput type="hidden" name={`directions.${index}.index`} />
+						<MyInput type="hidden" name={`steps.${index}.index`} />
 						<MyTextArea
-							name={`directions.${index}.text`}
-							placeholder="Direction"
+							name={`steps.${index}.text`}
+							placeholder="Step"
 							register={register}
-							error={errors.directions?.[index]?.text}
+							error={errors.steps?.[index]?.text}
 						/>
 						<div className="flex flex-col gap-2">
 							<Button
-								disabled={directionsFieldArray.fields.length <= 1}
+								disabled={stepsFieldArray.fields.length <= 1}
 								onClick={(e) => {
 									e.preventDefault();
-									directionsFieldArray.remove(index);
+									stepsFieldArray.remove(index);
 								}}
 							>
 								<HiTrash />
@@ -50,16 +46,16 @@ export const DirectionsForm = ({
 								disabled={index === 0}
 								onClick={(e) => {
 									e.preventDefault();
-									directionsFieldArray.swap(index, index - 1);
+									stepsFieldArray.swap(index, index - 1);
 								}}
 							>
 								<HiArrowUp />
 							</Button>
 							<Button
-								disabled={index === directionsFieldArray.fields.length - 1}
+								disabled={index === stepsFieldArray.fields.length - 1}
 								onClick={(e) => {
 									e.preventDefault();
-									directionsFieldArray.swap(index, index + 1);
+									stepsFieldArray.swap(index, index + 1);
 								}}
 							>
 								<HiArrowDown />
@@ -70,10 +66,7 @@ export const DirectionsForm = ({
 				<div className="text-right">
 					<Button
 						onClick={() => {
-							directionsFieldArray.append({
-								...DEFAULT_DIRECTION,
-								// index: values.directions.length,
-							});
+							stepsFieldArray.append(DEFAULT_STEP);
 						}}
 					>
 						<HiPlus />

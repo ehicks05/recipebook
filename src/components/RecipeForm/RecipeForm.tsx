@@ -1,30 +1,33 @@
 'use client';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { id } from '@instantdb/react';
 import { useNavigate } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
 import type { SubmitErrorHandler, SubmitHandler } from 'react-hook-form';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { FaBug } from 'react-icons/fa';
-import { HiClipboardCopy, HiRewind } from 'react-icons/hi';
-import type { RecipeFull } from 'trpc/types';
+import { HiRewind } from 'react-icons/hi';
 import { Alert, Button, Container, Hero, T } from '@/components/core';
-import { stripRecipe, updateClipboard } from '@/components/Recipe/utils';
+import type { Recipe } from '@/instant.types';
 import { clientDb } from '@/lib/db';
 import { dismissToast, toast } from '@/lib/toast';
-import { DirectionsForm, IngredientsForm } from './components';
+import { CopyToClipboardButton } from './CopyToClipboardButton';
+import { IngredientsForm, StepsForm } from './components';
 import { RecipeDetailsForm } from './components/RecipeDetailsForm';
 import { DEFAULT_RECIPE } from './constants';
+import { createRecipe } from './createRecipe';
 import { DeleteRecipeDialog } from './DeleteRecipeDialog';
+import { PublishButton } from './PublishButton';
 import { RecipeSchema } from './schema';
 import type { FormRecipe } from './types';
+import { updateRecipe } from './updateRecipe';
 
 interface Props {
-	recipe?: RecipeFull;
-	importedRecipe?: RecipeFull;
+	recipe?: Recipe;
+	importedRecipe?: Recipe;
 }
 
 export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
+	const { id: userId } = clientDb.useUser();
 	const navigate = useNavigate();
 	const {
 		control,
@@ -39,30 +42,19 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 		resolver: zodResolver(RecipeSchema),
 	});
 	const ingredientsFieldArray = useFieldArray({ control, name: 'ingredients' });
-	const directionsFieldArray = useFieldArray({ control, name: 'directions' });
+	const stepsFieldArray = useFieldArray({ control, name: 'steps' });
 
-	const createRecipe = async (data: FormRecipe) => {
-		await clientDb.transact(clientDb.tx.recipes[id()].create({ ...data }));
-		navigate({ to: `/recipes/${data.id}` });
+	const handleCreate = async (recipe: FormRecipe) => {
+		const recipeId = await createRecipe({ recipe, userId });
+		navigate({ to: '/recipes/$id', params: { id: recipeId } });
 		toast({ variant: 'success', title: 'Recipe created!' });
 	};
 
-	const updateRecipe = async (data: FormRecipe) => {
-		await clientDb.transact(clientDb.tx.recipes[data.id].merge({ ...data }));
+	const handleUpdate = async (data: FormRecipe) => {
+		if (!recipe) return;
+		await updateRecipe({ recipeId: recipe.id, recipe: data });
 		reset(data, {});
 		toast({ variant: 'success', title: 'Recipe updated!' });
-	};
-
-	const updatePublished = async ({
-		id,
-		isPublished,
-	}: {
-		id: string;
-		isPublished: boolean;
-	}) => {
-		await clientDb.transact(clientDb.tx.recipes[id].update({ isPublished }));
-		const title = `Recipe ${isPublished ? 'published' : 'unpublished'}`;
-		toast({ variant: 'success', title });
 	};
 
 	const [isShowDebug, setIsShowDebug] = useState(false);
@@ -87,7 +79,7 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 	const onSubmit: SubmitHandler<FormRecipe> = (data, e) => {
 		e?.preventDefault();
 		console.log({ data });
-		recipe ? updateRecipe({ ...data, id: recipe.id }) : createRecipe(data);
+		recipe ? handleUpdate(data) : handleCreate(data);
 	};
 
 	const onError: SubmitErrorHandler<FormRecipe> = (errors, e) => {
@@ -106,7 +98,7 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 					<Alert
 						variant="error"
 						title={`Unable to ${recipe ? 'update' : 'create'} recipe`}
-						description={error.message}
+						description={'error.message'}
 					/>
 				</div>
 			)}
@@ -124,8 +116,8 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 							register={register}
 							errors={errors}
 						/>
-						<DirectionsForm
-							directionsFieldArray={directionsFieldArray}
+						<StepsForm
+							stepsFieldArray={stepsFieldArray}
 							register={register}
 							errors={errors}
 						/>
@@ -153,24 +145,15 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 									<HiRewind />
 								</Button>
 								<Button
-									onClick={() => navigate({ to: `/recipe/${recipe.id}` })}
+									onClick={() =>
+										navigate({ to: '/recipes/$id', params: { id: recipe.id } })
+									}
 									loading={isLoading}
 									disabled={isLoading}
 								>
 									View
 								</Button>
-								<Button
-									onClick={() =>
-										updatePublished({
-											id: recipe.id,
-											isPublished: !recipe.isPublished,
-										})
-									}
-									loading={isLoading}
-									disabled={isLoading}
-								>
-									{recipe.isPublished ? 'Unpublish' : 'Publish'}
-								</Button>
+								<PublishButton recipe={recipe} />
 								<DeleteRecipeDialog id={recipe.id} name={recipe.name} />
 							</>
 						)}
@@ -179,15 +162,7 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 						<div className="mt-8 flex flex-col items-center justify-center gap-4">
 							<T className="text-lg font-semibold">Advanced</T>
 							<div className="flex gap-2">
-								<Button
-									onClick={() => {
-										updateClipboard(JSON.stringify(stripRecipe(recipe), null, 2));
-										toast({ variant: 'neutral', title: 'Copied to clipboard' });
-									}}
-								>
-									Export JSON
-									<HiClipboardCopy title="Copy to Clipboard" />
-								</Button>
+								<CopyToClipboardButton recipe={recipe} />
 								<Button onClick={() => setIsShowDebug(!isShowDebug)}>
 									Debug
 									<FaBug />

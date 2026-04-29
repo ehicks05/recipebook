@@ -27,7 +27,7 @@ export function DeleteRecipeDialog({ id, name }: { id: string; name: string }) {
 		<Dialog>
 			<DialogTrigger
 				render={
-					<Button variant="outline">
+					<Button variant="destructive">
 						Delete
 						<HiTrash />
 					</Button>

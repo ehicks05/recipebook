@@ -8,5 +8,5 @@ export const adminDb = init({
   appId,
   adminToken,
   schema,
-  useDateObjects: true,
+  useDateObjects: false,
 });

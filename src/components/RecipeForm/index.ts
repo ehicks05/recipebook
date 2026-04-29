@@ -1,3 +1,1 @@
-import { RecipeForm } from './RecipeForm';
-
-export { RecipeForm };
+export { RecipeForm } from './RecipeForm';
