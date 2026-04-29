@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { Button, Container } from "@/components/core";
 
-const Dialog = ({
+export const Dialog = ({
 	open,
 	onClose,
 	body,
@@ -33,5 +33,3 @@ const Dialog = ({
 		// </HLDialog>
 	);
 };
-
-export default Dialog;

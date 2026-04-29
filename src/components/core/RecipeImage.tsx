@@ -14,7 +14,7 @@ interface Props {
 	onClick?: () => void;
 }
 
-const RecipeImage = ({
+export const RecipeImage = ({
 	imageSrc,
 	emoji,
 	emojiSize = "text-8xl",
@@ -45,5 +45,3 @@ const RecipeImage = ({
 		</div>
 	);
 };
-
-export default RecipeImage;

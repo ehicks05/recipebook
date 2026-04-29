@@ -16,7 +16,7 @@ export function DirectionLine({ direction }: Props) {
 			key={direction.text}
 			className={`cursor-pointer ${isDone ? "line-through opacity-50" : ""}`}
 		>
-			<button type="button" onClick={toggle} onKeyUp={toggle}>
+			<button type="button" onClick={toggle} className="text-left">
 				<T className={"flex flex-col gap-2"}>
 					{direction.text.split("\n\n").map((paragraph) => (
 						<span className={`${isDone ? "line-clamp-1" : ""}`} key={paragraph}>

@@ -6,7 +6,7 @@ interface Props {
 	label: string;
 }
 
-const Toggle = ({ id, disabled, checked, onChange, label }: Props) => {
+export const Toggle = ({ id, disabled, checked, onChange, label }: Props) => {
 	return (
 		<label htmlFor={id} className="relative inline-flex cursor-pointer items-center">
 			<input
@@ -27,5 +27,3 @@ const Toggle = ({ id, disabled, checked, onChange, label }: Props) => {
 		</label>
 	);
 };
-
-export default Toggle;

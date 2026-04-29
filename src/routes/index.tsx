@@ -1,5 +1,5 @@
 import { type InstaQLEntity, id } from "@instantdb/react";
-import { createFileRoute, Link, redirect } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 import {
 	createMiddleware,
 	createServerFn,
@@ -7,7 +7,6 @@ import {
 } from "@tanstack/react-start";
 import { getRequest } from "@tanstack/react-start/server";
 import { useEffect, useState } from "react";
-import { FaPizzaSlice } from "react-icons/fa";
 import type { AppSchema } from "@/instant.schema";
 import { adminDb } from "@/lib/adminDb";
 import { clientDb } from "@/lib/db";
@@ -70,10 +69,9 @@ function App() {
 	return (
 		<div className="p-8 sm:grid-cols-2 items-start gap-2 grid-cols-1 grid">
 			<div className="flex flex-col gap-2">
-				<Welcome />
 				<SecretData />
 			</div>
-			<div className="bg-white rounded-lg p-6 border border-neutral-200 shadow flex flex-col">
+			<div className="rounded-lg p-6 border border-neutral-200 shadow flex flex-col">
 				<h2 className="tracking-wide text-[#F54A00] pb-2 text-2xl">Todos</h2>
 				<div className="text-xs pb-4">
 					Open another tab to see todos update in realtime!
@@ -162,6 +160,7 @@ function TodoList({ todos }: { todos: Todo[] }) {
 						)}
 					</div>
 					<button
+						type="button"
 						className="h-full px-2 flex items-center justify-center text-neutral-300 hover:text-neutral-500"
 						onClick={() => deleteTodo(todo)}
 					>
@@ -178,6 +177,7 @@ function ActionBar({ todos }: { todos: Todo[] }) {
 		<div className="flex justify-between items-center h-10 px-2 text-xs border-t border-neutral-300">
 			<div>Remaining todos: {todos.filter((todo) => !todo.done).length}</div>
 			<button
+				type="button"
 				className=" text-neutral-300 hover:text-neutral-500"
 				onClick={() => deleteCompleted(todos)}
 			>
@@ -189,43 +189,8 @@ function ActionBar({ todos }: { todos: Todo[] }) {
 
 export function Welcome() {
 	return (
-		<div className="bg-white p-6 rounded-lg border border-neutral-200 shadow flex  justify-center flex-col gap-2">
-			<h2 className="tracking-wide text-[#F54A00] pb-4 text-2xl text-center">
-				Tanstack Start + Instant DB
-			</h2>
-			<div className="grid grid-cols-1 md:grid-cols-2 grow gap-2">
-				<a
-					href="https://tanstack.com/start/latest/docs/framework/react/overview"
-					target="_blank"
-					rel="noopener noreferrer"
-					className="border p-2 hover:bg-neutral-100 py-8 shadow flex flex-col gap-2 items-center justify-center font-semibold border-neutral-200 rounded"
-				>
-					<img
-						src="https://tanstack.com/images/logos/logo-color-600.png"
-						width={34}
-					></img>
-					Tanstack Start Docs
-				</a>
-				<a
-					target="_blank"
-					href="https://www.instantdb.com/docs"
-					rel="noopener noreferrer"
-					className="border p-2 shadow flex py-8 flex-col gap-2 hover:bg-neutral-100 items-center justify-center font-semibold border-neutral-200 rounded"
-				>
-					<img
-						src="https://www.instantdb.com/img/icon/logo-512.svg"
-						width={34}
-					></img>
-					Instant Docs
-				</a>
-				<Link
-					to="/recipes"
-					className="border p-2 shadow flex py-8 flex-col gap-2 hover:bg-neutral-100 items-center justify-center font-semibold border-neutral-200 rounded"
-				>
-					<FaPizzaSlice className="size-8" />
-					Recipes
-				</Link>
-			</div>
+		<div className="border p-2 shadow flex py-8 flex-col gap-2 items-center justify-center font-semibold border-neutral-200 rounded">
+			Welcome to Recipebook!
 		</div>
 	);
 }
@@ -241,7 +206,7 @@ const SecretData = () => {
 	}, [secretDataFetch]);
 
 	return (
-		<div className="bg-white p-6 rounded-lg border border-neutral-200 shadow flex  justify-center flex-col gap-2">
+		<div className="p-6 rounded-lg border border-neutral-200 shadow flex justify-center flex-col gap-2">
 			<div>Secret Message:</div>
 			<div>{secretData?.secretMessage}</div>
 		</div>

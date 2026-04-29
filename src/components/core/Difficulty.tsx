@@ -22,7 +22,7 @@ const DifficultyIcon = ({ difficulty }: { difficulty: number }) => (
 	</div>
 );
 
-const Difficulty = ({ difficulty }: { difficulty: number }) => (
+export const Difficulty = ({ difficulty }: { difficulty: number }) => (
 	<Button isStatic>
 		<DifficultyIcon difficulty={difficulty} />
 		<T className="text-sm font-semibold">
@@ -30,5 +30,3 @@ const Difficulty = ({ difficulty }: { difficulty: number }) => (
 		</T>
 	</Button>
 );
-
-export default Difficulty;

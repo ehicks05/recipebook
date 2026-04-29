@@ -5,8 +5,6 @@ interface IProps {
 	children?: ReactNode | ReactNode[];
 }
 
-const T = ({ children, className = '' }: IProps) => {
+export const T = ({ children, className = '' }: IProps) => {
 	return <span className={`${className}`}>{children}</span>;
 };
-
-export default T;

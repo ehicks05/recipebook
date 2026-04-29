@@ -17,7 +17,7 @@ export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	isStatic?: boolean;
 }
 
-const Button = ({
+export const Button = ({
 	variant = 'default',
 	loading,
 	className = '',
@@ -68,5 +68,3 @@ const Button = ({
 		</button>
 	);
 };
-
-export default Button;

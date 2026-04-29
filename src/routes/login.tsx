@@ -53,11 +53,11 @@ function RouteComponent() {
 	return (
 		<div className="p-8 sm:grid-cols-2 items-start gap-2 grid-cols-1 grid">
 			<Welcome />
-			<div className="bg-white rounded-lg p-6 border border-neutral-200 shadow flex flex-col gap-4">
+			<div className="rounded-lg p-6 border border-neutral-200 shadow flex flex-col gap-4">
 				<h2 className="tracking-wide text-[#F54A00] text-2xl">
 					{stage === "email" ? "Sign In" : "Enter Code"}
 				</h2>
-				<p className="text-xs text-neutral-600">
+				<p className="text-xs">
 					{stage === "email"
 						? "Enter your email to receive a magic code"
 						: `We sent a code to ${emailInput}`}
@@ -84,7 +84,7 @@ function RouteComponent() {
 								<button
 									type="submit"
 									disabled={!emailInput}
-									className="h-full cursor-pointer px-2 border-l border-0 border-neutral-300 text-neutral-600 hover:text-neutral-500 disabled:hover:text-neutral-300"
+									className="h-full cursor-pointer px-2 border-l border-0 border-neutral-300 bg-accent"
 								>
 									Send
 								</button>
@@ -129,8 +129,9 @@ function RouteComponent() {
 						</>
 					)}
 					<button
+						type="button"
 						onClick={loginAsGuest}
-						className="bg-neutral-50 border border-neutral-100 hover:bg-neutral-100 cursor-pointer shadow p-2"
+						className="bg-accent border border-neutral-100 cursor-pointer shadow p-2"
 					>
 						Sign In as Guest
 					</button>

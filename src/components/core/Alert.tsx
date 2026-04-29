@@ -52,7 +52,7 @@ interface Props {
 	className?: string;
 }
 
-const Alert = ({
+export const Alert = ({
 	title,
 	description,
 	variant = 'error',
@@ -73,5 +73,3 @@ const Alert = ({
 		</div>
 	);
 };
-
-export default Alert;

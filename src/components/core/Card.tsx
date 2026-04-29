@@ -5,12 +5,10 @@ interface Props {
 	children: ReactNode;
 }
 
-const Card = ({ children, className = '' }: Props) => {
+export const Card = ({ children, className = '' }: Props) => {
 	return (
 		<div className={`rounded p-4 shadow dark:bg-neutral-800 ${className}`}>
 			{children}
 		</div>
 	);
 };
-
-export default Card;

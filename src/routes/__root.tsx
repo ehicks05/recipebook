@@ -6,9 +6,8 @@ import {
 	Scripts,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
-
+import Footer from "@/components/coreLayout/Footer";
 import Header from "../components/Header";
-
 import appCss from "../styles.css?url";
 
 export const Route = createRootRoute({
@@ -49,7 +48,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			<head>
 				<HeadContent />
 			</head>
-			<body>
+			<body className="flex flex-col dark">
 				<Header />
 				{children}
 				<TanStackDevtools
@@ -64,6 +63,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 					]}
 				/>
 				<Scripts />
+
+				<div className="grow" />
+				<Footer />
 			</body>
 		</html>
 	);
