@@ -7,7 +7,6 @@ import {
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { Toaster } from "react-hot-toast";
-import { Container } from "@/components/core";
 import Footer from "@/components/coreLayout/Footer";
 import Header from "../components/Header";
 import appCss from "../styles.css?url";
@@ -53,7 +52,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			</head>
 			<body className="flex flex-col dark">
 				<Header />
-				<Container>{children}</Container>
+				{children}
 				<TanStackDevtools
 					config={{
 						position: "bottom-right",

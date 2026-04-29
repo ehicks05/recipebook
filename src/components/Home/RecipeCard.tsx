@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { Link } from "@tanstack/react-router";
-import { HiStar } from "react-icons/hi";
-import { Card, RecipeImage, T } from "@/components/core";
-import { FavoriteButton } from "@/components/Home/FavoriteButton";
-import type { Recipe } from "@/instant.types";
-import { clientDb } from "@/lib/db";
+import { Link } from '@tanstack/react-router';
+import { HiStar } from 'react-icons/hi';
+import { Card, RecipeImage, T } from '@/components/core';
+import { FavoriteButton } from '@/components/Home/FavoriteButton';
+import type { Recipe } from '@/instant.types';
+import { clientDb } from '@/lib/db';
 
 interface Props {
 	recipe: Recipe;
@@ -24,8 +24,8 @@ export const RecipeCard = ({
 	},
 }: Props) => {
 	return (
-		<Link to={"/recipes/$id"} params={{ id }} preload={false}>
-			<Card className="transform transition-all hover:shadow-md border border-neutral-100 dark:border-neutral-800">
+		<Link to="/recipes/$id" params={{ id }} preload={false}>
+			<Card className="relative transform transition-all hover:shadow-md border border-neutral-100 dark:border-neutral-800">
 				<div className="flex h-80 flex-col gap-4">
 					<div className="-m-4 mb-0 h-48">
 						<div className="h-48 w-full rounded-t bg-neutral-50 dark:bg-[#1C1C1C] text-neutral-400 dark:text-neutral-700">
