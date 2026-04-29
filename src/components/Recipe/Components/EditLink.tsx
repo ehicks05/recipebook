@@ -1,0 +1,33 @@
+"use client";
+
+import { Link } from "@tanstack/react-router";
+import { HiPencilAlt } from "react-icons/hi";
+import { Button } from "@/components/core";
+import { clientDb } from "@/lib/db";
+
+interface Props {
+	recipeId: string;
+	recipeAuthorId: string;
+}
+
+export const EditLink = ({ recipeId, recipeAuthorId }: Props) => {
+	const { id: userId } = clientDb.useUser();
+
+	if (userId !== recipeAuthorId) return null;
+
+	return (
+		<div className="flex flex-wrap gap-2">
+			<Link
+				to="/edit-recipe/$id"
+				params={{ id: recipeId }}
+				title="Edit Recipe"
+				preload={false}
+			>
+				<Button className="text-sm font-semibold">
+					<HiPencilAlt className="text-2xl" />
+					Edit
+				</Button>
+			</Link>
+		</div>
+	);
+};

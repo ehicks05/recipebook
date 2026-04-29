@@ -9,7 +9,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     min-height: 100dvh;
-    background: linear-gradient(120deg, #e7e7e7 40%, #fee7de 70%, #e4e4e4 100%);
+    /*background: linear-gradient(120deg, #e7e7e7 40%, #fee7de 70%, #e4e4e4 100%);*/
 }
 
 code {

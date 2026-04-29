@@ -1,6 +1,6 @@
 import type { Prisma } from '@prisma/client';
 import { prisma } from 'server/db';
-import { utapi } from 'utils/uploadthingApi';
+import { utapi } from 'uploadthing/uploadthingApi';
 import type { RecipeCreate, RecipeUpdate } from '../schema';
 import { recipeIncludes, recipeIncludesLite } from './utils';
 
