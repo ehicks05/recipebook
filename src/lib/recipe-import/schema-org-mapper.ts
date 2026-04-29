@@ -1,6 +1,5 @@
 import type { Recipe } from 'schema-dts';
-import type { RecipeFull } from 'trpc/types';
-import { parseIngredient } from 'utils/recipe-import/parse-ingredient';
+import { parseIngredient } from '@/lib/recipe-import/parse-ingredient';
 import { parseDirections } from './parse-directions';
 import { parseServings } from './parse-servings';
 
