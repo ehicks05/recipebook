@@ -22,6 +22,11 @@ const rules = {
 	$users: {
 		allow: {
 			create: "true",
+			view: "true",
+		},
+		fields: {
+			email: "auth.id == data.id",
+			type: "auth.id == data.id",
 		},
 	},
 } satisfies InstantRules;

@@ -6,4 +6,4 @@ export type Recipe = InstaQLResult<
 	{ recipes: { author: {}; ingredients: {}; favoritedBy: {} } }
 >["recipes"][number];
 
-export type Ingredient = InstaQLEntity<AppSchema, 'ingredients'>;
+export type Ingredient = InstaQLEntity<AppSchema, "ingredients">;
