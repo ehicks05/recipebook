@@ -7,16 +7,21 @@ import { toggleFavorite } from "./actions";
 interface Props {
 	recipeId: string;
 	className?: string;
-	isUserFavorite: boolean;
+	favoritedBy: { id: string }[];
 }
 
-const FavoriteButton = ({ recipeId, className, isUserFavorite }: Props) => {
+export const FavoriteButton = ({ recipeId, className, favoritedBy }: Props) => {
 	const { id: userId } = clientDb.useUser();
+	const isUserFavorite = favoritedBy.map((o) => o.id).includes(userId);
 
 	const Icon = isUserFavorite ? HiHeart : HiOutlineHeart;
 
 	const handleClick = async () => {
-		const { title, err } = await toggleFavorite({ recipeId });
+		const { title, err } = await toggleFavorite({
+			userId,
+			recipeId,
+			isUserFavorite,
+		});
 
 		toast({
 			variant: err ? "error" : "success",
@@ -37,5 +42,3 @@ const FavoriteButton = ({ recipeId, className, isUserFavorite }: Props) => {
 		</Button>
 	);
 };
-
-export default FavoriteButton;

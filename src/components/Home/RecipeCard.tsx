@@ -2,8 +2,8 @@
 
 import { Link } from "@tanstack/react-router";
 import { HiStar } from "react-icons/hi";
-import { Card, T } from "@/components/core";
-import FavoriteButton from "@/components/Home/FavoriteButton";
+import { Card, RecipeImage, T } from "@/components/core";
+import { FavoriteButton } from "@/components/Home/FavoriteButton";
 import type { Recipe } from "@/instant.types";
 import { clientDb } from "@/lib/db";
 
@@ -20,7 +20,7 @@ export const RecipeCard = ({
 		description,
 		imageSrc,
 		isFeatured,
-		favoritedBy, // todo
+		favoritedBy,
 	},
 }: Props) => {
 	return (
@@ -29,11 +29,11 @@ export const RecipeCard = ({
 				<div className="flex h-80 flex-col gap-4">
 					<div className="-m-4 mb-0 h-48">
 						<div className="h-48 w-full rounded-t bg-neutral-50 dark:bg-[#1C1C1C] text-neutral-400 dark:text-neutral-700">
-							{/*<RecipeImage
+							<RecipeImage
 								imageSrc={imageSrc}
 								emoji={emoji}
 								className="h-48 rounded-t"
-							/>*/}
+							/>
 						</div>
 						{isFeatured && (
 							<div
@@ -47,7 +47,7 @@ export const RecipeCard = ({
 					{/* title row */}
 					<div className="flex items-start gap-2">
 						<div className="w-full">
-							<div className="text-xl font-semibold text-orange-700 dark:text-orange-400">
+							<div className="text-xl font-extrabold text-orange-700 dark:text-orange-400">
 								{name}
 							</div>
 							<div className="text-sm dark:text-neutral-200">
@@ -59,7 +59,7 @@ export const RecipeCard = ({
 							<FavoriteButton
 								className="-mr-2 -mt-9"
 								recipeId={id}
-								isUserFavorite={false}
+								favoritedBy={favoritedBy}
 							/>
 						</clientDb.SignedIn>
 					</div>

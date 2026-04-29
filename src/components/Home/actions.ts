@@ -1,18 +1,30 @@
-'use server';
+"use server";
 
-// import { revalidatePath } from 'next/cache';
-// import { api } from 'trpc/server';
+import { clientDb } from "@/lib/db";
 
-export const toggleFavorite = async ({ recipeId }: { recipeId: string }) => {
+interface Params {
+	userId: string;
+	recipeId: string;
+	isUserFavorite: boolean;
+}
+
+export const toggleFavorite = async ({
+	userId,
+	recipeId,
+	isUserFavorite,
+}: Params) => {
 	try {
-		// await api.example.toggleUserFavorite({ recipeId });
-		// revalidatePath('/');
+		clientDb.transact(
+			isUserFavorite
+				? clientDb.tx.$users[userId].unlink({ favoriteRecipes: recipeId })
+				: clientDb.tx.$users[userId].link({ favoriteRecipes: recipeId }),
+		);
 	} catch (e) {
 		const err = e instanceof Error ? e : undefined;
 		return {
 			err,
-			title: 'Unable to update favorites',
+			title: "Unable to update favorites",
 		};
 	}
-	return { title: 'Favorites updated' };
+	return { title: "Favorites updated" };
 };
