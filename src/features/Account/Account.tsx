@@ -5,7 +5,7 @@ import { Container, Hero, T } from '@/components/core';
 import RecipeList from '@/features/Account/RecipeList';
 import { clientDb } from '@/lib/db';
 
-const YourLists = async ({ user }: { user: User }) => {
+const YourLists = ({ user }: { user: User }) => {
 	const { data: myRecipesData } = clientDb.useQuery({
 		recipes: {
 			$: { where: { 'author.id': user.id } },
@@ -41,7 +41,7 @@ const YourLists = async ({ user }: { user: User }) => {
 	);
 };
 
-export const Account = async () => {
+export const Account = () => {
 	const user = clientDb.useUser();
 
 	return (
