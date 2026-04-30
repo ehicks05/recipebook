@@ -50,7 +50,7 @@ export const RecipeImporter = ({ url }: { url?: string }) => {
 			{!user && recipe && (
 				<Alert variant="info" title={'Sign in to edit and save'} />
 			)}
-			{urlError && (
+			{url && urlError && (
 				<div className="m-3">
 					<Alert
 						variant="error"
