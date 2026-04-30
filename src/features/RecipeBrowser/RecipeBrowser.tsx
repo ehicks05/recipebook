@@ -3,7 +3,7 @@
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { sortBy } from 'es-toolkit/compat';
 import { useState } from 'react';
-import { Button, Container, MyInput, T } from '@/components/core';
+import { Button, Container, MyInput } from '@/components/core';
 import { clientDb } from '@/lib/db';
 import { RecipeCard } from './RecipeCard';
 import { RecipeMigrator } from './RecipeMigrator';
@@ -89,7 +89,7 @@ export function RecipeBrowser() {
 					{sortBy(recipes, (o) => !o.isFeatured)?.map((recipe) => (
 						<RecipeCard key={recipe.id} recipe={recipe} />
 					))}
-					{recipes?.length === 0 && <T>No results...</T>}
+					{recipes?.length === 0 && <span>No results...</span>}
 				</div>
 			</div>
 		</Container>

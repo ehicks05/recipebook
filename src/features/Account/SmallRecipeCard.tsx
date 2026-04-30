@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router';
-import { Card, T } from '@/components/core';
+import { Card } from '@/components/core';
 import type { Recipe } from '@/instant.types';
 
 interface Props {
@@ -15,7 +15,7 @@ function SmallRecipeCard({ recipe: { id, emoji, name } }: Props) {
 						{emoji}
 					</figure>
 					<div className="w-full">
-						<T className="text-sm line-clamp-1">{name}</T>
+						<span className="text-sm line-clamp-1">{name}</span>
 					</div>
 				</div>
 			</Card>

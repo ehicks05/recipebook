@@ -1,7 +1,7 @@
 'use client';
 
 import type { User } from '@instantdb/react';
-import { Container, Hero, T } from '@/components/core';
+import { Container, Hero } from '@/components/core';
 import RecipeList from '@/features/Account/RecipeList';
 import { clientDb } from '@/lib/db';
 

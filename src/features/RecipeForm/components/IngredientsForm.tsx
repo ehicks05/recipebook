@@ -5,7 +5,7 @@ import type {
 	UseFormRegister,
 } from 'react-hook-form';
 import { HiArrowDown, HiArrowUp, HiPlus, HiTrash } from 'react-icons/hi';
-import { Button, MyInput, MySelect, T } from '@/components/core';
+import { Button, MyInput, MySelect } from '@/components/core';
 import { DEFAULT_INGREDIENT, UNITS } from '../constants';
 import type { FormRecipe } from '../types';
 
@@ -31,7 +31,7 @@ export const IngredientsForm = ({
 
 	return (
 		<div className="flex flex-col gap-2 md:col-span-1 lg:col-span-2">
-			<T className="text-lg font-semibold">Ingredients</T>
+			<span className="text-lg font-semibold">Ingredients</span>
 			<div className="flex flex-col gap-6" ref={parent}>
 				{ingredientsFieldArray.fields.map((field, index) => (
 					<div key={field.id} className="flex flex-col gap-2">

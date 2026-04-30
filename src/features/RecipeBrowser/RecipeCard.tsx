@@ -2,7 +2,7 @@
 
 import { Link } from '@tanstack/react-router';
 import { HiStar } from 'react-icons/hi';
-import { Card, RecipeImage, T } from '@/components/core';
+import { Card, RecipeImage } from '@/components/core';
 import { FavoriteButton } from '@/features/RecipeBrowser/FavoriteButton';
 import type { Recipe } from '@/instant.types';
 import { clientDb } from '@/lib/db';
@@ -63,7 +63,7 @@ export const RecipeCard = ({
 							/>
 						</clientDb.SignedIn>
 					</div>
-					<T className="line-clamp-2 text-sm">{description}</T>
+					<span className="line-clamp-2 text-sm">{description}</span>
 				</div>
 			</Card>
 		</Link>

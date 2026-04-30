@@ -7,7 +7,6 @@ import type {
 	UseFormRegister,
 } from 'react-hook-form';
 import TextareaAutosize from 'react-textarea-autosize';
-import { T } from '@/components/core';
 
 const BASE =
 	'px-3 py-2 text-sm sm:text-base w-full rounded border-neutral-100 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-700 dark:text-neutral-100';
@@ -48,7 +47,7 @@ const MyInput = <T extends FieldValues>({
 		>
 			{label && (
 				<label htmlFor={props.id || name}>
-					<T>{label}</T>
+					<span>{label}</span>
 				</label>
 			)}
 			<input
@@ -91,7 +90,7 @@ const MyTextArea = <T extends FieldValues>({
 		<div className="flex w-full flex-col gap-1">
 			{label && (
 				<label htmlFor={props.id || name}>
-					<T>{label}</T>
+					<span>{label}</span>
 				</label>
 			)}
 			<div>
@@ -135,7 +134,7 @@ const MySelect = <T extends FieldValues>({
 		<div className={'flex min-w-fit flex-col gap-1'}>
 			{label && (
 				<label htmlFor={props.id || name}>
-					<T>{label}</T>
+					<span>{label}</span>
 				</label>
 			)}
 			<select

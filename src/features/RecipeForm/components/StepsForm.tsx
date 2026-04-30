@@ -5,7 +5,7 @@ import type {
 	UseFormRegister,
 } from 'react-hook-form';
 import { HiArrowDown, HiArrowUp, HiPlus, HiTrash } from 'react-icons/hi';
-import { Button, MyInput, MyTextArea, T } from '@/components/core';
+import { Button, MyInput, MyTextArea } from '@/components/core';
 import { DEFAULT_STEP } from '../constants';
 import type { FormRecipe } from '../types';
 
@@ -20,11 +20,11 @@ export const StepsForm = ({ stepsFieldArray, register, errors }: Props) => {
 
 	return (
 		<div className="flex flex-col gap-2 md:col-span-2 lg:col-span-3">
-			<T className="text-lg font-semibold">Steps</T>
+			<span className="text-lg font-semibold">Steps</span>
 			<div className="flex flex-col gap-6" ref={parent}>
 				{stepsFieldArray.fields.map((field, index) => (
 					<div key={field.id} className="flex items-start gap-2">
-						<T className="pr-2">{index + 1}.</T>
+						<span className="pr-2">{index + 1}.</span>
 						<MyInput type="hidden" name={`steps.${index}.index`} />
 						<MyTextArea
 							name={`steps.${index}.text`}

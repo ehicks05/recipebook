@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { FaMinus, FaPlus } from "react-icons/fa";
-import { Button, T } from "@/components/core";
-import type { Ingredient } from "@/instant.types";
-import { IngredientLine } from "./Ingredient";
+import { useState } from 'react';
+import { FaMinus, FaPlus } from 'react-icons/fa';
+import { Button } from '@/components/core';
+import type { Ingredient } from '@/instant.types';
+import { IngredientLine } from './Ingredient';
 
 interface Props {
 	ingredients: Ingredient[];
@@ -17,7 +17,7 @@ export function Ingredients({ ingredients, defaultServings }: Props) {
 	return (
 		<div>
 			<div className="mb-2 flex items-center gap-2">
-				<T>Serves {scaledServings}</T>
+				<span>Serves {scaledServings}</span>
 				<div className="h-10 whitespace-nowrap">
 					<Button
 						className="h-full rounded-r-none"

@@ -1,5 +1,5 @@
 import { HiOutlineClock } from 'react-icons/hi';
-import { Container, Hero, T } from '@/components/core';
+import { Container, Hero } from '@/components/core';
 import type { Recipe as IRecipe } from '@/instant.types';
 import { clientDb } from '@/lib/db';
 import { Directions, EditLink, Ingredients } from './Components';
@@ -29,14 +29,14 @@ export function Recipe({ recipe }: Props) {
 								recipeAuthorId={recipe.author?.id || ''}
 							/>
 						</clientDb.SignedIn>
-						<T>{recipe.description}</T>
+						<span>{recipe.description}</span>
 						{recipe.source && (
-							<T className="block text-sm font-semibold">
+							<div className="block text-sm font-semibold">
 								<span className="font-normal">from</span>{' '}
 								<a href={recipe.source} target="_blank" rel="noreferrer">
 									{new URL(recipe.source).host}
 								</a>
-							</T>
+							</div>
 						)}
 					</div>
 					<div className="order-2 md:order-3">

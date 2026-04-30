@@ -1,7 +1,6 @@
-import Fraction from "fraction.js";
-import { useState } from "react";
-import { T } from "@/components/core";
-import type { Ingredient } from "@/instant.types";
+import Fraction from 'fraction.js';
+import { useState } from 'react';
+import type { Ingredient } from '@/instant.types';
 
 interface IngredientProps {
 	ingredient: Ingredient;
@@ -16,10 +15,9 @@ const scaleQuantity = (
 	desiredServings: number,
 ) => {
 	const ratio = desiredServings / defaultServings;
-	const scaledQuantity =
-		new Fraction(ingredient.quantity || 0).valueOf() * ratio;
+	const scaledQuantity = new Fraction(ingredient.quantity || 0).valueOf() * ratio;
 
-	if (scaledQuantity === 0) return "";
+	if (scaledQuantity === 0) return '';
 
 	if (scaledQuantity === Math.round(scaledQuantity)) {
 		return String(scaledQuantity);
@@ -34,7 +32,7 @@ const scaleQuantity = (
 
 	const fraction = new Fraction(fractional);
 
-	return `${integer || ""} ${fraction.n}${String.fromCharCode(8260)}${fraction.d}`;
+	return `${integer || ''} ${fraction.n}${String.fromCharCode(8260)}${fraction.d}`;
 };
 
 export function IngredientLine({
@@ -44,11 +42,7 @@ export function IngredientLine({
 }: IngredientProps) {
 	const [isChecked, setIsChecked] = useState(false);
 
-	const scaledQuantity = scaleQuantity(
-		ingredient,
-		recipeServings,
-		scaledServings,
-	);
+	const scaledQuantity = scaleQuantity(ingredient, recipeServings, scaledServings);
 
 	return (
 		<div key={ingredient.name}>
@@ -59,9 +53,9 @@ export function IngredientLine({
 					checked={isChecked}
 					onChange={(e) => setIsChecked(e.target.checked)}
 				/>
-				<T className={`${isChecked ? "opacity-50" : ""}`}>
-					{`${scaledQuantity} ${ingredient.unit || ""} ${ingredient.name}`}
-				</T>
+				<span className={`${isChecked ? 'opacity-50' : ''}`}>
+					{`${scaledQuantity} ${ingredient.unit || ''} ${ingredient.name}`}
+				</span>
 			</label>
 		</div>
 	);

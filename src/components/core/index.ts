@@ -1,15 +1,11 @@
-import { Alert } from "./Alert";
-import { Button } from "./Button";
-import { Card } from "./Card";
-import { Container } from "./Container";
-import { Dialog } from "./Dialog";
-import { Difficulty } from "./Difficulty";
-import { Hero } from "./Hero";
-import { Loading } from "./Loading";
-import { RecipeImage } from "./RecipeImage";
-import { MyInput, MySelect, MyTextArea } from "./StyledInputs";
-import { T } from "./T";
-import { Toggle } from "./Toggle";
+import { Alert } from './Alert';
+import { Button } from './Button';
+import { Card } from './Card';
+import { Container } from './Container';
+import { Dialog } from './Dialog';
+import { Hero } from './Hero';
+import { RecipeImage } from './RecipeImage';
+import { MyInput, MySelect, MyTextArea } from './StyledInputs';
 
 export {
 	Alert,
@@ -17,13 +13,9 @@ export {
 	Card,
 	Container,
 	Dialog,
-	Difficulty,
 	Hero,
-	Loading,
 	MyInput,
 	MySelect,
 	MyTextArea,
 	RecipeImage,
-	T,
-	Toggle,
 };

@@ -6,7 +6,7 @@ import type { SubmitErrorHandler, SubmitHandler } from 'react-hook-form';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { FaBug } from 'react-icons/fa';
 import { HiRewind } from 'react-icons/hi';
-import { Alert, Button, Container, Hero, T } from '@/components/core';
+import { Alert, Button, Container, Hero } from '@/components/core';
 import type { Recipe } from '@/instant.types';
 import { clientDb } from '@/lib/db';
 import { dismissToast, toast } from '@/lib/toast';
@@ -159,7 +159,7 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 					</div>
 					{recipe && (
 						<div className="mt-8 flex flex-col items-center justify-center gap-4">
-							<T className="text-lg font-semibold">Advanced</T>
+							<span className="text-lg font-semibold">Advanced</span>
 							<div className="flex gap-2">
 								<CopyToClipboardButton recipe={recipe} />
 								<Button onClick={() => setIsShowDebug(!isShowDebug)}>
@@ -172,8 +172,8 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 				</form>
 			</Container>
 			{isShowDebug && (
-				<pre className="whitespace-pre-wrap">
-					<T className="text-xs">{JSON.stringify(getValues(), null, 2)}</T>
+				<pre className="whitespace-pre-wrap text-xs">
+					{JSON.stringify(getValues(), null, 2)}
 				</pre>
 			)}
 		</>
