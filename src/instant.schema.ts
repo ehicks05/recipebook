@@ -14,6 +14,7 @@ const _schema = i.schema({
 			type: i.string().optional(),
 			imageUrl: i.string().optional(),
 			displayName: i.string().optional().indexed(),
+			createdAt: i.date().optional(),
 		}),
 
 		recipes: i.entity({

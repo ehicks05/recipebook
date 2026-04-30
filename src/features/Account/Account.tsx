@@ -44,11 +44,18 @@ const YourLists = ({ user }: { user: User }) => {
 export const Account = () => {
 	const user = clientDb.useUser();
 
+	const createdAt = user.createdAt
+		? new Date(user.createdAt).toLocaleDateString()
+		: undefined;
+	const subtitle = createdAt ? `Joined ${createdAt}` : undefined;
+
+	console.log(user.createdAt.slice(0, 1));
+
 	return (
 		<>
 			<Hero
-				title={`${user.displayName || 'New User'}'s Account`}
-				subtitle={`Joined ${user.createdAt?.toLocaleDateString()}`}
+				title={`${user?.displayName || 'New User'}'s Account`}
+				subtitle={subtitle}
 			/>
 			<YourLists user={user} />
 		</>

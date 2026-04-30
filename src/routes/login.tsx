@@ -50,7 +50,11 @@ function RouteComponent() {
 		const verifyResponse = await clientDb.auth.signInWithMagicCode({
 			email: emailInput,
 			code: codeInput,
-			extraFields: { displayName: emailInput.split('@')[0], imageUrl },
+			extraFields: {
+				displayName: emailInput.split('@')[0],
+				imageUrl,
+				createdAt: new Date(),
+			},
 		});
 		if (verifyResponse.user) {
 			navigate({ to: '/' });
