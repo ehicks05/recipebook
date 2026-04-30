@@ -7,7 +7,7 @@ export type FormRecipe = Omit<
 	| 'id'
 	| 'createdAt'
 	| 'updatedAt'
-	| 'imageSrc'
+	| 'image'
 	| 'isFeatured'
 	| 'ingredients'
 	| 'steps'

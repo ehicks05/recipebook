@@ -34,7 +34,7 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 		handleSubmit,
 		reset,
 		getValues,
-		formState: { errors, isSubmitting, isValid, isDirty },
+		formState: { errors, isSubmitting, isDirty },
 	} = useForm({
 		defaultValues: recipe || importedRecipe || DEFAULT_RECIPE,
 		mode: 'onBlur',
@@ -102,7 +102,6 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 				</div>
 			)}
 			<Container>
-				{/* https://github.com/react-hook-form/react-hook-form/discussions/8020 */}
 				<form onSubmit={handleSubmit(onSubmit, onError)}>
 					<div className="grid gap-8 md:grid-cols-2 lg:grid-cols-7">
 						<RecipeDetailsForm
