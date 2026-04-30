@@ -12,6 +12,7 @@ const _schema = i.schema({
 			email: i.string().unique().indexed().optional(),
 			imageURL: i.string().optional(),
 			type: i.string().optional(),
+			imageUrl: i.string().optional(),
 			displayName: i.string().optional().indexed(),
 		}),
 
@@ -51,7 +52,13 @@ const _schema = i.schema({
 			},
 		},
 		recipeAuthor: {
-			forward: { on: 'recipes', has: 'one', label: 'author', required: true },
+			forward: {
+				on: 'recipes',
+				has: 'one',
+				label: 'author',
+				required: true,
+				onDelete: 'cascade',
+			},
 			reverse: { on: '$users', has: 'many', label: 'recipes' },
 		},
 		recipeIngredients: {

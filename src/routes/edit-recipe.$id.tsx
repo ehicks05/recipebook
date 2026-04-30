@@ -15,6 +15,7 @@ function RouteComponent() {
 			ingredients: {},
 			author: {},
 			image: {},
+			favoritedBy: {},
 		},
 	});
 

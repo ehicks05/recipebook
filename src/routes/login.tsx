@@ -1,52 +1,65 @@
-import { createFileRoute, redirect, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
-import { clientDb } from "@/lib/db";
+import { createFileRoute, redirect, useNavigate } from '@tanstack/react-router';
+import { useServerFn } from '@tanstack/react-start';
+import { useEffect, useState } from 'react';
+import z from 'zod';
+import { clientDb } from '@/lib/db';
+import { getImageUrl } from '@/middleware/getImageUrl';
 
-export const Route = createFileRoute("/login")({
+export const Route = createFileRoute('/login')({
 	component: RouteComponent,
 	ssr: false,
 	loader: async () => {
 		const auth = await clientDb.getAuth();
 		if (auth) {
 			throw redirect({
-				to: "/",
+				to: '/',
 			});
 		}
 	},
 });
 
+const useImageUrl = (email: string) => {
+	const imageUrlFetch = useServerFn(getImageUrl);
+	const [imageUrl, setImageUrl] = useState<Awaited<
+		ReturnType<typeof imageUrlFetch>
+	> | null>(null);
+
+	useEffect(() => {
+		if (z.email().safeParse(email).success) {
+			imageUrlFetch({ data: { email } }).then(setImageUrl);
+		}
+	}, [imageUrlFetch, email]);
+
+	return imageUrl;
+};
+
 function RouteComponent() {
-	const [stage, setStage] = useState<"email" | "code">("email");
-	const [emailInput, setEmailInput] = useState("");
-	const [codeInput, setCodeInput] = useState("");
+	const [stage, setStage] = useState<'email' | 'code'>('email');
+	const [emailInput, setEmailInput] = useState('');
+	const [codeInput, setCodeInput] = useState('');
 	const navigate = useNavigate();
+
+	const imageUrl = useImageUrl(emailInput);
 
 	const sendEmail = async () => {
 		await clientDb.auth.sendMagicCode({ email: emailInput });
-		setStage("code");
+		setStage('code');
 	};
 
 	const loginWithCode = async () => {
 		const verifyResponse = await clientDb.auth.signInWithMagicCode({
 			email: emailInput,
 			code: codeInput,
-			extraFields: { displayName: emailInput.split("@")[0] },
+			extraFields: { displayName: emailInput.split('@')[0], imageUrl },
 		});
 		if (verifyResponse.user) {
-			navigate({ to: "/" });
-		}
-	};
-
-	const loginAsGuest = async () => {
-		const verifyResponse = await clientDb.auth.signInAsGuest();
-		if (verifyResponse.user) {
-			navigate({ to: "/" });
+			navigate({ to: '/' });
 		}
 	};
 
 	const goBack = () => {
-		setStage("email");
-		setCodeInput("");
+		setStage('email');
+		setCodeInput('');
 	};
 
 	return (
@@ -54,15 +67,15 @@ function RouteComponent() {
 			<Welcome />
 			<div className="rounded-lg p-6 border border-neutral-200 shadow flex flex-col gap-4">
 				<h2 className="tracking-wide text-[#F54A00] text-2xl">
-					{stage === "email" ? "Sign In" : "Enter Code"}
+					{stage === 'email' ? 'Sign In' : 'Enter Code'}
 				</h2>
 				<p className="text-xs">
-					{stage === "email"
-						? "Enter your email to receive a magic code"
+					{stage === 'email'
+						? 'Enter your email to receive a magic code'
 						: `We sent a code to ${emailInput}`}
 				</p>
 				<div className="rounded">
-					{stage === "email" ? (
+					{stage === 'email' ? (
 						<>
 							<form
 								className="flex items-center border border-neutral-300 h-10"
@@ -127,13 +140,6 @@ function RouteComponent() {
 							</div>
 						</>
 					)}
-					<button
-						type="button"
-						onClick={loginAsGuest}
-						className="bg-accent border border-neutral-100 cursor-pointer shadow p-2"
-					>
-						Sign In as Guest
-					</button>
 				</div>
 			</div>
 		</div>
@@ -143,7 +149,7 @@ function RouteComponent() {
 function Welcome() {
 	return (
 		<div className="border p-2 shadow flex py-8 flex-col gap-2 items-center justify-center font-semibold border-neutral-200 rounded">
-			Welcome to Recipebook!
+			Welcome to RecipeBook!
 		</div>
 	);
 }
