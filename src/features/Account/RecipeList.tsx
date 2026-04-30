@@ -1,6 +1,6 @@
-import { RecipeCardLandscape } from '@/components/Home/RecipeCard';
 import { T } from '@/components/core';
-import type { Recipe } from 'trpc/types';
+import type { Recipe } from '@/instant.types';
+import SmallRecipeCard from './SmallRecipeCard';
 
 interface Props {
 	title: string;
@@ -13,7 +13,7 @@ const RecipeList = ({ title, recipes }: Props) => {
 			<T className="text-center text-lg font-semibold">{title}</T>
 			<div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
 				{recipes?.map((recipe) => (
-					<RecipeCardLandscape key={recipe.id} recipe={recipe} />
+					<SmallRecipeCard key={recipe.id} recipe={recipe} />
 				))}
 			</div>
 		</div>

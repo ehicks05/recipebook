@@ -8,7 +8,7 @@ import { clientDb } from '@/lib/db';
 import { RecipeCard } from './RecipeCard';
 import { RecipeMigrator } from './RecipeMigrator';
 
-export function RecipePicker() {
+export function RecipeBrowser() {
 	const [parent] = useAutoAnimate();
 	const [termInput, setTermInput] = useState('');
 	const [terms, setTerms] = useState<string[]>([]);

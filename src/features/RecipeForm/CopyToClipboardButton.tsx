@@ -1,7 +1,7 @@
 import { HiClipboardCopy } from 'react-icons/hi';
 import type { Ingredient, Recipe } from '@/instant.types';
 import { toast } from '@/lib/toast';
-import { Button } from '../core';
+import { Button } from '../../components/core';
 
 function updateClipboard(newClip: string) {
 	navigator.clipboard.writeText(newClip).then(

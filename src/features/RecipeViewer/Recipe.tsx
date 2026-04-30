@@ -14,7 +14,7 @@ export function Recipe({ recipe }: Props) {
 			<Hero title={`${recipe.name}`}>
 				<T className="text-sm font-semibold">
 					<div className="">
-						{recipe.author.displayName} |{' '}
+						{recipe.author?.displayName} |{' '}
 						<HiOutlineClock size={16} className="inline" /> {recipe.cookingTime}
 					</div>
 				</T>
@@ -23,7 +23,10 @@ export function Recipe({ recipe }: Props) {
 				<div className="grid grid-cols-1 justify-between gap-4 sm:grid-cols-2 md:grid-cols-4">
 					<div className="order-1 flex flex-col gap-4">
 						<clientDb.SignedIn>
-							<EditLink recipeId={recipe.id} recipeAuthorId={recipe.author.id} />
+							<EditLink
+								recipeId={recipe.id}
+								recipeAuthorId={recipe.author?.id || ''}
+							/>
 						</clientDb.SignedIn>
 						<T>{recipe.description}</T>
 						{recipe.source && (

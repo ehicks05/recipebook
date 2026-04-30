@@ -1,6 +1,5 @@
-import { createFileRoute, redirect } from '@tanstack/react-router';
-import { RecipePicker } from '@/components/Home/RecipePicker';
-import { clientDb } from '@/lib/db';
+import { createFileRoute } from '@tanstack/react-router';
+import { RecipeBrowser } from '@/features/RecipeBrowser/RecipeBrowser';
 
 export const Route = createFileRoute('/')({
 	component: App,
@@ -18,7 +17,7 @@ export const Route = createFileRoute('/')({
 function App() {
 	return (
 		<div className="flex flex-col">
-			<RecipePicker />
+			<RecipeBrowser />
 		</div>
 	);
 }

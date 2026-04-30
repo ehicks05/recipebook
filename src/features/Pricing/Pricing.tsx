@@ -1,5 +1,5 @@
-import { TierCard } from './TierCard';
 import { PRICING_TIERS } from './constants';
+import { TierCard } from './TierCard';
 
 const Hero = () => {
 	return (
@@ -27,7 +27,7 @@ const Hero = () => {
 	);
 };
 
-export default function Example() {
+export function Pricing() {
 	return (
 		<div className="relative isolate bg-white h-full px-6 py-24 sm:py-32 lg:px-8">
 			<Hero />

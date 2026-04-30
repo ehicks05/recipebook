@@ -1,7 +1,6 @@
 import { Link, useNavigate } from '@tanstack/react-router';
 import { clientDb } from '@/lib/db';
-import { SiteLogo } from './coreLayout/SiteLogo';
-import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import {
 	NavigationMenu,
 	NavigationMenuContent,
@@ -9,7 +8,8 @@ import {
 	NavigationMenuLink,
 	NavigationMenuList,
 	NavigationMenuTrigger,
-} from './ui/navigation-menu';
+} from '../ui/navigation-menu';
+import { SiteLogo } from './SiteLogo/SiteLogo';
 
 export default function Header() {
 	const { user } = clientDb.useAuth();

@@ -1,6 +1,6 @@
+import { Link } from '@tanstack/react-router';
 import { Card, T } from '@/components/core';
-import Link from 'next/link';
-import type { Recipe } from 'trpc/types';
+import type { Recipe } from '@/instant.types';
 
 interface Props {
 	recipe: Recipe;
@@ -9,7 +9,7 @@ interface Props {
 function SmallRecipeCard({ recipe: { id, emoji, name, author } }: Props) {
 	return (
 		<div className="">
-			<Link href={`/recipe/${id}`}>
+			<Link to="/recipes/$id" params={{ id }}>
 				<Card className="lift">
 					<div className="flex flex-col">
 						<div className="flex gap-4">
@@ -18,7 +18,7 @@ function SmallRecipeCard({ recipe: { id, emoji, name, author } }: Props) {
 								<div>
 									<T className="font-semibold">{name}</T>
 								</div>
-								<T className="text-xs italic">{author.displayName}</T>
+								<T className="text-xs italic">{author?.displayName}</T>
 							</div>
 						</div>
 					</div>

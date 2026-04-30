@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { RecipePicker } from "@/components/Home/RecipePicker";
+import { RecipeBrowser } from "@/features/RecipeBrowser/RecipeBrowser";
 
 export const Route = createFileRoute("/recipes/")({
 	component: RouteComponent,
 });
 
 function RouteComponent() {
-	return <RecipePicker />;
+	return <RecipeBrowser />;
 }

@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { RecipeForm } from '@/components/RecipeForm';
+import { RecipeForm } from '@/features/RecipeForm';
 import { clientDb } from '@/lib/db';
 
 export const Route = createFileRoute('/edit-recipe/$id')({
