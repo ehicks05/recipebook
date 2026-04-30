@@ -109,7 +109,8 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 						<RecipeDetailsForm
 							control={control}
 							register={register}
-							errors={errors}
+              errors={errors}
+							recipe={recipe}
 						/>
 						<IngredientsForm
 							ingredientsFieldArray={ingredientsFieldArray}

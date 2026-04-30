@@ -1,17 +1,18 @@
 import type { Control, FieldErrors, UseFormRegister } from 'react-hook-form';
 import { MyInput, MyTextArea, T } from '@/components/core';
+import type { Recipe } from '@/instant.types';
 import type { FormRecipe } from '../types';
 import { EmojiInput } from './EmojiInput';
-
-// import RecipeImageInput from './RecipeImageInput';
+import { FileUploader } from './FileUploader';
 
 interface Props {
 	errors: FieldErrors<FormRecipe>;
 	register: UseFormRegister<FormRecipe>;
 	control: Control<FormRecipe>;
+	recipe: Recipe;
 }
 
-export const RecipeDetailsForm = ({ errors, register, control }: Props) => {
+export const RecipeDetailsForm = ({ errors, register, control, recipe }: Props) => {
 	return (
 		<div className="flex flex-col gap-2 md:col-span-1 lg:col-span-2">
 			<T className="text-lg font-semibold">Recipe Details</T>
@@ -58,7 +59,12 @@ export const RecipeDetailsForm = ({ errors, register, control }: Props) => {
 				/>
 			</div>
 			<EmojiInput control={control} />
-			{/*<RecipeImageInput />*/}
+
+			<div>
+				Image
+				{recipe.image && <img src={recipe.image.url} alt="recipe" />}
+				<FileUploader path={recipe.id} />
+			</div>
 		</div>
 	);
 };

@@ -1,6 +1,6 @@
 // Docs: https://www.instantdb.com/docs/permissions
 
-import type { InstantRules } from "@instantdb/react";
+import type { InstantRules } from '@instantdb/react';
 
 const rules = {
 	/**
@@ -19,14 +19,21 @@ const rules = {
 	 *   bind: {"isOwner": "auth.id != null && auth.id == data.ownerId"},
 	 * },
 	 */
+	$files: {
+		allow: {
+			view: 'true',
+			create: 'auth.id != null',
+			delete: 'auth.id != null',
+		},
+	},
 	$users: {
 		allow: {
-			create: "true",
-			view: "true",
+			create: 'true',
+			view: 'true',
 		},
 		fields: {
-			email: "auth.id == data.id",
-			type: "auth.id == data.id",
+			email: 'auth.id == data.id',
+			type: 'auth.id == data.id',
 		},
 	},
 } satisfies InstantRules;

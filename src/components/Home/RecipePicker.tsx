@@ -35,6 +35,7 @@ export function RecipePicker() {
 			ingredients: {},
 			author: {},
 			favoritedBy: {},
+			image: {},
 		},
 	});
 

@@ -1,11 +1,11 @@
-import { defaultImage, emojiToImage } from "components/Home/constants";
-// import Image from 'next/image';
-import { FaPizzaSlice } from "react-icons/fa";
+import { defaultImage, emojiToImage } from 'components/Home/constants';
+import { FaPizzaSlice } from 'react-icons/fa';
+import type { File } from '@/instant.types';
 
 // import { UPLOADTHING_BASE_URL } from "uploadthing/constants";
 
 interface Props {
-	imageSrc?: string | null;
+	image?: File | null;
 	emoji?: string;
 	emojiSize?: string;
 	height?: number;
@@ -15,9 +15,9 @@ interface Props {
 }
 
 export const RecipeImage = ({
-	imageSrc,
+	image,
 	emoji,
-	emojiSize = "text-8xl",
+	emojiSize = 'text-8xl',
 	height = 300,
 	width = 400,
 	className,
@@ -29,19 +29,17 @@ export const RecipeImage = ({
 			onClick={onClick}
 			onKeyUp={onClick}
 		>
-			{imageSrc && (
+			{image && (
 				<img
 					className={`object-cover w-full ${className}`}
-					src={`${"foo"}/${imageSrc}`}
-					alt="recipe"
+					src={image.url}
+					alt="recipeImage"
 					height={height}
 					width={width}
 				/>
 			)}
-			{!imageSrc && emoji && <span className={emojiSize}>{emoji}</span>}
-			{!imageSrc && !emoji && (
-				<FaPizzaSlice className="w-3/4 h-3/4 opacity-25" />
-			)}
+			{!image && emoji && <span className={emojiSize}>{emoji}</span>}
+			{!image && !emoji && <FaPizzaSlice className="w-3/4 h-3/4 opacity-25" />}
 		</div>
 	);
 };

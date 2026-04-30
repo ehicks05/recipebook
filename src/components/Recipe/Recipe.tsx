@@ -1,7 +1,7 @@
-import { HiOutlineClock } from "react-icons/hi";
-import { Container, Hero, T } from "@/components/core";
-import { clientDb } from "@/lib/db";
-import { Directions, EditLink, Ingredients } from "./Components";
+import { HiOutlineClock } from 'react-icons/hi';
+import { Container, Hero, T } from '@/components/core';
+import { clientDb } from '@/lib/db';
+import { Directions, EditLink, Ingredients } from './Components';
 
 interface Props {
 	id: string;
@@ -14,6 +14,7 @@ export function Recipe({ id }: Props) {
 			author: {},
 			ingredients: {},
 			favoritedBy: {},
+			image: {},
 		},
 	});
 	const recipe = data?.recipes[0];
@@ -25,7 +26,7 @@ export function Recipe({ id }: Props) {
 			<Hero title={`${recipe.name}`}>
 				<T className="text-sm font-semibold">
 					<div className="">
-						{recipe.author.displayName} |{" "}
+						{recipe.author.displayName} |{' '}
 						<HiOutlineClock size={16} className="inline" /> {recipe.cookingTime}
 					</div>
 				</T>
@@ -34,15 +35,12 @@ export function Recipe({ id }: Props) {
 				<div className="grid grid-cols-1 justify-between gap-4 sm:grid-cols-2 md:grid-cols-4">
 					<div className="order-1 flex flex-col gap-4">
 						<clientDb.SignedIn>
-							<EditLink
-								recipeId={recipe.id}
-								recipeAuthorId={recipe.author.id}
-							/>
+							<EditLink recipeId={recipe.id} recipeAuthorId={recipe.author.id} />
 						</clientDb.SignedIn>
 						<T>{recipe.description}</T>
 						{recipe.source && (
 							<T className="block text-sm font-semibold">
-								<span className="font-normal">from</span>{" "}
+								<span className="font-normal">from</span>{' '}
 								<a href={recipe.source} target="_blank" rel="noreferrer">
 									{new URL(recipe.source).host}
 								</a>

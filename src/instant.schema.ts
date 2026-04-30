@@ -25,7 +25,6 @@ const _schema = i.schema({
 			servings: i.number(),
 			isPublished: i.boolean(),
 			source: i.string(),
-			imageSrc: i.string().optional(),
 			isFeatured: i.boolean().optional(),
 
 			steps: i.json<{ text: string }[]>(),
@@ -51,13 +50,10 @@ const _schema = i.schema({
 				label: 'linkedGuestUsers',
 			},
 		},
-
-		// recipe <-> author (appUser)
 		recipeAuthor: {
 			forward: { on: 'recipes', has: 'one', label: 'author', required: true },
 			reverse: { on: '$users', has: 'many', label: 'recipes' },
 		},
-		// recipe <-> ingredients
 		recipeIngredients: {
 			forward: { on: 'recipes', has: 'many', label: 'ingredients' },
 			reverse: {
@@ -67,7 +63,10 @@ const _schema = i.schema({
 				onDelete: 'cascade',
 			},
 		},
-		// recipe <-> userFavorites (represented as a many-to-many link)
+		recipeImage: {
+			forward: { on: 'recipes', has: 'one', label: 'image' },
+			reverse: { on: '$files', has: 'one', label: 'recipe', onDelete: 'cascade' },
+		},
 		userFavorites: {
 			forward: { on: '$users', has: 'many', label: 'favoriteRecipes' },
 			reverse: { on: 'recipes', has: 'many', label: 'favoritedBy' },

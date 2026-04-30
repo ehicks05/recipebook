@@ -14,6 +14,7 @@ function RouteComponent() {
 			$: { where: { id } },
 			ingredients: {},
 			author: {},
+			image: {},
 		},
 	});
 

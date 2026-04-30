@@ -18,7 +18,7 @@ export const RecipeCard = ({
 		name,
 		author,
 		description,
-		imageSrc,
+		image,
 		isFeatured,
 		favoritedBy,
 	},
@@ -30,7 +30,7 @@ export const RecipeCard = ({
 					<div className="-m-4 mb-0 h-48">
 						<div className="h-48 w-full rounded-t bg-neutral-50 dark:bg-[#1C1C1C] text-neutral-400 dark:text-neutral-700">
 							<RecipeImage
-								imageSrc={imageSrc}
+								image={image}
 								emoji={emoji}
 								className="h-48 rounded-t"
 							/>
