@@ -49,10 +49,6 @@ export function Recipe({ recipe }: Props) {
 						<Directions directions={recipe.steps} />
 					</div>
 				</div>
-
-				<pre className="text-xs bg-neutral-900" key={recipe.id}>
-					{JSON.stringify(recipe, null, 2)}
-				</pre>
 			</Container>
 		</>
 	);
