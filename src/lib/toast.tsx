@@ -1,32 +1,23 @@
-import clsx from "clsx";
-import rht, { type ToastOptions } from "react-hot-toast";
-import { Alert } from "@/components/core";
+import clsx from 'clsx';
+import rht, { type ToastOptions } from 'react-hot-toast';
+import { Alert } from '@/components/core';
 
 interface Params {
-	variant: "error" | "info" | "success" | "neutral";
+	variant: 'error' | 'info' | 'success' | 'neutral';
 	title: string;
 	description?: string;
 	className?: string;
 	options?: ToastOptions;
 }
 
-export const toast = ({
-	variant,
-	title,
-	description,
-	className,
-	options,
-}: Params) =>
+export const toast = ({ variant, title, description, className, options }: Params) =>
 	rht.custom(
 		(t: { visible: boolean }) => (
 			<Alert
 				variant={variant}
 				title={title}
 				description={description}
-				className={clsx(
-					t.visible ? "animate-enter" : "animate-leave",
-					className,
-				)}
+				className={clsx(t.visible ? 'animate-enter' : 'animate-leave', className)}
 			/>
 		),
 		options,
