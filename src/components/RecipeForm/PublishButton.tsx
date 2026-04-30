@@ -20,6 +20,7 @@ export const PublishButton = ({ recipe }: { recipe: Recipe }) => {
 
 	return (
 		<Button
+			disabled={recipe.isFeatured}
 			onClick={() =>
 				updatePublished({
 					id: recipe.id,
