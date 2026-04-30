@@ -1,5 +1,5 @@
 import type { Recipe } from 'schema-dts';
-import { parseIngredient } from '@/lib/recipe-import/parse-ingredient';
+import { parseIngredient } from '@/features/RecipeImporter/server/parse-ingredient';
 import { parseDirections } from './parse-directions';
 import { parseServings } from './parse-servings';
 

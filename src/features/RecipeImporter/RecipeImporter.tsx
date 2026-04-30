@@ -1,13 +1,11 @@
 'use client';
-import { useAuth } from '@clerk/nextjs';
-import Recipe from '@/components/Recipe/Recipe';
-import { RecipeForm } from '@/components/RecipeForm';
-import { Alert, Button, Container, Loading, MyInput, T } from '@/components/core';
-import type { NextPage } from 'next';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useNavigate } from '@tanstack/react-router';
 import { useState } from 'react';
-import { api } from 'trpc/react';
-import { parseLdJsonRecipe } from 'utils/recipe-import';
+import { Alert, Button, Container, Loading, MyInput, T } from '@/components/core';
+import { Recipe } from '@/components/Recipe/Recipe';
+import { RecipeForm } from '@/components/RecipeForm';
+import { clientDb } from '@/lib/db';
+import { parseLdJsonRecipe } from '@/features/RecipeImporter/server';
 
 const Instructions = () => (
 	<Container>
@@ -24,11 +22,9 @@ const Instructions = () => (
 	</Container>
 );
 
-const RecipeImportPage: NextPage = () => {
-	const { userId } = useAuth();
-	const router = useRouter();
-	const searchParams = useSearchParams();
-	const url = searchParams.get('url');
+export const RecipeImporter = ({ url }: { url?: string }) => {
+	const { id: userId } = clientDb.useUser();
+	const navigate = useNavigate();
 	const [mode, setMode] = useState<'view' | 'edit'>('view');
 
 	const {
@@ -44,7 +40,7 @@ const RecipeImportPage: NextPage = () => {
 	);
 
 	const handleChange = (url: string) => {
-		void router.push(`recipe-import?url=${url}`);
+		void navigate({ to: `/recipe-import?url=${url}` });
 		return null;
 	};
 
@@ -91,5 +87,3 @@ const RecipeImportPage: NextPage = () => {
 		</>
 	);
 };
-
-export default RecipeImportPage;
