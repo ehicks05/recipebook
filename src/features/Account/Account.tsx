@@ -30,11 +30,9 @@ const YourLists = ({ user }: { user: User }) => {
 
 	return (
 		<Container>
-			<T className="text-xl">Your Lists</T>
-			<div>
+			<div className="flex flex-col gap-4">
 				<RecipeList recipes={authoredRecipes} title="My Recipes" />
-			</div>
-			<div>
+
 				<RecipeList recipes={favoriteRecipes} title="My Favorites" />
 			</div>
 		</Container>
@@ -47,16 +45,13 @@ export const Account = () => {
 	const createdAt = user.createdAt
 		? new Date(user.createdAt).toLocaleDateString()
 		: undefined;
-	const subtitle = createdAt ? `Joined ${createdAt}` : undefined;
-
-	console.log(user.createdAt.slice(0, 1));
+	const subtitle = createdAt
+		? `${user?.displayName || 'New User'} Joined ${createdAt}`
+		: undefined;
 
 	return (
 		<>
-			<Hero
-				title={`${user?.displayName || 'New User'}'s Account`}
-				subtitle={subtitle}
-			/>
+			<Hero title="Account" subtitle={subtitle} />
 			<YourLists user={user} />
 		</>
 	);
