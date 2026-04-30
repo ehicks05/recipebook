@@ -16,11 +16,11 @@ export default function Header() {
 	const navigate = useNavigate();
 	const signOut = () => {
 		clientDb.auth.signOut().then(() => {
-			navigate({ to: '/login' });
+			navigate({ to: '/' });
 		});
 	};
 
-	const ALWAYS = [{ to: '/import', label: 'Import' }];
+	const ALWAYS = [{ to: '/import-recipe', label: 'Import' }];
 	const NOAUTH = [{ to: '/login', label: 'Log In' }];
 	const AUTHED = [{ to: '/create-recipe', label: 'Create Recipe' }];
 
