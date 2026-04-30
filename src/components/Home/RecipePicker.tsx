@@ -24,7 +24,12 @@ export function RecipePicker() {
 		terms.length !== 0
 			? {
 					and: terms.map((term) => ({
-						'ingredients.name': { $ilike: `%${term}%` },
+						or: [
+							{ 'ingredients.name': { $ilike: `%${term}%` } },
+							{ 'author.displayName': { $ilike: `%${term}%` } },
+							{ name: { $ilike: `%${term}%` } },
+							{ description: { $ilike: `%${term}%` } },
+						],
 					})),
 				}
 			: undefined;

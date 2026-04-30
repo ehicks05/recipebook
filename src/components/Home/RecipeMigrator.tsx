@@ -27,7 +27,7 @@ export const RecipeMigrator = () => {
 					createdAt: recipe.created_at,
 					description: recipe.description,
 					emoji: recipe.emoji,
-					imageSrc: recipe.image_src,
+					// imageSrc: recipe.image_src,
 					isFeatured: recipe.is_featured,
 					isPublished: recipe.is_published,
 					name: recipe.name,
