@@ -1,7 +1,7 @@
 import type { Control } from 'react-hook-form';
 import { Controller } from 'react-hook-form';
 import { T } from '@/components/core';
-import type { FormRecipe } from '../types';
+import type { FormRecipe } from '../../types';
 import { EmojiDialog } from './EmojiDialog';
 
 export const EmojiInput = ({ control }: { control: Control<FormRecipe> }) => {

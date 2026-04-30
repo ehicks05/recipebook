@@ -2,7 +2,7 @@ import type { Control, FieldErrors, UseFormRegister } from 'react-hook-form';
 import { MyInput, MyTextArea, T } from '@/components/core';
 import type { Recipe } from '@/instant.types';
 import type { FormRecipe } from '../types';
-import { EmojiInput } from './EmojiInput';
+import { EmojiInput } from './EmojiInput/EmojiInput';
 import { FileUploader } from './FileUploader';
 
 interface Props {

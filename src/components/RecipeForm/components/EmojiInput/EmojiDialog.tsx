@@ -12,7 +12,7 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from '@/components/ui/dialog';
-import type { FormRecipe } from '../types';
+import type { FormRecipe } from '../../types';
 import { EmojiPicker } from './EmojiPicker';
 
 interface Props {

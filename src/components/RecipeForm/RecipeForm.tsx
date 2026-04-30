@@ -11,8 +11,7 @@ import type { Recipe } from '@/instant.types';
 import { clientDb } from '@/lib/db';
 import { dismissToast, toast } from '@/lib/toast';
 import { CopyToClipboardButton } from './CopyToClipboardButton';
-import { IngredientsForm, StepsForm } from './components';
-import { RecipeDetailsForm } from './components/RecipeDetailsForm';
+import { IngredientsForm, RecipeDetailsForm, StepsForm } from './components';
 import { DEFAULT_RECIPE } from './constants';
 import { createRecipe } from './createRecipe';
 import { DeleteRecipeDialog } from './DeleteRecipeDialog';
@@ -109,7 +108,7 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 						<RecipeDetailsForm
 							control={control}
 							register={register}
-              errors={errors}
+							errors={errors}
 							recipe={recipe}
 						/>
 						<IngredientsForm
