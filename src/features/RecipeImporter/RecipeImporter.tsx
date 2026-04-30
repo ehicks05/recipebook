@@ -1,75 +1,52 @@
 'use client';
 import { useNavigate } from '@tanstack/react-router';
-import { useServerFn } from '@tanstack/react-start';
-import { useEffect, useState } from 'react';
-import z, { type ZodError } from 'zod';
-import { Alert, Button, Container, Loading, MyInput, T } from '@/components/core';
+import { useState } from 'react';
+import z from 'zod';
+import { Alert, Button, Container, MyInput } from '@/components/core';
 import { Recipe } from '@/components/Recipe/Recipe';
 import { RecipeForm } from '@/components/RecipeForm';
 import { parseLdJsonRecipe } from '@/features/RecipeImporter/server';
 import { clientDb } from '@/lib/db';
-import { fetchHtml } from '@/middleware/fetchHtml';
 import { Instructions } from './Instructions';
+import { useFetchHtml } from './useFetchHtml';
 
 const urlSchema = z.url({ protocol: /^https?$/ });
-
-const useFetchHtml = (_url?: string) => {
-	const fetchHtmlFetch = useServerFn(fetchHtml);
-	const [html, setHtml] = useState<Awaited<
-		ReturnType<typeof fetchHtmlFetch>
-	> | null>(null);
-	const [urlError, setUrlError] = useState<ZodError<string> | null>(null);
-
-	useEffect(() => {
-		const { data: url, error } = urlSchema.safeParse(_url);
-		if (error) {
-			setUrlError(error);
-			setHtml(null);
-		}
-		if (url) {
-			setUrlError(null);
-			fetchHtmlFetch({ data: { url } }).then(setHtml);
-		}
-	}, [fetchHtmlFetch, _url]);
-
-	return { html, urlError };
-};
 
 export const RecipeImporter = ({ url }: { url?: string }) => {
 	const { user } = clientDb.useAuth();
 	const navigate = useNavigate();
 	const [mode, setMode] = useState<'view' | 'edit'>('view');
 
-	const { html: recipeHtml, urlError } = useFetchHtml(url);
+	const { data: validatedUrl, error: urlError } = urlSchema.safeParse(url);
+	const { html: recipeHtml } = useFetchHtml(validatedUrl);
 
 	const handleChange = (url: string) => {
 		navigate({ to: '/import-recipe', search: { url } });
 	};
 
 	const { recipe, error: parseError } =
-		recipeHtml && url ? parseLdJsonRecipe(recipeHtml, url) : {};
-	const isFetching = undefined;
+		recipeHtml && validatedUrl ? parseLdJsonRecipe(recipeHtml, validatedUrl) : {};
 
 	return (
 		<>
 			{!url && <Instructions />}
-			<Container>
-				<div className="flex items-start gap-1">
-					<MyInput
-						className=""
-						placeholder="enter a recipe url"
-						value={url || ''}
-						onChange={(e) => handleChange(e.target.value)}
-					/>
-					<Button
-						disabled={!user}
-						onClick={() => setMode(mode === 'edit' ? 'view' : 'edit')}
-					>
-						{mode === 'edit' ? 'View' : 'Edit'}
-					</Button>
-				</div>
-			</Container>
-			{isFetching && <Loading />}
+			<div className="py-2 bg-muted">
+				<Container>
+					<div className="flex items-start gap-1">
+						<MyInput
+							placeholder="enter a recipe url"
+							value={url || ''}
+							onChange={(e) => handleChange(e.target.value)}
+						/>
+						<Button
+							disabled={!user}
+							onClick={() => setMode(mode === 'edit' ? 'view' : 'edit')}
+						>
+							{mode === 'edit' ? 'View' : 'Edit'}
+						</Button>
+					</div>
+				</Container>
+			</div>
 			{!user && recipe && (
 				<Alert variant="info" title={'Sign in to edit and save'} />
 			)}

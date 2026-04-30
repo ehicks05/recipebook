@@ -3,17 +3,19 @@ import z from 'zod';
 import { RecipeImporter } from '@/features/RecipeImporter/RecipeImporter';
 
 const searchSchema = z.object({
-	url: z.url().optional(),
+	url: z.string().optional(),
 });
 
 export const Route = createFileRoute('/import-recipe')({
-	validateSearch: (search) => searchSchema.safeParse(search),
+	validateSearch: (search) => {
+		const { data } = searchSchema.safeParse(search);
+		return { url: data?.url };
+	},
 	component: RouteComponent,
 });
 
 function RouteComponent() {
-	const { data } = Route.useSearch();
-	const { url } = data || {};
+	const { url } = Route.useSearch();
 
 	return <RecipeImporter url={url} />;
 }
