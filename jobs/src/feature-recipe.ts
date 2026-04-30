@@ -4,7 +4,9 @@ import { adminDb } from './lib/adminDb.js';
 export const featureRecipe = async () => {
 	console.log('Running featured recipe update task...');
 
-	const { recipes } = await adminDb.query({ recipes: {} });
+	const { recipes } = await adminDb.query({
+		recipes: { $: { where: { isPublished: true } } },
+	});
 
 	const prevFeaturedRecipe = recipes.find((recipe) => recipe.isFeatured);
 	if (prevFeaturedRecipe) {
