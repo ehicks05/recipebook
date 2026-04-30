@@ -4,23 +4,9 @@ import { useState } from 'react';
 import { Alert, Button, Container, Loading, MyInput, T } from '@/components/core';
 import { Recipe } from '@/components/Recipe/Recipe';
 import { RecipeForm } from '@/components/RecipeForm';
-import { clientDb } from '@/lib/db';
 import { parseLdJsonRecipe } from '@/features/RecipeImporter/server';
-
-const Instructions = () => (
-	<Container>
-		<Alert variant="info" title="What is this page?">
-			<div className="max-w-prose">
-				Here you can paste the url of a recipe from the web. If it includes
-				web-friendly metadata, you will be able to see it here.
-				<br />
-				<br />
-				Check the imported recipe carefully! Depending on how the website formats
-				their metadata, imported recipes can wind up with parts missing or garbled.
-			</div>
-		</Alert>
-	</Container>
-);
+import { clientDb } from '@/lib/db';
+import { Instructions } from './Instructions';
 
 export const RecipeImporter = ({ url }: { url?: string }) => {
 	const { id: userId } = clientDb.useUser();
