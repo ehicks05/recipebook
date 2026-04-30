@@ -6,25 +6,20 @@ interface Props {
 	recipe: Recipe;
 }
 
-function SmallRecipeCard({ recipe: { id, emoji, name, author } }: Props) {
+function SmallRecipeCard({ recipe: { id, emoji, name } }: Props) {
 	return (
-		<div className="">
-			<Link to="/recipes/$id" params={{ id }}>
-				<Card className="lift">
-					<div className="flex flex-col">
-						<div className="flex gap-4">
-							<figure className="h-16 w-16 pt-2 text-5xl">{emoji}</figure>
-							<div className="w-full">
-								<div>
-									<T className="font-semibold">{name}</T>
-								</div>
-								<T className="text-xs italic">{author?.displayName}</T>
-							</div>
-						</div>
+		<Link to="/recipes/$id" params={{ id }}>
+			<Card className="p-2 py-1">
+				<div className="flex items-center gap-4">
+					<figure className="flex items-center justify-center size-8 text-2xl">
+						{emoji}
+					</figure>
+					<div className="w-full">
+						<T className="text-sm line-clamp-1">{name}</T>
 					</div>
-				</Card>
-			</Link>
-		</div>
+				</div>
+			</Card>
+		</Link>
 	);
 }
 
