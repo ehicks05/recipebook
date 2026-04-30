@@ -1,5 +1,5 @@
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-export const parseDirections = (input: string | any[]) => {
+export const parseSteps = (input: string | any[]) => {
 	if (typeof input === 'string') return [input];
 
 	return input.flatMap((item) => {

@@ -1,11 +1,26 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Recipe } from "@/components/Recipe/Recipe";
+import { clientDb } from "@/lib/db";
 
 export const Route = createFileRoute("/recipes/$id")({
 	component: RouteComponent,
 });
 
 function RouteComponent() {
-	const { id } = Route.useParams();
-	return <Recipe id={id} />;
+  const { id } = Route.useParams();
+
+  const { data } = clientDb.useQuery({
+		recipes: {
+			$: { where: { id } },
+			author: {},
+			ingredients: {},
+			favoritedBy: {},
+			image: {},
+		},
+	});
+	const recipe = data?.recipes[0];
+ 
+	if (!recipe) return null;
+  
+	return <Recipe recipe={recipe} />;
 }

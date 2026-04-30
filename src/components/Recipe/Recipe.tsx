@@ -1,26 +1,14 @@
 import { HiOutlineClock } from 'react-icons/hi';
 import { Container, Hero, T } from '@/components/core';
+import type { Recipe as IRecipe } from '@/instant.types';
 import { clientDb } from '@/lib/db';
 import { Directions, EditLink, Ingredients } from './Components';
 
 interface Props {
-	id: string;
+	recipe: IRecipe;
 }
 
-export function Recipe({ id }: Props) {
-	const { data } = clientDb.useQuery({
-		recipes: {
-			$: { where: { id } },
-			author: {},
-			ingredients: {},
-			favoritedBy: {},
-			image: {},
-		},
-	});
-	const recipe = data?.recipes[0];
-
-	if (!recipe) return null;
-
+export function Recipe({ recipe }: Props) {
 	return (
 		<>
 			<Hero title={`${recipe.name}`}>

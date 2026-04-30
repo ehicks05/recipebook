@@ -7,12 +7,13 @@ const searchSchema = z.object({
 });
 
 export const Route = createFileRoute('/import-recipe')({
-	validateSearch: (search) => searchSchema.parse(search),
+	validateSearch: (search) => searchSchema.safeParse(search),
 	component: RouteComponent,
 });
 
 function RouteComponent() {
-	const { url } = Route.useSearch();
+	const { data } = Route.useSearch();
+	const { url } = data || {};
 
 	return <RecipeImporter url={url} />;
 }

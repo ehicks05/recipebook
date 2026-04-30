@@ -9,7 +9,7 @@ interface Props {
 	errors: FieldErrors<FormRecipe>;
 	register: UseFormRegister<FormRecipe>;
 	control: Control<FormRecipe>;
-	recipe: Recipe;
+	recipe?: Recipe;
 }
 
 export const RecipeDetailsForm = ({ errors, register, control, recipe }: Props) => {
@@ -60,11 +60,13 @@ export const RecipeDetailsForm = ({ errors, register, control, recipe }: Props) 
 			</div>
 			<EmojiInput control={control} />
 
-			<div>
-				Image
-				{recipe.image && <img src={recipe.image.url} alt="recipe" />}
-				<FileUploader path={recipe.id} />
-			</div>
+			{recipe && (
+				<div>
+					Image
+					{recipe.image && <img src={recipe.image.url} alt="recipe" />}
+					{recipe.id && <FileUploader path={recipe.id} />}
+				</div>
+			)}
 		</div>
 	);
 };

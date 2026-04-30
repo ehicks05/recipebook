@@ -1,5 +1,4 @@
 import clsx from 'clsx';
-import { T } from '@/components/core';
 import type React from 'react';
 import type {
 	FieldError,
@@ -8,6 +7,7 @@ import type {
 	UseFormRegister,
 } from 'react-hook-form';
 import TextareaAutosize from 'react-textarea-autosize';
+import { T } from '@/components/core';
 
 const BASE =
 	'px-3 py-2 text-sm sm:text-base w-full rounded border-neutral-100 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-700 dark:text-neutral-100';
@@ -152,4 +152,4 @@ const MySelect = <T extends FieldValues>({
 	);
 };
 
-export { MyInput, MyTextArea, MySelect };
+export { MyInput, MySelect, MyTextArea };
