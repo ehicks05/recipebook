@@ -34,49 +34,63 @@ export const IngredientsForm = ({
 			<span className="text-lg font-semibold">Ingredients</span>
 			<div className="flex flex-col gap-1" ref={parent}>
 				{ingredientsFieldArray.fields.map((field, index) => (
-					<div key={field.id} className="flex gap-1">
-						<MyInput
-              name={`ingredients.${index}.quantity`}
-              placeholder="Quantity"
-							register={register}
-              error={errors.ingredients?.[index]?.quantity}
-              fullWidth={false}
-              className='text-right'
-              containerClassName='w-36'
-						/>
-						<MySelect
-							name={`ingredients.${index}.unit`}
-							register={register}
-							error={errors.ingredients?.[index]?.unit}
-						>
-							<UnitOptions />
-						</MySelect>
-						<MyInput
-              name={`ingredients.${index}.name`}
-							placeholder="Ingredient"
-							register={register}
-							error={errors.ingredients?.[index]?.name}
-						/>
+					<div key={field.id}>
 						<div className="flex gap-1">
-							<Button
-								disabled={index === 0}
-								onClick={() => ingredientsFieldArray.swap(index, index - 1)}
+							<MyInput
+								name={`ingredients.${index}.quantity`}
+								placeholder="Quantity"
+								register={register}
+								fullWidth={false}
+								className="text-right"
+								containerClassName="w-36"
+								error={!!errors.ingredients?.[index]?.quantity}
+							/>
+							<MySelect
+								name={`ingredients.${index}.unit`}
+								register={register}
+								error={!!errors.ingredients?.[index]?.unit}
 							>
-								<HiArrowUp />
-							</Button>
-							<Button
-								disabled={index === ingredientsFieldArray.fields.length - 1}
-								onClick={() => ingredientsFieldArray.swap(index, index + 1)}
-							>
-								<HiArrowDown />
-							</Button>
-							<Button
-								disabled={ingredientsFieldArray.fields.length <= 1}
-								onClick={() => ingredientsFieldArray.remove(index)}
-							>
-								<HiTrash />
-							</Button>
+								<UnitOptions />
+							</MySelect>
+							<MyInput
+								name={`ingredients.${index}.name`}
+								placeholder="Ingredient"
+								register={register}
+								error={!!errors.ingredients?.[index]?.name}
+							/>
+							<div className="flex gap-1">
+								<Button
+									disabled={index === 0}
+									onClick={() => ingredientsFieldArray.swap(index, index - 1)}
+								>
+									<HiArrowUp />
+								</Button>
+								<Button
+									disabled={index === ingredientsFieldArray.fields.length - 1}
+									onClick={() => ingredientsFieldArray.swap(index, index + 1)}
+								>
+									<HiArrowDown />
+								</Button>
+								<Button
+									disabled={ingredientsFieldArray.fields.length <= 1}
+									onClick={() => ingredientsFieldArray.remove(index)}
+								>
+									<HiTrash />
+								</Button>
+							</div>
 						</div>
+						{[
+							errors.ingredients?.[index]?.quantity?.message,
+							errors.ingredients?.[index]?.unit?.message,
+							errors.ingredients?.[index]?.name?.message,
+						]
+							.filter(Boolean)
+							.map(String)
+							.map((message) => (
+								<div key={message} className="text-sm text-red-600">
+									{message}
+								</div>
+							))}
 					</div>
 				))}
 				<div className="text-right">

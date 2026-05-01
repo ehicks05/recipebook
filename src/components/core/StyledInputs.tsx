@@ -21,7 +21,7 @@ export interface IMyInputProps<T extends FieldValues>
 	fullWidth?: boolean;
 	name?: string;
 	register?: UseFormRegister<T>;
-	error?: FieldError;
+	error?: boolean;
 }
 
 /**
@@ -64,7 +64,6 @@ const MyInput = <T extends FieldValues>({
 				{...props}
 			/>
 			{leftIcon && <span className="">{leftIcon}</span>}
-			{error && <div className="text-sm text-red-600">{error.message}</div>}
 		</div>
 	);
 };
@@ -119,7 +118,7 @@ interface IMySelectProps<T extends FieldValues> {
 	disabled?: boolean;
 	children: React.JSX.Element | React.JSX.Element[];
 	register?: UseFormRegister<T>;
-	error?: FieldError;
+	error?: boolean;
 }
 
 const MySelect = <T extends FieldValues>({
@@ -147,7 +146,6 @@ const MySelect = <T extends FieldValues>({
 			>
 				{props.children}
 			</select>
-			{error && <div className="text-sm text-red-600">{error.message}</div>}
 		</div>
 	);
 };
