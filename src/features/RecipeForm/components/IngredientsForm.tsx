@@ -38,7 +38,7 @@ export const IngredientsForm = ({
 						<div className="flex gap-1">
 							<MyInput
 								name={`ingredients.${index}.quantity`}
-								placeholder="Quantity"
+								placeholder="Amt"
 								register={register}
 								fullWidth={false}
 								className="text-right"

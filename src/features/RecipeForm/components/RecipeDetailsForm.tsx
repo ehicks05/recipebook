@@ -28,14 +28,14 @@ export const RecipeDetailsForm = ({ errors, register, control, recipe }: Props) 
 			<MyTextArea
 				name="description"
 				label="Description"
-				placeholder="Add a description here"
+				placeholder="Description"
 				register={register}
 				error={errors.description}
 			/>
 			<MyInput
 				name="source"
-				label="Source (optional)"
-				placeholder="Add the source url"
+				label="Source URL (optional)"
+				placeholder="Source"
 				register={register}
 			/>
 
