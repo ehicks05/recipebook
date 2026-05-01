@@ -1,6 +1,7 @@
 'use client';
 
 import { id } from '@instantdb/react';
+import { forEachAsync } from 'es-toolkit';
 import { sortBy } from 'es-toolkit/compat';
 import { Button } from '@/components/core';
 import { RECIPE_EXPORT } from '@/data';
@@ -18,38 +19,50 @@ export const RecipeMigrator = () => {
 	};
 
 	const migrate = async (userId: string) => {
-		sortBy(RECIPE_EXPORT, (o) => o.created_at).forEach((recipe) => {
-			const recipeId = id();
+		const recipes = sortBy(RECIPE_EXPORT, (o) => o.created_at);
 
-			const recipeTx = clientDb.tx.recipes[recipeId]
-				.create({
-					cookingTime: recipe.cooking_time,
-					createdAt: recipe.created_at,
-					description: recipe.description,
-					emoji: recipe.emoji,
-					// imageSrc: recipe.image_src,
-					isFeatured: recipe.is_featured,
-					isPublished: recipe.is_published,
-					name: recipe.name,
-					servings: recipe.servings,
-					source: recipe.source || '',
-					steps: recipe.directions.map((step) => ({ text: step.text })),
-					updatedAt: recipe.updated_at,
-				})
-				.link({ author: userId });
+		await forEachAsync(
+			recipes,
+			async (recipe) => {
+				const recipeId = id();
 
-			const ingredientTxs = recipe.ingredients.map((ingredient) =>
-				clientDb.tx.ingredients[id()]
+				const recipeTx = clientDb.tx.recipes[recipeId]
 					.create({
-						name: ingredient.name,
-						unit: ingredient.unit,
-						quantity: ingredient.quantity,
+						cookingTime: recipe.cooking_time,
+						createdAt: recipe.created_at,
+						description: recipe.description,
+						emoji: recipe.emoji,
+						// imageSrc: recipe.image_src,
+						isFeatured: recipe.is_featured,
+						isPublished: recipe.is_published,
+						name: recipe.name,
+						servings: recipe.servings,
+						source: recipe.source || '',
+						steps: recipe.directions.map((step) => ({ text: step.text })),
+						updatedAt: recipe.updated_at,
 					})
-					.link({ recipe: recipeId }),
-			);
+					.link({ author: userId });
 
-			clientDb.transact([recipeTx, ...ingredientTxs]);
-		});
+				const ingredientTxs = recipe.ingredients.map((ingredient) =>
+					clientDb.tx.ingredients[id()]
+						.create({
+							name: ingredient.name,
+							unit: ingredient.unit,
+							quantity: ingredient.quantity,
+						})
+						.link({ recipe: recipeId }),
+				);
+
+				await forEachAsync(
+					[recipeTx, ...ingredientTxs],
+					async (tx) => {
+						clientDb.transact(tx);
+					},
+					{ concurrency: 1 },
+				);
+			},
+			{ concurrency: 1 },
+		);
 	};
 
 	return (

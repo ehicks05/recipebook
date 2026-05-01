@@ -1,4 +1,5 @@
 import { id } from '@instantdb/react';
+import { forEachAsync } from 'es-toolkit';
 import { clientDb } from '@/lib/db';
 import type { FormRecipe } from './types';
 
@@ -35,6 +36,13 @@ export const createRecipe = async ({ userId, recipe }: Params) => {
 			.link({ recipe: recipeId }),
 	);
 
-	await clientDb.transact([recipeTx, ...ingredientTxs]);
+	await forEachAsync(
+		[recipeTx, ...ingredientTxs],
+		async (tx) => {
+			clientDb.transact(tx);
+		},
+		{ concurrency: 1 },
+	);
+
 	return recipeId;
 };
