@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import type React from 'react';
-import { FaSpinner } from 'react-icons/fa';
+import { cn } from '@/lib/utils';
 
 const VARIANTS = {
 	default: clsx('bg-neutral-100 dark:bg-neutral-700 dark:text-neutral-200'),
@@ -12,14 +12,12 @@ const VARIANTS = {
 
 export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	variant?: keyof typeof VARIANTS;
-	loading?: boolean;
 	children?: React.ReactNode;
 	isStatic?: boolean;
 }
 
 export const Button = ({
 	variant = 'default',
-	loading,
 	className = '',
 	children,
 	type = 'button',
@@ -36,33 +34,17 @@ export const Button = ({
 	return (
 		<button
 			type={type}
-			disabled={disabled || isStatic || loading}
-			className={clsx(
-				'rounded border border-transparent',
+			disabled={disabled || isStatic}
+			className={cn(
+				'flex items-center justify-center gap-2 p-2 leading-none rounded border border-transparent',
+				{ 'opacity-50': disabled },
 				conditionalClasses,
 				variantClasses,
 				className,
 			)}
 			{...props}
 		>
-			<div className="relative">
-				{loading && (
-					<div className="absolute inset-0 rounded bg-neutral-300 opacity-30 dark:bg-black" />
-				)}
-				<div
-					className={clsx(
-						'flex items-center justify-center gap-2 px-2 py-2 leading-none',
-						{ 'opacity-50': disabled || loading },
-					)}
-				>
-					{children}
-				</div>
-				{loading && (
-					<div className="absolute inset-0 flex h-full w-full items-center justify-center">
-						<FaSpinner size={20} className="animate-spin text-neutral-500" />
-					</div>
-				)}
-			</div>
+			{children}
 		</button>
 	);
 };

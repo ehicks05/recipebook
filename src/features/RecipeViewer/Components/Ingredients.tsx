@@ -18,7 +18,7 @@ export function Ingredients({ ingredients, defaultServings }: Props) {
 		<div>
 			<div className="mb-2 flex items-center gap-2">
 				<span>Serves {scaledServings}</span>
-				<div className="whitespace-nowrap">
+				<div className="flex">
 					<Button
 						className="rounded-r-none"
 						onClick={() => setScaledServings(scaledServings - 1)}

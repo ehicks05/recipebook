@@ -44,7 +44,7 @@ export const RecipeCard = ({
 
 						<clientDb.SignedIn>
 							<FavoriteButton
-								className="-mr-2 -mt-9"
+								className="-mr-2 -mt-8 size-10 p-2"
 								recipeId={id}
 								favoritedBy={favoritedBy}
 							/>

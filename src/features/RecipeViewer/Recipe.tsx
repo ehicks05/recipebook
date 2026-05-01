@@ -2,6 +2,7 @@ import { HiOutlineClock } from 'react-icons/hi';
 import { Container, Hero } from '@/components/core';
 import type { Recipe as IRecipe } from '@/instant.types';
 import { clientDb } from '@/lib/db';
+import { FavoriteButton } from '../RecipeBrowser/FavoriteButton';
 import { Directions, EditLink, Ingredients } from './Components';
 
 interface Props {
@@ -12,7 +13,7 @@ export function Recipe({ recipe }: Props) {
 	return (
 		<>
 			<Hero title={`${recipe.name}`}>
-				<div className="flex gap-2 items-center">
+				<div className="flex flex-wrap gap-2 items-center">
 					{recipe.author?.displayName}
 					<span>·</span>
 					<span className="flex gap-px items-center">
@@ -38,6 +39,12 @@ export function Recipe({ recipe }: Props) {
 							recipeAuthorId={recipe.author?.id || ''}
 						/>
 					</clientDb.SignedIn>
+					<span>·</span>
+					<FavoriteButton
+						recipeId={recipe.id}
+						favoritedBy={recipe.favoritedBy}
+						className="size-7 p-1"
+					/>
 				</div>
 			</Hero>
 			<Container>

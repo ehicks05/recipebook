@@ -2,7 +2,8 @@ import { HiHeart, HiOutlineHeart } from 'react-icons/hi';
 import { Button } from '@/components/core';
 import { clientDb } from '@/lib/db';
 import { toast } from '@/lib/toast';
-import { toggleFavorite } from './actions';
+import { cn } from '@/lib/utils';
+import { toggleFavorite } from './toggleFavorite';
 
 interface Props {
 	recipeId: string;
@@ -32,13 +33,13 @@ export const FavoriteButton = ({ recipeId, className, favoritedBy }: Props) => {
 
 	return (
 		<Button
-			className={className}
+			className={cn('aspect-square', className)}
 			onClick={async (e) => {
 				e.preventDefault();
 				await handleClick();
 			}}
 		>
-			<Icon className="text-xl text-red-500" />
+			<Icon className="size-full text-red-500" />
 		</Button>
 	);
 };
