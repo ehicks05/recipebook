@@ -36,5 +36,6 @@ export const schemaOrgRecipeToRecipeBookRecipe = (
 		steps: parseSteps(recipe.recipeInstructions || ([] as any)).map(({ text }) => ({
 			text,
 		})),
+		favoritedBy: [],
 	};
 };

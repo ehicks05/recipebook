@@ -1,3 +1,4 @@
+import { useMatchRoute } from '@tanstack/react-router';
 import { HiOutlineClock } from 'react-icons/hi';
 import { Container, Hero } from '@/components/core';
 import type { Recipe as IRecipe } from '@/instant.types';
@@ -10,6 +11,8 @@ interface Props {
 }
 
 export function Recipe({ recipe }: Props) {
+	const matchRoute = useMatchRoute();
+
 	return (
 		<>
 			<Hero title={`${recipe.name}`}>
@@ -32,19 +35,21 @@ export function Recipe({ recipe }: Props) {
 							</a>
 						</>
 					)}
-					<clientDb.SignedIn>
-						<span>·</span>
-						<EditLink
-							recipeId={recipe.id}
-							recipeAuthorId={recipe.author?.id || ''}
-						/>
-					</clientDb.SignedIn>
-					<span>·</span>
-					<FavoriteButton
-						recipeId={recipe.id}
-						favoritedBy={recipe.favoritedBy}
-						className="size-7 p-1"
-					/>
+					{matchRoute({ to: '/recipes/$id' }) && (
+						<clientDb.SignedIn>
+							<span>·</span>
+							<EditLink
+								recipeId={recipe.id}
+								recipeAuthorId={recipe.author?.id || ''}
+							/>
+							<span>·</span>
+							<FavoriteButton
+								recipeId={recipe.id}
+								favoritedBy={recipe.favoritedBy}
+								className="size-7 p-1"
+							/>
+						</clientDb.SignedIn>
+					)}
 				</div>
 			</Hero>
 			<Container>

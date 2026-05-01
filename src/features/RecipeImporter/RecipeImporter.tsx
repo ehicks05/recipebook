@@ -30,7 +30,7 @@ export const RecipeImporter = ({ url }: { url?: string }) => {
 	return (
 		<>
 			{!url && <Instructions />}
-			<div className="py-2 bg-muted">
+			<div className="py-2">
 				<Container>
 					<div className="flex items-start gap-1">
 						<MyInput
