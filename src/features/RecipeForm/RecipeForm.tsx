@@ -133,7 +133,7 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 								</Button>
 								<PublishButton recipe={recipe} />
 								<DeleteRecipeDialog id={recipe.id} name={recipe.name} />
-								<CopyToClipboardButton recipe={recipe || importedRecipe} />
+								<CopyToClipboardButton recipe={recipe} />
 							</>
 						)}
 					</div>
