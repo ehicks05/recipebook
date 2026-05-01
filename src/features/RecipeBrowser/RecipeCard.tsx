@@ -3,7 +3,7 @@
 import { Link } from '@tanstack/react-router';
 import { HiStar } from 'react-icons/hi';
 import { Card, RecipeImage } from '@/components/core';
-import { FavoriteButton } from '@/features/RecipeBrowser/FavoriteButton';
+import { FavoriteButton } from '@/components/core/FavoriteButton';
 import type { Recipe } from '@/instant.types';
 import { clientDb } from '@/lib/db';
 

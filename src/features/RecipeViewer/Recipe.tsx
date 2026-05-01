@@ -2,7 +2,7 @@ import { HiOutlineClock } from 'react-icons/hi';
 import { Container, Hero } from '@/components/core';
 import type { Recipe as IRecipe } from '@/instant.types';
 import { clientDb } from '@/lib/db';
-import { FavoriteButton } from '../RecipeBrowser/FavoriteButton';
+import { FavoriteButton } from '../../components/core/FavoriteButton';
 import { Directions, EditLink, Ingredients } from './Components';
 
 interface Props {
