@@ -15,13 +15,18 @@ const rules = {
 		},
 	},
 	$users: {
+		bind: {
+			self: 'auth.id == data.id',
+		},
 		allow: {
 			create: 'true',
 			view: 'true',
+			update: 'self',
+			delete: 'false',
 		},
 		fields: {
-			email: 'auth.id == data.id',
-			type: 'auth.id == data.id',
+			email: 'self',
+			type: 'self',
 		},
 	},
 	recipes: {
@@ -37,8 +42,8 @@ const rules = {
 	},
 	ingredients: {
 		bind: {
-      isAuthor: "auth.id in data.ref('recipe.author.id')",
-			isPublished: "true in data.ref('recipe.isPublished')"
+			isAuthor: "auth.id in data.ref('recipe.author.id')",
+			isPublished: "true in data.ref('recipe.isPublished')",
 		},
 		allow: {
 			view: 'isPublished || isAuthor', // questionable necessity
