@@ -7,6 +7,7 @@
 		"build": "vite build",
 		"preview": "vite preview",
 		"test": "vitest run",
+		"start": "node .output/server/index.mjs",
 		"push:perms": "npx instant-cli@latest push perms",
 		"push:schema": "npx instant-cli@latest push schema"
 	},
