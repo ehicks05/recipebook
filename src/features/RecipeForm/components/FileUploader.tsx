@@ -39,6 +39,7 @@ export const FileUploader = ({ path }: { path: string }) => {
 		}
 		const { data } = await clientDb.storage.uploadFile(path, file);
 		await clientDb.transact(clientDb.tx.recipes[path].link({ image: data.id }));
+		setFile(null);
 	};
 
 	return (
