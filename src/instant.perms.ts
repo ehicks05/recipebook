@@ -35,6 +35,18 @@ const rules = {
 			delete: 'isAuthor',
 		},
 	},
+	ingredients: {
+		bind: {
+      isAuthor: "auth.id in data.ref('recipe.author.id')",
+			isPublished: "true in data.ref('recipe.isPublished')"
+		},
+		allow: {
+			view: 'isPublished || isAuthor', // questionable necessity
+			create: 'auth.id != null',
+			update: 'isAuthor',
+			delete: 'isAuthor',
+		},
+	},
 } satisfies InstantRules;
 
 export default rules;
