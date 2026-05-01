@@ -15,7 +15,7 @@ export const EmojiInput = ({ control }: { control: Control<FormRecipe> }) => {
 			name="emoji"
 			control={control}
 			render={({ field }) => (
-				<div className="flex flex-col gap-1">
+				<div className="flex flex-col gap-1/2">
 					<span>Emoji</span>
 
 					<Popover>

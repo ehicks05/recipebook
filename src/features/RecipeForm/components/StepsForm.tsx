@@ -19,9 +19,9 @@ export const StepsForm = ({ stepsFieldArray, register, errors }: Props) => {
 	const [parent] = useAutoAnimate();
 
 	return (
-		<div className="flex flex-col gap-2 md:col-span-2 lg:col-span-3">
+		<div className="flex flex-col gap-2 w-full max-w-xl">
 			<span className="text-lg font-semibold">Steps</span>
-			<div className="flex flex-col gap-6" ref={parent}>
+			<div className="flex flex-col gap-1" ref={parent}>
 				{stepsFieldArray.fields.map((field, index) => (
 					<div key={field.id} className="flex items-start gap-2">
 						<span className="pr-2">{index + 1}.</span>
@@ -32,31 +32,22 @@ export const StepsForm = ({ stepsFieldArray, register, errors }: Props) => {
 							register={register}
 							error={errors.steps?.[index]?.text}
 						/>
-						<div className="flex flex-col gap-2">
+						<div className="flex flex-col gap-1">
 							<Button
 								disabled={stepsFieldArray.fields.length <= 1}
-								onClick={(e) => {
-									e.preventDefault();
-									stepsFieldArray.remove(index);
-								}}
+								onClick={() => stepsFieldArray.remove(index)}
 							>
 								<HiTrash />
 							</Button>
 							<Button
 								disabled={index === 0}
-								onClick={(e) => {
-									e.preventDefault();
-									stepsFieldArray.swap(index, index - 1);
-								}}
+								onClick={() => stepsFieldArray.swap(index, index - 1)}
 							>
 								<HiArrowUp />
 							</Button>
 							<Button
 								disabled={index === stepsFieldArray.fields.length - 1}
-								onClick={(e) => {
-									e.preventDefault();
-									stepsFieldArray.swap(index, index + 1);
-								}}
+								onClick={() => stepsFieldArray.swap(index, index + 1)}
 							>
 								<HiArrowDown />
 							</Button>
@@ -64,11 +55,7 @@ export const StepsForm = ({ stepsFieldArray, register, errors }: Props) => {
 					</div>
 				))}
 				<div className="text-right">
-					<Button
-						onClick={() => {
-							stepsFieldArray.append(DEFAULT_STEP);
-						}}
-					>
+					<Button onClick={() => stepsFieldArray.append(DEFAULT_STEP)}>
 						<HiPlus />
 					</Button>
 				</div>

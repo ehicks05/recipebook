@@ -7,9 +7,10 @@ import type {
 	UseFormRegister,
 } from 'react-hook-form';
 import TextareaAutosize from 'react-textarea-autosize';
+import { cn } from '@/lib/utils';
 
 const BASE =
-	'px-3 py-2 text-sm sm:text-base w-full rounded border-neutral-100 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-700 dark:text-neutral-100';
+	'px-3 py-1 h-full text-sm sm:text-base w-full rounded border-neutral-100 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-700 dark:text-neutral-100';
 
 // https://github.com/react-hook-form/react-hook-form/discussions/4426#discussioncomment-623148
 export interface IMyInputProps<T extends FieldValues>
@@ -40,7 +41,7 @@ const MyInput = <T extends FieldValues>({
 }: IMyInputProps<T>) => {
 	return (
 		<div
-			className={clsx('flex w-full flex-col gap-1', containerClassName, {
+			className={cn('flex flex-col gap-1/2', containerClassName, {
 				'w-full': fullWidth,
 				hidden: props.type === 'hidden',
 			})}
@@ -53,7 +54,7 @@ const MyInput = <T extends FieldValues>({
 			<input
 				disabled={disabled}
 				type={props.type || 'text'}
-				className={clsx(BASE, className, {
+				className={clsx(BASE, '[appearance:textfield]', className, {
 					'outline outline-red-600': error,
 					'cursor-not-allowed': disabled,
 				})}
@@ -140,7 +141,7 @@ const MySelect = <T extends FieldValues>({
 			<select
 				disabled={disabled}
 				{...register?.(name as Path<T>, { valueAsNumber: type === 'number' })}
-				className={clsx(BASE, 'h-10 border-r-8', {
+				className={clsx(BASE, 'h-8 border-r-8', {
 					'outline outline-red-600': error,
 				})}
 			>

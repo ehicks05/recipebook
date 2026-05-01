@@ -14,7 +14,7 @@ interface Props {
 
 export const RecipeDetailsForm = ({ errors, register, control, recipe }: Props) => {
 	return (
-		<div className="flex flex-col gap-2 md:col-span-1 lg:col-span-2">
+		<div className="flex flex-col gap-2 max-w-xs">
 			<span className="text-lg font-semibold">Recipe Details</span>
 			<MyInput type="hidden" readOnly name="isPublished" register={register} />
 

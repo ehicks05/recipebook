@@ -51,10 +51,8 @@ export const Button = ({
 				)}
 				<div
 					className={clsx(
-						'flex items-center justify-center gap-2 px-3 py-3 leading-none',
-						{
-							'opacity-50': disabled || loading,
-						},
+						'flex items-center justify-center gap-2 px-2 py-2 leading-none',
+						{ 'opacity-50': disabled || loading },
 					)}
 				>
 					{children}

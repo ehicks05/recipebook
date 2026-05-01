@@ -30,70 +30,57 @@ export const IngredientsForm = ({
 	const [parent] = useAutoAnimate();
 
 	return (
-		<div className="flex flex-col gap-2 md:col-span-1 lg:col-span-2">
+		<div className="flex flex-col gap-2 max-w-2xl">
 			<span className="text-lg font-semibold">Ingredients</span>
-			<div className="flex flex-col gap-6" ref={parent}>
+			<div className="flex flex-col gap-1" ref={parent}>
 				{ingredientsFieldArray.fields.map((field, index) => (
-					<div key={field.id} className="flex flex-col gap-2">
-						<MyInput type="hidden" name={`ingredients.${index}.index`} />
-						<div className="flex items-start gap-2">
-							<MyInput
-								name={`ingredients.${index}.quantity`}
-								placeholder="Quantity"
-								register={register}
-								error={errors.ingredients?.[index]?.quantity}
-							/>
-							<MySelect
-								name={`ingredients.${index}.unit`}
-								register={register}
-								error={errors.ingredients?.[index]?.unit}
-							>
-								<UnitOptions />
-							</MySelect>
-							<div className="flex gap-2">
-								<Button
-									disabled={index === 0}
-									onClick={(e) => {
-										e.preventDefault();
-										ingredientsFieldArray.swap(index, index - 1);
-									}}
-								>
-									<HiArrowUp />
-								</Button>
-								<Button
-									disabled={index === ingredientsFieldArray.fields.length - 1}
-									onClick={(e) => {
-										e.preventDefault();
-										ingredientsFieldArray.swap(index, index + 1);
-									}}
-								>
-									<HiArrowDown />
-								</Button>
-								<Button
-									disabled={ingredientsFieldArray.fields.length <= 1}
-									onClick={(e) => {
-										e.preventDefault();
-										ingredientsFieldArray.remove(index);
-									}}
-								>
-									<HiTrash />
-								</Button>
-							</div>
-						</div>
+					<div key={field.id} className="flex gap-1">
 						<MyInput
-							name={`ingredients.${index}.name`}
+              name={`ingredients.${index}.quantity`}
+              placeholder="Quantity"
+							register={register}
+              error={errors.ingredients?.[index]?.quantity}
+              fullWidth={false}
+              className='text-right'
+              containerClassName='w-36'
+						/>
+						<MySelect
+							name={`ingredients.${index}.unit`}
+							register={register}
+							error={errors.ingredients?.[index]?.unit}
+						>
+							<UnitOptions />
+						</MySelect>
+						<MyInput
+              name={`ingredients.${index}.name`}
 							placeholder="Ingredient"
 							register={register}
 							error={errors.ingredients?.[index]?.name}
 						/>
+						<div className="flex gap-1">
+							<Button
+								disabled={index === 0}
+								onClick={() => ingredientsFieldArray.swap(index, index - 1)}
+							>
+								<HiArrowUp />
+							</Button>
+							<Button
+								disabled={index === ingredientsFieldArray.fields.length - 1}
+								onClick={() => ingredientsFieldArray.swap(index, index + 1)}
+							>
+								<HiArrowDown />
+							</Button>
+							<Button
+								disabled={ingredientsFieldArray.fields.length <= 1}
+								onClick={() => ingredientsFieldArray.remove(index)}
+							>
+								<HiTrash />
+							</Button>
+						</div>
 					</div>
 				))}
 				<div className="text-right">
-					<Button
-						onClick={() => {
-							ingredientsFieldArray.append(DEFAULT_INGREDIENT);
-						}}
-					>
+					<Button onClick={() => ingredientsFieldArray.append(DEFAULT_INGREDIENT)}>
 						<HiPlus />
 					</Button>
 				</div>
