@@ -41,24 +41,9 @@ export function DeleteRecipeDialog({ id, name }: { id: string; name: string }) {
 						?
 					</DialogDescription>
 				</DialogHeader>
-				<div className="flex items-center gap-2">
-					<div className="grid flex-1 gap-2">
-						{/*<Label htmlFor="link" className="sr-only">
-							Link
-						</Label>
-						<Input
-							id="link"
-							defaultValue="https://ui.shadcn.com/docs/installation"
-							readOnly
-						/>*/}
-					</div>
-				</div>
+
 				<DialogFooter className="sm:justify-start">
-					<Button
-						onClick={() => deleteRecipe({ id })}
-						variant="destructive"
-						// disabled={isLoading}
-					>
+					<Button onClick={() => deleteRecipe({ id })} variant="destructive">
 						Delete
 					</Button>
 					<DialogClose render={<Button type="button">Close</Button>} />

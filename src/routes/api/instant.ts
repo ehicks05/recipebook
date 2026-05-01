@@ -1,18 +1,18 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { createInstantRouteHandler } from "@instantdb/react";
+import { createInstantRouteHandler } from '@instantdb/react';
+import { createFileRoute } from '@tanstack/react-router';
 
 const appId = process.env.VITE_INSTANT_APP_ID!;
 
 const handler = createInstantRouteHandler({
-  appId,
+	appId,
 });
 
-export const Route = createFileRoute("/api/instant")({
-  server: {
-    handlers: {
-      POST: async ({ request }) => {
-        return handler.POST(request);
-      },
-    },
-  },
+export const Route = createFileRoute('/api/instant')({
+	server: {
+		handlers: {
+			POST: async ({ request }) => {
+				return handler.POST(request);
+			},
+		},
+	},
 });

@@ -2,11 +2,13 @@ import clsx from 'clsx';
 import { HiCheck } from 'react-icons/hi';
 import type { Tier } from './constants';
 
-export const TierCard = ({
-	tier,
-	isFirst,
-	isLast,
-}: { tier: Tier; isFirst: boolean; isLast: boolean }) => {
+interface Props {
+	tier: Tier;
+	isFirst: boolean;
+	isLast: boolean;
+}
+
+export const TierCard = ({ tier, isFirst, isLast }: Props) => {
 	return (
 		<div
 			key={tier.id}

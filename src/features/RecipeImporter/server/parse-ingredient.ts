@@ -49,7 +49,7 @@ const extractLeadingUnit = (input: string) => {
 		return { unit: supportedUnit, name };
 	}
 	return {
-		unit: null,
+		unit: undefined,
 		name: input,
 	};
 };

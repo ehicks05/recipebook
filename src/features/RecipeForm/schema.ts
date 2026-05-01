@@ -23,7 +23,9 @@ const BaseRecipeSchema = z.object({
 	source: z.string(),
 });
 
-export const RecipeSchema = BaseRecipeSchema.merge(Ingredients).merge(Steps);
+export const RecipeSchema = BaseRecipeSchema.extend(Ingredients.shape).extend(
+	Steps.shape,
+);
 export const RecipeUpdateSchema = RecipeSchema.extend({ id: z.string() });
 
 export type RecipeCreate = z.infer<typeof RecipeSchema>;

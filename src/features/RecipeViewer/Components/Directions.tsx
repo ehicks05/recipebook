@@ -1,4 +1,4 @@
-import { DirectionLine } from "./Direction";
+import { DirectionLine } from './Direction';
 
 interface Props {
 	directions: { text: string }[];

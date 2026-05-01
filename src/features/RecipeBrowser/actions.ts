@@ -1,6 +1,6 @@
-"use server";
+'use server';
 
-import { clientDb } from "@/lib/db";
+import { clientDb } from '@/lib/db';
 
 interface Params {
 	userId: string;
@@ -23,8 +23,8 @@ export const toggleFavorite = async ({
 		const err = e instanceof Error ? e : undefined;
 		return {
 			err,
-			title: "Unable to update favorites",
+			title: 'Unable to update favorites',
 		};
 	}
-	return { title: "Favorites updated" };
+	return { title: 'Favorites updated' };
 };

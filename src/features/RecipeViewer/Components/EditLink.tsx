@@ -1,8 +1,6 @@
 'use client';
 
 import { Link } from '@tanstack/react-router';
-import { HiPencilAlt } from 'react-icons/hi';
-import { Button } from '@/components/core';
 import { clientDb } from '@/lib/db';
 
 interface Props {
@@ -21,8 +19,8 @@ export const EditLink = ({ recipeId, recipeAuthorId }: Props) => {
 				to="/edit-recipe/$id"
 				params={{ id: recipeId }}
 				title="Edit Recipe"
-        preload={false}
-        className='underline'
+				preload={false}
+				className="underline"
 			>
 				Edit
 			</Link>

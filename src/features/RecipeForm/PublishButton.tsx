@@ -5,30 +5,25 @@ import type { Recipe } from '@/instant.types';
 import { clientDb } from '@/lib/db';
 import { toast } from '@/lib/toast';
 
-export const PublishButton = ({ recipe }: { recipe: Recipe }) => {
-	const updatePublished = async ({
-		id,
-		isPublished,
-	}: {
-		id: string;
-		isPublished: boolean;
-	}) => {
-		await clientDb.transact(clientDb.tx.recipes[id].update({ isPublished }));
-		const title = `Recipe ${isPublished ? 'published' : 'unpublished'}`;
-		toast({ variant: 'success', title });
-	};
+const updatePublished = async ({
+	id,
+	publish,
+}: {
+	id: string;
+	publish: boolean;
+}) => {
+	await clientDb.transact(clientDb.tx.recipes[id].update({ isPublished: publish }));
+	const title = `Recipe ${publish ? 'published' : 'unpublished'}`;
+	toast({ variant: 'success', title });
+};
 
+export const PublishButton = ({ recipe }: { recipe: Recipe }) => {
 	return (
 		<Button
 			disabled={recipe.isFeatured}
 			onClick={() =>
-				updatePublished({
-					id: recipe.id,
-					isPublished: !recipe.isPublished,
-				})
+				updatePublished({ id: recipe.id, publish: !recipe.isPublished })
 			}
-			// loading={isLoading}
-			// disabled={isLoading}
 		>
 			{recipe.isPublished ? 'Unpublish' : 'Publish'}
 		</Button>

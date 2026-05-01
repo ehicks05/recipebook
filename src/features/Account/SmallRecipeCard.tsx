@@ -6,7 +6,7 @@ interface Props {
 	recipe: Recipe;
 }
 
-function SmallRecipeCard({ recipe: { id, emoji, name } }: Props) {
+export function SmallRecipeCard({ recipe: { id, emoji, name } }: Props) {
 	return (
 		<Link to="/recipes/$id" params={{ id }}>
 			<Card className="p-2 py-1">
@@ -22,5 +22,3 @@ function SmallRecipeCard({ recipe: { id, emoji, name } }: Props) {
 		</Link>
 	);
 }
-
-export default SmallRecipeCard;

@@ -1,8 +1,8 @@
-import { HiHeart, HiOutlineHeart } from "react-icons/hi";
-import { Button } from "@/components/core";
-import { clientDb } from "@/lib/db";
-import { toast } from "@/lib/toast";
-import { toggleFavorite } from "./actions";
+import { HiHeart, HiOutlineHeart } from 'react-icons/hi';
+import { Button } from '@/components/core';
+import { clientDb } from '@/lib/db';
+import { toast } from '@/lib/toast';
+import { toggleFavorite } from './actions';
 
 interface Props {
 	recipeId: string;
@@ -24,7 +24,7 @@ export const FavoriteButton = ({ recipeId, className, favoritedBy }: Props) => {
 		});
 
 		toast({
-			variant: err ? "error" : "success",
+			variant: err ? 'error' : 'success',
 			title,
 			description: err?.message,
 		});

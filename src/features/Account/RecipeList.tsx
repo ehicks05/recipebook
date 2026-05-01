@@ -1,12 +1,12 @@
 import type { Recipe } from '@/instant.types';
-import SmallRecipeCard from './SmallRecipeCard';
+import { SmallRecipeCard } from './SmallRecipeCard';
 
 interface Props {
 	title: string;
 	recipes?: Recipe[];
 }
 
-const RecipeList = ({ title, recipes }: Props) => {
+export const RecipeList = ({ title, recipes }: Props) => {
 	return (
 		<div className="flex flex-col gap-2">
 			<span className="text-center text-lg font-semibold">{title}</span>
@@ -18,5 +18,3 @@ const RecipeList = ({ title, recipes }: Props) => {
 		</div>
 	);
 };
-
-export default RecipeList;

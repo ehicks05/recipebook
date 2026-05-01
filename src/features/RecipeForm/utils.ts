@@ -5,10 +5,9 @@ const validateQuantity = (quantity: unknown | undefined) => {
 	try {
 		new Fraction(quantity as string);
 		return true;
-	} catch (e) {
-		// noop
+	} catch (_e) {
+		return false;
 	}
-	return false;
 };
 
 export { validateQuantity };

@@ -29,4 +29,4 @@ const defaultImage = `${baseUrl}/photo-1591386767153-987783380885?${params}`;
 
 export const LOGO_ORANGE = '#F04B37';
 
-export { emojiToImage, defaultImage };
+export { defaultImage, emojiToImage };
