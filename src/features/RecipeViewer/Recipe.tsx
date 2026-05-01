@@ -18,6 +18,14 @@ export function Recipe({ recipe }: Props) {
 					<span className="flex gap-px items-center">
 						<HiOutlineClock size={16} className="inline" /> {recipe.cookingTime}
 					</span>
+					{recipe.source && (
+						<>
+							<span>·</span>
+							<a href={recipe.source} target="_blank" rel="noreferrer">
+								{new URL(recipe.source).host}
+							</a>
+						</>
+					)}
 				</div>
 			</Hero>
 			<Container>
@@ -30,14 +38,6 @@ export function Recipe({ recipe }: Props) {
 							/>
 						</clientDb.SignedIn>
 						<span>{recipe.description}</span>
-						{recipe.source && (
-							<div className="block text-sm font-semibold">
-								<span className="font-normal">from</span>{' '}
-								<a href={recipe.source} target="_blank" rel="noreferrer">
-									{new URL(recipe.source).host}
-								</a>
-							</div>
-						)}
 					</div>
 					<div className="order-2 md:order-3">
 						<Ingredients

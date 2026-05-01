@@ -25,7 +25,7 @@ export default function Header() {
 	const AUTHED = [{ to: '/create-recipe', label: 'Create Recipe' }];
 
 	return (
-		<header className="p-4 px-8 flex justify-between items-center shadow-sm">
+		<header className="p-4 flex justify-between items-center w-full max-w-screen-2xl mx-auto">
 			<SiteLogo />
 
 			<div>
