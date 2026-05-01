@@ -88,7 +88,8 @@ function RouteComponent() {
 							}}
 						>
 							<input
-								type="email"
+                type="email"
+								name="email"
 								value={emailInput}
 								onChange={(e) => setEmailInput(e.target.value)}
 								placeholder="you@example.com"
