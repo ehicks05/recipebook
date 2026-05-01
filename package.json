@@ -26,7 +26,6 @@
 		"@tanstack/router-plugin": "^1.167.28",
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",
-		"emoji-picker-element": "^1.29.1",
 		"es-toolkit": "^1.46.0",
 		"fraction.js": "^5.3.4",
 		"frimousse": "^0.3.0",

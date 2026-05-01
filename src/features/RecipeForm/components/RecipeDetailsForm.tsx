@@ -2,7 +2,7 @@ import type { Control, FieldErrors, UseFormRegister } from 'react-hook-form';
 import { MyInput, MyTextArea } from '@/components/core';
 import type { Recipe } from '@/instant.types';
 import type { FormRecipe } from '../types';
-import { EmojiInput } from './EmojiInput/EmojiInput';
+import { EmojiInput } from './EmojiInput';
 import { FileUploader } from './FileUploader';
 
 interface Props {
@@ -58,6 +58,7 @@ export const RecipeDetailsForm = ({ errors, register, control, recipe }: Props) 
 					error={errors.servings}
 				/>
 			</div>
+
 			<EmojiInput control={control} />
 
 			{recipe && (
