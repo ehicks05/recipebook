@@ -2,22 +2,24 @@ import { z } from 'zod';
 import { validateQuantity } from './utils';
 
 const IngredientSchema = z.object({
-	name: z.string().min(1),
+	name: z.string().min(1, { error: 'Add ingredient name' }),
 	quantity: z.string().refine(validateQuantity, {
-		message: 'Must be a valid quantity like 1 3/4',
+		message: 'Example amounts: 2, 1.5, or 1 3/4',
 	}),
 	unit: z.string().optional(),
 });
 const Ingredients = z.object({ ingredients: IngredientSchema.array().min(1) });
 
-const StepSchema = z.object({ text: z.string().min(1) });
+const StepSchema = z.object({
+	text: z.string().min(1, { error: 'Add a description' }),
+});
 const Steps = z.object({ steps: StepSchema.array().min(1) });
 
 const BaseRecipeSchema = z.object({
-	name: z.string().min(1).max(40),
-	description: z.string().min(1),
-	cookingTime: z.string().min(1),
-	servings: z.number().min(1),
+	name: z.string().min(1, { error: 'Add a name' }).max(40, { error: 'Too long' }),
+	description: z.string().min(1, { error: 'Add a description' }),
+	cookingTime: z.string().min(1, { error: 'Add a time' }),
+	servings: z.number({ error: 'Add servings' }).min(1, { error: 'Add servings' }),
 	emoji: z.string().min(1, 'Pick an emoji').max(3),
 	isPublished: z.boolean(),
 	source: z.string(),
