@@ -102,26 +102,11 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 				</div>
 			)}
 			<Container>
-				<form onSubmit={handleSubmit(onSubmit, onError)}>
-					<div className="flex gap-4 flex-wrap">
-						<RecipeDetailsForm
-							control={control}
-							register={register}
-							errors={errors}
-							recipe={recipe}
-						/>
-						<IngredientsForm
-							ingredientsFieldArray={ingredientsFieldArray}
-							register={register}
-							errors={errors}
-						/>
-						<StepsForm
-							stepsFieldArray={stepsFieldArray}
-							register={register}
-							errors={errors}
-						/>
-					</div>
-					<div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+				<form
+					onSubmit={handleSubmit(onSubmit, onError)}
+					className="flex flex-col gap-4"
+				>
+					<div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
 						<Button
 							type="submit"
 							variant="primary"
@@ -154,21 +139,34 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 								</Button>
 								<PublishButton recipe={recipe} />
 								<DeleteRecipeDialog id={recipe.id} name={recipe.name} />
-							</>
-						)}
-					</div>
-					{recipe && (
-						<div className="mt-8 flex flex-col items-center justify-center gap-4">
-							<span className="text-lg font-semibold">Advanced</span>
-							<div className="flex gap-2">
+
 								<CopyToClipboardButton recipe={recipe} />
 								<Button onClick={() => setIsShowDebug(!isShowDebug)}>
 									Debug
 									<FaBug />
 								</Button>
-							</div>
-						</div>
-					)}
+							</>
+						)}
+					</div>
+
+					<div className="flex gap-4 flex-wrap">
+						<RecipeDetailsForm
+							control={control}
+							register={register}
+							errors={errors}
+							recipe={recipe}
+						/>
+						<IngredientsForm
+							ingredientsFieldArray={ingredientsFieldArray}
+							register={register}
+							errors={errors}
+						/>
+						<StepsForm
+							stepsFieldArray={stepsFieldArray}
+							register={register}
+							errors={errors}
+						/>
+					</div>
 				</form>
 			</Container>
 			{isShowDebug && (
