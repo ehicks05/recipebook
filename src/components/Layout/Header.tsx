@@ -53,7 +53,7 @@ export default function Header() {
 								))}
 								<NavigationMenuItem>
 									<NavigationMenuTrigger>
-										<Avatar>
+										<Avatar size='sm'>
 											<AvatarImage src={user.imageUrl || ''} />
 											<AvatarFallback>{user.email?.slice(0, 2)}</AvatarFallback>
 										</Avatar>
