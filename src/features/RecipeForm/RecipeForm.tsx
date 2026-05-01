@@ -1,10 +1,9 @@
 'use client';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigate } from '@tanstack/react-router';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import type { SubmitErrorHandler, SubmitHandler } from 'react-hook-form';
 import { useFieldArray, useForm } from 'react-hook-form';
-import { FaBug } from 'react-icons/fa';
 import { HiRewind } from 'react-icons/hi';
 import { Alert, Button, Container, Hero } from '@/components/core';
 import type { Recipe } from '@/instant.types';
@@ -33,7 +32,6 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 		register,
 		handleSubmit,
 		reset,
-		getValues,
 		formState: { errors, isSubmitting, isDirty },
 	} = useForm({
 		defaultValues: recipe || importedRecipe || DEFAULT_RECIPE,
@@ -55,8 +53,6 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 		reset(data, {});
 		toast({ variant: 'success', title: 'Recipe updated!' });
 	};
-
-	const [isShowDebug, setIsShowDebug] = useState(false);
 
 	useEffect(() => {
 		let id = '';
@@ -106,7 +102,7 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 					onSubmit={handleSubmit(onSubmit, onError)}
 					className="flex flex-col gap-4"
 				>
-					<div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+					<div className="flex flex-col items-center gap-2 sm:flex-row">
 						<Button
 							type="submit"
 							variant="primary"
@@ -137,12 +133,7 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 								</Button>
 								<PublishButton recipe={recipe} />
 								<DeleteRecipeDialog id={recipe.id} name={recipe.name} />
-
-								<CopyToClipboardButton recipe={recipe} />
-								<Button onClick={() => setIsShowDebug(!isShowDebug)}>
-									Debug
-									<FaBug />
-								</Button>
+								<CopyToClipboardButton recipe={recipe || importedRecipe} />
 							</>
 						)}
 					</div>
@@ -167,11 +158,6 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 					</div>
 				</form>
 			</Container>
-			{isShowDebug && (
-				<pre className="whitespace-pre-wrap text-xs">
-					{JSON.stringify(getValues(), null, 2)}
-				</pre>
-			)}
 		</>
 	);
 };

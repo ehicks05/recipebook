@@ -18,8 +18,8 @@ export const CopyToClipboardButton = ({ recipe }: { recipe: Recipe }) => {
 				toast({ variant: 'neutral', title: 'Copied to clipboard' });
 			}}
 		>
-			Export JSON
-			<HiClipboardCopy title="Copy to Clipboard" />
+			Copy to Clipboard
+			<HiClipboardCopy />
 		</Button>
 	);
 };
