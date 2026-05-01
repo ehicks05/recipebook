@@ -1,6 +1,23 @@
-import { Cron } from 'croner';
+import { Cron, scheduledJobs } from 'croner';
+import { backupDb } from './backup-db';
 import { featureRecipe } from './feature-recipe';
 
-const featureRecipeJob = new Cron('0 0 * * *', featureRecipe);
+const JOBS = {
+	featuredRecipeJob: { pattern: '0 0 * * *', fn: featureRecipe },
+	backupDbJob: { pattern: '0 0 * * *', fn: backupDb },
+};
 
-console.log(`featureRecipeJob next run: ${featureRecipeJob.nextRun()}`);
+if (process.env.NODE_ENV === 'production') {
+	Object.entries(JOBS).forEach(([name, { pattern, fn }]) => {
+		const existingJob = scheduledJobs.find(
+			(scheduleJob) => scheduleJob.name === name,
+		);
+
+		if (existingJob) {
+			existingJob.stop();
+		}
+
+		const job = new Cron(pattern, fn, { name });
+		console.log(`${job.name} next run: ${job.nextRun()}`);
+	});
+}
