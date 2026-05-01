@@ -110,7 +110,6 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 						<Button
 							type="submit"
 							variant="primary"
-							loading={isLoading}
 							// don't disable when invalid (clicking this will trigger error messages to show)
 							disabled={isLoading || (recipe && !isDirty)}
 						>
@@ -132,7 +131,6 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 									onClick={() =>
 										navigate({ to: '/recipes/$id', params: { id: recipe.id } })
 									}
-									loading={isLoading}
 									disabled={isLoading}
 								>
 									View
