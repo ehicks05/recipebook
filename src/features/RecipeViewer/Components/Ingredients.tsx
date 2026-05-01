@@ -18,16 +18,16 @@ export function Ingredients({ ingredients, defaultServings }: Props) {
 		<div>
 			<div className="mb-2 flex items-center gap-2">
 				<span>Serves {scaledServings}</span>
-				<div className="h-10 whitespace-nowrap">
+				<div className="whitespace-nowrap">
 					<Button
-						className="h-full rounded-r-none"
+						className="rounded-r-none"
 						onClick={() => setScaledServings(scaledServings - 1)}
 						disabled={scaledServings === 1}
 					>
 						<FaMinus />
 					</Button>
 					<Button
-						className="h-full rounded-l-none"
+						className="rounded-l-none"
 						onClick={() => setScaledServings(scaledServings + 1)}
 					>
 						<FaPlus />
