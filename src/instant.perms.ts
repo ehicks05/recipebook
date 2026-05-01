@@ -1,5 +1,4 @@
 // Docs: https://www.instantdb.com/docs/permissions
-
 import type { InstantRules } from '@instantdb/react';
 
 const rules = {
@@ -23,6 +22,17 @@ const rules = {
 		fields: {
 			email: 'auth.id == data.id',
 			type: 'auth.id == data.id',
+		},
+	},
+	recipes: {
+		bind: {
+			isAuthor: "auth.id in data.ref('author.id')",
+		},
+		allow: {
+			view: 'data.isPublished || isAuthor',
+			create: 'auth.id != null',
+			update: 'isAuthor',
+			delete: 'isAuthor',
 		},
 	},
 } satisfies InstantRules;
