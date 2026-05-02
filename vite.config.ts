@@ -10,9 +10,15 @@ const config = defineConfig({
 		tsconfigPaths: true,
 	},
 	server: {
-		host: '::',
+		host: '0.0.0.0',
 	},
-	plugins: [devtools(), nitro(), tailwindcss(), tanstackStart(), viteReact()],
+	plugins: [
+		devtools(),
+		nitro({ preset: 'node-server' }),
+		tailwindcss(),
+		tanstackStart(),
+		viteReact(),
+	],
 });
 
 export default config;
