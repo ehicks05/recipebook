@@ -53,14 +53,14 @@ export default function Header() {
 								))}
 								<NavigationMenuItem>
 									<NavigationMenuTrigger>
-										<Avatar size='sm'>
+										<Avatar size="sm">
 											<AvatarImage src={user.imageUrl || ''} />
 											<AvatarFallback>{user.email?.slice(0, 2)}</AvatarFallback>
 										</Avatar>
 									</NavigationMenuTrigger>
 									<NavigationMenuContent>
 										<NavigationMenuLink render={<Link to="/me">My Stuff</Link>} />
-										<NavigationMenuLink onClick={signOut}>
+										<NavigationMenuLink onClick={signOut} className="cursor-pointer">
 											Sign Out
 										</NavigationMenuLink>
 									</NavigationMenuContent>
