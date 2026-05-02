@@ -64,9 +64,11 @@ export function RecipeBrowser() {
 					)}
 				</div>
 
-				<clientDb.SignedIn>
-					<RecipeMigrator />
-				</clientDb.SignedIn>
+				{import.meta.env.DEV && (
+					<clientDb.SignedIn>
+						<RecipeMigrator />
+					</clientDb.SignedIn>
+				)}
 
 				<div
 					className={`${terms.length === 0 ? 'hidden' : 'flex'} gap-2`}

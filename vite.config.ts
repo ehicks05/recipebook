@@ -14,7 +14,7 @@ const config = defineConfig({
 	},
 	plugins: [
 		devtools(),
-		nitro({ preset: 'node-server' }),
+		nitro(),
 		tailwindcss(),
 		tanstackStart(),
 		viteReact(),
