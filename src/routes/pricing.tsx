@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
+import { PageLayout } from '@/components/Layout/PageLayout';
 import { Pricing } from '@/features/Pricing/Pricing';
 
 export const Route = createFileRoute('/pricing')({
@@ -6,5 +7,9 @@ export const Route = createFileRoute('/pricing')({
 });
 
 function RouteComponent() {
-	return <Pricing />;
+	return (
+		<PageLayout>
+			<Pricing />
+		</PageLayout>
+	);
 }

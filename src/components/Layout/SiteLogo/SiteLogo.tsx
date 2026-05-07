@@ -2,6 +2,14 @@ import { Link } from '@tanstack/react-router';
 import Logo from './logo.png';
 import ShortLogo from './shortLogo.png';
 
+export const SiteIcon = () => {
+	return (
+		<div className="flex shrink-0 items-center">
+			<img className="size-7" src={ShortLogo} alt="logo" />
+		</div>
+	);
+};
+
 export const SiteLogo = () => {
 	return (
 		<div className="flex shrink-0 items-center">

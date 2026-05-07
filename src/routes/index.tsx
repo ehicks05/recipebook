@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
+import { PageLayout } from '@/components/Layout/PageLayout';
 import { RecipeBrowser } from '@/features/RecipeBrowser/RecipeBrowser';
 
 export const Route = createFileRoute('/')({
@@ -16,8 +17,8 @@ export const Route = createFileRoute('/')({
 
 function App() {
 	return (
-		<div className="flex flex-col">
+		<PageLayout>
 			<RecipeBrowser />
-		</div>
+		</PageLayout>
 	);
 }

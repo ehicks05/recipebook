@@ -2,7 +2,15 @@ import { createFileRoute, redirect, useNavigate } from '@tanstack/react-router';
 import { useServerFn } from '@tanstack/react-start';
 import { useEffect, useState } from 'react';
 import z from 'zod';
-import { Card } from '@/components/core';
+import { SiteIcon } from '@/components/Layout/SiteLogo/SiteLogo';
+import { Button } from '@/components/ui/button';
+import {
+	Field,
+	FieldDescription,
+	FieldGroup,
+	FieldLabel,
+} from '@/components/ui/field';
+import { Input } from '@/components/ui/input';
 import { clientDb } from '@/lib/db';
 import { getImageUrl } from '@/middleware/getImageUrl';
 
@@ -68,71 +76,73 @@ function RouteComponent() {
 	};
 
 	return (
-		<Card className="flex flex-col gap-4 p-6 w-full max-w-prose mx-auto">
-			<h2 className="font-bold text-[#F54A00] text-2xl">
-				{stage === 'email' ? 'Sign In' : 'Enter Code'}
-			</h2>
-			<p className="text-sm">
-				{stage === 'email'
-					? 'Enter your email to receive a magic code'
-					: `We sent a code to ${emailInput}`}
-			</p>
-			<div className="rounded">
+		<div className="max-w-sm mx-auto grow flex flex-col justify-center">
+			<div className="flex flex-col gap-6">
+				<div className="flex flex-col items-center gap-2 text-center">
+					<div className="flex size-8 items-center justify-center rounded-md">
+						<SiteIcon />
+					</div>
+					<h1 className="text-xl font-bold">Welcome to RecipeBook.</h1>
+					<FieldDescription>
+						{stage === 'email'
+							? 'Enter your email to receive a magic code'
+							: `We sent a code to ${emailInput}`}
+					</FieldDescription>
+				</div>
+
 				{stage === 'email' ? (
-					<>
-						<form
-							className="flex items-center border border-neutral-300 h-10"
-							onSubmit={(e) => {
-								e.preventDefault();
-								sendEmail();
-							}}
-						>
-							<input
-                type="email"
-								name="email"
-								value={emailInput}
-								onChange={(e) => setEmailInput(e.target.value)}
-								placeholder="you@example.com"
-								required
-								autoFocus
-								className="flex-1 h-full px-2 outline-none bg-transparent"
-							/>
-							<button
-								type="submit"
-								disabled={!emailInput}
-								className="h-full cursor-pointer px-2 border-l border-0 border-neutral-300 bg-accent"
-							>
-								Send
-							</button>
-						</form>
-						<div className="h-7" />
-					</>
+					<form
+						onSubmit={(e) => {
+							e.preventDefault();
+							sendEmail();
+						}}
+					>
+						<FieldGroup>
+							<Field>
+								<FieldLabel htmlFor="email">Email</FieldLabel>
+								<Input
+									type="email"
+									name="email"
+									value={emailInput}
+									onChange={(e) => setEmailInput(e.target.value)}
+									placeholder="you@example.com"
+									required
+									autoFocus
+								/>
+							</Field>
+							<Field>
+								<Button type="submit" disabled={!emailInput}>
+									Send Magic Code
+								</Button>
+							</Field>{' '}
+						</FieldGroup>
+					</form>
 				) : (
-					<>
-						<form
-							className="flex items-center h-10 border border-neutral-300"
-							onSubmit={(e) => {
-								e.preventDefault();
-								loginWithCode();
-							}}
-						>
-							<input
-								type="text"
-								value={codeInput}
-								onChange={(e) => setCodeInput(e.target.value)}
-								placeholder="Enter your code"
-								required
-								autoFocus
-								className="flex-1 h-full px-2 outline-none bg-transparent"
-							/>
-							<button
-								type="submit"
-								disabled={!codeInput}
-								className="h-full px-2 cursor-pointer border-l border-neutral-300"
-							>
-								Submit
-							</button>
-						</form>
+					<form
+						onSubmit={(e) => {
+							e.preventDefault();
+							loginWithCode();
+						}}
+					>
+						<FieldGroup>
+							<Field>
+								<FieldLabel htmlFor="code">Code</FieldLabel>
+								<Input
+									type="text"
+									name="code"
+									value={codeInput}
+									onChange={(e) => setCodeInput(e.target.value)}
+									placeholder="Enter your code"
+									required
+									autoFocus
+								/>
+							</Field>
+							<Field>
+								<Button type="submit" disabled={!codeInput}>
+									Submit
+								</Button>
+							</Field>
+						</FieldGroup>
 						<div className="flex justify-center items-center h-10 px-2 text-xs">
 							<button
 								type="button"
@@ -142,9 +152,14 @@ function RouteComponent() {
 								Use a different email
 							</button>
 						</div>
-					</>
+					</form>
 				)}
+
+				<FieldDescription className="px-6 text-center">
+					By clicking continue, you agree to our <a href="#">Terms of Service</a> and{' '}
+					<a href="#">Privacy Policy</a>.
+				</FieldDescription>
 			</div>
-		</Card>
+		</div>
 	);
 }

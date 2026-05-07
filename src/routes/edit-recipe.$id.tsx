@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
+import { PageLayout } from '@/components/Layout/PageLayout';
 import { RecipeForm } from '@/features/RecipeForm';
 import { clientDb } from '@/lib/db';
 
@@ -24,5 +25,9 @@ function RouteComponent() {
 
 	if (!recipe) return null;
 
-	return <RecipeForm recipe={recipe} />;
+	return (
+		<PageLayout>
+			<RecipeForm recipe={recipe} />
+		</PageLayout>
+	);
 }

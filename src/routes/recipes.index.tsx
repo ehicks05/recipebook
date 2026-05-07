@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
+import { PageLayout } from '@/components/Layout/PageLayout';
 import { RecipeBrowser } from '@/features/RecipeBrowser/RecipeBrowser';
 
 export const Route = createFileRoute('/recipes/')({
@@ -6,5 +7,9 @@ export const Route = createFileRoute('/recipes/')({
 });
 
 function RouteComponent() {
-	return <RecipeBrowser />;
+	return (
+		<PageLayout>
+			<RecipeBrowser />
+		</PageLayout>
+	);
 }

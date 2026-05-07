@@ -7,8 +7,6 @@ import {
 } from '@tanstack/react-router';
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import { Toaster } from 'react-hot-toast';
-import { Footer } from '@/components/Layout/Footer';
-import Header from '../components/Layout/Header';
 import appCss from '../styles.css?url';
 
 export const Route = createRootRoute({
@@ -41,7 +39,6 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 				<HeadContent />
 			</head>
 			<body className="flex flex-col dark">
-				<Header />
 				{children}
 				<TanStackDevtools
 					config={{ position: 'bottom-right' }}
@@ -51,9 +48,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 				/>
 				<Scripts />
 
-				<div className="grow" />
 				<Toaster position="bottom-right" reverseOrder={false} />
-				<Footer />
 			</body>
 		</html>
 	);
