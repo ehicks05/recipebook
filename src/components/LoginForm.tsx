@@ -14,6 +14,8 @@ import { Input } from '@/components/ui/input';
 import { clientDb } from '@/lib/db';
 import { getImageUrl } from '@/middleware/getImageUrl';
 
+type Stage = 'email' | 'code';
+
 const useImageUrl = (email: string) => {
 	const imageUrlFetch = useServerFn(getImageUrl);
 	const [imageUrl, setImageUrl] = useState<Awaited<
@@ -29,8 +31,24 @@ const useImageUrl = (email: string) => {
 	return imageUrl;
 };
 
+const Header = ({ stage, emailInput }: { stage: Stage; emailInput?: string }) => {
+	return (
+		<div className="flex flex-col items-center gap-2 text-center">
+			<div className="flex size-8 items-center justify-center rounded-md">
+				<SiteIcon />
+			</div>
+			<h1 className="text-xl font-bold">Welcome to RecipeBook.</h1>
+			<FieldDescription>
+				{stage === 'email'
+					? 'Enter your email to receive a magic code'
+					: `We sent a code to ${emailInput}`}
+			</FieldDescription>
+		</div>
+	);
+};
+
 export const LoginForm = () => {
-	const [stage, setStage] = useState<'email' | 'code'>('email');
+	const [stage, setStage] = useState<Stage>('email');
 	const [emailInput, setEmailInput] = useState('');
 	const [codeInput, setCodeInput] = useState('');
 	const navigate = useNavigate();
@@ -64,17 +82,7 @@ export const LoginForm = () => {
 
 	return (
 		<div className="max-w-sm mx-auto grow flex flex-col justify-center gap-6">
-			<div className="flex flex-col items-center gap-2 text-center">
-				<div className="flex size-8 items-center justify-center rounded-md">
-					<SiteIcon />
-				</div>
-				<h1 className="text-xl font-bold">Welcome to RecipeBook.</h1>
-				<FieldDescription>
-					{stage === 'email'
-						? 'Enter your email to receive a magic code'
-						: `We sent a code to ${emailInput}`}
-				</FieldDescription>
-			</div>
+			<Header stage={stage} emailInput={emailInput} />
 
 			<form
 				onSubmit={(e) => {
@@ -82,58 +90,54 @@ export const LoginForm = () => {
 					stage === 'email' ? sendEmail() : loginWithCode();
 				}}
 			>
-				<FieldGroup>
-					{stage === 'email' ? (
-						<>
-							<Field>
-								<FieldLabel htmlFor="email">Email</FieldLabel>
-								<Input
-									type="email"
-									name="email"
-									value={emailInput}
-									onChange={(e) => setEmailInput(e.target.value)}
-									placeholder="you@example.com"
-									required
-									autoFocus
-								/>
-							</Field>
-							<Field>
-								<Button type="submit" disabled={!emailInput}>
-									Send Magic Code
-								</Button>
-							</Field>
-						</>
-					) : (
-						<>
-							<Field>
-								<FieldLabel htmlFor="code">Code</FieldLabel>
-								<Input
-									type="text"
-									name="code"
-									value={codeInput}
-									onChange={(e) => setCodeInput(e.target.value)}
-									placeholder="Enter your code"
-									required
-									autoFocus
-								/>
-							</Field>
-							<Field>
-								<Button type="submit" disabled={!codeInput}>
-									Submit
-								</Button>
-							</Field>
-							<div className="flex justify-center items-center h-10 px-2 text-xs">
-								<button
-									type="button"
-									onClick={goBack}
-									className="text-muted-foreground"
-								>
-									Use a different email
-								</button>
-							</div>
-						</>
-					)}
-				</FieldGroup>
+				{stage === 'email' ? (
+					<FieldGroup>
+						<Field>
+							<FieldLabel htmlFor="email">Email</FieldLabel>
+							<Input
+								type="email"
+								name="email"
+								value={emailInput}
+								onChange={(e) => setEmailInput(e.target.value)}
+								placeholder="you@example.com"
+								required
+								autoFocus
+							/>
+						</Field>
+						<Field>
+							<Button type="submit" disabled={!emailInput}>
+								Send Magic Code
+							</Button>
+						</Field>
+					</FieldGroup>
+				) : (
+					<FieldGroup>
+						<Field>
+							<FieldLabel htmlFor="code">Code</FieldLabel>
+							<Input
+								type="text"
+								name="code"
+								value={codeInput}
+								onChange={(e) => setCodeInput(e.target.value)}
+								placeholder="Enter your code"
+								required
+								autoFocus
+							/>
+						</Field>
+						<Field>
+							<Button type="submit" disabled={!codeInput}>
+								Submit
+							</Button>
+						</Field>
+						<Button
+							variant="link"
+							onClick={goBack}
+							className="text-muted-foreground"
+						>
+							Use a different email
+						</Button>
+					</FieldGroup>
+				)}
 			</form>
 		</div>
 	);
