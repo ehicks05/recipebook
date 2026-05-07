@@ -4,8 +4,9 @@ import { id } from '@instantdb/react';
 import { forEachAsync } from 'es-toolkit';
 import { sortBy } from 'es-toolkit/compat';
 import { Button } from '@/components/core';
-import { RECIPE_EXPORT } from '@/data';
 import { clientDb } from '@/lib/db';
+
+const RECIPE_EXPORT: any[] = []
 
 export const RecipeMigrator = () => {
 	const { id: userId } = clientDb.useUser();

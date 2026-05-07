@@ -6,7 +6,6 @@ import { useState } from 'react';
 import { Button, Container, MyInput } from '@/components/core';
 import { clientDb } from '@/lib/db';
 import { RecipeCard } from './RecipeCard';
-import { RecipeMigrator } from './RecipeMigrator';
 
 export function RecipeBrowser() {
 	const [parent] = useAutoAnimate();
@@ -63,12 +62,6 @@ export function RecipeBrowser() {
 						</Button>
 					)}
 				</div>
-
-				{import.meta.env.DEV && (
-					<clientDb.SignedIn>
-						<RecipeMigrator />
-					</clientDb.SignedIn>
-				)}
 
 				<div
 					className={`${terms.length === 0 ? 'hidden' : 'flex'} gap-2`}
