@@ -1,8 +1,12 @@
-# potential todos
+# todo ideas
 
-Make ingredients embedded json. This simplifies writes and avoid potential ordering issues (since order is implicit and based on creation date). The main obstacle is being able to search by ingredient. You'd have to fetch all recipes and do client side search. Which is fine for personal use but wouldn't scale if we ever open to the public.
+* Embed ingredients within recipes
+  * Benefits: simplify writes by avoiding ordering issues, since order is implicit and based on creation date
+  * Downsides: How will we search by ingredient? You can't index json fields. Would currently require fetching all recipes and client-side searching. Which to be fair is not an issue as long as there are only 100s of recipes.
 
-General Styling:
-1. Image upload ui is rough
-2. overall layouts for recipe editor and viewer is rough
-3. Recipe Browser cards take up a lot of space...
+* General UI/UX:
+  * image uploader
+    * remove image
+  * recipe editor layout. ok at full width but lots of awkward empty space at different screen breakpoints
+  * recipe viewer layout. what to do with description...
+  * Recipe Browser cards take up a lot of space...
