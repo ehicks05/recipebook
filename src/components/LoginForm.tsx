@@ -122,6 +122,7 @@ export const LoginForm = () => {
 								placeholder="Enter your code"
 								required
 								autoFocus
+								autoComplete="off"
 							/>
 						</Field>
 						<Field>
