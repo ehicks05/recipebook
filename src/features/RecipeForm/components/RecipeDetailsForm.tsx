@@ -3,7 +3,7 @@ import { MyInput, MyTextArea } from '@/components/core';
 import type { Recipe } from '@/instant.types';
 import type { FormRecipe } from '../types';
 import { EmojiInput } from './EmojiInput';
-import { FileUploader } from './FileUploader';
+import { ImageForm } from './ImageForm';
 
 interface Props {
 	errors: FieldErrors<FormRecipe>;
@@ -76,13 +76,7 @@ export const RecipeDetailsForm = ({ errors, register, control, recipe }: Props) 
 
 			<EmojiInput control={control} />
 
-			{recipe && (
-				<div>
-					Image
-					{recipe.image && <img src={recipe.image.url} alt="recipe" />}
-					{recipe.id && <FileUploader recipeId={recipe.id} />}
-				</div>
-			)}
+			{recipe && <ImageForm recipe={recipe} />}
 		</div>
 	);
 };

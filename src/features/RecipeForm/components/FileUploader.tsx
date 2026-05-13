@@ -46,6 +46,7 @@ export const FileUploader = ({ recipeId }: { recipeId: string }) => {
 
 	return (
 		<div className="max-w-full">
+			Upload an image
 			<MyInput type="file" onChange={handleChange} accept="image/*" />
 			{file && preview && (
 				<div className="max-w-full">
