@@ -29,8 +29,11 @@ const dump = async () => {
 		async (file) => {
 			const response = await fetch(file.url);
 			const blob = await response.blob();
-			const ext = file['content-type'].split('/')[1];
-			const dest = `${path}/${file.path}.${ext}`;
+
+      const dest = `${path}/${file.path}`;
+      const destDir = dest.substring(0, dest.lastIndexOf(('/')))
+      mkdir(destDir, { recursive: true });
+
 			await writeFile(dest, blob.stream());
 		},
 		{ concurrency: 1 },
