@@ -1,13 +1,13 @@
 import { Cron, scheduledJobs } from 'croner';
-import { backupDb } from './backup-db';
+import { createBackup } from '@/scripts/create-backup/create-backup';
 import { featureRecipe } from './feature-recipe';
 
 const JOBS = {
 	featuredRecipeJob: { pattern: '0 0 * * *', fn: featureRecipe },
-	backupDbJob: { pattern: '0 0 * * *', fn: backupDb },
+	backupDbJob: { pattern: '0 0 * * *', fn: createBackup },
 };
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'development') {
 	Object.entries(JOBS).forEach(([name, { pattern, fn }]) => {
 		const existingJob = scheduledJobs.find(
 			(scheduleJob) => scheduleJob.name === name,

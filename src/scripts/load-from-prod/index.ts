@@ -1,5 +1,16 @@
+import { init } from '@instantdb/admin';
+import schema from '@/instant.schema';
 import { load } from '../lib/load';
-import { prodDb } from './prodDb';
+
+const appId = process.env.INSTANT_APP_PROD_ID!;
+const adminToken = process.env.INSTANT_APP_PROD_ADMIN_TOKEN;
+
+const prodDb = init({
+	appId,
+	adminToken,
+	schema,
+	useDateObjects: false,
+});
 
 const loadFromProd = async () => {
 	const { $users } = await prodDb.query({
