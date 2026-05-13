@@ -57,13 +57,13 @@ export function Recipe({ recipe }: Props) {
 			</Hero>
 			<Container>
 				<div className="flex flex-col md:flex-row justify-between gap-4">
-					<div className="min-w-64 max-w-3xl">
+					<div className="order-1 md:order-2 min-w-64 max-w-3xl">
 						<Ingredients
 							ingredients={recipe.ingredients}
 							defaultServings={recipe.servings}
 						/>
 					</div>
-					<div className="max-w-3xl">
+					<div className="order-2 md:order-1 max-w-3xl">
 						<Directions directions={recipe.steps} />
 					</div>
 				</div>
