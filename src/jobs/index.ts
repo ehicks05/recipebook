@@ -7,7 +7,7 @@ const JOBS = {
 	backupDbJob: { pattern: '0 0 * * *', fn: createBackup },
 };
 
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'production') {
 	Object.entries(JOBS).forEach(([name, { pattern, fn }]) => {
 		const existingJob = scheduledJobs.find(
 			(scheduleJob) => scheduleJob.name === name,
