@@ -1,5 +1,5 @@
 import handler, { createServerEntry } from '@tanstack/react-start/server-entry';
-import '@/jobs'
+import '@/jobs';
 
 export default createServerEntry({
 	fetch(request) {

@@ -6,7 +6,7 @@ import { sortBy } from 'es-toolkit/compat';
 import { Button } from '@/components/core';
 import { clientDb } from '@/lib/db';
 
-const RECIPE_EXPORT: any[] = []
+const RECIPE_EXPORT: any[] = [];
 
 export const RecipeMigrator = () => {
 	const { id: userId } = clientDb.useUser();

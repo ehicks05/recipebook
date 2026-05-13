@@ -41,7 +41,9 @@ export const ImageForm = ({ recipe }: { recipe: Recipe }) => {
 			{!recipe.image && (
 				<Card className="flex flex-col gap-4 items-center">
 					<Image size={32} />
-					{recipe.id ? 'Click below to upload an image' : 'Save recipe before adding an image'}
+					{recipe.id
+						? 'Click below to upload an image'
+						: 'Save recipe before adding an image'}
 					{recipe.id && <FileUploader recipeId={recipe.id} />}
 				</Card>
 			)}

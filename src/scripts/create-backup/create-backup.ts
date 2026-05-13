@@ -30,9 +30,9 @@ export const createBackup = async () => {
 			const response = await fetch(file.url);
 			const blob = await response.blob();
 
-      const dest = `${path}/${file.path}`;
-      const destDir = dest.substring(0, dest.lastIndexOf(('/')))
-      mkdir(destDir, { recursive: true });
+			const dest = `${path}/${file.path}`;
+			const destDir = dest.substring(0, dest.lastIndexOf('/'));
+			mkdir(destDir, { recursive: true });
 
 			await writeFile(dest, blob.stream());
 		},

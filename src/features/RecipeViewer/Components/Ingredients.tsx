@@ -36,8 +36,8 @@ export function Ingredients({ ingredients, defaultServings }: Props) {
 			</div>
 
 			{ingredients.map((ingredient, i) => (
-        <IngredientLine
-          // biome-ignore lint: ok
+				<IngredientLine
+					// biome-ignore lint: ok
 					key={`${ingredient.name}:${i}`}
 					ingredient={ingredient}
 					recipeServings={defaultServings}
