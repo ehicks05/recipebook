@@ -46,7 +46,6 @@ export const FileUploader = ({ recipeId }: { recipeId: string }) => {
 
 	return (
 		<div className="max-w-full">
-			Upload an image
 			<MyInput type="file" onChange={handleChange} accept="image/*" />
 			{file && preview && (
 				<div className="max-w-full">
@@ -57,9 +56,14 @@ export const FileUploader = ({ recipeId }: { recipeId: string }) => {
 						</div>
 						<div>{file.type}</div>
 					</div>
-					<Button type="button" className="mt-4" onClick={handleUpload}>
-						Upload
-					</Button>
+					<div className="flex gap-4 mt-4">
+						<Button type="button" onClick={handleUpload}>
+							Upload
+						</Button>
+						<Button type="button" variant="error" onClick={() => setFile(null)}>
+							Clear selection
+						</Button>
+					</div>
 				</div>
 			)}
 		</div>

@@ -12,12 +12,12 @@ import { dismissToast, toast } from '@/lib/toast';
 import { CopyToClipboardButton } from './CopyToClipboardButton';
 import { IngredientsForm, RecipeDetailsForm, StepsForm } from './components';
 import { DEFAULT_RECIPE } from './constants';
-import { createRecipe } from './createRecipe';
+import { createRecipe } from './lib/createRecipe';
 import { DeleteRecipeDialog } from './DeleteRecipeDialog';
 import { PublishButton } from './PublishButton';
 import { RecipeSchema } from './schema';
 import type { FormRecipe } from './types';
-import { updateRecipe } from './updateRecipe';
+import { updateRecipe } from './lib/updateRecipe';
 
 interface Props {
 	recipe?: Recipe;

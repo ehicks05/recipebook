@@ -1,3 +1,5 @@
+import { Image } from 'lucide-react';
+import { Card } from '@/components/core';
 import { Button } from '@/components/ui/button';
 import type { Recipe } from '@/instant.types';
 import { clientDb } from '@/lib/db';
@@ -36,7 +38,13 @@ export const ImageForm = ({ recipe }: { recipe: Recipe }) => {
 					<RemoveImageButton recipe={recipe} />
 				</>
 			)}
-			{recipe.id && <FileUploader recipeId={recipe.id} />}
+			{!recipe.image && (
+				<Card className="flex flex-col gap-4 items-center">
+					<Image size={32} />
+					{recipe.id ? 'Click below to upload an image' : 'Save recipe before adding an image'}
+					{recipe.id && <FileUploader recipeId={recipe.id} />}
+				</Card>
+			)}
 		</div>
 	);
 };

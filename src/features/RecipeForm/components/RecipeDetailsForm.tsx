@@ -3,7 +3,7 @@ import { MyInput, MyTextArea } from '@/components/core';
 import type { Recipe } from '@/instant.types';
 import type { FormRecipe } from '../types';
 import { EmojiInput } from './EmojiInput';
-import { ImageForm } from './ImageForm';
+import { ImageForm } from '../ImageForm/ImageForm';
 
 interface Props {
 	errors: FieldErrors<FormRecipe>;

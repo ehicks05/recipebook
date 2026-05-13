@@ -1,7 +1,7 @@
 import { id } from '@instantdb/react';
 import { forEachAsync } from 'es-toolkit';
 import { clientDb } from '@/lib/db';
-import type { FormRecipe } from './types';
+import type { FormRecipe } from '../types';
 
 const getExistingIngredientIds = async (recipeId: string) => {
 	return (

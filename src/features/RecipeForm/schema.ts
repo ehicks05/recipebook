@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { validateQuantity } from './utils';
+import { validateQuantity } from './lib/utils';
 
 const IngredientSchema = z.object({
 	name: z.string().min(1, { error: 'Add ingredient name' }),
