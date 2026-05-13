@@ -1,33 +1,16 @@
-import { init } from '@instantdb/admin';
 import { forEachAsync } from 'es-toolkit';
 import { adminDb } from '@/lib/adminDb';
-import schema from '../instant.schema';
+import { fetchFile } from './fetchFile';
+import type { $Users } from './types';
 
-const appId = process.env.INSTANT_APP_PROD_ID!;
-const adminToken = process.env.INSTANT_APP_PROD_ADMIN_TOKEN;
-
-export const prodDb = init({
-	appId,
-	adminToken,
-	schema,
-	useDateObjects: false,
-});
-
-const loadFromProd = async () => {
-	const { $users } = await prodDb.query({
-		$users: {
-			recipes: {
-				favoritedBy: { $: { fields: ['id'] } },
-				image: {},
-				ingredients: {},
-			},
-		},
-	});
-	const recipes = $users.flatMap((user) => user.recipes);
-
-	// delete users
-	// recipes, ingredients, and image files should cascade
+/**
+ * Wipe db and repopulate it.
+ */
+export const load = async ($users: $Users, localFilePath?: string) => {
+	// delete users. recipes, ingredients, and image files should cascade
 	await adminDb.transact($users.map(({ id }) => adminDb.tx.$users[id].delete()));
+
+	const recipes = $users.flatMap((user) => user.recipes);
 
 	// create users
 	await forEachAsync(
@@ -111,10 +94,7 @@ const loadFromProd = async () => {
 			const file = recipe.image;
 			if (!file) return;
 
-			const response = await fetch(file.url);
-			const blob = await response.blob();
-			const ab = await blob.arrayBuffer();
-			const buffer = Buffer.from(ab);
+			const buffer = await fetchFile(file, localFilePath);
 
 			const { data } = await adminDb.storage.uploadFile(file.path, buffer);
 
@@ -123,5 +103,3 @@ const loadFromProd = async () => {
 		{ concurrency: 1 },
 	);
 };
-
-loadFromProd();

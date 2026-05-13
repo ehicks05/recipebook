@@ -10,8 +10,9 @@
 		"start": "node .output/server/index.mjs",
 		"push:perms": "npx instant-cli@latest push perms",
 		"push:schema": "npx instant-cli@latest push schema",
-		"dump": "tsx --env-file=.env ./src/scripts/dump.ts",
-		"load": "tsx --env-file=.env ./src/scripts/load-from-prod.ts"
+		"create-backup": "tsx --env-file=.env ./src/scripts/create-backup",
+		"load-from-prod": "tsx --env-file=.env ./src/scripts/load-from-prod",
+		"load-from-backup": "tsx --env-file=.env ./src/scripts/load-from-backup"
 	},
 	"dependencies": {
 		"@base-ui/react": "^1.4.1",
