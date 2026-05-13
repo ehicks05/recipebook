@@ -5,6 +5,7 @@ import type { Recipe as IRecipe } from '@/instant.types';
 import { clientDb } from '@/lib/db';
 import { FavoriteButton } from '../../components/core/FavoriteButton';
 import { Directions, EditLink, Ingredients } from './Components';
+import { DescriptionDialog } from './Components/DescriptionDialog';
 
 interface Props {
 	recipe: IRecipe;
@@ -22,6 +23,8 @@ export function Recipe({ recipe }: Props) {
 					<span className="flex gap-px items-center">
 						<HiOutlineClock size={16} className="inline" /> {recipe.cookingTime}
 					</span>
+					<span>·</span>
+					<DescriptionDialog description={recipe.description} />
 					{recipe.source && (
 						<>
 							<span>·</span>
@@ -54,16 +57,13 @@ export function Recipe({ recipe }: Props) {
 			</Hero>
 			<Container>
 				<div className="flex flex-col md:flex-row justify-between gap-4">
-					<div className="order-1 flex flex-col gap-4 max-w-xs min-w-48">
-						<span>{recipe.description}</span>
-					</div>
-					<div className="order-2 md:order-3 w-sm min-w-64">
+					<div className="min-w-64 max-w-3xl">
 						<Ingredients
 							ingredients={recipe.ingredients}
 							defaultServings={recipe.servings}
 						/>
 					</div>
-					<div className="order-3 sm:col-span-2 md:order-2 max-w-3xl">
+					<div className="max-w-3xl">
 						<Directions directions={recipe.steps} />
 					</div>
 				</div>
