@@ -1,4 +1,4 @@
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+// biome-ignore lint/suspicious/noExplicitAny: don't know
 export const parseSteps = (input: string | any[]) => {
 	if (typeof input === 'string') return [input];
 

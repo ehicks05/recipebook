@@ -4,7 +4,7 @@ import { JSONPath } from 'jsonpath-plus';
 import type { Recipe } from 'schema-dts';
 import { schemaOrgRecipeToRecipeBookRecipe } from './schema-org-mapper';
 
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+// biome-ignore lint/suspicious/noExplicitAny: don't know
 const deepFind = (json: any, type: string): any => {
 	const result = find(
 		json,

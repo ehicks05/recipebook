@@ -32,7 +32,7 @@ export const schemaOrgRecipeToRecipeBookRecipe = (
 				quantity: i.quantity,
 				unit: i.unit,
 			})),
-		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+		// biome-ignore lint/suspicious/noExplicitAny: don't know
 		steps: parseSteps(recipe.recipeInstructions || ([] as any)).map(({ text }) => ({
 			text,
 		})),
