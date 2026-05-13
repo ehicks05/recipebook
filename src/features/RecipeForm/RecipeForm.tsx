@@ -102,7 +102,7 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 					onSubmit={handleSubmit(onSubmit, onError)}
 					className="flex flex-col gap-4"
 				>
-					<div className="flex flex-col items-center gap-2 sm:flex-row">
+					<div className="grid grid-cols-2 sm:flex sm:items-center gap-2">
 						<Button
 							type="submit"
 							variant="primary"
@@ -132,8 +132,8 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 									View
 								</Button>
 								<PublishButton recipe={recipe} />
-								<DeleteRecipeDialog id={recipe.id} name={recipe.name} />
 								<CopyToClipboardButton recipe={recipe} />
+								<DeleteRecipeDialog id={recipe.id} name={recipe.name} />
 							</>
 						)}
 					</div>

@@ -1,4 +1,3 @@
-import { HiClipboardCopy } from 'react-icons/hi';
 import type { Recipe } from '@/instant.types';
 import { toast } from '@/lib/toast';
 import { Button } from '../../components/core';
@@ -19,7 +18,6 @@ export const CopyToClipboardButton = ({ recipe }: { recipe: Recipe }) => {
 			}}
 		>
 			Copy to Clipboard
-			<HiClipboardCopy />
 		</Button>
 	);
 };
