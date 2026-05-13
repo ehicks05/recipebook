@@ -26,12 +26,8 @@ const loadFromProd = async () => {
 	const recipes = $users.flatMap((user) => user.recipes);
 
 	// delete users
+	// recipes, ingredients, and image files should cascade
 	await adminDb.transact($users.map(({ id }) => adminDb.tx.$users[id].delete()));
-	// delete recipes, ingredients should cascade
-	await adminDb.transact(recipes.map(({ id }) => adminDb.tx.recipes[id].delete()));
-	// delete files
-	const { $files } = await adminDb.query({ $files: {} });
-	await adminDb.transact($files.map(({ id }) => adminDb.tx.$files[id].delete()));
 
 	// create users
 	await forEachAsync(

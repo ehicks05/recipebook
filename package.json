@@ -11,7 +11,7 @@
 		"push:perms": "npx instant-cli@latest push perms",
 		"push:schema": "npx instant-cli@latest push schema",
 		"dump": "tsx --env-file=.env ./src/scripts/dump.ts",
-		"load": "tsx --env-file=.env ./src/scripts/load.ts"
+		"load": "tsx --env-file=.env ./src/scripts/load-from-prod.ts"
 	},
 	"dependencies": {
 		"@base-ui/react": "^1.4.1",
