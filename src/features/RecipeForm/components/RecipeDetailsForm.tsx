@@ -80,7 +80,7 @@ export const RecipeDetailsForm = ({ errors, register, control, recipe }: Props) 
 				<div>
 					Image
 					{recipe.image && <img src={recipe.image.url} alt="recipe" />}
-					{recipe.id && <FileUploader path={recipe.id} />}
+					{recipe.id && <FileUploader recipeId={recipe.id} />}
 				</div>
 			)}
 		</div>

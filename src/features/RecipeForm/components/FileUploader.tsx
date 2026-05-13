@@ -11,7 +11,8 @@ const FileSize = ({ size }: { size: number }) => {
 	return `${fmt.format(kBs)} kB`;
 };
 
-export const FileUploader = ({ path }: { path: string }) => {
+export const FileUploader = ({ recipeId }: { recipeId: string }) => {
+	const { id: userId } = clientDb.useUser();
 	const [file, setFile] = useState<File | null>(null);
 	const [preview, setPreview] = useState<string | undefined>();
 
@@ -37,8 +38,9 @@ export const FileUploader = ({ path }: { path: string }) => {
 		if (!file) {
 			return;
 		}
+		const path = `${userId}/${recipeId}`;
 		const { data } = await clientDb.storage.uploadFile(path, file);
-		await clientDb.transact(clientDb.tx.recipes[path].link({ image: data.id }));
+		await clientDb.transact(clientDb.tx.recipes[recipeId].link({ image: data.id }));
 		setFile(null);
 	};
 

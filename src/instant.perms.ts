@@ -8,10 +8,13 @@ const rules = {
 		},
 	},
 	$files: {
+		bind: {
+			isOwner: 'data.path.startsWith(auth.id)',
+		},
 		allow: {
 			view: 'true',
-			create: 'auth.id != null',
-			delete: 'auth.id != null',
+			create: 'isOwner',
+			delete: 'isOwner',
 		},
 	},
 	$users: {
