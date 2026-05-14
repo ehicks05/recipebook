@@ -75,14 +75,16 @@ interface IMyTextAreaProps<T extends FieldValues> {
 	disabled?: boolean;
 	placeholder: string;
 	register?: UseFormRegister<T>;
-	error?: FieldError;
+  error?: FieldError;
+  minRows?: number;
 }
 
 const MyTextArea = <T extends FieldValues>({
 	label,
 	disabled,
 	register,
-	error,
+  error,
+	minRows,
 	name = '',
 	...props
 }: IMyTextAreaProps<T>) => {
@@ -95,6 +97,7 @@ const MyTextArea = <T extends FieldValues>({
 			)}
 			<div>
 				<TextareaAutosize
+					minRows={minRows}
 					disabled={disabled}
 					placeholder={props.placeholder}
 					className={clsx(BASE, {

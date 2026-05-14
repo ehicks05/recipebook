@@ -27,10 +27,11 @@ export const StepsForm = ({ stepsFieldArray, register, errors }: Props) => {
 						<span className="pr-2">{index + 1}.</span>
 						<MyInput type="hidden" name={`steps.${index}.index`} />
 						<MyTextArea
-							name={`steps.${index}.text`}
-							placeholder="Step"
-							register={register}
-							error={errors.steps?.[index]?.text}
+              name={`steps.${index}.text`}
+              placeholder="Step"
+              register={register}
+              error={errors.steps?.[index]?.text}
+              minRows={4.1}
 						/>
 						<div className="flex flex-col gap-1">
 							<Button

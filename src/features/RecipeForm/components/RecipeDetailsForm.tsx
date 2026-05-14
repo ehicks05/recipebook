@@ -63,7 +63,7 @@ export const RecipeDetailsForm = ({ errors, register, control, recipe }: Props) 
 				<div className="flex w-full">
 					{errors?.cookingTime?.message && (
 						<div className="text-sm text-red-600">
-							{errors?.cookingTime?.message}
+							{errors?.cookingTime?.message.toString()}
 						</div>
 					)}
 					{errors?.cookingTime?.message && (
