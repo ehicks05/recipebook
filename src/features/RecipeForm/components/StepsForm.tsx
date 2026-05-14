@@ -19,7 +19,7 @@ export const StepsForm = ({ stepsFieldArray, register, errors }: Props) => {
 	const [parent] = useAutoAnimate();
 
 	return (
-		<div className="flex flex-col gap-2 w-full max-w-xl">
+		<div className="flex flex-col gap-2 w-full xl:max-w-lg">
 			<span className="text-lg font-semibold">Steps</span>
 			<div className="flex flex-col gap-1" ref={parent}>
 				{stepsFieldArray.fields.map((field, index) => (

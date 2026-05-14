@@ -138,18 +138,20 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 						)}
 					</div>
 
-					<div className="flex gap-4 flex-wrap">
-						<RecipeDetailsForm
-							control={control}
-							register={register}
-							errors={errors}
-							recipe={recipe}
-						/>
-						<IngredientsForm
-							ingredientsFieldArray={ingredientsFieldArray}
-							register={register}
-							errors={errors}
-						/>
+					<div className="flex gap-4 flex-col xl:flex-row">
+						<div className='flex flex-col gap-4 w-full lg:flex-row'>
+							<RecipeDetailsForm
+								control={control}
+								register={register}
+								errors={errors}
+								recipe={recipe}
+							/>
+							<IngredientsForm
+								ingredientsFieldArray={ingredientsFieldArray}
+								register={register}
+								errors={errors}
+							/>
+						</div>
 						<StepsForm
 							stepsFieldArray={stepsFieldArray}
 							register={register}

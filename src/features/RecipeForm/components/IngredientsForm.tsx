@@ -30,7 +30,7 @@ export const IngredientsForm = ({
 	const [parent] = useAutoAnimate();
 
 	return (
-		<div className="flex flex-col gap-2 max-w-2xl">
+		<div className="flex flex-col gap-2 w-full xl:w-auto xl:max-w-2xl">
 			<span className="text-lg font-semibold">Ingredients</span>
 			<div className="flex flex-col gap-1" ref={parent}>
 				{ingredientsFieldArray.fields.map((field, index) => (
