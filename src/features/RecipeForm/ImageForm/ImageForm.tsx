@@ -38,15 +38,13 @@ export const ImageForm = ({ recipe }: { recipe: Recipe }) => {
 					<RemoveImageButton recipe={recipe} />
 				</>
 			)}
-			{!recipe.image && (
+			{!recipe.image && !recipe.id && (
 				<Card className="flex flex-col gap-4 items-center">
 					<Image size={32} />
-					{recipe.id
-						? 'Click below to upload an image'
-						: 'Save recipe before adding an image'}
-					{recipe.id && <FileUploader recipeId={recipe.id} />}
+					{!recipe.id && 'Save recipe before adding an image'}
 				</Card>
 			)}
+			{!recipe.image && recipe.id && <FileUploader recipeId={recipe.id} />}
 		</div>
 	);
 };

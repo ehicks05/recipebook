@@ -1,6 +1,7 @@
 import { round } from 'es-toolkit';
+import { Image } from 'lucide-react';
 import { type ChangeEvent, useEffect, useState } from 'react';
-import { MyInput } from '@/components/core';
+import { Card } from '@/components/core';
 import { Button } from '@/components/core/Button';
 import { clientDb } from '@/lib/db';
 
@@ -45,8 +46,21 @@ export const FileUploader = ({ recipeId }: { recipeId: string }) => {
 	};
 
 	return (
-		<div className="max-w-full">
-			<MyInput type="file" onChange={handleChange} accept="image/*" />
+		<Card className="p-2">
+			<label
+				htmlFor="image-input"
+				className="flex flex-col gap-4 items-center p-2 border-dashed border-2"
+			>
+				<Image size={32} />
+				<input
+					id="image-input"
+					type="file"
+					onChange={handleChange}
+					accept="image/*"
+					className="hidden"
+				/>
+				Upload image
+			</label>
 			{file && preview && (
 				<div className="max-w-full">
 					<img src={preview} alt="File Preview" className="w-full" />
@@ -66,6 +80,6 @@ export const FileUploader = ({ recipeId }: { recipeId: string }) => {
 					</div>
 				</div>
 			)}
-		</div>
+		</Card>
 	);
 };
