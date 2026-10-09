@@ -7,7 +7,8 @@
 		"build": "vite build",
 		"preview": "vite preview",
 		"start": "node .output/server/index.mjs",
-		"push": "pnpm drizzle-kit push ",
+		"db:push": "pnpm drizzle-kit push",
+		"auth:gen": "pnpm dlx auth@latest generate",
 		"create-backup": "tsx --env-file=.env ./src/scripts/create-backup",
 		"load-from-prod": "tsx --env-file=.env ./src/scripts/load-from-prod",
 		"load-from-backup": "tsx --env-file=.env ./src/scripts/load-from-backup"
@@ -26,6 +27,7 @@
 		"@tanstack/react-router-ssr-query": "^1.167.0",
 		"@tanstack/react-start": "^1.168.0",
 		"@tanstack/router-plugin": "^1.168.0",
+		"better-auth": "^1.7.7",
 		"cheerio": "^1.2.0",
 		"class-variance-authority": "^0.7.1",
 		"cn": "^0.4.0",
