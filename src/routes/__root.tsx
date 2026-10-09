@@ -7,6 +7,7 @@ import {
 } from '@tanstack/react-router';
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import { Toaster } from 'react-hot-toast';
+import { ThemeProvider } from '@/components/ui/theme-provider';
 import appCss from '../styles.css?url';
 
 export const Route = createRootRoute({
@@ -34,21 +35,23 @@ export const Route = createRootRoute({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
 	return (
-		<html lang="en">
+		<html lang="en" suppressHydrationWarning>
 			<head>
 				<HeadContent />
 			</head>
-			<body className="flex flex-col dark">
-				{children}
-				<TanStackDevtools
-					config={{ position: 'bottom-right' }}
-					plugins={[
-						{ name: 'Tanstack Router', render: <TanStackRouterDevtoolsPanel /> },
-					]}
-				/>
-				<Scripts />
+			<body className="flex flex-col bg-body-background">
+				<ThemeProvider storageKey="theme" defaultTheme="system">
+					{children}
+					<TanStackDevtools
+						config={{ position: 'bottom-right' }}
+						plugins={[
+							{ name: 'Tanstack Router', render: <TanStackRouterDevtoolsPanel /> },
+						]}
+					/>
+					<Scripts />
 
-				<Toaster position="bottom-right" reverseOrder={false} />
+					<Toaster position="bottom-right" reverseOrder={false} />
+				</ThemeProvider>
 			</body>
 		</html>
 	);

@@ -28,6 +28,7 @@
 		"@tanstack/react-router-ssr-query": "^1.167.0",
 		"@tanstack/react-start": "^1.168.0",
 		"@tanstack/router-plugin": "^1.168.0",
+		"cheerio": "^1.2.0",
 		"class-variance-authority": "^0.7.1",
 		"cn": "^0.4.0",
 		"croner": "^10.0.1",

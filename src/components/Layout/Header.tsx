@@ -9,6 +9,7 @@ import {
 	NavigationMenuList,
 	NavigationMenuTrigger,
 } from '../ui/navigation-menu';
+import { ModeToggle } from '../ui/theme-toggle';
 import { SiteLogo } from './SiteLogo/SiteLogo';
 
 export default function Header() {
@@ -31,6 +32,7 @@ export default function Header() {
 			<div>
 				<NavigationMenu>
 					<NavigationMenuList>
+						<ModeToggle />
 						{ALWAYS.map(({ to, label }) => (
 							<NavigationMenuItem key={to}>
 								<NavigationMenuLink render={<Link to={to}>{label}</Link>} />
