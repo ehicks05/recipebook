@@ -18,10 +18,8 @@ export const users = pgTable(
 	'users',
 	{
 		id: uuid('id').primaryKey().defaultRandom(),
-		email: text('email'), // optional
-		imageURL: text('image_url_camel'), // map to exact string from instantdb if migration data exists
+		email: text('email'),
 		imageUrl: text('image_url'),
-		type: text('type'),
 		displayName: text('display_name'),
 		createdAt: timestamp('created_at', { withTimezone: true }),
 	},
