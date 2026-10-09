@@ -9,35 +9,20 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as PricingRouteImport } from './routes/pricing'
-import { Route as MeRouteImport } from './routes/me'
-import { Route as LoginRouteImport } from './routes/login'
-import { Route as ImportRecipeRouteImport } from './routes/import-recipe'
-import { Route as CreateRecipeRouteImport } from './routes/create-recipe'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CreateRecipeRouteImport } from './routes/create-recipe'
+import { Route as ImportRecipeRouteImport } from './routes/import-recipe'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as MeRouteImport } from './routes/me'
+import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as ApiInstantRouteImport } from './routes/api/instant'
+import { Route as EditRecipeIdRouteImport } from './routes/edit-recipe.$id'
 import { Route as RecipesIndexRouteImport } from './routes/recipes.index'
 import { Route as RecipesIdRouteImport } from './routes/recipes.$id'
-import { Route as EditRecipeIdRouteImport } from './routes/edit-recipe.$id'
-import { Route as ApiInstantRouteImport } from './routes/api/instant'
 
-const PricingRoute = PricingRouteImport.update({
-  id: '/pricing',
-  path: '/pricing',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MeRoute = MeRouteImport.update({
-  id: '/me',
-  path: '/me',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LoginRoute = LoginRouteImport.update({
-  id: '/login',
-  path: '/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ImportRecipeRoute = ImportRecipeRouteImport.update({
-  id: '/import-recipe',
-  path: '/import-recipe',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CreateRecipeRoute = CreateRecipeRouteImport.update({
@@ -45,9 +30,34 @@ const CreateRecipeRoute = CreateRecipeRouteImport.update({
   path: '/create-recipe',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const ImportRecipeRoute = ImportRecipeRouteImport.update({
+  id: '/import-recipe',
+  path: '/import-recipe',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MeRoute = MeRouteImport.update({
+  id: '/me',
+  path: '/me',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiInstantRoute = ApiInstantRouteImport.update({
+  id: '/api/instant',
+  path: '/api/instant',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EditRecipeIdRoute = EditRecipeIdRouteImport.update({
+  id: '/edit-recipe/$id',
+  path: '/edit-recipe/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RecipesIndexRoute = RecipesIndexRouteImport.update({
@@ -58,16 +68,6 @@ const RecipesIndexRoute = RecipesIndexRouteImport.update({
 const RecipesIdRoute = RecipesIdRouteImport.update({
   id: '/recipes/$id',
   path: '/recipes/$id',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EditRecipeIdRoute = EditRecipeIdRouteImport.update({
-  id: '/edit-recipe/$id',
-  path: '/edit-recipe/$id',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiInstantRoute = ApiInstantRouteImport.update({
-  id: '/api/instant',
-  path: '/api/instant',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -162,32 +162,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/pricing': {
-      id: '/pricing'
-      path: '/pricing'
-      fullPath: '/pricing'
-      preLoaderRoute: typeof PricingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/me': {
-      id: '/me'
-      path: '/me'
-      fullPath: '/me'
-      preLoaderRoute: typeof MeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/import-recipe': {
-      id: '/import-recipe'
-      path: '/import-recipe'
-      fullPath: '/import-recipe'
-      preLoaderRoute: typeof ImportRecipeRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/create-recipe': {
@@ -197,11 +176,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CreateRecipeRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/import-recipe': {
+      id: '/import-recipe'
+      path: '/import-recipe'
+      fullPath: '/import-recipe'
+      preLoaderRoute: typeof ImportRecipeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/me': {
+      id: '/me'
+      path: '/me'
+      fullPath: '/me'
+      preLoaderRoute: typeof MeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/instant': {
+      id: '/api/instant'
+      path: '/api/instant'
+      fullPath: '/api/instant'
+      preLoaderRoute: typeof ApiInstantRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/edit-recipe/$id': {
+      id: '/edit-recipe/$id'
+      path: '/edit-recipe/$id'
+      fullPath: '/edit-recipe/$id'
+      preLoaderRoute: typeof EditRecipeIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/recipes/': {
@@ -216,20 +230,6 @@ declare module '@tanstack/react-router' {
       path: '/recipes/$id'
       fullPath: '/recipes/$id'
       preLoaderRoute: typeof RecipesIdRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/edit-recipe/$id': {
-      id: '/edit-recipe/$id'
-      path: '/edit-recipe/$id'
-      fullPath: '/edit-recipe/$id'
-      preLoaderRoute: typeof EditRecipeIdRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/instant': {
-      id: '/api/instant'
-      path: '/api/instant'
-      fullPath: '/api/instant'
-      preLoaderRoute: typeof ApiInstantRouteImport
       parentRoute: typeof rootRouteImport
     }
   }

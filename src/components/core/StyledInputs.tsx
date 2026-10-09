@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import { cn } from 'cn';
 import type React from 'react';
 import type {
 	FieldError,
@@ -7,7 +7,6 @@ import type {
 	UseFormRegister,
 } from 'react-hook-form';
 import TextareaAutosize from 'react-textarea-autosize';
-import { cn } from '@/lib/utils';
 
 const BASE =
 	'px-3 py-1 h-full text-sm sm:text-base w-full rounded border-neutral-100 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-700 dark:text-neutral-100';
@@ -54,7 +53,7 @@ const MyInput = <T extends FieldValues>({
 			<input
 				disabled={disabled}
 				type={props.type || 'text'}
-				className={clsx(BASE, '[appearance:textfield]', className, {
+				className={cn(BASE, '[appearance:textfield]', className, {
 					'outline outline-red-600': error,
 					'cursor-not-allowed': disabled,
 				})}
@@ -75,15 +74,15 @@ interface IMyTextAreaProps<T extends FieldValues> {
 	disabled?: boolean;
 	placeholder: string;
 	register?: UseFormRegister<T>;
-  error?: FieldError;
-  minRows?: number;
+	error?: FieldError;
+	minRows?: number;
 }
 
 const MyTextArea = <T extends FieldValues>({
 	label,
 	disabled,
 	register,
-  error,
+	error,
 	minRows,
 	name = '',
 	...props
@@ -100,7 +99,7 @@ const MyTextArea = <T extends FieldValues>({
 					minRows={minRows}
 					disabled={disabled}
 					placeholder={props.placeholder}
-					className={clsx(BASE, {
+					className={cn(BASE, {
 						'outline outline-red-600': error,
 						'cursor-not-allowed': disabled,
 					})}
@@ -143,7 +142,7 @@ const MySelect = <T extends FieldValues>({
 			<select
 				disabled={disabled}
 				{...register?.(name as Path<T>, { valueAsNumber: type === 'number' })}
-				className={clsx(BASE, 'h-8 border-r-8', {
+				className={cn(BASE, 'h-8 border-r-8', {
 					'outline outline-red-600': error,
 				})}
 			>

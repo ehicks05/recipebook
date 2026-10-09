@@ -1,8 +1,8 @@
+import { cn } from 'cn';
 import { HiHeart, HiOutlineHeart } from 'react-icons/hi';
 import { Button } from '@/components/core';
 import { clientDb } from '@/lib/db';
 import { toast } from '@/lib/toast';
-import { cn } from '@/lib/utils';
 
 interface Params {
 	userId: string;

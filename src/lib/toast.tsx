@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import { cn } from 'cn';
 import rht, { type ToastOptions } from 'react-hot-toast';
 import { Alert } from '@/components/core';
 
@@ -17,7 +17,7 @@ export const toast = ({ variant, title, description, className, options }: Param
 				variant={variant}
 				title={title}
 				description={description}
-				className={clsx(t.visible ? 'animate-enter' : 'animate-leave', className)}
+				className={cn(t.visible ? 'animate-enter' : 'animate-leave', className)}
 			/>
 		),
 		options,
