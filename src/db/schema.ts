@@ -10,6 +10,7 @@ import {
 	uniqueIndex,
 	uuid,
 } from 'drizzle-orm/pg-core';
+import { authRelations } from './auth-schema';
 
 // ==========================================
 // 1. Tables Definition
@@ -96,7 +97,7 @@ export const userFavorites = pgTable(
 // 2. Relations Definition (RQB)
 // ==========================================
 
-export const relations = defineRelations(
+const _relations = defineRelations(
 	{ users, recipes, ingredients, userFavorites },
 	(r) => ({
 		users: {
@@ -121,3 +122,5 @@ export const relations = defineRelations(
 		},
 	}),
 );
+
+export const relations = { ..._relations, ...authRelations };
