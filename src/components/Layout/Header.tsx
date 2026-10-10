@@ -1,6 +1,7 @@
 import { Link, useNavigate } from '@tanstack/react-router';
 import { clientDb } from '@/lib/db';
-import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import { UserButton } from '../auth/user/user-button';
+import { Avatar, AvatarFallback } from '../ui/avatar';
 import {
 	NavigationMenu,
 	NavigationMenuContent,
@@ -56,7 +57,6 @@ export default function Header() {
 								<NavigationMenuItem>
 									<NavigationMenuTrigger>
 										<Avatar size="sm">
-											<AvatarImage src={user.imageUrl || ''} />
 											<AvatarFallback>{user.email?.slice(0, 2)}</AvatarFallback>
 										</Avatar>
 									</NavigationMenuTrigger>
@@ -69,6 +69,8 @@ export default function Header() {
 								</NavigationMenuItem>
 							</>
 						)}
+
+						<UserButton />
 					</NavigationMenuList>
 				</NavigationMenu>
 			</div>

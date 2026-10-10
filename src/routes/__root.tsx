@@ -1,12 +1,9 @@
-import { TanStackDevtools } from '@tanstack/react-devtools';
 import {
 	createRootRoute,
 	ErrorComponent,
 	HeadContent,
 	Scripts,
 } from '@tanstack/react-router';
-import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
-import { Toaster } from 'react-hot-toast';
 import { Providers } from '@/components/providers';
 import { ThemeProvider } from '@/components/ui/theme-provider';
 import appCss from '../styles.css?url';
@@ -32,7 +29,6 @@ export const Route = createRootRoute({
 	}),
 	errorComponent: (err) => <ErrorComponent error={err.error} />,
 	shellComponent: RootDocument,
-	ssr: false,
 });
 
 function RootDocument({ children }: { children: React.ReactNode }) {
@@ -44,16 +40,8 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			<body className="flex flex-col bg-body-background">
 				<ThemeProvider storageKey="theme" defaultTheme="system">
 					<Providers>{children}</Providers>
-					<TanStackDevtools
-						config={{ position: 'bottom-right' }}
-						plugins={[
-							{ name: 'Tanstack Router', render: <TanStackRouterDevtoolsPanel /> },
-						]}
-					/>
-					<Scripts />
-
-					<Toaster position="bottom-right" reverseOrder={false} />
 				</ThemeProvider>
+				<Scripts />
 			</body>
 		</html>
 	);
