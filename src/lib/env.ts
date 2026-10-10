@@ -3,11 +3,13 @@ import { z } from 'zod';
 const Env = z.object({
 	appId: z.string(),
 	adminToken: z.string(),
+	databaseUrl: z.string(),
 });
 
 const result = Env.safeParse({
 	appId: import.meta.env.VITE_INSTANT_APP_ID,
 	adminToken: import.meta.env.INSTANT_APP_ADMIN_TOKEN,
+	databaseUrl: import.meta.env.DATABASE_URL,
 });
 
 if (!result.success) {

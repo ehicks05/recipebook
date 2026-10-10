@@ -7,6 +7,7 @@ import {
 } from '@tanstack/react-router';
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import { Toaster } from 'react-hot-toast';
+import { Providers } from '@/components/providers';
 import { ThemeProvider } from '@/components/ui/theme-provider';
 import appCss from '../styles.css?url';
 
@@ -42,7 +43,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			</head>
 			<body className="flex flex-col bg-body-background">
 				<ThemeProvider storageKey="theme" defaultTheme="system">
-					{children}
+					<Providers>{children}</Providers>
 					<TanStackDevtools
 						config={{ position: 'bottom-right' }}
 						plugins={[
