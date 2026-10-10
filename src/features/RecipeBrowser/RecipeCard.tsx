@@ -4,7 +4,7 @@ import { Link } from '@tanstack/react-router';
 import { HiStar } from 'react-icons/hi';
 import { Card, RecipeImage } from '@/components/core';
 import { FavoriteButton } from '@/components/core/FavoriteButton';
-import type { Recipe } from '@/instant.types';
+import type { Recipe } from '@/functions/recipes';
 import { clientDb } from '@/lib/db';
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
 }
 
 export const RecipeCard = ({
-	recipe: { id, emoji, name, author, description, image, isFeatured, favoritedBy },
+	recipe: { id, emoji, name, author, description, isFeatured, favoritedBy },
 }: Props) => {
 	return (
 		<Link to="/recipes/$id" params={{ id }} preload={false}>
@@ -20,7 +20,7 @@ export const RecipeCard = ({
 				<div className="flex h-80 flex-col gap-4">
 					<div className="-m-4 mb-0 h-48">
 						<div className="h-48 w-full rounded-t bg-neutral-50 dark:bg-[#1C1C1C] text-neutral-400 dark:text-neutral-700">
-							<RecipeImage image={image} emoji={emoji} className="h-48 rounded-t" />
+							<RecipeImage emoji={emoji} className="h-48 rounded-t" />
 						</div>
 						{isFeatured && (
 							<div

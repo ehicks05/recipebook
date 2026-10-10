@@ -1,13 +1,12 @@
 'use client';
 
 import { useAutoAnimate } from '@formkit/auto-animate/react';
-import { sortBy } from 'es-toolkit/compat';
 import { useState } from 'react';
 import { Button, Container, MyInput } from '@/components/core';
-import { clientDb } from '@/lib/db';
+import type { Recipe } from '@/functions/recipes';
 import { RecipeCard } from './RecipeCard';
 
-export function RecipeBrowser() {
+export function RecipeBrowser({ recipes }: { recipes: Recipe[] }) {
 	const [parent] = useAutoAnimate();
 	const [termInput, setTermInput] = useState('');
 	const [terms, setTerms] = useState<string[]>([]);
@@ -19,31 +18,18 @@ export function RecipeBrowser() {
 		}
 	};
 
-	const whereClause =
-		terms.length !== 0
-			? {
-					and: terms.map((term) => ({
-						or: [
-							{ 'ingredients.name': { $ilike: `%${term}%` } },
-							{ 'author.displayName': { $ilike: `%${term}%` } },
-							{ name: { $ilike: `%${term}%` } },
-							{ description: { $ilike: `%${term}%` } },
-						],
-					})),
-				}
-			: undefined;
+	const isMatch = (recipe: Recipe, term: string) =>
+		recipe.ingredients
+			.map((ingredient) => ingredient.name.toLowerCase())
+			.includes(term) ||
+		recipe.author.displayName?.toLowerCase().includes(term) ||
+		recipe.name.toLowerCase().includes(term) ||
+		recipe.description.toLowerCase().includes(term);
 
-	const { data, isLoading } = clientDb.useQuery({
-		recipes: {
-			$: { where: whereClause, order: { createdAt: 'desc' } },
-			ingredients: {},
-			author: {},
-			favoritedBy: {},
-			image: {},
-		},
-	});
-
-	const { recipes } = data || {};
+	const filteredRecipes =
+		terms.length === 0
+			? recipes
+			: recipes.filter((recipe) => terms.every((term) => isMatch(recipe, term)));
 
 	return (
 		<Container>
@@ -78,13 +64,11 @@ export function RecipeBrowser() {
 					))}
 				</div>
 
-				<div
-					className={`grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ${isLoading ? 'opacity-50' : ''}`}
-				>
-					{sortBy(recipes, (o) => !o.isFeatured)?.map((recipe) => (
+				<div className={`grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4`}>
+					{filteredRecipes.map((recipe) => (
 						<RecipeCard key={recipe.id} recipe={recipe} />
 					))}
-					{recipes?.length === 0 && <span>No results...</span>}
+					{filteredRecipes?.length === 0 && <span>No results...</span>}
 				</div>
 			</div>
 		</Container>
