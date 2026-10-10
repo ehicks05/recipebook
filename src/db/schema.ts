@@ -114,13 +114,20 @@ const _relations = defineRelations(
 			author: r.one.users({
 				from: r.recipes.authorId,
 				to: r.users.id,
+				optional: false,
 			}),
 			ingredients: r.many.ingredients({
 				from: r.recipes.id,
 				to: r.ingredients.recipeId,
 			}),
+			favoritedBy: r.many.users({
+				from: r.recipes.id.through(r.userFavorites.recipeId),
+				to: r.users.id.through(r.userFavorites.userId),
+			}),
 		},
 	}),
 );
+
+export * from './auth-schema';
 
 export const relations = { ..._relations, ...authRelations };
