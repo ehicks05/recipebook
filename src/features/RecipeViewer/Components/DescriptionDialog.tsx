@@ -13,7 +13,11 @@ export function DescriptionDialog({ description }: { description: string }) {
 	return (
 		<Dialog>
 			<DialogTrigger
-				render={<span className="underline cursor-pointer">Description</span>}
+				render={
+					<button type="button" className="underline">
+						Description
+					</button>
+				}
 			/>
 			<DialogContent className="sm:max-w-md">
 				<DialogHeader>
