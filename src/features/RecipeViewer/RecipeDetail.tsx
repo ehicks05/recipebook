@@ -2,7 +2,6 @@ import { useMatchRoute } from '@tanstack/react-router';
 import { HiOutlineClock } from 'react-icons/hi';
 import { Container, Hero } from '@/components/core';
 import type { Recipe } from '@/functions/recipes';
-import { clientDb } from '@/lib/db';
 import { FavoriteButton } from '../../components/core/FavoriteButton';
 import { EditLink, Ingredients, Steps } from './Components';
 import { DescriptionDialog } from './Components/DescriptionDialog';

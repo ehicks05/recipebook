@@ -1,8 +1,7 @@
 import { FaPizzaSlice } from 'react-icons/fa';
-import type { File } from '@/instant.types';
 
 interface Props {
-	image?: File | null;
+	image?: { url: string } | null;
 	emoji?: string;
 	className?: string;
 }

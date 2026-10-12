@@ -1,5 +1,5 @@
 import { Cron, scheduledJobs } from 'croner';
-import { createBackup } from '@/scripts/create-backup/create-backup';
+import { createBackup } from '@/scripts/create-backup';
 import { featureRecipe } from './feature-recipe';
 
 const JOBS = {
