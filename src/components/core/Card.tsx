@@ -8,8 +8,6 @@ interface Props {
 
 export const Card = ({ children, className = '' }: Props) => {
 	return (
-		<div className={cn('rounded p-4 shadow dark:bg-neutral-800', className)}>
-			{children}
-		</div>
+		<div className={cn('rounded p-4 shadow', className)}>{children}</div>
 	);
 };

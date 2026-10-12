@@ -13,16 +13,16 @@ export const RecipeCard = ({
 }: Props) => {
 	return (
 		<Link to="/recipes/$id" params={{ id }} preload={false}>
-			<Card className="relative transform transition-all hover:shadow-md border border-neutral-100 dark:border-neutral-800">
+			<Card className="relative transform transition-all hover:shadow-md bg-muted border border-muted">
 				<div className="flex h-80 flex-col gap-4">
 					<div className="-m-4 mb-0 h-48">
-						<div className="h-48 w-full rounded-t bg-neutral-50 dark:bg-[#1C1C1C] text-neutral-400 dark:text-neutral-700">
+						<div className="h-48 w-full rounded-t bg-sidebar">
 							<RecipeImage emoji={emoji} className="h-48 rounded-t" />
 						</div>
 						{isFeatured && (
 							<div
 								title="Recipe of the day"
-								className="flex gap-2 items-center p-2 rounded bg-muted absolute top-2 right-2 shadow-sm"
+								className="flex gap-2 items-center p-2 rounded absolute top-2 left-2"
 							>
 								<Star size={16} className="text-yellow-400 fill-yellow-400" />
 							</div>
@@ -37,11 +37,9 @@ export const RecipeCard = ({
 							<div className="text-sm dark:text-neutral-200">{author?.name}</div>
 						</div>
 
-						<FavoriteButton
-							className="-mr-2 -mt-8 size-10 p-2"
-							recipeId={id}
-							favoritedBy={favoritedBy}
-						/>
+						<div className="-mr-2 -mt-8">
+							<FavoriteButton recipeId={id} favoritedBy={favoritedBy} />
+						</div>
 					</div>
 					<span className="line-clamp-2 text-sm">{description}</span>
 				</div>
