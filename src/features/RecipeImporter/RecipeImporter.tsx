@@ -4,8 +4,12 @@ import { useState } from 'react';
 import z from 'zod';
 import { Container } from '@/components/core';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import {
+	InputGroup,
+	InputGroupAddon,
+	InputGroupButton,
+	InputGroupInput,
+} from '@/components/ui/input-group';
 import { RecipeForm } from '@/features/RecipeForm';
 import { parseLdJsonRecipe } from '@/features/RecipeImporter/server';
 import { RecipeDetail } from '@/features/RecipeViewer/RecipeDetail';
@@ -21,6 +25,7 @@ export const RecipeImporter = ({ url }: { url?: string }) => {
 
 	const navigate = useNavigate();
 	const [mode, setMode] = useState<'view' | 'edit'>('view');
+	const toggleMode = () => setMode(mode === 'edit' ? 'view' : 'edit');
 
 	const { data: validatedUrl, error: urlError } = urlSchema.safeParse(url);
 	const { html: recipeHtml } = useFetchHtml(validatedUrl);
@@ -35,21 +40,43 @@ export const RecipeImporter = ({ url }: { url?: string }) => {
 	return (
 		<>
 			{!url && <Instructions />}
+			{url && urlError && (
+				<Container>
+					<Alert variant="destructive">
+						<AlertCircle />
+						<AlertTitle>Unable to fetch recipe</AlertTitle>
+						<AlertDescription>{urlError.issues[0].message}</AlertDescription>
+					</Alert>
+				</Container>
+			)}
+			{parseError && (
+				<Container>
+					<Alert variant="destructive">
+						<AlertCircle />
+						<AlertTitle>Unable to parse recipe</AlertTitle>
+						<AlertDescription>{parseError.message}</AlertDescription>
+					</Alert>{' '}
+				</Container>
+			)}
 			<div className="py-2">
 				<Container>
-					<div className="flex items-start gap-1">
-						<Input
+					<InputGroup>
+						<InputGroupInput
 							placeholder="enter a recipe url"
 							value={url || ''}
 							onChange={(e) => handleChange(e.target.value)}
 						/>
-						<Button
-							disabled={!user}
-							onClick={() => setMode(mode === 'edit' ? 'view' : 'edit')}
-						>
-							{mode === 'edit' ? 'View' : 'Edit'}
-						</Button>
-					</div>
+
+						<InputGroupAddon align="inline-end">
+							<InputGroupButton
+								variant="default"
+								disabled={!user || !recipe}
+								onClick={toggleMode}
+							>
+								{mode === 'edit' ? 'View' : 'Edit'}
+							</InputGroupButton>
+						</InputGroupAddon>
+					</InputGroup>
 				</Container>
 			</div>
 			{!user && recipe && (
@@ -58,20 +85,7 @@ export const RecipeImporter = ({ url }: { url?: string }) => {
 					<AlertTitle>Sign in to edit and save</AlertTitle>
 				</Alert>
 			)}
-			{url && urlError && (
-				<Alert variant="destructive">
-					<AlertCircle />
-					<AlertTitle>Unable to fetch recipe</AlertTitle>
-					<AlertDescription>{urlError.issues[0].message}</AlertDescription>
-				</Alert>
-			)}
-			{parseError && (
-				<Alert variant="destructive">
-					<AlertCircle />
-					<AlertTitle>Unable to parse recipe</AlertTitle>
-					<AlertDescription>{parseError.message}</AlertDescription>
-				</Alert>
-			)}
+
 			{recipe && mode === 'view' && <RecipeDetail recipe={recipe} />}
 			{recipe && mode === 'edit' && <RecipeForm importedRecipe={recipe} />}
 		</>
