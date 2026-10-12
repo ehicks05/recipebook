@@ -1,23 +1,23 @@
-import type { Recipe } from '@/instant.types';
-import { toast } from '@/lib/toast';
+import { useState } from 'react';
+import { useTimeout } from 'usehooks-ts';
+import type { Recipe } from '@/functions/recipes';
 import { Button } from '../../components/core';
 
-function updateClipboard(newClip: string) {
-	navigator.clipboard.writeText(newClip).then(
-		(e) => console.log(e),
-		(e) => console.log(e),
-	);
-}
-
 export const CopyToClipboardButton = ({ recipe }: { recipe: Recipe }) => {
-	return (
-		<Button
-			onClick={() => {
-				updateClipboard(JSON.stringify(recipe, null, 2));
-				toast({ variant: 'neutral', title: 'Copied to clipboard' });
-			}}
-		>
-			Copy to Clipboard
-		</Button>
-	);
+	const [label, setLabel] = useState('Copy to Clipboard');
+	const [delay, setDelay] = useState(0);
+
+	useTimeout(() => setLabel('Copy to Clipboard'), delay);
+
+	const handleClick = () => {
+		const text = JSON.stringify(recipe, null, 2);
+		navigator.clipboard.writeText(text).then(
+			(e) => console.log(e),
+			(e) => console.error(e),
+		);
+		setLabel('Copied to clipboard!');
+		setDelay(2000);
+	};
+
+	return <Button onClick={handleClick}>{label}</Button>;
 };

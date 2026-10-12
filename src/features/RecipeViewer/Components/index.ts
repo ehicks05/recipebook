@@ -1,5 +1,5 @@
-import { Directions } from './Directions';
 import { EditLink } from './EditLink';
 import { Ingredients } from './Ingredients';
+import { Steps } from './Steps';
 
-export { Directions, EditLink, Ingredients };
+export { EditLink, Ingredients, Steps };

@@ -1,19 +1,8 @@
-import type { Ingredient, Recipe, Step } from '@/instant.types';
+import type { Ingredient, NewRecipe, Step } from '@/functions/recipes';
 
-export type FormIngredient = Omit<Ingredient, 'id' | 'recipeId'>;
+export type FormIngredient = Ingredient;
 export type FormStep = Step;
 export type FormRecipe = Omit<
-	Recipe,
-	| 'id'
-	| 'createdAt'
-	| 'updatedAt'
-	| 'image'
-	| 'isFeatured'
-	| 'ingredients'
-	| 'steps'
-	| 'author'
-	| 'favoritedBy'
-> & {
-	ingredients: FormIngredient[];
-	steps: FormStep[];
-};
+	NewRecipe,
+	'id' | 'createdAt' | 'updatedAt' | 'isFeatured' | 'author' | 'authorId'
+>;

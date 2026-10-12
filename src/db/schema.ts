@@ -7,30 +7,13 @@ import {
 	pgTable,
 	text,
 	timestamp,
-	uniqueIndex,
 	uuid,
 } from 'drizzle-orm/pg-core';
-import { authRelations } from './auth-schema';
+import { authRelations, user } from './auth-schema';
 
 // ==========================================
 // 1. Tables Definition
 // ==========================================
-export const users = pgTable(
-	'users',
-	{
-		id: uuid('id').primaryKey().defaultRandom(),
-		email: text('email'),
-		imageUrl: text('image_url'),
-		displayName: text('display_name'),
-		createdAt: timestamp('created_at', { withTimezone: true }),
-	},
-	(table) => [
-		uniqueIndex('users_email_unique_idx').on(table.email),
-		index('users_email_idx').on(table.email),
-		index('users_display_name_idx').on(table.displayName),
-	],
-);
-
 export const recipes = pgTable(
 	'recipes',
 	{
@@ -42,17 +25,25 @@ export const recipes = pgTable(
 		servings: integer('servings').notNull(),
 		isPublished: boolean('is_published').notNull(),
 		source: text('source').notNull(),
-		isFeatured: boolean('is_featured'),
-		createdAt: timestamp('created_at', { withTimezone: true }).notNull(),
-		updatedAt: timestamp('updated_at', { withTimezone: true }).notNull(),
+		isFeatured: boolean('is_featured').notNull().default(false),
+		createdAt: timestamp('created_at', { withTimezone: true })
+			.notNull()
+			.defaultNow(),
+		updatedAt: timestamp('updated_at', { withTimezone: true })
+			.notNull()
+			.defaultNow(),
 
 		// JSON field for steps array: [{ text: string }]
 		steps: jsonb('steps').$type<{ text: string }[]>().notNull(),
 
+		ingredients: jsonb('ingredients')
+			.$type<{ name: string; quantity?: string; unit?: string }[]>()
+			.notNull(),
+
 		// Relations
-		authorId: uuid('author_id')
+		authorId: text('author_id')
 			.notNull()
-			.references(() => users.id, { onDelete: 'cascade' }),
+			.references(() => user.id, { onDelete: 'cascade' }),
 	},
 	(table) => [
 		index('recipes_created_at_idx').on(table.createdAt),
@@ -61,28 +52,13 @@ export const recipes = pgTable(
 	],
 );
 
-export const ingredients = pgTable(
-	'ingredients',
-	{
-		id: uuid('id').primaryKey().defaultRandom(),
-		name: text('name').notNull(),
-		quantity: text('quantity').notNull(),
-		unit: text('unit'),
-
-		recipeId: uuid('recipe_id')
-			.notNull()
-			.references(() => recipes.id, { onDelete: 'cascade' }),
-	},
-	(table) => [index('ingredients_name_idx').on(table.name)],
-);
-
 // Join table for many-to-many relationship: userFavorites
 export const userFavorites = pgTable(
 	'user_favorites',
 	{
-		userId: uuid('user_id')
+		userId: text('user_id')
 			.notNull()
-			.references(() => users.id, { onDelete: 'cascade' }),
+			.references(() => user.id, { onDelete: 'cascade' }),
 		recipeId: uuid('recipe_id')
 			.notNull()
 			.references(() => recipes.id, { onDelete: 'cascade' }),
@@ -97,36 +73,29 @@ export const userFavorites = pgTable(
 // 2. Relations Definition (RQB)
 // ==========================================
 
-const _relations = defineRelations(
-	{ users, recipes, ingredients, userFavorites },
-	(r) => ({
-		users: {
-			recipes: r.many.recipes({
-				from: r.users.id,
-				to: r.recipes.authorId,
-			}),
-			favoriteRecipes: r.many.recipes({
-				from: r.users.id.through(r.userFavorites.userId),
-				to: r.recipes.id.through(r.userFavorites.recipeId),
-			}),
-		},
-		recipes: {
-			author: r.one.users({
-				from: r.recipes.authorId,
-				to: r.users.id,
-				optional: false,
-			}),
-			ingredients: r.many.ingredients({
-				from: r.recipes.id,
-				to: r.ingredients.recipeId,
-			}),
-			favoritedBy: r.many.users({
-				from: r.recipes.id.through(r.userFavorites.recipeId),
-				to: r.users.id.through(r.userFavorites.userId),
-			}),
-		},
-	}),
-);
+const _relations = defineRelations({ user, recipes, userFavorites }, (r) => ({
+	user: {
+		recipes: r.many.recipes({
+			from: r.user.id,
+			to: r.recipes.authorId,
+		}),
+		favoriteRecipes: r.many.recipes({
+			from: r.user.id.through(r.userFavorites.userId),
+			to: r.recipes.id.through(r.userFavorites.recipeId),
+		}),
+	},
+	recipes: {
+		author: r.one.user({
+			from: r.recipes.authorId,
+			to: r.user.id,
+			optional: false,
+		}),
+		favoritedBy: r.many.user({
+			from: r.recipes.id.through(r.userFavorites.recipeId),
+			to: r.user.id.through(r.userFavorites.userId),
+		}),
+	},
+}));
 
 export * from './auth-schema';
 

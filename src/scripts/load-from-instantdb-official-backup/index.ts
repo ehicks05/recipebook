@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import * as nodepath from 'node:path';
 import { db } from '@/db';
-import { ingredients, recipes, users } from '@/db/schema';
+import { recipes as recipesModel, users } from '@/db/schema';
 
 const BASE = './backups/instant';
 
@@ -28,19 +28,23 @@ const loadFromBackup = async () => {
 			.trim()
 			.split('\n')
 			.map(JSON.parse)
-			.map((o) => o.entity),
+			.map((o) => ({ ...o.entity, createdAt: o.createdAt })),
 	};
 
-	await Promise.all([db.delete(users), db.delete(recipes), db.delete(ingredients)]);
+	const recipes = data.recipes.map((recipe) => ({
+		...recipe,
+		ingredients: recipe.ingredients
+			.map((ingredientId: string) =>
+				data.ingredients.find((ingredient) => ingredient.id === ingredientId),
+			)
+			.sort((o1, o2) => o1.createdAt - o2.createdAt)
+			// .map((ingredient) => ({ ...ingredient, createdAt: undefined })),
+	}));
+
+	await Promise.all([db.delete(users), db.delete(recipesModel)]);
 
 	await db.insert(users).values(data.users);
-	await db.insert(recipes).values(data.recipes);
-	await db.insert(ingredients).values(
-		data.ingredients.map((o) => ({
-			...o,
-			recipeId: data.recipes.find((r) => r.ingredients.includes(o.id)).id,
-		})),
-	);
+	await db.insert(recipesModel).values(recipes);
 };
 
 loadFromBackup();

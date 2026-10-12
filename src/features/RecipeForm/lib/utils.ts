@@ -1,7 +1,7 @@
 import Fraction from 'fraction.js';
 
 const validateQuantity = (quantity: unknown | undefined) => {
-	if (!quantity) return false;
+	if (!quantity) return true;
 	try {
 		new Fraction(quantity as string);
 		return true;

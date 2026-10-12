@@ -24,14 +24,14 @@ export const StepsForm = ({ stepsFieldArray, register, errors }: Props) => {
 			<div className="flex flex-col gap-1" ref={parent}>
 				{stepsFieldArray.fields.map((field, index) => (
 					<div key={field.id} className="flex items-start gap-2">
-						<span className="pr-2">{index + 1}.</span>
+						<span className="text-right">{index + 1}.</span>
 						<MyInput type="hidden" name={`steps.${index}.index`} />
 						<MyTextArea
-              name={`steps.${index}.text`}
-              placeholder="Step"
-              register={register}
-              error={errors.steps?.[index]?.text}
-              minRows={4.1}
+							name={`steps.${index}.text`}
+							placeholder="Step"
+							register={register}
+							error={errors.steps?.[index]?.text}
+							minRows={4.1}
 						/>
 						<div className="flex flex-col gap-1">
 							<Button

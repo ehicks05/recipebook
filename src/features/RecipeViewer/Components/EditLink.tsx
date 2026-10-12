@@ -1,7 +1,5 @@
-'use client';
-
 import { Link } from '@tanstack/react-router';
-import { clientDb } from '@/lib/db';
+import { authClient } from '@/lib/auth-client';
 
 interface Props {
 	recipeId: string;
@@ -9,7 +7,8 @@ interface Props {
 }
 
 export const EditLink = ({ recipeId, recipeAuthorId }: Props) => {
-	const { id: userId } = clientDb.useUser();
+	const { data: session } = authClient.useSession();
+	const userId = session?.user.id;
 
 	if (userId !== recipeAuthorId) return null;
 

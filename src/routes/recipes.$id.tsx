@@ -1,31 +1,24 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { PageLayout } from '@/components/Layout/PageLayout';
-import { Recipe } from '@/features/RecipeViewer/Recipe';
-import { clientDb } from '@/lib/db';
+import { RecipeDetail } from '@/features/RecipeViewer/RecipeDetail';
+import { getRecipe } from '@/functions/recipes';
 
 export const Route = createFileRoute('/recipes/$id')({
 	component: RouteComponent,
+	loader: async ({ params: { id } }) => {
+		const recipe = await getRecipe({ data: { id } });
+		return recipe;
+	},
 });
 
 function RouteComponent() {
-	const { id } = Route.useParams();
-
-	const { data } = clientDb.useQuery({
-		recipes: {
-			$: { where: { id } },
-			author: {},
-			ingredients: {},
-			favoritedBy: {},
-			image: {},
-		},
-	});
-	const recipe = data?.recipes[0];
+	const recipe = Route.useLoaderData();
 
 	if (!recipe) return null;
 
 	return (
 		<PageLayout>
-			<Recipe recipe={recipe} />
+			<RecipeDetail recipe={recipe} />
 		</PageLayout>
 	);
 }

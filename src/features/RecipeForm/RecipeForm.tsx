@@ -1,20 +1,16 @@
-'use client';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useNavigate } from '@tanstack/react-router';
+import { useNavigate, useRouter } from '@tanstack/react-router';
 import { useEffect } from 'react';
 import type { SubmitErrorHandler, SubmitHandler } from 'react-hook-form';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { HiRewind } from 'react-icons/hi';
 import { Alert, Button, Container, Hero } from '@/components/core';
-import type { Recipe } from '@/instant.types';
-import { clientDb } from '@/lib/db';
+import { createRecipe, type Recipe, updateRecipe } from '@/functions/recipes';
 import { dismissToast, toast } from '@/lib/toast';
 import { CopyToClipboardButton } from './CopyToClipboardButton';
 import { IngredientsForm, RecipeDetailsForm, StepsForm } from './components';
 import { DEFAULT_RECIPE } from './constants';
 import { DeleteRecipeDialog } from './DeleteRecipeDialog';
-import { createRecipe } from './lib/createRecipe';
-import { updateRecipe } from './lib/updateRecipe';
 import { PublishButton } from './PublishButton';
 import { RecipeSchema } from './schema';
 import type { FormRecipe } from './types';
@@ -25,7 +21,6 @@ interface Props {
 }
 
 export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
-	const { id: userId } = clientDb.useUser();
 	const navigate = useNavigate();
 	const {
 		control,
@@ -38,18 +33,22 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 		mode: 'onBlur',
 		resolver: zodResolver(RecipeSchema),
 	});
+	const router = useRouter();
 	const ingredientsFieldArray = useFieldArray({ control, name: 'ingredients' });
 	const stepsFieldArray = useFieldArray({ control, name: 'steps' });
 
 	const handleCreate = async (recipe: FormRecipe) => {
-		const recipeId = await createRecipe({ recipe, userId });
-		navigate({ to: '/recipes/$id', params: { id: recipeId } });
+		const { id } = await createRecipe({ data: { recipe } });
+		navigate({ to: '/recipes/$id', params: { id } });
 		toast({ variant: 'success', title: 'Recipe created!' });
 	};
 
 	const handleUpdate = async (data: FormRecipe) => {
 		if (!recipe) return;
-		await updateRecipe({ recipeId: recipe.id, recipe: data });
+
+		await updateRecipe({ data: { id: recipe.id, recipe: data } });
+		await router.invalidate();
+
 		reset(data, {});
 		toast({ variant: 'success', title: 'Recipe updated!' });
 	};
@@ -139,12 +138,11 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 					</div>
 
 					<div className="flex gap-4 flex-col xl:flex-row">
-						<div className='flex flex-col gap-4 w-full lg:flex-row'>
+						<div className="flex flex-col gap-4 w-full lg:flex-row">
 							<RecipeDetailsForm
 								control={control}
 								register={register}
 								errors={errors}
-								recipe={recipe}
 							/>
 							<IngredientsForm
 								ingredientsFieldArray={ingredientsFieldArray}

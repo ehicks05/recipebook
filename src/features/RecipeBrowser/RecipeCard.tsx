@@ -1,11 +1,8 @@
-'use client';
-
 import { Link } from '@tanstack/react-router';
 import { HiStar } from 'react-icons/hi';
 import { Card, RecipeImage } from '@/components/core';
 import { FavoriteButton } from '@/components/core/FavoriteButton';
 import type { Recipe } from '@/functions/recipes';
-import { clientDb } from '@/lib/db';
 
 interface Props {
 	recipe: Recipe;
@@ -37,18 +34,14 @@ export const RecipeCard = ({
 							<div className="text-xl font-extrabold text-orange-700 dark:text-orange-400">
 								{name}
 							</div>
-							<div className="text-sm dark:text-neutral-200">
-								{author?.displayName}
-							</div>
+							<div className="text-sm dark:text-neutral-200">{author?.name}</div>
 						</div>
 
-						<clientDb.SignedIn>
-							<FavoriteButton
-								className="-mr-2 -mt-8 size-10 p-2"
-								recipeId={id}
-								favoritedBy={favoritedBy}
-							/>
-						</clientDb.SignedIn>
+						<FavoriteButton
+							className="-mr-2 -mt-8 size-10 p-2"
+							recipeId={id}
+							favoritedBy={favoritedBy}
+						/>
 					</div>
 					<span className="line-clamp-2 text-sm">{description}</span>
 				</div>

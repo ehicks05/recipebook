@@ -1,6 +1,6 @@
 import Fraction from 'fraction.js';
 import { useState } from 'react';
-import type { Ingredient } from '@/instant.types';
+import type { Ingredient } from '@/functions/recipes';
 
 interface IngredientProps {
 	ingredient: Ingredient;

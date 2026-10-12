@@ -10,15 +10,16 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as CreateRecipeRouteImport } from './routes/create-recipe'
+import { Route as ProtectedRouteImport } from './routes/_protected'
 import { Route as ImportRecipeRouteImport } from './routes/import-recipe'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as MeRouteImport } from './routes/me'
+import { Route as ProtectedCreateRecipeRouteImport } from './routes/_protected/create-recipe'
 import { Route as ApiInstantRouteImport } from './routes/api/instant'
 import { Route as AuthPathRouteImport } from './routes/auth/$path'
-import { Route as EditRecipeIdRouteImport } from './routes/edit-recipe.$id'
 import { Route as RecipesIndexRouteImport } from './routes/recipes.index'
 import { Route as RecipesIdRouteImport } from './routes/recipes.$id'
+import { Route as ProtectedEditRecipeIdRouteImport } from './routes/_protected/edit-recipe.$id'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 
 const IndexRoute = IndexRouteImport.update({
@@ -26,9 +27,8 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CreateRecipeRoute = CreateRecipeRouteImport.update({
-  id: '/create-recipe',
-  path: '/create-recipe',
+const ProtectedRoute = ProtectedRouteImport.update({
+  id: '/_protected',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ImportRecipeRoute = ImportRecipeRouteImport.update({
@@ -46,6 +46,11 @@ const MeRoute = MeRouteImport.update({
   path: '/me',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProtectedCreateRecipeRoute = ProtectedCreateRecipeRouteImport.update({
+  id: '/create-recipe',
+  path: '/create-recipe',
+  getParentRoute: () => ProtectedRoute,
+} as any)
 const ApiInstantRoute = ApiInstantRouteImport.update({
   id: '/api/instant',
   path: '/api/instant',
@@ -54,11 +59,6 @@ const ApiInstantRoute = ApiInstantRouteImport.update({
 const AuthPathRoute = AuthPathRouteImport.update({
   id: '/auth/$path',
   path: '/auth/$path',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EditRecipeIdRoute = EditRecipeIdRouteImport.update({
-  id: '/edit-recipe/$id',
-  path: '/edit-recipe/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RecipesIndexRoute = RecipesIndexRouteImport.update({
@@ -71,6 +71,11 @@ const RecipesIdRoute = RecipesIdRouteImport.update({
   path: '/recipes/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProtectedEditRecipeIdRoute = ProtectedEditRecipeIdRouteImport.update({
+  id: '/edit-recipe/$id',
+  path: '/edit-recipe/$id',
+  getParentRoute: () => ProtectedRoute,
+} as any)
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   id: '/api/auth/$',
   path: '/api/auth/$',
@@ -79,95 +84,96 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/create-recipe': typeof CreateRecipeRoute
   '/import-recipe': typeof ImportRecipeRoute
   '/login': typeof LoginRoute
   '/me': typeof MeRoute
+  '/create-recipe': typeof ProtectedCreateRecipeRoute
   '/api/instant': typeof ApiInstantRoute
   '/auth/$path': typeof AuthPathRoute
-  '/edit-recipe/$id': typeof EditRecipeIdRoute
   '/recipes/$id': typeof RecipesIdRoute
   '/recipes/': typeof RecipesIndexRoute
+  '/edit-recipe/$id': typeof ProtectedEditRecipeIdRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/create-recipe': typeof CreateRecipeRoute
   '/import-recipe': typeof ImportRecipeRoute
   '/login': typeof LoginRoute
   '/me': typeof MeRoute
+  '/create-recipe': typeof ProtectedCreateRecipeRoute
   '/api/instant': typeof ApiInstantRoute
   '/auth/$path': typeof AuthPathRoute
-  '/edit-recipe/$id': typeof EditRecipeIdRoute
   '/recipes/$id': typeof RecipesIdRoute
   '/recipes': typeof RecipesIndexRoute
+  '/edit-recipe/$id': typeof ProtectedEditRecipeIdRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/create-recipe': typeof CreateRecipeRoute
+  '/_protected': typeof ProtectedRouteWithChildren
   '/import-recipe': typeof ImportRecipeRoute
   '/login': typeof LoginRoute
   '/me': typeof MeRoute
+  '/_protected/create-recipe': typeof ProtectedCreateRecipeRoute
   '/api/instant': typeof ApiInstantRoute
   '/auth/$path': typeof AuthPathRoute
-  '/edit-recipe/$id': typeof EditRecipeIdRoute
   '/recipes/$id': typeof RecipesIdRoute
   '/recipes/': typeof RecipesIndexRoute
+  '/_protected/edit-recipe/$id': typeof ProtectedEditRecipeIdRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/create-recipe'
     | '/import-recipe'
     | '/login'
     | '/me'
+    | '/create-recipe'
     | '/api/instant'
     | '/auth/$path'
-    | '/edit-recipe/$id'
     | '/recipes/$id'
     | '/recipes/'
+    | '/edit-recipe/$id'
     | '/api/auth/$'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/create-recipe'
     | '/import-recipe'
     | '/login'
     | '/me'
+    | '/create-recipe'
     | '/api/instant'
     | '/auth/$path'
-    | '/edit-recipe/$id'
     | '/recipes/$id'
     | '/recipes'
+    | '/edit-recipe/$id'
     | '/api/auth/$'
   id:
     | '__root__'
     | '/'
-    | '/create-recipe'
+    | '/_protected'
     | '/import-recipe'
     | '/login'
     | '/me'
+    | '/_protected/create-recipe'
     | '/api/instant'
     | '/auth/$path'
-    | '/edit-recipe/$id'
     | '/recipes/$id'
     | '/recipes/'
+    | '/_protected/edit-recipe/$id'
     | '/api/auth/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  CreateRecipeRoute: typeof CreateRecipeRoute
+  ProtectedRoute: typeof ProtectedRouteWithChildren
   ImportRecipeRoute: typeof ImportRecipeRoute
   LoginRoute: typeof LoginRoute
   MeRoute: typeof MeRoute
   ApiInstantRoute: typeof ApiInstantRoute
   AuthPathRoute: typeof AuthPathRoute
-  EditRecipeIdRoute: typeof EditRecipeIdRoute
   RecipesIdRoute: typeof RecipesIdRoute
   RecipesIndexRoute: typeof RecipesIndexRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
@@ -182,11 +188,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/create-recipe': {
-      id: '/create-recipe'
-      path: '/create-recipe'
-      fullPath: '/create-recipe'
-      preLoaderRoute: typeof CreateRecipeRouteImport
+    '/_protected': {
+      id: '/_protected'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof ProtectedRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/import-recipe': {
@@ -210,6 +216,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_protected/create-recipe': {
+      id: '/_protected/create-recipe'
+      path: '/create-recipe'
+      fullPath: '/create-recipe'
+      preLoaderRoute: typeof ProtectedCreateRecipeRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
     '/api/instant': {
       id: '/api/instant'
       path: '/api/instant'
@@ -222,13 +235,6 @@ declare module '@tanstack/react-router' {
       path: '/auth/$path'
       fullPath: '/auth/$path'
       preLoaderRoute: typeof AuthPathRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/edit-recipe/$id': {
-      id: '/edit-recipe/$id'
-      path: '/edit-recipe/$id'
-      fullPath: '/edit-recipe/$id'
-      preLoaderRoute: typeof EditRecipeIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/recipes/': {
@@ -245,6 +251,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RecipesIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_protected/edit-recipe/$id': {
+      id: '/_protected/edit-recipe/$id'
+      path: '/edit-recipe/$id'
+      fullPath: '/edit-recipe/$id'
+      preLoaderRoute: typeof ProtectedEditRecipeIdRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
     '/api/auth/$': {
       id: '/api/auth/$'
       path: '/api/auth/$'
@@ -255,15 +268,28 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface ProtectedRouteChildren {
+  ProtectedCreateRecipeRoute: typeof ProtectedCreateRecipeRoute
+  ProtectedEditRecipeIdRoute: typeof ProtectedEditRecipeIdRoute
+}
+
+const ProtectedRouteChildren: ProtectedRouteChildren = {
+  ProtectedCreateRecipeRoute: ProtectedCreateRecipeRoute,
+  ProtectedEditRecipeIdRoute: ProtectedEditRecipeIdRoute,
+}
+
+const ProtectedRouteWithChildren = ProtectedRoute._addFileChildren(
+  ProtectedRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  CreateRecipeRoute: CreateRecipeRoute,
+  ProtectedRoute: ProtectedRouteWithChildren,
   ImportRecipeRoute: ImportRecipeRoute,
   LoginRoute: LoginRoute,
   MeRoute: MeRoute,
   ApiInstantRoute: ApiInstantRoute,
   AuthPathRoute: AuthPathRoute,
-  EditRecipeIdRoute: EditRecipeIdRoute,
   RecipesIdRoute: RecipesIdRoute,
   RecipesIndexRoute: RecipesIndexRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,

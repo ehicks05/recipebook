@@ -1,4 +1,4 @@
-import { useNavigate } from '@tanstack/react-router';
+import { useNavigate, useRouter } from '@tanstack/react-router';
 import { HiTrash } from 'react-icons/hi';
 import { Button } from '@/components/ui/button';
 import {
@@ -11,16 +11,16 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from '@/components/ui/dialog';
-import { clientDb } from '@/lib/db';
-import { toast } from '@/lib/toast';
+import { deleteRecipe } from '@/functions/recipes';
 
 export function DeleteRecipeDialog({ id, name }: { id: string; name: string }) {
+	const router = useRouter();
 	const navigate = useNavigate();
 
-	const deleteRecipe = async ({ id }: { id: string }) => {
-		await clientDb.transact(clientDb.tx.recipes[id].delete());
+	const handleClick = async () => {
+		await deleteRecipe({ data: { id } });
+		await router.invalidate();
 		navigate({ to: '/' });
-		toast({ variant: 'success', title: 'Recipe deleted' });
 	};
 
 	return (
@@ -37,16 +37,16 @@ export function DeleteRecipeDialog({ id, name }: { id: string; name: string }) {
 				<DialogHeader>
 					<DialogTitle>Are you sure?</DialogTitle>
 					<DialogDescription>
-						Are you sure you want to delete <span className="font-bold">{name}</span>
-						?
+						Are you sure you want to delete the recipe for{' '}
+						<span className="font-bold">{name}</span>?
 					</DialogDescription>
 				</DialogHeader>
 
 				<DialogFooter className="sm:justify-start">
-					<Button onClick={() => deleteRecipe({ id })} variant="destructive">
+					<Button onClick={handleClick} variant="destructive">
 						Delete
 					</Button>
-					<DialogClose render={<Button type="button">Close</Button>} />
+					<DialogClose render={<Button variant="secondary">Close</Button>} />
 				</DialogFooter>
 			</DialogContent>
 		</Dialog>

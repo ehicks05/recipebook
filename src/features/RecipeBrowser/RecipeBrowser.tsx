@@ -1,5 +1,3 @@
-'use client';
-
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { useState } from 'react';
 import { Button, Container, MyInput } from '@/components/core';
@@ -22,7 +20,7 @@ export function RecipeBrowser({ recipes }: { recipes: Recipe[] }) {
 		recipe.ingredients
 			.map((ingredient) => ingredient.name.toLowerCase())
 			.includes(term) ||
-		recipe.author.displayName?.toLowerCase().includes(term) ||
+		recipe.author.name?.toLowerCase().includes(term) ||
 		recipe.name.toLowerCase().includes(term) ||
 		recipe.description.toLowerCase().includes(term);
 

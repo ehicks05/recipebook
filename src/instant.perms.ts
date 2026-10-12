@@ -2,11 +2,6 @@
 import type { InstantRules } from '@instantdb/react';
 
 const rules = {
-	attrs: {
-		allow: {
-			create: 'false',
-		},
-	},
 	$files: {
 		bind: {
 			isOwner: 'data.path.startsWith(auth.id)',

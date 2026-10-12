@@ -1,9 +1,7 @@
-'use client';
-
 import { useState } from 'react';
 import { FaMinus, FaPlus } from 'react-icons/fa';
 import { Button } from '@/components/core';
-import type { Ingredient } from '@/instant.types';
+import type { Ingredient } from '@/functions/recipes';
 import { IngredientLine } from './Ingredient';
 
 interface Props {

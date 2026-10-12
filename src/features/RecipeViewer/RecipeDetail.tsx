@@ -1,24 +1,24 @@
 import { useMatchRoute } from '@tanstack/react-router';
 import { HiOutlineClock } from 'react-icons/hi';
 import { Container, Hero } from '@/components/core';
-import type { Recipe as IRecipe } from '@/instant.types';
+import type { Recipe } from '@/functions/recipes';
 import { clientDb } from '@/lib/db';
 import { FavoriteButton } from '../../components/core/FavoriteButton';
-import { Directions, EditLink, Ingredients } from './Components';
+import { EditLink, Ingredients, Steps } from './Components';
 import { DescriptionDialog } from './Components/DescriptionDialog';
 
 interface Props {
-	recipe: IRecipe;
+	recipe: Recipe;
 }
 
-export function Recipe({ recipe }: Props) {
+export function RecipeDetail({ recipe }: Props) {
 	const matchRoute = useMatchRoute();
 
 	return (
 		<>
 			<Hero title={`${recipe.name}`}>
 				<div className="flex flex-wrap gap-2 items-center">
-					{recipe.author?.displayName}
+					{recipe.author?.name}
 					<span>·</span>
 					<span className="flex gap-px items-center">
 						<HiOutlineClock size={16} className="inline" /> {recipe.cookingTime}
@@ -39,7 +39,7 @@ export function Recipe({ recipe }: Props) {
 						</>
 					)}
 					{matchRoute({ to: '/recipes/$id' }) && (
-						<clientDb.SignedIn>
+						<>
 							<span>·</span>
 							<EditLink
 								recipeId={recipe.id}
@@ -51,7 +51,7 @@ export function Recipe({ recipe }: Props) {
 								favoritedBy={recipe.favoritedBy}
 								className="size-7 p-1"
 							/>
-						</clientDb.SignedIn>
+						</>
 					)}
 				</div>
 			</Hero>
@@ -64,7 +64,7 @@ export function Recipe({ recipe }: Props) {
 						/>
 					</div>
 					<div className="order-2 md:order-1 max-w-3xl">
-						<Directions directions={recipe.steps} />
+						<Steps steps={recipe.steps} />
 					</div>
 				</div>
 			</Container>

@@ -5,15 +5,17 @@ import z from 'zod';
 import { Alert, Button, Container, MyInput } from '@/components/core';
 import { RecipeForm } from '@/features/RecipeForm';
 import { parseLdJsonRecipe } from '@/features/RecipeImporter/server';
-import { Recipe } from '@/features/RecipeViewer/Recipe';
-import { clientDb } from '@/lib/db';
+import { RecipeDetail } from '@/features/RecipeViewer/RecipeDetail';
+import { authClient } from '@/lib/auth-client';
 import { Instructions } from './Instructions';
 import { useFetchHtml } from './useFetchHtml';
 
 const urlSchema = z.url({ protocol: /^https?$/ });
 
 export const RecipeImporter = ({ url }: { url?: string }) => {
-	const { user } = clientDb.useAuth();
+	const { data: session } = authClient.useSession();
+	const user = session?.user;
+
 	const navigate = useNavigate();
 	const [mode, setMode] = useState<'view' | 'edit'>('view');
 
@@ -68,7 +70,7 @@ export const RecipeImporter = ({ url }: { url?: string }) => {
 					/>
 				</div>
 			)}
-			{recipe && mode === 'view' && <Recipe recipe={recipe} />}
+			{recipe && mode === 'view' && <RecipeDetail recipe={recipe} />}
 			{recipe && mode === 'edit' && <RecipeForm importedRecipe={recipe} />}
 		</>
 	);

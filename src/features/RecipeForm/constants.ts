@@ -17,7 +17,7 @@ export const DEFAULT_RECIPE: FormRecipe = {
 	cookingTime: '',
 	servings: 0,
 	isPublished: true,
-	source: null,
+	source: '',
 	ingredients: [{ name: '', quantity: '', unit: 'tsp' }],
 	steps: [{ text: '' }],
 };

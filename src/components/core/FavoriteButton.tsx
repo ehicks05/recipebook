@@ -1,31 +1,10 @@
+import { useRouter } from '@tanstack/react-router';
 import { cn } from 'cn';
 import { HiHeart, HiOutlineHeart } from 'react-icons/hi';
 import { Button } from '@/components/core';
-import { clientDb } from '@/lib/db';
+import { toggleFavorite } from '@/functions/recipes';
+import { authClient } from '@/lib/auth-client';
 import { toast } from '@/lib/toast';
-
-interface Params {
-	userId: string;
-	recipeId: string;
-	isFavorite: boolean;
-}
-
-export const toggleFavorite = async ({ userId, recipeId, isFavorite }: Params) => {
-	try {
-		clientDb.transact(
-			isFavorite
-				? clientDb.tx.$users[userId].unlink({ favoriteRecipes: recipeId })
-				: clientDb.tx.$users[userId].link({ favoriteRecipes: recipeId }),
-		);
-	} catch (e) {
-		const err = e instanceof Error ? e : undefined;
-		return {
-			err,
-			title: 'Unable to update favorites',
-		};
-	}
-	return { title: 'Favorites updated' };
-};
 
 interface Props {
 	recipeId: string;
@@ -34,19 +13,26 @@ interface Props {
 }
 
 export const FavoriteButton = ({ recipeId, className, favoritedBy }: Props) => {
-	const { id: userId } = clientDb.useUser();
-	const isFavorite = favoritedBy.map((o) => o.id).includes(userId);
+	const router = useRouter();
+	const { data: session } = authClient.useSession();
+	const userId = session?.user.id;
+	if (!userId) return null;
 
+	const isFavorite = favoritedBy.map((o) => o.id).includes(userId);
 	const Icon = isFavorite ? HiHeart : HiOutlineHeart;
 
 	const handleClick = async () => {
-		const { title, err } = await toggleFavorite({ userId, recipeId, isFavorite });
-
-		toast({
-			variant: err ? 'error' : 'success',
-			title,
-			description: err?.message,
-		});
+		try {
+			await toggleFavorite({ data: { recipeId } });
+			await router.invalidate();
+		} catch (e) {
+			const err = e instanceof Error ? e : undefined;
+			toast({
+				variant: 'error',
+				title: 'Unable to update favorite',
+				description: err?.message,
+			});
+		}
 	};
 
 	return (

@@ -1,30 +1,18 @@
-'use client';
-
+import { useRouter } from '@tanstack/react-router';
 import { Button } from '@/components/core';
-import type { Recipe } from '@/instant.types';
-import { clientDb } from '@/lib/db';
-import { toast } from '@/lib/toast';
-
-const updatePublished = async ({
-	id,
-	publish,
-}: {
-	id: string;
-	publish: boolean;
-}) => {
-	await clientDb.transact(clientDb.tx.recipes[id].update({ isPublished: publish }));
-	const title = `Recipe ${publish ? 'published' : 'unpublished'}`;
-	toast({ variant: 'success', title });
-};
+import { type Recipe, updateRecipe } from '@/functions/recipes';
 
 export const PublishButton = ({ recipe }: { recipe: Recipe }) => {
+	const router = useRouter();
+
+	const handleClick = async () => {
+		const { id, isPublished } = recipe;
+		await updateRecipe({ data: { id, recipe: { isPublished: !isPublished } } });
+		await router.invalidate();
+	};
+
 	return (
-		<Button
-			disabled={recipe.isFeatured}
-			onClick={() =>
-				updatePublished({ id: recipe.id, publish: !recipe.isPublished })
-			}
-		>
+		<Button disabled={recipe.isFeatured} onClick={handleClick}>
 			{recipe.isPublished ? 'Unpublish' : 'Publish'}
 		</Button>
 	);
