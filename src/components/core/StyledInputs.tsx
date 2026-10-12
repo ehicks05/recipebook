@@ -9,8 +9,7 @@ import type {
 import { Input } from '../ui/input';
 import { TextareaAutosize } from '../ui/textarea-autosize';
 
-const BASE =
-	'px-3 py-1 h-full text-sm sm:text-base w-full rounded border-neutral-100 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-700 dark:text-neutral-100';
+const BASE = 'px-3 py-1 h-full text-sm sm:text-base w-full rounded-md border';
 
 // https://github.com/react-hook-form/react-hook-form/discussions/4426#discussioncomment-623148
 export interface IMyInputProps<T extends FieldValues>
@@ -54,7 +53,7 @@ const MyInput = <T extends FieldValues>({
 			<Input
 				disabled={disabled}
 				type={props.type || 'text'}
-				className={cn('[appearance:textfield]', className, {
+				className={cn('text-sm sm:text-base [appearance:textfield]', className, {
 					'outline outline-red-600': error,
 					'cursor-not-allowed': disabled,
 				})}
@@ -100,7 +99,7 @@ const MyTextArea = <T extends FieldValues>({
 					minRows={minRows}
 					disabled={disabled}
 					placeholder={props.placeholder}
-					className={cn({
+					className={cn('text-sm sm:text-base', {
 						'outline outline-red-600': error,
 						'cursor-not-allowed': disabled,
 					})}
@@ -143,7 +142,7 @@ const MySelect = <T extends FieldValues>({
 			<select
 				disabled={disabled}
 				{...register?.(name as Path<T>, { valueAsNumber: type === 'number' })}
-				className={cn(BASE, 'h-9 border-r-8', {
+				className={cn(BASE, {
 					'outline outline-red-600': error,
 				})}
 			>
