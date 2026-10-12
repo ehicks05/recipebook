@@ -13,8 +13,8 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProtectedRouteImport } from './routes/_protected'
 import { Route as ImportRecipeRouteImport } from './routes/import-recipe'
 import { Route as LoginRouteImport } from './routes/login'
-import { Route as MeRouteImport } from './routes/me'
 import { Route as ProtectedCreateRecipeRouteImport } from './routes/_protected/create-recipe'
+import { Route as ProtectedMeRouteImport } from './routes/_protected/me'
 import { Route as ApiInstantRouteImport } from './routes/api/instant'
 import { Route as AuthPathRouteImport } from './routes/auth/$path'
 import { Route as RecipesIndexRouteImport } from './routes/recipes.index'
@@ -41,14 +41,14 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const MeRoute = MeRouteImport.update({
-  id: '/me',
-  path: '/me',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ProtectedCreateRecipeRoute = ProtectedCreateRecipeRouteImport.update({
   id: '/create-recipe',
   path: '/create-recipe',
+  getParentRoute: () => ProtectedRoute,
+} as any)
+const ProtectedMeRoute = ProtectedMeRouteImport.update({
+  id: '/me',
+  path: '/me',
   getParentRoute: () => ProtectedRoute,
 } as any)
 const ApiInstantRoute = ApiInstantRouteImport.update({
@@ -86,8 +86,8 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/import-recipe': typeof ImportRecipeRoute
   '/login': typeof LoginRoute
-  '/me': typeof MeRoute
   '/create-recipe': typeof ProtectedCreateRecipeRoute
+  '/me': typeof ProtectedMeRoute
   '/api/instant': typeof ApiInstantRoute
   '/auth/$path': typeof AuthPathRoute
   '/recipes/$id': typeof RecipesIdRoute
@@ -99,8 +99,8 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/import-recipe': typeof ImportRecipeRoute
   '/login': typeof LoginRoute
-  '/me': typeof MeRoute
   '/create-recipe': typeof ProtectedCreateRecipeRoute
+  '/me': typeof ProtectedMeRoute
   '/api/instant': typeof ApiInstantRoute
   '/auth/$path': typeof AuthPathRoute
   '/recipes/$id': typeof RecipesIdRoute
@@ -114,8 +114,8 @@ export interface FileRoutesById {
   '/_protected': typeof ProtectedRouteWithChildren
   '/import-recipe': typeof ImportRecipeRoute
   '/login': typeof LoginRoute
-  '/me': typeof MeRoute
   '/_protected/create-recipe': typeof ProtectedCreateRecipeRoute
+  '/_protected/me': typeof ProtectedMeRoute
   '/api/instant': typeof ApiInstantRoute
   '/auth/$path': typeof AuthPathRoute
   '/recipes/$id': typeof RecipesIdRoute
@@ -129,8 +129,8 @@ export interface FileRouteTypes {
     | '/'
     | '/import-recipe'
     | '/login'
-    | '/me'
     | '/create-recipe'
+    | '/me'
     | '/api/instant'
     | '/auth/$path'
     | '/recipes/$id'
@@ -142,8 +142,8 @@ export interface FileRouteTypes {
     | '/'
     | '/import-recipe'
     | '/login'
-    | '/me'
     | '/create-recipe'
+    | '/me'
     | '/api/instant'
     | '/auth/$path'
     | '/recipes/$id'
@@ -156,8 +156,8 @@ export interface FileRouteTypes {
     | '/_protected'
     | '/import-recipe'
     | '/login'
-    | '/me'
     | '/_protected/create-recipe'
+    | '/_protected/me'
     | '/api/instant'
     | '/auth/$path'
     | '/recipes/$id'
@@ -171,7 +171,6 @@ export interface RootRouteChildren {
   ProtectedRoute: typeof ProtectedRouteWithChildren
   ImportRecipeRoute: typeof ImportRecipeRoute
   LoginRoute: typeof LoginRoute
-  MeRoute: typeof MeRoute
   ApiInstantRoute: typeof ApiInstantRoute
   AuthPathRoute: typeof AuthPathRoute
   RecipesIdRoute: typeof RecipesIdRoute
@@ -209,18 +208,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/me': {
-      id: '/me'
-      path: '/me'
-      fullPath: '/me'
-      preLoaderRoute: typeof MeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/_protected/create-recipe': {
       id: '/_protected/create-recipe'
       path: '/create-recipe'
       fullPath: '/create-recipe'
       preLoaderRoute: typeof ProtectedCreateRecipeRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/me': {
+      id: '/_protected/me'
+      path: '/me'
+      fullPath: '/me'
+      preLoaderRoute: typeof ProtectedMeRouteImport
       parentRoute: typeof ProtectedRoute
     }
     '/api/instant': {
@@ -270,11 +269,13 @@ declare module '@tanstack/react-router' {
 
 interface ProtectedRouteChildren {
   ProtectedCreateRecipeRoute: typeof ProtectedCreateRecipeRoute
+  ProtectedMeRoute: typeof ProtectedMeRoute
   ProtectedEditRecipeIdRoute: typeof ProtectedEditRecipeIdRoute
 }
 
 const ProtectedRouteChildren: ProtectedRouteChildren = {
   ProtectedCreateRecipeRoute: ProtectedCreateRecipeRoute,
+  ProtectedMeRoute: ProtectedMeRoute,
   ProtectedEditRecipeIdRoute: ProtectedEditRecipeIdRoute,
 }
 
@@ -287,7 +288,6 @@ const rootRouteChildren: RootRouteChildren = {
   ProtectedRoute: ProtectedRouteWithChildren,
   ImportRecipeRoute: ImportRecipeRoute,
   LoginRoute: LoginRoute,
-  MeRoute: MeRoute,
   ApiInstantRoute: ApiInstantRoute,
   AuthPathRoute: AuthPathRoute,
   RecipesIdRoute: RecipesIdRoute,

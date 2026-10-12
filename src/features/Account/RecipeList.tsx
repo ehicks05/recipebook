@@ -1,4 +1,4 @@
-import type { Recipe } from '@/instant.types';
+import type { Recipe } from '@/functions/recipes';
 import { SmallRecipeCard } from './SmallRecipeCard';
 
 interface Props {

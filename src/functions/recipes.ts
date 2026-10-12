@@ -27,6 +27,42 @@ export const getRecipes = createServerFn()
 		return recipes;
 	});
 
+export const getRecipesByUser = createServerFn()
+	.middleware([authMiddleware])
+	.handler(async ({ context: { user } }) => {
+		const recipes = await db.query.recipes.findMany({
+			where: { authorId: user.id },
+			orderBy: { isFeatured: 'desc', createdAt: 'desc' },
+			with: {
+				author: true,
+				favoritedBy: user
+					? { where: { id: user.id }, columns: { id: true } }
+					: false,
+			},
+		});
+
+		return recipes;
+	});
+
+export type UserFavorite = Awaited<ReturnType<typeof getFavoritesByUser>>[number];
+
+export const getFavoritesByUser = createServerFn()
+	.middleware([authMiddleware])
+	.handler(async ({ context: { user } }) => {
+		const recipes = await db.query.recipes.findMany({
+			where: { authorId: user.id, favoritedBy: { id: user.id } },
+			orderBy: { isFeatured: 'desc', createdAt: 'desc' },
+			with: {
+				author: true,
+				favoritedBy: user
+					? { where: { id: user.id }, columns: { id: true } }
+					: false,
+			},
+		});
+
+		return recipes;
+	});
+
 export const getRecipe = createServerFn()
 	.middleware([maybeUserMiddleware])
 	.validator((data: { id: string }) => data)
