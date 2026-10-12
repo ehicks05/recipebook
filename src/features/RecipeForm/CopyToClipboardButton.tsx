@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useTimeout } from 'usehooks-ts';
+import { Button } from '@/components/ui/button';
 import type { Recipe } from '@/functions/recipes';
-import { Button } from '../../components/core';
 
 export const CopyToClipboardButton = ({ recipe }: { recipe: Recipe }) => {
 	const [label, setLabel] = useState('Copy to Clipboard');
@@ -19,5 +19,9 @@ export const CopyToClipboardButton = ({ recipe }: { recipe: Recipe }) => {
 		setDelay(2000);
 	};
 
-	return <Button onClick={handleClick}>{label}</Button>;
+	return (
+		<Button variant="secondary" onClick={handleClick}>
+			{label}
+		</Button>
+	);
 };

@@ -5,7 +5,8 @@ import type {
 	UseFormRegister,
 } from 'react-hook-form';
 import { HiArrowDown, HiArrowUp, HiPlus, HiTrash } from 'react-icons/hi';
-import { Button, MyInput, MySelect } from '@/components/core';
+import { MyInput, MySelect } from '@/components/core';
+import { Button } from '@/components/ui/button';
 import { DEFAULT_INGREDIENT, UNITS } from '../constants';
 import type { FormRecipe } from '../types';
 
@@ -28,6 +29,8 @@ export const IngredientsForm = ({
 	errors,
 }: Props) => {
 	const [parent] = useAutoAnimate();
+
+	const handleAppend = () => ingredientsFieldArray.append(DEFAULT_INGREDIENT);
 
 	return (
 		<div className="flex flex-col gap-2 w-full">
@@ -62,18 +65,21 @@ export const IngredientsForm = ({
 								<Button
 									disabled={index === 0}
 									onClick={() => ingredientsFieldArray.swap(index, index - 1)}
+									variant="secondary"
 								>
 									<HiArrowUp />
 								</Button>
 								<Button
 									disabled={index === ingredientsFieldArray.fields.length - 1}
 									onClick={() => ingredientsFieldArray.swap(index, index + 1)}
+									variant="secondary"
 								>
 									<HiArrowDown />
 								</Button>
 								<Button
 									disabled={ingredientsFieldArray.fields.length <= 1}
 									onClick={() => ingredientsFieldArray.remove(index)}
+									variant="destructive"
 								>
 									<HiTrash />
 								</Button>
@@ -94,7 +100,7 @@ export const IngredientsForm = ({
 					</div>
 				))}
 				<div className="text-right">
-					<Button onClick={() => ingredientsFieldArray.append(DEFAULT_INGREDIENT)}>
+					<Button onClick={handleAppend} variant="secondary">
 						<HiPlus />
 					</Button>
 				</div>

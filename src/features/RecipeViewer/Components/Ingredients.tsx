@@ -1,6 +1,7 @@
+import { Minus, Plus } from 'lucide-react';
 import { useState } from 'react';
-import { FaMinus, FaPlus } from 'react-icons/fa';
-import { Button } from '@/components/core';
+import { Button } from '@/components/ui/button';
+import { ButtonGroup } from '@/components/ui/button-group';
 import type { Ingredient } from '@/functions/recipes';
 import { IngredientLine } from './Ingredient';
 
@@ -12,25 +13,25 @@ interface Props {
 export function Ingredients({ ingredients, defaultServings }: Props) {
 	const [scaledServings, setScaledServings] = useState(defaultServings);
 
+	const handleDecrease = () => setScaledServings(scaledServings - 1);
+	const handleIncrease = () => setScaledServings(scaledServings + 1);
+
 	return (
 		<div>
 			<div className="mb-2 flex items-center gap-2">
 				<span>Serves {scaledServings}</span>
-				<div className="flex">
+				<ButtonGroup>
 					<Button
-						className="rounded-r-none"
-						onClick={() => setScaledServings(scaledServings - 1)}
+						onClick={handleDecrease}
 						disabled={scaledServings === 1}
+						variant="secondary"
 					>
-						<FaMinus />
+						<Minus />
 					</Button>
-					<Button
-						className="rounded-l-none"
-						onClick={() => setScaledServings(scaledServings + 1)}
-					>
-						<FaPlus />
+					<Button onClick={handleIncrease} variant="secondary">
+						<Plus />
 					</Button>
-				</div>
+				</ButtonGroup>
 			</div>
 
 			{ingredients.map((ingredient, i) => (

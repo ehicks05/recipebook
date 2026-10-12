@@ -1,5 +1,5 @@
 import { useRouter } from '@tanstack/react-router';
-import { Button } from '@/components/core';
+import { Button } from '@/components/ui/button';
 import { type Recipe, updateRecipe } from '@/functions/recipes';
 
 export const PublishButton = ({ recipe }: { recipe: Recipe }) => {
@@ -12,7 +12,7 @@ export const PublishButton = ({ recipe }: { recipe: Recipe }) => {
 	};
 
 	return (
-		<Button disabled={recipe.isFeatured} onClick={handleClick}>
+		<Button variant="secondary" disabled={recipe.isFeatured} onClick={handleClick}>
 			{recipe.isPublished ? 'Unpublish' : 'Publish'}
 		</Button>
 	);

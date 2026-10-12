@@ -1,10 +1,13 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigate, useRouter } from '@tanstack/react-router';
+import { CircleAlert } from 'lucide-react';
 import { useEffect } from 'react';
 import type { SubmitErrorHandler, SubmitHandler } from 'react-hook-form';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { HiRewind } from 'react-icons/hi';
-import { Alert, Button, Container, Hero } from '@/components/core';
+import { Container, Hero } from '@/components/core';
+import { Alert, AlertTitle } from '@/components/ui/alert';
+import { Button } from '@/components/ui/button';
 import { createRecipe, type Recipe, updateRecipe } from '@/functions/recipes';
 import { dismissToast, toast } from '@/lib/toast';
 import { CopyToClipboardButton } from './CopyToClipboardButton';
@@ -81,6 +84,10 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 		console.log({ errors });
 	};
 
+	const handleReset = () => reset();
+	const handleView = () =>
+		recipe ? navigate({ to: '/recipes/$id', params: { id: recipe.id } }) : undefined;
+
 	const isLoading = isSubmitting;
 	const error = undefined;
 
@@ -89,11 +96,11 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 			<Hero title={`${recipe ? 'Edit' : 'Create'} Recipe`} />
 			{error && (
 				<div className="m-3">
-					<Alert
-						variant="error"
-						title={`Unable to ${recipe ? 'update' : 'create'} recipe`}
-						description={'error.message'}
-					/>
+					<Alert variant="destructive">
+						<CircleAlert />
+						<AlertTitle>{`Unable to ${recipe ? 'update' : 'create'} recipe`}</AlertTitle>
+						<div>{'error?.message'}</div>
+					</Alert>
 				</div>
 			)}
 			<Container>
@@ -104,7 +111,6 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 					<div className="grid grid-cols-2 sm:flex sm:items-center gap-2">
 						<Button
 							type="submit"
-							variant="primary"
 							// don't disable when invalid (clicking this will trigger error messages to show)
 							disabled={isLoading || (recipe && !isDirty)}
 						>
@@ -114,19 +120,16 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 							<>
 								<Button
 									disabled={!isDirty}
-									onClick={() => {
-										reset();
-										toast({ variant: 'neutral', title: 'Changes reset' });
-									}}
+									onClick={handleReset}
+									variant="secondary"
 								>
 									Reset
 									<HiRewind />
 								</Button>
 								<Button
-									onClick={() =>
-										navigate({ to: '/recipes/$id', params: { id: recipe.id } })
-									}
 									disabled={isLoading}
+									onClick={handleView}
+									variant="secondary"
 								>
 									View
 								</Button>

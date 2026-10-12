@@ -1,8 +1,11 @@
-'use client';
 import { useNavigate } from '@tanstack/react-router';
+import { AlertCircle, CircleQuestionMark } from 'lucide-react';
 import { useState } from 'react';
 import z from 'zod';
-import { Alert, Button, Container, MyInput } from '@/components/core';
+import { Container } from '@/components/core';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { RecipeForm } from '@/features/RecipeForm';
 import { parseLdJsonRecipe } from '@/features/RecipeImporter/server';
 import { RecipeDetail } from '@/features/RecipeViewer/RecipeDetail';
@@ -35,7 +38,7 @@ export const RecipeImporter = ({ url }: { url?: string }) => {
 			<div className="py-2">
 				<Container>
 					<div className="flex items-start gap-1">
-						<MyInput
+						<Input
 							placeholder="enter a recipe url"
 							value={url || ''}
 							onChange={(e) => handleChange(e.target.value)}
@@ -50,25 +53,24 @@ export const RecipeImporter = ({ url }: { url?: string }) => {
 				</Container>
 			</div>
 			{!user && recipe && (
-				<Alert variant="info" title={'Sign in to edit and save'} />
+				<Alert className="bg-blue-50">
+					<CircleQuestionMark />
+					<AlertTitle>Sign in to edit and save</AlertTitle>
+				</Alert>
 			)}
 			{url && urlError && (
-				<div className="m-3">
-					<Alert
-						variant="error"
-						title={'Unable to fetch recipe'}
-						description={urlError.issues[0].message}
-					/>
-				</div>
+				<Alert variant="destructive" className="bg-red-50">
+					<AlertCircle />
+					<AlertTitle>Unable to fetch recipe</AlertTitle>
+					<AlertDescription>{urlError.issues[0].message}</AlertDescription>
+				</Alert>
 			)}
 			{parseError && (
-				<div className="m-3">
-					<Alert
-						variant="error"
-						title={'Unable to parse recipe'}
-						description={parseError.message}
-					/>
-				</div>
+				<Alert variant="destructive" className="bg-red-50">
+					<AlertCircle />
+					<AlertTitle>Unable to parse recipe</AlertTitle>
+					<AlertDescription>{parseError.message}</AlertDescription>
+				</Alert>
 			)}
 			{recipe && mode === 'view' && <RecipeDetail recipe={recipe} />}
 			{recipe && mode === 'edit' && <RecipeForm importedRecipe={recipe} />}

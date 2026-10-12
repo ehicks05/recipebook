@@ -1,15 +1,16 @@
-import { Alert, Container } from '@/components/core';
+import { CircleQuestionMark } from 'lucide-react';
+import { Container } from '@/components/core';
+import { Alert, AlertTitle } from '@/components/ui/alert';
 
 export const Instructions = () => (
 	<Container>
-		<Alert variant="info" title="What is this page?">
-			<div className="max-w-prose">
-				Here you can paste the url of a recipe from the web. If it includes
-				web-friendly metadata, you will be able to see it here.
-				<br />
-				<br />
-				Check the imported recipe carefully! Depending on how the website formats
-				their metadata, imported recipes can wind up with parts missing or garbled.
+		<Alert className="bg-blue-50">
+			<CircleQuestionMark />
+			<AlertTitle>What is this page?</AlertTitle>
+			<div>
+				Paste the url of a recipe from the web below. If it includes web-friendly
+				metadata, it will appear below. Check it carefully! Recipes do not always
+				import perfectly.
 			</div>
 		</Alert>
 	</Container>

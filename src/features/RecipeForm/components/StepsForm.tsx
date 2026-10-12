@@ -5,7 +5,8 @@ import type {
 	UseFormRegister,
 } from 'react-hook-form';
 import { HiArrowDown, HiArrowUp, HiPlus, HiTrash } from 'react-icons/hi';
-import { Button, MyInput, MyTextArea } from '@/components/core';
+import { MyInput, MyTextArea } from '@/components/core';
+import { Button } from '@/components/ui/button';
 import { DEFAULT_STEP } from '../constants';
 import type { FormRecipe } from '../types';
 
@@ -17,6 +18,8 @@ interface Props {
 
 export const StepsForm = ({ stepsFieldArray, register, errors }: Props) => {
 	const [parent] = useAutoAnimate();
+
+	const handleAppend = () => stepsFieldArray.append(DEFAULT_STEP);
 
 	return (
 		<div className="flex flex-col gap-2 w-full xl:max-w-lg">
@@ -37,18 +40,21 @@ export const StepsForm = ({ stepsFieldArray, register, errors }: Props) => {
 							<Button
 								disabled={stepsFieldArray.fields.length <= 1}
 								onClick={() => stepsFieldArray.remove(index)}
+								variant="destructive"
 							>
 								<HiTrash />
 							</Button>
 							<Button
 								disabled={index === 0}
 								onClick={() => stepsFieldArray.swap(index, index - 1)}
+								variant="secondary"
 							>
 								<HiArrowUp />
 							</Button>
 							<Button
 								disabled={index === stepsFieldArray.fields.length - 1}
 								onClick={() => stepsFieldArray.swap(index, index + 1)}
+								variant="secondary"
 							>
 								<HiArrowDown />
 							</Button>
@@ -56,7 +62,7 @@ export const StepsForm = ({ stepsFieldArray, register, errors }: Props) => {
 					</div>
 				))}
 				<div className="text-right">
-					<Button onClick={() => stepsFieldArray.append(DEFAULT_STEP)}>
+					<Button onClick={handleAppend} variant="secondary">
 						<HiPlus />
 					</Button>
 				</div>

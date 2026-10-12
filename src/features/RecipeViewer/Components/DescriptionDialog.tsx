@@ -1,4 +1,4 @@
-import { Button } from '@/components/core';
+import { Button } from '@/components/ui/button';
 import {
 	Dialog,
 	DialogClose,
@@ -14,9 +14,9 @@ export function DescriptionDialog({ description }: { description: string }) {
 		<Dialog>
 			<DialogTrigger
 				render={
-					<button type="button" className="underline">
+					<Button variant="ghost" className="underline">
 						Description
-					</button>
+					</Button>
 				}
 			/>
 			<DialogContent className="sm:max-w-md">
@@ -26,8 +26,8 @@ export function DescriptionDialog({ description }: { description: string }) {
 
 				<div>{description}</div>
 
-				<DialogFooter className="sm:justify-start">
-					<DialogClose render={<Button type="button">Close</Button>} />
+				<DialogFooter>
+					<DialogClose render={<Button variant="secondary">Close</Button>} />
 				</DialogFooter>
 			</DialogContent>
 		</Dialog>

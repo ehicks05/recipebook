@@ -1,7 +1,6 @@
 import { useRouter } from '@tanstack/react-router';
-import { cn } from 'cn';
 import { HiHeart, HiOutlineHeart } from 'react-icons/hi';
-import { Button } from '@/components/core';
+import { Button } from '@/components/ui/button';
 import { toggleFavorite } from '@/functions/recipes';
 import { authClient } from '@/lib/auth-client';
 import { toast } from '@/lib/toast';
@@ -37,7 +36,9 @@ export const FavoriteButton = ({ recipeId, className, favoritedBy }: Props) => {
 
 	return (
 		<Button
-			className={cn('aspect-square', className)}
+			size="icon"
+			variant="outline"
+			className={className}
 			onClick={async (e) => {
 				e.preventDefault();
 				await handleClick();
