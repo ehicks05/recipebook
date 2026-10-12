@@ -29,12 +29,6 @@ importers:
       '@hookform/resolvers':
         specifier: ^5.9.0
         version: 5.9.1(@standard-schema/spec@1.1.0)(ajv-formats@2.1.1(ajv@8.20.0))(ajv@8.20.0)(react-hook-form@7.89.0(@types/react@19.3.0)(react@19.3.0))(zod@4.6.5)
-      '@instantdb/admin':
-        specifier: latest
-        version: 1.0.67
-      '@instantdb/react':
-        specifier: latest
-        version: 1.0.67(react@19.3.0)
       '@tailwindcss/vite':
         specifier: ^4.3.0
         version: 4.3.3(vite@8.3.4(@types/node@25.9.9)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15))
@@ -1062,32 +1056,6 @@ packages:
         optional: true
       zod:
         optional: true
-
-  '@instantdb/admin@1.0.67':
-    resolution: {integrity: sha512-ip5GgD2IhqM8XzqHn/ZJOm15nqyyKoKu+UlWq6fzUvCPhKJU5Yhpxsfrx79IchRQfwJHZL+ST8y+2AtE0m+wbg==}
-
-  '@instantdb/core@1.0.67':
-    resolution: {integrity: sha512-HWB7pnZ77j6hqCCCZ+LeOBakDKl5cSsEnQieUz38PP4o1D4vMujCoNeNVuAa3nO//VLMWuIm5hCO4psEnNRsCQ==}
-
-  '@instantdb/eventsource@4.1.0-2':
-    resolution: {integrity: sha512-k2uzhsRzdD7hzV3fv+eoCRNeluZcj4pDfUKKAhvIS6xshc7zHkaM9/m3vxBgaYoNVmvOyaGp84TcHG0/Bp7k4g==}
-    engines: {node: '>=20.0.0'}
-
-  '@instantdb/react-common@1.0.67':
-    resolution: {integrity: sha512-hRRs5O0XSe5+rx0GYozZ4A2j/VGMx49Hr2iEQHWQWjpFVJrCvYdCEI0UDmCUnK+/G1Qtm76wddryVZwgiDzOqw==}
-    peerDependencies:
-      react: '>=16'
-
-  '@instantdb/react@1.0.67':
-    resolution: {integrity: sha512-kzZaiLZ3uAIH+0M2RpQWA0Lqr/7dnB+YQPzDp2L/iunggdcEW0eMTghDkDRLwbtQf+NNATn+UHmTRTqHQZ/fVg==}
-    peerDependencies:
-      react: '>=16'
-
-  '@instantdb/version@1.0.67':
-    resolution: {integrity: sha512-V7nCs+DcuM+rNkvSxllBUJ/XTxlas6tsmws7EpnhZrF4tEJAfSQQfQOj4LcaOfwg9ItWWOAZJCkbDJ/iZSUQhA==}
-
-  '@instantdb/webhooks@1.0.67':
-    resolution: {integrity: sha512-aGTVlq4oFMsQOuFAQ42A7KuqvNTCAtyIq8SwGxrh71ACDElMrYE64zTWDSECWZt1hc/iixaId933+11B8fM8AA==}
 
   '@jridgewell/gen-mapping@0.3.13':
     resolution: {integrity: sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA==}
@@ -2207,10 +2175,6 @@ packages:
     resolution: {integrity: sha512-yki5XnKuf750l50uGTllt6kKILY4nQ1eNIQatoXEByZ5dWgnKqbnqmTrBE5B4N7lrMJKQ2ytWMiTO2o0v6Ew/w==}
     engines: {node: '>= 0.6'}
 
-  cookie@1.1.1:
-    resolution: {integrity: sha512-ei8Aos7ja0weRpFzJnEA9UHJ/7XQmqglbRwnf2ATjcB9Wq874VKH9kfjjirM6UhU2/E5fFYadylyhFldcqSidQ==}
-    engines: {node: '>=18'}
-
   cors@2.8.6:
     resolution: {integrity: sha512-tJtZBBHA6vjIAaF6EnIaq6laBBP9aq/Y3ouVJjEfoHbRBcHBAHYcMh/w8LDrk2PvIMMq8gmopa5D4V8RmbrxGw==}
     engines: {node: '>= 0.10'}
@@ -2595,10 +2559,6 @@ packages:
   eventsource@3.0.7:
     resolution: {integrity: sha512-CRT1WTyuQoD771GW56XEZFQ/ZoSfWid1alKGDYMmkt2yl8UXrVR4pspqWNEcqKvVIzg6PAltWjxcSSPrboA4iA==}
     engines: {node: '>=18.0.0'}
-
-  eventsource@4.1.1:
-    resolution: {integrity: sha512-D6bTRWh6KahHTK/m4WnjPQyEinNPf9eFLEZSEoj7d6fTibspnAVYfzHvirL7u/aoX5d9YYfIkBVAhmigUELk9w==}
-    engines: {node: '>=20.0.0'}
 
   execa@5.1.1:
     resolution: {integrity: sha512-8uSpZZocAZRBAPIEINJj3Lo9HyGitllczc27Eh5YYojjMFMn8yHMDMaUHE2Jqfq05D/wucwI4JGURyXt1vchyg==}
@@ -3219,10 +3179,6 @@ packages:
 
   ms@2.1.3:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
-
-  mutative@1.3.0:
-    resolution: {integrity: sha512-8MJj6URmOZAV70dpFe1YnSppRTKC4DsMkXQiBDFayLcDI4ljGokHxmpqaBQuDWa4iAxWaJJ1PS8vAmbntjjKmQ==}
-    engines: {node: '>=14.0'}
 
   nanoid@3.3.20:
     resolution: {integrity: sha512-uKdg2G3GNCKQn9byYOpxbGqrT2fGO5KRt5J/8b3pok8rT6qxGWF6hxMyJiEYtAf+FVyYuD9hRaDqX5uPFYJ4ZQ==}
@@ -3944,10 +3900,6 @@ packages:
 
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
-
-  uuid@11.1.1:
-    resolution: {integrity: sha512-vIYxrBCC/N/K+Js3qSN88go7kIfNPssr/hHCesKCQNAjmgvYS2oqr69kIufEG+O4+PfezOH4EbIeHCfFov8ZgQ==}
-    hasBin: true
 
   validate-npm-package-name@7.0.2:
     resolution: {integrity: sha512-hVDIBwsRruT73PbK7uP5ebUt+ezEtCmzZz3F59BSr2F6OVFnJ/6h8liuvdLrQ88Xmnk6/+xGGuq+pG9WwTuy3A==}
@@ -4748,45 +4700,6 @@ snapshots:
       ajv: 8.20.0
       ajv-formats: 2.1.1(ajv@8.20.0)
       zod: 4.6.5
-
-  '@instantdb/admin@1.0.67':
-    dependencies:
-      '@instantdb/core': 1.0.67
-      '@instantdb/eventsource': 4.1.0-2
-      '@instantdb/version': 1.0.67
-      '@instantdb/webhooks': 1.0.67
-      cookie: 1.1.1
-      uuid: 11.1.1
-
-  '@instantdb/core@1.0.67':
-    dependencies:
-      '@instantdb/version': 1.0.67
-      mutative: 1.3.0
-      uuid: 11.1.1
-
-  '@instantdb/eventsource@4.1.0-2':
-    dependencies:
-      eventsource-parser: 3.1.1
-
-  '@instantdb/react-common@1.0.67(react@19.3.0)':
-    dependencies:
-      '@instantdb/core': 1.0.67
-      '@instantdb/version': 1.0.67
-      react: 19.3.0
-
-  '@instantdb/react@1.0.67(react@19.3.0)':
-    dependencies:
-      '@instantdb/core': 1.0.67
-      '@instantdb/react-common': 1.0.67(react@19.3.0)
-      '@instantdb/version': 1.0.67
-      eventsource: 4.1.1
-      react: 19.3.0
-
-  '@instantdb/version@1.0.67': {}
-
-  '@instantdb/webhooks@1.0.67':
-    dependencies:
-      '@instantdb/core': 1.0.67
 
   '@jridgewell/gen-mapping@0.3.13':
     dependencies:
@@ -5850,8 +5763,6 @@ snapshots:
 
   cookie@0.7.2: {}
 
-  cookie@1.1.1: {}
-
   cors@2.8.6:
     dependencies:
       object-assign: 4.1.1
@@ -6097,10 +6008,6 @@ snapshots:
   eventsource-parser@3.1.1: {}
 
   eventsource@3.0.7:
-    dependencies:
-      eventsource-parser: 3.1.1
-
-  eventsource@4.1.1:
     dependencies:
       eventsource-parser: 3.1.1
 
@@ -6643,8 +6550,6 @@ snapshots:
   minimist@1.2.8: {}
 
   ms@2.1.3: {}
-
-  mutative@1.3.0: {}
 
   nanoid@3.3.20: {}
 
@@ -7359,8 +7264,6 @@ snapshots:
       react: 19.3.0
 
   util-deprecate@1.0.2: {}
-
-  uuid@11.1.1: {}
 
   validate-npm-package-name@7.0.2: {}
 
