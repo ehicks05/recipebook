@@ -6,7 +6,8 @@ import type {
 	Path,
 	UseFormRegister,
 } from 'react-hook-form';
-import TextareaAutosize from 'react-textarea-autosize';
+import { Input } from '../ui/input';
+import { TextareaAutosize } from '../ui/textarea-autosize';
 
 const BASE =
 	'px-3 py-1 h-full text-sm sm:text-base w-full rounded border-neutral-100 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-700 dark:text-neutral-100';
@@ -50,10 +51,10 @@ const MyInput = <T extends FieldValues>({
 					<span>{label}</span>
 				</label>
 			)}
-			<input
+			<Input
 				disabled={disabled}
 				type={props.type || 'text'}
-				className={cn(BASE, '[appearance:textfield]', className, {
+				className={cn('[appearance:textfield]', className, {
 					'outline outline-red-600': error,
 					'cursor-not-allowed': disabled,
 				})}
@@ -99,7 +100,7 @@ const MyTextArea = <T extends FieldValues>({
 					minRows={minRows}
 					disabled={disabled}
 					placeholder={props.placeholder}
-					className={cn(BASE, {
+					className={cn({
 						'outline outline-red-600': error,
 						'cursor-not-allowed': disabled,
 					})}
