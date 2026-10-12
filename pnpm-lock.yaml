@@ -113,9 +113,6 @@ importers:
       react-hook-form:
         specifier: ^7.89.0
         version: 7.89.0(@types/react@19.3.0)(react@19.3.0)
-      react-icons:
-        specifier: ^5.7.0
-        version: 5.7.0(react@19.3.0)
       react-textarea-autosize:
         specifier: ^8.5.9
         version: 8.5.9(@types/react@19.3.0)(react@19.3.0)
@@ -3510,11 +3507,6 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
-
-  react-icons@5.7.0:
-    resolution: {integrity: sha512-LBLy340Rzqy6+/yVhZKT3B/QpP1BZaesGqasf09HPOBzRarcDIFH0WwXlXQfE7q7ipxK4MSiC5DIBWURCny6fw==}
-    peerDependencies:
-      react: '*'
 
   react-textarea-autosize@8.5.9:
     resolution: {integrity: sha512-U1DGlIQN5AwgjTyOEnI1oCcMuEr1pv1qOtklB2l4nyMGbHzWrI0eFsYK0zos2YWqAolJyG0IWJaqWmWj5ETh0A==}
@@ -6940,10 +6932,6 @@ snapshots:
       react: 19.3.0
     optionalDependencies:
       '@types/react': 19.3.0
-
-  react-icons@5.7.0(react@19.3.0):
-    dependencies:
-      react: 19.3.0
 
   react-textarea-autosize@8.5.9(@types/react@19.3.0)(react@19.3.0):
     dependencies:

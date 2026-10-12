@@ -1,4 +1,4 @@
-import { FaPizzaSlice } from 'react-icons/fa';
+import { Pizza } from 'lucide-react';
 
 interface Props {
 	image?: { url: string } | null;
@@ -19,7 +19,7 @@ export const RecipeImage = ({ image, emoji, className }: Props) => {
 				/>
 			)}
 			{!image && emoji && <span className="text-8xl">{emoji}</span>}
-			{!image && !emoji && <FaPizzaSlice className="w-3/4 h-3/4 opacity-25" />}
+			{!image && !emoji && <Pizza className="w-3/4 h-3/4 opacity-25" />}
 		</div>
 	);
 };

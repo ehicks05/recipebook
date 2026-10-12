@@ -1,5 +1,5 @@
 import { useNavigate, useRouter } from '@tanstack/react-router';
-import { HiTrash } from 'react-icons/hi';
+import { Trash } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
 	Dialog,
@@ -29,7 +29,7 @@ export function DeleteRecipeDialog({ id, name }: { id: string; name: string }) {
 				render={
 					<Button variant="destructive">
 						Delete
-						<HiTrash />
+						<Trash />
 					</Button>
 				}
 			/>

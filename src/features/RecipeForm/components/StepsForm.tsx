@@ -1,10 +1,10 @@
 import { useAutoAnimate } from '@formkit/auto-animate/react';
+import { ArrowDown, ArrowUp, Plus, Trash } from 'lucide-react';
 import type {
 	FieldErrors,
 	UseFieldArrayReturn,
 	UseFormRegister,
 } from 'react-hook-form';
-import { HiArrowDown, HiArrowUp, HiPlus, HiTrash } from 'react-icons/hi';
 import { MyInput, MyTextArea } from '@/components/core';
 import { Button } from '@/components/ui/button';
 import { DEFAULT_STEP } from '../constants';
@@ -42,28 +42,28 @@ export const StepsForm = ({ stepsFieldArray, register, errors }: Props) => {
 								onClick={() => stepsFieldArray.remove(index)}
 								variant="destructive"
 							>
-								<HiTrash />
+								<Trash />
 							</Button>
 							<Button
 								disabled={index === 0}
 								onClick={() => stepsFieldArray.swap(index, index - 1)}
 								variant="secondary"
 							>
-								<HiArrowUp />
+								<ArrowUp />
 							</Button>
 							<Button
 								disabled={index === stepsFieldArray.fields.length - 1}
 								onClick={() => stepsFieldArray.swap(index, index + 1)}
 								variant="secondary"
 							>
-								<HiArrowDown />
+								<ArrowDown />
 							</Button>
 						</div>
 					</div>
 				))}
 				<div className="text-right">
 					<Button onClick={handleAppend} variant="secondary">
-						<HiPlus />
+						<Plus />
 					</Button>
 				</div>
 			</div>

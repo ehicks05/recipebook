@@ -1,10 +1,9 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigate, useRouter } from '@tanstack/react-router';
-import { CircleAlert } from 'lucide-react';
+import { CircleAlert, Rewind } from 'lucide-react';
 import { useEffect } from 'react';
 import type { SubmitErrorHandler, SubmitHandler } from 'react-hook-form';
 import { useFieldArray, useForm } from 'react-hook-form';
-import { HiRewind } from 'react-icons/hi';
 import { toast } from 'sonner';
 import { Container, Hero } from '@/components/core';
 import { Alert, AlertTitle } from '@/components/ui/alert';
@@ -61,7 +60,7 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 		if (recipe && isDirty) {
 			id = toast.info('Unsaved changes', {
 				id: 'unsaved_changes',
-				dismissible: false,				
+				dismissible: false,
 				duration: Number.POSITIVE_INFINITY,
 			});
 		}
@@ -125,7 +124,7 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 									variant="secondary"
 								>
 									Reset
-									<HiRewind />
+									<Rewind />
 								</Button>
 								<Button
 									disabled={isLoading}

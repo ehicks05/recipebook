@@ -1,10 +1,10 @@
 import { useAutoAnimate } from '@formkit/auto-animate/react';
+import { ArrowDown, ArrowUp, Plus, Trash } from 'lucide-react';
 import type {
 	FieldErrors,
 	UseFieldArrayReturn,
 	UseFormRegister,
 } from 'react-hook-form';
-import { HiArrowDown, HiArrowUp, HiPlus, HiTrash } from 'react-icons/hi';
 import { MyInput, MySelect } from '@/components/core';
 import { Button } from '@/components/ui/button';
 import { DEFAULT_INGREDIENT, UNITS } from '../constants';
@@ -67,21 +67,21 @@ export const IngredientsForm = ({
 									onClick={() => ingredientsFieldArray.swap(index, index - 1)}
 									variant="secondary"
 								>
-									<HiArrowUp />
+									<ArrowUp />
 								</Button>
 								<Button
 									disabled={index === ingredientsFieldArray.fields.length - 1}
 									onClick={() => ingredientsFieldArray.swap(index, index + 1)}
 									variant="secondary"
 								>
-									<HiArrowDown />
+									<ArrowDown />
 								</Button>
 								<Button
 									disabled={ingredientsFieldArray.fields.length <= 1}
 									onClick={() => ingredientsFieldArray.remove(index)}
 									variant="destructive"
 								>
-									<HiTrash />
+									<Trash />
 								</Button>
 							</div>
 						</div>
@@ -101,7 +101,7 @@ export const IngredientsForm = ({
 				))}
 				<div className="text-right">
 					<Button onClick={handleAppend} variant="secondary">
-						<HiPlus />
+						<Plus />
 					</Button>
 				</div>
 			</div>

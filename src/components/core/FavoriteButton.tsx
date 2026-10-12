@@ -1,5 +1,6 @@
 import { useRouter } from '@tanstack/react-router';
-import { HiHeart, HiOutlineHeart } from 'react-icons/hi';
+import { cn } from 'cn';
+import { Heart } from 'lucide-react';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { toggleFavorite } from '@/functions/recipes';
@@ -18,7 +19,6 @@ export const FavoriteButton = ({ recipeId, className, favoritedBy }: Props) => {
 	if (!userId) return null;
 
 	const isFavorite = favoritedBy.map((o) => o.id).includes(userId);
-	const Icon = isFavorite ? HiHeart : HiOutlineHeart;
 
 	const handleClick = async () => {
 		try {
@@ -42,7 +42,9 @@ export const FavoriteButton = ({ recipeId, className, favoritedBy }: Props) => {
 				await handleClick();
 			}}
 		>
-			<Icon className="size-full text-red-500" />
+			<Heart
+				className={cn('size-full text-red-500', isFavorite && 'fill-red-500')}
+			/>
 		</Button>
 	);
 };

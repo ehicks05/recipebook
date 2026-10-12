@@ -1,5 +1,5 @@
 import { useMatchRoute } from '@tanstack/react-router';
-import { HiOutlineClock } from 'react-icons/hi';
+import { Clock } from 'lucide-react';
 import { Container, Hero } from '@/components/core';
 import type { Recipe } from '@/functions/recipes';
 import { FavoriteButton } from '../../components/core/FavoriteButton';
@@ -20,7 +20,7 @@ export function RecipeDetail({ recipe }: Props) {
 					{recipe.author?.name}
 					<span>·</span>
 					<span className="flex gap-px items-center">
-						<HiOutlineClock size={16} className="inline" /> {recipe.cookingTime}
+						<Clock size={16} className="inline" /> {recipe.cookingTime}
 					</span>
 					<span>·</span>
 					<DescriptionDialog description={recipe.description} />
