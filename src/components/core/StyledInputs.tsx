@@ -142,7 +142,7 @@ const MySelect = <T extends FieldValues>({
 			<select
 				disabled={disabled}
 				{...register?.(name as Path<T>, { valueAsNumber: type === 'number' })}
-				className={cn(BASE, 'h-8 border-r-8', {
+				className={cn(BASE, 'h-9 border-r-8', {
 					'outline outline-red-600': error,
 				})}
 			>

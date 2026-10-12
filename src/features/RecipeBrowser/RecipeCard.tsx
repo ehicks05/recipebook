@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router';
-import { HiStar } from 'react-icons/hi';
+import { Star } from 'lucide-react';
 import { Card, RecipeImage } from '@/components/core';
 import { FavoriteButton } from '@/components/core/FavoriteButton';
 import type { Recipe } from '@/functions/recipes';
@@ -22,9 +22,9 @@ export const RecipeCard = ({
 						{isFeatured && (
 							<div
 								title="Recipe of the day"
-								className="flex gap-2 items-center p-2 rounded bg-neutral-200 dark:bg-neutral-700 dark:text-white absolute top-2 right-2 shadow-xl"
+								className="flex gap-2 items-center p-2 rounded bg-muted absolute top-2 right-2 shadow-sm"
 							>
-								<HiStar className="text-yellow-400" />
+								<Star size={16} className="text-yellow-400 fill-yellow-400" />
 							</div>
 						)}
 					</div>
