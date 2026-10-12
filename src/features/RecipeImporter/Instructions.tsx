@@ -4,7 +4,7 @@ import { Alert, AlertTitle } from '@/components/ui/alert';
 
 export const Instructions = () => (
 	<Container>
-		<Alert className="bg-blue-50">
+		<Alert>
 			<CircleQuestionMark />
 			<AlertTitle>What is this page?</AlertTitle>
 			<div>

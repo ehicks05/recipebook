@@ -53,20 +53,20 @@ export const RecipeImporter = ({ url }: { url?: string }) => {
 				</Container>
 			</div>
 			{!user && recipe && (
-				<Alert className="bg-blue-50">
+				<Alert>
 					<CircleQuestionMark />
 					<AlertTitle>Sign in to edit and save</AlertTitle>
 				</Alert>
 			)}
 			{url && urlError && (
-				<Alert variant="destructive" className="bg-red-50">
+				<Alert variant="destructive">
 					<AlertCircle />
 					<AlertTitle>Unable to fetch recipe</AlertTitle>
 					<AlertDescription>{urlError.issues[0].message}</AlertDescription>
 				</Alert>
 			)}
 			{parseError && (
-				<Alert variant="destructive" className="bg-red-50">
+				<Alert variant="destructive">
 					<AlertCircle />
 					<AlertTitle>Unable to parse recipe</AlertTitle>
 					<AlertDescription>{parseError.message}</AlertDescription>
