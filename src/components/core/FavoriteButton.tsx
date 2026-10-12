@@ -1,9 +1,9 @@
 import { useRouter } from '@tanstack/react-router';
 import { HiHeart, HiOutlineHeart } from 'react-icons/hi';
+import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { toggleFavorite } from '@/functions/recipes';
 import { authClient } from '@/lib/auth-client';
-import { toast } from '@/lib/toast';
 
 interface Props {
 	recipeId: string;
@@ -26,9 +26,7 @@ export const FavoriteButton = ({ recipeId, className, favoritedBy }: Props) => {
 			await router.invalidate();
 		} catch (e) {
 			const err = e instanceof Error ? e : undefined;
-			toast({
-				variant: 'error',
-				title: 'Unable to update favorite',
+			toast.error('Unable to update favorite', {
 				description: err?.message,
 			});
 		}

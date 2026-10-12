@@ -49,7 +49,6 @@
 		"react-day-picker": "^10.0.2",
 		"react-dom": "^19.3.0",
 		"react-hook-form": "^7.89.0",
-		"react-hot-toast": "^2.6.0",
 		"react-icons": "^5.7.0",
 		"react-textarea-autosize": "^8.5.9",
 		"schema-dts": "^2.1.0",

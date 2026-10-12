@@ -5,11 +5,11 @@ import { useEffect } from 'react';
 import type { SubmitErrorHandler, SubmitHandler } from 'react-hook-form';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { HiRewind } from 'react-icons/hi';
+import { toast } from 'sonner';
 import { Container, Hero } from '@/components/core';
 import { Alert, AlertTitle } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { createRecipe, type Recipe, updateRecipe } from '@/functions/recipes';
-import { dismissToast, toast } from '@/lib/toast';
 import { CopyToClipboardButton } from './CopyToClipboardButton';
 import { IngredientsForm, RecipeDetailsForm, StepsForm } from './components';
 import { DEFAULT_RECIPE } from './constants';
@@ -43,7 +43,7 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 	const handleCreate = async (recipe: FormRecipe) => {
 		const { id } = await createRecipe({ data: { recipe } });
 		navigate({ to: '/recipes/$id', params: { id } });
-		toast({ variant: 'success', title: 'Recipe created!' });
+		toast.success('Recipe created!');
 	};
 
 	const handleUpdate = async (data: FormRecipe) => {
@@ -53,24 +53,25 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 		await router.invalidate();
 
 		reset(data, {});
-		toast({ variant: 'success', title: 'Recipe updated!' });
+		toast.success('Recipe updated!');
 	};
 
 	useEffect(() => {
-		let id = '';
+		let id: string | number = '';
 		if (recipe && isDirty) {
-			id = toast({
-				variant: 'info',
-				title: 'Unsaved changes',
-				className: 'opacity-75',
-				options: { duration: Number.POSITIVE_INFINITY, id: 'unsaved_changes' },
+			id = toast.info('Unsaved changes', {
+				id: 'unsaved_changes',
+				dismissible: false,				
+				duration: Number.POSITIVE_INFINITY,
 			});
 		}
 		if ((!recipe || !isDirty) && id) {
-			dismissToast(id);
+			toast.dismiss(id);
 		}
 
-		return () => dismissToast(id);
+		return () => {
+			toast.dismiss(id);
+		};
 	}, [recipe, isDirty]);
 
 	const onSubmit: SubmitHandler<FormRecipe> = (data, e) => {
