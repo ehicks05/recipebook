@@ -1,8 +1,17 @@
 import { useAutoAnimate } from '@formkit/auto-animate/react';
-import { X } from 'lucide-react';
+import { Link } from '@tanstack/react-router';
+import { Meh, X } from 'lucide-react';
 import { useState } from 'react';
 import { Container } from '@/components/core';
 import { Button } from '@/components/ui/button';
+import {
+	Empty,
+	EmptyContent,
+	EmptyDescription,
+	EmptyHeader,
+	EmptyMedia,
+	EmptyTitle,
+} from '@/components/ui/empty';
 import {
 	InputGroup,
 	InputGroupAddon,
@@ -72,11 +81,31 @@ export function RecipeBrowser({ recipes }: { recipes: Recipe[] }) {
 					</div>
 				)}
 
-				<div className={`grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4`}>
+				<div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 					{filteredRecipes.map((recipe) => (
 						<RecipeCard key={recipe.id} recipe={recipe} />
 					))}
-					{filteredRecipes?.length === 0 && <span>No results...</span>}
+					{filteredRecipes?.length === 0 && (
+						<Empty className="col-span-full">
+							<EmptyHeader>
+								<EmptyMedia variant="icon">
+									<Meh />
+								</EmptyMedia>
+								<EmptyTitle>No recipes</EmptyTitle>
+								<EmptyDescription>No recipes found</EmptyDescription>
+							</EmptyHeader>
+							<EmptyContent>
+								<div className="flex gap-4">
+									<Link to="/create-recipe">
+										<Button>Create Recipe</Button>
+									</Link>
+									<Link to="/import-recipe" search={{ url: undefined }}>
+										<Button>Import Recipe</Button>
+									</Link>
+								</div>
+							</EmptyContent>
+						</Empty>
+					)}
 				</div>
 			</div>
 		</Container>
