@@ -32,7 +32,7 @@ export const getRecipesByUser = createServerFn()
 	.handler(async ({ context: { user } }) => {
 		const recipes = await db.query.recipes.findMany({
 			where: { authorId: user.id },
-			orderBy: { isFeatured: 'desc', createdAt: 'desc' },
+			orderBy: { createdAt: 'desc' },
 			with: {
 				author: true,
 				favoritedBy: user
@@ -51,7 +51,7 @@ export const getFavoritesByUser = createServerFn()
 	.handler(async ({ context: { user } }) => {
 		const recipes = await db.query.recipes.findMany({
 			where: { authorId: user.id, favoritedBy: { id: user.id } },
-			orderBy: { isFeatured: 'desc', createdAt: 'desc' },
+			orderBy: { createdAt: 'desc' },
 			with: {
 				author: true,
 				favoritedBy: user

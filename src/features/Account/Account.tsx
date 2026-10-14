@@ -1,14 +1,14 @@
 import type { User } from 'better-auth';
 import { Container, Hero } from '@/components/core';
-import { RecipeList } from '@/features/Account/RecipeList';
+import { RecipeTable } from '@/features/Account/RecipeTable';
 import type { Recipe, UserFavorite } from '@/functions/recipes';
 
 const YourLists = ({ recipes, favorites }: Props) => {
 	return (
 		<Container>
 			<div className="flex flex-col gap-4">
-				<RecipeList recipes={recipes} title="My Recipes" />
-				<RecipeList recipes={favorites} title="My Favorites" />
+				<RecipeTable recipes={recipes} title="My Recipes" />
+				<RecipeTable recipes={favorites} title="My Favorites" />
 			</div>
 		</Container>
 	);
