@@ -8,10 +8,9 @@ import { IngredientLine } from './Ingredient';
 interface Props {
 	ingredients: Ingredient[];
 	defaultServings: number;
-	cookingTime: string;
 }
 
-export function Ingredients({ ingredients, defaultServings, cookingTime }: Props) {
+export function Ingredients({ ingredients, defaultServings }: Props) {
 	const [scaledServings, setScaledServings] = useState(defaultServings);
 
 	const handleDecrease = () => setScaledServings(scaledServings - 1);
@@ -25,15 +24,14 @@ export function Ingredients({ ingredients, defaultServings, cookingTime }: Props
 					<Button
 						onClick={handleDecrease}
 						disabled={scaledServings === 1}
-						variant="secondary"
+						variant="outline"
 					>
 						<Minus />
 					</Button>
-					<Button onClick={handleIncrease} variant="secondary">
+					<Button onClick={handleIncrease} variant="outline">
 						<Plus />
 					</Button>
 				</ButtonGroup>
-				Time: {cookingTime}
 			</div>
 
 			{ingredients.map((ingredient, i) => (
