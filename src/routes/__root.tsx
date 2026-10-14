@@ -9,13 +9,6 @@ import { ThemeProvider } from '@/components/ui/theme-provider';
 import appCss from '../styles.css?url';
 
 export const Route = createRootRoute({
-	beforeLoad: () => {
-		if (!import.meta.env.VITE_INSTANT_APP_ID) {
-			throw new Error(
-				'VITE_INSTANT_APP_ID is not defined. Make sure to include it in your environment variables. In dev, `instant-cli init` can do this for you.',
-			);
-		}
-	},
 	head: () => ({
 		meta: [
 			{ charSet: 'utf-8' },
