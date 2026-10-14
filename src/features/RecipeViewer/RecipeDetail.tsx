@@ -1,8 +1,7 @@
 import { useMatchRoute } from '@tanstack/react-router';
-import { Clock } from 'lucide-react';
 import { Container, Hero } from '@/components/core';
+import { FavoriteButton } from '@/components/core/FavoriteButton';
 import type { Recipe } from '@/functions/recipes';
-import { FavoriteButton } from '../../components/core/FavoriteButton';
 import { EditLink, Ingredients, Steps } from './Components';
 import { DescriptionDialog } from './Components/DescriptionDialog';
 
@@ -17,34 +16,14 @@ export function RecipeDetail({ recipe }: Props) {
 		<>
 			<Hero title={`${recipe.name}`}>
 				<div className="flex flex-wrap gap-2 items-center">
-					{recipe.author?.name}
-					<span>·</span>
-					<span className="flex gap-px items-center">
-						<Clock size={16} className="inline" /> {recipe.cookingTime}
-					</span>
-					<span>·</span>
-					<DescriptionDialog description={recipe.description} />
-					{recipe.source && (
-						<>
-							<span>·</span>
-							<a
-								href={recipe.source}
-								target="_blank"
-								rel="noreferrer"
-								className="underline"
-							>
-								{new URL(recipe.source).host.split('.').slice(-2).join('.')}
-							</a>
-						</>
-					)}
+					<span>{recipe.author?.name}</span>
+					<DescriptionDialog recipe={recipe} />
 					{matchRoute({ to: '/recipes/$id' }) && (
 						<>
-							<span>·</span>
 							<EditLink
 								recipeId={recipe.id}
 								recipeAuthorId={recipe.author?.id || ''}
 							/>
-							<span>·</span>
 							<FavoriteButton
 								recipeId={recipe.id}
 								favoritedBy={recipe.favoritedBy}
@@ -60,6 +39,7 @@ export function RecipeDetail({ recipe }: Props) {
 						<Ingredients
 							ingredients={recipe.ingredients}
 							defaultServings={recipe.servings}
+							cookingTime={recipe.cookingTime}
 						/>
 					</div>
 					<div className="order-2 md:order-1 max-w-3xl">

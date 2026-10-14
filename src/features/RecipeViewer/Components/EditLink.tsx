@@ -1,4 +1,5 @@
 import { Link } from '@tanstack/react-router';
+import { Button } from '@/components/ui/button';
 import { authClient } from '@/lib/auth-client';
 
 interface Props {
@@ -14,14 +15,10 @@ export const EditLink = ({ recipeId, recipeAuthorId }: Props) => {
 
 	return (
 		<div className="flex flex-wrap gap-2">
-			<Link
-				to="/edit-recipe/$id"
-				params={{ id: recipeId }}
-				title="Edit Recipe"
-				preload={false}
-				className="underline"
-			>
-				Edit
+			<Link to="/edit-recipe/$id" params={{ id: recipeId }} preload={false}>
+				<Button variant="outline" size="sm">
+					Edit
+				</Button>
 			</Link>
 		</div>
 	);
