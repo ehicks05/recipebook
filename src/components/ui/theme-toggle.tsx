@@ -15,12 +15,12 @@ export function ModeToggle() {
 		<DropdownMenuSub>
 			<DropdownMenuSubTrigger
 				render={
-          <button className='w-full'>
+          <div>
             {theme === 'light' && <Sun />}
             {theme === 'dark' && <Moon />}
             {theme === 'system' && <Laptop />}
             Theme
-					</button>
+					</div>
 				}
 			/>
       <DropdownMenuSubContent>
