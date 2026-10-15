@@ -1,7 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigate, useRouter } from '@tanstack/react-router';
 import { CircleAlert, RotateCcw } from 'lucide-react';
-import { useEffect } from 'react';
 import type { SubmitErrorHandler, SubmitHandler } from 'react-hook-form';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -13,6 +12,7 @@ import { CopyToClipboardButton } from './CopyToClipboardButton';
 import { IngredientsForm, RecipeDetailsForm, StepsForm } from './components';
 import { DEFAULT_RECIPE } from './constants';
 import { DeleteRecipeDialog } from './DeleteRecipeDialog';
+import { LeavePageConfirmationDialog } from './LeavePageConfirmationDialog';
 import { PublishButton } from './PublishButton';
 import { RecipeSchema } from './schema';
 import type { FormRecipe } from './types';
@@ -55,24 +55,6 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 		toast.success('Recipe updated!');
 	};
 
-	useEffect(() => {
-		let id: string | number = '';
-		if (recipe && isDirty) {
-			id = toast.info('Unsaved changes', {
-				id: 'unsaved_changes',
-				dismissible: false,
-				duration: Number.POSITIVE_INFINITY,
-			});
-		}
-		if ((!recipe || !isDirty) && id) {
-			toast.dismiss(id);
-		}
-
-		return () => {
-			toast.dismiss(id);
-		};
-	}, [recipe, isDirty]);
-
 	const onSubmit: SubmitHandler<FormRecipe> = (data, e) => {
 		e?.preventDefault();
 		console.log({ data });
@@ -93,6 +75,7 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 
 	return (
 		<>
+			<LeavePageConfirmationDialog shouldBlock={isDirty} />
 			<Hero title={`${recipe ? 'Edit' : 'Create'} Recipe`} />
 			{error && (
 				<div className="m-3">
