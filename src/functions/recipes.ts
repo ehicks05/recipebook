@@ -107,9 +107,14 @@ export const updateRecipe = createServerFn()
 			throw new Error('UNAUTHORIZED');
 		}
 
+		// publish/unpublish shouldn't set updatedAt
+		const isTogglingIsPublished =
+			Object.keys(recipe).length === 1 && recipe.isPublished !== undefined;
+		const updatedAt = isTogglingIsPublished ? undefined : new Date();
+
 		const result = await db
 			.update(recipes)
-			.set({ ...recipe, updatedAt: new Date() })
+			.set({ ...recipe, updatedAt })
 			.where(eq(recipes.id, id))
 			.returning();
 
