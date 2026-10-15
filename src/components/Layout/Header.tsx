@@ -1,4 +1,4 @@
-import { Import, Plus, Shapes } from 'lucide-react';
+import { Import, PlusSquare, Shapes } from 'lucide-react';
 import { UserButton } from '../auth/user/user-button';
 import {
 	NavigationMenu,
@@ -8,43 +8,39 @@ import {
 import { ModeToggle } from '../ui/theme-toggle';
 import { SiteLogo } from './SiteLogo/SiteLogo';
 
-export default function Header() {
-	return (
-		<header className="p-4 py-2 flex justify-between items-center w-full max-w-screen-2xl mx-auto">
-			<SiteLogo />
+export const Header = () => (
+	<header className="p-4 py-2 flex justify-between items-center w-full max-w-screen-2xl mx-auto">
+		<SiteLogo />
 
-			<div>
-				<NavigationMenu>
-					<NavigationMenuList className="gap-2">
-						<NavigationMenuItem>
-							<UserButton
-								hideSettings
-								links={[
-									{
-										href: '/import-recipe',
-										label: 'Import Recipe',
-										icon: <Import />,
-										visibility: 'always',
-									},
-									{
-										href: '/create-recipe',
-										label: 'Create Recipe',
-										icon: <Plus />,
-										visibility: 'authenticated',
-									},
-									{
-										href: '/me',
-										label: 'My Stuff',
-										icon: <Shapes />,
-										visibility: 'authenticated',
-                  },
-									<ModeToggle key='modeToggle' />
-								]}
-							/>
-						</NavigationMenuItem>
-					</NavigationMenuList>
-				</NavigationMenu>
-			</div>
-		</header>
-	);
-}
+		<NavigationMenu>
+			<NavigationMenuList className="gap-2">
+				<NavigationMenuItem>
+					<UserButton
+						hideSettings
+						links={[
+							{
+								href: '/create-recipe',
+								label: 'Create Recipe',
+								icon: <PlusSquare />,
+								visibility: 'authenticated',
+							},
+							{
+								href: '/import-recipe',
+								label: 'Import Recipe',
+								icon: <Import />,
+								visibility: 'always',
+							},
+							{
+								href: '/me',
+								label: 'My Stuff',
+								icon: <Shapes />,
+								visibility: 'authenticated',
+							},
+							<ModeToggle key="modeToggle" />,
+						]}
+					/>
+				</NavigationMenuItem>
+			</NavigationMenuList>
+		</NavigationMenu>
+	</header>
+);
