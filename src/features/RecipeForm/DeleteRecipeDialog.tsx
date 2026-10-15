@@ -42,11 +42,11 @@ export function DeleteRecipeDialog({ id, name }: { id: string; name: string }) {
 					</DialogDescription>
 				</DialogHeader>
 
-				<DialogFooter className="sm:justify-start">
+				<DialogFooter>
+					<DialogClose render={<Button variant="secondary">Close</Button>} />
 					<Button onClick={handleClick} variant="destructive">
 						Delete
 					</Button>
-					<DialogClose render={<Button variant="secondary">Close</Button>} />
 				</DialogFooter>
 			</DialogContent>
 		</Dialog>
