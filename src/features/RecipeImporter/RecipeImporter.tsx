@@ -1,4 +1,4 @@
-import { useNavigate } from '@tanstack/react-router';
+import { ClientOnly, useNavigate } from '@tanstack/react-router';
 import { AlertCircle, CircleQuestionMark } from 'lucide-react';
 import { useState } from 'react';
 import z from 'zod';
@@ -38,7 +38,7 @@ export const RecipeImporter = ({ url }: { url?: string }) => {
 		recipeHtml && validatedUrl ? parseLdJsonRecipe(recipeHtml, validatedUrl) : {};
 
 	return (
-		<>
+		<ClientOnly>
 			{!url && <Instructions />}
 			{url && urlError && (
 				<Container>
@@ -88,6 +88,6 @@ export const RecipeImporter = ({ url }: { url?: string }) => {
 
 			{recipe && mode === 'view' && <RecipeDetail recipe={recipe} />}
 			{recipe && mode === 'edit' && <RecipeForm importedRecipe={recipe} />}
-		</>
+		</ClientOnly>
 	);
 };

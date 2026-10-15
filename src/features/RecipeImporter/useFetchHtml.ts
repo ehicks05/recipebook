@@ -1,4 +1,3 @@
-'use client';
 import { useServerFn } from '@tanstack/react-start';
 import { useEffect, useState } from 'react';
 import { fetchHtml } from '@/middleware/fetchHtml';

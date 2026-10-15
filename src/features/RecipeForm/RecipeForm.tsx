@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useNavigate, useRouter } from '@tanstack/react-router';
+import { ClientOnly, useNavigate, useRouter } from '@tanstack/react-router';
 import { CircleAlert, RotateCcw } from 'lucide-react';
 import type { SubmitErrorHandler, SubmitHandler } from 'react-hook-form';
 import { useFieldArray, useForm } from 'react-hook-form';
@@ -74,7 +74,7 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 	const error = undefined;
 
 	return (
-		<>
+		<ClientOnly>
 			<LeavePageConfirmationDialog shouldBlock={isDirty} />
 			<Hero title={`${recipe ? 'Edit' : 'Create'} Recipe`} />
 			{error && (
@@ -144,6 +144,6 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 					</div>
 				</form>
 			</Container>
-		</>
+		</ClientOnly>
 	);
 };
