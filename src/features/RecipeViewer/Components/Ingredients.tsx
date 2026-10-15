@@ -1,4 +1,4 @@
-import { Minus, Plus } from 'lucide-react';
+import { Minus, Plus, RotateCcw } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ButtonGroup } from '@/components/ui/button-group';
@@ -15,6 +15,8 @@ export function Ingredients({ ingredients, defaultServings }: Props) {
 
 	const handleDecrease = () => setScaledServings(scaledServings - 1);
 	const handleIncrease = () => setScaledServings(scaledServings + 1);
+	const handleDefault = () => setScaledServings(defaultServings);
+	const isDefault = scaledServings === defaultServings;
 
 	return (
 		<div>
@@ -30,6 +32,9 @@ export function Ingredients({ ingredients, defaultServings }: Props) {
 					</Button>
 					<Button onClick={handleIncrease} variant="outline">
 						<Plus />
+					</Button>
+					<Button disabled={isDefault} onClick={handleDefault} variant="outline">
+						<RotateCcw />
 					</Button>
 				</ButtonGroup>
 			</div>

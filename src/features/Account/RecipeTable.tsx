@@ -25,6 +25,7 @@ export const RecipeTable = ({ title, recipes }: Props) => {
 					<TableRow>
 						<TableHead className="w-8">Icon</TableHead>
 						<TableHead className="w-32 text-right">Created</TableHead>
+						<TableHead className="w-32 text-right">Updated</TableHead>
 						<TableHead className="w-20">Author</TableHead>
 						<TableHead>Name</TableHead>
 					</TableRow>
@@ -35,6 +36,9 @@ export const RecipeTable = ({ title, recipes }: Props) => {
 							<TableCell>{recipe.emoji}</TableCell>
 							<TableCell className="text-right">
 								{recipe.createdAt.toLocaleString()}
+							</TableCell>
+							<TableCell className="text-right">
+								{recipe.updatedAt.toLocaleString()}
 							</TableCell>
 							<TableCell>{recipe.author.name}</TableCell>
 							<Link to="/recipes/$id" params={{ id: recipe.id }}>

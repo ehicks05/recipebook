@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigate, useRouter } from '@tanstack/react-router';
-import { CircleAlert, Rewind } from 'lucide-react';
+import { CircleAlert, RotateCcw } from 'lucide-react';
 import { useEffect } from 'react';
 import type { SubmitErrorHandler, SubmitHandler } from 'react-hook-form';
 import { useFieldArray, useForm } from 'react-hook-form';
@@ -124,7 +124,7 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 									variant="secondary"
 								>
 									Reset
-									<Rewind />
+									<RotateCcw />
 								</Button>
 								<Button
 									disabled={isLoading}
