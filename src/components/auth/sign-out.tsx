@@ -25,7 +25,7 @@ export function SignOut({ className }: SignOutProps) {
     },
     onSuccess: () =>
       navigate({
-        to: `${basePaths.auth}/${viewPaths.auth.signIn}`,
+        to: `/`,
         replace: true
       })
   })
