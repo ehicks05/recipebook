@@ -25,22 +25,24 @@ export function RecipeDetail({ recipe }: Props) {
 					</div>
 				</div>
 			</Hero>
-			<div className="flex gap-2 p-4 bg-sidebar">
-				<DescriptionDialog recipe={recipe} />
-				{matchRoute({ to: '/recipes/$id' }) && (
-					<>
-						<EditLink
-							recipeId={recipe.id}
-							recipeAuthorId={recipe.author?.id || ''}
-						/>
-						<FavoriteButton
-							recipeId={recipe.id}
-							favoritedBy={recipe.favoritedBy}
-							size="icon-sm"
-						/>
-					</>
-				)}
-			</div>
+			<Container className="max-w-full w-full bg-sidebar px-0">
+				<div className="max-w-screen-2xl mx-auto flex gap-2 px-4">
+					<DescriptionDialog recipe={recipe} />
+					{matchRoute({ to: '/recipes/$id' }) && (
+						<>
+							<EditLink
+								recipeId={recipe.id}
+								recipeAuthorId={recipe.author?.id || ''}
+							/>
+							<FavoriteButton
+								recipeId={recipe.id}
+								favoritedBy={recipe.favoritedBy}
+								size="icon-sm"
+							/>
+						</>
+					)}
+				</div>
+			</Container>
 			<Container>
 				<div className="flex flex-col md:flex-row justify-between gap-4">
 					<div className="order-1 md:order-2 min-w-64 max-w-3xl">
