@@ -4,7 +4,7 @@ import { db } from '@/db';
 import { recipes } from '@/db/schema';
 
 const BASE = './backups/instant';
-const USER_ID = 'R2Nr7OY0IFjB5Pdmh5R4yUlyaEV8JA3T';
+const USER_ID = '';
 
 const loadFromBackup = async () => {
 	const [recipesFile, ingredientsFile] = await Promise.all([
