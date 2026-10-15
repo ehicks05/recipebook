@@ -7,6 +7,7 @@ import type {
 } from 'react-hook-form';
 import { MyInput, MySelect } from '@/components/core';
 import { Button } from '@/components/ui/button';
+import { ButtonGroup } from '@/components/ui/button-group';
 import { DEFAULT_INGREDIENT, UNITS } from '../constants';
 import type { FormRecipe } from '../types';
 
@@ -61,7 +62,7 @@ export const IngredientsForm = ({
 								register={register}
 								error={!!errors.ingredients?.[index]?.name}
 							/>
-							<div className="flex gap-1">
+							<ButtonGroup>
 								<Button
 									disabled={index === 0}
 									onClick={() => ingredientsFieldArray.swap(index, index - 1)}
@@ -83,7 +84,7 @@ export const IngredientsForm = ({
 								>
 									<Trash />
 								</Button>
-							</div>
+							</ButtonGroup>
 						</div>
 						{[
 							errors.ingredients?.[index]?.quantity?.message,

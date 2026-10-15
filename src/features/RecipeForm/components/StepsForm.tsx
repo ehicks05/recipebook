@@ -7,6 +7,7 @@ import type {
 } from 'react-hook-form';
 import { MyInput, MyTextArea } from '@/components/core';
 import { Button } from '@/components/ui/button';
+import { ButtonGroup } from '@/components/ui/button-group';
 import { DEFAULT_STEP } from '../constants';
 import type { FormRecipe } from '../types';
 
@@ -36,7 +37,7 @@ export const StepsForm = ({ stepsFieldArray, register, errors }: Props) => {
 							error={errors.steps?.[index]?.text}
 							minRows={4.1}
 						/>
-						<div className="flex flex-col gap-1">
+						<ButtonGroup orientation="vertical">
 							<Button
 								disabled={stepsFieldArray.fields.length <= 1}
 								onClick={() => stepsFieldArray.remove(index)}
@@ -58,7 +59,7 @@ export const StepsForm = ({ stepsFieldArray, register, errors }: Props) => {
 							>
 								<ArrowDown />
 							</Button>
-						</div>
+						</ButtonGroup>
 					</div>
 				))}
 				<div className="text-right">
