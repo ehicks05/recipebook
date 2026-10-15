@@ -1,10 +1,10 @@
 import { Laptop, Moon, Sun } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import {
-	DropdownMenu,
-	DropdownMenuContent,
+	DropdownMenuGroup,
 	DropdownMenuItem,
-	DropdownMenuTrigger,
+	DropdownMenuSub,
+	DropdownMenuSubContent,
+	DropdownMenuSubTrigger,
 } from '@/components/ui/dropdown-menu';
 import { useTheme } from './theme-provider';
 
@@ -12,23 +12,27 @@ export function ModeToggle() {
 	const { theme, setTheme } = useTheme();
 
 	return (
-		<DropdownMenu>
-			<DropdownMenuTrigger
+		<DropdownMenuSub>
+			<DropdownMenuSubTrigger
 				render={
-          <Button variant="ghost" className='flex items-center gap-1' size="icon">
+          <button className='w-full'>
             {theme === 'light' && <Sun />}
             {theme === 'dark' && <Moon />}
             {theme === 'system' && <Laptop />}
-					</Button>
+            Theme
+					</button>
 				}
 			/>
-			<DropdownMenuContent>
+      <DropdownMenuSubContent>
+        <DropdownMenuGroup>
+
 				<DropdownMenuItem onClick={() => setTheme('light')}><Sun />Light</DropdownMenuItem>
 				<DropdownMenuItem onClick={() => setTheme('dark')}><Moon />Dark</DropdownMenuItem>
 				<DropdownMenuItem onClick={() => setTheme('system')}>
 				<Laptop />System
 				</DropdownMenuItem>
-			</DropdownMenuContent>
-		</DropdownMenu>
+        </DropdownMenuGroup>
+			</DropdownMenuSubContent>
+		</DropdownMenuSub>
 	);
 }

@@ -16,7 +16,6 @@ export default function Header() {
 			<div>
 				<NavigationMenu>
 					<NavigationMenuList className="gap-2">
-						<ModeToggle />
 						<NavigationMenuItem>
 							<UserButton
 								hideSettings
@@ -38,7 +37,8 @@ export default function Header() {
 										label: 'My Stuff',
 										icon: <Shapes />,
 										visibility: 'authenticated',
-									},
+                  },
+									<ModeToggle key='modeToggle' />
 								]}
 							/>
 						</NavigationMenuItem>
