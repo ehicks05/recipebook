@@ -75,7 +75,6 @@ export const getRecipe = createServerFn()
 			with: { author: true, favoritedBy: true },
 		});
 
-		console.log({ user, recipe });
 		return recipe;
 	});
 
