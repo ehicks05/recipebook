@@ -4,7 +4,7 @@ import { gzip as gzipCallback } from 'node:zlib';
 import { db } from '@/db';
 
 const gzip = promisify(gzipCallback);
-const BASE = './backups/instant';
+const BASE = './backups';
 
 function nowStamp(): string {
 	return new Date().toISOString().replace(/[:.]/g, '-');
