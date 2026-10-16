@@ -1,10 +1,8 @@
 import { Cron, scheduledJobs } from 'croner';
-import { createBackup } from '@/scripts/create-backup';
 import { featureRecipe } from './feature-recipe';
 
 const JOBS = {
 	featuredRecipeJob: { pattern: '0 0 * * *', fn: featureRecipe },
-	backupDbJob: { pattern: '0 0 * * *', fn: createBackup },
 };
 
 if (process.env.NODE_ENV === 'production') {
