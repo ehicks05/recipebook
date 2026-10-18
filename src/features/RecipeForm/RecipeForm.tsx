@@ -30,6 +30,7 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 		handleSubmit,
 		reset,
 		formState: { errors, isSubmitting, isDirty },
+		setValues,
 	} = useForm({
 		defaultValues: recipe || importedRecipe || DEFAULT_RECIPE,
 		mode: 'onBlur',
@@ -100,6 +101,23 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 						>
 							{`${recipe ? 'Save' : 'Create Recipe '}`}
 						</Button>
+						{import.meta.env.DEV && !recipe && (
+							<Button
+								onClick={() => {
+									setValues({
+										name: 'foo',
+										description: 'foo',
+										cookingTime: '5M',
+										servings: 4,
+										emoji: '🧪',
+										ingredients: [{ quantity: '1', unit: 'tsp', name: 'foo' }],
+										steps: [{ text: 'foo' }],
+									});
+								}}
+							>
+								Seed
+							</Button>
+						)}
 						{recipe && (
 							<>
 								<Button
