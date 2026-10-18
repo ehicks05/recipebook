@@ -1,5 +1,4 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { PageLayout } from '@/components/Layout/PageLayout';
 import { Account } from '@/features/Account/Account';
 import { getFavoritesByUser, getRecipesByUser } from '@/functions/recipes';
 
@@ -16,9 +15,5 @@ export const Route = createFileRoute('/_protected/me')({
 function RouteComponent() {
 	const { user } = Route.useRouteContext();
 	const { recipes, favorites } = Route.useLoaderData();
-	return (
-		<PageLayout>
-			<Account user={user} recipes={recipes} favorites={favorites} />
-		</PageLayout>
-	);
+	return <Account user={user} recipes={recipes} favorites={favorites} />;
 }

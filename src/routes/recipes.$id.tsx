@@ -1,5 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { PageLayout } from '@/components/Layout/PageLayout';
+import { createFileRoute, notFound } from '@tanstack/react-router';
 import { RecipeDetail } from '@/features/RecipeViewer/RecipeDetail';
 import { getRecipe } from '@/functions/recipes';
 
@@ -7,6 +6,7 @@ export const Route = createFileRoute('/recipes/$id')({
 	component: RouteComponent,
 	loader: async ({ params: { id } }) => {
 		const recipe = await getRecipe({ data: { id } });
+		if (!recipe) throw notFound();
 		return recipe;
 	},
 });
@@ -14,11 +14,5 @@ export const Route = createFileRoute('/recipes/$id')({
 function RouteComponent() {
 	const recipe = Route.useLoaderData();
 
-	if (!recipe) return null;
-
-	return (
-		<PageLayout>
-			<RecipeDetail recipe={recipe} />
-		</PageLayout>
-	);
+	return <RecipeDetail recipe={recipe} />;
 }

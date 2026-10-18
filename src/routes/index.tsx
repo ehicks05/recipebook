@@ -1,5 +1,4 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { PageLayout } from '@/components/Layout/PageLayout';
 import { RecipeBrowser } from '@/features/RecipeBrowser/RecipeBrowser';
 import { getRecipes } from '@/functions/recipes';
 
@@ -14,9 +13,5 @@ export const Route = createFileRoute('/')({
 function App() {
 	const recipes = Route.useLoaderData();
 
-	return (
-		<PageLayout>
-			<RecipeBrowser recipes={recipes} />
-		</PageLayout>
-	);
+	return <RecipeBrowser recipes={recipes} />;
 }

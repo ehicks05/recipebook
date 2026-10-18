@@ -1,6 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
 import z from 'zod';
-import { PageLayout } from '@/components/Layout/PageLayout';
 import { RecipeImporter } from '@/features/RecipeImporter/RecipeImporter';
 
 const searchSchema = z.object({
@@ -18,9 +17,5 @@ export const Route = createFileRoute('/import-recipe')({
 function RouteComponent() {
 	const { url } = Route.useSearch();
 
-	return (
-		<PageLayout>
-			<RecipeImporter url={url} />
-		</PageLayout>
-	);
+	return <RecipeImporter url={url} />;
 }
