@@ -17,7 +17,7 @@ export function RecipeDetail({ recipe }: Props) {
 		<>
 			<Hero title={`${recipe.name}`}>
 				<div className="flex gap-1">
-					{recipe.author?.name}
+					{recipe.author.name}
 					<span>·</span>
 					<div className="flex gap-1 items-center">
 						<Clock size={16} />
@@ -30,10 +30,7 @@ export function RecipeDetail({ recipe }: Props) {
 					<DescriptionDialog recipe={recipe} />
 					{matchRoute({ to: '/recipes/$id' }) && (
 						<>
-							<EditLink
-								recipeId={recipe.id}
-								recipeAuthorId={recipe.author?.id || ''}
-							/>
+							<EditLink recipeId={recipe.id} recipeAuthorId={recipe.authorId} />
 							<FavoriteButton
 								recipeId={recipe.id}
 								favoritedBy={recipe.favoritedBy}

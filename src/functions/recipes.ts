@@ -8,20 +8,22 @@ export type Recipe = Awaited<ReturnType<typeof getRecipes>>[number];
 export type Ingredient = Recipe['ingredients'][number];
 export type Step = Recipe['steps'][number];
 
+const recipeAuth = (userId?: string) => ({
+	OR: [{ isPublished: true }, userId ? { authorId: userId } : {}],
+});
+const recipeWith = (userId?: string) =>
+	({
+		author: { columns: { name: true } },
+		favoritedBy: { where: { id: userId || 'INVALID' }, columns: { id: true } },
+	}) as const;
+
 export const getRecipes = createServerFn()
 	.middleware([maybeUserMiddleware])
 	.handler(async ({ context: { user } }) => {
 		const recipes = await db.query.recipes.findMany({
-			where: {
-				OR: [{ isPublished: true }, user ? { authorId: user.id } : {}],
-			},
+			where: { ...recipeAuth(user?.id) },
 			orderBy: { isFeatured: 'desc', createdAt: 'desc' },
-			with: {
-				author: true,
-				favoritedBy: user
-					? { where: { id: user.id }, columns: { id: true } }
-					: false,
-			},
+			with: recipeWith(user?.id),
 		});
 
 		return recipes;
@@ -33,12 +35,7 @@ export const getRecipesByUser = createServerFn()
 		const recipes = await db.query.recipes.findMany({
 			where: { authorId: user.id },
 			orderBy: { createdAt: 'desc' },
-			with: {
-				author: true,
-				favoritedBy: user
-					? { where: { id: user.id }, columns: { id: true } }
-					: false,
-			},
+			with: recipeWith(user?.id),
 		});
 
 		return recipes;
@@ -52,12 +49,7 @@ export const getFavoritesByUser = createServerFn()
 		const recipes = await db.query.recipes.findMany({
 			where: { authorId: user.id, favoritedBy: { id: user.id } },
 			orderBy: { createdAt: 'desc' },
-			with: {
-				author: true,
-				favoritedBy: user
-					? { where: { id: user.id }, columns: { id: true } }
-					: false,
-			},
+			with: recipeWith(user?.id),
 		});
 
 		return recipes;
@@ -68,11 +60,8 @@ export const getRecipe = createServerFn()
 	.validator((data: { id: string }) => data)
 	.handler(async ({ context: { user }, data: { id } }) => {
 		const recipe = await db.query.recipes.findFirst({
-			where: {
-				id,
-				OR: [{ isPublished: true }, user ? { authorId: user.id } : {}],
-			},
-			with: { author: true, favoritedBy: true },
+			where: { id, ...recipeAuth(user?.id) },
+			with: recipeWith(user?.id),
 		});
 
 		return recipe;
