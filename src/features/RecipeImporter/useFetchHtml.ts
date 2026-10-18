@@ -1,6 +1,6 @@
 import { useServerFn } from '@tanstack/react-start';
 import { useEffect, useState } from 'react';
-import { fetchHtml } from '@/middleware/fetchHtml';
+import { fetchHtml } from '@/functions/fetchHtml';
 
 export const useFetchHtml = (url?: string) => {
 	const fetchHtmlFetch = useServerFn(fetchHtml);
