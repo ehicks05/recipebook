@@ -121,9 +121,7 @@ export const deleteRecipe = createServerFn()
 			throw new Error('UNAUTHORIZED');
 		}
 
-		const result = await db.delete(recipes).where(eq(recipes.id, id)).returning();
-
-		return result[0];
+		await db.delete(recipes).where(eq(recipes.id, id));
 	});
 
 export const toggleFavorite = createServerFn()
