@@ -1,7 +1,6 @@
-// src/lib/auth.middleware.ts
 import { createMiddleware } from '@tanstack/react-start';
 import { getRequest } from '@tanstack/react-start/server';
-import { auth } from './auth'; // Your Better Auth instance setup
+import { auth } from './auth';
 
 export const authMiddleware = createMiddleware().server(async ({ next }) => {
 	const request = getRequest();
