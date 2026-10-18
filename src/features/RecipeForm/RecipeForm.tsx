@@ -41,6 +41,7 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 
 	const handleCreate = async (recipe: FormRecipe) => {
 		const { id } = await createRecipe({ data: { recipe } });
+		await router.invalidate();
 		navigate({ to: '/recipes/$id', params: { id } });
 		toast.success('Recipe created!');
 	};
