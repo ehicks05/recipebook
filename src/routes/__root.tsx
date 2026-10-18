@@ -1,11 +1,9 @@
-import {
-	createRootRoute,
-	ErrorComponent,
-	HeadContent,
-	Scripts,
-} from '@tanstack/react-router';
+import { createRootRoute, HeadContent, Scripts } from '@tanstack/react-router';
+import { PageLayout } from '@/components/Layout/PageLayout';
 import { Providers } from '@/components/providers';
 import { ThemeProvider } from '@/components/ui/theme-provider';
+import { GlobalErrorComponent } from '@/GlobalErrorComponent';
+import { GlobalNotFoundComponent } from '@/GlobalNotFoundComponent';
 import appCss from '../styles.css?url';
 
 export const Route = createRootRoute({
@@ -20,7 +18,8 @@ export const Route = createRootRoute({
 			{ rel: 'icon', href: '/favicon.png' },
 		],
 	}),
-	errorComponent: (err) => <ErrorComponent error={err.error} />,
+	errorComponent: GlobalErrorComponent,
+	notFoundComponent: GlobalNotFoundComponent,
 	shellComponent: RootDocument,
 });
 
@@ -32,7 +31,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			</head>
 			<body className="flex flex-col bg-body-background">
 				<ThemeProvider storageKey="theme" defaultTheme="system">
-					<Providers>{children}</Providers>
+					<Providers>
+						<PageLayout>{children}</PageLayout>
+					</Providers>
 				</ThemeProvider>
 				<Scripts />
 			</body>
