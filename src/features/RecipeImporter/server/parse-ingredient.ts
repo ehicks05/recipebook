@@ -32,21 +32,18 @@ const RAW_TO_SUPPORTED_UNITS = {
 } as const;
 
 const extractLeadingUnit = (input: string) => {
+	const firstWord = input.slice(0, input.indexOf(' '));
+	const rest = input.slice(input.indexOf(' ') + 1);
+
 	const matchedUnit = Object.entries(RAW_TO_SUPPORTED_UNITS).find(
 		([rawUnit]) =>
-			input.startsWith(`${rawUnit}`) ||
-			input.startsWith(`${rawUnit}s`) ||
-			input.startsWith(`${rawUnit}es`),
+			firstWord === `${rawUnit}` ||
+			firstWord === `${rawUnit}s` ||
+			firstWord === `${rawUnit}es`,
 	);
 	if (matchedUnit) {
 		const [rawUnit, supportedUnit] = matchedUnit;
-		const pluralCharacters = input.startsWith(`${rawUnit}es`)
-			? 2
-			: input.startsWith(`${rawUnit}s`)
-				? 1
-				: 0;
-		const name = input.substring(matchedUnit[0].length + pluralCharacters).trim();
-		return { unit: supportedUnit, name };
+		return { unit: supportedUnit, name: rest };
 	}
 	return {
 		unit: undefined,
