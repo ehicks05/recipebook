@@ -1,6 +1,6 @@
 import type { Recipe as SchemaOrgRecipe } from 'schema-dts';
-import { parseIngredient } from '@/features/RecipeImporter/server/parse-ingredient';
-import type { Recipe } from '@/functions/recipes';
+import type { Recipe } from '@/functions/recipes.functions';
+import { parseIngredient } from './parse-ingredient';
 import { parseServings } from './parse-servings';
 import { parseSteps } from './parse-steps';
 

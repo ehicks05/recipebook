@@ -41,6 +41,8 @@ export const parseLdJsonRecipe = (htmlString: string, url: string) => {
 		const json = JSON.parse(ldJsonScriptText);
 
 		const recipe: Recipe = deepFind({ json }, 'Recipe');
+		// biome-ignore lint/suspicious/noTsIgnore: roll with it
+		// @ts-ignore
 		const authorName = JSONPath({ json, path: '$..author..name' })?.[0];
 
 		return {

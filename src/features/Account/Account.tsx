@@ -1,7 +1,7 @@
 import type { User } from 'better-auth';
 import { Container, Hero } from '@/components/core';
 import { RecipeTable } from '@/features/Account/RecipeTable';
-import type { Recipe, UserFavorite } from '@/functions/recipes';
+import type { Recipe } from '@/functions/recipes.functions';
 
 const YourLists = ({ recipes, favorites }: Props) => {
 	return (
@@ -17,7 +17,7 @@ const YourLists = ({ recipes, favorites }: Props) => {
 interface Props {
 	user: User;
 	recipes: Recipe[];
-	favorites: UserFavorite[];
+	favorites: Recipe[];
 }
 
 export const Account = ({ user, recipes, favorites }: Props) => {

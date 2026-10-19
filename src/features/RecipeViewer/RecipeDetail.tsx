@@ -2,7 +2,7 @@ import { useMatchRoute } from '@tanstack/react-router';
 import { Clock } from 'lucide-react';
 import { Container, Hero } from '@/components/core';
 import { FavoriteButton } from '@/components/core/FavoriteButton';
-import type { Recipe } from '@/functions/recipes';
+import type { Recipe } from '@/functions/recipes.functions';
 import { EditLink, Ingredients, Steps } from './Components';
 import { DescriptionDialog } from './Components/DescriptionDialog';
 

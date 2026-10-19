@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { RecipeBrowser } from '@/features/RecipeBrowser/RecipeBrowser';
-import { getRecipes } from '@/functions/recipes';
+import { getRecipes } from '@/functions/recipes.functions';
 
 export const Route = createFileRoute('/')({
 	component: App,

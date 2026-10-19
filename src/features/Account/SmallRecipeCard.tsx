@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router';
 import { Card } from '@/components/core';
-import type { Recipe } from '@/functions/recipes';
+import type { Recipe } from '@/functions/recipes.functions';
 
 interface Props {
 	recipe: Recipe;

@@ -18,7 +18,7 @@ import {
 	InputGroupButton,
 	InputGroupInput,
 } from '@/components/ui/input-group';
-import type { Recipe } from '@/functions/recipes';
+import type { Recipe } from '@/functions/recipes.functions';
 import { RecipeCard } from './RecipeCard';
 
 export function RecipeBrowser({ recipes }: { recipes: Recipe[] }) {

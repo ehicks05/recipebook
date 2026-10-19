@@ -3,7 +3,7 @@ import { cn } from 'cn';
 import { Heart } from 'lucide-react';
 import { toast } from 'sonner';
 import { Button, type ButtonParams } from '@/components/ui/button';
-import { toggleFavorite } from '@/functions/recipes';
+import { toggleFavorite } from '@/functions/userFavorites.functions';
 import { authClient } from '@/lib/auth-client';
 
 type Props = ButtonParams & {

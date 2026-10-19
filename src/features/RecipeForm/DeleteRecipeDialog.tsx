@@ -11,7 +11,7 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from '@/components/ui/dialog';
-import { deleteRecipe } from '@/functions/recipes';
+import { deleteRecipe } from '@/functions/recipes.functions';
 
 export function DeleteRecipeDialog({ id, name }: { id: string; name: string }) {
 	const router = useRouter();

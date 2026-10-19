@@ -3,7 +3,7 @@ import { cn } from 'cn';
 import { Star } from 'lucide-react';
 import { Card, RecipeImage } from '@/components/core';
 import { FavoriteButton } from '@/components/core/FavoriteButton';
-import type { Recipe } from '@/functions/recipes';
+import type { Recipe } from '@/functions/recipes.functions';
 
 const getScaledTextSize = (text: string) =>
 	text.length < 34 ? 'text-xl' : text.length < 38 ? 'text-lg' : 'text-base';

@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { Account } from '@/features/Account/Account';
-import { getFavoritesByUser, getRecipesByUser } from '@/functions/recipes';
+import { getFavoritesByUser, getRecipesByUser } from '@/functions/recipes.functions';
 
 export const Route = createFileRoute('/_protected/me')({
 	component: RouteComponent,

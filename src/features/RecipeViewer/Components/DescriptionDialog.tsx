@@ -9,7 +9,7 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from '@/components/ui/dialog';
-import type { Recipe } from '@/functions/recipes';
+import type { Recipe } from '@/functions/recipes.functions';
 
 export function DescriptionDialog({ recipe }: { recipe: Recipe }) {
 	return (

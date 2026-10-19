@@ -7,7 +7,7 @@ import {
 	TableHeader,
 	TableRow,
 } from '@/components/ui/table';
-import type { Recipe } from '@/functions/recipes';
+import type { Recipe } from '@/functions/recipes.functions';
 
 interface Props {
 	title: string;

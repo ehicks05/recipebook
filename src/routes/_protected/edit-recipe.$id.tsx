@@ -1,6 +1,6 @@
 import { createFileRoute, notFound } from '@tanstack/react-router';
 import { RecipeForm } from '@/features/RecipeForm';
-import { getRecipe } from '@/functions/recipes';
+import { getRecipe } from '@/functions/recipes.functions';
 
 export const Route = createFileRoute('/_protected/edit-recipe/$id')({
 	component: RouteComponent,

@@ -7,7 +7,11 @@ import { toast } from 'sonner';
 import { Container, Hero } from '@/components/core';
 import { Alert, AlertTitle } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
-import { createRecipe, type Recipe, updateRecipe } from '@/functions/recipes';
+import {
+	createRecipe,
+	type Recipe,
+	updateRecipe,
+} from '@/functions/recipes.functions';
 import { CopyToClipboardButton } from './CopyToClipboardButton';
 import { IngredientsForm, RecipeDetailsForm, StepsForm } from './components';
 import { DEFAULT_RECIPE } from './constants';
@@ -50,7 +54,7 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 	const handleUpdate = async (data: FormRecipe) => {
 		if (!recipe) return;
 
-		await updateRecipe({ data: { id: recipe.id, recipe: data } });
+		await updateRecipe({ data: { recipe: { id: recipe.id, ...data } } });
 		await router.invalidate();
 
 		reset(data, {});

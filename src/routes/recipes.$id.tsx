@@ -1,6 +1,6 @@
 import { createFileRoute, notFound } from '@tanstack/react-router';
 import { RecipeDetail } from '@/features/RecipeViewer/RecipeDetail';
-import { getRecipe } from '@/functions/recipes';
+import { getRecipe } from '@/functions/recipes.functions';
 
 export const Route = createFileRoute('/recipes/$id')({
 	component: RouteComponent,

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useTimeout } from 'usehooks-ts';
 import { Button } from '@/components/ui/button';
-import type { Recipe } from '@/functions/recipes';
+import type { Recipe } from '@/functions/recipes.functions';
 
 export const CopyToClipboardButton = ({ recipe }: { recipe: Recipe }) => {
 	const [label, setLabel] = useState('Copy to Clipboard');

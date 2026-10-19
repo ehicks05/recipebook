@@ -11,7 +11,7 @@ import {
 	InputGroupInput,
 } from '@/components/ui/input-group';
 import { RecipeForm } from '@/features/RecipeForm';
-import { parseLdJsonRecipe } from '@/features/RecipeImporter/server';
+import { parseLdJsonRecipe } from '@/features/RecipeImporter/parseLdJsonRecipe';
 import { RecipeDetail } from '@/features/RecipeViewer/RecipeDetail';
 import { authClient } from '@/lib/auth-client';
 import { Instructions } from './Instructions';
