@@ -63,7 +63,6 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 
 	const onSubmit: SubmitHandler<FormRecipe> = (data, e) => {
 		e?.preventDefault();
-		console.log({ data });
 		recipe ? handleUpdate(data) : handleCreate(data);
 	};
 
