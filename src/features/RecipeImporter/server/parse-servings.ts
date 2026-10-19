@@ -1,6 +1,6 @@
-import { extractLeadingNumber } from './extract-leading-number';
+import { extractLeadingQuantity } from './extract-leading-quantity';
 
 export const parseServings = (input: string) => {
-	const { number } = extractLeadingNumber(input);
-	return Number(number) || 1;
+	const { quantity } = extractLeadingQuantity(input);
+	return Number(quantity) || 1;
 };

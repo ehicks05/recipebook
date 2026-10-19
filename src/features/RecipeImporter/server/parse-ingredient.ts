@@ -1,4 +1,4 @@
-import { extractLeadingNumber } from './extract-leading-number';
+import { extractLeadingQuantity } from './extract-leading-quantity';
 
 /**
  * Reference: https://unicode.org/reports/tr15/#Norm_Forms
@@ -56,7 +56,7 @@ const extractLeadingUnit = (input: string) => {
 
 export const parseIngredient = (input: string) => {
 	const normalized = normalizeUnicode(input);
-	const { number: quantity, rest: postQuantity } = extractLeadingNumber(normalized);
+	const { quantity, postQuantity } = extractLeadingQuantity(normalized);
 	const { unit, name } = extractLeadingUnit(postQuantity.toLocaleLowerCase());
 	return { quantity, unit, name };
 };
