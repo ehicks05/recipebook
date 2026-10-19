@@ -35,20 +35,14 @@ const extractLeadingUnit = (input: string) => {
 	const firstWord = input.slice(0, input.indexOf(' '));
 	const rest = input.slice(input.indexOf(' ') + 1);
 
-	const matchedUnit = Object.entries(RAW_TO_SUPPORTED_UNITS).find(
-		([rawUnit]) =>
-			firstWord === `${rawUnit}` ||
-			firstWord === `${rawUnit}s` ||
-			firstWord === `${rawUnit}es`,
+	const matchedUnit = Object.entries(RAW_TO_SUPPORTED_UNITS).find(([rawUnit]) =>
+		[`${rawUnit}`, `${rawUnit}s`, `${rawUnit}es`].includes(firstWord),
 	);
 	if (matchedUnit) {
-		const [rawUnit, supportedUnit] = matchedUnit;
-		return { unit: supportedUnit, name: rest };
+		const [_, canonicalUnit] = matchedUnit;
+		return { unit: canonicalUnit, name: rest };
 	}
-	return {
-		unit: undefined,
-		name: input,
-	};
+	return { unit: undefined, name: input };
 };
 
 export const parseIngredient = (input: string) => {
