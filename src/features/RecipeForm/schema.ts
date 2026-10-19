@@ -24,8 +24,3 @@ export const RecipeSchema = z.object({
 	ingredients: Ingredient.array().min(1),
 	steps: Step.array().min(1),
 });
-
-export const RecipeUpdateSchema = RecipeSchema.extend({ id: z.string() });
-
-export type RecipeCreate = z.infer<typeof RecipeSchema>;
-export type RecipeUpdate = z.infer<typeof RecipeUpdateSchema>;
