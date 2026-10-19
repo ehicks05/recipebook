@@ -2,7 +2,7 @@ import * as cheerio from 'cheerio';
 import { find } from 'es-toolkit/compat';
 import { JSONPath } from 'jsonpath-plus';
 import type { Recipe } from 'schema-dts';
-import { schemaOrgRecipeToRecipeBookRecipe } from './schema-org-mapper';
+import { parseSchemaOrgRecipe } from './parse-schema-org-recipe';
 
 // biome-ignore lint/suspicious/noExplicitAny: don't know
 const deepFind = (json: any, type: string): any => {
@@ -45,7 +45,7 @@ export const parseLdJsonRecipe = (htmlString: string, url: string) => {
 
 		return {
 			error: undefined,
-			recipe: schemaOrgRecipeToRecipeBookRecipe(recipe, authorName, url),
+			recipe: parseSchemaOrgRecipe({ recipe, authorName, url }),
 		};
 	} catch (err) {
 		return { error: err as Error, recipe: undefined };
