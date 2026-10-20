@@ -14,13 +14,7 @@ import type { Recipe } from '@/functions/recipes.functions';
 export function DescriptionDialog({ recipe }: { recipe: Recipe }) {
 	return (
 		<Dialog>
-			<DialogTrigger
-				render={
-					<Button variant="outline" size="sm">
-						More Info
-					</Button>
-				}
-			/>
+			<DialogTrigger render={<Button variant="outline">More Info</Button>} />
 			<DialogContent className="sm:max-w-md">
 				<DialogHeader>
 					<DialogTitle>Description</DialogTitle>

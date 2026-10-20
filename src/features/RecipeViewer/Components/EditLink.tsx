@@ -16,9 +16,7 @@ export const EditLink = ({ recipeId, recipeAuthorId }: Props) => {
 	return (
 		<div className="flex flex-wrap gap-2">
 			<Link to="/edit-recipe/$id" params={{ id: recipeId }} preload={false}>
-				<Button variant="outline" size="sm">
-					Edit
-				</Button>
+				<Button variant="outline">Edit</Button>
 			</Link>
 		</div>
 	);

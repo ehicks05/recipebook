@@ -34,7 +34,7 @@ export function RecipeDetail({ recipe }: Props) {
 							<FavoriteButton
 								recipeId={recipe.id}
 								favoritedBy={recipe.favoritedBy}
-								size="icon-sm"
+								size="icon"
 							/>
 						</>
 					)}
