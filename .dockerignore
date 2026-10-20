@@ -1,0 +1,10 @@
+.output
+.tanstack
+backups
+node_modules
+
+.env
+
+.git
+.gitignore
+
