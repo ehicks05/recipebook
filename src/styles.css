@@ -25,7 +25,7 @@ code {
 /*---break---*/
 
 @theme inline {
-  --font-logo: 'Fraunces Variable';
+	--font-logo: "Fraunces Variable";
 	--font-heading: var(--font-sans);
 	--font-sans: "Ubuntu Sans Variable", sans-serif;
 	--color-sidebar-ring: var(--sidebar-ring);
