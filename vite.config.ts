@@ -13,6 +13,17 @@ const config = defineConfig({
 		host: '0.0.0.0',
 	},
 	plugins: [devtools(), nitro(), tailwindcss(), tanstackStart(), viteReact()],
+	build: {
+		// FOUC: https://github.com/TanStack/router/issues/5812#issuecomment-5853883254
+		rollupOptions: {
+			output: {
+				assetFileNames: (info) =>
+					info.names.some((n) => n.endsWith('.css'))
+						? 'assets/[name][extname]'
+						: 'assets/[name]-[hash][extname]',
+			},
+		},
+	},
 });
 
 export default config;
