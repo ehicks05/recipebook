@@ -13,9 +13,10 @@ export const Header = () => (
 		<SiteLogo />
 
 		<NavigationMenu>
-			<NavigationMenuList className="gap-2">
-				<NavigationMenuItem>
+			<NavigationMenuList>
+				<NavigationMenuItem className="flex items-center">
 					<UserButton
+						size="icon"
 						hideSettings
 						links={[
 							{
