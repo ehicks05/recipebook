@@ -20,6 +20,9 @@ importers:
       '@better-auth/drizzle-adapter':
         specifier: ^1.7.7
         version: 1.7.7(@better-auth/core@1.7.7(@better-auth/utils@0.4.2)(@better-fetch/fetch@1.3.2)(better-call@1.4.0(zod@4.6.6))(jose@6.2.12)(kysely@0.29.6)(nanostores@1.5.5))(@better-auth/utils@0.4.2)(drizzle-orm@1.0.0-rc.4(@types/pg@8.23.1)(pg@8.23.1)(zod@4.6.6))
+      '@fontsource-variable/fraunces':
+        specifier: ^5.3.0
+        version: 5.3.0
       '@fontsource-variable/ubuntu-sans':
         specifier: ^5.3.0
         version: 5.3.0
@@ -91,7 +94,7 @@ importers:
         version: 1.57.0(@types/react@19.3.0)(react@19.3.0)
       nitro:
         specifier: npm:nitro-nightly@latest
-        version: nitro-nightly@3.0.1-20261014-140419-9350ff51
+        version: nitro-nightly@3.0.1-20261020-135725-f9894e92(ocache@0.3.0)
       pg:
         specifier: ^8.23.1
         version: 8.23.1
@@ -963,6 +966,9 @@ packages:
 
   '@floating-ui/utils@0.2.12':
     resolution: {integrity: sha512-HpCo8tmWzLVad5s2d19EhAz5zqrrQ6s69qd6moPMQvkOuSwDT1YgRfWSVuc4ennqrgv3OHppiOGMQ7oC13yIww==}
+
+  '@fontsource-variable/fraunces@5.3.0':
+    resolution: {integrity: sha512-9BYGySn4AHEJdgp9Z28tQ3X+laJMEOITXkQarZXeloWQZDq5oOvXJ3kDA8c7MGIfpogIaZfjrQBqmda8POOCKA==}
 
   '@fontsource-variable/ubuntu-sans@5.3.0':
     resolution: {integrity: sha512-SsQHgZOfw7O6S3c8XtObfXIG034nUpPXWdPhjeFRwtfESjALC9wUYeMTXXalutKpk+mFs3V4vRQVJpeJvmZ9iA==}
@@ -2261,9 +2267,6 @@ packages:
   date-fns@4.4.0:
     resolution: {integrity: sha512-+1UMbeh68lH1SegH83CGWwpb6OHHbpSgr3+s5Eww5M4CAgswBpoWS0AjTOfEJ33HiYKz1hdj/KTFprzXHmq/6w==}
 
-  db0@0.4.1:
-    resolution: {integrity: sha512-6RBY/bSn42UrqATwsiULj2uYFyEykB3XeA/NLIVQeHNXlYV6D4Idxx3/aa6k5Y45Dwzx7sygeLotnqHWSeURYA==}
-
   debounce-fn@4.0.0:
     resolution: {integrity: sha512-8pYCQiL9Xdcg0UPSD3d+0KMlOjp+KGU5EPwYddgzQ7DATsg4fuUDjQtsYLmWjnk2obnNHgV3vE2Y4jejSOJVBQ==}
     engines: {node: '>=10'}
@@ -2551,8 +2554,8 @@ packages:
     resolution: {integrity: sha512-+h1lkLKhZMTYjog1VEpJNG7NZJWcuc2DDk/qsqSTRRCOXiLjeQ1d1/udrUGhqMxUgAlwKNZ0cf2uqan5GLuS2A==}
     engines: {node: '>=6'}
 
-  env-runner@0.3.3:
-    resolution: {integrity: sha512-Nmz9+nA6Wnk3211bXJJiucO399xvrGTfG6GoY+0k4AwptX1MXuxZxcktdFZ0XLXf2i89RlA4uUxfczqOpOMXnA==}
+  env-runner@0.3.6:
+    resolution: {integrity: sha512-2peJPuinI46B3zeHyTjVhiK+LGb53M2vmM4tGIwPYfPZ+/FBfPOsaCYawLoc+9GTa/y/fYhhtZh8obPZAmHUCQ==}
     hasBin: true
 
   es-define-property@1.0.1:
@@ -2743,8 +2746,8 @@ packages:
   graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
 
-  h3@2.0.2:
-    resolution: {integrity: sha512-+/zvHSNldYpNURuUUG+y1KzdASUhNnSd1VpqxYFVY40ov3YzuBnCETaUQaT+QbKkoxhh9LRa6AEQdB14LALwdA==}
+  h3@2.0.6:
+    resolution: {integrity: sha512-ELzE+z+JU0jRLcTYZNb/rVj81jaY0dQKhLNyFEC/McaFgSASfRtyB+m5mZJpfxvWjyek23dYwNFJjxgNY49i4Q==}
     engines: {node: '>=20.19.0'}
     hasBin: true
     peerDependencies:
@@ -2778,9 +2781,6 @@ packages:
   http-errors@2.0.1:
     resolution: {integrity: sha512-4FbRdAX+bSdmo4AUFuS0WNiPz8NgFt+r8ThgNWmlrjQjt1Q7ZR9+zTlce2859x4KSXrwIsaeTqDoKQmtP8pLmQ==}
     engines: {node: '>= 0.8'}
-
-  httpxy@0.5.5:
-    resolution: {integrity: sha512-uDjmnPyp1q4Sgzf3w+J/Fc6UqcCEj0x4Wjp7OqK5dGhNeDgpyrAmnS6ey8QWrX3SWDon2DMKf9sBa5X9+CVyMA==}
 
   human-signals@2.1.0:
     resolution: {integrity: sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==}
@@ -3227,12 +3227,9 @@ packages:
     resolution: {integrity: sha512-NMPBRMJgiQHjbd8phG3Vebdx4kZ1H121rbl5IkMqeOsahptB9BKo/d7oJ3zTXqTgagn2bWlNSXkh0QUGM31RYg==}
     engines: {node: '>=18'}
 
-  nf3@0.4.2:
-    resolution: {integrity: sha512-6kPsyCzvzb8gnFQFzxuQc/hU9HWEMwn0v9j41Mv7LezeUmgS0qgsGjDbtdrOfqV+kkM8KpYS+aZ6Y0wkWzJzLQ==}
-
-  nitro-nightly@3.0.1-20261014-140419-9350ff51:
-    resolution: {integrity: sha512-iF7EyhModhHJ3iw56NedKeFBwDQ2vzZf55hCa1AehO0xUWKMu0FCc1l3kMs0cw/0PApF7k75dqeIadUQW+Ej5g==}
-    engines: {node: ^20.19.0 || >=22.12.0}
+  nitro-nightly@3.0.1-20261020-135725-f9894e92:
+    resolution: {integrity: sha512-xIytkwRRgdY/yjIXdW5Mgsa2TlgJg83J1PB2DGLCXQJYe3opvNThbKMO++3OjgpGjfHnaRkzJA4/Era6Cl0Tpg==}
+    engines: {node: '>=22.12.0'}
     hasBin: true
 
   node-releases@2.0.58:
@@ -3695,6 +3692,11 @@ packages:
     engines: {node: '>=20.16.0'}
     hasBin: true
 
+  srvx@1.0.6:
+    resolution: {integrity: sha512-QeTKgAhk8OSsfeq60bl3wuVs9PmBftzmk7owBInA/F1YQne+TRw0UcPymNpURldAmx8hfmM2PNNGH/zgo3GpLA==}
+    engines: {node: '>=20.16.0'}
+    hasBin: true
+
   statuses@2.0.2:
     resolution: {integrity: sha512-DvEy55V3DB7uknRo+4iOGT5fP1slR8wQohVdknigZPMpMstaKJQWhwiYBACJE3Ul2pTnATihhBYnRhZQHGBiRw==}
     engines: {node: '>= 0.8'}
@@ -3873,9 +3875,6 @@ packages:
         optional: true
       webpack:
         optional: true
-
-  unstorage@2.0.0-alpha.10:
-    resolution: {integrity: sha512-6h1veZp8gnp4dGllf0tDijoXxDYymJu251IpKKkrSVH+QHL6tXFbwG85KM+CBHSgpkkgtPuIiZ9oLCLP5+1Evw==}
 
   update-browserslist-db@1.3.4:
     resolution: {integrity: sha512-t8wonIOdQyOjtPd2VktlBu6QjTVTks6v8bSi7kd0r2Vll8TK1JYDZtRRdbmCHOAMphkZgrzK+L+vXK4pyZ8t4A==}
@@ -4706,6 +4705,8 @@ snapshots:
       react-dom: 19.3.0(react@19.3.0)
 
   '@floating-ui/utils@0.2.12': {}
+
+  '@fontsource-variable/fraunces@5.3.0': {}
 
   '@fontsource-variable/ubuntu-sans@5.3.0': {}
 
@@ -5865,6 +5866,10 @@ snapshots:
     optionalDependencies:
       srvx: 1.0.5
 
+  crossws@0.4.15(srvx@1.0.6):
+    optionalDependencies:
+      srvx: 1.0.6
+
   css-select@5.2.2:
     dependencies:
       boolbase: 1.0.0
@@ -5892,8 +5897,6 @@ snapshots:
       - '@noble/hashes'
 
   date-fns@4.4.0: {}
-
-  db0@0.4.1: {}
 
   debounce-fn@4.0.0:
     dependencies:
@@ -6009,11 +6012,9 @@ snapshots:
 
   env-paths@2.2.1: {}
 
-  env-runner@0.3.3:
+  env-runner@0.3.6:
     dependencies:
       crossws: 0.4.15(srvx@1.0.5)
-      exsolve: 1.1.3
-      httpxy: 0.5.5
       srvx: 1.0.5
 
   es-define-property@1.0.1: {}
@@ -6281,12 +6282,12 @@ snapshots:
 
   graceful-fs@4.2.11: {}
 
-  h3@2.0.2(crossws@0.4.15(srvx@1.0.5))(ocache@0.3.0):
+  h3@2.0.6(crossws@0.4.15(srvx@1.0.6))(ocache@0.3.0):
     dependencies:
       rou3: 1.0.0
-      srvx: 1.0.5
+      srvx: 1.0.6
     optionalDependencies:
-      crossws: 0.4.15(srvx@1.0.5)
+      crossws: 0.4.15(srvx@1.0.6)
       ocache: 0.3.0
 
   has-symbols@1.1.0: {}
@@ -6317,8 +6318,6 @@ snapshots:
       setprototypeof: 1.2.0
       statuses: 2.0.2
       toidentifier: 1.0.1
-
-  httpxy@0.5.5: {}
 
   human-signals@2.1.0: {}
 
@@ -6639,18 +6638,15 @@ snapshots:
     dependencies:
       content-type: 2.1.0
 
-  nf3@0.4.2: {}
-
-  nitro-nightly@3.0.1-20261014-140419-9350ff51:
+  nitro-nightly@3.0.1-20261020-135725-f9894e92(ocache@0.3.0):
     dependencies:
-      crossws: 0.4.15(srvx@1.0.5)
-      db0: 0.4.1
-      env-runner: 0.3.3
-      h3: 2.0.2(crossws@0.4.15(srvx@1.0.5))(ocache@0.3.0)
-      nf3: 0.4.2
-      ocache: 0.3.0
-      srvx: 1.0.5
-      unstorage: 2.0.0-alpha.10
+      crossws: 0.4.15(srvx@1.0.6)
+      env-runner: 0.3.6
+      h3: 2.0.6(crossws@0.4.15(srvx@1.0.6))(ocache@0.3.0)
+      rou3: 1.0.0
+      srvx: 1.0.6
+    transitivePeerDependencies:
+      - ocache
 
   node-releases@2.0.58: {}
 
@@ -6673,7 +6669,8 @@ snapshots:
 
   object-treeify@1.1.33: {}
 
-  ocache@0.3.0: {}
+  ocache@0.3.0:
+    optional: true
 
   on-finished@2.4.1:
     dependencies:
@@ -7156,6 +7153,8 @@ snapshots:
 
   srvx@1.0.5: {}
 
+  srvx@1.0.6: {}
+
   statuses@2.0.2: {}
 
   stdin-discarder@0.2.2: {}
@@ -7300,8 +7299,6 @@ snapshots:
       esbuild: 0.28.2
       rolldown: 1.2.13
       vite: 8.3.4(@types/node@25.9.9)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15)
-
-  unstorage@2.0.0-alpha.10: {}
 
   update-browserslist-db@1.3.4(browserslist@4.29.3):
     dependencies:

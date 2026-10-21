@@ -2,6 +2,7 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/ubuntu-sans";
+@import "@fontsource-variable/fraunces";
 
 /*---break---*/
 @custom-variant dark (&:is(.dark *));
@@ -24,6 +25,7 @@ code {
 /*---break---*/
 
 @theme inline {
+  --font-logo: 'Fraunces Variable';
 	--font-heading: var(--font-sans);
 	--font-sans: "Ubuntu Sans Variable", sans-serif;
 	--color-sidebar-ring: var(--sidebar-ring);

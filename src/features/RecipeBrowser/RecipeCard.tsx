@@ -38,7 +38,7 @@ export const RecipeCard = ({
 					<div className="w-full">
 						<div
 							className={cn(
-								'font-extrabold text-orange-700 dark:text-orange-400',
+								'font-extrabold text-orange-600 dark:text-orange-500',
 								getScaledTextSize(name),
 							)}
 						>

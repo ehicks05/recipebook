@@ -18,6 +18,7 @@
 		"@better-auth-ui/core": "^1.7.27",
 		"@better-auth-ui/react": "^1.7.27",
 		"@better-auth/drizzle-adapter": "^1.7.7",
+		"@fontsource-variable/fraunces": "^5.3.0",
 		"@fontsource-variable/ubuntu-sans": "^5.3.0",
 		"@formkit/auto-animate": "^0.10.0",
 		"@hookform/resolvers": "^5.9.0",
