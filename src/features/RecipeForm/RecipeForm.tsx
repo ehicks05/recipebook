@@ -12,10 +12,12 @@ import {
 	type Recipe,
 	updateRecipe,
 } from '@/functions/recipes.functions';
-import { CopyToClipboardButton } from './components/CopyToClipboardButton';
-import { DeleteRecipeDialog } from './components/DeleteRecipeDialog';
-import { LeavePageConfirmationDialog } from './components/LeavePageConfirmationDialog';
-import { PublishButton } from './components/PublishButton';
+import {
+	CopyToClipboardButton,
+	DeleteRecipeDialog,
+	LeavePageConfirmationDialog,
+	PublishButton,
+} from './components';
 import { DEFAULT_RECIPE } from './constants';
 import { RecipeSchema } from './schema';
 import { IngredientsForm, RecipeDetailsForm, StepsForm } from './subforms';
