@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router';
 import { cn } from 'cn';
 import { Star } from 'lucide-react';
-import { Card, RecipeImage } from '@/components/core';
+import { RecipeImage } from '@/components/core';
 import { FavoriteButton } from '@/components/core/FavoriteButton';
 import type { Recipe } from '@/functions/recipes.functions';
 
@@ -23,7 +23,7 @@ export const RecipeCard = ({
 }: Props) => {
 	return (
 		<Link to="/recipes/$id" params={{ id }} preload={false}>
-			<Card className="h-88 flex flex-col gap-4 bg-muted border border-muted">
+			<div className="h-88 flex flex-col gap-4 p-4 border border-muted bg-muted rounded shadow">
 				<div className="relative -m-4 mb-0 h-48">
 					<div className="size-full rounded-t bg-sidebar">
 						<RecipeImage emoji={emoji} className="h-full rounded-t" />
@@ -48,7 +48,7 @@ export const RecipeCard = ({
 					</div>
 				</div>
 				<span className="line-clamp-3 text-sm">{description}</span>
-			</Card>
+			</div>
 		</Link>
 	);
 };
