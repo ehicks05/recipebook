@@ -3,15 +3,15 @@ import { RecipeBrowser } from '@/features/RecipeBrowser/RecipeBrowser';
 import { getRecipes } from '@/functions/recipes.functions';
 
 export const Route = createFileRoute('/')({
-	component: App,
+	component: RouteComponent,
 	loader: async () => {
 		const recipes = await getRecipes();
-		return recipes;
+		return { recipes };
 	},
 });
 
-function App() {
-	const recipes = Route.useLoaderData();
+function RouteComponent() {
+	const { recipes } = Route.useLoaderData();
 
 	return <RecipeBrowser recipes={recipes} />;
 }
