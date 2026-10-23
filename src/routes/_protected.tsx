@@ -1,14 +1,7 @@
-import {
-	createFileRoute,
-	Outlet,
-	redirect,
-	useRouteContext,
-} from '@tanstack/react-router';
+import { createFileRoute, Outlet, redirect } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/_protected')({
-	beforeLoad: async ({ location }) => {
-		const { session } = useRouteContext({ from: '__root__' });
-
+	beforeLoad: async ({ location, context: { session } }) => {
 		if (!session) {
 			throw redirect({
 				to: '/auth/$path',
@@ -16,6 +9,8 @@ export const Route = createFileRoute('/_protected')({
 				search: { redirectTo: location.href },
 			});
 		}
+
+		return { session };
 	},
 	component: () => <Outlet />,
 });
