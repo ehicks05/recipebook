@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import z from 'zod';
 import { parseLdJsonRecipe } from '@/features/RecipeImporter/parseLdJsonRecipe';
 import { RecipeImporter } from '@/features/RecipeImporter/RecipeImporter';
-import { fetchHtmlServerFn } from '@/features/RecipeImporter/useFetchHtml';
+import { fetchHtmlServerFn } from '@/functions/import.functions';
 
 const searchSchema = z.object({
 	url: z.string().optional(),
