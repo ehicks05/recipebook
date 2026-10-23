@@ -18,6 +18,6 @@ export const DEFAULT_RECIPE: FormRecipe = {
 	servings: 0,
 	isPublished: true,
 	source: '',
-	ingredients: [{ name: '', quantity: '', unit: 'tsp' }],
+	ingredients: [{ name: '', quantity: '', unit: '' }],
 	steps: [{ text: '' }],
 };
