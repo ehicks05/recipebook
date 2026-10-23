@@ -5,11 +5,11 @@ import type {
 	UseFieldArrayReturn,
 	UseFormRegister,
 } from 'react-hook-form';
-import { MyInput, MyTextArea } from '@/components/core';
 import { Button } from '@/components/ui/button';
 import { ButtonGroup } from '@/components/ui/button-group';
 import { DEFAULT_STEP } from '../constants';
 import type { FormRecipe } from '../types';
+import { MyInput, MyTextArea } from './StyledInputs';
 
 interface Props {
 	stepsFieldArray: UseFieldArrayReturn<FormRecipe, 'steps', 'id'>;

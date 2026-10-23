@@ -1,7 +1,7 @@
 import type { Control, FieldErrors, UseFormRegister } from 'react-hook-form';
-import { MyInput, MyTextArea } from '@/components/core';
 import type { FormRecipe } from '../types';
 import { EmojiInput } from './EmojiInput';
+import { MyInput, MyTextArea } from './StyledInputs';
 
 interface Props {
 	errors: FieldErrors<FormRecipe>;

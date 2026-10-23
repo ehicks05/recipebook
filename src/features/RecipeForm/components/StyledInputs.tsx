@@ -6,8 +6,8 @@ import type {
 	Path,
 	UseFormRegister,
 } from 'react-hook-form';
-import { Input } from '../ui/input';
-import { TextareaAutosize } from '../ui/textarea-autosize';
+import { Input } from '@/components/ui/input';
+import { TextareaAutosize } from '@/components/ui/textarea-autosize';
 
 const BASE = 'px-3 py-1 h-full w-full rounded-md border';
 
