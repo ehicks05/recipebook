@@ -1,9 +1,11 @@
-import { ClientOnly, useNavigate } from '@tanstack/react-router';
+import { useSession } from '@better-auth-ui/react';
+import { useNavigate } from '@tanstack/react-router';
 import { AlertCircle, CircleQuestionMark } from 'lucide-react';
 import { useState } from 'react';
-import z from 'zod';
+import type z from 'zod';
 import { Container } from '@/components/core';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { Field, FieldDescription, FieldLabel } from '@/components/ui/field';
 import {
 	InputGroup,
 	InputGroupAddon,
@@ -11,35 +13,63 @@ import {
 	InputGroupInput,
 } from '@/components/ui/input-group';
 import { RecipeForm } from '@/features/RecipeForm';
-import { parseLdJsonRecipe } from '@/features/RecipeImporter/parseLdJsonRecipe';
 import { RecipeDetail } from '@/features/RecipeViewer/RecipeDetail';
+import type { Recipe } from '@/functions/recipes.functions';
 import { authClient } from '@/lib/auth-client';
-import { Instructions } from './Instructions';
-import { useFetchHtml } from './useFetchHtml';
 
-const urlSchema = z.url({ protocol: /^https?$/ });
-
-export const RecipeImporter = ({ url }: { url?: string }) => {
-	const { data: session } = authClient.useSession();
-	const user = session?.user;
+export const RecipeImporter = ({
+	url,
+	urlError,
+	recipe,
+	recipeError,
+}: {
+	url?: string;
+	urlError?: z.ZodError<string>;
+	recipe?: Recipe;
+	recipeError?: Error;
+}) => {
+	const { data: session } = useSession(authClient);
 
 	const navigate = useNavigate();
 	const [mode, setMode] = useState<'view' | 'edit'>('view');
 	const toggleMode = () => setMode(mode === 'edit' ? 'view' : 'edit');
 
-	const { data: validatedUrl, error: urlError } = urlSchema.safeParse(url);
-	const { html: recipeHtml } = useFetchHtml(validatedUrl);
-
 	const handleChange = (url: string) => {
 		navigate({ to: '/import-recipe', search: { url } });
 	};
 
-	const { recipe, error: parseError } =
-		recipeHtml && validatedUrl ? parseLdJsonRecipe(recipeHtml, validatedUrl) : {};
-
 	return (
-		<ClientOnly>
-			{!url && <Instructions />}
+		<>
+			<div className="py-2 bg-sidebar">
+				<Container>
+					<Field>
+						<FieldLabel>Recipe URL</FieldLabel>
+					</Field>
+					<InputGroup>
+						<InputGroupInput
+							type="url"
+							value={url || ''}
+							onPaste={(e) => handleChange(e.clipboardData.getData('text'))}
+							readOnly
+							placeholder="https://example.com"
+						/>
+
+						<InputGroupAddon align="inline-end">
+							<InputGroupButton
+								variant="default"
+								disabled={!session || !recipe}
+								onClick={toggleMode}
+							>
+								{mode === 'edit' ? 'View' : 'Edit'}
+							</InputGroupButton>
+						</InputGroupAddon>
+					</InputGroup>
+					<FieldDescription>
+						Paste a recipe url here. If it includes recipe metadata, the recipe will
+						appear below. Check it carefully!
+					</FieldDescription>
+				</Container>
+			</div>
 			{url && urlError && (
 				<Container>
 					<Alert variant="destructive">
@@ -49,45 +79,24 @@ export const RecipeImporter = ({ url }: { url?: string }) => {
 					</Alert>
 				</Container>
 			)}
-			{parseError && (
+			{recipeError && (
 				<Container>
 					<Alert variant="destructive">
 						<AlertCircle />
 						<AlertTitle>Unable to parse recipe</AlertTitle>
-						<AlertDescription>{parseError.message}</AlertDescription>
+						<AlertDescription>{recipeError.message}</AlertDescription>
 					</Alert>{' '}
 				</Container>
 			)}
-			<div className="py-2">
-				<Container>
-					<InputGroup>
-						<InputGroupInput
-							placeholder="enter a recipe url"
-							value={url || ''}
-							onChange={(e) => handleChange(e.target.value)}
-						/>
-
-						<InputGroupAddon align="inline-end">
-							<InputGroupButton
-								variant="default"
-								disabled={!user || !recipe}
-								onClick={toggleMode}
-							>
-								{mode === 'edit' ? 'View' : 'Edit'}
-							</InputGroupButton>
-						</InputGroupAddon>
-					</InputGroup>
-				</Container>
-			</div>
-			{!user && recipe && (
+			{!session && recipe && (
 				<Alert>
 					<CircleQuestionMark />
-					<AlertTitle>Sign in to edit and save</AlertTitle>
+					<AlertTitle>Sign in to save this recipe</AlertTitle>
 				</Alert>
 			)}
 
 			{recipe && mode === 'view' && <RecipeDetail recipe={recipe} />}
 			{recipe && mode === 'edit' && <RecipeForm importedRecipe={recipe} />}
-		</ClientOnly>
+		</>
 	);
 };

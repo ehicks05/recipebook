@@ -1,3 +1,4 @@
+import { useSession } from '@better-auth-ui/react';
 import { useRouter } from '@tanstack/react-router';
 import { cn } from 'cn';
 import { Heart } from 'lucide-react';
@@ -13,7 +14,7 @@ type Props = ButtonParams & {
 
 export const FavoriteButton = ({ recipeId, favoritedBy, ...props }: Props) => {
 	const router = useRouter();
-	const { data: session } = authClient.useSession();
+	const { data: session } = useSession(authClient);
 	if (!session) return null;
 
 	const isFavorite = Object.keys(favoritedBy).length !== 0;
