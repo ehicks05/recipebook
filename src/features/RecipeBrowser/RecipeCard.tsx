@@ -1,9 +1,9 @@
 import { Link } from '@tanstack/react-router';
 import { cn } from 'cn';
 import { Star } from 'lucide-react';
-import { RecipeImage } from '@/components/core';
-import { FavoriteButton } from '@/components/core/FavoriteButton';
+import { FavoriteButton } from '@/features/Favorites/FavoriteButton';
 import type { Recipe } from '@/functions/recipes.functions';
+import { RecipeImage } from './RecipeImage';
 
 const getScaledTextSize = (text: string) =>
 	text.length < 34 ? 'text-xl' : text.length < 38 ? 'text-lg' : 'text-base';
