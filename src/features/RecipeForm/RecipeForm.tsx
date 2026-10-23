@@ -12,13 +12,13 @@ import {
 	type Recipe,
 	updateRecipe,
 } from '@/functions/recipes.functions';
-import { CopyToClipboardButton } from './CopyToClipboardButton';
-import { IngredientsForm, RecipeDetailsForm, StepsForm } from './components';
+import { CopyToClipboardButton } from './components/CopyToClipboardButton';
+import { DeleteRecipeDialog } from './components/DeleteRecipeDialog';
+import { LeavePageConfirmationDialog } from './components/LeavePageConfirmationDialog';
+import { PublishButton } from './components/PublishButton';
 import { DEFAULT_RECIPE } from './constants';
-import { DeleteRecipeDialog } from './DeleteRecipeDialog';
-import { LeavePageConfirmationDialog } from './LeavePageConfirmationDialog';
-import { PublishButton } from './PublishButton';
 import { RecipeSchema } from './schema';
+import { IngredientsForm, RecipeDetailsForm, StepsForm } from './subforms';
 import type { FormRecipe } from './types';
 
 interface Props {
