@@ -1,5 +1,15 @@
+import Fraction from 'fraction.js';
 import { z } from 'zod';
-import { validateQuantity } from './lib/utils';
+
+const validateQuantity = (quantity: unknown | undefined) => {
+	if (!quantity) return true;
+	try {
+		new Fraction(quantity as string);
+		return true;
+	} catch (_e) {
+		return false;
+	}
+};
 
 const Ingredient = z.object({
 	name: z.string().min(1, { error: 'Add ingredient name' }),
