@@ -52,7 +52,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			<head>
 				<HeadContent />
 			</head>
-			<body className="flex flex-col bg-body-background">
+			<body>
 				<ThemeProvider storageKey="theme" defaultTheme="system">
 					<Providers>
 						<PageLayout>{children}</PageLayout>

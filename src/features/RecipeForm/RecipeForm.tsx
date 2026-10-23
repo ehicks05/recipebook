@@ -97,45 +97,55 @@ export const RecipeForm = ({ recipe, importedRecipe }: Props) => {
 				onSubmit={handleSubmit(onSubmit, onError)}
 				className="flex flex-col gap-4"
 			>
-				<div className="grid grid-cols-2 sm:flex sm:items-center gap-2 p-4 bg-sidebar">
-					<Button
-						type="submit"
-						// don't disable when invalid (clicking this will trigger error messages to show)
-						disabled={isLoading || (recipe && !isDirty)}
-					>
-						{`${recipe ? 'Save' : 'Create Recipe '}`}
-					</Button>
-					{import.meta.env.DEV && !recipe && (
+				<div className="bg-sidebar">
+					<Container className="grid grid-cols-2 sm:flex sm:items-center gap-2">
 						<Button
-							onClick={() => {
-								setValues({
-									name: 'foo',
-									description: 'foo',
-									cookingTime: '5M',
-									servings: 4,
-									emoji: '🧪',
-									ingredients: [{ quantity: '1', unit: 'tsp', name: 'foo' }],
-									steps: [{ text: 'foo' }],
-								});
-							}}
+							type="submit"
+							// don't disable when invalid (clicking this will trigger error messages to show)
+							disabled={isLoading || (recipe && !isDirty)}
 						>
-							Seed
+							{`${recipe ? 'Save' : 'Create Recipe '}`}
 						</Button>
-					)}
-					{recipe && (
-						<>
-							<Button disabled={!isDirty} onClick={handleReset} variant="secondary">
-								Reset
-								<RotateCcw />
+						{import.meta.env.DEV && !recipe && (
+							<Button
+								onClick={() => {
+									setValues({
+										name: 'foo',
+										description: 'foo',
+										cookingTime: '5M',
+										servings: 4,
+										emoji: '🧪',
+										ingredients: [{ quantity: '1', unit: 'tsp', name: 'foo' }],
+										steps: [{ text: 'foo' }],
+									});
+								}}
+							>
+								Seed
 							</Button>
-							<Button disabled={isLoading} onClick={handleView} variant="secondary">
-								View
-							</Button>
-							<PublishButton recipe={recipe} />
-							<CopyToClipboardButton recipe={recipe} />
-							<DeleteRecipeDialog id={recipe.id} name={recipe.name} />
-						</>
-					)}
+						)}
+						{recipe && (
+							<>
+								<Button
+									disabled={!isDirty}
+									onClick={handleReset}
+									variant="secondary"
+								>
+									Reset
+									<RotateCcw />
+								</Button>
+								<Button
+									disabled={isLoading}
+									onClick={handleView}
+									variant="secondary"
+								>
+									View
+								</Button>
+								<PublishButton recipe={recipe} />
+								<CopyToClipboardButton recipe={recipe} />
+								<DeleteRecipeDialog id={recipe.id} name={recipe.name} />
+							</>
+						)}
+					</Container>
 				</div>
 
 				<Container>
